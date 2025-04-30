@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Crystal Docs 1.16.1">
+<meta name="crystal_docs.project_version" content="1.17.0-dev">
+<meta name="crystal_docs.project_name" content="Crystal">
+
+  <meta name="crystal_docs.json_config_url" content="/api/versions.json">
+
+
+    <link rel="canonical" href="https://crystal-lang.org/api/latest/OpenSSL.html">
+
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/doc.js"></script>
+
+  <meta name="repository-name" content="Crystal">
+  <title>OpenSSL - Crystal 1.17.0-dev</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill="currentColor" fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<input type="checkbox" id="sidebar-btn">
+<label for="sidebar-btn" id="sidebar-btn-label">
+  <svg class="open" xmlns="http://www.w3.org/2000/svg" height="2em" width="2em" viewBox="0 0 512 512"><title>Open Sidebar</title><path fill="currentColor" d="M80 96v64h352V96H80zm0 112v64h352v-64H80zm0 112v64h352v-64H80z"></path></svg>
+  <svg class="close" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><title>Close Sidebar</title><path fill="currentColor" d="m118.6 73.4-45.2 45.2L210.7 256 73.4 393.4l45.2 45.2L256 301.3l137.4 137.3 45.2-45.2L301.3 256l137.3-137.4-45.2-45.2L256 210.7Z"></path></svg>
+</label>
+<iframe class="sidebar" src="sidebar.html"></iframe>
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">
+    module
+  </span> OpenSSL
+
+</h1>
+
+
+
+
+
+  <h2>
+    <a id="overview" class="anchor" href="#overview">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Overview
+  </h2>
+
+  <p>The OpenSSL module allows for access to Secure Sockets Layer (SSL) and Transport Layer Security (TLS)
+encryption, as well as classes for encrypting data, decrypting data, and computing hashes. It uses
+the SSL library provided by the operating system, which may be either <a href="https://openssl.org">OpenSSL</a>
+or <a href="https://www.libressl.org">LibreSSL</a>.</p>
+<p><span class="flag yellow">WARNING</span>  This module should not be used without first reading the <a href="#security-considerations">Security considerations</a>.</p>
+<p>To create secure sockets, use either <code><a href="OpenSSL/SSL/Socket/Client.html">OpenSSL::SSL::Socket::Client</a></code> for client applications, or
+<code><a href="OpenSSL/SSL/Socket/Server.html">OpenSSL::SSL::Socket::Server</a></code> for servers.  These classes use a default context, but you can provide
+your own by supplying an <code><a href="OpenSSL/SSL/Context.html">OpenSSL::SSL::Context</a></code>.  For more control, consider subclassing <code><a href="OpenSSL/SSL/Socket.html">OpenSSL::SSL::Socket</a></code>.</p>
+<p>Hashing algorithms are provided by classes such as <code><a href="Digest/SHA256.html">Digest::SHA256</a></code> and <code><a href="Digest/MD5.html">Digest::MD5</a></code>.  If you need
+a different option, you can initialize one using the name of the digest with <code><a href="OpenSSL/Digest.html">OpenSSL::Digest</a></code>.
+A Hash-based Message Authentication Code (HMAC) can be computed using <code><a href="OpenSSL/HMAC.html">HMAC</a></code> and specifying a digest
+<code><a href="OpenSSL/Algorithm.html">Algorithm</a></code>.</p>
+<p>The <code><a href="OpenSSL/Cipher.html">OpenSSL::Cipher</a></code> class can be used for encrypting and decrypting data.</p>
+<p><span class="flag purple">NOTE</span>  To use <code><a href="OpenSSL.html">OpenSSL</a></code>, you must explicitly import it using the <code>require &quot;openssl&quot;</code> statement.</p>
+<h2><a id="security-considerations" class="anchor" href="#security-considerations">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Security Considerations</h2>
+<p>Crystal aims to provide reasonable configuration defaults in accordance with
+<a href="https://wiki.mozilla.org/Security/Server_Side_TLS#Intermediate_compatibility_.28recommended.29">Mozilla's recommendations</a>.
+However, these defaults may not be suitable for your application.  It is recommended that you refer
+to the Open Worldwide Application Security Project (OWASP) cheat sheet on
+<a href="https://cheatsheetseries.owasp.org/cheatsheets/Transport_Layer_Security_Cheat_Sheet.html">implementing transport layer protection</a>
+to ensure the appropriate configuration for your use.</p>
+<p>If you come across any shortcomings or spots for improvement in Crystal's configuration options,
+please don't hesitate to let us know by <a href="https://github.com/crystal-lang/crystal/issues/new">opening an issue</a>.</p>
+<h2><a id="usage-example" class="anchor" href="#usage-example">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Usage Example</h2>
+<h3><a id="server-side" class="anchor" href="#server-side">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Server side</h3>
+<p>An <code><a href="OpenSSL/SSL.html">SSL</a></code> server is created with a <code><a href="TCPServer.html">TCPServer</a></code> and a <code><a href="OpenSSL/SSL/Context.html">SSL::Context</a></code>.  You can then use the
+SSL server like an ordinary TCP server.</p>
+<p><span class="flag purple">NOTE</span>  For the below example to work, a certificate and private key should be attained.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;openssl&quot;</span>
+<span class="k">require</span> <span class="s">&quot;socket&quot;</span>
+
+<span class="t">PORT</span> <span class="o">=</span> <span class="t">ENV</span>[<span class="s">&quot;PORT&quot;</span>] <span class="o">||=</span> <span class="s">&quot;5555&quot;</span>
+
+<span class="c"># Bind new TCPServer to PORT</span>
+socket <span class="o">=</span> <span class="t">TCPServer</span>.new(<span class="t">PORT</span>.to_i)
+
+context <span class="o">=</span> <span class="t">OpenSSL</span><span class="t">::</span><span class="t">SSL</span><span class="t">::</span><span class="t">Context</span><span class="t">::</span><span class="t">Server</span>.new
+context.private_key <span class="o">=</span> <span class="s">&quot;/path/to/private.key&quot;</span>
+context.certificate_chain <span class="o">=</span> <span class="s">&quot;/path/to/public.cert&quot;</span>
+
+puts <span class="s">&quot;Server is up. Listening on port </span><span class="i">#{</span><span class="t">PORT</span><span class="i">}</span><span class="s">.&quot;</span>
+
+socket.accept <span class="k">do</span> <span class="o">|</span>client<span class="o">|</span>
+  puts <span class="s">&quot;Got client&quot;</span>
+
+  bytes <span class="o">=</span> <span class="t">Bytes</span>.new(<span class="n">20</span>)
+
+  <span class="t">OpenSSL</span><span class="t">::</span><span class="t">SSL</span><span class="t">::</span><span class="t">Socket</span><span class="t">::</span><span class="t">Server</span>.open(client, context) <span class="k">do</span> <span class="o">|</span>ssl_socket<span class="o">|</span>
+    ssl_socket.read(bytes)
+  <span class="k">end</span>
+
+  puts <span class="s">&quot;Client said: </span><span class="i">#{</span><span class="t">String</span>.new(bytes)<span class="i">}</span><span class="s">&quot;</span>
+<span class="k">end</span>
+
+socket.close
+puts <span class="s">&quot;Server has stopped.&quot;</span></code></pre>
+<h3><a id="client-side" class="anchor" href="#client-side">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Client side</h3>
+<p>An <code><a href="OpenSSL/SSL.html">SSL</a></code> client is created with a <code><a href="TCPSocket.html">TCPSocket</a></code> and a <code><a href="OpenSSL/SSL/Context.html">SSL::Context</a></code>. Unlike a SSL server,
+a client does not require a certificate or private key.</p>
+<p><span class="flag purple">NOTE</span>  By default, closing an <code><a href="OpenSSL/SSL/Socket.html">SSL::Socket</a></code> does not close the underlying socket.  You need to
+set <code><a href="OpenSSL/SSL/Socket.html#sync_close%3D%28sync_close%3ABool%29-instance-method">SSL::Socket#sync_close=</a></code> to true if you want this behaviour.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;openssl&quot;</span>
+<span class="k">require</span> <span class="s">&quot;socket&quot;</span>
+
+<span class="t">PORT</span> <span class="o">=</span> <span class="t">ENV</span>[<span class="s">&quot;PORT&quot;</span>] <span class="o">||=</span> <span class="s">&quot;5555&quot;</span>
+
+<span class="c"># Bind TCPSocket to PORT and open a connection</span>
+<span class="t">TCPSocket</span>.open(<span class="s">&quot;127.0.0.1&quot;</span>, <span class="t">PORT</span>) <span class="k">do</span> <span class="o">|</span>socket<span class="o">|</span>
+  context <span class="o">=</span> <span class="t">OpenSSL</span><span class="t">::</span><span class="t">SSL</span><span class="t">::</span><span class="t">Context</span><span class="t">::</span><span class="t">Client</span>.new
+
+  <span class="t">OpenSSL</span><span class="t">::</span><span class="t">SSL</span><span class="t">::</span><span class="t">Socket</span><span class="t">::</span><span class="t">Client</span>.open(socket, context) <span class="k">do</span> <span class="o">|</span>ssl_socket<span class="o">|</span>
+    ssl_socket <span class="o">&lt;&lt;</span> <span class="s">&quot;Hello from client!&quot;</span>
+  <span class="k">end</span>
+<span class="k">end</span></code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/openssl.cr#L99" target="_blank">
+        openssl.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/openssl/algorithm.cr#L3" target="_blank">
+        openssl/algorithm.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/openssl/digest.cr#L5" target="_blank">
+        openssl/digest.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/openssl/error.cr#L4" target="_blank">
+        openssl/error.cr
+      </a>
+    
+    <br/>
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+
+  <div class="methods-inherited">
+    
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+
+</div>
+
+</body>
+</html>

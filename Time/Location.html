@@ -1,0 +1,1166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Crystal Docs 1.16.1">
+<meta name="crystal_docs.project_version" content="1.17.0-dev">
+<meta name="crystal_docs.project_name" content="Crystal">
+
+  <meta name="crystal_docs.json_config_url" content="/api/versions.json">
+
+
+    <link rel="canonical" href="https://crystal-lang.org/api/latest/Time/Location.html">
+
+<link href="../css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../js/doc.js"></script>
+
+  <meta name="repository-name" content="Crystal">
+  <title>Time::Location - Crystal 1.17.0-dev</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "../";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill="currentColor" fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<input type="checkbox" id="sidebar-btn">
+<label for="sidebar-btn" id="sidebar-btn-label">
+  <svg class="open" xmlns="http://www.w3.org/2000/svg" height="2em" width="2em" viewBox="0 0 512 512"><title>Open Sidebar</title><path fill="currentColor" d="M80 96v64h352V96H80zm0 112v64h352v-64H80zm0 112v64h352v-64H80z"></path></svg>
+  <svg class="close" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><title>Close Sidebar</title><path fill="currentColor" d="m118.6 73.4-45.2 45.2L210.7 256 73.4 393.4l45.2 45.2L256 301.3l137.4 137.3 45.2-45.2L301.3 256l137.3-137.4-45.2-45.2L256 210.7Z"></path></svg>
+</label>
+<iframe class="sidebar" src="../sidebar.html"></iframe>
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">
+    class
+  </span> Time::<wbr>Location
+
+</h1>
+
+
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../Time/Location.html">Time::Location</a></li><li class="superclass"><a href="../Reference.html">Reference</a></li><li class="superclass"><a href="../Object.html">Object</a></li></ul>
+
+
+
+
+  <h2>
+    <a id="overview" class="anchor" href="#overview">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Overview
+  </h2>
+
+  <p><code><a href="../Time/Location.html">Location</a></code> maps time instants to the zone in use at that time.
+It typically represents the collection of time offsets observed in
+a certain geographical area.</p>
+<p>It contains a list of zone offsets and rules for transitioning between them.</p>
+<p>If a location has only one offset (such as <code><a href="../Time/Location.html#UTC">UTC</a></code>) it is considered
+<em>fixed</em>.</p>
+<p>A <code><a href="../Time/Location.html">Location</a></code> instance is usually retrieved by name using
+<code><a href="../Time/Location.html#load%28name%3AString%29%3ALocation-class-method">Time::Location.load</a></code>.
+It loads the zone offsets and transitioning rules from the time zone database
+provided by the operating system.</p>
+<pre><code class="language-crystal">location <span class="o">=</span> <span class="t">Time</span><span class="t">::</span><span class="t">Location</span>.load(<span class="s">&quot;Europe/Berlin&quot;</span>)
+location <span class="c"># =&gt; #&lt;Time::Location Europe/Berlin&gt;</span>
+time <span class="o">=</span> <span class="t">Time</span>.local(<span class="n">2016</span>, <span class="n">2</span>, <span class="n">15</span>, <span class="n">21</span>, <span class="n">1</span>, <span class="n">10</span>, location: location)
+time <span class="c"># =&gt; 2016-02-15 21:01:10 +01:00 Europe/Berlin</span></code></pre>
+<p>A custom time zone database can be configured through the environment variable
+<code>ZONEINFO</code>. See <code><a href="../Time/Location.html#load%28name%3AString%29%3ALocation-class-method">.load</a></code> for details.</p>
+<h3><a id="fixed-offset" class="anchor" href="#fixed-offset">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Fixed Offset</h3>
+<p>A fixed offset location is created using <code><a href="../Time/Location.html#fixed%28name%3AString%2Coffset%3AInt32%29%3ALocation-class-method">Time::Location.fixed</a></code>:</p>
+<pre><code class="language-crystal">location <span class="o">=</span> <span class="t">Time</span><span class="t">::</span><span class="t">Location</span>.fixed(<span class="n">3600</span>)
+location       <span class="c"># =&gt; #&lt;Time::Location +01:00&gt;</span>
+location.zones <span class="c"># =&gt; [#&lt;Time::Location::Zone +01:00 (0s) STD&gt;]</span></code></pre>
+<h3><a id="local-time-zone" class="anchor" href="#local-time-zone">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Local Time Zone</h3>
+<p>The local time zone can be accessed as <code><a href="../Time/Location.html#local%3ALocation-class-method">Time::Location.local</a></code>.</p>
+<p>It is initially configured according to system environment settings,
+but its value can be changed:</p>
+<pre><code class="language-crystal">location <span class="o">=</span> <span class="t">Time</span><span class="t">::</span><span class="t">Location</span>.local
+<span class="t">Time</span><span class="t">::</span><span class="t">Location</span>.local <span class="o">=</span> <span class="t">Time</span><span class="t">::</span><span class="t">Location</span>.load(<span class="s">&quot;America/New_York&quot;</span>)</code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/time/location.cr#L49" target="_blank">
+        time/location.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/time/location/loader.cr#L1" target="_blank">
+        time/location/loader.cr
+      </a>
+    
+    <br/>
+  
+
+
+
+  
+    <h2>
+      <a id="constant-summary" class="anchor" href="#constant-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+      Constant Summary
+    </h2>
+  
+  <dl>
+    
+      <dt class="entry-const" id="UTC">
+        <strong>UTC</strong> = <code>new(<span class="s">&quot;UTC&quot;</span>, [<span class="t">Zone</span><span class="t">::</span><span class="t">UTC</span>])</code>
+      </dt>
+      
+      <dd class="entry-const-doc">
+        <p>Describes the Coordinated Universal Time (UTC).</p>
+<p>The only time zone offset in this location is <code><a href="../Time/Location/Zone.html#UTC">Zone::UTC</a></code>.</p>
+      </dd>
+      
+    
+  </dl>
+
+
+
+  
+  <h2>
+    <a id="constructors" class="anchor" href="#constructors">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructors
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#fixed%28name%3AString%2Coffset%3AInt32%29%3ALocation-class-method" class="signature"><strong>.fixed</strong>(name : String, offset : Int32) : Location</a>
+        
+          <div class="summary"><p>Creates a <code><a href="../Time/Location.html">Location</a></code> instance named <em>name</em> with fixed <em>offset</em> in seconds from UTC.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#fixed%28offset%3AInt32%29%3Aself-class-method" class="signature"><strong>.fixed</strong>(offset : Int32) : <span class="k">self</span></a>
+        
+          <div class="summary"><p>Creates a <code><a href="../Time/Location.html">Location</a></code> instance with fixed <em>offset</em> in seconds from UTC.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#load%28name%3AString%29%3ALocation-class-method" class="signature"><strong>.load</strong>(name : String) : Location</a>
+        
+          <div class="summary"><p>Loads the <code><a href="../Time/Location.html">Location</a></code> with the given <em>name</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#load_local%3ALocation-class-method" class="signature"><strong>.load_local</strong> : Location</a>
+        
+          <div class="summary"><p>Loads the local time zone according to the current application environment.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#local%3ALocation-class-method" class="signature"><strong>.local</strong> : Location</a>
+        
+          <div class="summary"><p>Returns the <code><a href="../Time/Location.html">Location</a></code> representing the application's local time zone.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+  
+  <h2>
+    <a id="class-method-summary" class="anchor" href="#class-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Class Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#local%3D%28local%3ALocation%29-class-method" class="signature"><strong>.local=</strong>(local : Location)</a>
+        
+          <div class="summary"><p>Returns the <code><a href="../Time/Location.html">Location</a></code> representing the application's local time zone.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+  
+
+  
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#%3D%3D%28other%3Aself%29-instance-method" class="signature"><strong>#==</strong>(other : <span class="k">self</span>)</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if <em>other</em> is equal to <code>self</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#fixed%3F%3ABool-instance-method" class="signature"><strong>#fixed?</strong> : Bool</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this location has a fixed offset.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#hash%28hasher%29-instance-method" class="signature"><strong>#hash</strong>(hasher)</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if <em>other</em> is equal to <code>self</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#inspect%28io%3AIO%29%3ANil-instance-method" class="signature"><strong>#inspect</strong>(io : IO) : Nil</a>
+        
+          <div class="summary"><p>Appends a String representation of this object which includes its class name, its object address and the values of all instance variables.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#local%3F%3ABool-instance-method" class="signature"><strong>#local?</strong> : Bool</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this location equals to <code><a href="../Time/Location.html#local%3ALocation-class-method">Time::Location.local</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#lookup%28time%3ATime%29%3AZone-instance-method" class="signature"><strong>#lookup</strong>(time : Time) : Zone</a>
+        
+          <div class="summary"><p>Returns the time zone offset observed at <em>time</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#lookup%28unix_seconds%3AInt%29%3AZone-instance-method" class="signature"><strong>#lookup</strong>(unix_seconds : Int) : Zone</a>
+        
+          <div class="summary"><p>Returns the time zone offset observed at <em>unix_seconds</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#name%3AString-instance-method" class="signature"><strong>#name</strong> : String</a>
+        
+          <div class="summary"><p>Returns the name of this location.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_s%28io%3AIO%29%3ANil-instance-method" class="signature"><strong>#to_s</strong>(io : IO) : Nil</a>
+        
+          <div class="summary"><p>Prints <code><a href="../Time/Location.html#name%3AString-instance-method">#name</a></code> to <em>io</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#utc%3F%3ABool-instance-method" class="signature"><strong>#utc?</strong> : Bool</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this location equals to <code><a href="../Time/Location.html#UTC">UTC</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#zones%3AArray%28Zone%29-instance-method" class="signature"><strong>#zones</strong> : Array(Zone)</a>
+        
+          <div class="summary"><p>Returns the array of time zone offsets (<code><a href="../Time/Location/Zone.html">Zone</a></code>) used in this time zone.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+
+  <div class="methods-inherited">
+    
+      
+
+  <h3>Instance methods inherited from class <code><a href="../Reference.html">Reference</a></code></h3>
+  
+  
+    <a href="../Reference.html#%3D%3D%28other%3Aself%29-instance-method" class="tooltip">
+      <span>==(other : <span class="k">self</span>)<br/>==(other : JSON::Any)<br/>==(other : YAML::Any)<br/>==(other)</span>
+    ==</a>, 
+    
+  
+    <a href="../Reference.html#dup-instance-method" class="tooltip">
+      <span>dup</span>
+    dup</a>, 
+    
+  
+    <a href="../Reference.html#hash%28hasher%29-instance-method" class="tooltip">
+      <span>hash(hasher)</span>
+    hash</a>, 
+    
+  
+    <a href="../Reference.html#initialize-instance-method" class="tooltip">
+      <span>initialize</span>
+    initialize</a>, 
+    
+  
+    <a href="../Reference.html#inspect%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>inspect(io : IO) : Nil</span>
+    inspect</a>, 
+    
+  
+    <a href="../Reference.html#object_id%3AUInt64-instance-method" class="tooltip">
+      <span>object_id : UInt64</span>
+    object_id</a>, 
+    
+  
+    <a href="../Reference.html#pretty_print%28pp%29%3ANil-instance-method" class="tooltip">
+      <span>pretty_print(pp) : Nil</span>
+    pretty_print</a>, 
+    
+  
+    <a href="../Reference.html#same%3F%28other%3AReference%29%3ABool-instance-method" class="tooltip">
+      <span>same?(other : Reference) : Bool<br/>same?(other : Nil)</span>
+    same?</a>, 
+    
+  
+    <a href="../Reference.html#to_s%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_s(io : IO) : Nil</span>
+    to_s</a>
+    
+  
+
+
+      
+
+  <h3>Constructor methods inherited from class <code><a href="../Reference.html">Reference</a></code></h3>
+  
+  
+    <a href="../Reference.html#new-class-method" class="tooltip">
+      <span>new</span>
+    new</a>, 
+    
+  
+    <a href="../Reference.html#unsafe_construct%28address%3APointer%2C%2Aargs%2C%2A%2Aopts%29%3Aself-class-method" class="tooltip">
+      <span>unsafe_construct(address : Pointer, *args, **opts) : <span class="k">self</span></span>
+    unsafe_construct</a>
+    
+  
+
+
+      
+
+  <h3>Class methods inherited from class <code><a href="../Reference.html">Reference</a></code></h3>
+  
+  
+    <a href="../Reference.html#pre_initialize%28address%3APointer%29-class-method" class="tooltip">
+      <span>pre_initialize(address : Pointer)</span>
+    pre_initialize</a>
+    
+  
+
+
+      
+
+
+    
+      
+
+  <h3>Instance methods inherited from class <code><a href="../Object.html">Object</a></code></h3>
+  
+  
+    <a href="../Object.html#%21%3ABool-instance-method" class="tooltip">
+      <span>! : Bool</span>
+    !</a>, 
+    
+  
+    <a href="../Object.html#%21%3D%28other%29-instance-method" class="tooltip">
+      <span>!=(other)</span>
+    !=</a>, 
+    
+  
+    <a href="../Object.html#%21~%28other%29-instance-method" class="tooltip">
+      <span>!~(other)</span>
+    !~</a>, 
+    
+  
+    <a href="../Object.html#%3D%3D%28other%29-instance-method" class="tooltip">
+      <span>==(other)</span>
+    ==</a>, 
+    
+  
+    <a href="../Object.html#%3D%3D%3D%28other%3AJSON%3A%3AAny%29-instance-method" class="tooltip">
+      <span>===(other : JSON::Any)<br/>===(other : YAML::Any)<br/>===(other)</span>
+    ===</a>, 
+    
+  
+    <a href="../Object.html#%3D~%28other%29-instance-method" class="tooltip">
+      <span>=~(other)</span>
+    =~</a>, 
+    
+  
+    <a href="../Object.html#as%28type%3AClass%29-instance-method" class="tooltip">
+      <span>as(type : Class)</span>
+    as</a>, 
+    
+  
+    <a href="../Object.html#as%3F%28type%3AClass%29-instance-method" class="tooltip">
+      <span>as?(type : Class)</span>
+    as?</a>, 
+    
+  
+    <a href="../Object.html#class-instance-method" class="tooltip">
+      <span>class</span>
+    class</a>, 
+    
+  
+    <a href="../Object.html#dup-instance-method" class="tooltip">
+      <span>dup</span>
+    dup</a>, 
+    
+  
+    <a href="../Object.html#hash%28hasher%29-instance-method" class="tooltip">
+      <span>hash(hasher)<br/>hash</span>
+    hash</a>, 
+    
+  
+    <a href="../Object.html#in%3F%28collection%3AObject%29%3ABool-instance-method" class="tooltip">
+      <span>in?(collection : Object) : Bool<br/>in?(*values : Object) : Bool</span>
+    in?</a>, 
+    
+  
+    <a href="../Object.html#inspect%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>inspect(io : IO) : Nil<br/>inspect : String</span>
+    inspect</a>, 
+    
+  
+    <a href="../Object.html#is_a%3F%28type%3AClass%29%3ABool-instance-method" class="tooltip">
+      <span>is_a?(type : Class) : Bool</span>
+    is_a?</a>, 
+    
+  
+    <a href="../Object.html#itself-instance-method" class="tooltip">
+      <span>itself</span>
+    itself</a>, 
+    
+  
+    <a href="../Object.html#nil%3F%3ABool-instance-method" class="tooltip">
+      <span>nil? : Bool</span>
+    nil?</a>, 
+    
+  
+    <a href="../Object.html#not_nil%21%28message%29-instance-method" class="tooltip">
+      <span>not_nil!(message)<br/>not_nil!</span>
+    not_nil!</a>, 
+    
+  
+    <a href="../Object.html#pretty_inspect%28width%3D79%2Cnewline%3D%22%5Cn%22%2Cindent%3D0%29%3AString-instance-method" class="tooltip">
+      <span>pretty_inspect(width = <span class="n">79</span>, newline = <span class="s">&quot;\n&quot;</span>, indent = <span class="n">0</span>) : String</span>
+    pretty_inspect</a>, 
+    
+  
+    <a href="../Object.html#pretty_print%28pp%3APrettyPrint%29%3ANil-instance-method" class="tooltip">
+      <span>pretty_print(pp : PrettyPrint) : Nil</span>
+    pretty_print</a>, 
+    
+  
+    <a href="../Object.html#responds_to%3F%28name%3ASymbol%29%3ABool-instance-method" class="tooltip">
+      <span>responds_to?(name : Symbol) : Bool</span>
+    responds_to?</a>, 
+    
+  
+    <a href="../Object.html#tap%28%26%29-instance-method" class="tooltip">
+      <span>tap(&)</span>
+    tap</a>, 
+    
+  
+    <a href="../Object.html#to_json%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_json(io : IO) : Nil<br/>to_json : String</span>
+    to_json</a>, 
+    
+  
+    <a href="../Object.html#to_pretty_json%28indent%3AString%3D%22%22%29%3AString-instance-method" class="tooltip">
+      <span>to_pretty_json(indent : String = <span class="s">&quot;  &quot;</span>) : String<br/>to_pretty_json(io : IO, indent : String = <span class="s">&quot;  &quot;</span>) : Nil</span>
+    to_pretty_json</a>, 
+    
+  
+    <a href="../Object.html#to_s%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_s(io : IO) : Nil<br/>to_s : String</span>
+    to_s</a>, 
+    
+  
+    <a href="../Object.html#to_yaml%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_yaml(io : IO) : Nil<br/>to_yaml : String</span>
+    to_yaml</a>, 
+    
+  
+    <a href="../Object.html#try%28%26%29-instance-method" class="tooltip">
+      <span>try(&)</span>
+    try</a>, 
+    
+  
+    <a href="../Object.html#unsafe_as%28type%3AT.class%29forallT-instance-method" class="tooltip">
+      <span>unsafe_as(type : <span class="t">T</span>.<span class="k">class</span>) forall T</span>
+    unsafe_as</a>
+    
+  
+
+
+      
+
+
+      
+
+  <h3>Class methods inherited from class <code><a href="../Object.html">Object</a></code></h3>
+  
+  
+    <a href="../Object.html#from_json%28string_or_io%2Croot%3AString%29-class-method" class="tooltip">
+      <span>from_json(string_or_io, root : String)<br/>from_json(string_or_io)</span>
+    from_json</a>, 
+    
+  
+    <a href="../Object.html#from_yaml%28string_or_io%3AString%7CIO%29-class-method" class="tooltip">
+      <span>from_yaml(string_or_io : String | IO)</span>
+    from_yaml</a>
+    
+  
+
+
+      
+
+  <h3>Macros inherited from class <code><a href="../Object.html">Object</a></code></h3>
+  
+  
+    <a href="../Object.html#class_getter%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_getter(*names, &block)</span>
+    class_getter</a>, 
+    
+  
+    <a href="../Object.html#class_getter%21%28%2Anames%29-macro" class="tooltip">
+      <span>class_getter!(*names)</span>
+    class_getter!</a>, 
+    
+  
+    <a href="../Object.html#class_getter%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_getter?(*names, &block)</span>
+    class_getter?</a>, 
+    
+  
+    <a href="../Object.html#class_property%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_property(*names, &block)</span>
+    class_property</a>, 
+    
+  
+    <a href="../Object.html#class_property%21%28%2Anames%29-macro" class="tooltip">
+      <span>class_property!(*names)</span>
+    class_property!</a>, 
+    
+  
+    <a href="../Object.html#class_property%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_property?(*names, &block)</span>
+    class_property?</a>, 
+    
+  
+    <a href="../Object.html#class_setter%28%2Anames%29-macro" class="tooltip">
+      <span>class_setter(*names)</span>
+    class_setter</a>, 
+    
+  
+    <a href="../Object.html#def_clone-macro" class="tooltip">
+      <span>def_clone</span>
+    def_clone</a>, 
+    
+  
+    <a href="../Object.html#def_equals%28%2Afields%29-macro" class="tooltip">
+      <span>def_equals(*fields)</span>
+    def_equals</a>, 
+    
+  
+    <a href="../Object.html#def_equals_and_hash%28%2Afields%29-macro" class="tooltip">
+      <span>def_equals_and_hash(*fields)</span>
+    def_equals_and_hash</a>, 
+    
+  
+    <a href="../Object.html#def_hash%28%2Afields%29-macro" class="tooltip">
+      <span>def_hash(*fields)</span>
+    def_hash</a>, 
+    
+  
+    <a href="../Object.html#delegate%28%2Amethods%2Ctoobject%29-macro" class="tooltip">
+      <span>delegate(*methods, to object)</span>
+    delegate</a>, 
+    
+  
+    <a href="../Object.html#forward_missing_to%28delegate%29-macro" class="tooltip">
+      <span>forward_missing_to(delegate)</span>
+    forward_missing_to</a>, 
+    
+  
+    <a href="../Object.html#getter%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>getter(*names, &block)</span>
+    getter</a>, 
+    
+  
+    <a href="../Object.html#getter%21%28%2Anames%29-macro" class="tooltip">
+      <span>getter!(*names)</span>
+    getter!</a>, 
+    
+  
+    <a href="../Object.html#getter%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>getter?(*names, &block)</span>
+    getter?</a>, 
+    
+  
+    <a href="../Object.html#property%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>property(*names, &block)</span>
+    property</a>, 
+    
+  
+    <a href="../Object.html#property%21%28%2Anames%29-macro" class="tooltip">
+      <span>property!(*names)</span>
+    property!</a>, 
+    
+  
+    <a href="../Object.html#property%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>property?(*names, &block)</span>
+    property?</a>, 
+    
+  
+    <a href="../Object.html#setter%28%2Anames%29-macro" class="tooltip">
+      <span>setter(*names)</span>
+    setter</a>
+    
+  
+
+
+    
+  </div>
+
+  
+  <h2>
+    <a id="constructor-detail" class="anchor" href="#constructor-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructor Detail
+  </h2>
+  
+    <div class="entry-detail" id="fixed(name:String,offset:Int32):Location-class-method">
+      <div class="signature">
+        
+        def self.<strong>fixed</strong>(name : <a href="../String.html">String</a>, offset : <a href="../Int32.html">Int32</a>) : <a href="../Time/Location.html">Location</a>
+
+        <a class="method-permalink" href="#fixed%28name%3AString%2Coffset%3AInt32%29%3ALocation-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Creates a <code><a href="../Time/Location.html">Location</a></code> instance named <em>name</em> with fixed <em>offset</em> in seconds
+from UTC.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/time/location.cr#L219" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="fixed(offset:Int32):self-class-method">
+      <div class="signature">
+        
+        def self.<strong>fixed</strong>(offset : <a href="../Int32.html">Int32</a>) : <span class="k">self</span>
+
+        <a class="method-permalink" href="#fixed%28offset%3AInt32%29%3Aself-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Creates a <code><a href="../Time/Location.html">Location</a></code> instance with fixed <em>offset</em> in seconds from UTC.</p>
+<p>The formatted <em>offset</em> is used as name.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/time/location.cr#L226" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="load(name:String):Location-class-method">
+      <div class="signature">
+        
+        def self.<strong>load</strong>(name : <a href="../String.html">String</a>) : <a href="../Time/Location.html">Location</a>
+
+        <a class="method-permalink" href="#load%28name%3AString%29%3ALocation-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Loads the <code><a href="../Time/Location.html">Location</a></code> with the given <em>name</em>.</p>
+<pre><code class="language-crystal">location <span class="o">=</span> <span class="t">Time</span><span class="t">::</span><span class="t">Location</span>.load(<span class="s">&quot;Europe/Berlin&quot;</span>)</code></pre>
+<p><em>name</em> is understood to be a location name in the IANA Time
+Zone database, such as <code>&quot;America/New_York&quot;</code>. As special cases,
+<code>&quot;<a href="../Time/Location.html#UTC">UTC</a>&quot;</code>, <code>&quot;Etc/<a href="../Time/Location.html#UTC">UTC</a>&quot;</code> and empty string (<code>&quot;&quot;</code>) return <code><a href="../Time/Location.html#UTC">Location::UTC</a></code>, and
+<code>&quot;Local&quot;</code> returns <code><a href="../Time/Location.html#local%3ALocation-class-method">Location.local</a></code>.</p>
+<p>The implementation uses a list of system-specific paths to look for a time
+zone database.
+The first time zone database entry matching the given name that is
+successfully loaded and parsed is returned.
+Typical paths on Unix-based operating systems are <code>/usr/share/zoneinfo/</code>,
+<code>/usr/share/lib/zoneinfo/</code>, or <code>/usr/lib/locale/TZ/</code>.</p>
+<p>A time zone database may not be present on all systems, especially non-Unix
+systems. In this case, you may need to distribute a copy of the database
+with an application that depends on time zone data being available.</p>
+<p>A custom lookup path can be set as environment variable <code>ZONEINFO</code>.
+The path can point to the root of a directory structure or an
+uncompressed ZIP file, each representing the time zone database using files
+and folders of the expected names.</p>
+<p>Example:</p>
+<pre><code class="language-crystal"><span class="c"># This tries to load the file `/usr/share/zoneinfo/Custom/Location`</span>
+<span class="t">ENV</span>[<span class="s">&quot;ZONEINFO&quot;</span>] <span class="o">=</span> <span class="s">&quot;/usr/share/zoneinfo/&quot;</span>
+<span class="t">Time</span><span class="t">::</span><span class="t">Location</span>.load(<span class="s">&quot;Custom/Location&quot;</span>)
+
+<span class="c"># This tries to load the file `Custom/Location` in the uncompressed ZIP</span>
+<span class="c"># file at `/path/to/zoneinfo.zip`</span>
+<span class="t">ENV</span>[<span class="s">&quot;ZONEINFO&quot;</span>] <span class="o">=</span> <span class="s">&quot;/path/to/zoneinfo.zip&quot;</span>
+<span class="t">Time</span><span class="t">::</span><span class="t">Location</span>.load(<span class="s">&quot;Custom/Location&quot;</span>)</code></pre>
+<p>If the location name cannot be found, <code><a href="../Time/Location/InvalidLocationNameError.html">InvalidLocationNameError</a></code> is raised.
+If the loader encounters a format error in the time zone database,
+<code><a href="../Time/Location/InvalidTZDataError.html">InvalidTZDataError</a></code> is raised.</p>
+<p>Files are cached based on the modification time, so subsequent request for
+the same location name will most likely return the same instance of
+<code><a href="../Time/Location.html">Location</a></code>, unless the time zone database has been updated in between.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/time/location.cr#L278" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="load_local:Location-class-method">
+      <div class="signature">
+        
+        def self.<strong>load_local</strong> : <a href="../Time/Location.html">Location</a>
+
+        <a class="method-permalink" href="#load_local%3ALocation-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Loads the local time zone according to the current application environment.</p>
+<p>The environment variable <code><a href="../ENV.html">ENV</a>[&quot;TZ&quot;]</code> is consulted for finding the time zone
+to use.</p>
+<ul>
+<li><code>&quot;<a href="../Time/Location.html#UTC">UTC</a>&quot;</code>, <code>&quot;Etc/<a href="../Time/Location.html#UTC">UTC</a>&quot;</code> and empty string (<code>&quot;&quot;</code>) return <code><a href="../Time/Location.html#UTC">Location::UTC</a></code></li>
+<li>Any other value (such as <code>&quot;Europe/Berlin&quot;</code>) is tried to be resolved using
+<code><a href="../Time/Location.html#load%28name%3AString%29%3ALocation-class-method">Location.load</a></code>.</li>
+<li>If <code><a href="../ENV.html">ENV</a>[&quot;TZ&quot;]</code> is not set, the system's local time zone data will be used
+(<code>/etc/localtime</code> on unix-based systems).</li>
+<li>If no time zone data could be found (i.e. the previous methods failed),
+<code><a href="../Time/Location.html#UTC">Location::UTC</a></code> is returned.</li>
+</ul>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/time/location.cr#L353" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="local:Location-class-method">
+      <div class="signature">
+        
+        def self.<strong>local</strong> : <a href="../Time/Location.html">Location</a>
+
+        <a class="method-permalink" href="#local%3ALocation-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the <code><a href="../Time/Location.html">Location</a></code> representing the application's local time zone.</p>
+<p><code><a href="../Time.html">Time</a></code> uses this property as default value for most method arguments
+expecting a <code><a href="../Time/Location.html">Location</a></code>.</p>
+<p>The initial value depends on the current application environment, see
+<code><a href="../Time/Location.html#load_local%3ALocation-class-method">.load_local</a></code> for details.</p>
+<p>The value can be changed to overwrite the system default:</p>
+<pre><code class="language-crystal"><span class="t">Time</span>.local.location <span class="c"># =&gt; #&lt;Time::Location America/New_York&gt;</span>
+<span class="t">Time</span><span class="t">::</span><span class="t">Location</span>.local <span class="o">=</span> <span class="t">Time</span><span class="t">::</span><span class="t">Location</span>.load(<span class="s">&quot;Europe/Berlin&quot;</span>)
+<span class="t">Time</span>.local.location <span class="c"># =&gt; #&lt;Time::Location Europe/Berlin&gt;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/time/location.cr#L339" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+  
+  <h2>
+    <a id="class-method-detail" class="anchor" href="#class-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Class Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="local=(local:Location)-class-method">
+      <div class="signature">
+        
+        def self.<strong>local=</strong>(local : <a href="../Time/Location.html">Location</a>)
+
+        <a class="method-permalink" href="#local%3D%28local%3ALocation%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the <code><a href="../Time/Location.html">Location</a></code> representing the application's local time zone.</p>
+<p><code><a href="../Time.html">Time</a></code> uses this property as default value for most method arguments
+expecting a <code><a href="../Time/Location.html">Location</a></code>.</p>
+<p>The initial value depends on the current application environment, see
+<code><a href="../Time/Location.html#load_local%3ALocation-class-method">.load_local</a></code> for details.</p>
+<p>The value can be changed to overwrite the system default:</p>
+<pre><code class="language-crystal"><span class="t">Time</span>.local.location <span class="c"># =&gt; #&lt;Time::Location America/New_York&gt;</span>
+<span class="t">Time</span><span class="t">::</span><span class="t">Location</span>.local <span class="o">=</span> <span class="t">Time</span><span class="t">::</span><span class="t">Location</span>.load(<span class="s">&quot;Europe/Berlin&quot;</span>)
+<span class="t">Time</span>.local.location <span class="c"># =&gt; #&lt;Time::Location Europe/Berlin&gt;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/time/location.cr#L339" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+  
+
+  
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="==(other:self)-instance-method">
+      <div class="signature">
+        
+        def <strong>==</strong>(other : <span class="k">self</span>)
+
+        <a class="method-permalink" href="#%3D%3D%28other%3Aself%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if <em>other</em> is equal to <code>self</code>.</p>
+<p>Two <code><a href="../Time/Location.html">Location</a></code> instances are considered equal if they have the same name,
+offset zones and transition rules.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="fixed?:Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>fixed?</strong> : <a href="../Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#fixed%3F%3ABool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this location has a fixed offset.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/time/location.cr#L483" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="hash(hasher)-instance-method">
+      <div class="signature">
+        
+        def <strong>hash</strong>(hasher)
+
+        <a class="method-permalink" href="#hash%28hasher%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if <em>other</em> is equal to <code>self</code>.</p>
+<p>Two <code><a href="../Time/Location.html">Location</a></code> instances are considered equal if they have the same name,
+offset zones and transition rules.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="inspect(io:IO):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>inspect</strong>(io : <a href="../IO.html">IO</a>) : <a href="../Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#inspect%28io%3AIO%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+            <div class="doc-inherited">
+              Description copied from class <a href="../Reference.html">Reference</a>
+            </div>
+          
+          <p>Appends a String representation of this object
+which includes its class name, its object address
+and the values of all instance variables.</p>
+<pre><code class="language-crystal"><span class="k">class</span> <span class="t">Person</span>
+  <span class="k">def</span> <span class="m">initialize</span>(@name : <span class="t">String</span>, @age : <span class="t">Int32</span>)
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="t">Person</span>.new(<span class="s">&quot;John&quot;</span>, <span class="n">32</span>).inspect <span class="c"># =&gt; #&lt;Person:0x10fd31f20 @name=&quot;John&quot;, @age=32&gt;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/time/location.cr#L390" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="local?:Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>local?</strong> : <a href="../Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#local%3F%3ABool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this location equals to <code><a href="../Time/Location.html#local%3ALocation-class-method">Time::Location.local</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/time/location.cr#L478" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="lookup(time:Time):Zone-instance-method">
+      <div class="signature">
+        
+        def <strong>lookup</strong>(time : <a href="../Time.html">Time</a>) : <a href="../Time/Location/Zone.html">Zone</a>
+
+        <a class="method-permalink" href="#lookup%28time%3ATime%29%3AZone-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the time zone offset observed at <em>time</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/time/location.cr#L403" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="lookup(unix_seconds:Int):Zone-instance-method">
+      <div class="signature">
+        
+        def <strong>lookup</strong>(unix_seconds : <a href="../Int.html">Int</a>) : <a href="../Time/Location/Zone.html">Zone</a>
+
+        <a class="method-permalink" href="#lookup%28unix_seconds%3AInt%29%3AZone-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the time zone offset observed at <em>unix_seconds</em>.</p>
+<p><em>unix_seconds</em> expresses the number of seconds since UNIX epoch
+(<code>1970-01-01 00:00:00 <a href="../Time/Location.html#UTC">UTC</a></code>).</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/time/location.cr#L411" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="name:String-instance-method">
+      <div class="signature">
+        
+        def <strong>name</strong> : <a href="../String.html">String</a>
+
+        <a class="method-permalink" href="#name%3AString-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the name of this location.</p>
+<p>It usually consists of a continent and city name separated by a slash, for
+example <code>Europe/Berlin</code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/time/location.cr#L202" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_s(io:IO):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>to_s</strong>(io : <a href="../IO.html">IO</a>) : <a href="../Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#to_s%28io%3AIO%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Prints <code><a href="../Time/Location.html#name%3AString-instance-method">#name</a></code> to <em>io</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/time/location.cr#L386" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="utc?:Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>utc?</strong> : <a href="../Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#utc%3F%3ABool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this location equals to <code><a href="../Time/Location.html#UTC">UTC</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/time/location.cr#L473" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="zones:Array(Zone)-instance-method">
+      <div class="signature">
+        
+        def <strong>zones</strong> : <a href="../Array.html">Array</a>(<a href="../Time/Location/Zone.html">Zone</a>)
+
+        <a class="method-permalink" href="#zones%3AArray%28Zone%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the array of time zone offsets (<code><a href="../Time/Location/Zone.html">Zone</a></code>) used in this time zone.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/time/location.cr#L205" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+</div>
+
+</body>
+</html>

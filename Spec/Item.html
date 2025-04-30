@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Crystal Docs 1.16.1">
+<meta name="crystal_docs.project_version" content="1.17.0-dev">
+<meta name="crystal_docs.project_name" content="Crystal">
+
+  <meta name="crystal_docs.json_config_url" content="/api/versions.json">
+
+
+    <link rel="canonical" href="https://crystal-lang.org/api/latest/Spec/Item.html">
+
+<link href="../css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../js/doc.js"></script>
+
+  <meta name="repository-name" content="Crystal">
+  <title>Spec::Item - Crystal 1.17.0-dev</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "../";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill="currentColor" fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<input type="checkbox" id="sidebar-btn">
+<label for="sidebar-btn" id="sidebar-btn-label">
+  <svg class="open" xmlns="http://www.w3.org/2000/svg" height="2em" width="2em" viewBox="0 0 512 512"><title>Open Sidebar</title><path fill="currentColor" d="M80 96v64h352V96H80zm0 112v64h352v-64H80zm0 112v64h352v-64H80z"></path></svg>
+  <svg class="close" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><title>Close Sidebar</title><path fill="currentColor" d="m118.6 73.4-45.2 45.2L210.7 256 73.4 393.4l45.2 45.2L256 301.3l137.4 137.3 45.2-45.2L301.3 256l137.3-137.4-45.2-45.2L256 210.7Z"></path></svg>
+</label>
+<iframe class="sidebar" src="../sidebar.html"></iframe>
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">
+    module
+  </span> Spec::<wbr>Item
+
+</h1>
+
+
+
+
+
+  <h2>
+    <a id="overview" class="anchor" href="#overview">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Overview
+  </h2>
+
+  <p>Info that <code>describe</code>, <code>context</code> and <code>it</code> all have in common.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="direct-including-types" class="anchor" href="#direct-including-types">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Direct including types
+  </h2>
+  <ul class="other-types-list">
+    
+      <li class="other-type"><a href="../Spec/Example.html">Spec::Example</a></li>
+    
+      <li class="other-type"><a href="../Spec/ExampleGroup.html">Spec::ExampleGroup</a></li>
+    
+  </ul>
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/spec/filters.cr#L6" target="_blank">
+        spec/filters.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/spec/item.cr#L3" target="_blank">
+        spec/item.cr
+      </a>
+    
+    <br/>
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#all_tags%3ASet%28String%29-instance-method" class="signature"><strong>#all_tags</strong> : Set(String)</a>
+        
+          <div class="summary"><p>All tags, including tags inherited from ancestor example groups</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#description%3AString-instance-method" class="signature"><strong>#description</strong> : String</a>
+        
+          <div class="summary"><p>The example or example group's description.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#end_line%3AInt32-instance-method" class="signature"><strong>#end_line</strong> : Int32</a>
+        
+          <div class="summary"><p>The line where the example or example group ends.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#file%3AString-instance-method" class="signature"><strong>#file</strong> : String</a>
+        
+          <div class="summary"><p>The file where the example or example group is defined.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#focus%3F%3ABool-instance-method" class="signature"><strong>#focus?</strong> : Bool</a>
+        
+          <div class="summary"><p>Does this example or example group have <code>focus: true</code> on it?</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#line%3AInt32-instance-method" class="signature"><strong>#line</strong> : Int32</a>
+        
+          <div class="summary"><p>The line where the example or example group starts.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#parent%3AContext-instance-method" class="signature"><strong>#parent</strong> : Context</a>
+        
+          <div class="summary"><p>The <code>describe</code>/<code>context</code> that wraps this example or example group.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#tags%3ASet%28String%29%7CNil-instance-method" class="signature"><strong>#tags</strong> : Set(String) | Nil</a>
+        
+          <div class="summary"><p>The tags defined on this example or example group</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+
+  <div class="methods-inherited">
+    
+  </div>
+
+  
+
+  
+
+  
+
+  
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="all_tags:Set(String)-instance-method">
+      <div class="signature">
+        
+        def <strong>all_tags</strong> : <a href="../Set.html">Set</a>(<a href="../String.html">String</a>)
+
+        <a class="method-permalink" href="#all_tags%3ASet%28String%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>All tags, including tags inherited from ancestor example groups</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/spec/item.cr#L30" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="description:String-instance-method">
+      <div class="signature">
+        
+        def <strong>description</strong> : <a href="../String.html">String</a>
+
+        <a class="method-permalink" href="#description%3AString-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>The example or example group's description.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/spec/item.cr#L8" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="end_line:Int32-instance-method">
+      <div class="signature">
+        
+        def <strong>end_line</strong> : <a href="../Int32.html">Int32</a>
+
+        <a class="method-permalink" href="#end_line%3AInt32-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>The line where the example or example group ends.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/spec/item.cr#L17" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="file:String-instance-method">
+      <div class="signature">
+        
+        def <strong>file</strong> : <a href="../String.html">String</a>
+
+        <a class="method-permalink" href="#file%3AString-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>The file where the example or example group is defined.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/spec/item.cr#L11" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="focus?:Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>focus?</strong> : <a href="../Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#focus%3F%3ABool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Does this example or example group have <code>focus: true</code> on it?</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/spec/item.cr#L20" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="line:Int32-instance-method">
+      <div class="signature">
+        
+        def <strong>line</strong> : <a href="../Int32.html">Int32</a>
+
+        <a class="method-permalink" href="#line%3AInt32-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>The line where the example or example group starts.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/spec/item.cr#L14" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="parent:Context-instance-method">
+      <div class="signature">
+        
+        def <strong>parent</strong> : <a href="../Spec/Context.html">Context</a>
+
+        <a class="method-permalink" href="#parent%3AContext-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>The <code>describe</code>/<code>context</code> that wraps this example or example group.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/spec/item.cr#L5" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="tags:Set(String)|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>tags</strong> : <a href="../Set.html">Set</a>(<a href="../String.html">String</a>) | <a href="../Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#tags%3ASet%28String%29%7CNil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>The tags defined on this example or example group</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/spec/item.cr#L23" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Crystal Docs 1.16.1">
+<meta name="crystal_docs.project_version" content="1.17.0-dev">
+<meta name="crystal_docs.project_name" content="Crystal">
+
+  <meta name="crystal_docs.json_config_url" content="/api/versions.json">
+
+
+    <link rel="canonical" href="https://crystal-lang.org/api/latest/OptionParser.html">
+
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/doc.js"></script>
+
+  <meta name="repository-name" content="Crystal">
+  <title>OptionParser - Crystal 1.17.0-dev</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill="currentColor" fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<input type="checkbox" id="sidebar-btn">
+<label for="sidebar-btn" id="sidebar-btn-label">
+  <svg class="open" xmlns="http://www.w3.org/2000/svg" height="2em" width="2em" viewBox="0 0 512 512"><title>Open Sidebar</title><path fill="currentColor" d="M80 96v64h352V96H80zm0 112v64h352v-64H80zm0 112v64h352v-64H80z"></path></svg>
+  <svg class="close" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><title>Close Sidebar</title><path fill="currentColor" d="m118.6 73.4-45.2 45.2L210.7 256 73.4 393.4l45.2 45.2L256 301.3l137.4 137.3 45.2-45.2L301.3 256l137.3-137.4-45.2-45.2L256 210.7Z"></path></svg>
+</label>
+<iframe class="sidebar" src="sidebar.html"></iframe>
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">
+    class
+  </span> OptionParser
+
+</h1>
+
+
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="OptionParser.html">OptionParser</a></li><li class="superclass"><a href="Reference.html">Reference</a></li><li class="superclass"><a href="Object.html">Object</a></li></ul>
+
+
+
+
+  <h2>
+    <a id="overview" class="anchor" href="#overview">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Overview
+  </h2>
+
+  <p><code><a href="OptionParser.html">OptionParser</a></code> is a class for command-line options processing. It supports:</p>
+<ul>
+<li>Short and long modifier style options (example: <code>-h</code>, <code>--help</code>)</li>
+<li>Passing arguments to the flags (example: <code>-f filename.txt</code>)</li>
+<li>Subcommands</li>
+<li>Automatic help message generation</li>
+</ul>
+<p>Run <code>crystal</code> for an example of a CLI built with <code><a href="OptionParser.html">OptionParser</a></code>.</p>
+<p><span class="flag purple">NOTE</span>  To use <code><a href="OptionParser.html">OptionParser</a></code>, you must explicitly import it with <code>require &quot;option_parser&quot;</code></p>
+<p>Short example:</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;option_parser&quot;</span>
+
+upcase <span class="o">=</span> <span class="n">false</span>
+destination <span class="o">=</span> <span class="s">&quot;World&quot;</span>
+
+<span class="t">OptionParser</span>.parse <span class="k">do</span> <span class="o">|</span>parser<span class="o">|</span>
+  parser.banner <span class="o">=</span> <span class="s">&quot;Usage: salute [arguments]&quot;</span>
+  parser.on(<span class="s">&quot;-u&quot;</span>, <span class="s">&quot;--upcase&quot;</span>, <span class="s">&quot;Upcases the salute&quot;</span>) { upcase <span class="o">=</span> <span class="n">true</span> }
+  parser.on(<span class="s">&quot;-t NAME&quot;</span>, <span class="s">&quot;--to=NAME&quot;</span>, <span class="s">&quot;Specifies the name to salute&quot;</span>) { <span class="o">|</span>name<span class="o">|</span> destination <span class="o">=</span> name }
+  parser.on(<span class="s">&quot;-h&quot;</span>, <span class="s">&quot;--help&quot;</span>, <span class="s">&quot;Show this help&quot;</span>) <span class="k">do</span>
+    puts parser
+    exit
+  <span class="k">end</span>
+  parser.invalid_option <span class="k">do</span> <span class="o">|</span>flag<span class="o">|</span>
+    <span class="t">STDERR</span>.puts <span class="s">&quot;ERROR: </span><span class="i">#{</span>flag<span class="i">}</span><span class="s"> is not a valid option.&quot;</span>
+    <span class="t">STDERR</span>.puts parser
+    exit(<span class="n">1</span>)
+  <span class="k">end</span>
+<span class="k">end</span>
+
+destination <span class="o">=</span> destination.upcase <span class="k">if</span> upcase
+puts <span class="s">&quot;Hello </span><span class="i">#{</span>destination<span class="i">}</span><span class="s">!&quot;</span></code></pre>
+<h1><a id="subcommands" class="anchor" href="#subcommands">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Subcommands</h1>
+<p><code><a href="OptionParser.html">OptionParser</a></code> also supports subcommands.</p>
+<p>Short example:</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;option_parser&quot;</span>
+
+verbose <span class="o">=</span> <span class="n">false</span>
+salute <span class="o">=</span> <span class="n">false</span>
+welcome <span class="o">=</span> <span class="n">false</span>
+name <span class="o">=</span> <span class="s">&quot;World&quot;</span>
+parser <span class="o">=</span> <span class="t">OptionParser</span>.new <span class="k">do</span> <span class="o">|</span>parser<span class="o">|</span>
+  parser.banner <span class="o">=</span> <span class="s">&quot;Usage: example [subcommand] [arguments]&quot;</span>
+  parser.on(<span class="s">&quot;salute&quot;</span>, <span class="s">&quot;Salute a name&quot;</span>) <span class="k">do</span>
+    salute <span class="o">=</span> <span class="n">true</span>
+    parser.banner <span class="o">=</span> <span class="s">&quot;Usage: example salute [arguments]&quot;</span>
+    parser.on(<span class="s">&quot;-t NAME&quot;</span>, <span class="s">&quot;--to=NAME&quot;</span>, <span class="s">&quot;Specify the name to salute&quot;</span>) { <span class="o">|</span>_name<span class="o">|</span> name <span class="o">=</span> _name }
+  <span class="k">end</span>
+  parser.on(<span class="s">&quot;welcome&quot;</span>, <span class="s">&quot;Print a greeting message&quot;</span>) <span class="k">do</span>
+    welcome <span class="o">=</span> <span class="n">true</span>
+    parser.banner <span class="o">=</span> <span class="s">&quot;Usage: example welcome&quot;</span>
+  <span class="k">end</span>
+  parser.on(<span class="s">&quot;-v&quot;</span>, <span class="s">&quot;--verbose&quot;</span>, <span class="s">&quot;Enabled verbose output&quot;</span>) { verbose <span class="o">=</span> <span class="n">true</span> }
+  parser.on(<span class="s">&quot;-h&quot;</span>, <span class="s">&quot;--help&quot;</span>, <span class="s">&quot;Show this help&quot;</span>) <span class="k">do</span>
+    puts parser
+    exit
+  <span class="k">end</span>
+<span class="k">end</span>
+
+parser.parse
+
+<span class="k">if</span> salute
+  <span class="t">STDERR</span>.puts <span class="s">&quot;Saluting </span><span class="i">#{</span>name<span class="i">}</span><span class="s">&quot;</span> <span class="k">if</span> verbose
+  puts <span class="s">&quot;Hello </span><span class="i">#{</span>name<span class="i">}</span><span class="s">&quot;</span>
+<span class="k">elsif</span> welcome
+  <span class="t">STDERR</span>.puts <span class="s">&quot;Welcoming </span><span class="i">#{</span>name<span class="i">}</span><span class="s">&quot;</span> <span class="k">if</span> verbose
+  puts <span class="s">&quot;Welcome!&quot;</span>
+<span class="k">else</span>
+  puts parser
+  exit(<span class="n">1</span>)
+<span class="k">end</span></code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/option_parser.cr#L83" target="_blank">
+        option_parser.cr
+      </a>
+    
+    <br/>
+  
+
+
+
+
+
+  
+  <h2>
+    <a id="constructors" class="anchor" href="#constructors">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructors
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#new%28%2A%2Cgnu_optional_args%3ABool%3Dfalse%29-class-method" class="signature"><strong>.new</strong>(*, gnu_optional_args : Bool = <span class="n">false</span>)</a>
+        
+          <div class="summary"><p>Creates a new parser.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#new%28%2A%2Cgnu_optional_args%3ABool%3Dfalse%2C%26%29-class-method" class="signature"><strong>.new</strong>(*, gnu_optional_args : Bool = <span class="n">false</span>, &)</a>
+        
+          <div class="summary"><p>Creates a new parser, with its configuration specified in the block.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#parse%28args%3DARGV%2C%2A%2Cgnu_optional_args%3ABool%3Dfalse%2C%26%29%3Aself-class-method" class="signature"><strong>.parse</strong>(args = <span class="t">ARGV</span>, *, gnu_optional_args : Bool = <span class="n">false</span>, &) : <span class="k">self</span></a>
+        
+          <div class="summary"><p>Creates a new parser, with its configuration specified in the block, and uses it to parse the passed <em>args</em> (defaults to <code><a href="toplevel.html#ARGV">ARGV</a></code>).</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+  
+
+  
+
+  
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#banner%3D%28banner%3AString%7CNil%29-instance-method" class="signature"><strong>#banner=</strong>(banner : String | Nil)</a>
+        
+          <div class="summary"><p>Establishes the initial message for the help printout.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#before_each%28%26before_each%3AString-%3E%29-instance-method" class="signature"><strong>#before_each</strong>(&before_each : String -> )</a>
+        
+          <div class="summary"><p>Sets a handler which runs before each argument is parsed.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#gnu_optional_args%3D%28gnu_optional_args%3ABool%29-instance-method" class="signature"><strong>#gnu_optional_args=</strong>(gnu_optional_args : Bool)</a>
+        
+          <div class="summary"><p>Returns whether the GNU convention is followed for optional arguments.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#gnu_optional_args%3F%3ABool-instance-method" class="signature"><strong>#gnu_optional_args?</strong> : Bool</a>
+        
+          <div class="summary"><p>Returns whether the GNU convention is followed for optional arguments.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#invalid_option%28%26invalid_option%3AString-%3E%29-instance-method" class="signature"><strong>#invalid_option</strong>(&invalid_option : String -> )</a>
+        
+          <div class="summary"><p>Sets a handler for option arguments that didn't match any of the setup options.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#missing_option%28%26missing_option%3AString-%3E%29-instance-method" class="signature"><strong>#missing_option</strong>(&missing_option : String -> )</a>
+        
+          <div class="summary"><p>Sets a handler for when a option that expects an argument wasn't given any.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#on%28short_flag%3AString%2Clong_flag%3AString%2Cdescription%3AString%2C%26block%3AString-%3E%29-instance-method" class="signature"><strong>#on</strong>(short_flag : String, long_flag : String, description : String, &block : String -> )</a>
+        
+          <div class="summary"><p>Establishes a handler for a pair of short and long flags.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#on%28flag%3AString%2Cdescription%3AString%2C%26block%3AString-%3E%29-instance-method" class="signature"><strong>#on</strong>(flag : String, description : String, &block : String -> )</a>
+        
+          <div class="summary"><p>Establishes a handler for a <em>flag</em> or subcommand.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#parse%28args%3DARGV%29%3ANil-instance-method" class="signature"><strong>#parse</strong>(args = <span class="t">ARGV</span>) : Nil</a>
+        
+          <div class="summary"><p>Parses the passed <em>args</em> (defaults to <code><a href="toplevel.html#ARGV">ARGV</a></code>), running the handlers associated to each option.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#separator%28message%3D%22%22%29%3ANil-instance-method" class="signature"><strong>#separator</strong>(message = <span class="s">&quot;&quot;</span>) : Nil</a>
+        
+          <div class="summary"><p>Adds a separator, with an optional header message, that will be used to print the help.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#stop%3ANil-instance-method" class="signature"><strong>#stop</strong> : Nil</a>
+        
+          <div class="summary"><p>Stops the current parse and returns immediately, leaving the remaining flags unparsed.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_s%28io%3AIO%29%3ANil-instance-method" class="signature"><strong>#to_s</strong>(io : IO) : Nil</a>
+        
+          <div class="summary"><p>Returns all the setup options, formatted in a help message.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#unknown_args%28%26unknown_args%3AArray%28String%29%2CArray%28String%29-%3E%29-instance-method" class="signature"><strong>#unknown_args</strong>(&unknown_args : Array(String), Array(String) -> )</a>
+        
+          <div class="summary"><p>Sets a handler for regular arguments that didn't match any of the setup options.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+
+  <div class="methods-inherited">
+    
+      
+
+  <h3>Instance methods inherited from class <code><a href="Reference.html">Reference</a></code></h3>
+  
+  
+    <a href="Reference.html#%3D%3D%28other%3Aself%29-instance-method" class="tooltip">
+      <span>==(other : <span class="k">self</span>)<br/>==(other : JSON::Any)<br/>==(other : YAML::Any)<br/>==(other)</span>
+    ==</a>, 
+    
+  
+    <a href="Reference.html#dup-instance-method" class="tooltip">
+      <span>dup</span>
+    dup</a>, 
+    
+  
+    <a href="Reference.html#hash%28hasher%29-instance-method" class="tooltip">
+      <span>hash(hasher)</span>
+    hash</a>, 
+    
+  
+    <a href="Reference.html#initialize-instance-method" class="tooltip">
+      <span>initialize</span>
+    initialize</a>, 
+    
+  
+    <a href="Reference.html#inspect%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>inspect(io : IO) : Nil</span>
+    inspect</a>, 
+    
+  
+    <a href="Reference.html#object_id%3AUInt64-instance-method" class="tooltip">
+      <span>object_id : UInt64</span>
+    object_id</a>, 
+    
+  
+    <a href="Reference.html#pretty_print%28pp%29%3ANil-instance-method" class="tooltip">
+      <span>pretty_print(pp) : Nil</span>
+    pretty_print</a>, 
+    
+  
+    <a href="Reference.html#same%3F%28other%3AReference%29%3ABool-instance-method" class="tooltip">
+      <span>same?(other : Reference) : Bool<br/>same?(other : Nil)</span>
+    same?</a>, 
+    
+  
+    <a href="Reference.html#to_s%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_s(io : IO) : Nil</span>
+    to_s</a>
+    
+  
+
+
+      
+
+  <h3>Constructor methods inherited from class <code><a href="Reference.html">Reference</a></code></h3>
+  
+  
+    <a href="Reference.html#new-class-method" class="tooltip">
+      <span>new</span>
+    new</a>, 
+    
+  
+    <a href="Reference.html#unsafe_construct%28address%3APointer%2C%2Aargs%2C%2A%2Aopts%29%3Aself-class-method" class="tooltip">
+      <span>unsafe_construct(address : Pointer, *args, **opts) : <span class="k">self</span></span>
+    unsafe_construct</a>
+    
+  
+
+
+      
+
+  <h3>Class methods inherited from class <code><a href="Reference.html">Reference</a></code></h3>
+  
+  
+    <a href="Reference.html#pre_initialize%28address%3APointer%29-class-method" class="tooltip">
+      <span>pre_initialize(address : Pointer)</span>
+    pre_initialize</a>
+    
+  
+
+
+      
+
+
+    
+      
+
+  <h3>Instance methods inherited from class <code><a href="Object.html">Object</a></code></h3>
+  
+  
+    <a href="Object.html#%21%3ABool-instance-method" class="tooltip">
+      <span>! : Bool</span>
+    !</a>, 
+    
+  
+    <a href="Object.html#%21%3D%28other%29-instance-method" class="tooltip">
+      <span>!=(other)</span>
+    !=</a>, 
+    
+  
+    <a href="Object.html#%21~%28other%29-instance-method" class="tooltip">
+      <span>!~(other)</span>
+    !~</a>, 
+    
+  
+    <a href="Object.html#%3D%3D%28other%29-instance-method" class="tooltip">
+      <span>==(other)</span>
+    ==</a>, 
+    
+  
+    <a href="Object.html#%3D%3D%3D%28other%3AJSON%3A%3AAny%29-instance-method" class="tooltip">
+      <span>===(other : JSON::Any)<br/>===(other : YAML::Any)<br/>===(other)</span>
+    ===</a>, 
+    
+  
+    <a href="Object.html#%3D~%28other%29-instance-method" class="tooltip">
+      <span>=~(other)</span>
+    =~</a>, 
+    
+  
+    <a href="Object.html#as%28type%3AClass%29-instance-method" class="tooltip">
+      <span>as(type : Class)</span>
+    as</a>, 
+    
+  
+    <a href="Object.html#as%3F%28type%3AClass%29-instance-method" class="tooltip">
+      <span>as?(type : Class)</span>
+    as?</a>, 
+    
+  
+    <a href="Object.html#class-instance-method" class="tooltip">
+      <span>class</span>
+    class</a>, 
+    
+  
+    <a href="Object.html#dup-instance-method" class="tooltip">
+      <span>dup</span>
+    dup</a>, 
+    
+  
+    <a href="Object.html#hash%28hasher%29-instance-method" class="tooltip">
+      <span>hash(hasher)<br/>hash</span>
+    hash</a>, 
+    
+  
+    <a href="Object.html#in%3F%28collection%3AObject%29%3ABool-instance-method" class="tooltip">
+      <span>in?(collection : Object) : Bool<br/>in?(*values : Object) : Bool</span>
+    in?</a>, 
+    
+  
+    <a href="Object.html#inspect%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>inspect(io : IO) : Nil<br/>inspect : String</span>
+    inspect</a>, 
+    
+  
+    <a href="Object.html#is_a%3F%28type%3AClass%29%3ABool-instance-method" class="tooltip">
+      <span>is_a?(type : Class) : Bool</span>
+    is_a?</a>, 
+    
+  
+    <a href="Object.html#itself-instance-method" class="tooltip">
+      <span>itself</span>
+    itself</a>, 
+    
+  
+    <a href="Object.html#nil%3F%3ABool-instance-method" class="tooltip">
+      <span>nil? : Bool</span>
+    nil?</a>, 
+    
+  
+    <a href="Object.html#not_nil%21%28message%29-instance-method" class="tooltip">
+      <span>not_nil!(message)<br/>not_nil!</span>
+    not_nil!</a>, 
+    
+  
+    <a href="Object.html#pretty_inspect%28width%3D79%2Cnewline%3D%22%5Cn%22%2Cindent%3D0%29%3AString-instance-method" class="tooltip">
+      <span>pretty_inspect(width = <span class="n">79</span>, newline = <span class="s">&quot;\n&quot;</span>, indent = <span class="n">0</span>) : String</span>
+    pretty_inspect</a>, 
+    
+  
+    <a href="Object.html#pretty_print%28pp%3APrettyPrint%29%3ANil-instance-method" class="tooltip">
+      <span>pretty_print(pp : PrettyPrint) : Nil</span>
+    pretty_print</a>, 
+    
+  
+    <a href="Object.html#responds_to%3F%28name%3ASymbol%29%3ABool-instance-method" class="tooltip">
+      <span>responds_to?(name : Symbol) : Bool</span>
+    responds_to?</a>, 
+    
+  
+    <a href="Object.html#tap%28%26%29-instance-method" class="tooltip">
+      <span>tap(&)</span>
+    tap</a>, 
+    
+  
+    <a href="Object.html#to_json%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_json(io : IO) : Nil<br/>to_json : String</span>
+    to_json</a>, 
+    
+  
+    <a href="Object.html#to_pretty_json%28indent%3AString%3D%22%22%29%3AString-instance-method" class="tooltip">
+      <span>to_pretty_json(indent : String = <span class="s">&quot;  &quot;</span>) : String<br/>to_pretty_json(io : IO, indent : String = <span class="s">&quot;  &quot;</span>) : Nil</span>
+    to_pretty_json</a>, 
+    
+  
+    <a href="Object.html#to_s%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_s(io : IO) : Nil<br/>to_s : String</span>
+    to_s</a>, 
+    
+  
+    <a href="Object.html#to_yaml%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_yaml(io : IO) : Nil<br/>to_yaml : String</span>
+    to_yaml</a>, 
+    
+  
+    <a href="Object.html#try%28%26%29-instance-method" class="tooltip">
+      <span>try(&)</span>
+    try</a>, 
+    
+  
+    <a href="Object.html#unsafe_as%28type%3AT.class%29forallT-instance-method" class="tooltip">
+      <span>unsafe_as(type : <span class="t">T</span>.<span class="k">class</span>) forall T</span>
+    unsafe_as</a>
+    
+  
+
+
+      
+
+
+      
+
+  <h3>Class methods inherited from class <code><a href="Object.html">Object</a></code></h3>
+  
+  
+    <a href="Object.html#from_json%28string_or_io%2Croot%3AString%29-class-method" class="tooltip">
+      <span>from_json(string_or_io, root : String)<br/>from_json(string_or_io)</span>
+    from_json</a>, 
+    
+  
+    <a href="Object.html#from_yaml%28string_or_io%3AString%7CIO%29-class-method" class="tooltip">
+      <span>from_yaml(string_or_io : String | IO)</span>
+    from_yaml</a>
+    
+  
+
+
+      
+
+  <h3>Macros inherited from class <code><a href="Object.html">Object</a></code></h3>
+  
+  
+    <a href="Object.html#class_getter%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_getter(*names, &block)</span>
+    class_getter</a>, 
+    
+  
+    <a href="Object.html#class_getter%21%28%2Anames%29-macro" class="tooltip">
+      <span>class_getter!(*names)</span>
+    class_getter!</a>, 
+    
+  
+    <a href="Object.html#class_getter%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_getter?(*names, &block)</span>
+    class_getter?</a>, 
+    
+  
+    <a href="Object.html#class_property%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_property(*names, &block)</span>
+    class_property</a>, 
+    
+  
+    <a href="Object.html#class_property%21%28%2Anames%29-macro" class="tooltip">
+      <span>class_property!(*names)</span>
+    class_property!</a>, 
+    
+  
+    <a href="Object.html#class_property%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_property?(*names, &block)</span>
+    class_property?</a>, 
+    
+  
+    <a href="Object.html#class_setter%28%2Anames%29-macro" class="tooltip">
+      <span>class_setter(*names)</span>
+    class_setter</a>, 
+    
+  
+    <a href="Object.html#def_clone-macro" class="tooltip">
+      <span>def_clone</span>
+    def_clone</a>, 
+    
+  
+    <a href="Object.html#def_equals%28%2Afields%29-macro" class="tooltip">
+      <span>def_equals(*fields)</span>
+    def_equals</a>, 
+    
+  
+    <a href="Object.html#def_equals_and_hash%28%2Afields%29-macro" class="tooltip">
+      <span>def_equals_and_hash(*fields)</span>
+    def_equals_and_hash</a>, 
+    
+  
+    <a href="Object.html#def_hash%28%2Afields%29-macro" class="tooltip">
+      <span>def_hash(*fields)</span>
+    def_hash</a>, 
+    
+  
+    <a href="Object.html#delegate%28%2Amethods%2Ctoobject%29-macro" class="tooltip">
+      <span>delegate(*methods, to object)</span>
+    delegate</a>, 
+    
+  
+    <a href="Object.html#forward_missing_to%28delegate%29-macro" class="tooltip">
+      <span>forward_missing_to(delegate)</span>
+    forward_missing_to</a>, 
+    
+  
+    <a href="Object.html#getter%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>getter(*names, &block)</span>
+    getter</a>, 
+    
+  
+    <a href="Object.html#getter%21%28%2Anames%29-macro" class="tooltip">
+      <span>getter!(*names)</span>
+    getter!</a>, 
+    
+  
+    <a href="Object.html#getter%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>getter?(*names, &block)</span>
+    getter?</a>, 
+    
+  
+    <a href="Object.html#property%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>property(*names, &block)</span>
+    property</a>, 
+    
+  
+    <a href="Object.html#property%21%28%2Anames%29-macro" class="tooltip">
+      <span>property!(*names)</span>
+    property!</a>, 
+    
+  
+    <a href="Object.html#property%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>property?(*names, &block)</span>
+    property?</a>, 
+    
+  
+    <a href="Object.html#setter%28%2Anames%29-macro" class="tooltip">
+      <span>setter(*names)</span>
+    setter</a>
+    
+  
+
+
+    
+  </div>
+
+  
+  <h2>
+    <a id="constructor-detail" class="anchor" href="#constructor-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructor Detail
+  </h2>
+  
+    <div class="entry-detail" id="new(*,gnu_optional_args:Bool=false)-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(*, gnu_optional_args : <a href="Bool.html">Bool</a> = <span class="n">false</span>)
+
+        <a class="method-permalink" href="#new%28%2A%2Cgnu_optional_args%3ABool%3Dfalse%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Creates a new parser.</p>
+<p>Refer to <code><a href="OptionParser.html#gnu_optional_args%3F%3ABool-instance-method">#gnu_optional_args?</a></code> for the behaviour of the named parameter.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/option_parser.cr#L125" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="new(*,gnu_optional_args:Bool=false,&amp;)-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(*, gnu_optional_args : <a href="Bool.html">Bool</a> = <span class="n">false</span>, &)
+
+        <a class="method-permalink" href="#new%28%2A%2Cgnu_optional_args%3ABool%3Dfalse%2C%26%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Creates a new parser, with its configuration specified in the block.</p>
+<p>Refer to <code><a href="OptionParser.html#gnu_optional_args%3F%3ABool-instance-method">#gnu_optional_args?</a></code> for the behaviour of the named parameter.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/option_parser.cr#L136" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="parse(args=ARGV,*,gnu_optional_args:Bool=false,&amp;):self-class-method">
+      <div class="signature">
+        
+        def self.<strong>parse</strong>(args = <span class="t">ARGV</span>, *, gnu_optional_args : <a href="Bool.html">Bool</a> = <span class="n">false</span>, &) : <span class="k">self</span>
+
+        <a class="method-permalink" href="#parse%28args%3DARGV%2C%2A%2Cgnu_optional_args%3ABool%3Dfalse%2C%26%29%3Aself-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Creates a new parser, with its configuration specified in the block,
+and uses it to parse the passed <em>args</em> (defaults to <code><a href="toplevel.html#ARGV">ARGV</a></code>).</p>
+<p>Refer to <code><a href="OptionParser.html#gnu_optional_args%3F%3ABool-instance-method">#gnu_optional_args?</a></code> for the behaviour of the named parameter.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/option_parser.cr#L115" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+  
+
+  
+
+  
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="banner=(banner:String|Nil)-instance-method">
+      <div class="signature">
+        
+        def <strong>banner=</strong>(banner : <a href="String.html">String</a> | <a href="Nil.html">Nil</a>)
+
+        <a class="method-permalink" href="#banner%3D%28banner%3AString%7CNil%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Establishes the initial message for the help printout.
+Typically, you want to write here the name of your program,
+and a one-line template of its invocation.</p>
+<p>Example:</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;option_parser&quot;</span>
+
+parser <span class="o">=</span> <span class="t">OptionParser</span>.new
+parser.banner <span class="o">=</span> <span class="s">&quot;Usage: crystal [command] [switches] [program file] [--] [arguments]&quot;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/option_parser.cr#L188" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="before_each(&amp;before_each:String-&gt;)-instance-method">
+      <div class="signature">
+        
+        def <strong>before_each</strong>(&before_each : <a href="String.html">String</a> -> )
+
+        <a class="method-permalink" href="#before_each%28%26before_each%3AString-%3E%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Sets a handler which runs before each argument is parsed. This callback is
+not passed flag arguments. For example, <code>--foo=foo_arg --bar bar_arg</code> would
+pass <code>--foo=foo_arg</code> and <code>--bar</code> to the callback only.</p>
+<p>You typically use this to implement advanced option parsing behaviour such
+as treating all options after a filename differently (along with <code><a href="OptionParser.html#stop%3ANil-instance-method">#stop</a></code>).</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/option_parser.cr#L300" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="gnu_optional_args=(gnu_optional_args:Bool)-instance-method">
+      <div class="signature">
+        
+        def <strong>gnu_optional_args=</strong>(gnu_optional_args : <a href="Bool.html">Bool</a>)
+
+        <a class="method-permalink" href="#gnu_optional_args%3D%28gnu_optional_args%3ABool%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns whether the GNU convention is followed for optional arguments.</p>
+<p>If true, any optional argument must follow the preceding flag in the same
+token immediately, without any space inbetween:</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;option_parser&quot;</span>
+
+<span class="t">OptionParser</span>.parse(<span class="s">%w(-a1 -a 2 -a --b=3 --b 4)</span>, gnu_optional_args: <span class="n">true</span>) <span class="k">do</span> <span class="o">|</span>parser<span class="o">|</span>
+  parser.on(<span class="s">&quot;-a&quot;</span>, <span class="s">&quot;--b [x]&quot;</span>, <span class="s">&quot;optional&quot;</span>) { <span class="o">|</span>x<span class="o">|</span> p x }
+  parser.unknown_args { <span class="o">|</span>args, _<span class="o">|</span> puts <span class="s">&quot;Remaining: </span><span class="i">#{</span>args<span class="i">}</span><span class="s">&quot;</span> }
+<span class="k">end</span></code></pre>
+<p>Prints:</p>
+<pre><code class="language-text">&quot;1&quot;
+&quot;&quot;
+&quot;&quot;
+&quot;3&quot;
+&quot;&quot;
+Remaining: [&quot;2&quot;, &quot;4&quot;]</code></pre>
+<p>Without <code>gnu_optional_args: true</code>, prints the following instead:</p>
+<pre><code class="language-text">&quot;1&quot;
+&quot;2&quot;
+&quot;--b=3&quot;
+&quot;4&quot;
+Remaining: []</code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/option_parser.cr#L174" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="gnu_optional_args?:Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>gnu_optional_args?</strong> : <a href="Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#gnu_optional_args%3F%3ABool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns whether the GNU convention is followed for optional arguments.</p>
+<p>If true, any optional argument must follow the preceding flag in the same
+token immediately, without any space inbetween:</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;option_parser&quot;</span>
+
+<span class="t">OptionParser</span>.parse(<span class="s">%w(-a1 -a 2 -a --b=3 --b 4)</span>, gnu_optional_args: <span class="n">true</span>) <span class="k">do</span> <span class="o">|</span>parser<span class="o">|</span>
+  parser.on(<span class="s">&quot;-a&quot;</span>, <span class="s">&quot;--b [x]&quot;</span>, <span class="s">&quot;optional&quot;</span>) { <span class="o">|</span>x<span class="o">|</span> p x }
+  parser.unknown_args { <span class="o">|</span>args, _<span class="o">|</span> puts <span class="s">&quot;Remaining: </span><span class="i">#{</span>args<span class="i">}</span><span class="s">&quot;</span> }
+<span class="k">end</span></code></pre>
+<p>Prints:</p>
+<pre><code class="language-text">&quot;1&quot;
+&quot;&quot;
+&quot;&quot;
+&quot;3&quot;
+&quot;&quot;
+Remaining: [&quot;2&quot;, &quot;4&quot;]</code></pre>
+<p>Without <code>gnu_optional_args: true</code>, prints the following instead:</p>
+<pre><code class="language-text">&quot;1&quot;
+&quot;2&quot;
+&quot;--b=3&quot;
+&quot;4&quot;
+Remaining: []</code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/option_parser.cr#L174" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="invalid_option(&amp;invalid_option:String-&gt;)-instance-method">
+      <div class="signature">
+        
+        def <strong>invalid_option</strong>(&invalid_option : <a href="String.html">String</a> -> )
+
+        <a class="method-permalink" href="#invalid_option%28%26invalid_option%3AString-%3E%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Sets a handler for option arguments that didn't match any of the setup options.</p>
+<p>You typically use this to display a help message.
+The default behaviour is to raise <code><a href="OptionParser/InvalidOption.html">InvalidOption</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/option_parser.cr#L291" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="missing_option(&amp;missing_option:String-&gt;)-instance-method">
+      <div class="signature">
+        
+        def <strong>missing_option</strong>(&missing_option : <a href="String.html">String</a> -> )
+
+        <a class="method-permalink" href="#missing_option%28%26missing_option%3AString-%3E%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Sets a handler for when a option that expects an argument wasn't given any.</p>
+<p>You typically use this to display a help message.
+The default behaviour is to raise <code><a href="OptionParser/MissingOption.html">MissingOption</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/option_parser.cr#L284" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="on(short_flag:String,long_flag:String,description:String,&amp;block:String-&gt;)-instance-method">
+      <div class="signature">
+        
+        def <strong>on</strong>(short_flag : <a href="String.html">String</a>, long_flag : <a href="String.html">String</a>, description : <a href="String.html">String</a>, &block : <a href="String.html">String</a> -> )
+
+        <a class="method-permalink" href="#on%28short_flag%3AString%2Clong_flag%3AString%2Cdescription%3AString%2C%26block%3AString-%3E%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Establishes a handler for a pair of short and long flags.</p>
+<p>See the other definition of <code><a href="OptionParser.html#on%28short_flag%3AString%2Clong_flag%3AString%2Cdescription%3AString%2C%26block%3AString-%3E%29-instance-method">#on</a></code> for examples. This method does not support
+subcommands.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/option_parser.cr#L221" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="on(flag:String,description:String,&amp;block:String-&gt;)-instance-method">
+      <div class="signature">
+        
+        def <strong>on</strong>(flag : <a href="String.html">String</a>, description : <a href="String.html">String</a>, &block : <a href="String.html">String</a> -> )
+
+        <a class="method-permalink" href="#on%28flag%3AString%2Cdescription%3AString%2C%26block%3AString-%3E%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Establishes a handler for a <em>flag</em> or subcommand.</p>
+<p>Flags must start with a dash or double dash. They can also have
+an optional argument, which will get passed to the block.
+Each flag has a description, which will be used for the help message.</p>
+<p>Subcommands are any <em>flag</em> passed which does not start with a dash. They
+cannot take arguments. When a subcommand is parsed, all subcommands are
+removed from the OptionParser, simulating a &quot;tree&quot; of subcommands. All flags
+remain valid. For a longer example, see the examples at the top of the page.</p>
+<p>Examples of valid flags:</p>
+<ul>
+<li><code>-a</code>, <code>-B</code></li>
+<li><code>--something-longer</code></li>
+<li><code>-f FILE</code>, <code>--file FILE</code>, <code>--file=FILE</code> (these will yield the passed value to the block as a string)</li>
+</ul>
+<p>Examples of valid subcommands:</p>
+<ul>
+<li><code>foo</code>, <code>run</code></li>
+</ul>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/option_parser.cr#L210" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="parse(args=ARGV):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>parse</strong>(args = <span class="t">ARGV</span>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#parse%28args%3DARGV%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Parses the passed <em>args</em> (defaults to <code><a href="toplevel.html#ARGV">ARGV</a></code>), running the handlers associated to each option.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/option_parser.cr#L361" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="separator(message=&quot;&quot;):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>separator</strong>(message = <span class="s">&quot;&quot;</span>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#separator%28message%3D%22%22%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Adds a separator, with an optional header message, that will be used to
+print the help. The separator is placed between the flags registered (<code><a href="OptionParser.html#on%28short_flag%3AString%2Clong_flag%3AString%2Cdescription%3AString%2C%26block%3AString-%3E%29-instance-method">#on</a></code>)
+before, and the flags registered after the call.</p>
+<p>This way, you can group the different options in an easier to read way.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/option_parser.cr#L267" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="stop:Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>stop</strong> : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#stop%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Stops the current parse and returns immediately, leaving the remaining flags
+unparsed. This is treated identically to <code>--</code> being inserted <em>behind</em> the
+current parsed flag.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/option_parser.cr#L306" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_s(io:IO):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>to_s</strong>(io : <a href="IO.html">IO</a>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#to_s%28io%3AIO%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns all the setup options, formatted in a help message.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/option_parser.cr#L311" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="unknown_args(&amp;unknown_args:Array(String),Array(String)-&gt;)-instance-method">
+      <div class="signature">
+        
+        def <strong>unknown_args</strong>(&unknown_args : <a href="Array.html">Array</a>(<a href="String.html">String</a>), <a href="Array.html">Array</a>(<a href="String.html">String</a>) -> )
+
+        <a class="method-permalink" href="#unknown_args%28%26unknown_args%3AArray%28String%29%2CArray%28String%29-%3E%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Sets a handler for regular arguments that didn't match any of the setup options.</p>
+<p>You typically use this to get the main arguments (not modifiers)
+that your program expects (for example, filenames). The default behaviour
+is to do nothing. The arguments can also be extracted from the <em>args</em> array
+passed to <code><a href="OptionParser.html#parse%28args%3DARGV%29%3ANil-instance-method">#parse</a></code> after parsing.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/option_parser.cr#L277" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+</div>
+
+</body>
+</html>

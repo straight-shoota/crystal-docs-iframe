@@ -1,0 +1,2401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Crystal Docs 1.16.1">
+<meta name="crystal_docs.project_version" content="1.17.0-dev">
+<meta name="crystal_docs.project_name" content="Crystal">
+
+  <meta name="crystal_docs.json_config_url" content="/api/versions.json">
+
+
+    <link rel="canonical" href="https://crystal-lang.org/api/latest/toplevel.html">
+
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/doc.js"></script>
+
+  <meta name="repository-name" content="Crystal">
+  <title>Top Level Namespace - Crystal 1.17.0-dev</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill="currentColor" fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<input type="checkbox" id="sidebar-btn">
+<label for="sidebar-btn" id="sidebar-btn-label">
+  <svg class="open" xmlns="http://www.w3.org/2000/svg" height="2em" width="2em" viewBox="0 0 512 512"><title>Open Sidebar</title><path fill="currentColor" d="M80 96v64h352V96H80zm0 112v64h352v-64H80zm0 112v64h352v-64H80z"></path></svg>
+  <svg class="close" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><title>Close Sidebar</title><path fill="currentColor" d="m118.6 73.4-45.2 45.2L210.7 256 73.4 393.4l45.2 45.2L256 301.3l137.4 137.3 45.2-45.2L301.3 256l137.3-137.4-45.2-45.2L256 210.7Z"></path></svg>
+</label>
+<iframe class="sidebar" src="sidebar.html"></iframe>
+
+<div class="main-content">
+<h1 class="type-name">
+
+  Top Level Namespace
+
+</h1>
+
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="included-modules" class="anchor" href="#included-modules">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Included Modules
+  </h2>
+  <ul class="other-types-list">
+    
+      <li class="other-type"><a href="Spec/Expectations.html">Spec::Expectations</a></li>
+    
+      <li class="other-type"><a href="Spec/Methods.html">Spec::Methods</a></li>
+    
+  </ul>
+
+
+
+  <h2>
+    <a id="extended-modules" class="anchor" href="#extended-modules">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Extended Modules
+  </h2>
+  <ul class="other-types-list">
+    
+      <li class="other-type"><a href="Spec/Expectations.html">Spec::Expectations</a></li>
+    
+      <li class="other-type"><a href="Spec/Methods.html">Spec::Methods</a></li>
+    
+  </ul>
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+
+
+
+  
+    <h2>
+      <a id="constant-summary" class="anchor" href="#constant-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+      Constant Summary
+    </h2>
+  
+  <dl>
+    
+      <dt class="entry-const" id="ARGF">
+        <strong>ARGF</strong> = <code><span class="t">IO</span><span class="t">::</span><span class="t">ARGF</span>.new(<span class="t">ARGV</span>, <span class="t">STDIN</span>)</code>
+      </dt>
+      
+      <dd class="entry-const-doc">
+        <p>An <code><a href="IO.html">IO</a></code> for reading files from <code><a href="toplevel.html#ARGV">ARGV</a></code>.</p>
+<p>Usage example:</p>
+<p><code>program.cr</code>:</p>
+<pre><code class="language-crystal">puts <span class="t">ARGF</span>.gets_to_end</code></pre>
+<p>A file to read from: (<code>file</code>)</p>
+<pre><code class="language-text">123</code></pre>
+<pre><code class="language-text">$ crystal build program.cr
+$ ./program file
+123
+$ ./program file file
+123123
+$ # If ARGV is empty, ARGF reads from STDIN instead:
+$ echo &quot;hello&quot; | ./program
+hello
+$ ./program unknown
+Unhandled exception: Error opening file with mode 'r': 'unknown': No such file or directory (File::NotFoundError)
+...</code></pre>
+<p>After a file from <code><a href="toplevel.html#ARGV">ARGV</a></code> has been read, it's removed from <code><a href="toplevel.html#ARGV">ARGV</a></code>.</p>
+<p>You can manipulate <code><a href="toplevel.html#ARGV">ARGV</a></code> yourself to control what <code><a href="toplevel.html#ARGF">ARGF</a></code> operates on.
+If you remove a file from <code><a href="toplevel.html#ARGV">ARGV</a></code>, it is ignored by <code><a href="toplevel.html#ARGF">ARGF</a></code>; if you add files to <code><a href="toplevel.html#ARGV">ARGV</a></code>, <code><a href="toplevel.html#ARGF">ARGF</a></code> will read from it.</p>
+<pre><code class="language-crystal"><span class="t">ARGV</span>.replace [<span class="s">&quot;file1&quot;</span>]
+<span class="t">ARGF</span>.gets_to_end <span class="c"># =&gt; Content of file1</span>
+<span class="t">ARGV</span>             <span class="c"># =&gt; []</span>
+<span class="t">ARGV</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;file2&quot;</span>
+<span class="t">ARGF</span>.gets_to_end <span class="c"># =&gt; Content of file2</span></code></pre>
+      </dd>
+      
+    
+      <dt class="entry-const" id="ARGV">
+        <strong>ARGV</strong> = <code><span class="t">Array</span>.new(<span class="t">ARGC_UNSAFE</span> <span class="o">-</span> <span class="n">1</span>) <span class="k">do</span> <span class="o">|</span>i<span class="o">|</span> <span class="t">String</span>.new(<span class="t">ARGV_UNSAFE</span>[<span class="n">1</span> <span class="o">+</span> i]) <span class="k">end</span></code>
+      </dt>
+      
+      <dd class="entry-const-doc">
+        <p>An array of arguments passed to the program.</p>
+      </dd>
+      
+    
+      <dt class="entry-const" id="EOL">
+        <strong>EOL</strong> = <code><span class="o">{%</span> <span class="k">if</span> flag?(<span class="n">:windows</span>) <span class="o">%}</span>
+        <span class="s">&quot;\r\n&quot;</span>
+      <span class="o">{%</span> <span class="k">else</span> <span class="o">%}</span>
+        <span class="s">&quot;\n&quot;</span>
+      <span class="o">{%</span> <span class="k">end</span> <span class="o">%}</span></code>
+      </dt>
+      
+      <dd class="entry-const-doc">
+        <p>The newline constant</p>
+      </dd>
+      
+    
+      <dt class="entry-const" id="PROGRAM_NAME">
+        <strong>PROGRAM_NAME</strong> = <code><span class="t">String</span>.new(<span class="t">ARGV_UNSAFE</span>.value)</code>
+      </dt>
+      
+      <dd class="entry-const-doc">
+        <p>The name, the program was called with.</p>
+<p>The result may be a relative or absolute path (including symbolic links),
+just the command name or the empty string.</p>
+<p>See <code>Process.executable_path</code> for a more convenient alternative that always
+returns the absolute real path to the executable file (if it exists).</p>
+      </dd>
+      
+    
+      <dt class="entry-const" id="STDERR">
+        <strong>STDERR</strong> = <code><span class="t">IO</span><span class="t">::</span><span class="t">FileDescriptor</span>.from_stdio(<span class="n">2</span>)</code>
+      </dt>
+      
+      <dd class="entry-const-doc">
+        <p>The standard error file descriptor.</p>
+<p>Typically used to output error messages and diagnostics.</p>
+<p>At the start of the program STDERR is configured like this:</p>
+<ul>
+<li>if it's a TTY device (like the console) then <code>sync</code> is <code>true</code>,
+meaning that output will be outputted as soon as it is written
+to STDERR. This is so users can see real time output data.</li>
+<li>if it's not a TTY device (like a file, or because the output
+was piped to a file) then <code>sync</code> is <code>false</code> but <code>flush_on_newline</code>
+is <code>true</code>. This is so that if you pipe the output to a file, and,
+for example, you <code>tail -f</code>, you can see data on a line-per-line basis.
+This is convenient but slower than with <code>flush_on_newline</code> set to <code>false</code>.
+If you need a bit more performance and you don't care about near real-time
+output you can do <code>STDERR.flush_on_newline = false</code>.</li>
+</ul>
+<p>On Unix systems, if the file descriptor is a TTY, the runtime duplicates it.
+So <code>STDERR.fd</code> might not be <code>2</code>.
+The reason for this is to enable non-blocking writes for concurrency. Other fibers
+can run while waiting on IO. The original file descriptor is
+inherited from the parent process. Setting it to non-blocking mode would
+reflect back which can cause problems.</p>
+<p>On Windows, <code><a href="toplevel.html#STDERR">STDERR</a></code> is always blocking.</p>
+      </dd>
+      
+    
+      <dt class="entry-const" id="STDIN">
+        <strong>STDIN</strong> = <code><span class="t">IO</span><span class="t">::</span><span class="t">FileDescriptor</span>.from_stdio(<span class="n">0</span>)</code>
+      </dt>
+      
+      <dd class="entry-const-doc">
+        <p>The standard input file descriptor. Contains data piped to the program.</p>
+<p>On Unix systems, if the file descriptor is a TTY, the runtime duplicates it.
+So <code>STDIN.fd</code> might not be <code>0</code>.
+The reason for this is to enable non-blocking reads for concurrency. Other fibers
+can run while waiting on user input. The original file descriptor is
+inherited from the parent process. Setting it to non-blocking mode would
+reflect back, which can cause problems.</p>
+<p>On Windows, <code><a href="toplevel.html#STDIN">STDIN</a></code> is always blocking.</p>
+      </dd>
+      
+    
+      <dt class="entry-const" id="STDOUT">
+        <strong>STDOUT</strong> = <code><span class="t">IO</span><span class="t">::</span><span class="t">FileDescriptor</span>.from_stdio(<span class="n">1</span>)</code>
+      </dt>
+      
+      <dd class="entry-const-doc">
+        <p>The standard output file descriptor.</p>
+<p>Typically used to output data and information.</p>
+<p>At the start of the program STDOUT is configured like this:</p>
+<ul>
+<li>if it's a TTY device (like the console) then <code>sync</code> is <code>true</code>,
+meaning that output will be outputted as soon as it is written
+to STDOUT. This is so users can see real time output data.</li>
+<li>if it's not a TTY device (like a file, or because the output
+was piped to a file) then <code>sync</code> is <code>false</code> but <code>flush_on_newline</code>
+is <code>true</code>. This is so that if you pipe the output to a file, and,
+for example, you <code>tail -f</code>, you can see data on a line-per-line basis.
+This is convenient but slower than with <code>flush_on_newline</code> set to <code>false</code>.
+If you need a bit more performance and you don't care about near real-time
+output you can do <code>STDOUT.flush_on_newline = false</code>.</li>
+</ul>
+<p>On Unix systems, if the file descriptor is a TTY, the runtime duplicates it.
+So <code>STDOUT.fd</code> might not be <code>1</code>.
+The reason for this is to enable non-blocking writes for concurrency. Other fibers
+can run while waiting on IO. The original file descriptor is
+inherited from the parent process. Setting it to non-blocking mode would
+reflect back which can cause problems.</p>
+<p>On Windows, <code><a href="toplevel.html#STDOUT">STDOUT</a></code> is always blocking.</p>
+      </dd>
+      
+    
+  </dl>
+
+
+
+  
+
+  
+  <h2>
+    <a id="method-summary" class="anchor" href="#method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#%60%28command%29%3AString-class-method" class="signature"><strong>`</strong>(command) : String</a>
+        
+          <div class="summary"><p>Returns the standard output of executing <em>command</em> in a subshell.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#abort%28message%3Dnil%2Cstatus%3D1%29%3ANoReturn-class-method" class="signature"><strong>abort</strong>(message = <span class="n">nil</span>, status = <span class="n">1</span>) : NoReturn</a>
+        
+          <div class="summary"><p>Terminates execution immediately, printing <em>message</em> to <code><a href="toplevel.html#STDERR">STDERR</a></code> and then calling <code><a href="toplevel.html#exit%28status%3D0%29%3ANoReturn-class-method">exit(status)</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#alignof%28type%3AClass%29%3AInt32-class-method" class="signature"><strong>alignof</strong>(type : Class) : Int32</a>
+        
+          <div class="summary"><p>Returns the alignment of the given type as number of bytes.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#at_exit%28%26handler%3AInt32%2CException%7CNil-%3E%29%3ANil-class-method" class="signature"><strong>at_exit</strong>(&handler : Int32, Exception | Nil -> ) : Nil</a>
+        
+          <div class="summary"><p>Registers the given <code><a href="Proc.html">Proc</a></code> for execution when the program exits regularly.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#caller%3AArray%28String%29-class-method" class="signature"><strong>caller</strong> : Array(String)</a>
+        
+          <div class="summary"><p>Returns the current execution stack as an array containing strings usually in the form file:line:column or file:line:column in 'method'.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#exit%28status%3D0%29%3ANoReturn-class-method" class="signature"><strong>exit</strong>(status = <span class="n">0</span>) : NoReturn</a>
+        
+          <div class="summary"><p>Terminates execution immediately, returning the given status code to the invoking environment.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#gets%28%2Aargs%2C%2A%2Aoptions%29-class-method" class="signature"><strong>gets</strong>(*args, **options)</a>
+        
+          <div class="summary"><p>Reads a line from <code><a href="toplevel.html#STDIN">STDIN</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#instance_alignof%28type%3AClass%29%3AInt32-class-method" class="signature"><strong>instance_alignof</strong>(type : Class) : Int32</a>
+        
+          <div class="summary"><p>Returns the instance alignment of the given class as number of bytes.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#instance_sizeof%28type%3AClass%29%3AInt32-class-method" class="signature"><strong>instance_sizeof</strong>(type : Class) : Int32</a>
+        
+          <div class="summary"><p>Returns the instance size of the given class as number of bytes.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#loop%28%26%29-class-method" class="signature"><strong>loop</strong>(&)</a>
+        
+          <div class="summary"><p>Repeatedly executes the block.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#main%28argc%3AInt32%2Cargv%3APointer%28Pointer%28UInt8%29%29%29%3AInt32-class-method" class="signature"><strong>main</strong>(argc : Int32, argv : Pointer(Pointer(UInt8))) : Int32</a>
+        
+          <div class="summary"><p>Main function that acts as C's main function.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#offsetof%28type%3AClass%2Coffset%29%3AInt32-class-method" class="signature"><strong>offsetof</strong>(type : Class, offset) : Int32</a>
+        
+          <div class="summary"><p>Returns the byte offset of an instance variable in a struct or class type.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#p%28object%29-class-method" class="signature"><strong>p</strong>(object)</a>
+        
+          <div class="summary"><p>Inspects <em>object</em> to <code><a href="toplevel.html#STDOUT">STDOUT</a></code> followed by a newline.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#p%28%2Aobjects%29-class-method" class="signature"><strong>p</strong>(*objects)</a>
+        
+          <div class="summary"><p>Inspects each object in <em>objects</em> to <code><a href="toplevel.html#STDOUT">STDOUT</a></code>, followed by a newline.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#p%28%2A%2Aobjects%29-class-method" class="signature"><strong>p</strong>(**objects)</a>
+        
+          <div class="summary"><p>Inspects <em>objects</em> to <code><a href="toplevel.html#STDOUT">STDOUT</a></code>, followed by a newline.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#pointerof%28variable%3AT%29%3APointer%28T%29forallT-class-method" class="signature"><strong>pointerof</strong>(variable : T) : Pointer(T) forall T</a>
+        
+          <div class="summary"><p>Returns a <code><a href="Pointer.html">Pointer</a></code> to the contents of a variable.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#pp%28object%29-class-method" class="signature"><strong>pp</strong>(object)</a>
+        
+          <div class="summary"><p>Pretty prints <em>object</em> to <code><a href="toplevel.html#STDOUT">STDOUT</a></code> followed by a newline.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#pp%28%2Aobjects%29-class-method" class="signature"><strong>pp</strong>(*objects)</a>
+        
+          <div class="summary"><p>Pretty prints each object in <em>objects</em> to <code><a href="toplevel.html#STDOUT">STDOUT</a></code>, followed by a newline.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#pp%28%2A%2Aobjects%29-class-method" class="signature"><strong>pp</strong>(**objects)</a>
+        
+          <div class="summary"><p>Pretty prints <em>objects</em> to <code><a href="toplevel.html#STDOUT">STDOUT</a></code>, followed by a newline.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#print%28%2Aobjects%3A_%29%3ANil-class-method" class="signature"><strong>print</strong>(*objects : _) : Nil</a>
+        
+          <div class="summary"><p>Prints objects to <code><a href="toplevel.html#STDOUT">STDOUT</a></code> and then invokes <code>STDOUT.flush</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#printf%28format_string%2Cargs%3AArray%7CTuple%29%3ANil-class-method" class="signature"><strong>printf</strong>(format_string, args : Array | Tuple) : Nil</a>
+        
+          <div class="summary"><p>Prints a formatted string to <code><a href="toplevel.html#STDOUT">STDOUT</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#printf%28format_string%2C%2Aargs%29%3ANil-class-method" class="signature"><strong>printf</strong>(format_string, *args) : Nil</a>
+        
+          <div class="summary"><p>Prints a formatted string to <code><a href="toplevel.html#STDOUT">STDOUT</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#puts%28%2Aobjects%29%3ANil-class-method" class="signature"><strong>puts</strong>(*objects) : Nil</a>
+        
+          <div class="summary"><p>Prints <em>objects</em> to <code><a href="toplevel.html#STDOUT">STDOUT</a></code>, each followed by a newline character unless the object is a <code><a href="String.html">String</a></code> and already ends with a newline.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#raise%28exception%3AException%29%3ANoReturn-class-method" class="signature"><strong>raise</strong>(exception : Exception) : NoReturn</a>
+        
+          <div class="summary"><p>Raises the <em>exception</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#raise%28message%3AString%29%3ANoReturn-class-method" class="signature"><strong>raise</strong>(message : String) : NoReturn</a>
+        
+          <div class="summary"><p>Raises an Exception with the <em>message</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#rand%28x%29-class-method" class="signature"><strong>rand</strong>(x)</a>
+        
+          <div class="summary"><p>See <code>Random#rand(x)</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#rand%3AFloat64-class-method" class="signature"><strong>rand</strong> : Float64</a>
+        
+          <div class="summary"><p>See <code>Random#rand</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#read_line%28%2Aargs%2C%2A%2Aoptions%29-class-method" class="signature"><strong>read_line</strong>(*args, **options)</a>
+        
+          <div class="summary"><p>Reads a line from <code><a href="toplevel.html#STDIN">STDIN</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#sizeof%28type%3AClass%29%3AInt32-class-method" class="signature"><strong>sizeof</strong>(type : Class) : Int32</a>
+        
+          <div class="summary"><p>Returns the size of the given type as number of bytes.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#sleep%28seconds%3ANumber%29%3ANil-class-method" class="signature"><strong>sleep</strong>(seconds : Number) : Nil</a>
+        
+          <div class="summary"><p>Blocks the current fiber for the specified number of seconds.</p>
+<p><span class="flag red">DEPRECATED</span>  Use <code>::sleep(<a href="Time/Span.html">Time::Span</a>)</code> instead</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#sleep%28time%3ATime%3A%3ASpan%29%3ANil-class-method" class="signature"><strong>sleep</strong>(time : Time::Span) : Nil</a>
+        
+          <div class="summary"><p>Blocks the current Fiber for the specified time span.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#sleep%3ANil-class-method" class="signature"><strong>sleep</strong> : Nil</a>
+        
+          <div class="summary"><p>Blocks the current fiber forever.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#spawn%28%2A%2Cname%3AString%7CNil%3Dnil%2Csame_thread%3Dfalse%2C%26block%29-class-method" class="signature"><strong>spawn</strong>(*, name : String | Nil = <span class="n">nil</span>, same_thread = <span class="n">false</span>, &block)</a>
+        
+          <div class="summary"><p>Spawns a new fiber.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#sprintf%28format_string%2Cargs%3AArray%7CTuple%29%3AString-class-method" class="signature"><strong>sprintf</strong>(format_string, args : Array | Tuple) : String</a>
+        
+          <div class="summary"><p>Returns a formatted string.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#sprintf%28format_string%2C%2Aargs%29%3AString-class-method" class="signature"><strong>sprintf</strong>(format_string, *args) : String</a>
+        
+          <div class="summary"><p>Returns a formatted string.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#system%28command%3AString%2Cargs%3Dnil%29%3ABool-class-method" class="signature"><strong>system</strong>(command : String, args = <span class="n">nil</span>) : Bool</a>
+        
+          <div class="summary"><p>Executes the given command in a subshell.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#timeout_select_action%28timeout%3ATime%3A%3ASpan%29%3AChannel%3A%3ATimeoutAction-class-method" class="signature"><strong>timeout_select_action</strong>(timeout : Time::Span) : Channel::TimeoutAction</a>
+        
+          <div class="summary"><p>Timeout keyword for use in <code>select</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#typeof%28%2Aexpression%29%3AClass-class-method" class="signature"><strong>typeof</strong>(*expression) : Class</a>
+        
+          <div class="summary"><p>Returns the type of an expression.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+  
+  <h2>
+    <a id="macro-summary" class="anchor" href="#macro-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Macro Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#debugger-macro" class="signature"><strong>debugger</strong></a>
+        
+          <div class="summary"><p>Invokes an execution trap to catch the attention of a debugger.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#p%21%28%2Aexps%29-macro" class="signature"><strong>p!</strong>(*exps)</a>
+        
+          <div class="summary"><p>Prints a series of expressions together with their inspected values.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#pp%21%28%2Aexps%29-macro" class="signature"><strong>pp!</strong>(*exps)</a>
+        
+          <div class="summary"><p>Prints a series of expressions together with their pretty printed values.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#record%28__namename%2C%2Aproperties%2C%2A%2Akwargs%29-macro" class="signature"><strong>record</strong>(__name name, *properties, **kwargs)</a>
+        
+          <div class="summary"><p>Defines a <strong><code><a href="Struct.html">Struct</a></code></strong> type called <em>name</em> with the given <em>properties</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#spawn%28call%2C%2A%2Cname%3Dnil%2Csame_thread%3Dfalse%2C%26block%29-macro" class="signature"><strong>spawn</strong>(call, *, name = <span class="n">nil</span>, same_thread = <span class="n">false</span>, &block)</a>
+        
+          <div class="summary"><p>Spawns a fiber by first creating a <code><a href="Proc.html">Proc</a></code>, passing the <em>call</em>'s expressions to it, and letting the <code><a href="Proc.html">Proc</a></code> finally invoke the <em>call</em>.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+  
+
+
+  <div class="methods-inherited">
+    
+      
+
+  <h3>Instance methods inherited from module <code><a href="Spec/Methods.html">Spec::Methods</a></code></h3>
+  
+  
+    <a href="Spec/Methods.html#after_all%28%26block%29-instance-method" class="tooltip">
+      <span>after_all(&block)</span>
+    after_all</a>, 
+    
+  
+    <a href="Spec/Methods.html#after_each%28%26block%29-instance-method" class="tooltip">
+      <span>after_each(&block)</span>
+    after_each</a>, 
+    
+  
+    <a href="Spec/Methods.html#around_all%28%26block%3AExampleGroup%3A%3AProcsy-%3E%29-instance-method" class="tooltip">
+      <span>around_all(&block : ExampleGroup::Procsy -> )</span>
+    around_all</a>, 
+    
+  
+    <a href="Spec/Methods.html#around_each%28%26block%3AExample%3A%3AProcsy-%3E%29-instance-method" class="tooltip">
+      <span>around_each(&block : Example::Procsy -> )</span>
+    around_each</a>, 
+    
+  
+    <a href="Spec/Methods.html#before_all%28%26block%29-instance-method" class="tooltip">
+      <span>before_all(&block)</span>
+    before_all</a>, 
+    
+  
+    <a href="Spec/Methods.html#before_each%28%26block%29-instance-method" class="tooltip">
+      <span>before_each(&block)</span>
+    before_each</a>, 
+    
+  
+    <a href="Spec/Methods.html#context%28description%3Dnil%2Cfile%3D__FILE__%2Cline%3D__LINE__%2Cend_line%3D__END_LINE__%2Cfocus%3ABool%3Dfalse%2Ctags%3AString%7CEnumerable%28String%29%7CNil%3Dnil%2C%26block%29-instance-method" class="tooltip">
+      <span>context(description = <span class="n">nil</span>, file = __FILE__, line = __LINE__, end_line = __END_LINE__, focus : Bool = <span class="n">false</span>, tags : String | Enumerable(String) | Nil = <span class="n">nil</span>, &block)</span>
+    context</a>, 
+    
+  
+    <a href="Spec/Methods.html#describe%28description%3Dnil%2Cfile%3D__FILE__%2Cline%3D__LINE__%2Cend_line%3D__END_LINE__%2Cfocus%3ABool%3Dfalse%2Ctags%3AString%7CEnumerable%28String%29%7CNil%3Dnil%2C%26block%29-instance-method" class="tooltip">
+      <span>describe(description = <span class="n">nil</span>, file = __FILE__, line = __LINE__, end_line = __END_LINE__, focus : Bool = <span class="n">false</span>, tags : String | Enumerable(String) | Nil = <span class="n">nil</span>, &block)</span>
+    describe</a>, 
+    
+  
+    <a href="Spec/Methods.html#fail%28msg%2Cfile%3D__FILE__%2Cline%3D__LINE__%29-instance-method" class="tooltip">
+      <span>fail(msg, file = __FILE__, line = __LINE__)</span>
+    fail</a>, 
+    
+  
+    <a href="Spec/Methods.html#it%28description%3D%22assert%22%2Cfile%3D__FILE__%2Cline%3D__LINE__%2Cend_line%3D__END_LINE__%2Cfocus%3ABool%3Dfalse%2Ctags%3AString%7CEnumerable%28String%29%7CNil%3Dnil%2C%26block%29-instance-method" class="tooltip">
+      <span>it(description = <span class="s">&quot;assert&quot;</span>, file = __FILE__, line = __LINE__, end_line = __END_LINE__, focus : Bool = <span class="n">false</span>, tags : String | Enumerable(String) | Nil = <span class="n">nil</span>, &block)</span>
+    it</a>, 
+    
+  
+    <a href="Spec/Methods.html#pending%28description%3D%22assert%22%2Cfile%3D__FILE__%2Cline%3D__LINE__%2Cend_line%3D__END_LINE__%2Cfocus%3ABool%3Dfalse%2Ctags%3AString%7CEnumerable%28String%29%7CNil%3Dnil%2C%26%29-instance-method" class="tooltip">
+      <span>pending(description = <span class="s">&quot;assert&quot;</span>, file = __FILE__, line = __LINE__, end_line = __END_LINE__, focus : Bool = <span class="n">false</span>, tags : String | Enumerable(String) | Nil = <span class="n">nil</span>, &)<br/>pending(description = <span class="s">&quot;assert&quot;</span>, file = __FILE__, line = __LINE__, end_line = __END_LINE__, focus : Bool = <span class="n">false</span>, tags : String | Enumerable(String) | Nil = <span class="n">nil</span>)</span>
+    pending</a>, 
+    
+  
+    <a href="Spec/Methods.html#pending%21%28msg%3D%22Cannotrunexample%22%2Cfile%3D__FILE__%2Cline%3D__LINE__%29-instance-method" class="tooltip">
+      <span>pending!(msg = <span class="s">&quot;Cannot run example&quot;</span>, file = __FILE__, line = __LINE__)</span>
+    pending!</a>
+    
+  
+
+
+      
+
+
+      
+
+
+      
+
+  <h3>Macros inherited from module <code><a href="Spec/Methods.html">Spec::Methods</a></code></h3>
+  
+  
+    <a href="Spec/Methods.html#assert_iterates_iterator%28expected%2Cmethod%2C%2A%2Cinfinite%3Dfalse%29-macro" class="tooltip">
+      <span>assert_iterates_iterator(expected, method, *, infinite = <span class="n">false</span>)</span>
+    assert_iterates_iterator</a>, 
+    
+  
+    <a href="Spec/Methods.html#assert_iterates_yielding%28expected%2Cmethod%2C%2A%2Cinfinite%3Dfalse%2Ctuple%3Dfalse%29-macro" class="tooltip">
+      <span>assert_iterates_yielding(expected, method, *, infinite = <span class="n">false</span>, tuple = <span class="n">false</span>)</span>
+    assert_iterates_yielding</a>, 
+    
+  
+    <a href="Spec/Methods.html#assert_prints%28call%2C%2A%2Cshouldexpectation%2Cfile%3D__FILE__%2Cline%3D__LINE__%29-macro" class="tooltip">
+      <span>assert_prints(call, *, should expectation, file = __FILE__, line = __LINE__)<br/>assert_prints(call, str, *, file = __FILE__, line = __LINE__)</span>
+    assert_prints</a>, 
+    
+  
+    <a href="Spec/Methods.html#it_iterates%28description%2Cexpected%2Cmethod%2C%2A%2Cinfinite%3Dfalse%2Ctuple%3Dfalse%2Cfile%3D__FILE__%2Cline%3D__LINE__%29-macro" class="tooltip">
+      <span>it_iterates(description, expected, method, *, infinite = <span class="n">false</span>, tuple = <span class="n">false</span>, file = __FILE__, line = __LINE__)</span>
+    it_iterates</a>
+    
+  
+
+
+    
+      
+
+  <h3>Instance methods inherited from module <code><a href="Spec/Expectations.html">Spec::Expectations</a></code></h3>
+  
+  
+    <a href="Spec/Expectations.html#be%28value%29-instance-method" class="tooltip">
+      <span>be(value)<br/>be</span>
+    be</a>, 
+    
+  
+    <a href="Spec/Expectations.html#be_close%28expected%2Cdelta%29-instance-method" class="tooltip">
+      <span>be_close(expected, delta)</span>
+    be_close</a>, 
+    
+  
+    <a href="Spec/Expectations.html#be_empty-instance-method" class="tooltip">
+      <span>be_empty</span>
+    be_empty</a>, 
+    
+  
+    <a href="Spec/Expectations.html#be_false-instance-method" class="tooltip">
+      <span>be_false</span>
+    be_false</a>, 
+    
+  
+    <a href="Spec/Expectations.html#be_falsey-instance-method" class="tooltip">
+      <span>be_falsey</span>
+    be_falsey</a>, 
+    
+  
+    <a href="Spec/Expectations.html#be_nil-instance-method" class="tooltip">
+      <span>be_nil</span>
+    be_nil</a>, 
+    
+  
+    <a href="Spec/Expectations.html#be_true-instance-method" class="tooltip">
+      <span>be_true</span>
+    be_true</a>, 
+    
+  
+    <a href="Spec/Expectations.html#be_truthy-instance-method" class="tooltip">
+      <span>be_truthy</span>
+    be_truthy</a>, 
+    
+  
+    <a href="Spec/Expectations.html#contain%28expected%29-instance-method" class="tooltip">
+      <span>contain(expected)</span>
+    contain</a>, 
+    
+  
+    <a href="Spec/Expectations.html#end_with%28expected%29-instance-method" class="tooltip">
+      <span>end_with(expected)</span>
+    end_with</a>, 
+    
+  
+    <a href="Spec/Expectations.html#eq%28value%29-instance-method" class="tooltip">
+      <span>eq(value)</span>
+    eq</a>, 
+    
+  
+    <a href="Spec/Expectations.html#expect_raises%28klass%3AT.class%2Cmessage%3AString%7CRegex%7CNil%3Dnil%2Cfile%3D__FILE__%2Cline%3D__LINE__%2C%26%29forallT-instance-method" class="tooltip">
+      <span>expect_raises(klass : <span class="t">T</span>.<span class="k">class</span>, message : String | Regex | Nil = <span class="n">nil</span>, file = __FILE__, line = __LINE__, &) forall T</span>
+    expect_raises</a>, 
+    
+  
+    <a href="Spec/Expectations.html#match%28value%29-instance-method" class="tooltip">
+      <span>match(value)</span>
+    match</a>, 
+    
+  
+    <a href="Spec/Expectations.html#start_with%28expected%29-instance-method" class="tooltip">
+      <span>start_with(expected)</span>
+    start_with</a>
+    
+  
+
+
+      
+
+
+      
+
+
+      
+
+  <h3>Macros inherited from module <code><a href="Spec/Expectations.html">Spec::Expectations</a></code></h3>
+  
+  
+    <a href="Spec/Expectations.html#be_a%28type%29-macro" class="tooltip">
+      <span>be_a(type)</span>
+    be_a</a>
+    
+  
+
+
+    
+  </div>
+
+  
+
+  
+  <h2>
+    <a id="method-detail" class="anchor" href="#method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="`(command):String-class-method">
+      <div class="signature">
+        
+        def <strong>`</strong>(command) : <a href="String.html">String</a>
+
+        <a class="method-permalink" href="#%60%28command%29%3AString-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the standard output of executing <em>command</em> in a subshell.
+Standard input, and error are inherited.
+The special <code>$?</code> variable is set to a <code><a href="Process/Status.html">Process::Status</a></code> associated with this execution.</p>
+<p>It is impossible to call this method with any regular call syntax. There is an associated literal type which calls the method with the literal content as command:</p>
+<pre><code class="language-crystal"><span class="s">`echo hi`</span>   <span class="c"># =&gt; &quot;hi\n&quot;</span>
+$?.success? <span class="c"># =&gt; true</span></code></pre>
+<p>See <a href="https://crystal-lang.org/reference/syntax_and_semantics/literals/command.html"><code>Command</code> literals</a> in the language reference.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/process.cr#L518" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="abort(message=nil,status=1):NoReturn-class-method">
+      <div class="signature">
+        
+        def <strong>abort</strong>(message = <span class="n">nil</span>, status = <span class="n">1</span>) : NoReturn
+
+        <a class="method-permalink" href="#abort%28message%3Dnil%2Cstatus%3D1%29%3ANoReturn-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Terminates execution immediately, printing <em>message</em> to <code><a href="toplevel.html#STDERR">STDERR</a></code> and
+then calling <code><a href="toplevel.html#exit%28status%3D0%29%3ANoReturn-class-method">exit(status)</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/kernel.cr#L575" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="alignof(type:Class):Int32-class-method">
+      <div class="signature">
+        
+        def <strong>alignof</strong>(type : <a href="Class.html">Class</a>) : <a href="Int32.html">Int32</a>
+
+        <a class="method-permalink" href="#alignof%28type%3AClass%29%3AInt32-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the alignment of the given type as number of bytes.</p>
+<p><em>type</em> must be a constant or <code><a href="toplevel.html#typeof%28%2Aexpression%29%3AClass-class-method">typeof()</a></code> expression. It cannot be evaluated
+at runtime.</p>
+<pre><code class="language-crystal"><span class="k">alignof</span>(<span class="t">Int32</span>)        <span class="c"># =&gt; 4</span>
+<span class="k">alignof</span>(<span class="t">Float64</span>)      <span class="c"># usually 4 or 8</span>
+<span class="k">alignof</span>(<span class="k">typeof</span>(<span class="n">true</span>)) <span class="c"># =&gt; 1</span>
+
+<span class="t">For</span> <span class="s">`Reference`</span> types, the alignment is the same <span class="k">as</span> the alignment <span class="k">of</span> a pointer:
+</code></pre>
+<h1><a id="on-a-64-bits-machine" class="anchor" href="#on-a-64-bits-machine">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>On a 64 bits machine</h1>
+<p>alignof(Pointer(Int32)) # =&gt; 8
+alignof(String)         # =&gt; 8</p>
+<pre><code class="language-crystal">
+This is because a `Reference`&#39;s memory is allocated on the heap and a pointer
+to it is passed around. The alignment of a class on the heap can be determined
+using `#instance_alignof`.
+
+NOTE: This is a pseudo-method provided directly by the Crystal compiler.
+It cannot be redefined nor overridden.</code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/docs_pseudo_methods.cr#L85" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="at_exit(&amp;handler:Int32,Exception|Nil-&gt;):Nil-class-method">
+      <div class="signature">
+        
+        def <strong>at_exit</strong>(&handler : <a href="Int32.html">Int32</a>, <a href="Exception.html">Exception</a> | <a href="Nil.html">Nil</a> -> ) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#at_exit%28%26handler%3AInt32%2CException%7CNil-%3E%29%3ANil-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Registers the given <code><a href="Proc.html">Proc</a></code> for execution when the program exits regularly.</p>
+<p>A regular exit happens when either</p>
+<ul>
+<li>the main fiber reaches the end of the program,</li>
+<li>the main fiber rescues an unhandled exception, or</li>
+<li><code>::exit</code> is called.</li>
+</ul>
+<p><code>Process.exit</code> does <em>not</em> trigger <code><a href="toplevel.html#at_exit%28%26handler%3AInt32%2CException%7CNil-%3E%29%3ANil-class-method">at_exit</a></code> handlers, nor does external process
+termination (see <code>Process.on_terminate</code> for handling that).</p>
+<p>If multiple handlers are registered, they are executed in reverse order of registration.</p>
+<pre><code class="language-crystal"><span class="k">def</span> <span class="m">do_at_exit</span>(str1)
+  at_exit { print str1 }
+<span class="k">end</span>
+
+at_exit { puts <span class="s">&quot;cruel world&quot;</span> }
+do_at_exit(<span class="s">&quot;goodbye &quot;</span>)
+exit</code></pre>
+<p>Produces:</p>
+<pre><code class="language-text">goodbye cruel world</code></pre>
+<p>The exit status code that will be returned by this program is passed to
+the block as its first argument. In case of any unhandled exception, it is
+passed as the second argument to the block, if the program terminates
+normally or <code><a href="toplevel.html#exit%28status%3D0%29%3ANoReturn-class-method">exit(status)</a></code> is called explicitly, then the second argument
+will be <code>nil</code>.</p>
+<p><span class="flag purple">NOTE</span>  If <code><a href="toplevel.html#at_exit%28%26handler%3AInt32%2CException%7CNil-%3E%29%3ANil-class-method">at_exit</a></code> is called inside an <code><a href="toplevel.html#at_exit%28%26handler%3AInt32%2CException%7CNil-%3E%29%3ANil-class-method">at_exit</a></code> handler, it will be called
+right after the current <code><a href="toplevel.html#at_exit%28%26handler%3AInt32%2CException%7CNil-%3E%29%3ANil-class-method">at_exit</a></code> handler ends, and then other handlers
+will be invoked.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/kernel.cr#L558" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="caller:Array(String)-class-method">
+      <div class="signature">
+        
+        def <strong>caller</strong> : <a href="Array.html">Array</a>(<a href="String.html">String</a>)
+
+        <a class="method-permalink" href="#caller%3AArray%28String%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the current execution stack as an array containing strings
+usually in the form file:line:column or file:line:column in 'method'.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/exception/call_stack.cr#L13" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="exit(status=0):NoReturn-class-method">
+      <div class="signature">
+        
+        def <strong>exit</strong>(status = <span class="n">0</span>) : NoReturn
+
+        <a class="method-permalink" href="#exit%28status%3D0%29%3ANoReturn-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Terminates execution immediately, returning the given status code
+to the invoking environment.</p>
+<p>Registered <code><a href="toplevel.html#at_exit%28%26handler%3AInt32%2CException%7CNil-%3E%29%3ANil-class-method">at_exit</a></code> procs are executed.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/kernel.cr#L566" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="gets(*args,**options)-class-method">
+      <div class="signature">
+        
+        def <strong>gets</strong>(*args, **options)
+
+        <a class="method-permalink" href="#gets%28%2Aargs%2C%2A%2Aoptions%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Reads a line from <code><a href="toplevel.html#STDIN">STDIN</a></code>.</p>
+<p>See also: <code>IO#gets</code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/kernel.cr#L150" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="instance_alignof(type:Class):Int32-class-method">
+      <div class="signature">
+        
+        def <strong>instance_alignof</strong>(type : <a href="Class.html">Class</a>) : <a href="Int32.html">Int32</a>
+
+        <a class="method-permalink" href="#instance_alignof%28type%3AClass%29%3AInt32-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the instance alignment of the given class as number of bytes.</p>
+<p><em>type</em> must be a constant or <code><a href="toplevel.html#typeof%28%2Aexpression%29%3AClass-class-method">typeof()</a></code> expression. It cannot be evaluated at runtime.</p>
+<pre><code class="language-crystal"><span class="k">instance_alignof</span>(<span class="t">String</span>)    <span class="c"># =&gt; 4</span>
+<span class="k">instance_alignof</span>(<span class="t">Exception</span>) <span class="c"># =&gt; 8</span></code></pre>
+<p>See <code><a href="toplevel.html#alignof%28type%3AClass%29%3AInt32-class-method">alignof</a></code> for determining the size of value types.</p>
+<p><span class="flag purple">NOTE</span>  This is a pseudo-method provided directly by the Crystal compiler.
+It cannot be redefined nor overridden.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/docs_pseudo_methods.cr#L98" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="instance_sizeof(type:Class):Int32-class-method">
+      <div class="signature">
+        
+        def <strong>instance_sizeof</strong>(type : <a href="Class.html">Class</a>) : <a href="Int32.html">Int32</a>
+
+        <a class="method-permalink" href="#instance_sizeof%28type%3AClass%29%3AInt32-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the instance size of the given class as number of bytes.</p>
+<p><em>type</em> must be a constant or <code><a href="toplevel.html#typeof%28%2Aexpression%29%3AClass-class-method">typeof()</a></code> expression. It cannot be evaluated at runtime.</p>
+<pre><code class="language-crystal"><span class="k">instance_sizeof</span>(<span class="t">String</span>)    <span class="c"># =&gt; 16</span>
+<span class="k">instance_sizeof</span>(<span class="t">Exception</span>) <span class="c"># =&gt; 48</span></code></pre>
+<p>See <code><a href="toplevel.html#sizeof%28type%3AClass%29%3AInt32-class-method">sizeof</a></code> for determining the size of value types.</p>
+<p><span class="flag purple">NOTE</span>  This is a pseudo-method provided directly by the Crystal compiler.
+It cannot be redefined nor overridden.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/docs_pseudo_methods.cr#L61" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="loop(&amp;)-class-method">
+      <div class="signature">
+        
+        def <strong>loop</strong>(&)
+
+        <a class="method-permalink" href="#loop%28%26%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Repeatedly executes the block.</p>
+<pre><code class="language-crystal">loop <span class="k">do</span>
+  line <span class="o">=</span> gets
+  <span class="k">break</span> <span class="k">unless</span> line
+  <span class="c"># ...</span>
+<span class="k">end</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/kernel.cr#L141" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="main(argc:Int32,argv:Pointer(Pointer(UInt8))):Int32-class-method">
+      <div class="signature">
+        
+        def <strong>main</strong>(argc : <a href="Int32.html">Int32</a>, argv : <a href="Pointer.html">Pointer</a>(<a href="Pointer.html">Pointer</a>(<a href="UInt8.html">UInt8</a>))) : <a href="Int32.html">Int32</a>
+
+        <a class="method-permalink" href="#main%28argc%3AInt32%2Cargv%3APointer%28Pointer%28UInt8%29%29%29%3AInt32-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Main function that acts as C's main function.
+Invokes <code>Crystal.main</code>.</p>
+<p>Can be redefined. See <code>Crystal.main</code> for examples.</p>
+<p>On Windows the actual entry point is <code>wmain</code>, but there is no need to redefine
+that. See the file required below for details.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/crystal/system/unix/main.cr#L8" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="offsetof(type:Class,offset):Int32-class-method">
+      <div class="signature">
+        
+        def <strong>offsetof</strong>(type : <a href="Class.html">Class</a>, offset) : <a href="Int32.html">Int32</a>
+
+        <a class="method-permalink" href="#offsetof%28type%3AClass%2Coffset%29%3AInt32-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the byte offset of an instance variable in a struct or class type.</p>
+<p><em>type</em> must be a constant or <code><a href="toplevel.html#typeof%28%2Aexpression%29%3AClass-class-method">typeof()</a></code> expression. It cannot be evaluated at runtime.
+<em>offset</em>  must be the name of an instance variable of <em>type</em>, prefixed by <code>@</code>,
+or the index of an element in a Tuple, starting from 0, if <em>type</em> is a <code><a href="Tuple.html">Tuple</a></code>.</p>
+<pre><code class="language-crystal"><span class="k">offsetof</span>(<span class="t">String</span>, @bytesize)       <span class="c"># =&gt; 4</span>
+<span class="k">offsetof</span>(<span class="t">Exception</span>, @message)     <span class="c"># =&gt; 8</span>
+<span class="k">offsetof</span>(<span class="t">Time</span>, @location)         <span class="c"># =&gt; 16</span>
+<span class="k">offsetof</span>({<span class="t">Int32</span>, <span class="t">Int8</span>, <span class="t">Int32</span>}, <span class="n">0</span>) <span class="c"># =&gt; 0</span>
+<span class="k">offsetof</span>({<span class="t">Int32</span>, <span class="t">Int8</span>, <span class="t">Int32</span>}, <span class="n">1</span>) <span class="c"># =&gt; 4</span>
+<span class="k">offsetof</span>({<span class="t">Int32</span>, <span class="t">Int8</span>, <span class="t">Int32</span>}, <span class="n">2</span>) <span class="c"># =&gt; 8</span></code></pre>
+<p><span class="flag purple">NOTE</span>  This is a pseudo-method provided directly by the Crystal compiler.
+It cannot be redefined nor overridden.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/docs_pseudo_methods.cr#L128" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="p(object)-class-method">
+      <div class="signature">
+        
+        def <strong>p</strong>(object)
+
+        <a class="method-permalink" href="#p%28object%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Inspects <em>object</em> to <code><a href="toplevel.html#STDOUT">STDOUT</a></code> followed
+by a newline. Returns <em>object</em>.</p>
+<p>See also: <code>Object#inspect(io)</code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/kernel.cr#L459" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="p(*objects)-class-method">
+      <div class="signature">
+        
+        def <strong>p</strong>(*objects)
+
+        <a class="method-permalink" href="#p%28%2Aobjects%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Inspects each object in <em>objects</em> to <code><a href="toplevel.html#STDOUT">STDOUT</a></code>, followed
+by a newline. Returns <em>objects</em>.</p>
+<p>See also: <code>Object#inspect(io)</code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/kernel.cr#L469" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="p(**objects)-class-method">
+      <div class="signature">
+        
+        def <strong>p</strong>(**objects)
+
+        <a class="method-permalink" href="#p%28%2A%2Aobjects%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Inspects <em>objects</em> to <code><a href="toplevel.html#STDOUT">STDOUT</a></code>, followed
+by a newline. Returns <em>objects</em>.</p>
+<pre><code class="language-crystal">p foo: <span class="n">23</span>, bar: <span class="n">42</span> <span class="c"># =&gt; {foo: 23, bar: 42}</span></code></pre>
+<p>See <code>Object#inspect(io)</code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/kernel.cr#L484" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="pointerof(variable:T):Pointer(T)forallT-class-method">
+      <div class="signature">
+        
+        def <strong>pointerof</strong>(variable : T) : <a href="Pointer.html">Pointer</a>(T) forall T
+
+        <a class="method-permalink" href="#pointerof%28variable%3AT%29%3APointer%28T%29forallT-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns a <code><a href="Pointer.html">Pointer</a></code> to the contents of a variable.</p>
+<p><em>variable</em> must be a variable (local, instance, class or library).</p>
+<pre><code class="language-crystal">a <span class="o">=</span> <span class="n">1</span>
+ptr <span class="o">=</span> <span class="k">pointerof</span>(a)
+ptr.value <span class="o">=</span> <span class="n">2</span>
+
+a <span class="c"># =&gt; 2</span></code></pre>
+<p><span class="flag purple">NOTE</span>  This is a pseudo-method provided directly by the Crystal compiler.
+It cannot be redefined nor overridden.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/docs_pseudo_methods.cr#L112" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="pp(object)-class-method">
+      <div class="signature">
+        
+        def <strong>pp</strong>(object)
+
+        <a class="method-permalink" href="#pp%28object%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Pretty prints <em>object</em> to <code><a href="toplevel.html#STDOUT">STDOUT</a></code> followed
+by a newline. Returns <em>object</em>.</p>
+<p>See also: <code>Object#pretty_print(pp)</code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/kernel.cr#L492" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="pp(*objects)-class-method">
+      <div class="signature">
+        
+        def <strong>pp</strong>(*objects)
+
+        <a class="method-permalink" href="#pp%28%2Aobjects%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Pretty prints each object in <em>objects</em> to <code><a href="toplevel.html#STDOUT">STDOUT</a></code>, followed
+by a newline. Returns <em>objects</em>.</p>
+<p>See also: <code>Object#pretty_print(pp)</code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/kernel.cr#L502" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="pp(**objects)-class-method">
+      <div class="signature">
+        
+        def <strong>pp</strong>(**objects)
+
+        <a class="method-permalink" href="#pp%28%2A%2Aobjects%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Pretty prints <em>objects</em> to <code><a href="toplevel.html#STDOUT">STDOUT</a></code>, followed
+by a newline. Returns <em>objects</em>.</p>
+<pre><code class="language-crystal">p foo: <span class="n">23</span>, bar: <span class="n">42</span> <span class="c"># =&gt; {foo: 23, bar: 42}</span></code></pre>
+<p>See <code>Object#pretty_print(pp)</code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/kernel.cr#L517" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="print(*objects:_):Nil-class-method">
+      <div class="signature">
+        
+        def <strong>print</strong>(*objects : _) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#print%28%2Aobjects%3A_%29%3ANil-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Prints objects to <code><a href="toplevel.html#STDOUT">STDOUT</a></code> and then invokes <code>STDOUT.flush</code>.</p>
+<p>See also: <code>IO#print</code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/kernel.cr#L164" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="printf(format_string,args:Array|Tuple):Nil-class-method">
+      <div class="signature">
+        
+        def <strong>printf</strong>(format_string, args : <a href="Array.html">Array</a> | <a href="Tuple.html">Tuple</a>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#printf%28format_string%2Cargs%3AArray%7CTuple%29%3ANil-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Prints a formatted string to <code><a href="toplevel.html#STDOUT">STDOUT</a></code>.</p>
+<p>For details on the format string, see <code><a href="toplevel.html#sprintf%28format_string%2Cargs%3AArray%7CTuple%29%3AString-class-method">sprintf</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/kernel.cr#L176" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="printf(format_string,*args):Nil-class-method">
+      <div class="signature">
+        
+        def <strong>printf</strong>(format_string, *args) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#printf%28format_string%2C%2Aargs%29%3ANil-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Prints a formatted string to <code><a href="toplevel.html#STDOUT">STDOUT</a></code>.</p>
+<p>For details on the format string, see <code><a href="toplevel.html#sprintf%28format_string%2Cargs%3AArray%7CTuple%29%3AString-class-method">sprintf</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/kernel.cr#L171" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="puts(*objects):Nil-class-method">
+      <div class="signature">
+        
+        def <strong>puts</strong>(*objects) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#puts%28%2Aobjects%29%3ANil-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Prints <em>objects</em> to <code><a href="toplevel.html#STDOUT">STDOUT</a></code>, each followed by a newline character unless
+the object is a <code><a href="String.html">String</a></code> and already ends with a newline.</p>
+<p>See also: <code>IO#puts</code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/kernel.cr#L451" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="raise(exception:Exception):NoReturn-class-method">
+      <div class="signature">
+        
+        def <strong>raise</strong>(exception : <a href="Exception.html">Exception</a>) : NoReturn
+
+        <a class="method-permalink" href="#raise%28exception%3AException%29%3ANoReturn-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Raises the <em>exception</em>.</p>
+<p>This will set the exception's callstack if it hasn't been already.
+Re-raising a previously caught exception won't replace the callstack.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/raise.cr#L242" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="raise(message:String):NoReturn-class-method">
+      <div class="signature">
+        
+        def <strong>raise</strong>(message : <a href="String.html">String</a>) : NoReturn
+
+        <a class="method-permalink" href="#raise%28message%3AString%29%3ANoReturn-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Raises an Exception with the <em>message</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/raise.cr#L266" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="rand(x)-class-method">
+      <div class="signature">
+        
+        def <strong>rand</strong>(x)
+
+        <a class="method-permalink" href="#rand%28x%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>See <code>Random#rand(x)</code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/random.cr#L446" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="rand:Float64-class-method">
+      <div class="signature">
+        
+        def <strong>rand</strong> : <a href="Float64.html">Float64</a>
+
+        <a class="method-permalink" href="#rand%3AFloat64-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>See <code>Random#rand</code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/random.cr#L441" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="read_line(*args,**options)-class-method">
+      <div class="signature">
+        
+        def <strong>read_line</strong>(*args, **options)
+
+        <a class="method-permalink" href="#read_line%28%2Aargs%2C%2A%2Aoptions%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Reads a line from <code><a href="toplevel.html#STDIN">STDIN</a></code>.</p>
+<p>See also: <code>IO#read_line</code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/kernel.cr#L157" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="sizeof(type:Class):Int32-class-method">
+      <div class="signature">
+        
+        def <strong>sizeof</strong>(type : <a href="Class.html">Class</a>) : <a href="Int32.html">Int32</a>
+
+        <a class="method-permalink" href="#sizeof%28type%3AClass%29%3AInt32-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the size of the given type as number of bytes.</p>
+<p><em>type</em> must be a constant or <code><a href="toplevel.html#typeof%28%2Aexpression%29%3AClass-class-method">typeof()</a></code> expression. It cannot be evaluated
+at runtime.</p>
+<pre><code class="language-crystal"><span class="k">sizeof</span>(<span class="t">Int32</span>)        <span class="c"># =&gt; 4</span>
+<span class="k">sizeof</span>(<span class="t">Int64</span>)        <span class="c"># =&gt; 8</span>
+<span class="k">sizeof</span>(<span class="k">typeof</span>(<span class="n">true</span>)) <span class="c"># =&gt; 1</span></code></pre>
+<p>For <code><a href="Reference.html">Reference</a></code> types, the size is the same as the size of a pointer:</p>
+<pre><code class="language-crystal"><span class="c"># On a 64 bits machine</span>
+<span class="k">sizeof</span>(<span class="t">Pointer</span>(<span class="t">Int32</span>)) <span class="c"># =&gt; 8</span>
+<span class="k">sizeof</span>(<span class="t">String</span>)         <span class="c"># =&gt; 8</span></code></pre>
+<p>This is because a <code><a href="Reference.html">Reference</a></code>'s memory is allocated on the heap and a pointer
+to it is passed around. The size of a class on the heap can be determined
+using <code><a href="toplevel.html#instance_sizeof%28type%3AClass%29%3AInt32-class-method">#instance_sizeof</a></code>.</p>
+<p><span class="flag purple">NOTE</span>  This is a pseudo-method provided directly by the Crystal compiler.
+It cannot be redefined nor overridden.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/docs_pseudo_methods.cr#L48" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="sleep(seconds:Number):Nil-class-method">
+      <div class="signature">
+        
+        def <strong>sleep</strong>(seconds : <a href="Number.html">Number</a>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#sleep%28seconds%3ANumber%29%3ANil-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Blocks the current fiber for the specified number of seconds.</p>
+<p>While this fiber is waiting this time, other ready-to-execute
+fibers might start their execution.</p>
+<p><span class="flag red">DEPRECATED</span>  Use <code>::sleep(<a href="Time/Span.html">Time::Span</a>)</code> instead</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/concurrent.cr#L16" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="sleep(time:Time::Span):Nil-class-method">
+      <div class="signature">
+        
+        def <strong>sleep</strong>(time : <a href="Time/Span.html">Time::Span</a>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#sleep%28time%3ATime%3A%3ASpan%29%3ANil-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Blocks the current Fiber for the specified time span.</p>
+<p>While this fiber is waiting this time, other ready-to-execute
+fibers might start their execution.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/concurrent.cr#L27" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="sleep:Nil-class-method">
+      <div class="signature">
+        
+        def <strong>sleep</strong> : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#sleep%3ANil-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Blocks the current fiber forever.</p>
+<p>Meanwhile, other ready-to-execute fibers might start their execution.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/concurrent.cr#L35" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="spawn(*,name:String|Nil=nil,same_thread=false,&amp;block)-class-method">
+      <div class="signature">
+        
+        def <strong>spawn</strong>(*, name : <a href="String.html">String</a> | <a href="Nil.html">Nil</a> = <span class="n">nil</span>, same_thread = <span class="n">false</span>, &block)
+
+        <a class="method-permalink" href="#spawn%28%2A%2Cname%3AString%7CNil%3Dnil%2Csame_thread%3Dfalse%2C%26block%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Spawns a new fiber.</p>
+<p>When using execution contexts, the fiber spawns into the current execution
+context (<code>Fiber::ExecutionContext.current</code>).</p>
+<p><span class="flag purple">NOTE</span>  The newly created fiber doesn't run as soon as spawned.</p>
+<p>Example:</p>
+<pre><code class="language-crystal"><span class="c"># Write &quot;1&quot; every 1 second and &quot;2&quot; every 2 seconds for 6 seconds.</span>
+
+<span class="k">require</span> <span class="s">&quot;wait_group&quot;</span>
+
+wg <span class="o">=</span> <span class="t">WaitGroup</span>.new <span class="n">2</span>
+
+spawn <span class="k">do</span>
+  <span class="n">6</span>.times <span class="k">do</span>
+    sleep <span class="n">1</span>.second
+    puts <span class="n">1</span>
+  <span class="k">end</span>
+<span class="k">ensure</span>
+  wg.done
+<span class="k">end</span>
+
+spawn <span class="k">do</span>
+  <span class="n">3</span>.times <span class="k">do</span>
+    sleep <span class="n">2</span>.seconds
+    puts <span class="n">2</span>
+  <span class="k">end</span>
+<span class="k">ensure</span>
+  wg.done
+<span class="k">end</span>
+
+wg.wait</code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/concurrent.cr#L39" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="sprintf(format_string,args:Array|Tuple):String-class-method">
+      <div class="signature">
+        
+        def <strong>sprintf</strong>(format_string, args : <a href="Array.html">Array</a> | <a href="Tuple.html">Tuple</a>) : <a href="String.html">String</a>
+
+        <a class="method-permalink" href="#sprintf%28format_string%2Cargs%3AArray%7CTuple%29%3AString-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns a formatted string.
+The string is produced according to the <em>format_string</em> with format specifiers
+being replaced by values from <em>args</em> formatted according to the specifier.</p>
+<p>Within the format string, any characters other than format specifiers
+(specifiers beginning with <code>%</code>) are copied to the result. The formatter
+supports the following kinds of format specifiers:</p>
+<ul>
+<li>Sequential (<code>%.1f</code>). The first <code>%</code> consumes the first argument, the second
+consumes the second argument, and so on.</li>
+<li>Positional (<code>%3$.1f</code>). The one-based argument index is specified as part of
+the flags.</li>
+<li>Named substitution (<code>%&lt;name&gt;.1f</code>, <code>%{name}</code>). The angle bracket form accepts
+flags and the curly bracket form doesn't. Exactly one <code><a href="Hash.html">Hash</a></code> or <code><a href="NamedTuple.html">NamedTuple</a></code>
+must be passed as the argument.</li>
+</ul>
+<p>Mixing of different kinds of format specifiers is disallowed, except that the
+two named forms may be used together.</p>
+<p>A simple format specifier consists of a percent sign, followed by optional flags,
+width, and precision indicators, then terminated with a field type
+character.</p>
+<pre><code class="language-text">%[flags][width][.precision]type</code></pre>
+<p>A formatted substitution is similar but after the percent sign follows the
+mandatory name of the substitution wrapped in angle brackets.</p>
+<pre><code class="language-text">%&lt;name&gt;[flags][width][.precision]type</code></pre>
+<p>The percent sign itself is escaped by <code>%%</code>. No format modifiers are allowed,
+and no arguments are consumed.</p>
+<p>The field type controls how the corresponding argument value is to be
+interpreted, while the flags modify that interpretation.</p>
+<p>The field type characters are:</p>
+<pre><code class="language-text">Field | Integer Format
+------+------------------------------------------------------------------
+  b   | Formats argument as a binary number.
+  d   | Formats argument as a decimal number.
+  i   | Same as d.
+  o   | Formats argument as an octal number.
+  x   | Formats argument as a hexadecimal number using lowercase letters.
+  X   | Same as x, but uses uppercase letters.
+
+Field | Float Format
+------+---------------------------------------------------------------
+  e   | Formats floating point argument into exponential notation
+      | with one digit before the decimal point as [-]d.dddddde[+-]dd.
+      | The precision specifies the number of digits after the decimal
+      | point (defaulting to six).
+  E   | Equivalent to e, but uses an uppercase E to indicate
+      | the exponent.
+  f   | Formats floating point argument as [-]ddd.dddddd,
+      | where the precision specifies the number of digits after
+      | the decimal point.
+  g   | Formats a floating point number using exponential form
+      | if the exponent is less than -4 or greater than or
+      | equal to the precision, or in dd.dddd form otherwise.
+      | The precision specifies the number of significant digits.
+  G   | Equivalent to g, but use an uppercase E in exponent form.
+  a   | Formats floating point argument as [-]0xh.hhhhp[+-]dd,
+      | which consists of an optional sign, &quot;0x&quot;, fraction part
+      | as hexadecimal, &quot;p&quot;, and exponential part as decimal.
+  A   | Equivalent to a, but uses uppercase X and P.
+
+Field | Other Format
+------+------------------------------------------------------------
+  c   | Argument is a single character itself.
+  s   | Argument is a string to be substituted. If the format
+      | sequence contains a precision, at most that many characters
+      | will be copied.</code></pre>
+<p>Flags modify the behavior of the format specifiers:</p>
+<pre><code class="language-text">Flag     | Applies to    | Meaning
+---------+---------------+----------------------------------------------------
+space    | bdiouxX       | Add a leading space character to
+         | aAeEfgG       | non-negative numbers. Has no effect if the plus
+         | (numeric fmt) | flag is also given.
+---------+---------------+----------------------------------------------------
+#        | boxX          | Use an alternative format.
+         | aAeEfgG       | For x, X, b, prefix any non-zero result with
+         |               | 0x, 0X, or 0b respectively.
+         |               | For o, prefix any non-zero result with 0o. Note
+         |               | that this prefix is different from C and Ruby.
+         |               | For a, A, e, E, f, g, G,
+         |               | force a decimal point to be added,
+         |               | even if no digits follow.
+         |               | For g and G, do not remove trailing zeros.
+---------+---------------+----------------------------------------------------
++        | bdiouxX       | Add a leading plus sign to non-negative
+         | aAeEfgG       | numbers.
+         | (numeric fmt) |
+---------+---------------+----------------------------------------------------
+-        | all           | Left-justify the result of this conversion.
+---------+---------------+----------------------------------------------------
+0 (zero) | bdiouxX       | Pad with zeros, not spaces. Has no effect if the
+         | aAeEfgG       | number is left-justified, or a precision is given
+         | (numeric fmt) | to an integer field type.
+---------+---------------+----------------------------------------------------
+*        | all           | Use the next argument as the field width or
+         |               | precision. If width is negative, set the minus flag
+         |               | and use the argument's absolute value as field
+         |               | width. If precision is negative, it is ignored.
+---------+---------------+----------------------------------------------------
+1$ 2$ 3$ | all           | As a flag, specifies the one-based argument index
+...      |               | for a positional format specifier.
+         |               | Immediately after *, use the argument at the given
+         |               | one-based index as the width or precision, instead
+         |               | of the next argument. The entire format string must
+         |               | also use positional format specifiers throughout.</code></pre>
+<p>Examples of flags:</p>
+<p>Decimal number conversion:</p>
+<pre><code class="language-crystal">sprintf <span class="s">&quot;%d&quot;</span>, <span class="n">123</span>  <span class="c"># =&gt; &quot;123&quot;</span>
+sprintf <span class="s">&quot;%+d&quot;</span>, <span class="n">123</span> <span class="c"># =&gt; &quot;+123&quot;</span>
+sprintf <span class="s">&quot;% d&quot;</span>, <span class="n">123</span> <span class="c"># =&gt; &quot; 123&quot;</span></code></pre>
+<p>Octal number conversion:</p>
+<pre><code class="language-crystal">sprintf <span class="s">&quot;%o&quot;</span>, <span class="n">123</span>   <span class="c"># =&gt; &quot;173&quot;</span>
+sprintf <span class="s">&quot;%+o&quot;</span>, <span class="n">123</span>  <span class="c"># =&gt; &quot;+173&quot;</span>
+sprintf <span class="s">&quot;%o&quot;</span>, <span class="n">-123</span>  <span class="c"># =&gt; &quot;-173&quot;</span>
+sprintf <span class="s">&quot;%+o&quot;</span>, <span class="n">-123</span> <span class="c"># =&gt; &quot;-173&quot;</span></code></pre>
+<p>Hexadecimal number conversion:</p>
+<pre><code class="language-crystal">sprintf <span class="s">&quot;%x&quot;</span>, <span class="n">123</span>   <span class="c"># =&gt; &quot;7b&quot;</span>
+sprintf <span class="s">&quot;%+x&quot;</span>, <span class="n">123</span>  <span class="c"># =&gt; &quot;+7b&quot;</span>
+sprintf <span class="s">&quot;%x&quot;</span>, <span class="n">-123</span>  <span class="c"># =&gt; &quot;-7b&quot;</span>
+sprintf <span class="s">&quot;%+x&quot;</span>, <span class="n">-123</span> <span class="c"># =&gt; &quot;-7b&quot;</span>
+sprintf <span class="s">&quot;%#x&quot;</span>, <span class="n">0</span>    <span class="c"># =&gt; &quot;0&quot;</span>
+sprintf <span class="s">&quot;% x&quot;</span>, <span class="n">123</span>  <span class="c"># =&gt; &quot; 7b&quot;</span>
+sprintf <span class="s">&quot;% x&quot;</span>, <span class="n">-123</span> <span class="c"># =&gt; &quot;-7b&quot;</span>
+sprintf <span class="s">&quot;%X&quot;</span>, <span class="n">123</span>   <span class="c"># =&gt; &quot;7B&quot;</span>
+sprintf <span class="s">&quot;%#X&quot;</span>, <span class="n">-123</span> <span class="c"># =&gt; &quot;-0X7B&quot;</span></code></pre>
+<p>Binary number conversion:</p>
+<pre><code class="language-crystal">sprintf <span class="s">&quot;%b&quot;</span>, <span class="n">123</span>    <span class="c"># =&gt; &quot;1111011&quot;</span>
+sprintf <span class="s">&quot;%+b&quot;</span>, <span class="n">123</span>   <span class="c"># =&gt; &quot;+1111011&quot;</span>
+sprintf <span class="s">&quot;%+b&quot;</span>, <span class="n">-123</span>  <span class="c"># =&gt; &quot;-1111011&quot;</span>
+sprintf <span class="s">&quot;%b&quot;</span>, <span class="n">-123</span>   <span class="c"># =&gt; &quot;-1111011&quot;</span>
+sprintf <span class="s">&quot;%#b&quot;</span>, <span class="n">0</span>     <span class="c"># =&gt; &quot;0&quot;</span>
+sprintf <span class="s">&quot;% b&quot;</span>, <span class="n">123</span>   <span class="c"># =&gt; &quot; 1111011&quot;</span>
+sprintf <span class="s">&quot;%+ b&quot;</span>, <span class="n">123</span>  <span class="c"># =&gt; &quot;+1111011&quot;</span>
+sprintf <span class="s">&quot;% b&quot;</span>, <span class="n">-123</span>  <span class="c"># =&gt; &quot;-1111011&quot;</span>
+sprintf <span class="s">&quot;%+ b&quot;</span>, <span class="n">-123</span> <span class="c"># =&gt; &quot;-1111011&quot;</span>
+sprintf <span class="s">&quot;%#b&quot;</span>, <span class="n">123</span>   <span class="c"># =&gt; &quot;0b1111011&quot;</span></code></pre>
+<p>Floating point conversion:</p>
+<pre><code class="language-crystal">sprintf <span class="s">&quot;%a&quot;</span>, <span class="n">123</span> <span class="c"># =&gt; &quot;0x1.ecp+6&quot;</span>
+sprintf <span class="s">&quot;%A&quot;</span>, <span class="n">123</span> <span class="c"># =&gt; &quot;0X1.ECP+6&quot;</span></code></pre>
+<p>Exponential form conversion:</p>
+<pre><code class="language-crystal">sprintf <span class="s">&quot;%g&quot;</span>, <span class="n">123.4</span>          <span class="c"># =&gt; &quot;123.4&quot;</span>
+sprintf <span class="s">&quot;%g&quot;</span>, <span class="n">123.4567</span>       <span class="c"># =&gt; &quot;123.457&quot;</span>
+sprintf <span class="s">&quot;%20.8g&quot;</span>, <span class="n">1234.56789</span> <span class="c"># =&gt; &quot;           1234.5679&quot;</span>
+sprintf <span class="s">&quot;%20.8g&quot;</span>, <span class="n">123456789</span>  <span class="c"># =&gt; &quot;       1.2345679e+08&quot;</span>
+sprintf <span class="s">&quot;%20.8G&quot;</span>, <span class="n">123456789</span>  <span class="c"># =&gt; &quot;       1.2345679E+08&quot;</span>
+sprintf <span class="s">&quot;%20.8g&quot;</span>, <span class="n">-123456789</span> <span class="c"># =&gt; &quot;      -1.2345679e+08&quot;</span>
+sprintf <span class="s">&quot;%20.8G&quot;</span>, <span class="n">-123456789</span> <span class="c"># =&gt; &quot;      -1.2345679E+08&quot;</span></code></pre>
+<p>The field width is an optional integer, followed optionally by a
+period and a precision. The width specifies the minimum number of
+characters that will be written to the result for this field.</p>
+<p>Examples of width:</p>
+<pre><code class="language-crystal">sprintf <span class="s">&quot;%20d&quot;</span>, <span class="n">123</span>   <span class="c"># =&gt; &quot;                 123&quot;</span>
+sprintf <span class="s">&quot;%+20d&quot;</span>, <span class="n">123</span>  <span class="c"># =&gt; &quot;                +123&quot;</span>
+sprintf <span class="s">&quot;%020d&quot;</span>, <span class="n">123</span>  <span class="c"># =&gt; &quot;00000000000000000123&quot;</span>
+sprintf <span class="s">&quot;%+020d&quot;</span>, <span class="n">123</span> <span class="c"># =&gt; &quot;+0000000000000000123&quot;</span>
+sprintf <span class="s">&quot;% 020d&quot;</span>, <span class="n">123</span> <span class="c"># =&gt; &quot; 0000000000000000123&quot;</span>
+sprintf <span class="s">&quot;%-20d&quot;</span>, <span class="n">123</span>  <span class="c"># =&gt; &quot;123                 &quot;</span>
+sprintf <span class="s">&quot;%-+20d&quot;</span>, <span class="n">123</span> <span class="c"># =&gt; &quot;+123                &quot;</span>
+sprintf <span class="s">&quot;%- 20d&quot;</span>, <span class="n">123</span> <span class="c"># =&gt; &quot; 123                &quot;</span>
+sprintf <span class="s">&quot;%020x&quot;</span>, <span class="n">-123</span> <span class="c"># =&gt; &quot;-000000000000000007b&quot;</span>
+sprintf <span class="s">&quot;%020X&quot;</span>, <span class="n">-123</span> <span class="c"># =&gt; &quot;-000000000000000007B&quot;</span></code></pre>
+<p>For numeric fields, the precision controls the number of decimal places
+displayed.</p>
+<p>For string fields, the precision determines the maximum
+number of characters to be copied from the string.</p>
+<p>Examples of precisions:</p>
+<p>Precision for <code>d</code>, <code>o</code>, <code>x</code> and <code>b</code> is
+minimum number of digits:</p>
+<pre><code class="language-crystal">sprintf <span class="s">&quot;%20.8d&quot;</span>, <span class="n">123</span>   <span class="c"># =&gt; &quot;            00000123&quot;</span>
+sprintf <span class="s">&quot;%020.8d&quot;</span>, <span class="n">123</span>  <span class="c"># =&gt; &quot;            00000123&quot;</span>
+sprintf <span class="s">&quot;%20.8o&quot;</span>, <span class="n">123</span>   <span class="c"># =&gt; &quot;            00000173&quot;</span>
+sprintf <span class="s">&quot;%020.8o&quot;</span>, <span class="n">123</span>  <span class="c"># =&gt; &quot;            00000173&quot;</span>
+sprintf <span class="s">&quot;%20.8x&quot;</span>, <span class="n">123</span>   <span class="c"># =&gt; &quot;            0000007b&quot;</span>
+sprintf <span class="s">&quot;%020.8x&quot;</span>, <span class="n">123</span>  <span class="c"># =&gt; &quot;            0000007b&quot;</span>
+sprintf <span class="s">&quot;%20.8b&quot;</span>, <span class="n">123</span>   <span class="c"># =&gt; &quot;            01111011&quot;</span>
+sprintf <span class="s">&quot;%20.8d&quot;</span>, <span class="n">-123</span>  <span class="c"># =&gt; &quot;           -00000123&quot;</span>
+sprintf <span class="s">&quot;%020.8d&quot;</span>, <span class="n">-123</span> <span class="c"># =&gt; &quot;           -00000123&quot;</span>
+sprintf <span class="s">&quot;%20.8o&quot;</span>, <span class="n">-123</span>  <span class="c"># =&gt; &quot;           -00000173&quot;</span>
+sprintf <span class="s">&quot;%20.8x&quot;</span>, <span class="n">-123</span>  <span class="c"># =&gt; &quot;           -0000007b&quot;</span>
+sprintf <span class="s">&quot;%20.8b&quot;</span>, <span class="n">-11</span>   <span class="c"># =&gt; &quot;           -00001011&quot;</span></code></pre>
+<p>Precision for <code>e</code> is number of digits after the decimal point:</p>
+<pre><code class="language-crystal">sprintf <span class="s">&quot;%20.8e&quot;</span>, <span class="n">1234.56789</span> <span class="c"># =&gt; &quot;      1.23456789e+03&quot;</span></code></pre>
+<p>Precision for <code>f</code> is number of digits after the decimal point:</p>
+<pre><code class="language-crystal">sprintf <span class="s">&quot;%20.8f&quot;</span>, <span class="n">1234.56789</span> <span class="c"># =&gt; &quot;       1234.56789000&quot;</span></code></pre>
+<p>Precision for <code>g</code> is number of significant digits:</p>
+<pre><code class="language-crystal">sprintf <span class="s">&quot;%20.8g&quot;</span>, <span class="n">1234.56789</span> <span class="c"># =&gt; &quot;           1234.5679&quot;</span>
+sprintf <span class="s">&quot;%20.8g&quot;</span>, <span class="n">123456789</span>  <span class="c"># =&gt; &quot;       1.2345679e+08&quot;</span>
+sprintf <span class="s">&quot;%-20.8g&quot;</span>, <span class="n">123456789</span> <span class="c"># =&gt; &quot;1.2345679e+08       &quot;</span></code></pre>
+<p>Precision for <code>s</code> is maximum number of characters:</p>
+<pre><code class="language-crystal">sprintf <span class="s">&quot;%20.8s&quot;</span>, <span class="s">&quot;string test&quot;</span> <span class="c"># =&gt; &quot;            string t&quot;</span></code></pre>
+<p>Additional examples:</p>
+<pre><code class="language-crystal">sprintf <span class="s">&quot;%d %04x&quot;</span>, <span class="n">123</span>, <span class="n">123</span>                 <span class="c"># =&gt; &quot;123 007b&quot;</span>
+sprintf <span class="s">&quot;%08b &#39;%4s&#39;&quot;</span>, <span class="n">123</span>, <span class="n">123</span>              <span class="c"># =&gt; &quot;01111011 &#39; 123&#39;&quot;</span>
+sprintf <span class="s">&quot;%+g:% g:%-g&quot;</span>, <span class="n">1.23</span>, <span class="n">1.23</span>, <span class="n">1.23</span>     <span class="c"># =&gt; &quot;+1.23: 1.23:1.23&quot;</span>
+sprintf <span class="s">&quot;%-3$*1$.*2$s&quot;</span>, <span class="n">10</span>, <span class="n">5</span>, <span class="s">&quot;abcdefghij&quot;</span> <span class="c"># =&gt; &quot;abcde     &quot;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/kernel.cr#L441" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="sprintf(format_string,*args):String-class-method">
+      <div class="signature">
+        
+        def <strong>sprintf</strong>(format_string, *args) : <a href="String.html">String</a>
+
+        <a class="method-permalink" href="#sprintf%28format_string%2C%2Aargs%29%3AString-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns a formatted string.
+The string is produced according to the <em>format_string</em> with format specifiers
+being replaced by values from <em>args</em> formatted according to the specifier.</p>
+<p>Within the format string, any characters other than format specifiers
+(specifiers beginning with <code>%</code>) are copied to the result. The formatter
+supports the following kinds of format specifiers:</p>
+<ul>
+<li>Sequential (<code>%.1f</code>). The first <code>%</code> consumes the first argument, the second
+consumes the second argument, and so on.</li>
+<li>Positional (<code>%3$.1f</code>). The one-based argument index is specified as part of
+the flags.</li>
+<li>Named substitution (<code>%&lt;name&gt;.1f</code>, <code>%{name}</code>). The angle bracket form accepts
+flags and the curly bracket form doesn't. Exactly one <code><a href="Hash.html">Hash</a></code> or <code><a href="NamedTuple.html">NamedTuple</a></code>
+must be passed as the argument.</li>
+</ul>
+<p>Mixing of different kinds of format specifiers is disallowed, except that the
+two named forms may be used together.</p>
+<p>A simple format specifier consists of a percent sign, followed by optional flags,
+width, and precision indicators, then terminated with a field type
+character.</p>
+<pre><code class="language-text">%[flags][width][.precision]type</code></pre>
+<p>A formatted substitution is similar but after the percent sign follows the
+mandatory name of the substitution wrapped in angle brackets.</p>
+<pre><code class="language-text">%&lt;name&gt;[flags][width][.precision]type</code></pre>
+<p>The percent sign itself is escaped by <code>%%</code>. No format modifiers are allowed,
+and no arguments are consumed.</p>
+<p>The field type controls how the corresponding argument value is to be
+interpreted, while the flags modify that interpretation.</p>
+<p>The field type characters are:</p>
+<pre><code class="language-text">Field | Integer Format
+------+------------------------------------------------------------------
+  b   | Formats argument as a binary number.
+  d   | Formats argument as a decimal number.
+  i   | Same as d.
+  o   | Formats argument as an octal number.
+  x   | Formats argument as a hexadecimal number using lowercase letters.
+  X   | Same as x, but uses uppercase letters.
+
+Field | Float Format
+------+---------------------------------------------------------------
+  e   | Formats floating point argument into exponential notation
+      | with one digit before the decimal point as [-]d.dddddde[+-]dd.
+      | The precision specifies the number of digits after the decimal
+      | point (defaulting to six).
+  E   | Equivalent to e, but uses an uppercase E to indicate
+      | the exponent.
+  f   | Formats floating point argument as [-]ddd.dddddd,
+      | where the precision specifies the number of digits after
+      | the decimal point.
+  g   | Formats a floating point number using exponential form
+      | if the exponent is less than -4 or greater than or
+      | equal to the precision, or in dd.dddd form otherwise.
+      | The precision specifies the number of significant digits.
+  G   | Equivalent to g, but use an uppercase E in exponent form.
+  a   | Formats floating point argument as [-]0xh.hhhhp[+-]dd,
+      | which consists of an optional sign, &quot;0x&quot;, fraction part
+      | as hexadecimal, &quot;p&quot;, and exponential part as decimal.
+  A   | Equivalent to a, but uses uppercase X and P.
+
+Field | Other Format
+------+------------------------------------------------------------
+  c   | Argument is a single character itself.
+  s   | Argument is a string to be substituted. If the format
+      | sequence contains a precision, at most that many characters
+      | will be copied.</code></pre>
+<p>Flags modify the behavior of the format specifiers:</p>
+<pre><code class="language-text">Flag     | Applies to    | Meaning
+---------+---------------+----------------------------------------------------
+space    | bdiouxX       | Add a leading space character to
+         | aAeEfgG       | non-negative numbers. Has no effect if the plus
+         | (numeric fmt) | flag is also given.
+---------+---------------+----------------------------------------------------
+#        | boxX          | Use an alternative format.
+         | aAeEfgG       | For x, X, b, prefix any non-zero result with
+         |               | 0x, 0X, or 0b respectively.
+         |               | For o, prefix any non-zero result with 0o. Note
+         |               | that this prefix is different from C and Ruby.
+         |               | For a, A, e, E, f, g, G,
+         |               | force a decimal point to be added,
+         |               | even if no digits follow.
+         |               | For g and G, do not remove trailing zeros.
+---------+---------------+----------------------------------------------------
++        | bdiouxX       | Add a leading plus sign to non-negative
+         | aAeEfgG       | numbers.
+         | (numeric fmt) |
+---------+---------------+----------------------------------------------------
+-        | all           | Left-justify the result of this conversion.
+---------+---------------+----------------------------------------------------
+0 (zero) | bdiouxX       | Pad with zeros, not spaces. Has no effect if the
+         | aAeEfgG       | number is left-justified, or a precision is given
+         | (numeric fmt) | to an integer field type.
+---------+---------------+----------------------------------------------------
+*        | all           | Use the next argument as the field width or
+         |               | precision. If width is negative, set the minus flag
+         |               | and use the argument's absolute value as field
+         |               | width. If precision is negative, it is ignored.
+---------+---------------+----------------------------------------------------
+1$ 2$ 3$ | all           | As a flag, specifies the one-based argument index
+...      |               | for a positional format specifier.
+         |               | Immediately after *, use the argument at the given
+         |               | one-based index as the width or precision, instead
+         |               | of the next argument. The entire format string must
+         |               | also use positional format specifiers throughout.</code></pre>
+<p>Examples of flags:</p>
+<p>Decimal number conversion:</p>
+<pre><code class="language-crystal">sprintf <span class="s">&quot;%d&quot;</span>, <span class="n">123</span>  <span class="c"># =&gt; &quot;123&quot;</span>
+sprintf <span class="s">&quot;%+d&quot;</span>, <span class="n">123</span> <span class="c"># =&gt; &quot;+123&quot;</span>
+sprintf <span class="s">&quot;% d&quot;</span>, <span class="n">123</span> <span class="c"># =&gt; &quot; 123&quot;</span></code></pre>
+<p>Octal number conversion:</p>
+<pre><code class="language-crystal">sprintf <span class="s">&quot;%o&quot;</span>, <span class="n">123</span>   <span class="c"># =&gt; &quot;173&quot;</span>
+sprintf <span class="s">&quot;%+o&quot;</span>, <span class="n">123</span>  <span class="c"># =&gt; &quot;+173&quot;</span>
+sprintf <span class="s">&quot;%o&quot;</span>, <span class="n">-123</span>  <span class="c"># =&gt; &quot;-173&quot;</span>
+sprintf <span class="s">&quot;%+o&quot;</span>, <span class="n">-123</span> <span class="c"># =&gt; &quot;-173&quot;</span></code></pre>
+<p>Hexadecimal number conversion:</p>
+<pre><code class="language-crystal">sprintf <span class="s">&quot;%x&quot;</span>, <span class="n">123</span>   <span class="c"># =&gt; &quot;7b&quot;</span>
+sprintf <span class="s">&quot;%+x&quot;</span>, <span class="n">123</span>  <span class="c"># =&gt; &quot;+7b&quot;</span>
+sprintf <span class="s">&quot;%x&quot;</span>, <span class="n">-123</span>  <span class="c"># =&gt; &quot;-7b&quot;</span>
+sprintf <span class="s">&quot;%+x&quot;</span>, <span class="n">-123</span> <span class="c"># =&gt; &quot;-7b&quot;</span>
+sprintf <span class="s">&quot;%#x&quot;</span>, <span class="n">0</span>    <span class="c"># =&gt; &quot;0&quot;</span>
+sprintf <span class="s">&quot;% x&quot;</span>, <span class="n">123</span>  <span class="c"># =&gt; &quot; 7b&quot;</span>
+sprintf <span class="s">&quot;% x&quot;</span>, <span class="n">-123</span> <span class="c"># =&gt; &quot;-7b&quot;</span>
+sprintf <span class="s">&quot;%X&quot;</span>, <span class="n">123</span>   <span class="c"># =&gt; &quot;7B&quot;</span>
+sprintf <span class="s">&quot;%#X&quot;</span>, <span class="n">-123</span> <span class="c"># =&gt; &quot;-0X7B&quot;</span></code></pre>
+<p>Binary number conversion:</p>
+<pre><code class="language-crystal">sprintf <span class="s">&quot;%b&quot;</span>, <span class="n">123</span>    <span class="c"># =&gt; &quot;1111011&quot;</span>
+sprintf <span class="s">&quot;%+b&quot;</span>, <span class="n">123</span>   <span class="c"># =&gt; &quot;+1111011&quot;</span>
+sprintf <span class="s">&quot;%+b&quot;</span>, <span class="n">-123</span>  <span class="c"># =&gt; &quot;-1111011&quot;</span>
+sprintf <span class="s">&quot;%b&quot;</span>, <span class="n">-123</span>   <span class="c"># =&gt; &quot;-1111011&quot;</span>
+sprintf <span class="s">&quot;%#b&quot;</span>, <span class="n">0</span>     <span class="c"># =&gt; &quot;0&quot;</span>
+sprintf <span class="s">&quot;% b&quot;</span>, <span class="n">123</span>   <span class="c"># =&gt; &quot; 1111011&quot;</span>
+sprintf <span class="s">&quot;%+ b&quot;</span>, <span class="n">123</span>  <span class="c"># =&gt; &quot;+1111011&quot;</span>
+sprintf <span class="s">&quot;% b&quot;</span>, <span class="n">-123</span>  <span class="c"># =&gt; &quot;-1111011&quot;</span>
+sprintf <span class="s">&quot;%+ b&quot;</span>, <span class="n">-123</span> <span class="c"># =&gt; &quot;-1111011&quot;</span>
+sprintf <span class="s">&quot;%#b&quot;</span>, <span class="n">123</span>   <span class="c"># =&gt; &quot;0b1111011&quot;</span></code></pre>
+<p>Floating point conversion:</p>
+<pre><code class="language-crystal">sprintf <span class="s">&quot;%a&quot;</span>, <span class="n">123</span> <span class="c"># =&gt; &quot;0x1.ecp+6&quot;</span>
+sprintf <span class="s">&quot;%A&quot;</span>, <span class="n">123</span> <span class="c"># =&gt; &quot;0X1.ECP+6&quot;</span></code></pre>
+<p>Exponential form conversion:</p>
+<pre><code class="language-crystal">sprintf <span class="s">&quot;%g&quot;</span>, <span class="n">123.4</span>          <span class="c"># =&gt; &quot;123.4&quot;</span>
+sprintf <span class="s">&quot;%g&quot;</span>, <span class="n">123.4567</span>       <span class="c"># =&gt; &quot;123.457&quot;</span>
+sprintf <span class="s">&quot;%20.8g&quot;</span>, <span class="n">1234.56789</span> <span class="c"># =&gt; &quot;           1234.5679&quot;</span>
+sprintf <span class="s">&quot;%20.8g&quot;</span>, <span class="n">123456789</span>  <span class="c"># =&gt; &quot;       1.2345679e+08&quot;</span>
+sprintf <span class="s">&quot;%20.8G&quot;</span>, <span class="n">123456789</span>  <span class="c"># =&gt; &quot;       1.2345679E+08&quot;</span>
+sprintf <span class="s">&quot;%20.8g&quot;</span>, <span class="n">-123456789</span> <span class="c"># =&gt; &quot;      -1.2345679e+08&quot;</span>
+sprintf <span class="s">&quot;%20.8G&quot;</span>, <span class="n">-123456789</span> <span class="c"># =&gt; &quot;      -1.2345679E+08&quot;</span></code></pre>
+<p>The field width is an optional integer, followed optionally by a
+period and a precision. The width specifies the minimum number of
+characters that will be written to the result for this field.</p>
+<p>Examples of width:</p>
+<pre><code class="language-crystal">sprintf <span class="s">&quot;%20d&quot;</span>, <span class="n">123</span>   <span class="c"># =&gt; &quot;                 123&quot;</span>
+sprintf <span class="s">&quot;%+20d&quot;</span>, <span class="n">123</span>  <span class="c"># =&gt; &quot;                +123&quot;</span>
+sprintf <span class="s">&quot;%020d&quot;</span>, <span class="n">123</span>  <span class="c"># =&gt; &quot;00000000000000000123&quot;</span>
+sprintf <span class="s">&quot;%+020d&quot;</span>, <span class="n">123</span> <span class="c"># =&gt; &quot;+0000000000000000123&quot;</span>
+sprintf <span class="s">&quot;% 020d&quot;</span>, <span class="n">123</span> <span class="c"># =&gt; &quot; 0000000000000000123&quot;</span>
+sprintf <span class="s">&quot;%-20d&quot;</span>, <span class="n">123</span>  <span class="c"># =&gt; &quot;123                 &quot;</span>
+sprintf <span class="s">&quot;%-+20d&quot;</span>, <span class="n">123</span> <span class="c"># =&gt; &quot;+123                &quot;</span>
+sprintf <span class="s">&quot;%- 20d&quot;</span>, <span class="n">123</span> <span class="c"># =&gt; &quot; 123                &quot;</span>
+sprintf <span class="s">&quot;%020x&quot;</span>, <span class="n">-123</span> <span class="c"># =&gt; &quot;-000000000000000007b&quot;</span>
+sprintf <span class="s">&quot;%020X&quot;</span>, <span class="n">-123</span> <span class="c"># =&gt; &quot;-000000000000000007B&quot;</span></code></pre>
+<p>For numeric fields, the precision controls the number of decimal places
+displayed.</p>
+<p>For string fields, the precision determines the maximum
+number of characters to be copied from the string.</p>
+<p>Examples of precisions:</p>
+<p>Precision for <code>d</code>, <code>o</code>, <code>x</code> and <code>b</code> is
+minimum number of digits:</p>
+<pre><code class="language-crystal">sprintf <span class="s">&quot;%20.8d&quot;</span>, <span class="n">123</span>   <span class="c"># =&gt; &quot;            00000123&quot;</span>
+sprintf <span class="s">&quot;%020.8d&quot;</span>, <span class="n">123</span>  <span class="c"># =&gt; &quot;            00000123&quot;</span>
+sprintf <span class="s">&quot;%20.8o&quot;</span>, <span class="n">123</span>   <span class="c"># =&gt; &quot;            00000173&quot;</span>
+sprintf <span class="s">&quot;%020.8o&quot;</span>, <span class="n">123</span>  <span class="c"># =&gt; &quot;            00000173&quot;</span>
+sprintf <span class="s">&quot;%20.8x&quot;</span>, <span class="n">123</span>   <span class="c"># =&gt; &quot;            0000007b&quot;</span>
+sprintf <span class="s">&quot;%020.8x&quot;</span>, <span class="n">123</span>  <span class="c"># =&gt; &quot;            0000007b&quot;</span>
+sprintf <span class="s">&quot;%20.8b&quot;</span>, <span class="n">123</span>   <span class="c"># =&gt; &quot;            01111011&quot;</span>
+sprintf <span class="s">&quot;%20.8d&quot;</span>, <span class="n">-123</span>  <span class="c"># =&gt; &quot;           -00000123&quot;</span>
+sprintf <span class="s">&quot;%020.8d&quot;</span>, <span class="n">-123</span> <span class="c"># =&gt; &quot;           -00000123&quot;</span>
+sprintf <span class="s">&quot;%20.8o&quot;</span>, <span class="n">-123</span>  <span class="c"># =&gt; &quot;           -00000173&quot;</span>
+sprintf <span class="s">&quot;%20.8x&quot;</span>, <span class="n">-123</span>  <span class="c"># =&gt; &quot;           -0000007b&quot;</span>
+sprintf <span class="s">&quot;%20.8b&quot;</span>, <span class="n">-11</span>   <span class="c"># =&gt; &quot;           -00001011&quot;</span></code></pre>
+<p>Precision for <code>e</code> is number of digits after the decimal point:</p>
+<pre><code class="language-crystal">sprintf <span class="s">&quot;%20.8e&quot;</span>, <span class="n">1234.56789</span> <span class="c"># =&gt; &quot;      1.23456789e+03&quot;</span></code></pre>
+<p>Precision for <code>f</code> is number of digits after the decimal point:</p>
+<pre><code class="language-crystal">sprintf <span class="s">&quot;%20.8f&quot;</span>, <span class="n">1234.56789</span> <span class="c"># =&gt; &quot;       1234.56789000&quot;</span></code></pre>
+<p>Precision for <code>g</code> is number of significant digits:</p>
+<pre><code class="language-crystal">sprintf <span class="s">&quot;%20.8g&quot;</span>, <span class="n">1234.56789</span> <span class="c"># =&gt; &quot;           1234.5679&quot;</span>
+sprintf <span class="s">&quot;%20.8g&quot;</span>, <span class="n">123456789</span>  <span class="c"># =&gt; &quot;       1.2345679e+08&quot;</span>
+sprintf <span class="s">&quot;%-20.8g&quot;</span>, <span class="n">123456789</span> <span class="c"># =&gt; &quot;1.2345679e+08       &quot;</span></code></pre>
+<p>Precision for <code>s</code> is maximum number of characters:</p>
+<pre><code class="language-crystal">sprintf <span class="s">&quot;%20.8s&quot;</span>, <span class="s">&quot;string test&quot;</span> <span class="c"># =&gt; &quot;            string t&quot;</span></code></pre>
+<p>Additional examples:</p>
+<pre><code class="language-crystal">sprintf <span class="s">&quot;%d %04x&quot;</span>, <span class="n">123</span>, <span class="n">123</span>                 <span class="c"># =&gt; &quot;123 007b&quot;</span>
+sprintf <span class="s">&quot;%08b &#39;%4s&#39;&quot;</span>, <span class="n">123</span>, <span class="n">123</span>              <span class="c"># =&gt; &quot;01111011 &#39; 123&#39;&quot;</span>
+sprintf <span class="s">&quot;%+g:% g:%-g&quot;</span>, <span class="n">1.23</span>, <span class="n">1.23</span>, <span class="n">1.23</span>     <span class="c"># =&gt; &quot;+1.23: 1.23:1.23&quot;</span>
+sprintf <span class="s">&quot;%-3$*1$.*2$s&quot;</span>, <span class="n">10</span>, <span class="n">5</span>, <span class="s">&quot;abcdefghij&quot;</span> <span class="c"># =&gt; &quot;abcde     &quot;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/kernel.cr#L436" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="system(command:String,args=nil):Bool-class-method">
+      <div class="signature">
+        
+        def <strong>system</strong>(command : <a href="String.html">String</a>, args = <span class="n">nil</span>) : <a href="Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#system%28command%3AString%2Cargs%3Dnil%29%3ABool-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Executes the given command in a subshell.
+Standard input, output and error are inherited.
+Returns <code>true</code> if the command gives zero exit code, <code>false</code> otherwise.
+The special <code>$?</code> variable is set to a <code><a href="Process/Status.html">Process::Status</a></code> associated with this execution.</p>
+<p>If <em>command</em> contains no spaces and <em>args</em> is given, it will become
+its argument list.</p>
+<p>If <em>command</em> contains spaces and <em>args</em> is given, <em>command</em> must include
+<code>&quot;${@}&quot;</code> (including the quotes) to receive the argument list.</p>
+<p>No shell interpretation is done in <em>args</em>.</p>
+<p>Example:</p>
+<pre><code class="language-crystal">system(<span class="s">&quot;echo *&quot;</span>)</code></pre>
+<p>Produces:</p>
+<pre><code class="language-text">LICENSE shard.yml Readme.md spec src</code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/process.cr#L500" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="timeout_select_action(timeout:Time::Span):Channel::TimeoutAction-class-method">
+      <div class="signature">
+        
+        def <strong>timeout_select_action</strong>(timeout : <a href="Time/Span.html">Time::Span</a>) : Channel::TimeoutAction
+
+        <a class="method-permalink" href="#timeout_select_action%28timeout%3ATime%3A%3ASpan%29%3AChannel%3A%3ATimeoutAction-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Timeout keyword for use in <code>select</code>.</p>
+<pre><code class="language-crystal"><span class="k">select</span>
+<span class="k">when</span> x <span class="o">=</span> ch.receive
+  puts <span class="s">&quot;got </span><span class="i">#{</span>x<span class="i">}</span><span class="s">&quot;</span>
+<span class="k">when</span> timeout(<span class="n">1</span>.seconds)
+  puts <span class="s">&quot;timeout&quot;</span>
+<span class="k">end</span></code></pre>
+<p><span class="flag purple">NOTE</span>  It won't trigger if the <code>select</code> has an <code>else</code> case (i.e.: a non-blocking select).</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/channel/select/timeout_action.cr#L13" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="typeof(*expression):Class-class-method">
+      <div class="signature">
+        
+        def <strong>typeof</strong>(*expression) : <a href="Class.html">Class</a>
+
+        <a class="method-permalink" href="#typeof%28%2Aexpression%29%3AClass-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the type of an expression.</p>
+<pre><code class="language-crystal"><span class="k">typeof</span>(<span class="n">1</span>) <span class="c"># =&gt; Int32</span></code></pre>
+<p>It accepts multiple arguments, and the result is the union of the expression types:</p>
+<pre><code class="language-crystal"><span class="k">typeof</span>(<span class="n">1</span>, <span class="s">&quot;a&quot;</span>, <span class="s">&#39;a&#39;</span>) <span class="c"># =&gt; (Int32 | String | Char)</span></code></pre>
+<p>The expressions passed as arguments to <code><a href="toplevel.html#typeof%28%2Aexpression%29%3AClass-class-method">typeof</a></code> do not evaluate. The compiler
+only analyzes their return type.</p>
+<p><span class="flag purple">NOTE</span>  This is a pseudo-method provided directly by the Crystal compiler.
+It cannot be redefined nor overridden.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/docs_pseudo_methods.cr#L23" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+  
+  <h2>
+    <a id="macro-detail" class="anchor" href="#macro-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Macro Detail
+  </h2>
+  
+    <div class="entry-detail" id="debugger-macro">
+      <div class="signature">
+        
+        macro <strong>debugger</strong>
+
+        <a class="method-permalink" href="#debugger-macro">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Invokes an execution trap to catch the attention of a debugger. This has the
+same effect as placing a breakpoint in debuggers or IDEs supporting them.</p>
+<p>Execution is allowed to continue if the debugger instructs so. If no debugger
+is attached, usually the current process terminates with a status that
+corresponds to <code><a href="Process/ExitReason.html#Breakpoint">Process::ExitReason::Breakpoint</a></code>.</p>
+<p>Inside an interpreter session, this drops into the REPL's pry mode instead of
+a system debugger.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/intrinsics.cr#L385" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="p!(*exps)-macro">
+      <div class="signature">
+        
+        macro <strong>p!</strong>(*exps)
+
+        <a class="method-permalink" href="#p%21%28%2Aexps%29-macro">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Prints a series of expressions together with their inspected values.
+Useful for print style debugging.</p>
+<pre><code class="language-crystal">a <span class="o">=</span> <span class="n">1</span>
+p! a <span class="c"># =&gt; &quot;a # =&gt; 1&quot;</span>
+
+p! [<span class="n">1</span>, <span class="n">2</span>, <span class="n">3</span>].map(<span class="o">&amp;</span>.to_s) <span class="c"># =&gt; &quot;[1, 2, 3].map(&amp;.to_s) # =&gt; [&quot;1&quot;, &quot;2&quot;, &quot;3&quot;]&quot;</span></code></pre>
+<p>See also: <code><a href="toplevel.html#p%28%2A%2Aobjects%29-class-method">p</a></code>, <code>Object#inspect</code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/macros.cr#L178" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="pp!(*exps)-macro">
+      <div class="signature">
+        
+        macro <strong>pp!</strong>(*exps)
+
+        <a class="method-permalink" href="#pp%21%28%2Aexps%29-macro">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Prints a series of expressions together with their pretty printed values.
+Useful for print style debugging.</p>
+<pre><code class="language-crystal">a <span class="o">=</span> <span class="n">1</span>
+pp! a <span class="c"># =&gt; &quot;a # =&gt; 1&quot;</span>
+
+pp! [<span class="n">1</span>, <span class="n">2</span>, <span class="n">3</span>].map(<span class="o">&amp;</span>.to_s) <span class="c"># =&gt; &quot;[1, 2, 3].map(&amp;.to_s) # =&gt; [&quot;1&quot;, &quot;2&quot;, &quot;3&quot;]&quot;</span></code></pre>
+<p>See also: <code><a href="toplevel.html#pp%28%2A%2Aobjects%29-class-method">pp</a></code>, <code>Object#pretty_inspect</code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/macros.cr#L144" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="record(__namename,*properties,**kwargs)-macro">
+      <div class="signature">
+        
+        macro <strong>record</strong>(__name name, *properties, **kwargs)
+
+        <a class="method-permalink" href="#record%28__namename%2C%2Aproperties%2C%2A%2Akwargs%29-macro">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Defines a <strong><code><a href="Struct.html">Struct</a></code></strong> type called <em>name</em> with the given <em>properties</em>.</p>
+<p>The generated struct has a constructor with the given properties
+in the same order as declared. The struct only provides getters,
+not setters, making it immutable by default.</p>
+<pre><code class="language-crystal">record <span class="t">Point</span>, x : <span class="t">Int32</span>, y : <span class="t">Int32</span>
+
+p <span class="o">=</span> <span class="t">Point</span>.new <span class="n">1</span>, <span class="n">2</span> <span class="c"># =&gt; #&lt;Point(@x=1, @y=2)&gt;</span>
+p.x                <span class="c"># =&gt; 1</span>
+p.y                <span class="c"># =&gt; 2</span></code></pre>
+<p>The <em>properties</em> are a sequence of type declarations (<code>x : <a href="Int32.html">Int32</a></code>, <code>x : <a href="Int32.html">Int32</a> = 0</code>)
+or assigns (<code>x = 0</code>).
+They declare instance variables and respective getter methods of their name with
+optional type restrictions and default value.</p>
+<p>When passing a block to this macro its body is inserted inside
+the struct definition. This allows to define additional methods or include modules
+into the record type (reopening the type would work as well).</p>
+<pre><code class="language-crystal">record <span class="t">Person</span>, first_name : <span class="t">String</span>, last_name : <span class="t">String</span> <span class="k">do</span>
+  <span class="k">def</span> <span class="m">full_name</span>
+    <span class="s">&quot;</span><span class="i">#{</span>first_name<span class="i">}</span><span class="s"> </span><span class="i">#{</span>last_name<span class="i">}</span><span class="s">&quot;</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+person <span class="o">=</span> <span class="t">Person</span>.new <span class="s">&quot;John&quot;</span>, <span class="s">&quot;Doe&quot;</span>
+person.full_name <span class="c"># =&gt; &quot;John Doe&quot;</span></code></pre>
+<p>An example with type declarations and default values:</p>
+<pre><code class="language-crystal">record <span class="t">Point</span>, x : <span class="t">Int32</span> <span class="o">=</span> <span class="n">0</span>, y : <span class="t">Int32</span> <span class="o">=</span> <span class="n">0</span>
+
+<span class="t">Point</span>.new      <span class="c"># =&gt; #&lt;Point(@x=0, @y=0)&gt;</span>
+<span class="t">Point</span>.new y: <span class="n">2</span> <span class="c"># =&gt; #&lt;Point(@x=0, @y=2)&gt;</span></code></pre>
+<p>An example with assignments (in this case the compiler must be able to
+infer the types from the default values):</p>
+<pre><code class="language-crystal">record <span class="t">Point</span>, x <span class="o">=</span> <span class="n">0</span>, y <span class="o">=</span> <span class="n">0</span>
+
+<span class="t">Point</span>.new      <span class="c"># =&gt; #&lt;Point(@x=0, @y=0)&gt;</span>
+<span class="t">Point</span>.new y: <span class="n">2</span> <span class="c"># =&gt; #&lt;Point(@x=0, @y=2)&gt;</span></code></pre>
+<p>This macro also provides a <code>#copy_with</code> method which returns
+a copy of the record with the provided properties altered.</p>
+<pre><code class="language-crystal">record <span class="t">Point</span>, x <span class="o">=</span> <span class="n">0</span>, y <span class="o">=</span> <span class="n">0</span>
+
+p <span class="o">=</span> <span class="t">Point</span>.new y: <span class="n">2</span> <span class="c"># =&gt; #&lt;Point(@x=0, @y=2)&gt;</span>
+p.copy_with x: <span class="n">3</span>   <span class="c"># =&gt; #&lt;Point(@x=3, @y=2)&gt;</span>
+p                  <span class="c"># =&gt; #&lt;Point(@x=0, @y=2)&gt;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/macros.cr#L64" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="spawn(call,*,name=nil,same_thread=false,&amp;block)-macro">
+      <div class="signature">
+        
+        macro <strong>spawn</strong>(call, *, name = <span class="n">nil</span>, same_thread = <span class="n">false</span>, &block)
+
+        <a class="method-permalink" href="#spawn%28call%2C%2A%2Cname%3Dnil%2Csame_thread%3Dfalse%2C%26block%29-macro">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Spawns a fiber by first creating a <code><a href="Proc.html">Proc</a></code>, passing the <em>call</em>'s
+expressions to it, and letting the <code><a href="Proc.html">Proc</a></code> finally invoke the <em>call</em>.</p>
+<p>When using execution contexts, the fiber spawns into the current execution
+context (<code>Fiber::ExecutionContext.current</code>).</p>
+<p>Compare this:</p>
+<pre><code class="language-crystal">i <span class="o">=</span> <span class="n">0</span>
+<span class="k">while</span> i <span class="o">&lt;</span> <span class="n">5</span>
+  spawn { print(i) }
+  i <span class="o">+=</span> <span class="n">1</span>
+<span class="k">end</span>
+<span class="t">Fiber</span>.<span class="k">yield</span>
+<span class="c"># Output: 55555</span></code></pre>
+<p>To this:</p>
+<pre><code class="language-crystal">i <span class="o">=</span> <span class="n">0</span>
+<span class="k">while</span> i <span class="o">&lt;</span> <span class="n">5</span>
+  spawn print(i)
+  i <span class="o">+=</span> <span class="n">1</span>
+<span class="k">end</span>
+<span class="t">Fiber</span>.<span class="k">yield</span>
+<span class="c"># Output: 01234</span></code></pre>
+<p>This is because in the first case all spawned fibers refer to
+the same local variable, while in the second example copies of
+<em>i</em> are passed to a <code><a href="Proc.html">Proc</a></code> that eventually invokes the call.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/concurrent.cr#L121" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+  
+
+
+</div>
+
+</body>
+</html>

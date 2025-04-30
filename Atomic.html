@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Crystal Docs 1.16.1">
+<meta name="crystal_docs.project_version" content="1.17.0-dev">
+<meta name="crystal_docs.project_name" content="Crystal">
+
+  <meta name="crystal_docs.json_config_url" content="/api/versions.json">
+
+
+    <link rel="canonical" href="https://crystal-lang.org/api/latest/Atomic.html">
+
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/doc.js"></script>
+
+  <meta name="repository-name" content="Crystal">
+  <title>Atomic(T) - Crystal 1.17.0-dev</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill="currentColor" fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<input type="checkbox" id="sidebar-btn">
+<label for="sidebar-btn" id="sidebar-btn-label">
+  <svg class="open" xmlns="http://www.w3.org/2000/svg" height="2em" width="2em" viewBox="0 0 512 512"><title>Open Sidebar</title><path fill="currentColor" d="M80 96v64h352V96H80zm0 112v64h352v-64H80zm0 112v64h352v-64H80z"></path></svg>
+  <svg class="close" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><title>Close Sidebar</title><path fill="currentColor" d="m118.6 73.4-45.2 45.2L210.7 256 73.4 393.4l45.2 45.2L256 301.3l137.4 137.3 45.2-45.2L301.3 256l137.3-137.4-45.2-45.2L256 210.7Z"></path></svg>
+</label>
+<iframe class="sidebar" src="sidebar.html"></iframe>
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">
+    struct
+  </span> Atomic(T)
+
+</h1>
+
+
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="Atomic.html">Atomic(T)</a></li><li class="superclass"><a href="Struct.html">Struct</a></li><li class="superclass"><a href="Value.html">Value</a></li><li class="superclass"><a href="Object.html">Object</a></li></ul>
+
+
+
+
+  <h2>
+    <a id="overview" class="anchor" href="#overview">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Overview
+  </h2>
+
+  <p>A value that may be updated atomically.</p>
+<ul>
+<li>If <code>T</code> is a reference type, or a union type containing only
+reference types or <code><a href="Nil.html">Nil</a></code>, then only <code><a href="Atomic.html#compare_and_set%28cmp%3AT%2Cnew%3AT%2Csuccess_ordering%3AOrdering%2Cfailure_ordering%3AOrdering%29%3ATuple%28T%2CBool%29-instance-method">#compare_and_set</a></code>, <code><a href="Atomic.html#swap%28value%3AT%2Cordering%3AOrdering%3D%3Asequentially_consistent%29-instance-method">#swap</a></code>, <code><a href="Atomic.html#set%28value%3AT%2Cordering%3AOrdering%3D%3Asequentially_consistent%29%3AT-instance-method">#set</a></code>,
+<code><a href="Atomic.html#lazy_set%28value%3AT%29%3AT-instance-method">#lazy_set</a></code>, <code><a href="Atomic.html#get%28ordering%3AOrdering%3D%3Asequentially_consistent%29%3AT-instance-method">#get</a></code>, and <code><a href="Atomic.html#lazy_get-instance-method">#lazy_get</a></code> are available.</li>
+<li>If <code>T</code> is a pointer type, then the above methods plus <code><a href="Atomic.html#max%28value%3AT%2Cordering%3AOrdering%3D%3Asequentially_consistent%29-instance-method">#max</a></code> and <code><a href="Atomic.html#min%28value%3AT%2Cordering%3AOrdering%3D%3Asequentially_consistent%29-instance-method">#min</a></code> are
+available.</li>
+<li>If <code>T</code> is a non-union primitive integer type or enum type, then all
+operations are supported.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/atomic.cr#L12" target="_blank">
+        atomic.cr
+      </a>
+    
+    <br/>
+  
+
+
+
+
+
+  
+  <h2>
+    <a id="constructors" class="anchor" href="#constructors">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructors
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#new%28value%3AT%29-class-method" class="signature"><strong>.new</strong>(value : T)</a>
+        
+          <div class="summary"><p>Creates an Atomic with the given initial value.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+  
+
+  
+  <h2>
+    <a id="macro-summary" class="anchor" href="#macro-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Macro Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#fence%28ordering%3D%3Asequentially_consistent%29-macro" class="signature"><strong>fence</strong>(ordering = <span class="n">:sequentially_consistent</span>)</a>
+        
+          <div class="summary"><p>Adds an explicit memory barrier with the specified memory order guarantee.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+  
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#add%28value%3AT%2Cordering%3AOrdering%3D%3Asequentially_consistent%29%3AT-instance-method" class="signature"><strong>#add</strong>(value : T, ordering : Ordering = <span class="n">:sequentially_consistent</span>) : T</a>
+        
+          <div class="summary"><p>Performs <code>atomic_value &amp;+= value</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#and%28value%3AT%2Cordering%3AOrdering%3D%3Asequentially_consistent%29%3AT-instance-method" class="signature"><strong>#and</strong>(value : T, ordering : Ordering = <span class="n">:sequentially_consistent</span>) : T</a>
+        
+          <div class="summary"><p>Performs <code>atomic_value &amp;= value</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#compare_and_set%28cmp%3AT%2Cnew%3AT%2Csuccess_ordering%3AOrdering%2Cfailure_ordering%3AOrdering%29%3ATuple%28T%2CBool%29-instance-method" class="signature"><strong>#compare_and_set</strong>(cmp : T, new : T, success_ordering : Ordering, failure_ordering : Ordering) : Tuple(T, Bool)</a>
+        
+          <div class="summary"><p>Compares this atomic's value with <em>cmp</em> using explicit memory orderings:</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#compare_and_set%28cmp%3AT%2Cnew%3AT%29%3ATuple%28T%2CBool%29-instance-method" class="signature"><strong>#compare_and_set</strong>(cmp : T, new : T) : Tuple(T, Bool)</a>
+        
+          <div class="summary"><p>Compares this atomic's value with <em>cmp</em>:</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#get%28ordering%3AOrdering%3D%3Asequentially_consistent%29%3AT-instance-method" class="signature"><strong>#get</strong>(ordering : Ordering = <span class="n">:sequentially_consistent</span>) : T</a>
+        
+          <div class="summary"><p>Atomically returns this atomic's value.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#lazy_get-instance-method" class="signature"><strong>#lazy_get</strong></a>
+        
+          <div class="summary"><p><strong>Non-atomically</strong> returns this atomic's value.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#lazy_set%28value%3AT%29%3AT-instance-method" class="signature"><strong>#lazy_set</strong>(value : T) : T</a>
+        
+          <div class="summary"><p><strong>Non-atomically</strong> sets this atomic's value to <em>value</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#max%28value%3AT%2Cordering%3AOrdering%3D%3Asequentially_consistent%29-instance-method" class="signature"><strong>#max</strong>(value : T, ordering : Ordering = <span class="n">:sequentially_consistent</span>)</a>
+        
+          <div class="summary"><p>Performs <code>atomic_value = {atomic_value, value}<a href="Atomic.html#max%28value%3AT%2Cordering%3AOrdering%3D%3Asequentially_consistent%29-instance-method">.max</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#min%28value%3AT%2Cordering%3AOrdering%3D%3Asequentially_consistent%29-instance-method" class="signature"><strong>#min</strong>(value : T, ordering : Ordering = <span class="n">:sequentially_consistent</span>)</a>
+        
+          <div class="summary"><p>Performs <code>atomic_value = {atomic_value, value}<a href="Atomic.html#min%28value%3AT%2Cordering%3AOrdering%3D%3Asequentially_consistent%29-instance-method">.min</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#nand%28value%3AT%2Cordering%3AOrdering%3D%3Asequentially_consistent%29%3AT-instance-method" class="signature"><strong>#nand</strong>(value : T, ordering : Ordering = <span class="n">:sequentially_consistent</span>) : T</a>
+        
+          <div class="summary"><p>Performs <code>atomic_value = ~(atomic_value &amp; value)</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#or%28value%3AT%2Cordering%3AOrdering%3D%3Asequentially_consistent%29%3AT-instance-method" class="signature"><strong>#or</strong>(value : T, ordering : Ordering = <span class="n">:sequentially_consistent</span>) : T</a>
+        
+          <div class="summary"><p>Performs <code>atomic_value |= value</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#set%28value%3AT%2Cordering%3AOrdering%3D%3Asequentially_consistent%29%3AT-instance-method" class="signature"><strong>#set</strong>(value : T, ordering : Ordering = <span class="n">:sequentially_consistent</span>) : T</a>
+        
+          <div class="summary"><p>Atomically sets this atomic's value to <em>value</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#sub%28value%3AT%2Cordering%3AOrdering%3D%3Asequentially_consistent%29%3AT-instance-method" class="signature"><strong>#sub</strong>(value : T, ordering : Ordering = <span class="n">:sequentially_consistent</span>) : T</a>
+        
+          <div class="summary"><p>Performs <code>atomic_value &amp;-= value</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#swap%28value%3AT%2Cordering%3AOrdering%3D%3Asequentially_consistent%29-instance-method" class="signature"><strong>#swap</strong>(value : T, ordering : Ordering = <span class="n">:sequentially_consistent</span>)</a>
+        
+          <div class="summary"><p>Atomically sets this atomic's value to <em>value</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#xor%28value%3AT%2Cordering%3AOrdering%3D%3Asequentially_consistent%29%3AT-instance-method" class="signature"><strong>#xor</strong>(value : T, ordering : Ordering = <span class="n">:sequentially_consistent</span>) : T</a>
+        
+          <div class="summary"><p>Performs <code>atomic_value ^= value</code>.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+
+  <div class="methods-inherited">
+    
+      
+
+  <h3>Instance methods inherited from struct <code><a href="Struct.html">Struct</a></code></h3>
+  
+  
+    <a href="Struct.html#%3D%3D%28other%29%3ABool-instance-method" class="tooltip">
+      <span>==(other) : Bool</span>
+    ==</a>, 
+    
+  
+    <a href="Struct.html#hash%28hasher%29-instance-method" class="tooltip">
+      <span>hash(hasher)</span>
+    hash</a>, 
+    
+  
+    <a href="Struct.html#inspect%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>inspect(io : IO) : Nil</span>
+    inspect</a>, 
+    
+  
+    <a href="Struct.html#pretty_print%28pp%29%3ANil-instance-method" class="tooltip">
+      <span>pretty_print(pp) : Nil</span>
+    pretty_print</a>, 
+    
+  
+    <a href="Struct.html#to_s%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_s(io : IO) : Nil</span>
+    to_s</a>
+    
+  
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+      
+
+  <h3>Instance methods inherited from struct <code><a href="Value.html">Value</a></code></h3>
+  
+  
+    <a href="Value.html#%3D%3D%28other%3AJSON%3A%3AAny%29-instance-method" class="tooltip">
+      <span>==(other : JSON::Any)<br/>==(other : YAML::Any)<br/>==(other)</span>
+    ==</a>, 
+    
+  
+    <a href="Value.html#dup-instance-method" class="tooltip">
+      <span>dup</span>
+    dup</a>
+    
+  
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+      
+
+  <h3>Instance methods inherited from class <code><a href="Object.html">Object</a></code></h3>
+  
+  
+    <a href="Object.html#%21%3ABool-instance-method" class="tooltip">
+      <span>! : Bool</span>
+    !</a>, 
+    
+  
+    <a href="Object.html#%21%3D%28other%29-instance-method" class="tooltip">
+      <span>!=(other)</span>
+    !=</a>, 
+    
+  
+    <a href="Object.html#%21~%28other%29-instance-method" class="tooltip">
+      <span>!~(other)</span>
+    !~</a>, 
+    
+  
+    <a href="Object.html#%3D%3D%28other%29-instance-method" class="tooltip">
+      <span>==(other)</span>
+    ==</a>, 
+    
+  
+    <a href="Object.html#%3D%3D%3D%28other%3AJSON%3A%3AAny%29-instance-method" class="tooltip">
+      <span>===(other : JSON::Any)<br/>===(other : YAML::Any)<br/>===(other)</span>
+    ===</a>, 
+    
+  
+    <a href="Object.html#%3D~%28other%29-instance-method" class="tooltip">
+      <span>=~(other)</span>
+    =~</a>, 
+    
+  
+    <a href="Object.html#as%28type%3AClass%29-instance-method" class="tooltip">
+      <span>as(type : Class)</span>
+    as</a>, 
+    
+  
+    <a href="Object.html#as%3F%28type%3AClass%29-instance-method" class="tooltip">
+      <span>as?(type : Class)</span>
+    as?</a>, 
+    
+  
+    <a href="Object.html#class-instance-method" class="tooltip">
+      <span>class</span>
+    class</a>, 
+    
+  
+    <a href="Object.html#dup-instance-method" class="tooltip">
+      <span>dup</span>
+    dup</a>, 
+    
+  
+    <a href="Object.html#hash%28hasher%29-instance-method" class="tooltip">
+      <span>hash(hasher)<br/>hash</span>
+    hash</a>, 
+    
+  
+    <a href="Object.html#in%3F%28collection%3AObject%29%3ABool-instance-method" class="tooltip">
+      <span>in?(collection : Object) : Bool<br/>in?(*values : Object) : Bool</span>
+    in?</a>, 
+    
+  
+    <a href="Object.html#inspect%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>inspect(io : IO) : Nil<br/>inspect : String</span>
+    inspect</a>, 
+    
+  
+    <a href="Object.html#is_a%3F%28type%3AClass%29%3ABool-instance-method" class="tooltip">
+      <span>is_a?(type : Class) : Bool</span>
+    is_a?</a>, 
+    
+  
+    <a href="Object.html#itself-instance-method" class="tooltip">
+      <span>itself</span>
+    itself</a>, 
+    
+  
+    <a href="Object.html#nil%3F%3ABool-instance-method" class="tooltip">
+      <span>nil? : Bool</span>
+    nil?</a>, 
+    
+  
+    <a href="Object.html#not_nil%21%28message%29-instance-method" class="tooltip">
+      <span>not_nil!(message)<br/>not_nil!</span>
+    not_nil!</a>, 
+    
+  
+    <a href="Object.html#pretty_inspect%28width%3D79%2Cnewline%3D%22%5Cn%22%2Cindent%3D0%29%3AString-instance-method" class="tooltip">
+      <span>pretty_inspect(width = <span class="n">79</span>, newline = <span class="s">&quot;\n&quot;</span>, indent = <span class="n">0</span>) : String</span>
+    pretty_inspect</a>, 
+    
+  
+    <a href="Object.html#pretty_print%28pp%3APrettyPrint%29%3ANil-instance-method" class="tooltip">
+      <span>pretty_print(pp : PrettyPrint) : Nil</span>
+    pretty_print</a>, 
+    
+  
+    <a href="Object.html#responds_to%3F%28name%3ASymbol%29%3ABool-instance-method" class="tooltip">
+      <span>responds_to?(name : Symbol) : Bool</span>
+    responds_to?</a>, 
+    
+  
+    <a href="Object.html#tap%28%26%29-instance-method" class="tooltip">
+      <span>tap(&)</span>
+    tap</a>, 
+    
+  
+    <a href="Object.html#to_json%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_json(io : IO) : Nil<br/>to_json : String</span>
+    to_json</a>, 
+    
+  
+    <a href="Object.html#to_pretty_json%28indent%3AString%3D%22%22%29%3AString-instance-method" class="tooltip">
+      <span>to_pretty_json(indent : String = <span class="s">&quot;  &quot;</span>) : String<br/>to_pretty_json(io : IO, indent : String = <span class="s">&quot;  &quot;</span>) : Nil</span>
+    to_pretty_json</a>, 
+    
+  
+    <a href="Object.html#to_s%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_s(io : IO) : Nil<br/>to_s : String</span>
+    to_s</a>, 
+    
+  
+    <a href="Object.html#to_yaml%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_yaml(io : IO) : Nil<br/>to_yaml : String</span>
+    to_yaml</a>, 
+    
+  
+    <a href="Object.html#try%28%26%29-instance-method" class="tooltip">
+      <span>try(&)</span>
+    try</a>, 
+    
+  
+    <a href="Object.html#unsafe_as%28type%3AT.class%29forallT-instance-method" class="tooltip">
+      <span>unsafe_as(type : <span class="t">T</span>.<span class="k">class</span>) forall T</span>
+    unsafe_as</a>
+    
+  
+
+
+      
+
+
+      
+
+  <h3>Class methods inherited from class <code><a href="Object.html">Object</a></code></h3>
+  
+  
+    <a href="Object.html#from_json%28string_or_io%2Croot%3AString%29-class-method" class="tooltip">
+      <span>from_json(string_or_io, root : String)<br/>from_json(string_or_io)</span>
+    from_json</a>, 
+    
+  
+    <a href="Object.html#from_yaml%28string_or_io%3AString%7CIO%29-class-method" class="tooltip">
+      <span>from_yaml(string_or_io : String | IO)</span>
+    from_yaml</a>
+    
+  
+
+
+      
+
+  <h3>Macros inherited from class <code><a href="Object.html">Object</a></code></h3>
+  
+  
+    <a href="Object.html#class_getter%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_getter(*names, &block)</span>
+    class_getter</a>, 
+    
+  
+    <a href="Object.html#class_getter%21%28%2Anames%29-macro" class="tooltip">
+      <span>class_getter!(*names)</span>
+    class_getter!</a>, 
+    
+  
+    <a href="Object.html#class_getter%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_getter?(*names, &block)</span>
+    class_getter?</a>, 
+    
+  
+    <a href="Object.html#class_property%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_property(*names, &block)</span>
+    class_property</a>, 
+    
+  
+    <a href="Object.html#class_property%21%28%2Anames%29-macro" class="tooltip">
+      <span>class_property!(*names)</span>
+    class_property!</a>, 
+    
+  
+    <a href="Object.html#class_property%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_property?(*names, &block)</span>
+    class_property?</a>, 
+    
+  
+    <a href="Object.html#class_setter%28%2Anames%29-macro" class="tooltip">
+      <span>class_setter(*names)</span>
+    class_setter</a>, 
+    
+  
+    <a href="Object.html#def_clone-macro" class="tooltip">
+      <span>def_clone</span>
+    def_clone</a>, 
+    
+  
+    <a href="Object.html#def_equals%28%2Afields%29-macro" class="tooltip">
+      <span>def_equals(*fields)</span>
+    def_equals</a>, 
+    
+  
+    <a href="Object.html#def_equals_and_hash%28%2Afields%29-macro" class="tooltip">
+      <span>def_equals_and_hash(*fields)</span>
+    def_equals_and_hash</a>, 
+    
+  
+    <a href="Object.html#def_hash%28%2Afields%29-macro" class="tooltip">
+      <span>def_hash(*fields)</span>
+    def_hash</a>, 
+    
+  
+    <a href="Object.html#delegate%28%2Amethods%2Ctoobject%29-macro" class="tooltip">
+      <span>delegate(*methods, to object)</span>
+    delegate</a>, 
+    
+  
+    <a href="Object.html#forward_missing_to%28delegate%29-macro" class="tooltip">
+      <span>forward_missing_to(delegate)</span>
+    forward_missing_to</a>, 
+    
+  
+    <a href="Object.html#getter%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>getter(*names, &block)</span>
+    getter</a>, 
+    
+  
+    <a href="Object.html#getter%21%28%2Anames%29-macro" class="tooltip">
+      <span>getter!(*names)</span>
+    getter!</a>, 
+    
+  
+    <a href="Object.html#getter%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>getter?(*names, &block)</span>
+    getter?</a>, 
+    
+  
+    <a href="Object.html#property%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>property(*names, &block)</span>
+    property</a>, 
+    
+  
+    <a href="Object.html#property%21%28%2Anames%29-macro" class="tooltip">
+      <span>property!(*names)</span>
+    property!</a>, 
+    
+  
+    <a href="Object.html#property%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>property?(*names, &block)</span>
+    property?</a>, 
+    
+  
+    <a href="Object.html#setter%28%2Anames%29-macro" class="tooltip">
+      <span>setter(*names)</span>
+    setter</a>
+    
+  
+
+
+    
+  </div>
+
+  
+  <h2>
+    <a id="constructor-detail" class="anchor" href="#constructor-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructor Detail
+  </h2>
+  
+    <div class="entry-detail" id="new(value:T)-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(value : T)
+
+        <a class="method-permalink" href="#new%28value%3AT%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Creates an Atomic with the given initial value.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/atomic.cr#L41" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+  
+
+  
+  <h2>
+    <a id="macro-detail" class="anchor" href="#macro-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Macro Detail
+  </h2>
+  
+    <div class="entry-detail" id="fence(ordering=:sequentially_consistent)-macro">
+      <div class="signature">
+        
+        macro <strong>fence</strong>(ordering = <span class="n">:sequentially_consistent</span>)
+
+        <a class="method-permalink" href="#fence%28ordering%3D%3Asequentially_consistent%29-macro">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Adds an explicit memory barrier with the specified memory order guarantee.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/atomic.cr#L36" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+  
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="add(value:T,ordering:Ordering=:sequentially_consistent):T-instance-method">
+      <div class="signature">
+        
+        def <strong>add</strong>(value : T, ordering : <a href="Atomic/Ordering.html">Ordering</a> = <span class="n">:sequentially_consistent</span>) : T
+
+        <a class="method-permalink" href="#add%28value%3AT%2Cordering%3AOrdering%3D%3Asequentially_consistent%29%3AT-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Performs <code>atomic_value &amp;+= value</code>. Returns the old value.</p>
+<p><code>T</code> cannot contain any pointer or reference types.</p>
+<pre><code class="language-crystal">atomic <span class="o">=</span> <span class="t">Atomic</span>.new(<span class="n">1</span>)
+atomic.add(<span class="n">2</span>) <span class="c"># =&gt; 1</span>
+atomic.get    <span class="c"># =&gt; 3</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/atomic.cr#L128" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="and(value:T,ordering:Ordering=:sequentially_consistent):T-instance-method">
+      <div class="signature">
+        
+        def <strong>and</strong>(value : T, ordering : <a href="Atomic/Ordering.html">Ordering</a> = <span class="n">:sequentially_consistent</span>) : T
+
+        <a class="method-permalink" href="#and%28value%3AT%2Cordering%3AOrdering%3D%3Asequentially_consistent%29%3AT-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Performs <code>atomic_value &amp;= value</code>. Returns the old value.</p>
+<p><code>T</code> cannot contain any pointer or reference types.</p>
+<pre><code class="language-crystal">atomic <span class="o">=</span> <span class="t">Atomic</span>.new(<span class="n">5</span>)
+atomic.and(<span class="n">3</span>) <span class="c"># =&gt; 5</span>
+atomic.get    <span class="c"># =&gt; 1</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/atomic.cr#L160" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="compare_and_set(cmp:T,new:T,success_ordering:Ordering,failure_ordering:Ordering):Tuple(T,Bool)-instance-method">
+      <div class="signature">
+        
+        def <strong>compare_and_set</strong>(cmp : T, new : T, success_ordering : <a href="Atomic/Ordering.html">Ordering</a>, failure_ordering : <a href="Atomic/Ordering.html">Ordering</a>) : <a href="Tuple.html">Tuple</a>(T, <a href="Bool.html">Bool</a>)
+
+        <a class="method-permalink" href="#compare_and_set%28cmp%3AT%2Cnew%3AT%2Csuccess_ordering%3AOrdering%2Cfailure_ordering%3AOrdering%29%3ATuple%28T%2CBool%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Compares this atomic's value with <em>cmp</em> using explicit memory orderings:</p>
+<ul>
+<li>if they are equal, sets the value to <em>new</em>, and returns <code>{old_value, true}</code></li>
+<li>if they are not equal the value remains the same, and returns <code>{old_value, false}</code></li>
+</ul>
+<p>Reference types are compared by <code>#same?</code>, not <code>#==</code>.</p>
+<pre><code class="language-crystal">atomic <span class="o">=</span> <span class="t">Atomic</span>.new(<span class="n">0_u32</span>)
+
+value <span class="o">=</span> atomic.get(<span class="n">:acquire</span>)
+loop <span class="k">do</span>
+  value, success <span class="o">=</span> atomic.compare_and_set(value, value <span class="o">&amp;+</span> <span class="n">1</span>, <span class="n">:acquire_release</span>, <span class="n">:acquire</span>)
+  <span class="k">break</span> <span class="k">if</span> success
+<span class="k">end</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/atomic.cr#L89" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="compare_and_set(cmp:T,new:T):Tuple(T,Bool)-instance-method">
+      <div class="signature">
+        
+        def <strong>compare_and_set</strong>(cmp : T, new : T) : <a href="Tuple.html">Tuple</a>(T, <a href="Bool.html">Bool</a>)
+
+        <a class="method-permalink" href="#compare_and_set%28cmp%3AT%2Cnew%3AT%29%3ATuple%28T%2CBool%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Compares this atomic's value with <em>cmp</em>:</p>
+<ul>
+<li>if they are equal, sets the value to <em>new</em>, and returns <code>{old_value, true}</code></li>
+<li>if they are not equal the value remains the same, and returns <code>{old_value, false}</code></li>
+</ul>
+<p>Reference types are compared by <code>#same?</code>, not <code>#==</code>.</p>
+<pre><code class="language-crystal">atomic <span class="o">=</span> <span class="t">Atomic</span>.new(<span class="n">1</span>)
+
+atomic.compare_and_set(<span class="n">2</span>, <span class="n">3</span>) <span class="c"># =&gt; {1, false}</span>
+atomic.get                   <span class="c"># =&gt; 1</span>
+
+atomic.compare_and_set(<span class="n">1</span>, <span class="n">3</span>) <span class="c"># =&gt; {1, true}</span>
+atomic.get                   <span class="c"># =&gt; 3</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/atomic.cr#L69" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="get(ordering:Ordering=:sequentially_consistent):T-instance-method">
+      <div class="signature">
+        
+        def <strong>get</strong>(ordering : <a href="Atomic/Ordering.html">Ordering</a> = <span class="n">:sequentially_consistent</span>) : T
+
+        <a class="method-permalink" href="#get%28ordering%3AOrdering%3D%3Asequentially_consistent%29%3AT-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Atomically returns this atomic's value.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/atomic.cr#L329" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="lazy_get-instance-method">
+      <div class="signature">
+        
+        def <strong>lazy_get</strong>
+
+        <a class="method-permalink" href="#lazy_get-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p><strong>Non-atomically</strong> returns this atomic's value.</p>
+<p><span class="flag purple">NOTE</span>  use with caution, this may break atomic guarantees.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/atomic.cr#L345" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="lazy_set(value:T):T-instance-method">
+      <div class="signature">
+        
+        def <strong>lazy_set</strong>(value : T) : T
+
+        <a class="method-permalink" href="#lazy_set%28value%3AT%29%3AT-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p><strong>Non-atomically</strong> sets this atomic's value to <em>value</em>. Returns the <strong>new</strong> value.</p>
+<pre><code class="language-crystal">atomic <span class="o">=</span> <span class="t">Atomic</span>.new(<span class="n">5</span>)
+atomic.lazy_set(<span class="n">10</span>) <span class="c"># =&gt; 10</span>
+atomic.get          <span class="c"># =&gt; 10</span></code></pre>
+<p><span class="flag purple">NOTE</span>  use with caution, this may break atomic guarantees.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/atomic.cr#L325" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="max(value:T,ordering:Ordering=:sequentially_consistent)-instance-method">
+      <div class="signature">
+        
+        def <strong>max</strong>(value : T, ordering : <a href="Atomic/Ordering.html">Ordering</a> = <span class="n">:sequentially_consistent</span>)
+
+        <a class="method-permalink" href="#max%28value%3AT%2Cordering%3AOrdering%3D%3Asequentially_consistent%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Performs <code>atomic_value = {atomic_value, value}<a href="Atomic.html#max%28value%3AT%2Cordering%3AOrdering%3D%3Asequentially_consistent%29-instance-method">.max</a></code>. Returns the old value.</p>
+<p><code>T</code> cannot contain any reference types.</p>
+<pre><code class="language-crystal">atomic <span class="o">=</span> <span class="t">Atomic</span>.new(<span class="n">5</span>)
+
+atomic.max(<span class="n">3</span>) <span class="c"># =&gt; 5</span>
+atomic.get    <span class="c"># =&gt; 5</span>
+
+atomic.max(<span class="n">10</span>) <span class="c"># =&gt; 5</span>
+atomic.get     <span class="c"># =&gt; 10</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/atomic.cr#L228" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="min(value:T,ordering:Ordering=:sequentially_consistent)-instance-method">
+      <div class="signature">
+        
+        def <strong>min</strong>(value : T, ordering : <a href="Atomic/Ordering.html">Ordering</a> = <span class="n">:sequentially_consistent</span>)
+
+        <a class="method-permalink" href="#min%28value%3AT%2Cordering%3AOrdering%3D%3Asequentially_consistent%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Performs <code>atomic_value = {atomic_value, value}<a href="Atomic.html#min%28value%3AT%2Cordering%3AOrdering%3D%3Asequentially_consistent%29-instance-method">.min</a></code>. Returns the old value.</p>
+<p><code>T</code> cannot contain any reference types.</p>
+<pre><code class="language-crystal">atomic <span class="o">=</span> <span class="t">Atomic</span>.new(<span class="n">5</span>)
+
+atomic.min(<span class="n">10</span>) <span class="c"># =&gt; 5</span>
+atomic.get     <span class="c"># =&gt; 5</span>
+
+atomic.min(<span class="n">3</span>) <span class="c"># =&gt; 5</span>
+atomic.get    <span class="c"># =&gt; 3</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/atomic.cr#L259" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="nand(value:T,ordering:Ordering=:sequentially_consistent):T-instance-method">
+      <div class="signature">
+        
+        def <strong>nand</strong>(value : T, ordering : <a href="Atomic/Ordering.html">Ordering</a> = <span class="n">:sequentially_consistent</span>) : T
+
+        <a class="method-permalink" href="#nand%28value%3AT%2Cordering%3AOrdering%3D%3Asequentially_consistent%29%3AT-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Performs <code>atomic_value = ~(atomic_value &amp; value)</code>. Returns the old value.</p>
+<p><code>T</code> cannot contain any pointer or reference types.</p>
+<pre><code class="language-crystal">atomic <span class="o">=</span> <span class="t">Atomic</span>.new(<span class="n">5</span>)
+atomic.nand(<span class="n">3</span>) <span class="c"># =&gt; 5</span>
+atomic.get     <span class="c"># =&gt; -2</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/atomic.cr#L176" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="or(value:T,ordering:Ordering=:sequentially_consistent):T-instance-method">
+      <div class="signature">
+        
+        def <strong>or</strong>(value : T, ordering : <a href="Atomic/Ordering.html">Ordering</a> = <span class="n">:sequentially_consistent</span>) : T
+
+        <a class="method-permalink" href="#or%28value%3AT%2Cordering%3AOrdering%3D%3Asequentially_consistent%29%3AT-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Performs <code>atomic_value |= value</code>. Returns the old value.</p>
+<p><code>T</code> cannot contain any pointer or reference types.</p>
+<pre><code class="language-crystal">atomic <span class="o">=</span> <span class="t">Atomic</span>.new(<span class="n">5</span>)
+atomic.or(<span class="n">2</span>) <span class="c"># =&gt; 5</span>
+atomic.get   <span class="c"># =&gt; 7</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/atomic.cr#L192" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="set(value:T,ordering:Ordering=:sequentially_consistent):T-instance-method">
+      <div class="signature">
+        
+        def <strong>set</strong>(value : T, ordering : <a href="Atomic/Ordering.html">Ordering</a> = <span class="n">:sequentially_consistent</span>) : T
+
+        <a class="method-permalink" href="#set%28value%3AT%2Cordering%3AOrdering%3D%3Asequentially_consistent%29%3AT-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Atomically sets this atomic's value to <em>value</em>. Returns the <strong>new</strong> value.</p>
+<pre><code class="language-crystal">atomic <span class="o">=</span> <span class="t">Atomic</span>.new(<span class="n">5</span>)
+atomic.set(<span class="n">10</span>) <span class="c"># =&gt; 10</span>
+atomic.get     <span class="c"># =&gt; 10</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/atomic.cr#L302" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="sub(value:T,ordering:Ordering=:sequentially_consistent):T-instance-method">
+      <div class="signature">
+        
+        def <strong>sub</strong>(value : T, ordering : <a href="Atomic/Ordering.html">Ordering</a> = <span class="n">:sequentially_consistent</span>) : T
+
+        <a class="method-permalink" href="#sub%28value%3AT%2Cordering%3AOrdering%3D%3Asequentially_consistent%29%3AT-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Performs <code>atomic_value &amp;-= value</code>. Returns the old value.</p>
+<p><code>T</code> cannot contain any pointer or reference types.</p>
+<pre><code class="language-crystal">atomic <span class="o">=</span> <span class="t">Atomic</span>.new(<span class="n">9</span>)
+atomic.sub(<span class="n">2</span>) <span class="c"># =&gt; 9</span>
+atomic.get    <span class="c"># =&gt; 7</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/atomic.cr#L144" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="swap(value:T,ordering:Ordering=:sequentially_consistent)-instance-method">
+      <div class="signature">
+        
+        def <strong>swap</strong>(value : T, ordering : <a href="Atomic/Ordering.html">Ordering</a> = <span class="n">:sequentially_consistent</span>)
+
+        <a class="method-permalink" href="#swap%28value%3AT%2Cordering%3AOrdering%3D%3Asequentially_consistent%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Atomically sets this atomic's value to <em>value</em>. Returns the <strong>old</strong> value.</p>
+<pre><code class="language-crystal">atomic <span class="o">=</span> <span class="t">Atomic</span>.new(<span class="n">5</span>)
+atomic.swap(<span class="n">10</span>) <span class="c"># =&gt; 5</span>
+atomic.get      <span class="c"># =&gt; 10</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/atomic.cr#L284" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="xor(value:T,ordering:Ordering=:sequentially_consistent):T-instance-method">
+      <div class="signature">
+        
+        def <strong>xor</strong>(value : T, ordering : <a href="Atomic/Ordering.html">Ordering</a> = <span class="n">:sequentially_consistent</span>) : T
+
+        <a class="method-permalink" href="#xor%28value%3AT%2Cordering%3AOrdering%3D%3Asequentially_consistent%29%3AT-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Performs <code>atomic_value ^= value</code>. Returns the old value.</p>
+<p><code>T</code> cannot contain any pointer or reference types.</p>
+<pre><code class="language-crystal">atomic <span class="o">=</span> <span class="t">Atomic</span>.new(<span class="n">5</span>)
+atomic.xor(<span class="n">3</span>) <span class="c"># =&gt; 5</span>
+atomic.get    <span class="c"># =&gt; 6</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/atomic.cr#L208" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+</div>
+
+</body>
+</html>

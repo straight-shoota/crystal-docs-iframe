@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Crystal Docs 1.16.1">
+<meta name="crystal_docs.project_version" content="1.17.0-dev">
+<meta name="crystal_docs.project_name" content="Crystal">
+
+  <meta name="crystal_docs.json_config_url" content="/api/versions.json">
+
+
+    <link rel="canonical" href="https://crystal-lang.org/api/latest/Spec/ObjectExtensions.html">
+
+<link href="../css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../js/doc.js"></script>
+
+  <meta name="repository-name" content="Crystal">
+  <title>Spec::ObjectExtensions - Crystal 1.17.0-dev</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "../";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill="currentColor" fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<input type="checkbox" id="sidebar-btn">
+<label for="sidebar-btn" id="sidebar-btn-label">
+  <svg class="open" xmlns="http://www.w3.org/2000/svg" height="2em" width="2em" viewBox="0 0 512 512"><title>Open Sidebar</title><path fill="currentColor" d="M80 96v64h352V96H80zm0 112v64h352v-64H80zm0 112v64h352v-64H80z"></path></svg>
+  <svg class="close" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><title>Close Sidebar</title><path fill="currentColor" d="m118.6 73.4-45.2 45.2L210.7 256 73.4 393.4l45.2 45.2L256 301.3l137.4 137.3 45.2-45.2L301.3 256l137.3-137.4-45.2-45.2L256 210.7Z"></path></svg>
+</label>
+<iframe class="sidebar" src="../sidebar.html"></iframe>
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">
+    module
+  </span> Spec::<wbr>ObjectExtensions
+
+</h1>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="direct-including-types" class="anchor" href="#direct-including-types">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Direct including types
+  </h2>
+  <ul class="other-types-list">
+    
+      <li class="other-type"><a href="../Object.html">Object</a></li>
+    
+  </ul>
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/spec/expectations.cr#L442" target="_blank">
+        spec/expectations.cr
+      </a>
+    
+    <br/>
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#should%28expectation%3ABeAExpectation%28T%29%2Cfailure_message%3AString%7CNil%3Dnil%2C%2A%2Cfile%3D__FILE__%2Cline%3D__LINE__%29%3ATforallT-instance-method" class="signature"><strong>#should</strong>(expectation : BeAExpectation(T), failure_message : String | Nil = <span class="n">nil</span>, *, file = __FILE__, line = __LINE__) : T forall T</a>
+        
+          <div class="summary"><p>Validates an expectation and fails the example if it does not match.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#should%28expectation%2Cfailure_message%3AString%7CNil%3Dnil%2C%2A%2Cfile%3D__FILE__%2Cline%3D__LINE__%29-instance-method" class="signature"><strong>#should</strong>(expectation, failure_message : String | Nil = <span class="n">nil</span>, *, file = __FILE__, line = __LINE__)</a>
+        
+          <div class="summary"><p>Validates an expectation and fails the example if it does not match.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#should_not%28expectation%3ABeAExpectation%28T%29%2Cfailure_message%3AString%7CNil%3Dnil%2C%2A%2Cfile%3D__FILE__%2Cline%3D__LINE__%29forallT-instance-method" class="signature"><strong>#should_not</strong>(expectation : BeAExpectation(T), failure_message : String | Nil = <span class="n">nil</span>, *, file = __FILE__, line = __LINE__) forall T</a>
+        
+          <div class="summary"><p>Validates an expectation and fails the example if it matches.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#should_not%28expectation%3ABeNilExpectation%2Cfailure_message%3AString%7CNil%3Dnil%2C%2A%2Cfile%3D__FILE__%2Cline%3D__LINE__%29-instance-method" class="signature"><strong>#should_not</strong>(expectation : BeNilExpectation, failure_message : String | Nil = <span class="n">nil</span>, *, file = __FILE__, line = __LINE__)</a>
+        
+          <div class="summary"><p>Validates an expectation and fails the example if it matches.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#should_not%28expectation%2Cfailure_message%3AString%7CNil%3Dnil%2C%2A%2Cfile%3D__FILE__%2Cline%3D__LINE__%29-instance-method" class="signature"><strong>#should_not</strong>(expectation, failure_message : String | Nil = <span class="n">nil</span>, *, file = __FILE__, line = __LINE__)</a>
+        
+          <div class="summary"><p>Validates an expectation and fails the example if it matches.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+
+  <div class="methods-inherited">
+    
+  </div>
+
+  
+
+  
+
+  
+
+  
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="should(expectation:BeAExpectation(T),failure_message:String|Nil=nil,*,file=__FILE__,line=__LINE__):TforallT-instance-method">
+      <div class="signature">
+        
+        def <strong>should</strong>(expectation : BeAExpectation(T), failure_message : <a href="../String.html">String</a> | <a href="../Nil.html">Nil</a> = <span class="n">nil</span>, *, file = __FILE__, line = __LINE__) : T forall T
+
+        <a class="method-permalink" href="#should%28expectation%3ABeAExpectation%28T%29%2Cfailure_message%3AString%7CNil%3Dnil%2C%2A%2Cfile%3D__FILE__%2Cline%3D__LINE__%29%3ATforallT-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Validates an expectation and fails the example if it does not match.</p>
+<p>This overload returns a value whose type is restricted to the expected type. For example:</p>
+<pre><code class="language-crystal">x <span class="o">=</span> <span class="n">1</span> <span class="o">||</span> <span class="s">&#39;a&#39;</span>
+<span class="k">typeof</span>(x) <span class="c"># =&gt; Int32 | Char</span>
+x <span class="o">=</span> x.should be_a(<span class="t">Int32</span>)
+<span class="k">typeof</span>(x) <span class="c"># =&gt; Int32</span></code></pre>
+<p>See <code><a href="../Spec/Expectations.html">Spec::Expectations</a></code> for available expectations.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/spec/expectations.cr#L455" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="should(expectation,failure_message:String|Nil=nil,*,file=__FILE__,line=__LINE__)-instance-method">
+      <div class="signature">
+        
+        def <strong>should</strong>(expectation, failure_message : <a href="../String.html">String</a> | <a href="../Nil.html">Nil</a> = <span class="n">nil</span>, *, file = __FILE__, line = __LINE__)
+
+        <a class="method-permalink" href="#should%28expectation%2Cfailure_message%3AString%7CNil%3Dnil%2C%2A%2Cfile%3D__FILE__%2Cline%3D__LINE__%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Validates an expectation and fails the example if it does not match.</p>
+<p>See <code><a href="../Spec/Expectations.html">Spec::Expectations</a></code> for available expectations.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/spec/expectations.cr#L467" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="should_not(expectation:BeAExpectation(T),failure_message:String|Nil=nil,*,file=__FILE__,line=__LINE__)forallT-instance-method">
+      <div class="signature">
+        
+        def <strong>should_not</strong>(expectation : BeAExpectation(T), failure_message : <a href="../String.html">String</a> | <a href="../Nil.html">Nil</a> = <span class="n">nil</span>, *, file = __FILE__, line = __LINE__) forall T
+
+        <a class="method-permalink" href="#should_not%28expectation%3ABeAExpectation%28T%29%2Cfailure_message%3AString%7CNil%3Dnil%2C%2A%2Cfile%3D__FILE__%2Cline%3D__LINE__%29forallT-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Validates an expectation and fails the example if it matches.</p>
+<p>This overload returns a value whose type is restricted to exclude the given
+type in <code>should_not be_a</code>. For example:</p>
+<pre><code class="language-crystal">x <span class="o">=</span> <span class="n">1</span> <span class="o">||</span> <span class="s">&#39;a&#39;</span>
+<span class="k">typeof</span>(x) <span class="c"># =&gt; Int32 | Char</span>
+x <span class="o">=</span> x.should_not be_a(<span class="t">Char</span>)
+<span class="k">typeof</span>(x) <span class="c"># =&gt; Int32</span></code></pre>
+<p>See <code><a href="../Spec/Expectations.html">Spec::Expectations</a></code> for available expectations.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/spec/expectations.cr#L487" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="should_not(expectation:BeNilExpectation,failure_message:String|Nil=nil,*,file=__FILE__,line=__LINE__)-instance-method">
+      <div class="signature">
+        
+        def <strong>should_not</strong>(expectation : BeNilExpectation, failure_message : <a href="../String.html">String</a> | <a href="../Nil.html">Nil</a> = <span class="n">nil</span>, *, file = __FILE__, line = __LINE__)
+
+        <a class="method-permalink" href="#should_not%28expectation%3ABeNilExpectation%2Cfailure_message%3AString%7CNil%3Dnil%2C%2A%2Cfile%3D__FILE__%2Cline%3D__LINE__%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Validates an expectation and fails the example if it matches.</p>
+<p>This overload returns a value whose type is restricted to be not <code><a href="../Nil.html">Nil</a></code>. For example:</p>
+<pre><code class="language-crystal">x <span class="o">=</span> <span class="n">1</span> <span class="o">||</span> <span class="n">nil</span>
+<span class="k">typeof</span>(x) <span class="c"># =&gt; Int32 | Nil</span>
+x <span class="o">=</span> x.should_not be_nil
+<span class="k">typeof</span>(x) <span class="c"># =&gt; Int32</span></code></pre>
+<p>See <code><a href="../Spec/Expectations.html">Spec::Expectations</a></code> for available expectations.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/spec/expectations.cr#L508" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="should_not(expectation,failure_message:String|Nil=nil,*,file=__FILE__,line=__LINE__)-instance-method">
+      <div class="signature">
+        
+        def <strong>should_not</strong>(expectation, failure_message : <a href="../String.html">String</a> | <a href="../Nil.html">Nil</a> = <span class="n">nil</span>, *, file = __FILE__, line = __LINE__)
+
+        <a class="method-permalink" href="#should_not%28expectation%2Cfailure_message%3AString%7CNil%3Dnil%2C%2A%2Cfile%3D__FILE__%2Cline%3D__LINE__%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Validates an expectation and fails the example if it matches.</p>
+<p>See <code><a href="../Spec/Expectations.html">Spec::Expectations</a></code> for available expectations.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/spec/expectations.cr#L520" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+</div>
+
+</body>
+</html>

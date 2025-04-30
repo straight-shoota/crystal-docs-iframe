@@ -1,0 +1,3994 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Crystal Docs 1.16.1">
+<meta name="crystal_docs.project_version" content="1.17.0-dev">
+<meta name="crystal_docs.project_name" content="Crystal">
+
+  <meta name="crystal_docs.json_config_url" content="/api/versions.json">
+
+
+    <link rel="canonical" href="https://crystal-lang.org/api/latest/Hash.html">
+
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/doc.js"></script>
+
+  <meta name="repository-name" content="Crystal">
+  <title>Hash(K, V) - Crystal 1.17.0-dev</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill="currentColor" fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<input type="checkbox" id="sidebar-btn">
+<label for="sidebar-btn" id="sidebar-btn-label">
+  <svg class="open" xmlns="http://www.w3.org/2000/svg" height="2em" width="2em" viewBox="0 0 512 512"><title>Open Sidebar</title><path fill="currentColor" d="M80 96v64h352V96H80zm0 112v64h352v-64H80zm0 112v64h352v-64H80z"></path></svg>
+  <svg class="close" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><title>Close Sidebar</title><path fill="currentColor" d="m118.6 73.4-45.2 45.2L210.7 256 73.4 393.4l45.2 45.2L256 301.3l137.4 137.3 45.2-45.2L301.3 256l137.3-137.4-45.2-45.2L256 210.7Z"></path></svg>
+</label>
+<iframe class="sidebar" src="sidebar.html"></iframe>
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">
+    class
+  </span> Hash(K, V)
+
+</h1>
+
+
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="Hash.html">Hash(K, V)</a></li><li class="superclass"><a href="Reference.html">Reference</a></li><li class="superclass"><a href="Object.html">Object</a></li></ul>
+
+
+
+
+  <h2>
+    <a id="overview" class="anchor" href="#overview">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Overview
+  </h2>
+
+  <p>A <code><a href="Hash.html">Hash</a></code> represents a collection of key-value mappings, similar to a dictionary.</p>
+<p>Main operations are storing a key-value mapping (<code><a href="Hash.html#%5B%5D%3D%28key%3AK%2Cvalue%3AV%29%3AV-instance-method">#[]=</a></code>) and
+querying the value associated to a key (<code><a href="Hash.html#%5B%5D%28key%29-instance-method">#[]</a></code>). Key-value mappings can also be
+deleted (<code><a href="Hash.html#delete%28key%29%3AV%7CNil-instance-method">#delete</a></code>).
+Keys are unique within a hash. When adding a key-value mapping with a key that
+is already in use, the old value will be forgotten.</p>
+<pre><code class="language-crystal"><span class="c"># Create a new Hash for mapping String to Int32</span>
+hash <span class="o">=</span> <span class="t">Hash</span>(<span class="t">String</span>, <span class="t">Int32</span>).new
+hash[<span class="s">&quot;one&quot;</span>] <span class="o">=</span> <span class="n">1</span>
+hash[<span class="s">&quot;two&quot;</span>] <span class="o">=</span> <span class="n">2</span>
+hash[<span class="s">&quot;one&quot;</span>] <span class="c"># =&gt; 1</span></code></pre>
+<p><a href="https://crystal-lang.org/reference/syntax_and_semantics/literals/hash.html">Hash literals</a>
+can also be used to create a <code><a href="Hash.html">Hash</a></code>:</p>
+<pre><code class="language-crystal">{<span class="s">&quot;one&quot;</span> <span class="o">=&gt;</span> <span class="n">1</span>, <span class="s">&quot;two&quot;</span> <span class="o">=&gt;</span> <span class="n">2</span>}</code></pre>
+<p>Implementation is based on an open hash table.
+Two objects refer to the same hash key when their hash value (<code><a href="Object.html#hash-instance-method">Object#hash</a></code>)
+is identical and both objects are equal to each other (<code><a href="Object.html#%3D%3D%28other%29-instance-method">Object#==</a></code>).</p>
+<p>Enumeration follows the order that the corresponding keys were inserted.</p>
+<p><span class="flag purple">NOTE</span>  When using mutable data types as keys, changing the value of a key after
+it was inserted into the <code><a href="Hash.html">Hash</a></code> may lead to undefined behaviour. This can be
+restored by re-indexing the hash with <code><a href="Hash.html#rehash%3ANil-instance-method">#rehash</a></code>.</p>
+
+
+
+
+
+
+
+  <h2>
+    <a id="included-modules" class="anchor" href="#included-modules">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Included Modules
+  </h2>
+  <ul class="other-types-list">
+    
+      <li class="other-type"><a href="Enumerable.html">Enumerable({K, V})</a></li>
+    
+      <li class="other-type"><a href="Iterable.html">Iterable({K, V})</a></li>
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/hash.cr#L35" target="_blank">
+        hash.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/any.cr#L351" target="_blank">
+        json/any.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/to_json.cr#L135" target="_blank">
+        json/to_json.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/yaml/any.cr#L392" target="_blank">
+        yaml/any.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/yaml/to_yaml.cr#L23" target="_blank">
+        yaml/to_yaml.cr
+      </a>
+    
+    <br/>
+  
+
+
+
+
+
+  
+  <h2>
+    <a id="constructors" class="anchor" href="#constructors">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructors
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#new%28default_value%3AV%2Cinitial_capacity%3Dnil%29-class-method" class="signature"><strong>.new</strong>(default_value : V, initial_capacity = <span class="n">nil</span>)</a>
+        
+          <div class="summary"><p>Creates a new empty <code><a href="Hash.html">Hash</a></code> where the <em>default_value</em> is returned if a key is missing.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#new%28ctx%3AYAML%3A%3AParseContext%2Cnode%3AYAML%3A%3ANodes%3A%3ANode%29-class-method" class="signature"><strong>.new</strong>(ctx : YAML::ParseContext, node : YAML::Nodes::Node)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#new%28pull%3AJSON%3A%3APullParser%29-class-method" class="signature"><strong>.new</strong>(pull : JSON::PullParser)</a>
+        
+          <div class="summary"><p>Reads a Hash from the given pull parser.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#new-class-method" class="signature"><strong>.new</strong></a>
+        
+          <div class="summary"><p>Creates a new empty <code><a href="Hash.html">Hash</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#new%28block%3AHash%28K%2CV%29%2CK-%3EV%7CNil%3Dnil%2C%2A%2Cinitial_capacity%3Dnil%29-class-method" class="signature"><strong>.new</strong>(block : Hash(K, V), K -> V | Nil = <span class="n">nil</span>, *, initial_capacity = <span class="n">nil</span>)</a>
+        
+          <div class="summary"><p>Creates a new empty <code><a href="Hash.html">Hash</a></code> with a <em>block</em> for handling missing keys.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#new%28ctx%3AYAML%3A%3AParseContext%2Cnode%3AYAML%3A%3ANodes%3A%3ANode%2C%26%29-class-method" class="signature"><strong>.new</strong>(ctx : YAML::ParseContext, node : YAML::Nodes::Node, &)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#new%28initial_capacity%3Dnil%2C%26block%3AHash%28K%2CV%29%2CK-%3EV%29-class-method" class="signature"><strong>.new</strong>(initial_capacity = <span class="n">nil</span>, &block : Hash(K, V), K -> V)</a>
+        
+          <div class="summary"><p>Creates a new empty <code><a href="Hash.html">Hash</a></code> with a <em>block</em> that handles missing keys.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+  
+  <h2>
+    <a id="class-method-summary" class="anchor" href="#class-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Class Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#zip%28ary1%3AArray%28K%29%2Cary2%3AArray%28V%29%29-class-method" class="signature"><strong>.zip</strong>(ary1 : Array(K), ary2 : Array(V))</a>
+        
+          <div class="summary"><p>Zips two arrays into a <code><a href="Hash.html">Hash</a></code>, taking keys from <em>ary1</em> and values from <em>ary2</em>.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+  
+
+  
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#%3D%3D%28other%3AHash%29%3ABool-instance-method" class="signature"><strong>#==</strong>(other : Hash) : Bool</a>
+        
+          <div class="summary"><p>Compares with <em>other</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%3D%3D%28other%3AJSON%3A%3AAny%29-instance-method" class="signature"><strong>#==</strong>(other : JSON::Any)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%3D%3D%28other%3AYAML%3A%3AAny%29-instance-method" class="signature"><strong>#==</strong>(other : YAML::Any)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%5B%5D%28key%29-instance-method" class="signature"><strong>#[]</strong>(key)</a>
+        
+          <div class="summary"><p>Returns the value for the key given by <em>key</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%5B%5D%3D%28key%3AK%2Cvalue%3AV%29%3AV-instance-method" class="signature"><strong>#[]=</strong>(key : K, value : V) : V</a>
+        
+          <div class="summary"><p>Sets the value of <em>key</em> to the given <em>value</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%5B%5D%3F%28key%29-instance-method" class="signature"><strong>#[]?</strong>(key)</a>
+        
+          <div class="summary"><p>Returns the value for the key given by <em>key</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#clear%3Aself-instance-method" class="signature"><strong>#clear</strong> : <span class="k">self</span></a>
+        
+          <div class="summary"><p>Empties a <code><a href="Hash.html">Hash</a></code> and returns it.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#clone%3AHash%28K%2CV%29-instance-method" class="signature"><strong>#clone</strong> : Hash(K, V)</a>
+        
+          <div class="summary"><p>Similar to <code><a href="Hash.html#dup%3AHash%28K%2CV%29-instance-method">#dup</a></code>, but duplicates the values as well.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#compact-instance-method" class="signature"><strong>#compact</strong></a>
+        
+          <div class="summary"><p>Returns new <code><a href="Hash.html">Hash</a></code> without <code>nil</code> values.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#compact%21%3Aself-instance-method" class="signature"><strong>#compact!</strong> : <span class="k">self</span></a>
+        
+          <div class="summary"><p>Removes all <code>nil</code> value from <code>self</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#compare_by_identity%3Aself-instance-method" class="signature"><strong>#compare_by_identity</strong> : <span class="k">self</span></a>
+        
+          <div class="summary"><p>Makes this hash compare keys using their object identity (<code>object_id)</code> for types that define such method (<code><a href="Reference.html">Reference</a></code> types, but also structs that might wrap other <code><a href="Reference.html">Reference</a></code> types and delegate the <code>object_id</code> method to them).</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#compare_by_identity%3F%3ABool-instance-method" class="signature"><strong>#compare_by_identity?</strong> : Bool</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this Hash is comparing keys by <code>object_id</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#delete%28key%29%3AV%7CNil-instance-method" class="signature"><strong>#delete</strong>(key) : V | Nil</a>
+        
+          <div class="summary"><p>Deletes the key-value pair and returns the value, otherwise returns <code>nil</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#delete%28key%2C%26%29-instance-method" class="signature"><strong>#delete</strong>(key, &)</a>
+        
+          <div class="summary"><p>Deletes the key-value pair and returns the value, else yields <em>key</em> with given block.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#dig%28key%3AK%2C%2Asubkeys%29-instance-method" class="signature"><strong>#dig</strong>(key : K, *subkeys)</a>
+        
+          <div class="summary"><p>Traverses the depth of a structure and returns the value, otherwise raises <code><a href="KeyError.html">KeyError</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#dig%3F%28key%3AK%2C%2Asubkeys%29-instance-method" class="signature"><strong>#dig?</strong>(key : K, *subkeys)</a>
+        
+          <div class="summary"><p>Traverses the depth of a structure and returns the value.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#dup%3AHash%28K%2CV%29-instance-method" class="signature"><strong>#dup</strong> : Hash(K, V)</a>
+        
+          <div class="summary"><p>Duplicates a <code><a href="Hash.html">Hash</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#each%28%26%3ATuple%28K%2CV%29-%3E%29%3ANil-instance-method" class="signature"><strong>#each</strong>(& : Tuple(K, V) -> ) : Nil</a>
+        
+          <div class="summary"><p>Calls the given block for each key-value pair and passes in the key and the value.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#each-instance-method" class="signature"><strong>#each</strong></a>
+        
+          <div class="summary"><p>Returns an iterator over the hash entries.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#each_key%28%26%3AK-%3E%29-instance-method" class="signature"><strong>#each_key</strong>(& : K -> )</a>
+        
+          <div class="summary"><p>Calls the given block for each key-value pair and passes in the key.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#each_key-instance-method" class="signature"><strong>#each_key</strong></a>
+        
+          <div class="summary"><p>Returns an iterator over the hash keys.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#each_value%28%26%3AV-%3E%29-instance-method" class="signature"><strong>#each_value</strong>(& : V -> )</a>
+        
+          <div class="summary"><p>Calls the given block for each key-value pair and passes in the value.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#each_value-instance-method" class="signature"><strong>#each_value</strong></a>
+        
+          <div class="summary"><p>Returns an iterator over the hash values.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#empty%3F%3ABool-instance-method" class="signature"><strong>#empty?</strong> : Bool</a>
+        
+          <div class="summary"><p>Returns <code>true</code> when hash contains no key-value pairs.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#fetch%28key%2Cdefault%29-instance-method" class="signature"><strong>#fetch</strong>(key, default)</a>
+        
+          <div class="summary"><p>Returns the value for the key given by <em>key</em>, or when not found the value given by <em>default</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#fetch%28key%2C%26%29-instance-method" class="signature"><strong>#fetch</strong>(key, &)</a>
+        
+          <div class="summary"><p>Returns the value for the key given by <em>key</em>, or when not found calls the given block with the key.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#first_key%3AK-instance-method" class="signature"><strong>#first_key</strong> : K</a>
+        
+          <div class="summary"><p>Returns the first key in the hash.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#first_key%3F%3AK%7CNil-instance-method" class="signature"><strong>#first_key?</strong> : K | Nil</a>
+        
+          <div class="summary"><p>Returns the first key if it exists, or returns <code>nil</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#first_value%3AV-instance-method" class="signature"><strong>#first_value</strong> : V</a>
+        
+          <div class="summary"><p>Returns the first value in the hash.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#first_value%3F%3AV%7CNil-instance-method" class="signature"><strong>#first_value?</strong> : V | Nil</a>
+        
+          <div class="summary"><p>Returns the first value if it exists, or returns <code>nil</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#has_key%3F%28key%29%3ABool-instance-method" class="signature"><strong>#has_key?</strong>(key) : Bool</a>
+        
+          <div class="summary"><p>Returns <code>true</code> when key given by <em>key</em> exists, otherwise <code>false</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#has_value%3F%28val%29%3ABool-instance-method" class="signature"><strong>#has_value?</strong>(val) : Bool</a>
+        
+          <div class="summary"><p>Returns <code>true</code> when value given by <em>value</em> exists, otherwise <code>false</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#hash%28hasher%29-instance-method" class="signature"><strong>#hash</strong>(hasher)</a>
+        
+          <div class="summary"><p>See <code><a href="Object.html#hash%28hasher%29-instance-method">Object#hash(hasher)</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#inspect%28io%3AIO%29%3ANil-instance-method" class="signature"><strong>#inspect</strong>(io : IO) : Nil</a>
+        
+          <div class="summary"><p>Appends a String representation of this object which includes its class name, its object address and the values of all instance variables.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#invert%3AHash%28V%2CK%29-instance-method" class="signature"><strong>#invert</strong> : Hash(V, K)</a>
+        
+          <div class="summary"><p>Inverts keys and values.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#key_for%28value%29%3AK-instance-method" class="signature"><strong>#key_for</strong>(value) : K</a>
+        
+          <div class="summary"><p>Returns a key with the given <em>value</em>, else raises <code><a href="KeyError.html">KeyError</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#key_for%28value%2C%26%29-instance-method" class="signature"><strong>#key_for</strong>(value, &)</a>
+        
+          <div class="summary"><p>Returns a key with the given <em>value</em>, else yields <em>value</em> with the given block.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#key_for%3F%28value%29%3AK%7CNil-instance-method" class="signature"><strong>#key_for?</strong>(value) : K | Nil</a>
+        
+          <div class="summary"><p>Returns a key with the given <em>value</em>, else <code>nil</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#keys%3AArray%28K%29-instance-method" class="signature"><strong>#keys</strong> : Array(K)</a>
+        
+          <div class="summary"><p>Returns a new <code><a href="Array.html">Array</a></code> with all the keys.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#last_key%3AK-instance-method" class="signature"><strong>#last_key</strong> : K</a>
+        
+          <div class="summary"><p>Returns the last key in the hash.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#last_key%3F%3AK%7CNil-instance-method" class="signature"><strong>#last_key?</strong> : K | Nil</a>
+        
+          <div class="summary"><p>Returns the last key if it exists, or returns <code>nil</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#last_value%3AV-instance-method" class="signature"><strong>#last_value</strong> : V</a>
+        
+          <div class="summary"><p>Returns the last value in the hash.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#last_value%3F%3AV%7CNil-instance-method" class="signature"><strong>#last_value?</strong> : V | Nil</a>
+        
+          <div class="summary"><p>Returns the last value if it exists, or returns <code>nil</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#merge%28other%3AHash%28L%2CW%29%29%3AHash%28K%7CL%2CV%7CW%29forallL%2CW-instance-method" class="signature"><strong>#merge</strong>(other : Hash(L, W)) : Hash(K | L, V | W) forall L, W</a>
+        
+          <div class="summary"><p>Returns a new <code><a href="Hash.html">Hash</a></code> with the keys and values of this hash and <em>other</em> combined.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#merge%28other%3AHash%28L%2CW%29%2C%26%3AL%2CV%2CW-%3EV%7CW%29%3AHash%28K%7CL%2CV%7CW%29forallL%2CW-instance-method" class="signature"><strong>#merge</strong>(other : Hash(L, W), & : L, V, W -> V | W) : Hash(K | L, V | W) forall L, W</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#merge%21%28other%3AHash%29%3Aself-instance-method" class="signature"><strong>#merge!</strong>(other : Hash) : <span class="k">self</span></a>
+        
+          <div class="summary"><p>Similar to <code><a href="Hash.html#merge%28other%3AHash%28L%2CW%29%29%3AHash%28K%7CL%2CV%7CW%29forallL%2CW-instance-method">#merge</a></code>, but the receiver is modified.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#merge%21%28other%3AHash%2C%26%29%3Aself-instance-method" class="signature"><strong>#merge!</strong>(other : Hash, &) : <span class="k">self</span></a>
+        
+          <div class="summary"><p>Adds the contents of <em>other</em> to this hash.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#pretty_print%28pp%29%3ANil-instance-method" class="signature"><strong>#pretty_print</strong>(pp) : Nil</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#proper_subset_of%3F%28other%3AHash%29%3ABool-instance-method" class="signature"><strong>#proper_subset_of?</strong>(other : Hash) : Bool</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if <code>self</code> is a subset of <em>other</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#proper_superset_of%3F%28other%3AHash%29%3ABool-instance-method" class="signature"><strong>#proper_superset_of?</strong>(other : Hash) : Bool</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if <em>other</em> is a subset of <code>self</code> or equals to <code>self</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#put%28key%3AK%2Cvalue%3AV%2C%26%29-instance-method" class="signature"><strong>#put</strong>(key : K, value : V, &)</a>
+        
+          <div class="summary"><p>Sets the value of <em>key</em> to the given <em>value</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#put_if_absent%28key%3AK%2Cvalue%3AV%29%3AV-instance-method" class="signature"><strong>#put_if_absent</strong>(key : K, value : V) : V</a>
+        
+          <div class="summary"><p>Sets the value of <em>key</em> to the given <em>value</em>, unless a value for <em>key</em> already exists.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#put_if_absent%28key%3AK%2C%26%3AK-%3EV%29%3AV-instance-method" class="signature"><strong>#put_if_absent</strong>(key : K, & : K -> V) : V</a>
+        
+          <div class="summary"><p>Sets the value of <em>key</em> to the value returned by the given block, unless a value for <em>key</em> already exists.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#rehash%3ANil-instance-method" class="signature"><strong>#rehash</strong> : Nil</a>
+        
+          <div class="summary"><p>Rebuilds the hash table based on the current keys.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#reject%28%26%3AK%2CV-%3E%29%3AHash%28K%2CV%29-instance-method" class="signature"><strong>#reject</strong>(& : K, V -> ) : Hash(K, V)</a>
+        
+          <div class="summary"><p>Returns a new hash consisting of entries for which the block is falsey.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#reject%28%2Akeys%29%3AHash%28K%2CV%29-instance-method" class="signature"><strong>#reject</strong>(*keys) : Hash(K, V)</a>
+        
+          <div class="summary"><p>Returns a new <code><a href="Hash.html">Hash</a></code> without the given keys.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#reject%21%28%26%3AK%2CV-%3E_%29-instance-method" class="signature"><strong>#reject!</strong>(& : K, V -> _)</a>
+        
+          <div class="summary"><p>Equivalent to <code><a href="Hash.html#reject%28%26%3AK%2CV-%3E%29%3AHash%28K%2CV%29-instance-method">Hash#reject</a></code>, but makes modification on the current object rather than returning a new one.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#reject%21%28keys%3AEnumerable%29%3Aself-instance-method" class="signature"><strong>#reject!</strong>(keys : Enumerable) : <span class="k">self</span></a>
+        
+          <div class="summary"><p>Removes a list of keys out of hash.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#reject%21%28%2Akeys%29%3Aself-instance-method" class="signature"><strong>#reject!</strong>(*keys) : <span class="k">self</span></a>
+        
+          <div class="summary"><p>Removes a list of keys out of hash.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#select%28%26%3AK%2CV-%3E%29%3AHash%28K%2CV%29-instance-method" class="signature"><strong>#select</strong>(& : K, V -> ) : Hash(K, V)</a>
+        
+          <div class="summary"><p>Returns a new hash consisting of entries for which the block is truthy.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#select%28keys%3AEnumerable%29%3AHash%28K%2CV%29-instance-method" class="signature"><strong>#select</strong>(keys : Enumerable) : Hash(K, V)</a>
+        
+          <div class="summary"><p>Returns a new <code><a href="Hash.html">Hash</a></code> with the given keys.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#select%28%2Akeys%29%3AHash%28K%2CV%29-instance-method" class="signature"><strong>#select</strong>(*keys) : Hash(K, V)</a>
+        
+          <div class="summary"><p>Returns a new <code><a href="Hash.html">Hash</a></code> with the given keys.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#select%21%28%26%3AK%2CV-%3E%29%3Aself-instance-method" class="signature"><strong>#select!</strong>(& : K, V -> ) : <span class="k">self</span></a>
+        
+          <div class="summary"><p>Equivalent to <code><a href="Hash.html#select%28%26%3AK%2CV-%3E%29%3AHash%28K%2CV%29-instance-method">Hash#select</a></code> but makes modification on the current object rather than returning a new one.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#select%21%28keys%3AIndexable%29%3Aself-instance-method" class="signature"><strong>#select!</strong>(keys : Indexable) : <span class="k">self</span></a>
+        
+          <div class="summary"><p>Removes every element except the given ones.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#select%21%28keys%3AEnumerable%29%3Aself-instance-method" class="signature"><strong>#select!</strong>(keys : Enumerable) : <span class="k">self</span></a>
+        
+          <div class="summary"><p>Removes every element except the given ones.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#select%21%28%2Akeys%29%3Aself-instance-method" class="signature"><strong>#select!</strong>(*keys) : <span class="k">self</span></a>
+        
+          <div class="summary"><p>Removes every element except the given ones.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#shift%3ATuple%28K%2CV%29-instance-method" class="signature"><strong>#shift</strong> : Tuple(K, V)</a>
+        
+          <div class="summary"><p>Deletes and returns the first key-value pair in the hash, or raises <code><a href="IndexError.html">IndexError</a></code> if the hash is empty.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#shift%28%26%29-instance-method" class="signature"><strong>#shift</strong>(&)</a>
+        
+          <div class="summary"><p>Deletes and returns the first key-value pair in the hash.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#shift%3F%3ATuple%28K%2CV%29%7CNil-instance-method" class="signature"><strong>#shift?</strong> : Tuple(K, V) | Nil</a>
+        
+          <div class="summary"><p>Same as <code><a href="Hash.html#shift%3ATuple%28K%2CV%29-instance-method">#shift</a></code>, but returns <code>nil</code> if the hash is empty.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#size%3AInt32-instance-method" class="signature"><strong>#size</strong> : Int32</a>
+        
+          <div class="summary"><p>Returns the number of elements in this Hash.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#subset_of%3F%28other%3AHash%29%3ABool-instance-method" class="signature"><strong>#subset_of?</strong>(other : Hash) : Bool</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if <code>self</code> is a subset of <em>other</em> or equals to <em>other</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#superset_of%3F%28other%3AHash%29%3ABool-instance-method" class="signature"><strong>#superset_of?</strong>(other : Hash) : Bool</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if <em>other</em> is a subset of <code>self</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_a%3AArray%28Tuple%28K%2CV%29%29-instance-method" class="signature"><strong>#to_a</strong> : Array(Tuple(K, V))</a>
+        
+          <div class="summary"><p>Returns an <code><a href="Array.html">Array</a></code> of <code><a href="Tuple.html">Tuple</a>(K, V)</code> with key and values belonging to this Hash.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_a%28%26block%3ATuple%28K%2CV%29-%3EU%29%3AArray%28U%29forallU-instance-method" class="signature"><strong>#to_a</strong>(&block : Tuple(K, V) -> U) : Array(U) forall U</a>
+        
+          <div class="summary"><p>Returns an <code><a href="Array.html">Array</a></code> with the results of running <em>block</em> against tuples with key and values belonging to this Hash.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_h%3Aself-instance-method" class="signature"><strong>#to_h</strong> : <span class="k">self</span></a>
+        
+          <div class="summary"><p>Returns <code>self</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_json%28json%3AJSON%3A%3ABuilder%29%3ANil-instance-method" class="signature"><strong>#to_json</strong>(json : JSON::Builder) : Nil</a>
+        
+          <div class="summary"><p>Serializes this Hash into JSON.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_s%28io%3AIO%29%3ANil-instance-method" class="signature"><strong>#to_s</strong>(io : IO) : Nil</a>
+        
+          <div class="summary"><p>Converts to a <code><a href="String.html">String</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_yaml%28yaml%3AYAML%3A%3ANodes%3A%3ABuilder%29%3ANil-instance-method" class="signature"><strong>#to_yaml</strong>(yaml : YAML::Nodes::Builder) : Nil</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#transform_keys%28%26%3AK%2CV-%3EK2%29%3AHash%28K2%2CV%29forallK2-instance-method" class="signature"><strong>#transform_keys</strong>(& : K, V -> K2) : Hash(K2, V) forall K2</a>
+        
+          <div class="summary"><p>Returns a new hash with all keys converted using the block operation.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#transform_values%28%26%3AV%2CK-%3EV2%29%3AHash%28K%2CV2%29forallV2-instance-method" class="signature"><strong>#transform_values</strong>(& : V, K -> V2) : Hash(K, V2) forall V2</a>
+        
+          <div class="summary"><p>Returns a new hash with the results of running block once for every value.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#transform_values%21%28%26%3AV%2CK-%3EV%29%3Aself-instance-method" class="signature"><strong>#transform_values!</strong>(& : V, K -> V) : <span class="k">self</span></a>
+        
+          <div class="summary"><p>Destructively transforms all values using a block.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#update%28key%3AK%2C%26%3AV-%3EV%29%3AV-instance-method" class="signature"><strong>#update</strong>(key : K, & : V -> V) : V</a>
+        
+          <div class="summary"><p>Updates the current value of <em>key</em> with the value returned by the given block (the current value is used as input for the block).</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#values%3AArray%28V%29-instance-method" class="signature"><strong>#values</strong> : Array(V)</a>
+        
+          <div class="summary"><p>Returns only the values as an <code><a href="Array.html">Array</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#values_at%28%2Akeys%3AK%29-instance-method" class="signature"><strong>#values_at</strong>(*keys : K)</a>
+        
+          <div class="summary"><p>Returns a tuple populated with the values of the given <em>keys</em>, with the same order.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+
+  <div class="methods-inherited">
+    
+      
+
+  <h3>Instance methods inherited from module <code><a href="Iterable.html">Iterable({K, V})</a></code></h3>
+  
+  
+    <a href="Iterable.html#chunk%28reuse%3Dfalse%2C%26block%3A%7BK%2CV%7D-%3EU%29forallU-instance-method" class="tooltip">
+      <span>chunk(reuse = <span class="n">false</span>, &block : {K, V} -> U) forall U</span>
+    chunk</a>, 
+    
+  
+    <a href="Iterable.html#chunk_while%28reuse%3ABool%7CArray%28%7BK%2CV%7D%29%3Dfalse%2C%26block%3A%7BK%2CV%7D%2C%7BK%2CV%7D-%3EB%29forallB-instance-method" class="tooltip">
+      <span>chunk_while(reuse : Bool | Array({K, V}) = <span class="n">false</span>, &block : {K, V}, {K, V} -> B) forall B</span>
+    chunk_while</a>, 
+    
+  
+    <a href="Iterable.html#cycle%28n%29-instance-method" class="tooltip">
+      <span>cycle(n)<br/>cycle</span>
+    cycle</a>, 
+    
+  
+    <a href="Iterable.html#each-instance-method" class="tooltip">
+      <span>each</span>
+    each</a>, 
+    
+  
+    <a href="Iterable.html#each_cons%28count%3AInt%2Creuse%3Dfalse%29-instance-method" class="tooltip">
+      <span>each_cons(count : Int, reuse = <span class="n">false</span>)</span>
+    each_cons</a>, 
+    
+  
+    <a href="Iterable.html#each_cons_pair-instance-method" class="tooltip">
+      <span>each_cons_pair</span>
+    each_cons_pair</a>, 
+    
+  
+    <a href="Iterable.html#each_slice%28count%3AInt%2Creuse%3Dfalse%29-instance-method" class="tooltip">
+      <span>each_slice(count : Int, reuse = <span class="n">false</span>)</span>
+    each_slice</a>, 
+    
+  
+    <a href="Iterable.html#each_step%28n%3AInt%29-instance-method" class="tooltip">
+      <span>each_step(n : Int)<br/>each_step(n : Int, *, offset : Int)</span>
+    each_step</a>, 
+    
+  
+    <a href="Iterable.html#each_with_index%28offset%3D0%29-instance-method" class="tooltip">
+      <span>each_with_index(offset = <span class="n">0</span>)</span>
+    each_with_index</a>, 
+    
+  
+    <a href="Iterable.html#each_with_object%28obj%29-instance-method" class="tooltip">
+      <span>each_with_object(obj)</span>
+    each_with_object</a>, 
+    
+  
+    <a href="Iterable.html#slice_after%28reuse%3ABool%7CArray%28%7BK%2CV%7D%29%3Dfalse%2C%26block%3A%7BK%2CV%7D-%3EB%29forallB-instance-method" class="tooltip">
+      <span>slice_after(reuse : Bool | Array({K, V}) = <span class="n">false</span>, &block : {K, V} -> B) forall B<br/>slice_after(pattern, reuse : Bool | Array({K, V}) = <span class="n">false</span>)</span>
+    slice_after</a>, 
+    
+  
+    <a href="Iterable.html#slice_before%28reuse%3ABool%7CArray%28%7BK%2CV%7D%29%3Dfalse%2C%26block%3A%7BK%2CV%7D-%3EB%29forallB-instance-method" class="tooltip">
+      <span>slice_before(reuse : Bool | Array({K, V}) = <span class="n">false</span>, &block : {K, V} -> B) forall B<br/>slice_before(pattern, reuse : Bool | Array({K, V}) = <span class="n">false</span>)</span>
+    slice_before</a>, 
+    
+  
+    <a href="Iterable.html#slice_when%28reuse%3ABool%7CArray%28%7BK%2CV%7D%29%3Dfalse%2C%26block%3A%7BK%2CV%7D%2C%7BK%2CV%7D-%3EB%29forallB-instance-method" class="tooltip">
+      <span>slice_when(reuse : Bool | Array({K, V}) = <span class="n">false</span>, &block : {K, V}, {K, V} -> B) forall B</span>
+    slice_when</a>
+    
+  
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+      
+
+  <h3>Instance methods inherited from module <code><a href="Enumerable.html">Enumerable({K, V})</a></code></h3>
+  
+  
+    <a href="Enumerable.html#accumulate%28initial%3AU%29%3AArray%28U%29forallU-instance-method" class="tooltip">
+      <span>accumulate(initial : U) : Array(U) forall U<br/>accumulate : Array({K, V})<br/>accumulate(initial : U, &block : U, {K, V} -> U) : Array(U) forall U<br/>accumulate(&block : {K, V}, {K, V} -> {K, V}) : Array({K, V})</span>
+    accumulate</a>, 
+    
+  
+    <a href="Enumerable.html#all%3F%28%26%3A%7BK%2CV%7D-%3E%29%3ABool-instance-method" class="tooltip">
+      <span>all?(& : {K, V} -> ) : Bool<br/>all?(pattern) : Bool<br/>all? : Bool</span>
+    all?</a>, 
+    
+  
+    <a href="Enumerable.html#any%3F%28%26%3A%7BK%2CV%7D-%3E%29%3ABool-instance-method" class="tooltip">
+      <span>any?(& : {K, V} -> ) : Bool<br/>any?(pattern) : Bool<br/>any? : Bool</span>
+    any?</a>, 
+    
+  
+    <a href="Enumerable.html#chunks%28%26block%3A%7BK%2CV%7D-%3EU%29forallU-instance-method" class="tooltip">
+      <span>chunks(&block : {K, V} -> U) forall U</span>
+    chunks</a>, 
+    
+  
+    <a href="Enumerable.html#compact_map%28%26%3A%7BK%2CV%7D-%3E_%29-instance-method" class="tooltip">
+      <span>compact_map(& : {K, V} -> _)</span>
+    compact_map</a>, 
+    
+  
+    <a href="Enumerable.html#count%28%26%3A%7BK%2CV%7D-%3E%29%3AInt32-instance-method" class="tooltip">
+      <span>count(& : {K, V} -> ) : Int32<br/>count(item) : Int32</span>
+    count</a>, 
+    
+  
+    <a href="Enumerable.html#cycle%28n%2C%26%3A%7BK%2CV%7D-%3E%29%3ANil-instance-method" class="tooltip">
+      <span>cycle(n, & : {K, V} -> ) : Nil<br/>cycle(& : {K, V} -> ) : Nil</span>
+    cycle</a>, 
+    
+  
+    <a href="Enumerable.html#each%28%26%3A%7BK%2CV%7D-%3E%29-instance-method" class="tooltip">
+      <span>each(& : {K, V} -> )</span>
+    each</a>, 
+    
+  
+    <a href="Enumerable.html#each_cons%28count%3AInt%2Creuse%3Dfalse%2C%26%29-instance-method" class="tooltip">
+      <span>each_cons(count : Int, reuse = <span class="n">false</span>, &)</span>
+    each_cons</a>, 
+    
+  
+    <a href="Enumerable.html#each_cons_pair%28%26%3A%7BK%2CV%7D%2C%7BK%2CV%7D-%3E%29%3ANil-instance-method" class="tooltip">
+      <span>each_cons_pair(& : {K, V}, {K, V} -> ) : Nil</span>
+    each_cons_pair</a>, 
+    
+  
+    <a href="Enumerable.html#each_slice%28count%3AInt%2Creuse%3Dfalse%2C%26%29-instance-method" class="tooltip">
+      <span>each_slice(count : Int, reuse = <span class="n">false</span>, &)</span>
+    each_slice</a>, 
+    
+  
+    <a href="Enumerable.html#each_step%28n%3AInt%2C%2A%2Coffset%3AInt%3D0%2C%26%3A%7BK%2CV%7D-%3E%29%3ANil-instance-method" class="tooltip">
+      <span>each_step(n : Int, *, offset : Int = <span class="n">0</span>, & : {K, V} -> ) : Nil</span>
+    each_step</a>, 
+    
+  
+    <a href="Enumerable.html#each_with_index%28offset%3D0%2C%26%29-instance-method" class="tooltip">
+      <span>each_with_index(offset = <span class="n">0</span>, &)</span>
+    each_with_index</a>, 
+    
+  
+    <a href="Enumerable.html#each_with_object%28obj%3AU%2C%26%3A%7BK%2CV%7D%2CU-%3E%29%3AUforallU-instance-method" class="tooltip">
+      <span>each_with_object(obj : U, & : {K, V}, U -> ) : U forall U</span>
+    each_with_object</a>, 
+    
+  
+    <a href="Enumerable.html#empty%3F%3ABool-instance-method" class="tooltip">
+      <span>empty? : Bool</span>
+    empty?</a>, 
+    
+  
+    <a href="Enumerable.html#find%28if_none%3Dnil%2C%26%3A%7BK%2CV%7D-%3E%29-instance-method" class="tooltip">
+      <span>find(if_none = <span class="n">nil</span>, & : {K, V} -> )</span>
+    find</a>, 
+    
+  
+    <a href="Enumerable.html#find%21%28%26%3A%7BK%2CV%7D-%3E%29%3A%7BK%2CV%7D-instance-method" class="tooltip">
+      <span>find!(& : {K, V} -> ) : {K, V}</span>
+    find!</a>, 
+    
+  
+    <a href="Enumerable.html#find_value%28if_none%3Dnil%2C%26%3A%7BK%2CV%7D-%3E%29-instance-method" class="tooltip">
+      <span>find_value(if_none = <span class="n">nil</span>, & : {K, V} -> )</span>
+    find_value</a>, 
+    
+  
+    <a href="Enumerable.html#first%28%26%29-instance-method" class="tooltip">
+      <span>first(&)<br/>first(count : Int) : Array({K, V})<br/>first : {K, V}</span>
+    first</a>, 
+    
+  
+    <a href="Enumerable.html#first%3F%3A%7BK%2CV%7D%7CNil-instance-method" class="tooltip">
+      <span>first? : {K, V} | Nil</span>
+    first?</a>, 
+    
+  
+    <a href="Enumerable.html#flat_map%28%26%3A%7BK%2CV%7D-%3E_%29-instance-method" class="tooltip">
+      <span>flat_map(& : {K, V} -> _)</span>
+    flat_map</a>, 
+    
+  
+    <a href="Enumerable.html#group_by%28%26%3A%7BK%2CV%7D-%3EU%29forallU-instance-method" class="tooltip">
+      <span>group_by(& : {K, V} -> U) forall U</span>
+    group_by</a>, 
+    
+  
+    <a href="Enumerable.html#in_groups_of%28size%3AInt%2Cfilled_up_with%3AU%3Dnil%29forallU-instance-method" class="tooltip">
+      <span>in_groups_of(size : Int, filled_up_with : U = <span class="n">nil</span>) forall U<br/>in_groups_of(size : Int, filled_up_with : U = <span class="n">nil</span>, reuse = <span class="n">false</span>, &) forall U</span>
+    in_groups_of</a>, 
+    
+  
+    <a href="Enumerable.html#in_slices_of%28size%3AInt%29%3AArray%28Array%28%7BK%2CV%7D%29%29-instance-method" class="tooltip">
+      <span>in_slices_of(size : Int) : Array(Array({K, V}))</span>
+    in_slices_of</a>, 
+    
+  
+    <a href="Enumerable.html#includes%3F%28obj%29%3ABool-instance-method" class="tooltip">
+      <span>includes?(obj) : Bool</span>
+    includes?</a>, 
+    
+  
+    <a href="Enumerable.html#index%28%26%3A%7BK%2CV%7D-%3E%29%3AInt32%7CNil-instance-method" class="tooltip">
+      <span>index(& : {K, V} -> ) : Int32 | Nil<br/>index(obj) : Int32 | Nil</span>
+    index</a>, 
+    
+  
+    <a href="Enumerable.html#index%21%28%26%3A%7BK%2CV%7D-%3E%29%3AInt32-instance-method" class="tooltip">
+      <span>index!(& : {K, V} -> ) : Int32<br/>index!(obj) : Int32</span>
+    index!</a>, 
+    
+  
+    <a href="Enumerable.html#index_by%28%26%3A%7BK%2CV%7D-%3EU%29%3AHash%28U%2C%7BK%2CV%7D%29forallU-instance-method" class="tooltip">
+      <span>index_by(& : {K, V} -> U) : Hash(U, {K, V}) forall U</span>
+    index_by</a>, 
+    
+  
+    <a href="Enumerable.html#join%28io%3AIO%2Cseparator%3D%22%22%29%3ANil-instance-method" class="tooltip">
+      <span>join(io : IO, separator = <span class="s">&quot;&quot;</span>) : Nil<br/>join(separator, io : IO) : Nil<br/>join(separator = <span class="s">&quot;&quot;</span>) : String<br/>join(io : IO, separator = <span class="s">&quot;&quot;</span>, & : {K, V}, IO -> )<br/>join(separator, io : IO, &)<br/>join(separator = <span class="s">&quot;&quot;</span>, & : {K, V} -> )</span>
+    join</a>, 
+    
+  
+    <a href="Enumerable.html#map%28%26%3A%7BK%2CV%7D-%3EU%29%3AArray%28U%29forallU-instance-method" class="tooltip">
+      <span>map(& : {K, V} -> U) : Array(U) forall U</span>
+    map</a>, 
+    
+  
+    <a href="Enumerable.html#map_with_index%28offset%3D0%2C%26%3A%7BK%2CV%7D%2CInt32-%3EU%29%3AArray%28U%29forallU-instance-method" class="tooltip">
+      <span>map_with_index(offset = <span class="n">0</span>, & : {K, V}, Int32 -> U) : Array(U) forall U</span>
+    map_with_index</a>, 
+    
+  
+    <a href="Enumerable.html#max%28count%3AInt%29%3AArray%28%7BK%2CV%7D%29-instance-method" class="tooltip">
+      <span>max(count : Int) : Array({K, V})<br/>max : {K, V}</span>
+    max</a>, 
+    
+  
+    <a href="Enumerable.html#max%3F%3A%7BK%2CV%7D%7CNil-instance-method" class="tooltip">
+      <span>max? : {K, V} | Nil</span>
+    max?</a>, 
+    
+  
+    <a href="Enumerable.html#max_by%28%26%3A%7BK%2CV%7D-%3EU%29%3A%7BK%2CV%7DforallU-instance-method" class="tooltip">
+      <span>max_by(& : {K, V} -> U) : {K, V} forall U</span>
+    max_by</a>, 
+    
+  
+    <a href="Enumerable.html#max_by%3F%28%26%3A%7BK%2CV%7D-%3EU%29%3A%7BK%2CV%7D%7CNilforallU-instance-method" class="tooltip">
+      <span>max_by?(& : {K, V} -> U) : {K, V} | Nil forall U</span>
+    max_by?</a>, 
+    
+  
+    <a href="Enumerable.html#max_of%28%26%3A%7BK%2CV%7D-%3EU%29%3AUforallU-instance-method" class="tooltip">
+      <span>max_of(& : {K, V} -> U) : U forall U</span>
+    max_of</a>, 
+    
+  
+    <a href="Enumerable.html#max_of%3F%28%26%3A%7BK%2CV%7D-%3EU%29%3AU%7CNilforallU-instance-method" class="tooltip">
+      <span>max_of?(& : {K, V} -> U) : U | Nil forall U</span>
+    max_of?</a>, 
+    
+  
+    <a href="Enumerable.html#min%28count%3AInt%29%3AArray%28%7BK%2CV%7D%29-instance-method" class="tooltip">
+      <span>min(count : Int) : Array({K, V})<br/>min : {K, V}</span>
+    min</a>, 
+    
+  
+    <a href="Enumerable.html#min%3F%3A%7BK%2CV%7D%7CNil-instance-method" class="tooltip">
+      <span>min? : {K, V} | Nil</span>
+    min?</a>, 
+    
+  
+    <a href="Enumerable.html#min_by%28%26%3A%7BK%2CV%7D-%3EU%29%3A%7BK%2CV%7DforallU-instance-method" class="tooltip">
+      <span>min_by(& : {K, V} -> U) : {K, V} forall U</span>
+    min_by</a>, 
+    
+  
+    <a href="Enumerable.html#min_by%3F%28%26%3A%7BK%2CV%7D-%3EU%29%3A%7BK%2CV%7D%7CNilforallU-instance-method" class="tooltip">
+      <span>min_by?(& : {K, V} -> U) : {K, V} | Nil forall U</span>
+    min_by?</a>, 
+    
+  
+    <a href="Enumerable.html#min_of%28%26%3A%7BK%2CV%7D-%3EU%29%3AUforallU-instance-method" class="tooltip">
+      <span>min_of(& : {K, V} -> U) : U forall U</span>
+    min_of</a>, 
+    
+  
+    <a href="Enumerable.html#min_of%3F%28%26%3A%7BK%2CV%7D-%3EU%29%3AU%7CNilforallU-instance-method" class="tooltip">
+      <span>min_of?(& : {K, V} -> U) : U | Nil forall U</span>
+    min_of?</a>, 
+    
+  
+    <a href="Enumerable.html#minmax%3ATuple%28%7BK%2CV%7D%2C%7BK%2CV%7D%29-instance-method" class="tooltip">
+      <span>minmax : Tuple({K, V}, {K, V})</span>
+    minmax</a>, 
+    
+  
+    <a href="Enumerable.html#minmax%3F%3ATuple%28%7BK%2CV%7D%7CNil%2C%7BK%2CV%7D%7CNil%29-instance-method" class="tooltip">
+      <span>minmax? : Tuple({K, V} | Nil, {K, V} | Nil)</span>
+    minmax?</a>, 
+    
+  
+    <a href="Enumerable.html#minmax_by%28%26%3A%7BK%2CV%7D-%3EU%29%3ATuple%28%7BK%2CV%7D%2C%7BK%2CV%7D%29forallU-instance-method" class="tooltip">
+      <span>minmax_by(& : {K, V} -> U) : Tuple({K, V}, {K, V}) forall U</span>
+    minmax_by</a>, 
+    
+  
+    <a href="Enumerable.html#minmax_by%3F%28%26%3A%7BK%2CV%7D-%3EU%29%3ATuple%28%7BK%2CV%7D%2C%7BK%2CV%7D%29%7CTuple%28Nil%2CNil%29forallU-instance-method" class="tooltip">
+      <span>minmax_by?(& : {K, V} -> U) : Tuple({K, V}, {K, V}) | Tuple(Nil, Nil) forall U</span>
+    minmax_by?</a>, 
+    
+  
+    <a href="Enumerable.html#minmax_of%28%26%3A%7BK%2CV%7D-%3EU%29%3ATuple%28U%2CU%29forallU-instance-method" class="tooltip">
+      <span>minmax_of(& : {K, V} -> U) : Tuple(U, U) forall U</span>
+    minmax_of</a>, 
+    
+  
+    <a href="Enumerable.html#minmax_of%3F%28%26%3A%7BK%2CV%7D-%3EU%29%3ATuple%28U%2CU%29%7CTuple%28Nil%2CNil%29forallU-instance-method" class="tooltip">
+      <span>minmax_of?(& : {K, V} -> U) : Tuple(U, U) | Tuple(Nil, Nil) forall U</span>
+    minmax_of?</a>, 
+    
+  
+    <a href="Enumerable.html#none%3F%28%26%3A%7BK%2CV%7D-%3E%29%3ABool-instance-method" class="tooltip">
+      <span>none?(& : {K, V} -> ) : Bool<br/>none?(pattern) : Bool<br/>none? : Bool</span>
+    none?</a>, 
+    
+  
+    <a href="Enumerable.html#one%3F%28%26%3A%7BK%2CV%7D-%3E%29%3ABool-instance-method" class="tooltip">
+      <span>one?(& : {K, V} -> ) : Bool<br/>one?(pattern) : Bool<br/>one? : Bool</span>
+    one?</a>, 
+    
+  
+    <a href="Enumerable.html#partition%28%26%3A%7BK%2CV%7D-%3E%29%3ATuple%28Array%28%7BK%2CV%7D%29%2CArray%28%7BK%2CV%7D%29%29-instance-method" class="tooltip">
+      <span>partition(& : {K, V} -> ) : Tuple(Array({K, V}), Array({K, V}))<br/>partition(type : <span class="t">U</span>.<span class="k">class</span>) forall U</span>
+    partition</a>, 
+    
+  
+    <a href="Enumerable.html#present%3F%3ABool-instance-method" class="tooltip">
+      <span>present? : Bool</span>
+    present?</a>, 
+    
+  
+    <a href="Enumerable.html#product%28initial%3ANumber%29-instance-method" class="tooltip">
+      <span>product(initial : Number)<br/>product<br/>product(initial : Number, & : {K, V} -> )<br/>product(& : {K, V} -> _)</span>
+    product</a>, 
+    
+  
+    <a href="Enumerable.html#reduce%28memo%2C%26%29-instance-method" class="tooltip">
+      <span>reduce(memo, &)<br/>reduce(&)</span>
+    reduce</a>, 
+    
+  
+    <a href="Enumerable.html#reduce%3F%28%26%29-instance-method" class="tooltip">
+      <span>reduce?(&)</span>
+    reduce?</a>, 
+    
+  
+    <a href="Enumerable.html#reject%28%26%3A%7BK%2CV%7D-%3E%29-instance-method" class="tooltip">
+      <span>reject(& : {K, V} -> )<br/>reject(type : <span class="t">U</span>.<span class="k">class</span>) forall U<br/>reject(pattern) : Array({K, V})</span>
+    reject</a>, 
+    
+  
+    <a href="Enumerable.html#sample%28n%3AInt%2Crandom%3ARandom%3DRandom%3A%3ADEFAULT%29%3AArray%28%7BK%2CV%7D%29-instance-method" class="tooltip">
+      <span>sample(n : Int, random : Random = <span class="t">Random</span><span class="t">::</span><span class="t">DEFAULT</span>) : Array({K, V})<br/>sample(random : Random = <span class="t">Random</span><span class="t">::</span><span class="t">DEFAULT</span>) : {K, V}</span>
+    sample</a>, 
+    
+  
+    <a href="Enumerable.html#select%28%26%3A%7BK%2CV%7D-%3E%29-instance-method" class="tooltip">
+      <span>select(& : {K, V} -> )<br/>select(type : <span class="t">U</span>.<span class="k">class</span>) : Array(U) forall U<br/>select(pattern) : Array({K, V})</span>
+    select</a>, 
+    
+  
+    <a href="Enumerable.html#size%3AInt32-instance-method" class="tooltip">
+      <span>size : Int32</span>
+    size</a>, 
+    
+  
+    <a href="Enumerable.html#skip%28count%3AInt%29-instance-method" class="tooltip">
+      <span>skip(count : Int)</span>
+    skip</a>, 
+    
+  
+    <a href="Enumerable.html#skip_while%28%26%3A%7BK%2CV%7D-%3E%29%3AArray%28%7BK%2CV%7D%29-instance-method" class="tooltip">
+      <span>skip_while(& : {K, V} -> ) : Array({K, V})</span>
+    skip_while</a>, 
+    
+  
+    <a href="Enumerable.html#sum%28initial%29-instance-method" class="tooltip">
+      <span>sum(initial)<br/>sum<br/>sum(initial, & : {K, V} -> )<br/>sum(& : {K, V} -> )</span>
+    sum</a>, 
+    
+  
+    <a href="Enumerable.html#take_while%28%26%3A%7BK%2CV%7D-%3E%29%3AArray%28%7BK%2CV%7D%29-instance-method" class="tooltip">
+      <span>take_while(& : {K, V} -> ) : Array({K, V})</span>
+    take_while</a>, 
+    
+  
+    <a href="Enumerable.html#tally%28hash%29-instance-method" class="tooltip">
+      <span>tally(hash)<br/>tally : Hash({K, V}, Int32)</span>
+    tally</a>, 
+    
+  
+    <a href="Enumerable.html#tally_by%28hash%2C%26%29-instance-method" class="tooltip">
+      <span>tally_by(hash, &)<br/>tally_by(&block : {K, V} -> U) : Hash(U, Int32) forall U</span>
+    tally_by</a>, 
+    
+  
+    <a href="Enumerable.html#to_a%3AArray%28%7BK%2CV%7D%29-instance-method" class="tooltip">
+      <span>to_a : Array({K, V})<br/>to_a(& : {K, V} -> U) : Array(U) forall U</span>
+    to_a</a>, 
+    
+  
+    <a href="Enumerable.html#to_h-instance-method" class="tooltip">
+      <span>to_h<br/>to_h(& : {K, V} -> Tuple(K, V)) forall K, V</span>
+    to_h</a>, 
+    
+  
+    <a href="Enumerable.html#to_set%3ASet%28%7BK%2CV%7D%29-instance-method" class="tooltip">
+      <span>to_set : Set({K, V})<br/>to_set(&block : {K, V} -> U) : Set(U) forall U</span>
+    to_set</a>, 
+    
+  
+    <a href="Enumerable.html#zip%28%2Aothers%3AIndexable%7CIterable%7CIterator%2C%26%29-instance-method" class="tooltip">
+      <span>zip(*others : Indexable | Iterable | Iterator, &)<br/>zip(*others : Indexable | Iterable | Iterator)</span>
+    zip</a>, 
+    
+  
+    <a href="Enumerable.html#zip%3F%28%2Aothers%3AIndexable%7CIterable%7CIterator%2C%26%29-instance-method" class="tooltip">
+      <span>zip?(*others : Indexable | Iterable | Iterator, &)<br/>zip?(*others : Indexable | Iterable | Iterator)</span>
+    zip?</a>
+    
+  
+
+
+      
+
+
+      
+
+  <h3>Class methods inherited from module <code><a href="Enumerable.html">Enumerable({K, V})</a></code></h3>
+  
+  
+    <a href="Enumerable.html#element_type%28x%29-class-method" class="tooltip">
+      <span>element_type(x)</span>
+    element_type</a>
+    
+  
+
+
+      
+
+
+    
+      
+
+  <h3>Instance methods inherited from class <code><a href="Reference.html">Reference</a></code></h3>
+  
+  
+    <a href="Reference.html#%3D%3D%28other%3Aself%29-instance-method" class="tooltip">
+      <span>==(other : <span class="k">self</span>)<br/>==(other : JSON::Any)<br/>==(other : YAML::Any)<br/>==(other)</span>
+    ==</a>, 
+    
+  
+    <a href="Reference.html#dup-instance-method" class="tooltip">
+      <span>dup</span>
+    dup</a>, 
+    
+  
+    <a href="Reference.html#hash%28hasher%29-instance-method" class="tooltip">
+      <span>hash(hasher)</span>
+    hash</a>, 
+    
+  
+    <a href="Reference.html#initialize-instance-method" class="tooltip">
+      <span>initialize</span>
+    initialize</a>, 
+    
+  
+    <a href="Reference.html#inspect%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>inspect(io : IO) : Nil</span>
+    inspect</a>, 
+    
+  
+    <a href="Reference.html#object_id%3AUInt64-instance-method" class="tooltip">
+      <span>object_id : UInt64</span>
+    object_id</a>, 
+    
+  
+    <a href="Reference.html#pretty_print%28pp%29%3ANil-instance-method" class="tooltip">
+      <span>pretty_print(pp) : Nil</span>
+    pretty_print</a>, 
+    
+  
+    <a href="Reference.html#same%3F%28other%3AReference%29%3ABool-instance-method" class="tooltip">
+      <span>same?(other : Reference) : Bool<br/>same?(other : Nil)</span>
+    same?</a>, 
+    
+  
+    <a href="Reference.html#to_s%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_s(io : IO) : Nil</span>
+    to_s</a>
+    
+  
+
+
+      
+
+  <h3>Constructor methods inherited from class <code><a href="Reference.html">Reference</a></code></h3>
+  
+  
+    <a href="Reference.html#new-class-method" class="tooltip">
+      <span>new</span>
+    new</a>, 
+    
+  
+    <a href="Reference.html#unsafe_construct%28address%3APointer%2C%2Aargs%2C%2A%2Aopts%29%3Aself-class-method" class="tooltip">
+      <span>unsafe_construct(address : Pointer, *args, **opts) : <span class="k">self</span></span>
+    unsafe_construct</a>
+    
+  
+
+
+      
+
+  <h3>Class methods inherited from class <code><a href="Reference.html">Reference</a></code></h3>
+  
+  
+    <a href="Reference.html#pre_initialize%28address%3APointer%29-class-method" class="tooltip">
+      <span>pre_initialize(address : Pointer)</span>
+    pre_initialize</a>
+    
+  
+
+
+      
+
+
+    
+      
+
+  <h3>Instance methods inherited from class <code><a href="Object.html">Object</a></code></h3>
+  
+  
+    <a href="Object.html#%21%3ABool-instance-method" class="tooltip">
+      <span>! : Bool</span>
+    !</a>, 
+    
+  
+    <a href="Object.html#%21%3D%28other%29-instance-method" class="tooltip">
+      <span>!=(other)</span>
+    !=</a>, 
+    
+  
+    <a href="Object.html#%21~%28other%29-instance-method" class="tooltip">
+      <span>!~(other)</span>
+    !~</a>, 
+    
+  
+    <a href="Object.html#%3D%3D%28other%29-instance-method" class="tooltip">
+      <span>==(other)</span>
+    ==</a>, 
+    
+  
+    <a href="Object.html#%3D%3D%3D%28other%3AJSON%3A%3AAny%29-instance-method" class="tooltip">
+      <span>===(other : JSON::Any)<br/>===(other : YAML::Any)<br/>===(other)</span>
+    ===</a>, 
+    
+  
+    <a href="Object.html#%3D~%28other%29-instance-method" class="tooltip">
+      <span>=~(other)</span>
+    =~</a>, 
+    
+  
+    <a href="Object.html#as%28type%3AClass%29-instance-method" class="tooltip">
+      <span>as(type : Class)</span>
+    as</a>, 
+    
+  
+    <a href="Object.html#as%3F%28type%3AClass%29-instance-method" class="tooltip">
+      <span>as?(type : Class)</span>
+    as?</a>, 
+    
+  
+    <a href="Object.html#class-instance-method" class="tooltip">
+      <span>class</span>
+    class</a>, 
+    
+  
+    <a href="Object.html#dup-instance-method" class="tooltip">
+      <span>dup</span>
+    dup</a>, 
+    
+  
+    <a href="Object.html#hash%28hasher%29-instance-method" class="tooltip">
+      <span>hash(hasher)<br/>hash</span>
+    hash</a>, 
+    
+  
+    <a href="Object.html#in%3F%28collection%3AObject%29%3ABool-instance-method" class="tooltip">
+      <span>in?(collection : Object) : Bool<br/>in?(*values : Object) : Bool</span>
+    in?</a>, 
+    
+  
+    <a href="Object.html#inspect%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>inspect(io : IO) : Nil<br/>inspect : String</span>
+    inspect</a>, 
+    
+  
+    <a href="Object.html#is_a%3F%28type%3AClass%29%3ABool-instance-method" class="tooltip">
+      <span>is_a?(type : Class) : Bool</span>
+    is_a?</a>, 
+    
+  
+    <a href="Object.html#itself-instance-method" class="tooltip">
+      <span>itself</span>
+    itself</a>, 
+    
+  
+    <a href="Object.html#nil%3F%3ABool-instance-method" class="tooltip">
+      <span>nil? : Bool</span>
+    nil?</a>, 
+    
+  
+    <a href="Object.html#not_nil%21%28message%29-instance-method" class="tooltip">
+      <span>not_nil!(message)<br/>not_nil!</span>
+    not_nil!</a>, 
+    
+  
+    <a href="Object.html#pretty_inspect%28width%3D79%2Cnewline%3D%22%5Cn%22%2Cindent%3D0%29%3AString-instance-method" class="tooltip">
+      <span>pretty_inspect(width = <span class="n">79</span>, newline = <span class="s">&quot;\n&quot;</span>, indent = <span class="n">0</span>) : String</span>
+    pretty_inspect</a>, 
+    
+  
+    <a href="Object.html#pretty_print%28pp%3APrettyPrint%29%3ANil-instance-method" class="tooltip">
+      <span>pretty_print(pp : PrettyPrint) : Nil</span>
+    pretty_print</a>, 
+    
+  
+    <a href="Object.html#responds_to%3F%28name%3ASymbol%29%3ABool-instance-method" class="tooltip">
+      <span>responds_to?(name : Symbol) : Bool</span>
+    responds_to?</a>, 
+    
+  
+    <a href="Object.html#tap%28%26%29-instance-method" class="tooltip">
+      <span>tap(&)</span>
+    tap</a>, 
+    
+  
+    <a href="Object.html#to_json%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_json(io : IO) : Nil<br/>to_json : String</span>
+    to_json</a>, 
+    
+  
+    <a href="Object.html#to_pretty_json%28indent%3AString%3D%22%22%29%3AString-instance-method" class="tooltip">
+      <span>to_pretty_json(indent : String = <span class="s">&quot;  &quot;</span>) : String<br/>to_pretty_json(io : IO, indent : String = <span class="s">&quot;  &quot;</span>) : Nil</span>
+    to_pretty_json</a>, 
+    
+  
+    <a href="Object.html#to_s%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_s(io : IO) : Nil<br/>to_s : String</span>
+    to_s</a>, 
+    
+  
+    <a href="Object.html#to_yaml%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_yaml(io : IO) : Nil<br/>to_yaml : String</span>
+    to_yaml</a>, 
+    
+  
+    <a href="Object.html#try%28%26%29-instance-method" class="tooltip">
+      <span>try(&)</span>
+    try</a>, 
+    
+  
+    <a href="Object.html#unsafe_as%28type%3AT.class%29forallT-instance-method" class="tooltip">
+      <span>unsafe_as(type : <span class="t">T</span>.<span class="k">class</span>) forall T</span>
+    unsafe_as</a>
+    
+  
+
+
+      
+
+
+      
+
+  <h3>Class methods inherited from class <code><a href="Object.html">Object</a></code></h3>
+  
+  
+    <a href="Object.html#from_json%28string_or_io%2Croot%3AString%29-class-method" class="tooltip">
+      <span>from_json(string_or_io, root : String)<br/>from_json(string_or_io)</span>
+    from_json</a>, 
+    
+  
+    <a href="Object.html#from_yaml%28string_or_io%3AString%7CIO%29-class-method" class="tooltip">
+      <span>from_yaml(string_or_io : String | IO)</span>
+    from_yaml</a>
+    
+  
+
+
+      
+
+  <h3>Macros inherited from class <code><a href="Object.html">Object</a></code></h3>
+  
+  
+    <a href="Object.html#class_getter%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_getter(*names, &block)</span>
+    class_getter</a>, 
+    
+  
+    <a href="Object.html#class_getter%21%28%2Anames%29-macro" class="tooltip">
+      <span>class_getter!(*names)</span>
+    class_getter!</a>, 
+    
+  
+    <a href="Object.html#class_getter%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_getter?(*names, &block)</span>
+    class_getter?</a>, 
+    
+  
+    <a href="Object.html#class_property%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_property(*names, &block)</span>
+    class_property</a>, 
+    
+  
+    <a href="Object.html#class_property%21%28%2Anames%29-macro" class="tooltip">
+      <span>class_property!(*names)</span>
+    class_property!</a>, 
+    
+  
+    <a href="Object.html#class_property%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_property?(*names, &block)</span>
+    class_property?</a>, 
+    
+  
+    <a href="Object.html#class_setter%28%2Anames%29-macro" class="tooltip">
+      <span>class_setter(*names)</span>
+    class_setter</a>, 
+    
+  
+    <a href="Object.html#def_clone-macro" class="tooltip">
+      <span>def_clone</span>
+    def_clone</a>, 
+    
+  
+    <a href="Object.html#def_equals%28%2Afields%29-macro" class="tooltip">
+      <span>def_equals(*fields)</span>
+    def_equals</a>, 
+    
+  
+    <a href="Object.html#def_equals_and_hash%28%2Afields%29-macro" class="tooltip">
+      <span>def_equals_and_hash(*fields)</span>
+    def_equals_and_hash</a>, 
+    
+  
+    <a href="Object.html#def_hash%28%2Afields%29-macro" class="tooltip">
+      <span>def_hash(*fields)</span>
+    def_hash</a>, 
+    
+  
+    <a href="Object.html#delegate%28%2Amethods%2Ctoobject%29-macro" class="tooltip">
+      <span>delegate(*methods, to object)</span>
+    delegate</a>, 
+    
+  
+    <a href="Object.html#forward_missing_to%28delegate%29-macro" class="tooltip">
+      <span>forward_missing_to(delegate)</span>
+    forward_missing_to</a>, 
+    
+  
+    <a href="Object.html#getter%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>getter(*names, &block)</span>
+    getter</a>, 
+    
+  
+    <a href="Object.html#getter%21%28%2Anames%29-macro" class="tooltip">
+      <span>getter!(*names)</span>
+    getter!</a>, 
+    
+  
+    <a href="Object.html#getter%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>getter?(*names, &block)</span>
+    getter?</a>, 
+    
+  
+    <a href="Object.html#property%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>property(*names, &block)</span>
+    property</a>, 
+    
+  
+    <a href="Object.html#property%21%28%2Anames%29-macro" class="tooltip">
+      <span>property!(*names)</span>
+    property!</a>, 
+    
+  
+    <a href="Object.html#property%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>property?(*names, &block)</span>
+    property?</a>, 
+    
+  
+    <a href="Object.html#setter%28%2Anames%29-macro" class="tooltip">
+      <span>setter(*names)</span>
+    setter</a>
+    
+  
+
+
+    
+  </div>
+
+  
+  <h2>
+    <a id="constructor-detail" class="anchor" href="#constructor-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructor Detail
+  </h2>
+  
+    <div class="entry-detail" id="new(default_value:V,initial_capacity=nil)-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(default_value : V, initial_capacity = <span class="n">nil</span>)
+
+        <a class="method-permalink" href="#new%28default_value%3AV%2Cinitial_capacity%3Dnil%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Creates a new empty <code><a href="Hash.html">Hash</a></code> where the <em>default_value</em> is returned if a key is missing.</p>
+<pre><code class="language-crystal">inventory <span class="o">=</span> <span class="t">Hash</span>(<span class="t">String</span>, <span class="t">Int32</span>).new(<span class="n">0</span>)
+inventory[<span class="s">&quot;socks&quot;</span>] <span class="o">=</span> <span class="n">3</span>
+inventory[<span class="s">&quot;pickles&quot;</span>] <span class="c"># =&gt; 0</span></code></pre>
+<p><span class="flag yellow">WARNING</span>  When the default value gets returned on a missing key, it is <em>not</em>
+stored into the hash under that key. If you want that behaviour, please use
+the overload with a block.</p>
+<p><span class="flag yellow">WARNING</span>  The default value is returned as-is. It gets neither duplicated nor
+cloned. For types with reference semantics this means it will be exactly the
+<em>same</em> object every time.</p>
+<pre><code class="language-crystal">hash <span class="o">=</span> <span class="t">Hash</span>(<span class="t">String</span>, <span class="t">Array</span>(<span class="t">Int32</span>)).new([<span class="n">1</span>])
+hash[<span class="s">&quot;a&quot;</span>][<span class="n">0</span>] <span class="o">=</span> <span class="n">2</span>
+hash[<span class="s">&quot;b&quot;</span>] <span class="c"># =&gt; [2]</span></code></pre>
+<ul>
+<li><code><a href="Hash.html#new%28default_value%3AV%2Cinitial_capacity%3Dnil%29-class-method">.new(&amp;block : (Hash(K, V)</a>, K -&gt; V))</code> is an alternative with a block that
+can return a different default value for each invocation.</li>
+</ul>
+<p>The <em>initial_capacity</em> is useful to avoid unnecessary reallocations
+of the internal buffer in case of growth. If the number of elements
+a hash will hold is known, the hash should be initialized with that
+capacity for improved performance. Otherwise, the default is 8.
+Inputs lower than 8 are ignored.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/hash.cr#L338" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="new(ctx:YAML::ParseContext,node:YAML::Nodes::Node)-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(ctx : <a href="YAML/ParseContext.html">YAML::ParseContext</a>, node : <a href="YAML/Nodes/Node.html">YAML::Nodes::Node</a>)
+
+        <a class="method-permalink" href="#new%28ctx%3AYAML%3A%3AParseContext%2Cnode%3AYAML%3A%3ANodes%3A%3ANode%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/yaml/from_yaml.cr#L152" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="new(pull:JSON::PullParser)-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(pull : <a href="JSON/PullParser.html">JSON::PullParser</a>)
+
+        <a class="method-permalink" href="#new%28pull%3AJSON%3A%3APullParser%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Reads a Hash from the given pull parser.</p>
+<p>Keys are read by invoking <code>from_json_object_key?</code> on this hash's
+key type (<code>K</code>), which must return a value of type <code>K</code> or <code>nil</code>.
+If <code>nil</code> is returned a <code><a href="JSON/ParseException.html">JSON::ParseException</a></code> is raised.</p>
+<p>Values are parsed using the regular <code><a href="Hash.html#new%28pull%3AJSON%3A%3APullParser%29-class-method">.new(pull : JSON::PullParser)</a></code> method.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/from_json.cr#L245" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="new-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>
+
+        <a class="method-permalink" href="#new-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Creates a new empty <code><a href="Hash.html">Hash</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/hash.cr#L197" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="new(block:Hash(K,V),K-&gt;V|Nil=nil,*,initial_capacity=nil)-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(block : <a href="Hash.html">Hash</a>(K, V), K -> V | <a href="Nil.html">Nil</a> = <span class="n">nil</span>, *, initial_capacity = <span class="n">nil</span>)
+
+        <a class="method-permalink" href="#new%28block%3AHash%28K%2CV%29%2CK-%3EV%7CNil%3Dnil%2C%2A%2Cinitial_capacity%3Dnil%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Creates a new empty <code><a href="Hash.html">Hash</a></code> with a <em>block</em> for handling missing keys.</p>
+<pre><code class="language-crystal">proc <span class="o">=</span> <span class="o">-&gt;</span>(hash : <span class="t">Hash</span>(<span class="t">String</span>, <span class="t">Int32</span>), key : <span class="t">String</span>) { hash[key] <span class="o">=</span> key.size }
+hash <span class="o">=</span> <span class="t">Hash</span>(<span class="t">String</span>, <span class="t">Int32</span>).new(proc)
+
+hash.size   <span class="c"># =&gt; 0</span>
+hash[<span class="s">&quot;foo&quot;</span>] <span class="c"># =&gt; 3</span>
+hash.size   <span class="c"># =&gt; 1</span>
+hash[<span class="s">&quot;bar&quot;</span>] <span class="o">=</span> <span class="n">10</span>
+hash[<span class="s">&quot;bar&quot;</span>] <span class="c"># =&gt; 10</span></code></pre>
+<p>The <em>initial_capacity</em> is useful to avoid unnecessary reallocations
+of the internal buffer in case of growth. If the number of elements
+a hash will hold is known, the hash should be initialized with that
+capacity for improved performance. Otherwise, the default is 8.
+Inputs lower than 8 are ignored.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/hash.cr#L225" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="new(ctx:YAML::ParseContext,node:YAML::Nodes::Node,&amp;)-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(ctx : <a href="YAML/ParseContext.html">YAML::ParseContext</a>, node : <a href="YAML/Nodes/Node.html">YAML::Nodes::Node</a>, &)
+
+        <a class="method-permalink" href="#new%28ctx%3AYAML%3A%3AParseContext%2Cnode%3AYAML%3A%3ANodes%3A%3ANode%2C%26%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/yaml/from_yaml.cr#L167" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="new(initial_capacity=nil,&amp;block:Hash(K,V),K-&gt;V)-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(initial_capacity = <span class="n">nil</span>, &block : <a href="Hash.html">Hash</a>(K, V), K -> V)
+
+        <a class="method-permalink" href="#new%28initial_capacity%3Dnil%2C%26block%3AHash%28K%2CV%29%2CK-%3EV%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Creates a new empty <code><a href="Hash.html">Hash</a></code> with a <em>block</em> that handles missing keys.</p>
+<pre><code class="language-crystal">hash <span class="o">=</span> <span class="t">Hash</span>(<span class="t">String</span>, <span class="t">String</span>).new <span class="k">do</span> <span class="o">|</span>hash, key<span class="o">|</span>
+  <span class="s">&quot;some default value&quot;</span>
+<span class="k">end</span>
+
+hash.size           <span class="c"># =&gt; 0</span>
+hash[<span class="s">&quot;foo&quot;</span>] <span class="o">=</span> <span class="s">&quot;bar&quot;</span> <span class="c"># =&gt; &quot;bar&quot;</span>
+hash.size           <span class="c"># =&gt; 1</span>
+hash[<span class="s">&quot;baz&quot;</span>]         <span class="c"># =&gt; &quot;some default value&quot;</span>
+hash.size           <span class="c"># =&gt; 1</span>
+hash                <span class="c"># =&gt; {&quot;foo&quot; =&gt; &quot;bar&quot;}</span></code></pre>
+<p><span class="flag yellow">WARNING</span>  When the default block is invoked on a missing key, its return
+value is <em>not</em> implicitly stored into the hash under that key. If you want
+that behaviour, you need to store it explicitly:</p>
+<pre><code class="language-crystal">hash <span class="o">=</span> <span class="t">Hash</span>(<span class="t">String</span>, <span class="t">Int32</span>).new <span class="k">do</span> <span class="o">|</span>hash, key<span class="o">|</span>
+  hash[key] <span class="o">=</span> key.size
+<span class="k">end</span>
+
+hash.size   <span class="c"># =&gt; 0</span>
+hash[<span class="s">&quot;foo&quot;</span>] <span class="c"># =&gt; 3</span>
+hash.size   <span class="c"># =&gt; 1</span>
+hash[<span class="s">&quot;bar&quot;</span>] <span class="o">=</span> <span class="n">10</span>
+hash[<span class="s">&quot;bar&quot;</span>] <span class="c"># =&gt; 10</span></code></pre>
+<p>The <em>initial_capacity</em> is useful to avoid unnecessary reallocations
+of the internal buffer in case of growth. If the number of elements
+a hash will hold is known, the hash should be initialized with that
+capacity for improved performance. Otherwise, the default is 8.
+Inputs lower than 8 are ignored.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/hash.cr#L304" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+  
+  <h2>
+    <a id="class-method-detail" class="anchor" href="#class-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Class Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="zip(ary1:Array(K),ary2:Array(V))-class-method">
+      <div class="signature">
+        
+        def self.<strong>zip</strong>(ary1 : <a href="Array.html">Array</a>(K), ary2 : <a href="Array.html">Array</a>(V))
+
+        <a class="method-permalink" href="#zip%28ary1%3AArray%28K%29%2Cary2%3AArray%28V%29%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Zips two arrays into a <code><a href="Hash.html">Hash</a></code>, taking keys from <em>ary1</em> and values from <em>ary2</em>.</p>
+<pre><code class="language-crystal"><span class="t">Hash</span>.zip([<span class="s">&quot;key1&quot;</span>, <span class="s">&quot;key2&quot;</span>, <span class="s">&quot;key3&quot;</span>], [<span class="s">&quot;value1&quot;</span>, <span class="s">&quot;value2&quot;</span>, <span class="s">&quot;value3&quot;</span>])
+<span class="c"># =&gt; {&quot;key1&quot; =&gt; &quot;value1&quot;, &quot;key2&quot; =&gt; &quot;value2&quot;, &quot;key3&quot; =&gt; &quot;value3&quot;}</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/hash.cr#L1800" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+  
+
+  
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="==(other:Hash):Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>==</strong>(other : <a href="Hash.html">Hash</a>) : <a href="Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#%3D%3D%28other%3AHash%29%3ABool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Compares with <em>other</em>. Returns <code>true</code> if all key-value pairs are the same.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/hash.cr#L1944" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="==(other:JSON::Any)-instance-method">
+      <div class="signature">
+        
+        def <strong>==</strong>(other : <a href="JSON/Any.html">JSON::Any</a>)
+
+        <a class="method-permalink" href="#%3D%3D%28other%3AJSON%3A%3AAny%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/any.cr#L352" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="==(other:YAML::Any)-instance-method">
+      <div class="signature">
+        
+        def <strong>==</strong>(other : <a href="YAML/Any.html">YAML::Any</a>)
+
+        <a class="method-permalink" href="#%3D%3D%28other%3AYAML%3A%3AAny%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/yaml/any.cr#L393" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="[](key)-instance-method">
+      <div class="signature">
+        
+        def <strong>[]</strong>(key)
+
+        <a class="method-permalink" href="#%5B%5D%28key%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the value for the key given by <em>key</em>.
+If not found, returns the default value given by <code><a href="Hash.html#new-class-method">Hash.new</a></code>, otherwise raises <code><a href="KeyError.html">KeyError</a></code>.</p>
+<pre><code class="language-crystal">h <span class="o">=</span> {<span class="s">&quot;foo&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;bar&quot;</span>}
+h[<span class="s">&quot;foo&quot;</span>] <span class="c"># =&gt; &quot;bar&quot;</span>
+
+h <span class="o">=</span> <span class="t">Hash</span>(<span class="t">String</span>, <span class="t">String</span>).new(<span class="s">&quot;bar&quot;</span>)
+h[<span class="s">&quot;foo&quot;</span>] <span class="c"># =&gt; &quot;bar&quot;</span>
+
+h <span class="o">=</span> <span class="t">Hash</span>(<span class="t">String</span>, <span class="t">String</span>).new { <span class="s">&quot;bar&quot;</span> }
+h[<span class="s">&quot;foo&quot;</span>] <span class="c"># =&gt; &quot;bar&quot;</span>
+
+h <span class="o">=</span> <span class="t">Hash</span>(<span class="t">String</span>, <span class="t">String</span>).new
+h[<span class="s">&quot;foo&quot;</span>] <span class="c"># raises KeyError</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/hash.cr#L1193" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="[]=(key:K,value:V):V-instance-method">
+      <div class="signature">
+        
+        def <strong>[]=</strong>(key : K, value : V) : V
+
+        <a class="method-permalink" href="#%5B%5D%3D%28key%3AK%2Cvalue%3AV%29%3AV-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Sets the value of <em>key</em> to the given <em>value</em>.</p>
+<pre><code class="language-crystal">h <span class="o">=</span> {} <span class="k">of</span> <span class="t">String</span> <span class="o">=&gt;</span> <span class="t">String</span>
+h[<span class="s">&quot;foo&quot;</span>] <span class="o">=</span> <span class="s">&quot;bar&quot;</span>
+h[<span class="s">&quot;foo&quot;</span>] <span class="c"># =&gt; &quot;bar&quot;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/hash.cr#L1072" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="[]?(key)-instance-method">
+      <div class="signature">
+        
+        def <strong>[]?</strong>(key)
+
+        <a class="method-permalink" href="#%5B%5D%3F%28key%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the value for the key given by <em>key</em>.
+If not found, returns <code>nil</code>. This ignores the default value set by <code><a href="Hash.html#new-class-method">Hash.new</a></code>.</p>
+<pre><code class="language-crystal">h <span class="o">=</span> {<span class="s">&quot;foo&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;bar&quot;</span>}
+h[<span class="s">&quot;foo&quot;</span>]? <span class="c"># =&gt; &quot;bar&quot;</span>
+h[<span class="s">&quot;bar&quot;</span>]? <span class="c"># =&gt; nil</span>
+
+h <span class="o">=</span> <span class="t">Hash</span>(<span class="t">String</span>, <span class="t">String</span>).new(<span class="s">&quot;bar&quot;</span>)
+h[<span class="s">&quot;foo&quot;</span>]? <span class="c"># =&gt; nil</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/hash.cr#L1214" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="clear:self-instance-method">
+      <div class="signature">
+        
+        def <strong>clear</strong> : <span class="k">self</span>
+
+        <a class="method-permalink" href="#clear%3Aself-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Empties a <code><a href="Hash.html">Hash</a></code> and returns it.</p>
+<pre><code class="language-crystal">hash <span class="o">=</span> {<span class="s">&quot;foo&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;bar&quot;</span>}
+hash.clear <span class="c"># =&gt; {}</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/hash.cr#L1938" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="clone:Hash(K,V)-instance-method">
+      <div class="signature">
+        
+        def <strong>clone</strong> : <a href="Hash.html">Hash</a>(K, V)
+
+        <a class="method-permalink" href="#clone%3AHash%28K%2CV%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Similar to <code><a href="Hash.html#dup%3AHash%28K%2CV%29-instance-method">#dup</a></code>, but duplicates the values as well.</p>
+<pre><code class="language-crystal">hash_a <span class="o">=</span> {<span class="s">&quot;foobar&quot;</span> <span class="o">=&gt;</span> {<span class="s">&quot;foo&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;bar&quot;</span>}}
+hash_b <span class="o">=</span> hash_a.clone
+hash_b[<span class="s">&quot;foobar&quot;</span>][<span class="s">&quot;foo&quot;</span>] <span class="o">=</span> <span class="s">&quot;baz&quot;</span>
+hash_a <span class="c"># =&gt; {&quot;foobar&quot; =&gt; {&quot;foo&quot; =&gt; &quot;bar&quot;}}</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/hash.cr#L2019" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="compact-instance-method">
+      <div class="signature">
+        
+        def <strong>compact</strong>
+
+        <a class="method-permalink" href="#compact-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns new <code><a href="Hash.html">Hash</a></code> without <code>nil</code> values.</p>
+<pre><code class="language-crystal">hash <span class="o">=</span> {<span class="s">&quot;hello&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;world&quot;</span>, <span class="s">&quot;foo&quot;</span> <span class="o">=&gt;</span> <span class="n">nil</span>}
+hash.compact <span class="c"># =&gt; {&quot;hello&quot; =&gt; &quot;world&quot;}</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/hash.cr#L1726" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="compact!:self-instance-method">
+      <div class="signature">
+        
+        def <strong>compact!</strong> : <span class="k">self</span>
+
+        <a class="method-permalink" href="#compact%21%3Aself-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Removes all <code>nil</code> value from <code>self</code>. Returns <code>self</code>.</p>
+<pre><code class="language-crystal">hash <span class="o">=</span> {<span class="s">&quot;hello&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;world&quot;</span>, <span class="s">&quot;foo&quot;</span> <span class="o">=&gt;</span> <span class="n">nil</span>}
+hash.compact! <span class="c"># =&gt; {&quot;hello&quot; =&gt; &quot;world&quot;}</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/hash.cr#L1738" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="compare_by_identity:self-instance-method">
+      <div class="signature">
+        
+        def <strong>compare_by_identity</strong> : <span class="k">self</span>
+
+        <a class="method-permalink" href="#compare_by_identity%3Aself-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Makes this hash compare keys using their object identity (<code>object_id)</code>
+for types that define such method (<code><a href="Reference.html">Reference</a></code> types, but also structs that
+might wrap other <code><a href="Reference.html">Reference</a></code> types and delegate the <code>object_id</code> method to them).</p>
+<pre><code class="language-crystal">h1 <span class="o">=</span> {<span class="s">&quot;foo&quot;</span> <span class="o">=&gt;</span> <span class="n">1</span>, <span class="s">&quot;bar&quot;</span> <span class="o">=&gt;</span> <span class="n">2</span>}
+h1[<span class="s">&quot;fo&quot;</span> <span class="o">+</span> <span class="s">&quot;o&quot;</span>]? <span class="c"># =&gt; 1</span>
+
+h1.compare_by_identity
+h1.compare_by_identity? <span class="c"># =&gt; true</span>
+h1[<span class="s">&quot;fo&quot;</span> <span class="o">+</span> <span class="s">&quot;o&quot;</span>]?         <span class="c"># =&gt; nil # not the same String instance</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/hash.cr#L1054" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="compare_by_identity?:Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>compare_by_identity?</strong> : <a href="Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#compare_by_identity%3F%3ABool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this Hash is comparing keys by <code>object_id</code>.</p>
+<p>See <code><a href="Hash.html#compare_by_identity%3Aself-instance-method">#compare_by_identity</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/hash.cr#L1063" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="delete(key):V|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>delete</strong>(key) : V | <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#delete%28key%29%3AV%7CNil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Deletes the key-value pair and returns the value, otherwise returns <code>nil</code>.</p>
+<pre><code class="language-crystal">h <span class="o">=</span> {<span class="s">&quot;foo&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;bar&quot;</span>}
+h.delete(<span class="s">&quot;foo&quot;</span>)     <span class="c"># =&gt; &quot;bar&quot;</span>
+h.fetch(<span class="s">&quot;foo&quot;</span>, <span class="n">nil</span>) <span class="c"># =&gt; nil</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/hash.cr#L1362" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="delete(key,&amp;)-instance-method">
+      <div class="signature">
+        
+        def <strong>delete</strong>(key, &)
+
+        <a class="method-permalink" href="#delete%28key%2C%26%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Deletes the key-value pair and returns the value, else yields <em>key</em> with given block.</p>
+<pre><code class="language-crystal">h <span class="o">=</span> {<span class="s">&quot;foo&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;bar&quot;</span>}
+h.delete(<span class="s">&quot;foo&quot;</span>) { <span class="o">|</span>key<span class="o">|</span> <span class="s">&quot;</span><span class="i">#{</span>key<span class="i">}</span><span class="s"> not found&quot;</span> } <span class="c"># =&gt; &quot;bar&quot;</span>
+h.fetch(<span class="s">&quot;foo&quot;</span>, <span class="n">nil</span>)                          <span class="c"># =&gt; nil</span>
+h.delete(<span class="s">&quot;baz&quot;</span>) { <span class="o">|</span>key<span class="o">|</span> <span class="s">&quot;</span><span class="i">#{</span>key<span class="i">}</span><span class="s"> not found&quot;</span> } <span class="c"># =&gt; &quot;baz not found&quot;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/hash.cr#L1374" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="dig(key:K,*subkeys)-instance-method">
+      <div class="signature">
+        
+        def <strong>dig</strong>(key : K, *subkeys)
+
+        <a class="method-permalink" href="#dig%28key%3AK%2C%2Asubkeys%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Traverses the depth of a structure and returns the value, otherwise
+raises <code><a href="KeyError.html">KeyError</a></code>.</p>
+<pre><code class="language-crystal">h <span class="o">=</span> {<span class="s">&quot;a&quot;</span> <span class="o">=&gt;</span> {<span class="s">&quot;b&quot;</span> <span class="o">=&gt;</span> [<span class="n">10</span>, <span class="n">20</span>, <span class="n">30</span>]}}
+h.dig <span class="s">&quot;a&quot;</span>, <span class="s">&quot;b&quot;</span> <span class="c"># =&gt; [10, 20, 30]</span>
+h.dig <span class="s">&quot;a&quot;</span>, <span class="s">&quot;x&quot;</span> <span class="c"># raises KeyError</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/hash.cr#L1245" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="dig?(key:K,*subkeys)-instance-method">
+      <div class="signature">
+        
+        def <strong>dig?</strong>(key : K, *subkeys)
+
+        <a class="method-permalink" href="#dig%3F%28key%3AK%2C%2Asubkeys%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Traverses the depth of a structure and returns the value.
+Returns <code>nil</code> if not found.</p>
+<pre><code class="language-crystal">h <span class="o">=</span> {<span class="s">&quot;a&quot;</span> <span class="o">=&gt;</span> {<span class="s">&quot;b&quot;</span> <span class="o">=&gt;</span> [<span class="n">10</span>, <span class="n">20</span>, <span class="n">30</span>]}}
+h.dig? <span class="s">&quot;a&quot;</span>, <span class="s">&quot;b&quot;</span> <span class="c"># =&gt; [10, 20, 30]</span>
+h.dig? <span class="s">&quot;a&quot;</span>, <span class="s">&quot;x&quot;</span> <span class="c"># =&gt; nil</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/hash.cr#L1226" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="dup:Hash(K,V)-instance-method">
+      <div class="signature">
+        
+        def <strong>dup</strong> : <a href="Hash.html">Hash</a>(K, V)
+
+        <a class="method-permalink" href="#dup%3AHash%28K%2CV%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Duplicates a <code><a href="Hash.html">Hash</a></code>.</p>
+<pre><code class="language-crystal">hash_a <span class="o">=</span> {<span class="s">&quot;foo&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;bar&quot;</span>}
+hash_b <span class="o">=</span> hash_a.dup
+hash_b.merge!({<span class="s">&quot;baz&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;qux&quot;</span>})
+hash_a <span class="c"># =&gt; {&quot;foo&quot; =&gt; &quot;bar&quot;}</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/hash.cr#L2005" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="each(&amp;:Tuple(K,V)-&gt;):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>each</strong>(& : <a href="Tuple.html">Tuple</a>(K, V) -> ) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#each%28%26%3ATuple%28K%2CV%29-%3E%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calls the given block for each key-value pair and passes in the key and the value.</p>
+<pre><code class="language-crystal">h <span class="o">=</span> {<span class="s">&quot;foo&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;bar&quot;</span>}
+
+h.each <span class="k">do</span> <span class="o">|</span>key, value<span class="o">|</span>
+  key   <span class="c"># =&gt; &quot;foo&quot;</span>
+  value <span class="c"># =&gt; &quot;bar&quot;</span>
+<span class="k">end</span>
+
+h.each <span class="k">do</span> <span class="o">|</span>key_and_value<span class="o">|</span>
+  key_and_value <span class="c"># =&gt; {&quot;foo&quot;, &quot;bar&quot;}</span>
+<span class="k">end</span></code></pre>
+<p>The enumeration follows the order the keys were inserted.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/hash.cr#L1408" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="each-instance-method">
+      <div class="signature">
+        
+        def <strong>each</strong>
+
+        <a class="method-permalink" href="#each-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns an iterator over the hash entries.
+Which behaves like an <code><a href="Iterator.html">Iterator</a></code> returning a <code><a href="Tuple.html">Tuple</a></code> consisting of the key and value types.</p>
+<pre><code class="language-crystal">hsh <span class="o">=</span> {<span class="s">&quot;foo&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;bar&quot;</span>, <span class="s">&quot;baz&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;qux&quot;</span>}
+iterator <span class="o">=</span> hsh.each
+
+iterator.<span class="k">next</span> <span class="c"># =&gt; {&quot;foo&quot;, &quot;bar&quot;}</span>
+iterator.<span class="k">next</span> <span class="c"># =&gt; {&quot;baz&quot;, &quot;qux&quot;}</span></code></pre>
+<p>The enumeration follows the order the keys were inserted.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/hash.cr#L1426" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="each_key(&amp;:K-&gt;)-instance-method">
+      <div class="signature">
+        
+        def <strong>each_key</strong>(& : K -> )
+
+        <a class="method-permalink" href="#each_key%28%26%3AK-%3E%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calls the given block for each key-value pair and passes in the key.</p>
+<pre><code class="language-crystal">h <span class="o">=</span> {<span class="s">&quot;foo&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;bar&quot;</span>}
+h.each_key <span class="k">do</span> <span class="o">|</span>key<span class="o">|</span>
+  key <span class="c"># =&gt; &quot;foo&quot;</span>
+<span class="k">end</span></code></pre>
+<p>The enumeration follows the order the keys were inserted.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/hash.cr#L1440" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="each_key-instance-method">
+      <div class="signature">
+        
+        def <strong>each_key</strong>
+
+        <a class="method-permalink" href="#each_key-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns an iterator over the hash keys.
+Which behaves like an <code><a href="Iterator.html">Iterator</a></code> consisting of the key's types.</p>
+<pre><code class="language-crystal">hsh <span class="o">=</span> {<span class="s">&quot;foo&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;bar&quot;</span>, <span class="s">&quot;baz&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;qux&quot;</span>}
+iterator <span class="o">=</span> hsh.each_key
+
+key <span class="o">=</span> iterator.<span class="k">next</span>
+key <span class="c"># =&gt; &quot;foo&quot;</span>
+
+key <span class="o">=</span> iterator.<span class="k">next</span>
+key <span class="c"># =&gt; &quot;baz&quot;</span></code></pre>
+<p>The enumeration follows the order the keys were inserted.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/hash.cr#L1461" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="each_value(&amp;:V-&gt;)-instance-method">
+      <div class="signature">
+        
+        def <strong>each_value</strong>(& : V -> )
+
+        <a class="method-permalink" href="#each_value%28%26%3AV-%3E%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calls the given block for each key-value pair and passes in the value.</p>
+<pre><code class="language-crystal">h <span class="o">=</span> {<span class="s">&quot;foo&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;bar&quot;</span>}
+h.each_value <span class="k">do</span> <span class="o">|</span>value<span class="o">|</span>
+  value <span class="c"># =&gt; &quot;bar&quot;</span>
+<span class="k">end</span></code></pre>
+<p>The enumeration follows the order the keys were inserted.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/hash.cr#L1475" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="each_value-instance-method">
+      <div class="signature">
+        
+        def <strong>each_value</strong>
+
+        <a class="method-permalink" href="#each_value-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns an iterator over the hash values.
+Which behaves like an <code><a href="Iterator.html">Iterator</a></code> consisting of the value's types.</p>
+<pre><code class="language-crystal">hsh <span class="o">=</span> {<span class="s">&quot;foo&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;bar&quot;</span>, <span class="s">&quot;baz&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;qux&quot;</span>}
+iterator <span class="o">=</span> hsh.each_value
+
+value <span class="o">=</span> iterator.<span class="k">next</span>
+value <span class="c"># =&gt; &quot;bar&quot;</span>
+
+value <span class="o">=</span> iterator.<span class="k">next</span>
+value <span class="c"># =&gt; &quot;qux&quot;</span></code></pre>
+<p>The enumeration follows the order the keys were inserted.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/hash.cr#L1496" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="empty?:Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>empty?</strong> : <a href="Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#empty%3F%3ABool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> when hash contains no key-value pairs.</p>
+<pre><code class="language-crystal">h <span class="o">=</span> <span class="t">Hash</span>(<span class="t">String</span>, <span class="t">String</span>).new
+h.empty? <span class="c"># =&gt; true</span>
+
+h <span class="o">=</span> {<span class="s">&quot;foo&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;bar&quot;</span>}
+h.empty? <span class="c"># =&gt; false</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/hash.cr#L1388" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="fetch(key,default)-instance-method">
+      <div class="signature">
+        
+        def <strong>fetch</strong>(key, default)
+
+        <a class="method-permalink" href="#fetch%28key%2Cdefault%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the value for the key given by <em>key</em>, or when not found the value given by <em>default</em>.
+This ignores the default value set by <code><a href="Hash.html#new-class-method">Hash.new</a></code>.</p>
+<pre><code class="language-crystal">h <span class="o">=</span> {<span class="s">&quot;foo&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;bar&quot;</span>}
+h.fetch(<span class="s">&quot;foo&quot;</span>, <span class="s">&quot;foo&quot;</span>) <span class="c"># =&gt; &quot;bar&quot;</span>
+h.fetch(<span class="s">&quot;bar&quot;</span>, <span class="s">&quot;foo&quot;</span>) <span class="c"># =&gt; &quot;foo&quot;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/hash.cr#L1290" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="fetch(key,&amp;)-instance-method">
+      <div class="signature">
+        
+        def <strong>fetch</strong>(key, &)
+
+        <a class="method-permalink" href="#fetch%28key%2C%26%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the value for the key given by <em>key</em>, or when not found calls the given block with the key.</p>
+<pre><code class="language-crystal">h <span class="o">=</span> {<span class="s">&quot;foo&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;bar&quot;</span>}
+h.fetch(<span class="s">&quot;foo&quot;</span>) { <span class="s">&quot;default value&quot;</span> }  <span class="c"># =&gt; &quot;bar&quot;</span>
+h.fetch(<span class="s">&quot;bar&quot;</span>) { <span class="s">&quot;default value&quot;</span> }  <span class="c"># =&gt; &quot;default value&quot;</span>
+h.fetch(<span class="s">&quot;bar&quot;</span>) { <span class="o">|</span>key<span class="o">|</span> key.upcase } <span class="c"># =&gt; &quot;BAR&quot;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/hash.cr#L1302" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="first_key:K-instance-method">
+      <div class="signature">
+        
+        def <strong>first_key</strong> : K
+
+        <a class="method-permalink" href="#first_key%3AK-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the first key in the hash.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/hash.cr#L1809" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="first_key?:K|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>first_key?</strong> : K | <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#first_key%3F%3AK%7CNil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the first key if it exists, or returns <code>nil</code>.</p>
+<pre><code class="language-crystal">hash <span class="o">=</span> {<span class="s">&quot;foo1&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;bar1&quot;</span>, <span class="s">&quot;foz2&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;baz2&quot;</span>}
+hash.first_key? <span class="c"># =&gt; &quot;foo1&quot;</span>
+hash.clear
+hash.first_key? <span class="c"># =&gt; nil</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/hash.cr#L1822" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="first_value:V-instance-method">
+      <div class="signature">
+        
+        def <strong>first_value</strong> : V
+
+        <a class="method-permalink" href="#first_value%3AV-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the first value in the hash.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/hash.cr#L1827" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="first_value?:V|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>first_value?</strong> : V | <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#first_value%3F%3AV%7CNil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the first value if it exists, or returns <code>nil</code>.</p>
+<pre><code class="language-crystal">hash <span class="o">=</span> {<span class="s">&quot;foo1&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;bar1&quot;</span>, <span class="s">&quot;foz2&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;baz2&quot;</span>}
+hash.first_value? <span class="c"># =&gt; &quot;bar1&quot;</span>
+hash.clear
+hash.first_value? <span class="c"># =&gt; nil</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/hash.cr#L1840" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="has_key?(key):Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>has_key?</strong>(key) : <a href="Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#has_key%3F%28key%29%3ABool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> when key given by <em>key</em> exists, otherwise <code>false</code>.</p>
+<pre><code class="language-crystal">h <span class="o">=</span> {<span class="s">&quot;foo&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;bar&quot;</span>}
+h.has_key?(<span class="s">&quot;foo&quot;</span>) <span class="c"># =&gt; true</span>
+h.has_key?(<span class="s">&quot;bar&quot;</span>) <span class="c"># =&gt; false</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/hash.cr#L1264" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="has_value?(val):Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>has_value?</strong>(val) : <a href="Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#has_value%3F%28val%29%3ABool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> when value given by <em>value</em> exists, otherwise <code>false</code>.</p>
+<pre><code class="language-crystal">h <span class="o">=</span> {<span class="s">&quot;foo&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;bar&quot;</span>}
+h.has_value?(<span class="s">&quot;foo&quot;</span>) <span class="c"># =&gt; false</span>
+h.has_value?(<span class="s">&quot;bar&quot;</span>) <span class="c"># =&gt; true</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/hash.cr#L1275" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="hash(hasher)-instance-method">
+      <div class="signature">
+        
+        def <strong>hash</strong>(hasher)
+
+        <a class="method-permalink" href="#hash%28hasher%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>See <code><a href="Object.html#hash%28hasher%29-instance-method">Object#hash(hasher)</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/hash.cr#L1982" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="inspect(io:IO):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>inspect</strong>(io : <a href="IO.html">IO</a>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#inspect%28io%3AIO%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+            <div class="doc-inherited">
+              Description copied from class <a href="Reference.html">Reference</a>
+            </div>
+          
+          <p>Appends a String representation of this object
+which includes its class name, its object address
+and the values of all instance variables.</p>
+<pre><code class="language-crystal"><span class="k">class</span> <span class="t">Person</span>
+  <span class="k">def</span> <span class="m">initialize</span>(@name : <span class="t">String</span>, @age : <span class="t">Int32</span>)
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="t">Person</span>.new(<span class="s">&quot;John&quot;</span>, <span class="n">32</span>).inspect <span class="c"># =&gt; #&lt;Person:0x10fd31f20 @name=&quot;John&quot;, @age=32&gt;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/hash.cr#L2034" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="invert:Hash(V,K)-instance-method">
+      <div class="signature">
+        
+        def <strong>invert</strong> : <a href="Hash.html">Hash</a>(V, K)
+
+        <a class="method-permalink" href="#invert%3AHash%28V%2CK%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Inverts keys and values. If there are duplicated values, the last key becomes the new value.</p>
+<pre><code class="language-crystal">{<span class="s">&quot;foo&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;bar&quot;</span>}.invert                 <span class="c"># =&gt; {&quot;bar&quot; =&gt; &quot;foo&quot;}</span>
+{<span class="s">&quot;foo&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;bar&quot;</span>, <span class="s">&quot;baz&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;bar&quot;</span>}.invert <span class="c"># =&gt; {&quot;bar&quot; =&gt; &quot;baz&quot;}</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/hash.cr#L2148" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="key_for(value):K-instance-method">
+      <div class="signature">
+        
+        def <strong>key_for</strong>(value) : K
+
+        <a class="method-permalink" href="#key_for%28value%29%3AK-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns a key with the given <em>value</em>, else raises <code><a href="KeyError.html">KeyError</a></code>.</p>
+<pre><code class="language-crystal">hash <span class="o">=</span> {<span class="s">&quot;foo&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;bar&quot;</span>, <span class="s">&quot;baz&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;qux&quot;</span>}
+hash.key_for(<span class="s">&quot;bar&quot;</span>)    <span class="c"># =&gt; &quot;foo&quot;</span>
+hash.key_for(<span class="s">&quot;qux&quot;</span>)    <span class="c"># =&gt; &quot;baz&quot;</span>
+hash.key_for(<span class="s">&quot;foobar&quot;</span>) <span class="c"># raises KeyError (Missing hash key for value: foobar)</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/hash.cr#L1325" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="key_for(value,&amp;)-instance-method">
+      <div class="signature">
+        
+        def <strong>key_for</strong>(value, &)
+
+        <a class="method-permalink" href="#key_for%28value%2C%26%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns a key with the given <em>value</em>, else yields <em>value</em> with the given block.</p>
+<pre><code class="language-crystal">hash <span class="o">=</span> {<span class="s">&quot;foo&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;bar&quot;</span>}
+hash.key_for(<span class="s">&quot;bar&quot;</span>) { <span class="o">|</span>value<span class="o">|</span> value.upcase } <span class="c"># =&gt; &quot;foo&quot;</span>
+hash.key_for(<span class="s">&quot;qux&quot;</span>) { <span class="o">|</span>value<span class="o">|</span> value.upcase } <span class="c"># =&gt; &quot;QUX&quot;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/hash.cr#L1348" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="key_for?(value):K|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>key_for?</strong>(value) : K | <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#key_for%3F%28value%29%3AK%7CNil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns a key with the given <em>value</em>, else <code>nil</code>.</p>
+<pre><code class="language-crystal">hash <span class="o">=</span> {<span class="s">&quot;foo&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;bar&quot;</span>, <span class="s">&quot;baz&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;qux&quot;</span>}
+hash.key_for?(<span class="s">&quot;bar&quot;</span>)    <span class="c"># =&gt; &quot;foo&quot;</span>
+hash.key_for?(<span class="s">&quot;qux&quot;</span>)    <span class="c"># =&gt; &quot;baz&quot;</span>
+hash.key_for?(<span class="s">&quot;foobar&quot;</span>) <span class="c"># =&gt; nil</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/hash.cr#L1337" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="keys:Array(K)-instance-method">
+      <div class="signature">
+        
+        def <strong>keys</strong> : <a href="Array.html">Array</a>(K)
+
+        <a class="method-permalink" href="#keys%3AArray%28K%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns a new <code><a href="Array.html">Array</a></code> with all the keys.</p>
+<pre><code class="language-crystal">h <span class="o">=</span> {<span class="s">&quot;foo&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;bar&quot;</span>, <span class="s">&quot;baz&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;bar&quot;</span>}
+h.keys <span class="c"># =&gt; [&quot;foo&quot;, &quot;baz&quot;]</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/hash.cr#L1506" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="last_key:K-instance-method">
+      <div class="signature">
+        
+        def <strong>last_key</strong> : K
+
+        <a class="method-permalink" href="#last_key%3AK-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the last key in the hash.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/hash.cr#L1845" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="last_key?:K|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>last_key?</strong> : K | <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#last_key%3F%3AK%7CNil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the last key if it exists, or returns <code>nil</code>.</p>
+<pre><code class="language-crystal">hash <span class="o">=</span> {<span class="s">&quot;foo1&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;bar1&quot;</span>, <span class="s">&quot;foz2&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;baz2&quot;</span>}
+hash.last_key? <span class="c"># =&gt; &quot;foz2&quot;</span>
+hash.clear
+hash.last_key? <span class="c"># =&gt; nil</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/hash.cr#L1858" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="last_value:V-instance-method">
+      <div class="signature">
+        
+        def <strong>last_value</strong> : V
+
+        <a class="method-permalink" href="#last_value%3AV-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the last value in the hash.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/hash.cr#L1863" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="last_value?:V|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>last_value?</strong> : V | <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#last_value%3F%3AV%7CNil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the last value if it exists, or returns <code>nil</code>.</p>
+<pre><code class="language-crystal">hash <span class="o">=</span> {<span class="s">&quot;foo1&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;bar1&quot;</span>, <span class="s">&quot;foz2&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;baz2&quot;</span>}
+hash.last_value? <span class="c"># =&gt; &quot;baz2&quot;</span>
+hash.clear
+hash.last_value? <span class="c"># =&gt; nil</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/hash.cr#L1876" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="merge(other:Hash(L,W)):Hash(K|L,V|W)forallL,W-instance-method">
+      <div class="signature">
+        
+        def <strong>merge</strong>(other : <a href="Hash.html">Hash</a>(L, W)) : <a href="Hash.html">Hash</a>(K | L, V | W) forall L, W
+
+        <a class="method-permalink" href="#merge%28other%3AHash%28L%2CW%29%29%3AHash%28K%7CL%2CV%7CW%29forallL%2CW-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns a new <code><a href="Hash.html">Hash</a></code> with the keys and values of this hash and <em>other</em> combined.
+A value in <em>other</em> takes precedence over the one in this hash.</p>
+<pre><code class="language-crystal">hash <span class="o">=</span> {<span class="s">&quot;foo&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;bar&quot;</span>}
+hash.merge({<span class="s">&quot;baz&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;qux&quot;</span>})
+<span class="c"># =&gt; {&quot;foo&quot; =&gt; &quot;bar&quot;, &quot;baz&quot; =&gt; &quot;qux&quot;}</span>
+hash
+<span class="c"># =&gt; {&quot;foo&quot; =&gt; &quot;bar&quot;}</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/hash.cr#L1530" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="merge(other:Hash(L,W),&amp;:L,V,W-&gt;V|W):Hash(K|L,V|W)forallL,W-instance-method">
+      <div class="signature">
+        
+        def <strong>merge</strong>(other : <a href="Hash.html">Hash</a>(L, W), & : L, V, W -> V | W) : <a href="Hash.html">Hash</a>(K | L, V | W) forall L, W
+
+        <a class="method-permalink" href="#merge%28other%3AHash%28L%2CW%29%2C%26%3AL%2CV%2CW-%3EV%7CW%29%3AHash%28K%7CL%2CV%7CW%29forallL%2CW-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/hash.cr#L1537" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="merge!(other:Hash):self-instance-method">
+      <div class="signature">
+        
+        def <strong>merge!</strong>(other : <a href="Hash.html">Hash</a>) : <span class="k">self</span>
+
+        <a class="method-permalink" href="#merge%21%28other%3AHash%29%3Aself-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Similar to <code><a href="Hash.html#merge%28other%3AHash%28L%2CW%29%29%3AHash%28K%7CL%2CV%7CW%29forallL%2CW-instance-method">#merge</a></code>, but the receiver is modified.</p>
+<pre><code class="language-crystal">hash <span class="o">=</span> {<span class="s">&quot;foo&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;bar&quot;</span>}
+hash.merge!({<span class="s">&quot;baz&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;qux&quot;</span>})
+hash <span class="c"># =&gt; {&quot;foo&quot; =&gt; &quot;bar&quot;, &quot;baz&quot; =&gt; &quot;qux&quot;}</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/hash.cr#L1551" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="merge!(other:Hash,&amp;):self-instance-method">
+      <div class="signature">
+        
+        def <strong>merge!</strong>(other : <a href="Hash.html">Hash</a>, &) : <span class="k">self</span>
+
+        <a class="method-permalink" href="#merge%21%28other%3AHash%2C%26%29%3Aself-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Adds the contents of <em>other</em> to this hash.
+If a key exists in both hashes, the given block is called to determine the value to be used.
+The block arguments are the key, the value in <code>self</code> and the value in <em>other</em>.</p>
+<pre><code class="language-crystal">hash <span class="o">=</span> {<span class="s">&quot;a&quot;</span> <span class="o">=&gt;</span> <span class="n">100</span>, <span class="s">&quot;b&quot;</span> <span class="o">=&gt;</span> <span class="n">200</span>}
+other <span class="o">=</span> {<span class="s">&quot;b&quot;</span> <span class="o">=&gt;</span> <span class="n">254</span>, <span class="s">&quot;c&quot;</span> <span class="o">=&gt;</span> <span class="n">300</span>}
+hash.merge!(other) { <span class="o">|</span>key, v1, v2<span class="o">|</span> v1 <span class="o">+</span> v2 }
+hash <span class="c"># =&gt; {&quot;a&quot; =&gt; 100, &quot;b&quot; =&gt; 454, &quot;c&quot; =&gt; 300}</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/hash.cr#L1566" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="pretty_print(pp):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>pretty_print</strong>(pp) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#pretty_print%28pp%29%3ANil-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/hash.cr#L2061" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="proper_subset_of?(other:Hash):Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>proper_subset_of?</strong>(other : <a href="Hash.html">Hash</a>) : <a href="Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#proper_subset_of%3F%28other%3AHash%29%3ABool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if <code>self</code> is a subset of <em>other</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/hash.cr#L1954" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="proper_superset_of?(other:Hash):Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>proper_superset_of?</strong>(other : <a href="Hash.html">Hash</a>) : <a href="Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#proper_superset_of%3F%28other%3AHash%29%3ABool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if <em>other</em> is a subset of <code>self</code> or equals to <code>self</code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/hash.cr#L1977" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="put(key:K,value:V,&amp;)-instance-method">
+      <div class="signature">
+        
+        def <strong>put</strong>(key : K, value : V, &)
+
+        <a class="method-permalink" href="#put%28key%3AK%2Cvalue%3AV%2C%26%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Sets the value of <em>key</em> to the given <em>value</em>.</p>
+<p>If a value already exists for <em>key</em>, that (old) value is returned.
+Otherwise the given block is invoked with <em>key</em> and its value is returned.</p>
+<pre><code class="language-crystal">h <span class="o">=</span> {} <span class="k">of</span> <span class="t">Int32</span> <span class="o">=&gt;</span> <span class="t">String</span>
+h.put(<span class="n">1</span>, <span class="s">&quot;one&quot;</span>) { <span class="s">&quot;didn&#39;t exist&quot;</span> } <span class="c"># =&gt; &quot;didn&#39;t exist&quot;</span>
+h.put(<span class="n">1</span>, <span class="s">&quot;uno&quot;</span>) { <span class="s">&quot;didn&#39;t exist&quot;</span> } <span class="c"># =&gt; &quot;one&quot;</span>
+h.put(<span class="n">2</span>, <span class="s">&quot;two&quot;</span>) { <span class="o">|</span>key<span class="o">|</span> key.to_s } <span class="c"># =&gt; &quot;2&quot;</span>
+h                                  <span class="c"># =&gt; {1 =&gt; &quot;one&quot;, 2 =&gt; &quot;two&quot;}</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/hash.cr#L1089" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="put_if_absent(key:K,value:V):V-instance-method">
+      <div class="signature">
+        
+        def <strong>put_if_absent</strong>(key : K, value : V) : V
+
+        <a class="method-permalink" href="#put_if_absent%28key%3AK%2Cvalue%3AV%29%3AV-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Sets the value of <em>key</em> to the given <em>value</em>, unless a value for <em>key</em>
+already exists.</p>
+<p>If a value already exists for <em>key</em>, that (old) value is returned.
+Otherwise <em>value</em> is returned.</p>
+<pre><code class="language-crystal">h <span class="o">=</span> {} <span class="k">of</span> <span class="t">Int32</span> <span class="o">=&gt;</span> <span class="t">String</span>
+h.put_if_absent(<span class="n">1</span>, <span class="s">&quot;one&quot;</span>) <span class="c"># =&gt; &quot;one&quot;</span>
+h.put_if_absent(<span class="n">1</span>, <span class="s">&quot;uno&quot;</span>) <span class="c"># =&gt; &quot;one&quot;</span>
+h.put_if_absent(<span class="n">2</span>, <span class="s">&quot;two&quot;</span>) <span class="c"># =&gt; &quot;two&quot;</span>
+h                         <span class="c"># =&gt; {1 =&gt; &quot;one&quot;, 2 =&gt; &quot;two&quot;}</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/hash.cr#L1107" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="put_if_absent(key:K,&amp;:K-&gt;V):V-instance-method">
+      <div class="signature">
+        
+        def <strong>put_if_absent</strong>(key : K, & : K -> V) : V
+
+        <a class="method-permalink" href="#put_if_absent%28key%3AK%2C%26%3AK-%3EV%29%3AV-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Sets the value of <em>key</em> to the value returned by the given block, unless a
+value for <em>key</em> already exists.</p>
+<p>If a value already exists for <em>key</em>, that (old) value is returned.
+Otherwise the given block is invoked with <em>key</em> and its value is returned.</p>
+<pre><code class="language-crystal">h <span class="o">=</span> {} <span class="k">of</span> <span class="t">Int32</span> <span class="o">=&gt;</span> <span class="t">Array</span>(<span class="t">String</span>)
+h.put_if_absent(<span class="n">1</span>) { <span class="o">|</span>key<span class="o">|</span> [key.to_s] } <span class="c"># =&gt; [&quot;1&quot;]</span>
+h.put_if_absent(<span class="n">1</span>) { <span class="o">[]</span> <span class="k">of</span> <span class="t">String</span> }     <span class="c"># =&gt; [&quot;1&quot;]</span>
+h.put_if_absent(<span class="n">2</span>) { <span class="o">|</span>key<span class="o">|</span> [key.to_s] } <span class="c"># =&gt; [&quot;2&quot;]</span>
+h                                       <span class="c"># =&gt; {1 =&gt; [&quot;1&quot;], 2 =&gt; [&quot;2&quot;]}</span></code></pre>
+<p><code>hash.put_if_absent(key) { value }</code> is a more performant alternative to
+<code>hash[key] ||= value</code> that also works correctly when the hash may contain
+falsey values.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/hash.cr#L1128" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="rehash:Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>rehash</strong> : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#rehash%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Rebuilds the hash table based on the current keys.</p>
+<p>When using mutable data types as keys, modifying a key after it was inserted
+into the <code><a href="Hash.html">Hash</a></code> may lead to undefined behaviour. This method re-indexes the
+hash using the current keys.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/hash.cr#L2138" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="reject(&amp;:K,V-&gt;):Hash(K,V)-instance-method">
+      <div class="signature">
+        
+        def <strong>reject</strong>(& : K, V -> ) : <a href="Hash.html">Hash</a>(K, V)
+
+        <a class="method-permalink" href="#reject%28%26%3AK%2CV-%3E%29%3AHash%28K%2CV%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns a new hash consisting of entries for which the block is falsey.</p>
+<pre><code class="language-crystal">h <span class="o">=</span> {<span class="s">&quot;a&quot;</span> <span class="o">=&gt;</span> <span class="n">100</span>, <span class="s">&quot;b&quot;</span> <span class="o">=&gt;</span> <span class="n">200</span>, <span class="s">&quot;c&quot;</span> <span class="o">=&gt;</span> <span class="n">300</span>}
+h.reject { <span class="o">|</span>k, v<span class="o">|</span> k <span class="o">&gt;</span> <span class="s">&quot;a&quot;</span> } <span class="c"># =&gt; {&quot;a&quot; =&gt; 100}</span>
+h.reject { <span class="o">|</span>k, v<span class="o">|</span> v <span class="o">&lt;</span> <span class="n">200</span> } <span class="c"># =&gt; {&quot;b&quot; =&gt; 200, &quot;c&quot; =&gt; 300}</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/hash.cr#L1613" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="reject(*keys):Hash(K,V)-instance-method">
+      <div class="signature">
+        
+        def <strong>reject</strong>(*keys) : <a href="Hash.html">Hash</a>(K, V)
+
+        <a class="method-permalink" href="#reject%28%2Akeys%29%3AHash%28K%2CV%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns a new <code><a href="Hash.html">Hash</a></code> without the given keys.</p>
+<pre><code class="language-crystal">{<span class="s">&quot;a&quot;</span> <span class="o">=&gt;</span> <span class="n">1</span>, <span class="s">&quot;b&quot;</span> <span class="o">=&gt;</span> <span class="n">2</span>, <span class="s">&quot;c&quot;</span> <span class="o">=&gt;</span> <span class="n">3</span>, <span class="s">&quot;d&quot;</span> <span class="o">=&gt;</span> <span class="n">4</span>}.reject(<span class="s">&quot;a&quot;</span>, <span class="s">&quot;c&quot;</span>) <span class="c"># =&gt; {&quot;b&quot; =&gt; 2, &quot;d&quot; =&gt; 4}</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/hash.cr#L1644" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="reject!(&amp;:K,V-&gt;_)-instance-method">
+      <div class="signature">
+        
+        def <strong>reject!</strong>(& : K, V -> _)
+
+        <a class="method-permalink" href="#reject%21%28%26%3AK%2CV-%3E_%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Equivalent to <code><a href="Hash.html#reject%28%26%3AK%2CV-%3E%29%3AHash%28K%2CV%29-instance-method">Hash#reject</a></code>, but makes modification on the current object rather than returning a new one. Returns <code>self</code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/hash.cr#L1620" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="reject!(keys:Enumerable):self-instance-method">
+      <div class="signature">
+        
+        def <strong>reject!</strong>(keys : <a href="Enumerable.html">Enumerable</a>) : <span class="k">self</span>
+
+        <a class="method-permalink" href="#reject%21%28keys%3AEnumerable%29%3Aself-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Removes a list of keys out of hash.</p>
+<pre><code class="language-crystal">hash <span class="o">=</span> {<span class="s">&quot;a&quot;</span> <span class="o">=&gt;</span> <span class="n">1</span>, <span class="s">&quot;b&quot;</span> <span class="o">=&gt;</span> <span class="n">2</span>, <span class="s">&quot;c&quot;</span> <span class="o">=&gt;</span> <span class="n">3</span>, <span class="s">&quot;d&quot;</span> <span class="o">=&gt;</span> <span class="n">4</span>}
+hash.reject!([<span class="s">&quot;a&quot;</span>, <span class="s">&quot;c&quot;</span>]) <span class="c"># =&gt; {&quot;b&quot; =&gt; 2, &quot;d&quot; =&gt; 4}</span>
+hash                     <span class="c"># =&gt; {&quot;b&quot; =&gt; 2, &quot;d&quot; =&gt; 4}</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/hash.cr#L1656" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="reject!(*keys):self-instance-method">
+      <div class="signature">
+        
+        def <strong>reject!</strong>(*keys) : <span class="k">self</span>
+
+        <a class="method-permalink" href="#reject%21%28%2Akeys%29%3Aself-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Removes a list of keys out of hash.</p>
+<pre><code class="language-crystal">hash <span class="o">=</span> {<span class="s">&quot;a&quot;</span> <span class="o">=&gt;</span> <span class="n">1</span>, <span class="s">&quot;b&quot;</span> <span class="o">=&gt;</span> <span class="n">2</span>, <span class="s">&quot;c&quot;</span> <span class="o">=&gt;</span> <span class="n">3</span>, <span class="s">&quot;d&quot;</span> <span class="o">=&gt;</span> <span class="n">4</span>}
+hash.reject!(<span class="s">&quot;a&quot;</span>, <span class="s">&quot;c&quot;</span>) <span class="c"># =&gt; {&quot;b&quot; =&gt; 2, &quot;d&quot; =&gt; 4}</span>
+hash                   <span class="c"># =&gt; {&quot;b&quot; =&gt; 2, &quot;d&quot; =&gt; 4}</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/hash.cr#L1668" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="select(&amp;:K,V-&gt;):Hash(K,V)-instance-method">
+      <div class="signature">
+        
+        def <strong>select</strong>(& : K, V -> ) : <a href="Hash.html">Hash</a>(K, V)
+
+        <a class="method-permalink" href="#select%28%26%3AK%2CV-%3E%29%3AHash%28K%2CV%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns a new hash consisting of entries for which the block is truthy.</p>
+<pre><code class="language-crystal">h <span class="o">=</span> {<span class="s">&quot;a&quot;</span> <span class="o">=&gt;</span> <span class="n">100</span>, <span class="s">&quot;b&quot;</span> <span class="o">=&gt;</span> <span class="n">200</span>, <span class="s">&quot;c&quot;</span> <span class="o">=&gt;</span> <span class="n">300</span>}
+h.<span class="k">select</span> { <span class="o">|</span>k, v<span class="o">|</span> k <span class="o">&gt;</span> <span class="s">&quot;a&quot;</span> } <span class="c"># =&gt; {&quot;b&quot; =&gt; 200, &quot;c&quot; =&gt; 300}</span>
+h.<span class="k">select</span> { <span class="o">|</span>k, v<span class="o">|</span> v <span class="o">&lt;</span> <span class="n">200</span> } <span class="c"># =&gt; {&quot;a&quot; =&gt; 100}</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/hash.cr#L1598" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="select(keys:Enumerable):Hash(K,V)-instance-method">
+      <div class="signature">
+        
+        def <strong>select</strong>(keys : <a href="Enumerable.html">Enumerable</a>) : <a href="Hash.html">Hash</a>(K, V)
+
+        <a class="method-permalink" href="#select%28keys%3AEnumerable%29%3AHash%28K%2CV%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns a new <code><a href="Hash.html">Hash</a></code> with the given keys.</p>
+<pre><code class="language-crystal">{<span class="s">&quot;a&quot;</span> <span class="o">=&gt;</span> <span class="n">1</span>, <span class="s">&quot;b&quot;</span> <span class="o">=&gt;</span> <span class="n">2</span>, <span class="s">&quot;c&quot;</span> <span class="o">=&gt;</span> <span class="n">3</span>, <span class="s">&quot;d&quot;</span> <span class="o">=&gt;</span> <span class="n">4</span>}.<span class="k">select</span>({<span class="s">&quot;a&quot;</span>, <span class="s">&quot;c&quot;</span>})    <span class="c"># =&gt; {&quot;a&quot; =&gt; 1, &quot;c&quot; =&gt; 3}</span>
+{<span class="s">&quot;a&quot;</span> <span class="o">=&gt;</span> <span class="n">1</span>, <span class="s">&quot;b&quot;</span> <span class="o">=&gt;</span> <span class="n">2</span>, <span class="s">&quot;c&quot;</span> <span class="o">=&gt;</span> <span class="n">3</span>, <span class="s">&quot;d&quot;</span> <span class="o">=&gt;</span> <span class="n">4</span>}.<span class="k">select</span>(<span class="s">&quot;a&quot;</span>, <span class="s">&quot;c&quot;</span>)      <span class="c"># =&gt; {&quot;a&quot; =&gt; 1, &quot;c&quot; =&gt; 3}</span>
+{<span class="s">&quot;a&quot;</span> <span class="o">=&gt;</span> <span class="n">1</span>, <span class="s">&quot;b&quot;</span> <span class="o">=&gt;</span> <span class="n">2</span>, <span class="s">&quot;c&quot;</span> <span class="o">=&gt;</span> <span class="n">3</span>, <span class="s">&quot;d&quot;</span> <span class="o">=&gt;</span> <span class="n">4</span>}.<span class="k">select</span>([<span class="s">&quot;a&quot;</span>, <span class="s">&quot;c&quot;</span>])    <span class="c"># =&gt; {&quot;a&quot; =&gt; 1, &quot;c&quot; =&gt; 3}</span>
+{<span class="s">&quot;a&quot;</span> <span class="o">=&gt;</span> <span class="n">1</span>, <span class="s">&quot;b&quot;</span> <span class="o">=&gt;</span> <span class="n">2</span>, <span class="s">&quot;c&quot;</span> <span class="o">=&gt;</span> <span class="n">3</span>, <span class="s">&quot;d&quot;</span> <span class="o">=&gt;</span> <span class="n">4</span>}.<span class="k">select</span>(<span class="t">Set</span>{<span class="s">&quot;a&quot;</span>, <span class="s">&quot;c&quot;</span>}) <span class="c"># =&gt; {&quot;a&quot; =&gt; 1, &quot;c&quot; =&gt; 3}</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/hash.cr#L1680" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="select(*keys):Hash(K,V)-instance-method">
+      <div class="signature">
+        
+        def <strong>select</strong>(*keys) : <a href="Hash.html">Hash</a>(K, V)
+
+        <a class="method-permalink" href="#select%28%2Akeys%29%3AHash%28K%2CV%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns a new <code><a href="Hash.html">Hash</a></code> with the given keys.</p>
+<pre><code class="language-crystal">{<span class="s">&quot;a&quot;</span> <span class="o">=&gt;</span> <span class="n">1</span>, <span class="s">&quot;b&quot;</span> <span class="o">=&gt;</span> <span class="n">2</span>, <span class="s">&quot;c&quot;</span> <span class="o">=&gt;</span> <span class="n">3</span>, <span class="s">&quot;d&quot;</span> <span class="o">=&gt;</span> <span class="n">4</span>}.<span class="k">select</span>({<span class="s">&quot;a&quot;</span>, <span class="s">&quot;c&quot;</span>})    <span class="c"># =&gt; {&quot;a&quot; =&gt; 1, &quot;c&quot; =&gt; 3}</span>
+{<span class="s">&quot;a&quot;</span> <span class="o">=&gt;</span> <span class="n">1</span>, <span class="s">&quot;b&quot;</span> <span class="o">=&gt;</span> <span class="n">2</span>, <span class="s">&quot;c&quot;</span> <span class="o">=&gt;</span> <span class="n">3</span>, <span class="s">&quot;d&quot;</span> <span class="o">=&gt;</span> <span class="n">4</span>}.<span class="k">select</span>(<span class="s">&quot;a&quot;</span>, <span class="s">&quot;c&quot;</span>)      <span class="c"># =&gt; {&quot;a&quot; =&gt; 1, &quot;c&quot; =&gt; 3}</span>
+{<span class="s">&quot;a&quot;</span> <span class="o">=&gt;</span> <span class="n">1</span>, <span class="s">&quot;b&quot;</span> <span class="o">=&gt;</span> <span class="n">2</span>, <span class="s">&quot;c&quot;</span> <span class="o">=&gt;</span> <span class="n">3</span>, <span class="s">&quot;d&quot;</span> <span class="o">=&gt;</span> <span class="n">4</span>}.<span class="k">select</span>([<span class="s">&quot;a&quot;</span>, <span class="s">&quot;c&quot;</span>])    <span class="c"># =&gt; {&quot;a&quot; =&gt; 1, &quot;c&quot; =&gt; 3}</span>
+{<span class="s">&quot;a&quot;</span> <span class="o">=&gt;</span> <span class="n">1</span>, <span class="s">&quot;b&quot;</span> <span class="o">=&gt;</span> <span class="n">2</span>, <span class="s">&quot;c&quot;</span> <span class="o">=&gt;</span> <span class="n">3</span>, <span class="s">&quot;d&quot;</span> <span class="o">=&gt;</span> <span class="n">4</span>}.<span class="k">select</span>(<span class="t">Set</span>{<span class="s">&quot;a&quot;</span>, <span class="s">&quot;c&quot;</span>}) <span class="c"># =&gt; {&quot;a&quot; =&gt; 1, &quot;c&quot; =&gt; 3}</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/hash.cr#L1688" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="select!(&amp;:K,V-&gt;):self-instance-method">
+      <div class="signature">
+        
+        def <strong>select!</strong>(& : K, V -> ) : <span class="k">self</span>
+
+        <a class="method-permalink" href="#select%21%28%26%3AK%2CV-%3E%29%3Aself-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Equivalent to <code><a href="Hash.html#select%28%26%3AK%2CV-%3E%29%3AHash%28K%2CV%29-instance-method">Hash#select</a></code> but makes modification on the current object rather than returning a new one. Returns <code>self</code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/hash.cr#L1603" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="select!(keys:Indexable):self-instance-method">
+      <div class="signature">
+        
+        def <strong>select!</strong>(keys : <a href="Indexable.html">Indexable</a>) : <span class="k">self</span>
+
+        <a class="method-permalink" href="#select%21%28keys%3AIndexable%29%3Aself-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Removes every element except the given ones.</p>
+<pre><code class="language-crystal">h1 <span class="o">=</span> {<span class="s">&quot;a&quot;</span> <span class="o">=&gt;</span> <span class="n">1</span>, <span class="s">&quot;b&quot;</span> <span class="o">=&gt;</span> <span class="n">2</span>, <span class="s">&quot;c&quot;</span> <span class="o">=&gt;</span> <span class="n">3</span>, <span class="s">&quot;d&quot;</span> <span class="o">=&gt;</span> <span class="n">4</span>}.select!({<span class="s">&quot;a&quot;</span>, <span class="s">&quot;c&quot;</span>})
+h2 <span class="o">=</span> {<span class="s">&quot;a&quot;</span> <span class="o">=&gt;</span> <span class="n">1</span>, <span class="s">&quot;b&quot;</span> <span class="o">=&gt;</span> <span class="n">2</span>, <span class="s">&quot;c&quot;</span> <span class="o">=&gt;</span> <span class="n">3</span>, <span class="s">&quot;d&quot;</span> <span class="o">=&gt;</span> <span class="n">4</span>}.select!(<span class="s">&quot;a&quot;</span>, <span class="s">&quot;c&quot;</span>)
+h3 <span class="o">=</span> {<span class="s">&quot;a&quot;</span> <span class="o">=&gt;</span> <span class="n">1</span>, <span class="s">&quot;b&quot;</span> <span class="o">=&gt;</span> <span class="n">2</span>, <span class="s">&quot;c&quot;</span> <span class="o">=&gt;</span> <span class="n">3</span>, <span class="s">&quot;d&quot;</span> <span class="o">=&gt;</span> <span class="n">4</span>}.select!([<span class="s">&quot;a&quot;</span>, <span class="s">&quot;c&quot;</span>])
+h4 <span class="o">=</span> {<span class="s">&quot;a&quot;</span> <span class="o">=&gt;</span> <span class="n">1</span>, <span class="s">&quot;b&quot;</span> <span class="o">=&gt;</span> <span class="n">2</span>, <span class="s">&quot;c&quot;</span> <span class="o">=&gt;</span> <span class="n">3</span>, <span class="s">&quot;d&quot;</span> <span class="o">=&gt;</span> <span class="n">4</span>}.select!(<span class="t">Set</span>{<span class="s">&quot;a&quot;</span>, <span class="s">&quot;c&quot;</span>})
+h1 <span class="o">==</span> h2 <span class="o">==</span> h3 <span class="o">==</span> h4 <span class="c"># =&gt; true</span>
+h1                   <span class="c"># =&gt; {&quot;a&quot; =&gt; 1, &quot;c&quot; =&gt; 3}</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/hash.cr#L1702" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="select!(keys:Enumerable):self-instance-method">
+      <div class="signature">
+        
+        def <strong>select!</strong>(keys : <a href="Enumerable.html">Enumerable</a>) : <span class="k">self</span>
+
+        <a class="method-permalink" href="#select%21%28keys%3AEnumerable%29%3Aself-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Removes every element except the given ones.</p>
+<pre><code class="language-crystal">h1 <span class="o">=</span> {<span class="s">&quot;a&quot;</span> <span class="o">=&gt;</span> <span class="n">1</span>, <span class="s">&quot;b&quot;</span> <span class="o">=&gt;</span> <span class="n">2</span>, <span class="s">&quot;c&quot;</span> <span class="o">=&gt;</span> <span class="n">3</span>, <span class="s">&quot;d&quot;</span> <span class="o">=&gt;</span> <span class="n">4</span>}.select!({<span class="s">&quot;a&quot;</span>, <span class="s">&quot;c&quot;</span>})
+h2 <span class="o">=</span> {<span class="s">&quot;a&quot;</span> <span class="o">=&gt;</span> <span class="n">1</span>, <span class="s">&quot;b&quot;</span> <span class="o">=&gt;</span> <span class="n">2</span>, <span class="s">&quot;c&quot;</span> <span class="o">=&gt;</span> <span class="n">3</span>, <span class="s">&quot;d&quot;</span> <span class="o">=&gt;</span> <span class="n">4</span>}.select!(<span class="s">&quot;a&quot;</span>, <span class="s">&quot;c&quot;</span>)
+h3 <span class="o">=</span> {<span class="s">&quot;a&quot;</span> <span class="o">=&gt;</span> <span class="n">1</span>, <span class="s">&quot;b&quot;</span> <span class="o">=&gt;</span> <span class="n">2</span>, <span class="s">&quot;c&quot;</span> <span class="o">=&gt;</span> <span class="n">3</span>, <span class="s">&quot;d&quot;</span> <span class="o">=&gt;</span> <span class="n">4</span>}.select!([<span class="s">&quot;a&quot;</span>, <span class="s">&quot;c&quot;</span>])
+h4 <span class="o">=</span> {<span class="s">&quot;a&quot;</span> <span class="o">=&gt;</span> <span class="n">1</span>, <span class="s">&quot;b&quot;</span> <span class="o">=&gt;</span> <span class="n">2</span>, <span class="s">&quot;c&quot;</span> <span class="o">=&gt;</span> <span class="n">3</span>, <span class="s">&quot;d&quot;</span> <span class="o">=&gt;</span> <span class="n">4</span>}.select!(<span class="t">Set</span>{<span class="s">&quot;a&quot;</span>, <span class="s">&quot;c&quot;</span>})
+h1 <span class="o">==</span> h2 <span class="o">==</span> h3 <span class="o">==</span> h4 <span class="c"># =&gt; true</span>
+h1                   <span class="c"># =&gt; {&quot;a&quot; =&gt; 1, &quot;c&quot; =&gt; 3}</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/hash.cr#L1708" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="select!(*keys):self-instance-method">
+      <div class="signature">
+        
+        def <strong>select!</strong>(*keys) : <span class="k">self</span>
+
+        <a class="method-permalink" href="#select%21%28%2Akeys%29%3Aself-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Removes every element except the given ones.</p>
+<pre><code class="language-crystal">h1 <span class="o">=</span> {<span class="s">&quot;a&quot;</span> <span class="o">=&gt;</span> <span class="n">1</span>, <span class="s">&quot;b&quot;</span> <span class="o">=&gt;</span> <span class="n">2</span>, <span class="s">&quot;c&quot;</span> <span class="o">=&gt;</span> <span class="n">3</span>, <span class="s">&quot;d&quot;</span> <span class="o">=&gt;</span> <span class="n">4</span>}.select!({<span class="s">&quot;a&quot;</span>, <span class="s">&quot;c&quot;</span>})
+h2 <span class="o">=</span> {<span class="s">&quot;a&quot;</span> <span class="o">=&gt;</span> <span class="n">1</span>, <span class="s">&quot;b&quot;</span> <span class="o">=&gt;</span> <span class="n">2</span>, <span class="s">&quot;c&quot;</span> <span class="o">=&gt;</span> <span class="n">3</span>, <span class="s">&quot;d&quot;</span> <span class="o">=&gt;</span> <span class="n">4</span>}.select!(<span class="s">&quot;a&quot;</span>, <span class="s">&quot;c&quot;</span>)
+h3 <span class="o">=</span> {<span class="s">&quot;a&quot;</span> <span class="o">=&gt;</span> <span class="n">1</span>, <span class="s">&quot;b&quot;</span> <span class="o">=&gt;</span> <span class="n">2</span>, <span class="s">&quot;c&quot;</span> <span class="o">=&gt;</span> <span class="n">3</span>, <span class="s">&quot;d&quot;</span> <span class="o">=&gt;</span> <span class="n">4</span>}.select!([<span class="s">&quot;a&quot;</span>, <span class="s">&quot;c&quot;</span>])
+h4 <span class="o">=</span> {<span class="s">&quot;a&quot;</span> <span class="o">=&gt;</span> <span class="n">1</span>, <span class="s">&quot;b&quot;</span> <span class="o">=&gt;</span> <span class="n">2</span>, <span class="s">&quot;c&quot;</span> <span class="o">=&gt;</span> <span class="n">3</span>, <span class="s">&quot;d&quot;</span> <span class="o">=&gt;</span> <span class="n">4</span>}.select!(<span class="t">Set</span>{<span class="s">&quot;a&quot;</span>, <span class="s">&quot;c&quot;</span>})
+h1 <span class="o">==</span> h2 <span class="o">==</span> h3 <span class="o">==</span> h4 <span class="c"># =&gt; true</span>
+h1                   <span class="c"># =&gt; {&quot;a&quot; =&gt; 1, &quot;c&quot; =&gt; 3}</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/hash.cr#L1716" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="shift:Tuple(K,V)-instance-method">
+      <div class="signature">
+        
+        def <strong>shift</strong> : <a href="Tuple.html">Tuple</a>(K, V)
+
+        <a class="method-permalink" href="#shift%3ATuple%28K%2CV%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Deletes and returns the first key-value pair in the hash,
+or raises <code><a href="IndexError.html">IndexError</a></code> if the hash is empty.</p>
+<pre><code class="language-crystal">hash <span class="o">=</span> {<span class="s">&quot;foo&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;bar&quot;</span>, <span class="s">&quot;baz&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;qux&quot;</span>}
+hash.shift <span class="c"># =&gt; {&quot;foo&quot;, &quot;bar&quot;}</span>
+hash       <span class="c"># =&gt; {&quot;baz&quot; =&gt; &quot;qux&quot;}</span>
+
+hash <span class="o">=</span> {} <span class="k">of</span> <span class="t">String</span> <span class="o">=&gt;</span> <span class="t">String</span>
+hash.shift <span class="c"># raises IndexError</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/hash.cr#L1891" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="shift(&amp;)-instance-method">
+      <div class="signature">
+        
+        def <strong>shift</strong>(&)
+
+        <a class="method-permalink" href="#shift%28%26%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Deletes and returns the first key-value pair in the hash.
+Yields to the given block if the hash is empty.</p>
+<pre><code class="language-crystal">hash <span class="o">=</span> {<span class="s">&quot;foo&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;bar&quot;</span>, <span class="s">&quot;baz&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;qux&quot;</span>}
+hash.shift { <span class="n">true</span> } <span class="c"># =&gt; {&quot;foo&quot;, &quot;bar&quot;}</span>
+hash                <span class="c"># =&gt; {&quot;baz&quot; =&gt; &quot;qux&quot;}</span>
+
+hash <span class="o">=</span> {} <span class="k">of</span> <span class="t">String</span> <span class="o">=&gt;</span> <span class="t">String</span>
+hash.shift { <span class="n">true</span> } <span class="c"># =&gt; true</span>
+hash                <span class="c"># =&gt; {}</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/hash.cr#L1921" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="shift?:Tuple(K,V)|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>shift?</strong> : <a href="Tuple.html">Tuple</a>(K, V) | <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#shift%3F%3ATuple%28K%2CV%29%7CNil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Same as <code><a href="Hash.html#shift%3ATuple%28K%2CV%29-instance-method">#shift</a></code>, but returns <code>nil</code> if the hash is empty.</p>
+<pre><code class="language-crystal">hash <span class="o">=</span> {<span class="s">&quot;foo&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;bar&quot;</span>, <span class="s">&quot;baz&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;qux&quot;</span>}
+hash.shift? <span class="c"># =&gt; {&quot;foo&quot;, &quot;bar&quot;}</span>
+hash        <span class="c"># =&gt; {&quot;baz&quot; =&gt; &quot;qux&quot;}</span>
+
+hash <span class="o">=</span> {} <span class="k">of</span> <span class="t">String</span> <span class="o">=&gt;</span> <span class="t">String</span>
+hash.shift? <span class="c"># =&gt; nil</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/hash.cr#L1905" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="size:Int32-instance-method">
+      <div class="signature">
+        
+        def <strong>size</strong> : <a href="Int32.html">Int32</a>
+
+        <a class="method-permalink" href="#size%3AInt32-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the number of elements in this Hash.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/hash.cr#L1040" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="subset_of?(other:Hash):Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>subset_of?</strong>(other : <a href="Hash.html">Hash</a>) : <a href="Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#subset_of%3F%28other%3AHash%29%3ABool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if <code>self</code> is a subset of <em>other</em> or equals to <em>other</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/hash.cr#L1963" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="superset_of?(other:Hash):Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>superset_of?</strong>(other : <a href="Hash.html">Hash</a>) : <a href="Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#superset_of%3F%28other%3AHash%29%3ABool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if <em>other</em> is a subset of <code>self</code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/hash.cr#L1972" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_a:Array(Tuple(K,V))-instance-method">
+      <div class="signature">
+        
+        def <strong>to_a</strong> : <a href="Array.html">Array</a>(<a href="Tuple.html">Tuple</a>(K, V))
+
+        <a class="method-permalink" href="#to_a%3AArray%28Tuple%28K%2CV%29%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns an <code><a href="Array.html">Array</a></code> of <code><a href="Tuple.html">Tuple</a>(K, V)</code> with key and values belonging to this Hash.</p>
+<pre><code class="language-crystal">h <span class="o">=</span> {<span class="n">1</span> <span class="o">=&gt;</span> <span class="s">&#39;a&#39;</span>, <span class="n">2</span> <span class="o">=&gt;</span> <span class="s">&#39;b&#39;</span>, <span class="n">3</span> <span class="o">=&gt;</span> <span class="s">&#39;c&#39;</span>}
+h.to_a <span class="c"># =&gt; [{1, &#39;a&#39;}, {2, &#39;b&#39;}, {3, &#39;c&#39;}]</span></code></pre>
+<p>The order of the array follows the order the keys were inserted in the Hash.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/hash.cr#L2085" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_a(&amp;block:Tuple(K,V)-&gt;U):Array(U)forallU-instance-method">
+      <div class="signature">
+        
+        def <strong>to_a</strong>(&block : <a href="Tuple.html">Tuple</a>(K, V) -> U) : <a href="Array.html">Array</a>(U) forall U
+
+        <a class="method-permalink" href="#to_a%28%26block%3ATuple%28K%2CV%29-%3EU%29%3AArray%28U%29forallU-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns an <code><a href="Array.html">Array</a></code> with the results of running <em>block</em> against tuples with key and values
+belonging to this Hash.</p>
+<pre><code class="language-crystal">h <span class="o">=</span> {<span class="s">&quot;first_name&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;foo&quot;</span>, <span class="s">&quot;last_name&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;bar&quot;</span>}
+h.to_a { <span class="o">|</span>_k, v<span class="o">|</span> v.capitalize } <span class="c"># =&gt; [&quot;Foo&quot;, &quot;Bar&quot;]</span></code></pre>
+<p>The order of the array follows the order the keys were inserted in the Hash.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/hash.cr#L2098" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_h:self-instance-method">
+      <div class="signature">
+        
+        def <strong>to_h</strong> : <span class="k">self</span>
+
+        <a class="method-permalink" href="#to_h%3Aself-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>self</code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/hash.cr#L2129" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_json(json:JSON::Builder):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>to_json</strong>(json : <a href="JSON/Builder.html">JSON::Builder</a>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#to_json%28json%3AJSON%3A%3ABuilder%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Serializes this Hash into JSON.</p>
+<p>Keys are serialized by invoking <code>to_json_object_key</code> on them.
+Values are serialized with the usual <code><a href="Hash.html#to_json%28json%3AJSON%3A%3ABuilder%29%3ANil-instance-method">#to_json(json : JSON::Builder)</a></code>
+method.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/to_json.cr#L141" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_s(io:IO):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>to_s</strong>(io : <a href="IO.html">IO</a>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#to_s%28io%3AIO%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Converts to a <code><a href="String.html">String</a></code>.</p>
+<pre><code class="language-crystal">h <span class="o">=</span> {<span class="s">&quot;foo&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;bar&quot;</span>}
+h.to_s       <span class="c"># =&gt; &quot;{\&quot;foo\&quot; =&gt; \&quot;bar\&quot;}&quot;</span>
+h.to_s.<span class="k">class</span> <span class="c"># =&gt; String</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/hash.cr#L2045" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_yaml(yaml:YAML::Nodes::Builder):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>to_yaml</strong>(yaml : <a href="YAML/Nodes/Builder.html">YAML::Nodes::Builder</a>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#to_yaml%28yaml%3AYAML%3A%3ANodes%3A%3ABuilder%29%3ANil-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/yaml/to_yaml.cr#L24" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="transform_keys(&amp;:K,V-&gt;K2):Hash(K2,V)forallK2-instance-method">
+      <div class="signature">
+        
+        def <strong>transform_keys</strong>(& : K, V -> K2) : <a href="Hash.html">Hash</a>(K2, V) forall K2
+
+        <a class="method-permalink" href="#transform_keys%28%26%3AK%2CV-%3EK2%29%3AHash%28K2%2CV%29forallK2-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns a new hash with all keys converted using the block operation.
+The block can change a type of keys.
+The block yields the key and value.</p>
+<pre><code class="language-crystal">hash <span class="o">=</span> {<span class="n">:a</span> <span class="o">=&gt;</span> <span class="n">1</span>, <span class="n">:b</span> <span class="o">=&gt;</span> <span class="n">2</span>, <span class="n">:c</span> <span class="o">=&gt;</span> <span class="n">3</span>}
+hash.transform_keys { <span class="o">|</span>key<span class="o">|</span> key.to_s }                <span class="c"># =&gt; {&quot;a&quot; =&gt; 1, &quot;b&quot; =&gt; 2, &quot;c&quot; =&gt; 3}</span>
+hash.transform_keys { <span class="o">|</span>key, value<span class="o">|</span> key.to_s <span class="o">*</span> value } <span class="c"># =&gt; {&quot;a&quot; =&gt; 1, &quot;bb&quot; =&gt; 2, &quot;ccc&quot; =&gt; 3}</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/hash.cr#L1751" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="transform_values(&amp;:V,K-&gt;V2):Hash(K,V2)forallV2-instance-method">
+      <div class="signature">
+        
+        def <strong>transform_values</strong>(& : V, K -> V2) : <a href="Hash.html">Hash</a>(K, V2) forall V2
+
+        <a class="method-permalink" href="#transform_values%28%26%3AV%2CK-%3EV2%29%3AHash%28K%2CV2%29forallV2-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns a new hash with the results of running block once for every value.
+The block can change a type of values.
+The block yields the value and key.</p>
+<pre><code class="language-crystal">hash <span class="o">=</span> {<span class="n">:a</span> <span class="o">=&gt;</span> <span class="n">1</span>, <span class="n">:b</span> <span class="o">=&gt;</span> <span class="n">2</span>, <span class="n">:c</span> <span class="o">=&gt;</span> <span class="n">3</span>}
+hash.transform_values { <span class="o">|</span>value<span class="o">|</span> value <span class="o">+</span> <span class="n">1</span> }             <span class="c"># =&gt; {:a =&gt; 2, :b =&gt; 3, :c =&gt; 4}</span>
+hash.transform_values { <span class="o">|</span>value, key<span class="o">|</span> <span class="s">&quot;</span><span class="i">#{</span>key<span class="i">}</span><span class="s"></span><span class="i">#{</span>value<span class="i">}</span><span class="s">&quot;</span> } <span class="c"># =&gt; {:a =&gt; &quot;a1&quot;, :b =&gt; &quot;b2&quot;, :c =&gt; &quot;c3&quot;}</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/hash.cr#L1767" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="transform_values!(&amp;:V,K-&gt;V):self-instance-method">
+      <div class="signature">
+        
+        def <strong>transform_values!</strong>(& : V, K -> V) : <span class="k">self</span>
+
+        <a class="method-permalink" href="#transform_values%21%28%26%3AV%2CK-%3EV%29%3Aself-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Destructively transforms all values using a block. Same as transform_values but modifies in place.
+The block cannot change a type of values.
+The block yields the value and key.</p>
+<pre><code class="language-crystal">hash <span class="o">=</span> {<span class="n">:a</span> <span class="o">=&gt;</span> <span class="n">1</span>, <span class="n">:b</span> <span class="o">=&gt;</span> <span class="n">2</span>, <span class="n">:c</span> <span class="o">=&gt;</span> <span class="n">3</span>}
+hash.transform_values! { <span class="o">|</span>value<span class="o">|</span> value <span class="o">+</span> <span class="n">1</span> }
+hash <span class="c"># =&gt; {:a =&gt; 2, :b =&gt; 3, :c =&gt; 4}</span>
+hash.transform_values! { <span class="o">|</span>value, key<span class="o">|</span> value <span class="o">+</span> key.to_s[<span class="n">0</span>].ord }
+hash <span class="c"># =&gt; {:a =&gt; 99, :b =&gt; 101, :c =&gt; 103}</span></code></pre>
+<p>See <code><a href="Hash.html#update%28key%3AK%2C%26%3AV-%3EV%29%3AV-instance-method">#update</a></code> for updating a <em>single</em> value.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/hash.cr#L1786" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="update(key:K,&amp;:V-&gt;V):V-instance-method">
+      <div class="signature">
+        
+        def <strong>update</strong>(key : K, & : V -> V) : V
+
+        <a class="method-permalink" href="#update%28key%3AK%2C%26%3AV-%3EV%29%3AV-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Updates the current value of <em>key</em> with the value returned by the given block
+(the current value is used as input for the block).</p>
+<p>If no entry for <em>key</em> is present, but there's a default value (or default block)
+then that default value is used as input for the given block.</p>
+<p>If no entry for <em>key</em> is present and the hash has no default value, it raises <code><a href="KeyError.html">KeyError</a></code>.</p>
+<p>It returns the value used as input for the given block
+(ie. the old value if key present, or the default value)</p>
+<pre><code class="language-crystal">h <span class="o">=</span> {<span class="s">&quot;a&quot;</span> <span class="o">=&gt;</span> <span class="n">0</span>, <span class="s">&quot;b&quot;</span> <span class="o">=&gt;</span> <span class="n">1</span>}
+h.update(<span class="s">&quot;b&quot;</span>) { <span class="o">|</span>v<span class="o">|</span> v <span class="o">+</span> <span class="n">41</span> } <span class="c"># =&gt; 1</span>
+h[<span class="s">&quot;b&quot;</span>]                       <span class="c"># =&gt; 42</span>
+
+h <span class="o">=</span> <span class="t">Hash</span>(<span class="t">String</span>, <span class="t">Int32</span>).new(<span class="n">40</span>)
+h.update(<span class="s">&quot;foo&quot;</span>) { <span class="o">|</span>v<span class="o">|</span> v <span class="o">+</span> <span class="n">2</span> } <span class="c"># =&gt; 40</span>
+h[<span class="s">&quot;foo&quot;</span>]                      <span class="c"># =&gt; 42</span>
+
+h <span class="o">=</span> {} <span class="k">of</span> <span class="t">String</span> <span class="o">=&gt;</span> <span class="t">Int32</span>
+h.update(<span class="s">&quot;a&quot;</span>) { <span class="n">42</span> } <span class="c"># raises KeyError</span></code></pre>
+<p>See <code><a href="Hash.html#transform_values%21%28%26%3AV%2CK-%3EV%29%3Aself-instance-method">#transform_values!</a></code> for updating <em>all</em> the values.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/hash.cr#L1163" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="values:Array(V)-instance-method">
+      <div class="signature">
+        
+        def <strong>values</strong> : <a href="Array.html">Array</a>(V)
+
+        <a class="method-permalink" href="#values%3AArray%28V%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns only the values as an <code><a href="Array.html">Array</a></code>.</p>
+<pre><code class="language-crystal">h <span class="o">=</span> {<span class="s">&quot;foo&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;bar&quot;</span>, <span class="s">&quot;baz&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;qux&quot;</span>}
+h.values <span class="c"># =&gt; [&quot;bar&quot;, &quot;qux&quot;]</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/hash.cr#L1516" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="values_at(*keys:K)-instance-method">
+      <div class="signature">
+        
+        def <strong>values_at</strong>(*keys : K)
+
+        <a class="method-permalink" href="#values_at%28%2Akeys%3AK%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns a tuple populated with the values of the given <em>keys</em>, with the same order.
+Raises if a key is not found.</p>
+<pre><code class="language-crystal">{<span class="s">&quot;a&quot;</span> <span class="o">=&gt;</span> <span class="n">1</span>, <span class="s">&quot;b&quot;</span> <span class="o">=&gt;</span> <span class="n">2</span>, <span class="s">&quot;c&quot;</span> <span class="o">=&gt;</span> <span class="n">3</span>, <span class="s">&quot;d&quot;</span> <span class="o">=&gt;</span> <span class="n">4</span>}.values_at(<span class="s">&quot;a&quot;</span>, <span class="s">&quot;c&quot;</span>) <span class="c"># =&gt; {1, 3}</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/hash.cr#L1313" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Crystal Docs 1.16.1">
+<meta name="crystal_docs.project_version" content="1.17.0-dev">
+<meta name="crystal_docs.project_name" content="Crystal">
+
+  <meta name="crystal_docs.json_config_url" content="/api/versions.json">
+
+
+    <link rel="canonical" href="https://crystal-lang.org/api/latest/XML.html">
+
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/doc.js"></script>
+
+  <meta name="repository-name" content="Crystal">
+  <title>XML - Crystal 1.17.0-dev</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill="currentColor" fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<input type="checkbox" id="sidebar-btn">
+<label for="sidebar-btn" id="sidebar-btn-label">
+  <svg class="open" xmlns="http://www.w3.org/2000/svg" height="2em" width="2em" viewBox="0 0 512 512"><title>Open Sidebar</title><path fill="currentColor" d="M80 96v64h352V96H80zm0 112v64h352v-64H80zm0 112v64h352v-64H80z"></path></svg>
+  <svg class="close" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><title>Close Sidebar</title><path fill="currentColor" d="m118.6 73.4-45.2 45.2L210.7 256 73.4 393.4l45.2 45.2L256 301.3l137.4 137.3 45.2-45.2L301.3 256l137.3-137.4-45.2-45.2L256 210.7Z"></path></svg>
+</label>
+<iframe class="sidebar" src="sidebar.html"></iframe>
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">
+    module
+  </span> XML
+
+</h1>
+
+
+
+
+
+  <h2>
+    <a id="overview" class="anchor" href="#overview">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Overview
+  </h2>
+
+  <p>The XML module allows parsing and generating <a href="https://www.w3.org/XML/">XML</a> documents.</p>
+<p><span class="flag purple">NOTE</span>  To use <code><a href="XML.html">XML</a></code>, you must explicitly import it with <code>require &quot;xml&quot;</code></p>
+<h3><a id="parsing" class="anchor" href="#parsing">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Parsing</h3>
+<p><code><a href="XML.html#parse%28string%3AString%2Coptions%3AParserOptions%3DParserOptions.default%29%3ANode-class-method">XML#parse</a></code> will parse xml from <code><a href="String.html">String</a></code> or <code><a href="IO.html">IO</a></code> and return xml document as an <code><a href="XML/Node.html">XML::Node</a></code> which represents all kinds of xml nodes.</p>
+<p>Example:</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;xml&quot;</span>
+
+xml <span class="o">=</span> <span class="s">&lt;&lt;-XML</span>
+<span class="s"> &lt;person id=&quot;1&quot;&gt;
+  &lt;firstname&gt;Jane&lt;/firstname&gt;
+  &lt;lastname&gt;Doe&lt;/lastname&gt;
+ &lt;/person&gt;
+XML</span>
+
+document <span class="o">=</span> <span class="t">XML</span>.parse(xml)             <span class="c"># : XML::Node</span>
+person <span class="o">=</span> document.first_element_child <span class="c"># : XML::Node?</span>
+<span class="k">if</span> person
+  puts person[<span class="s">&quot;id&quot;</span>] <span class="c"># &quot;1&quot; : String?</span>
+
+  puts <span class="k">typeof</span>(person.children)                       <span class="c"># XML::NodeSet</span>
+  person.children.<span class="k">select</span>(<span class="o">&amp;</span>.element?).each <span class="k">do</span> <span class="o">|</span>child<span class="o">|</span> <span class="c"># Select only element children</span>
+    puts <span class="k">typeof</span>(child)                               <span class="c"># XML::Node</span>
+    puts child.name                                  <span class="c"># firstname : String</span>
+    puts child.content                               <span class="c"># Jane : String?</span>
+  <span class="k">end</span>
+<span class="k">end</span></code></pre>
+<h2><a id="generating" class="anchor" href="#generating">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Generating</h2>
+<p>Use <code><a href="XML.html#build%28version%3AString%7CNil%3Dnil%2Cencoding%3AString%7CNil%3Dnil%2Cindent%3Dnil%2Cquote_char%3Dnil%2C%26%29-class-method">XML.build</a></code>, which uses an <code><a href="XML/Builder.html">XML::Builder</a></code>:</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;xml&quot;</span>
+
+string <span class="o">=</span> <span class="t">XML</span>.build(indent: <span class="s">&quot;  &quot;</span>) <span class="k">do</span> <span class="o">|</span>xml<span class="o">|</span>
+  xml.element(<span class="s">&quot;person&quot;</span>, id: <span class="n">1</span>) <span class="k">do</span>
+    xml.element(<span class="s">&quot;firstname&quot;</span>) { xml.text <span class="s">&quot;Jane&quot;</span> }
+    xml.element(<span class="s">&quot;lastname&quot;</span>) { xml.text <span class="s">&quot;Doe&quot;</span> }
+  <span class="k">end</span>
+<span class="k">end</span>
+
+string <span class="c"># =&gt; &quot;&lt;?xml version=\&quot;1.0\&quot;?&gt;\n&lt;person id=\&quot;1\&quot;&gt;\n  &lt;firstname&gt;Jane&lt;/firstname&gt;\n  &lt;lastname&gt;Doe&lt;/lastname&gt;\n&lt;/person&gt;\n&quot;</span></code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/xml.cr#L51" target="_blank">
+        xml.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/xml/builder.cr#L308" target="_blank">
+        xml/builder.cr
+      </a>
+    
+    <br/>
+  
+
+
+
+
+
+  
+
+  
+  <h2>
+    <a id="class-method-summary" class="anchor" href="#class-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Class Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#build%28version%3AString%7CNil%3Dnil%2Cencoding%3AString%7CNil%3Dnil%2Cindent%3Dnil%2Cquote_char%3Dnil%2C%26%29-class-method" class="signature"><strong>.build</strong>(version : String | Nil = <span class="n">nil</span>, encoding : String | Nil = <span class="n">nil</span>, indent = <span class="n">nil</span>, quote_char = <span class="n">nil</span>, &)</a>
+        
+          <div class="summary"><p>Returns the resulting <code><a href="String.html">String</a></code> of writing XML to the yielded <code><a href="XML/Builder.html">XML::Builder</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#build%28io%3AIO%2Cversion%3AString%7CNil%3Dnil%2Cencoding%3AString%7CNil%3Dnil%2Cindent%3Dnil%2Cquote_char%3Dnil%2C%26%29%3ANil-class-method" class="signature"><strong>.build</strong>(io : IO, version : String | Nil = <span class="n">nil</span>, encoding : String | Nil = <span class="n">nil</span>, indent = <span class="n">nil</span>, quote_char = <span class="n">nil</span>, &) : Nil</a>
+        
+          <div class="summary"><p>Writes XML document into the given <code><a href="IO.html">IO</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#build_fragment%28io%3AIO%2C%2A%2Cindent%3Dnil%2Cquote_char%3Dnil%2C%26%29%3ANil-class-method" class="signature"><strong>.build_fragment</strong>(io : IO, *, indent = <span class="n">nil</span>, quote_char = <span class="n">nil</span>, &) : Nil</a>
+        
+          <div class="summary"><p>Writes XML fragment into the given <code><a href="IO.html">IO</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#build_fragment%28%2A%2Cindent%3Dnil%2Cquote_char%3Dnil%2C%26%29-class-method" class="signature"><strong>.build_fragment</strong>(*, indent = <span class="n">nil</span>, quote_char = <span class="n">nil</span>, &)</a>
+        
+          <div class="summary"><p>Returns the resulting <code><a href="String.html">String</a></code> of writing XML to the yielded <code><a href="XML/Builder.html">XML::Builder</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#libxml2_version%3AString-class-method" class="signature"><strong>.libxml2_version</strong> : String</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#parse%28string%3AString%2Coptions%3AParserOptions%3DParserOptions.default%29%3ANode-class-method" class="signature"><strong>.parse</strong>(string : String, options : ParserOptions = <span class="t">ParserOptions</span>.default) : Node</a>
+        
+          <div class="summary"><p>Parses an XML document from <em>string</em> with <em>options</em> into an <code><a href="XML/Node.html">XML::Node</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#parse%28io%3AIO%2Coptions%3AParserOptions%3DParserOptions.default%29%3ANode-class-method" class="signature"><strong>.parse</strong>(io : IO, options : ParserOptions = <span class="t">ParserOptions</span>.default) : Node</a>
+        
+          <div class="summary"><p>Parses an XML document from <em>io</em> with <em>options</em> into an <code><a href="XML/Node.html">XML::Node</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#parse_html%28string%3AString%2Coptions%3AHTMLParserOptions%3DHTMLParserOptions.default%29%3ANode-class-method" class="signature"><strong>.parse_html</strong>(string : String, options : HTMLParserOptions = <span class="t">HTMLParserOptions</span>.default) : Node</a>
+        
+          <div class="summary"><p>Parses an HTML document from <em>string</em> with <em>options</em> into an <code><a href="XML/Node.html">XML::Node</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#parse_html%28io%3AIO%2Coptions%3AHTMLParserOptions%3DHTMLParserOptions.default%29%3ANode-class-method" class="signature"><strong>.parse_html</strong>(io : IO, options : HTMLParserOptions = <span class="t">HTMLParserOptions</span>.default) : Node</a>
+        
+          <div class="summary"><p>Parses an HTML document from <em>io</em> with <em>options</em> into an <code><a href="XML/Node.html">XML::Node</a></code>.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+  
+
+  
+
+
+  <div class="methods-inherited">
+    
+  </div>
+
+  
+
+  
+  <h2>
+    <a id="class-method-detail" class="anchor" href="#class-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Class Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="build(version:String|Nil=nil,encoding:String|Nil=nil,indent=nil,quote_char=nil,&amp;)-class-method">
+      <div class="signature">
+        
+        def self.<strong>build</strong>(version : <a href="String.html">String</a> | <a href="Nil.html">Nil</a> = <span class="n">nil</span>, encoding : <a href="String.html">String</a> | <a href="Nil.html">Nil</a> = <span class="n">nil</span>, indent = <span class="n">nil</span>, quote_char = <span class="n">nil</span>, &)
+
+        <a class="method-permalink" href="#build%28version%3AString%7CNil%3Dnil%2Cencoding%3AString%7CNil%3Dnil%2Cindent%3Dnil%2Cquote_char%3Dnil%2C%26%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the resulting <code><a href="String.html">String</a></code> of writing XML to the yielded <code><a href="XML/Builder.html">XML::Builder</a></code>.</p>
+<p>Builds an XML document (see <code>#document</code>) including XML declaration (<code>&lt;?xml?&gt;</code>).</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;xml&quot;</span>
+
+string <span class="o">=</span> <span class="t">XML</span>.build(indent: <span class="s">&quot;  &quot;</span>) <span class="k">do</span> <span class="o">|</span>xml<span class="o">|</span>
+  xml.element(<span class="s">&quot;person&quot;</span>, id: <span class="n">1</span>) <span class="k">do</span>
+    xml.element(<span class="s">&quot;firstname&quot;</span>) { xml.text <span class="s">&quot;Jane&quot;</span> }
+    xml.element(<span class="s">&quot;lastname&quot;</span>) { xml.text <span class="s">&quot;Doe&quot;</span> }
+  <span class="k">end</span>
+<span class="k">end</span>
+
+string <span class="c"># =&gt; &quot;&lt;?xml version=\&quot;1.0\&quot;?&gt;\n&lt;person id=\&quot;1\&quot;&gt;\n  &lt;firstname&gt;Jane&lt;/firstname&gt;\n  &lt;lastname&gt;Doe&lt;/lastname&gt;\n&lt;/person&gt;\n&quot;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/xml/builder.cr#L325" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="build(io:IO,version:String|Nil=nil,encoding:String|Nil=nil,indent=nil,quote_char=nil,&amp;):Nil-class-method">
+      <div class="signature">
+        
+        def self.<strong>build</strong>(io : <a href="IO.html">IO</a>, version : <a href="String.html">String</a> | <a href="Nil.html">Nil</a> = <span class="n">nil</span>, encoding : <a href="String.html">String</a> | <a href="Nil.html">Nil</a> = <span class="n">nil</span>, indent = <span class="n">nil</span>, quote_char = <span class="n">nil</span>, &) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#build%28io%3AIO%2Cversion%3AString%7CNil%3Dnil%2Cencoding%3AString%7CNil%3Dnil%2Cindent%3Dnil%2Cquote_char%3Dnil%2C%26%29%3ANil-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Writes XML document into the given <code><a href="IO.html">IO</a></code>. An <code><a href="XML/Builder.html">XML::Builder</a></code> is yielded to the block.</p>
+<p>Builds an XML document (see <code>#document</code>) including XML declaration (<code>&lt;?xml?&gt;</code>).</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/xml/builder.cr#L360" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="build_fragment(io:IO,*,indent=nil,quote_char=nil,&amp;):Nil-class-method">
+      <div class="signature">
+        
+        def self.<strong>build_fragment</strong>(io : <a href="IO.html">IO</a>, *, indent = <span class="n">nil</span>, quote_char = <span class="n">nil</span>, &) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#build_fragment%28io%3AIO%2C%2A%2Cindent%3Dnil%2Cquote_char%3Dnil%2C%26%29%3ANil-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Writes XML fragment into the given <code><a href="IO.html">IO</a></code>. An <code><a href="XML/Builder.html">XML::Builder</a></code> is yielded to the block.</p>
+<p>Builds an XML fragment without XML declaration (<code>&lt;?xml?&gt;</code>).</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/xml/builder.cr#L371" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="build_fragment(*,indent=nil,quote_char=nil,&amp;)-class-method">
+      <div class="signature">
+        
+        def self.<strong>build_fragment</strong>(*, indent = <span class="n">nil</span>, quote_char = <span class="n">nil</span>, &)
+
+        <a class="method-permalink" href="#build_fragment%28%2A%2Cindent%3Dnil%2Cquote_char%3Dnil%2C%26%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the resulting <code><a href="String.html">String</a></code> of writing XML to the yielded <code><a href="XML/Builder.html">XML::Builder</a></code>.</p>
+<p>Builds an XML fragment without XML declaration (<code>&lt;?xml?&gt;</code>).</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;xml&quot;</span>
+
+string <span class="o">=</span> <span class="t">XML</span>.build_fragment(indent: <span class="s">&quot;  &quot;</span>) <span class="k">do</span> <span class="o">|</span>xml<span class="o">|</span>
+  xml.element(<span class="s">&quot;person&quot;</span>, id: <span class="n">1</span>) <span class="k">do</span>
+    xml.element(<span class="s">&quot;firstname&quot;</span>) { xml.text <span class="s">&quot;Jane&quot;</span> }
+    xml.element(<span class="s">&quot;lastname&quot;</span>) { xml.text <span class="s">&quot;Doe&quot;</span> }
+  <span class="k">end</span>
+<span class="k">end</span>
+
+string <span class="c"># =&gt; &quot;&lt;person id=\&quot;1\&quot;&gt;\n  &lt;firstname&gt;Jane&lt;/firstname&gt;\n  &lt;lastname&gt;Doe&lt;/lastname&gt;\n&lt;/person&gt;\n&quot;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/xml/builder.cr#L349" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="libxml2_version:String-class-method">
+      <div class="signature">
+        
+        def self.<strong>libxml2_version</strong> : <a href="String.html">String</a>
+
+        <a class="method-permalink" href="#libxml2_version%3AString-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/xml.cr#L129" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="parse(string:String,options:ParserOptions=ParserOptions.default):Node-class-method">
+      <div class="signature">
+        
+        def self.<strong>parse</strong>(string : <a href="String.html">String</a>, options : <a href="XML/ParserOptions.html">ParserOptions</a> = <span class="t">ParserOptions</span>.default) : <a href="XML/Node.html">Node</a>
+
+        <a class="method-permalink" href="#parse%28string%3AString%2Coptions%3AParserOptions%3DParserOptions.default%29%3ANode-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Parses an XML document from <em>string</em> with <em>options</em> into an <code><a href="XML/Node.html">XML::Node</a></code>.</p>
+<p>See <code><a href="XML/ParserOptions.html#default%3Aself-class-method">ParserOptions.default</a></code> for default options.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/xml.cr#L55" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="parse(io:IO,options:ParserOptions=ParserOptions.default):Node-class-method">
+      <div class="signature">
+        
+        def self.<strong>parse</strong>(io : <a href="IO.html">IO</a>, options : <a href="XML/ParserOptions.html">ParserOptions</a> = <span class="t">ParserOptions</span>.default) : <a href="XML/Node.html">Node</a>
+
+        <a class="method-permalink" href="#parse%28io%3AIO%2Coptions%3AParserOptions%3DParserOptions.default%29%3ANode-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Parses an XML document from <em>io</em> with <em>options</em> into an <code><a href="XML/Node.html">XML::Node</a></code>.</p>
+<p>See <code><a href="XML/ParserOptions.html#default%3Aself-class-method">ParserOptions.default</a></code> for default options.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/xml.cr#L63" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="parse_html(string:String,options:HTMLParserOptions=HTMLParserOptions.default):Node-class-method">
+      <div class="signature">
+        
+        def self.<strong>parse_html</strong>(string : <a href="String.html">String</a>, options : <a href="XML/HTMLParserOptions.html">HTMLParserOptions</a> = <span class="t">HTMLParserOptions</span>.default) : <a href="XML/Node.html">Node</a>
+
+        <a class="method-permalink" href="#parse_html%28string%3AString%2Coptions%3AHTMLParserOptions%3DHTMLParserOptions.default%29%3ANode-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Parses an HTML document from <em>string</em> with <em>options</em> into an <code><a href="XML/Node.html">XML::Node</a></code>.</p>
+<p>See <code><a href="XML/HTMLParserOptions.html#default%3Aself-class-method">HTMLParserOptions.default</a></code> for default options.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/xml.cr#L79" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="parse_html(io:IO,options:HTMLParserOptions=HTMLParserOptions.default):Node-class-method">
+      <div class="signature">
+        
+        def self.<strong>parse_html</strong>(io : <a href="IO.html">IO</a>, options : <a href="XML/HTMLParserOptions.html">HTMLParserOptions</a> = <span class="t">HTMLParserOptions</span>.default) : <a href="XML/Node.html">Node</a>
+
+        <a class="method-permalink" href="#parse_html%28io%3AIO%2Coptions%3AHTMLParserOptions%3DHTMLParserOptions.default%29%3ANode-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Parses an HTML document from <em>io</em> with <em>options</em> into an <code><a href="XML/Node.html">XML::Node</a></code>.</p>
+<p>See <code><a href="XML/HTMLParserOptions.html#default%3Aself-class-method">HTMLParserOptions.default</a></code> for default options.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/xml.cr#L87" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+  
+
+  
+
+
+</div>
+
+</body>
+</html>

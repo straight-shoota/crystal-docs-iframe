@@ -1,0 +1,4487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Crystal Docs 1.16.1">
+<meta name="crystal_docs.project_version" content="1.17.0-dev">
+<meta name="crystal_docs.project_name" content="Crystal">
+
+  <meta name="crystal_docs.json_config_url" content="/api/versions.json">
+
+
+    <link rel="canonical" href="https://crystal-lang.org/api/latest/Math.html">
+
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/doc.js"></script>
+
+  <meta name="repository-name" content="Crystal">
+  <title>Math - Crystal 1.17.0-dev</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill="currentColor" fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<input type="checkbox" id="sidebar-btn">
+<label for="sidebar-btn" id="sidebar-btn-label">
+  <svg class="open" xmlns="http://www.w3.org/2000/svg" height="2em" width="2em" viewBox="0 0 512 512"><title>Open Sidebar</title><path fill="currentColor" d="M80 96v64h352V96H80zm0 112v64h352v-64H80zm0 112v64h352v-64H80z"></path></svg>
+  <svg class="close" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><title>Close Sidebar</title><path fill="currentColor" d="m118.6 73.4-45.2 45.2L210.7 256 73.4 393.4l45.2 45.2L256 301.3l137.4 137.3 45.2-45.2L301.3 256l137.3-137.4-45.2-45.2L256 210.7Z"></path></svg>
+</label>
+<iframe class="sidebar" src="sidebar.html"></iframe>
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">
+    module
+  </span> Math
+
+</h1>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="extended-modules" class="anchor" href="#extended-modules">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Extended Modules
+  </h2>
+  <ul class="other-types-list">
+    
+      <li class="other-type"><a href="Math.html">Math</a></li>
+    
+  </ul>
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/big/big_float.cr#L588" target="_blank">
+        big/big_float.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/big/big_int.cr#L909" target="_blank">
+        big/big_int.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/big/big_rational.cr#L451" target="_blank">
+        big/big_rational.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/complex.cr#L353" target="_blank">
+        complex.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L3" target="_blank">
+        math/math.cr
+      </a>
+    
+    <br/>
+  
+
+
+
+  
+    <h2>
+      <a id="constant-summary" class="anchor" href="#constant-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+      Constant Summary
+    </h2>
+  
+  <dl>
+    
+      <dt class="entry-const" id="E">
+        <strong>E</strong> = <code><span class="t">LibM</span>.exp_f64(<span class="n">1.0</span>)</code>
+      </dt>
+      
+      <dd class="entry-const-doc">
+        <p>Euler's number (e).</p>
+      </dd>
+      
+    
+      <dt class="entry-const" id="LOG10">
+        <strong>LOG10</strong> = <code><span class="t">LibM</span>.log_f64(<span class="n">10.0</span>)</code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="LOG2">
+        <strong>LOG2</strong> = <code><span class="t">LibM</span>.log_f64(<span class="n">2.0</span>)</code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="PI">
+        <strong>PI</strong> = <code><span class="n">3.14159265358979323846</span></code>
+      </dt>
+      
+      <dd class="entry-const-doc">
+        <p>Archimedes' constant (π).</p>
+      </dd>
+      
+    
+      <dt class="entry-const" id="TAU">
+        <strong>TAU</strong> = <code><span class="n">6.283185307179586476925</span></code>
+      </dt>
+      
+      <dd class="entry-const-doc">
+        <p>The full circle constant (τ), equal to 2π.</p>
+      </dd>
+      
+    
+  </dl>
+
+
+
+  
+
+  
+
+  
+
+  
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#acos%28value%3AFloat32%29%3AFloat32-instance-method" class="signature"><strong>#acos</strong>(value : Float32) : Float32</a>
+        
+          <div class="summary"><p>Calculates the arc cosine of <em>value</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#acos%28value%3AFloat64%29%3AFloat64-instance-method" class="signature"><strong>#acos</strong>(value : Float64) : Float64</a>
+        
+          <div class="summary"><p>Calculates the arc cosine of <em>value</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#acos%28value%29-instance-method" class="signature"><strong>#acos</strong>(value)</a>
+        
+          <div class="summary"><p>Calculates the arc cosine of <em>value</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#acosh%28value%3AFloat32%29%3AFloat32-instance-method" class="signature"><strong>#acosh</strong>(value : Float32) : Float32</a>
+        
+          <div class="summary"><p>Calculates the inverse hyperbolic cosine of <em>value</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#acosh%28value%3AFloat64%29%3AFloat64-instance-method" class="signature"><strong>#acosh</strong>(value : Float64) : Float64</a>
+        
+          <div class="summary"><p>Calculates the inverse hyperbolic cosine of <em>value</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#acosh%28value%29-instance-method" class="signature"><strong>#acosh</strong>(value)</a>
+        
+          <div class="summary"><p>Calculates the inverse hyperbolic cosine of <em>value</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#asin%28value%3AFloat32%29%3AFloat32-instance-method" class="signature"><strong>#asin</strong>(value : Float32) : Float32</a>
+        
+          <div class="summary"><p>Calculates the arc sine of <em>value</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#asin%28value%3AFloat64%29%3AFloat64-instance-method" class="signature"><strong>#asin</strong>(value : Float64) : Float64</a>
+        
+          <div class="summary"><p>Calculates the arc sine of <em>value</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#asin%28value%29-instance-method" class="signature"><strong>#asin</strong>(value)</a>
+        
+          <div class="summary"><p>Calculates the arc sine of <em>value</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#asinh%28value%3AFloat32%29%3AFloat32-instance-method" class="signature"><strong>#asinh</strong>(value : Float32) : Float32</a>
+        
+          <div class="summary"><p>Calculates the inverse hyperbolic sine of <em>value</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#asinh%28value%3AFloat64%29%3AFloat64-instance-method" class="signature"><strong>#asinh</strong>(value : Float64) : Float64</a>
+        
+          <div class="summary"><p>Calculates the inverse hyperbolic sine of <em>value</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#asinh%28value%29-instance-method" class="signature"><strong>#asinh</strong>(value)</a>
+        
+          <div class="summary"><p>Calculates the inverse hyperbolic sine of <em>value</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#atan%28value%3AFloat32%29%3AFloat32-instance-method" class="signature"><strong>#atan</strong>(value : Float32) : Float32</a>
+        
+          <div class="summary"><p>Calculates the arc tangent of <em>value</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#atan%28value%3AFloat64%29%3AFloat64-instance-method" class="signature"><strong>#atan</strong>(value : Float64) : Float64</a>
+        
+          <div class="summary"><p>Calculates the arc tangent of <em>value</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#atan%28value%29-instance-method" class="signature"><strong>#atan</strong>(value)</a>
+        
+          <div class="summary"><p>Calculates the arc tangent of <em>value</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#atan2%28y%3AFloat32%2Cx%3AFloat32%29%3AFloat32-instance-method" class="signature"><strong>#atan2</strong>(y : Float32, x : Float32) : Float32</a>
+        
+          <div class="summary"><p>Calculates the two-argument arc tangent of the ray from (0, 0) to (<em>x</em>, <em>y</em>).</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#atan2%28y%3AFloat64%2Cx%3AFloat64%29%3AFloat64-instance-method" class="signature"><strong>#atan2</strong>(y : Float64, x : Float64) : Float64</a>
+        
+          <div class="summary"><p>Calculates the two-argument arc tangent of the ray from (0, 0) to (<em>x</em>, <em>y</em>).</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#atan2%28y%2Cx%29%3AFloat64-instance-method" class="signature"><strong>#atan2</strong>(y, x) : Float64</a>
+        
+          <div class="summary"><p>Calculates the two-argument arc tangent of the ray from (0, 0) to (<em>x</em>, <em>y</em>).</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#atanh%28value%3AFloat32%29%3AFloat32-instance-method" class="signature"><strong>#atanh</strong>(value : Float32) : Float32</a>
+        
+          <div class="summary"><p>Calculates the inverse hyperbolic tangent of <em>value</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#atanh%28value%3AFloat64%29%3AFloat64-instance-method" class="signature"><strong>#atanh</strong>(value : Float64) : Float64</a>
+        
+          <div class="summary"><p>Calculates the inverse hyperbolic tangent of <em>value</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#atanh%28value%29-instance-method" class="signature"><strong>#atanh</strong>(value)</a>
+        
+          <div class="summary"><p>Calculates the inverse hyperbolic tangent of <em>value</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#besselj%28order%3AInt32%2Cvalue%3AFloat32%29-instance-method" class="signature"><strong>#besselj</strong>(order : Int32, value : Float32)</a>
+        
+          <div class="summary"><p>Calculates the cylindrical Bessel function of the first kind of <em>value</em> for the given <em>order</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#besselj%28order%3AInt32%2Cvalue%3AFloat64%29%3AFloat64-instance-method" class="signature"><strong>#besselj</strong>(order : Int32, value : Float64) : Float64</a>
+        
+          <div class="summary"><p>Calculates the cylindrical Bessel function of the first kind of <em>value</em> for the given <em>order</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#besselj%28order%2Cvalue%29-instance-method" class="signature"><strong>#besselj</strong>(order, value)</a>
+        
+          <div class="summary"><p>Calculates the cylindrical Bessel function of the first kind of <em>value</em> for the given <em>order</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#besselj0%28value%3AFloat32%29-instance-method" class="signature"><strong>#besselj0</strong>(value : Float32)</a>
+        
+          <div class="summary"><p>Calculates the cylindrical Bessel function of the first kind of <em>value</em> for order 0.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#besselj0%28value%3AFloat64%29%3AFloat64-instance-method" class="signature"><strong>#besselj0</strong>(value : Float64) : Float64</a>
+        
+          <div class="summary"><p>Calculates the cylindrical Bessel function of the first kind of <em>value</em> for order 0.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#besselj0%28value%29-instance-method" class="signature"><strong>#besselj0</strong>(value)</a>
+        
+          <div class="summary"><p>Calculates the cylindrical Bessel function of the first kind of <em>value</em> for order 0.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#besselj1%28value%3AFloat32%29-instance-method" class="signature"><strong>#besselj1</strong>(value : Float32)</a>
+        
+          <div class="summary"><p>Calculates the cylindrical Bessel function of the first kind of <em>value</em> for order 1.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#besselj1%28value%3AFloat64%29%3AFloat64-instance-method" class="signature"><strong>#besselj1</strong>(value : Float64) : Float64</a>
+        
+          <div class="summary"><p>Calculates the cylindrical Bessel function of the first kind of <em>value</em> for order 1.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#besselj1%28value%29-instance-method" class="signature"><strong>#besselj1</strong>(value)</a>
+        
+          <div class="summary"><p>Calculates the cylindrical Bessel function of the first kind of <em>value</em> for order 1.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#bessely%28order%3AInt32%2Cvalue%3AFloat32%29-instance-method" class="signature"><strong>#bessely</strong>(order : Int32, value : Float32)</a>
+        
+          <div class="summary"><p>Calculates the cylindrical Bessel function of the second kind of <em>value</em> for the given <em>order</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#bessely%28order%3AInt32%2Cvalue%3AFloat64%29%3AFloat64-instance-method" class="signature"><strong>#bessely</strong>(order : Int32, value : Float64) : Float64</a>
+        
+          <div class="summary"><p>Calculates the cylindrical Bessel function of the second kind of <em>value</em> for the given <em>order</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#bessely%28order%2Cvalue%29-instance-method" class="signature"><strong>#bessely</strong>(order, value)</a>
+        
+          <div class="summary"><p>Calculates the cylindrical Bessel function of the second kind of <em>value</em> for the given <em>order</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#bessely0%28value%3AFloat32%29-instance-method" class="signature"><strong>#bessely0</strong>(value : Float32)</a>
+        
+          <div class="summary"><p>Calculates the cylindrical Bessel function of the second kind of <em>value</em> for order 0.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#bessely0%28value%3AFloat64%29%3AFloat64-instance-method" class="signature"><strong>#bessely0</strong>(value : Float64) : Float64</a>
+        
+          <div class="summary"><p>Calculates the cylindrical Bessel function of the second kind of <em>value</em> for order 0.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#bessely0%28value%29-instance-method" class="signature"><strong>#bessely0</strong>(value)</a>
+        
+          <div class="summary"><p>Calculates the cylindrical Bessel function of the second kind of <em>value</em> for order 0.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#bessely1%28value%3AFloat32%29-instance-method" class="signature"><strong>#bessely1</strong>(value : Float32)</a>
+        
+          <div class="summary"><p>Calculates the cylindrical Bessel function of the second kind of <em>value</em> for order 1.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#bessely1%28value%3AFloat64%29%3AFloat64-instance-method" class="signature"><strong>#bessely1</strong>(value : Float64) : Float64</a>
+        
+          <div class="summary"><p>Calculates the cylindrical Bessel function of the second kind of <em>value</em> for order 1.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#bessely1%28value%29-instance-method" class="signature"><strong>#bessely1</strong>(value)</a>
+        
+          <div class="summary"><p>Calculates the cylindrical Bessel function of the second kind of <em>value</em> for order 1.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#cbrt%28value%3AFloat32%29%3AFloat32-instance-method" class="signature"><strong>#cbrt</strong>(value : Float32) : Float32</a>
+        
+          <div class="summary"><p>Calculates the cubic root of <em>value</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#cbrt%28value%3AFloat64%29%3AFloat64-instance-method" class="signature"><strong>#cbrt</strong>(value : Float64) : Float64</a>
+        
+          <div class="summary"><p>Calculates the cubic root of <em>value</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#cbrt%28value%29-instance-method" class="signature"><strong>#cbrt</strong>(value)</a>
+        
+          <div class="summary"><p>Calculates the cubic root of <em>value</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#copysign%28value1%3AFloat32%2Cvalue2%3AFloat32%29-instance-method" class="signature"><strong>#copysign</strong>(value1 : Float32, value2 : Float32)</a>
+        
+          <div class="summary"><p>Returns the floating-point value with the magnitude of <em>value1</em> and the sign of <em>value2</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#copysign%28value1%3AFloat64%2Cvalue2%3AFloat64%29%3AFloat64-instance-method" class="signature"><strong>#copysign</strong>(value1 : Float64, value2 : Float64) : Float64</a>
+        
+          <div class="summary"><p>Returns the floating-point value with the magnitude of <em>value1</em> and the sign of <em>value2</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#copysign%28value1%3ABigFloat%2Cvalue2%3ABigFloat%29%3ABigFloat-instance-method" class="signature"><strong>#copysign</strong>(value1 : BigFloat, value2 : BigFloat) : BigFloat</a>
+        
+          <div class="summary"><p>Returns the floating-point value with the magnitude of <em>value1</em> and the sign of <em>value2</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#copysign%28value1%2Cvalue2%29-instance-method" class="signature"><strong>#copysign</strong>(value1, value2)</a>
+        
+          <div class="summary"><p>Returns the floating-point value with the magnitude of <em>value1</em> and the sign of <em>value2</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#cos%28value%3AFloat32%29%3AFloat32-instance-method" class="signature"><strong>#cos</strong>(value : Float32) : Float32</a>
+        
+          <div class="summary"><p>Calculates the cosine of <em>value</em>, measured in radians.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#cos%28value%3AFloat64%29%3AFloat64-instance-method" class="signature"><strong>#cos</strong>(value : Float64) : Float64</a>
+        
+          <div class="summary"><p>Calculates the cosine of <em>value</em>, measured in radians.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#cos%28value%29-instance-method" class="signature"><strong>#cos</strong>(value)</a>
+        
+          <div class="summary"><p>Calculates the cosine of <em>value</em>, measured in radians.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#cosh%28value%3AFloat32%29%3AFloat32-instance-method" class="signature"><strong>#cosh</strong>(value : Float32) : Float32</a>
+        
+          <div class="summary"><p>Calculates the hyperbolic cosine of <em>value</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#cosh%28value%3AFloat64%29%3AFloat64-instance-method" class="signature"><strong>#cosh</strong>(value : Float64) : Float64</a>
+        
+          <div class="summary"><p>Calculates the hyperbolic cosine of <em>value</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#cosh%28value%29-instance-method" class="signature"><strong>#cosh</strong>(value)</a>
+        
+          <div class="summary"><p>Calculates the hyperbolic cosine of <em>value</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#erf%28value%3AFloat32%29%3AFloat32-instance-method" class="signature"><strong>#erf</strong>(value : Float32) : Float32</a>
+        
+          <div class="summary"><p>Calculates the error function of <em>value</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#erf%28value%3AFloat64%29%3AFloat64-instance-method" class="signature"><strong>#erf</strong>(value : Float64) : Float64</a>
+        
+          <div class="summary"><p>Calculates the error function of <em>value</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#erf%28value%29-instance-method" class="signature"><strong>#erf</strong>(value)</a>
+        
+          <div class="summary"><p>Calculates the error function of <em>value</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#erfc%28value%3AFloat32%29%3AFloat32-instance-method" class="signature"><strong>#erfc</strong>(value : Float32) : Float32</a>
+        
+          <div class="summary"><p>Calculates 1 minus the error function of <em>value</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#erfc%28value%3AFloat64%29%3AFloat64-instance-method" class="signature"><strong>#erfc</strong>(value : Float64) : Float64</a>
+        
+          <div class="summary"><p>Calculates 1 minus the error function of <em>value</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#erfc%28value%29-instance-method" class="signature"><strong>#erfc</strong>(value)</a>
+        
+          <div class="summary"><p>Calculates 1 minus the error function of <em>value</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#exp%28value%3AFloat32%29%3AFloat32-instance-method" class="signature"><strong>#exp</strong>(value : Float32) : Float32</a>
+        
+          <div class="summary"><p>Calculates the exponential of <em>value</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#exp%28value%3AFloat64%29%3AFloat64-instance-method" class="signature"><strong>#exp</strong>(value : Float64) : Float64</a>
+        
+          <div class="summary"><p>Calculates the exponential of <em>value</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#exp%28value%3AComplex%29%3AComplex-instance-method" class="signature"><strong>#exp</strong>(value : Complex) : Complex</a>
+        
+          <div class="summary"><p>Calculates the exponential of <em>value</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#exp%28value%29-instance-method" class="signature"><strong>#exp</strong>(value)</a>
+        
+          <div class="summary"><p>Calculates the exponential of <em>value</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#exp2%28value%3AFloat32%29%3AFloat32-instance-method" class="signature"><strong>#exp2</strong>(value : Float32) : Float32</a>
+        
+          <div class="summary"><p>Calculates 2 raised to the power <em>value</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#exp2%28value%3AFloat64%29%3AFloat64-instance-method" class="signature"><strong>#exp2</strong>(value : Float64) : Float64</a>
+        
+          <div class="summary"><p>Calculates 2 raised to the power <em>value</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#exp2%28value%29-instance-method" class="signature"><strong>#exp2</strong>(value)</a>
+        
+          <div class="summary"><p>Calculates 2 raised to the power <em>value</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#expm1%28value%3AFloat32%29%3AFloat32-instance-method" class="signature"><strong>#expm1</strong>(value : Float32) : Float32</a>
+        
+          <div class="summary"><p>Calculates the exponential of <em>value</em>, minus 1.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#expm1%28value%3AFloat64%29%3AFloat64-instance-method" class="signature"><strong>#expm1</strong>(value : Float64) : Float64</a>
+        
+          <div class="summary"><p>Calculates the exponential of <em>value</em>, minus 1.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#expm1%28value%29-instance-method" class="signature"><strong>#expm1</strong>(value)</a>
+        
+          <div class="summary"><p>Calculates the exponential of <em>value</em>, minus 1.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#fma%28value1%3AFloat32%2Cvalue2%3AFloat32%2Cvalue3%3AFloat32%29%3AFloat32-instance-method" class="signature"><strong>#fma</strong>(value1 : Float32, value2 : Float32, value3 : Float32) : Float32</a>
+        
+          <div class="summary"><p>Fused multiply-add; returns <code>value1 * value2 + value3</code>, performing a single rounding instead of two.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#fma%28value1%3AFloat64%2Cvalue2%3AFloat64%2Cvalue3%3AFloat64%29%3AFloat64-instance-method" class="signature"><strong>#fma</strong>(value1 : Float64, value2 : Float64, value3 : Float64) : Float64</a>
+        
+          <div class="summary"><p>Fused multiply-add; returns <code>value1 * value2 + value3</code>, performing a single rounding instead of two.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#fma%28value1%2Cvalue2%2Cvalue3%29-instance-method" class="signature"><strong>#fma</strong>(value1, value2, value3)</a>
+        
+          <div class="summary"><p>Fused multiply-add; returns <code>value1 * value2 + value3</code>, performing a single rounding instead of two.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#frexp%28value%3AFloat32%29%3ATuple%28Float32%2CInt32%29-instance-method" class="signature"><strong>#frexp</strong>(value : Float32) : Tuple(Float32, Int32)</a>
+        
+          <div class="summary"><p>Decomposes the given floating-point <em>value</em> into a normalized fraction and an integral power of two.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#frexp%28value%3AFloat64%29%3ATuple%28Float64%2CInt32%29-instance-method" class="signature"><strong>#frexp</strong>(value : Float64) : Tuple(Float64, Int32)</a>
+        
+          <div class="summary"><p>Decomposes the given floating-point <em>value</em> into a normalized fraction and an integral power of two.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#frexp%28value%3ABigFloat%29%3ATuple%28BigFloat%2CInt64%29-instance-method" class="signature"><strong>#frexp</strong>(value : BigFloat) : Tuple(BigFloat, Int64)</a>
+        
+          <div class="summary"><p>Decomposes the given floating-point <em>value</em> into a normalized fraction and an integral power of two.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#frexp%28value%29-instance-method" class="signature"><strong>#frexp</strong>(value)</a>
+        
+          <div class="summary"><p>Decomposes the given floating-point <em>value</em> into a normalized fraction and an integral power of two.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#gamma%28value%3AFloat32%29%3AFloat32-instance-method" class="signature"><strong>#gamma</strong>(value : Float32) : Float32</a>
+        
+          <div class="summary"><p>Calculates the gamma function of <em>value</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#gamma%28value%3AFloat64%29%3AFloat64-instance-method" class="signature"><strong>#gamma</strong>(value : Float64) : Float64</a>
+        
+          <div class="summary"><p>Calculates the gamma function of <em>value</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#gamma%28value%29%3AFloat64-instance-method" class="signature"><strong>#gamma</strong>(value) : Float64</a>
+        
+          <div class="summary"><p>Calculates the gamma function of <em>value</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#hypot%28value1%3AFloat32%2Cvalue2%3AFloat32%29%3AFloat32-instance-method" class="signature"><strong>#hypot</strong>(value1 : Float32, value2 : Float32) : Float32</a>
+        
+          <div class="summary"><p>Calculates the length of the hypotenuse from (0, 0) to (<em>value1</em>, <em>value2</em>).</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#hypot%28value1%3AFloat64%2Cvalue2%3AFloat64%29%3AFloat64-instance-method" class="signature"><strong>#hypot</strong>(value1 : Float64, value2 : Float64) : Float64</a>
+        
+          <div class="summary"><p>Calculates the length of the hypotenuse from (0, 0) to (<em>value1</em>, <em>value2</em>).</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#hypot%28value1%2Cvalue2%29-instance-method" class="signature"><strong>#hypot</strong>(value1, value2)</a>
+        
+          <div class="summary"><p>Calculates the length of the hypotenuse from (0, 0) to (<em>value1</em>, <em>value2</em>).</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#ilogb%28value%3AFloat32%29%3AInt32-instance-method" class="signature"><strong>#ilogb</strong>(value : Float32) : Int32</a>
+        
+          <div class="summary"><p>Returns the unbiased base 2 exponent of the given floating-point <em>value</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#ilogb%28value%3AFloat64%29%3AInt32-instance-method" class="signature"><strong>#ilogb</strong>(value : Float64) : Int32</a>
+        
+          <div class="summary"><p>Returns the unbiased base 2 exponent of the given floating-point <em>value</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#ilogb%28value%3ABigFloat%29%3AInt64-instance-method" class="signature"><strong>#ilogb</strong>(value : BigFloat) : Int64</a>
+        
+          <div class="summary"><p>Returns the unbiased base 2 exponent of the given floating-point <em>value</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#ilogb%28value%29-instance-method" class="signature"><strong>#ilogb</strong>(value)</a>
+        
+          <div class="summary"><p>Returns the unbiased base 2 exponent of the given floating-point <em>value</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#isqrt%28value%3AInt%3A%3APrimitive%29-instance-method" class="signature"><strong>#isqrt</strong>(value : Int::Primitive)</a>
+        
+          <div class="summary"><p>Calculates the integer square root of <em>value</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#isqrt%28value%3ABigInt%29-instance-method" class="signature"><strong>#isqrt</strong>(value : BigInt)</a>
+        
+          <div class="summary"><p>Calculates the integer square root of <em>value</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#ldexp%28value%3AFloat32%2Cexp%3AInt32%29%3AFloat32-instance-method" class="signature"><strong>#ldexp</strong>(value : Float32, exp : Int32) : Float32</a>
+        
+          <div class="summary"><p>Multiplies the given floating-point <em>value</em> by 2 raised to the power <em>exp</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#ldexp%28value%3AFloat64%2Cexp%3AInt32%29%3AFloat64-instance-method" class="signature"><strong>#ldexp</strong>(value : Float64, exp : Int32) : Float64</a>
+        
+          <div class="summary"><p>Multiplies the given floating-point <em>value</em> by 2 raised to the power <em>exp</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#ldexp%28value%3ABigFloat%2Cexp%3AInt%29%3ABigFloat-instance-method" class="signature"><strong>#ldexp</strong>(value : BigFloat, exp : Int) : BigFloat</a>
+        
+          <div class="summary"><p>Multiplies the given floating-point <em>value</em> by 2 raised to the power <em>exp</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#ldexp%28value%2Cexp%29-instance-method" class="signature"><strong>#ldexp</strong>(value, exp)</a>
+        
+          <div class="summary"><p>Multiplies the given floating-point <em>value</em> by 2 raised to the power <em>exp</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#lgamma%28value%3AFloat32%29-instance-method" class="signature"><strong>#lgamma</strong>(value : Float32)</a>
+        
+          <div class="summary"><p>Calculates the logarithmic gamma of <em>value</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#lgamma%28value%3AFloat64%29%3AFloat64-instance-method" class="signature"><strong>#lgamma</strong>(value : Float64) : Float64</a>
+        
+          <div class="summary"><p>Calculates the logarithmic gamma of <em>value</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#lgamma%28value%29%3AFloat64-instance-method" class="signature"><strong>#lgamma</strong>(value) : Float64</a>
+        
+          <div class="summary"><p>Calculates the logarithmic gamma of <em>value</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#log%28value%2Cbase%29-instance-method" class="signature"><strong>#log</strong>(value, base)</a>
+        
+          <div class="summary"><p>Calculates the logarithm of <em>value</em> to the given <em>base</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#log%28value%3AFloat32%29%3AFloat32-instance-method" class="signature"><strong>#log</strong>(value : Float32) : Float32</a>
+        
+          <div class="summary"><p>Calculates the natural logarithm of <em>value</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#log%28value%3AFloat64%29%3AFloat64-instance-method" class="signature"><strong>#log</strong>(value : Float64) : Float64</a>
+        
+          <div class="summary"><p>Calculates the natural logarithm of <em>value</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#log%28value%3AComplex%29%3AComplex-instance-method" class="signature"><strong>#log</strong>(value : Complex) : Complex</a>
+        
+          <div class="summary"><p>Calculates the natural logarithm of <em>value</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#log%28value%29%3AFloat64-instance-method" class="signature"><strong>#log</strong>(value) : Float64</a>
+        
+          <div class="summary"><p>Calculates the natural logarithm of <em>value</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#log10%28value%3AFloat32%29%3AFloat32-instance-method" class="signature"><strong>#log10</strong>(value : Float32) : Float32</a>
+        
+          <div class="summary"><p>Calculates the logarithm of <em>value</em> to base 10.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#log10%28value%3AFloat64%29%3AFloat64-instance-method" class="signature"><strong>#log10</strong>(value : Float64) : Float64</a>
+        
+          <div class="summary"><p>Calculates the logarithm of <em>value</em> to base 10.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#log10%28value%3AComplex%29%3AComplex-instance-method" class="signature"><strong>#log10</strong>(value : Complex) : Complex</a>
+        
+          <div class="summary"><p>Calculates the logarithm of <em>value</em> to base 10.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#log10%28value%29-instance-method" class="signature"><strong>#log10</strong>(value)</a>
+        
+          <div class="summary"><p>Calculates the logarithm of <em>value</em> to base 10.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#log1p%28value%3AFloat32%29%3AFloat32-instance-method" class="signature"><strong>#log1p</strong>(value : Float32) : Float32</a>
+        
+          <div class="summary"><p>Calculates the natural logarithm of 1 plus <em>value</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#log1p%28value%3AFloat64%29%3AFloat64-instance-method" class="signature"><strong>#log1p</strong>(value : Float64) : Float64</a>
+        
+          <div class="summary"><p>Calculates the natural logarithm of 1 plus <em>value</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#log1p%28value%29-instance-method" class="signature"><strong>#log1p</strong>(value)</a>
+        
+          <div class="summary"><p>Calculates the natural logarithm of 1 plus <em>value</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#log2%28value%3AFloat32%29%3AFloat32-instance-method" class="signature"><strong>#log2</strong>(value : Float32) : Float32</a>
+        
+          <div class="summary"><p>Calculates the logarithm of <em>value</em> to base 2.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#log2%28value%3AFloat64%29%3AFloat64-instance-method" class="signature"><strong>#log2</strong>(value : Float64) : Float64</a>
+        
+          <div class="summary"><p>Calculates the logarithm of <em>value</em> to base 2.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#log2%28value%3AComplex%29%3AComplex-instance-method" class="signature"><strong>#log2</strong>(value : Complex) : Complex</a>
+        
+          <div class="summary"><p>Calculates the logarithm of <em>value</em> to base 2.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#log2%28value%29%3AFloat64-instance-method" class="signature"><strong>#log2</strong>(value) : Float64</a>
+        
+          <div class="summary"><p>Calculates the logarithm of <em>value</em> to base 2.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#logb%28value%3AFloat32%29%3AFloat32-instance-method" class="signature"><strong>#logb</strong>(value : Float32) : Float32</a>
+        
+          <div class="summary"><p>Returns the unbiased radix-independent exponent of the given floating-point <em>value</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#logb%28value%3AFloat64%29%3AFloat64-instance-method" class="signature"><strong>#logb</strong>(value : Float64) : Float64</a>
+        
+          <div class="summary"><p>Returns the unbiased radix-independent exponent of the given floating-point <em>value</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#logb%28value%3ABigFloat%29%3ABigFloat-instance-method" class="signature"><strong>#logb</strong>(value : BigFloat) : BigFloat</a>
+        
+          <div class="summary"><p>Returns the unbiased radix-independent exponent of the given floating-point <em>value</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#logb%28value%29-instance-method" class="signature"><strong>#logb</strong>(value)</a>
+        
+          <div class="summary"><p>Returns the unbiased radix-independent exponent of the given floating-point <em>value</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#max%28value1%3AFloat32%2Cvalue2%3AFloat32%29-instance-method" class="signature"><strong>#max</strong>(value1 : Float32, value2 : Float32)</a>
+        
+          <div class="summary"><p>Returns the greater of <em>value1</em> and <em>value2</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#max%28value1%3AFloat64%2Cvalue2%3AFloat64%29%3AFloat64-instance-method" class="signature"><strong>#max</strong>(value1 : Float64, value2 : Float64) : Float64</a>
+        
+          <div class="summary"><p>Returns the greater of <em>value1</em> and <em>value2</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#max%28value1%2Cvalue2%29-instance-method" class="signature"><strong>#max</strong>(value1, value2)</a>
+        
+          <div class="summary"><p>Returns the greater of <em>value1</em> and <em>value2</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#min%28value1%3AFloat32%2Cvalue2%3AFloat32%29-instance-method" class="signature"><strong>#min</strong>(value1 : Float32, value2 : Float32)</a>
+        
+          <div class="summary"><p>Returns the smaller of <em>value1</em> and <em>value2</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#min%28value1%3AFloat64%2Cvalue2%3AFloat64%29%3AFloat64-instance-method" class="signature"><strong>#min</strong>(value1 : Float64, value2 : Float64) : Float64</a>
+        
+          <div class="summary"><p>Returns the smaller of <em>value1</em> and <em>value2</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#min%28value1%2Cvalue2%29-instance-method" class="signature"><strong>#min</strong>(value1, value2)</a>
+        
+          <div class="summary"><p>Returns the smaller of <em>value1</em> and <em>value2</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#pw2ceil%28v%3AInt%3A%3APrimitive%29-instance-method" class="signature"><strong>#pw2ceil</strong>(v : Int::Primitive)</a>
+        
+          <div class="summary"><p>Computes the smallest nonnegative power of 2 that is greater than or equal to <em>v</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#pw2ceil%28v%3ABigInt%29%3ABigInt-instance-method" class="signature"><strong>#pw2ceil</strong>(v : BigInt) : BigInt</a>
+        
+          <div class="summary"><p>Computes the smallest nonnegative power of 2 that is greater than or equal to <em>v</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#scalbln%28value%3AFloat32%2Cexp%3AInt64%29-instance-method" class="signature"><strong>#scalbln</strong>(value : Float32, exp : Int64)</a>
+        
+          <div class="summary"><p>Returns the floating-point <em>value</em> with its exponent raised by <em>exp</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#scalbln%28value%3AFloat64%2Cexp%3AInt64%29%3AFloat64-instance-method" class="signature"><strong>#scalbln</strong>(value : Float64, exp : Int64) : Float64</a>
+        
+          <div class="summary"><p>Returns the floating-point <em>value</em> with its exponent raised by <em>exp</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#scalbln%28value%3ABigFloat%2Cexp%3AInt%29%3ABigFloat-instance-method" class="signature"><strong>#scalbln</strong>(value : BigFloat, exp : Int) : BigFloat</a>
+        
+          <div class="summary"><p>Returns the floating-point <em>value</em> with its exponent raised by <em>exp</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#scalbln%28value%2Cexp%29%3AFloat64-instance-method" class="signature"><strong>#scalbln</strong>(value, exp) : Float64</a>
+        
+          <div class="summary"><p>Returns the floating-point <em>value</em> with its exponent raised by <em>exp</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#scalbn%28value%3AFloat32%2Cexp%3AInt32%29%3AFloat32-instance-method" class="signature"><strong>#scalbn</strong>(value : Float32, exp : Int32) : Float32</a>
+        
+          <div class="summary"><p>Returns the floating-point <em>value</em> with its exponent raised by <em>exp</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#scalbn%28value%3AFloat64%2Cexp%3AInt32%29%3AFloat64-instance-method" class="signature"><strong>#scalbn</strong>(value : Float64, exp : Int32) : Float64</a>
+        
+          <div class="summary"><p>Returns the floating-point <em>value</em> with its exponent raised by <em>exp</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#scalbn%28value%3ABigFloat%2Cexp%3AInt%29%3ABigFloat-instance-method" class="signature"><strong>#scalbn</strong>(value : BigFloat, exp : Int) : BigFloat</a>
+        
+          <div class="summary"><p>Returns the floating-point <em>value</em> with its exponent raised by <em>exp</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#scalbn%28value%2Cexp%29-instance-method" class="signature"><strong>#scalbn</strong>(value, exp)</a>
+        
+          <div class="summary"><p>Returns the floating-point <em>value</em> with its exponent raised by <em>exp</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#sin%28value%3AFloat32%29%3AFloat32-instance-method" class="signature"><strong>#sin</strong>(value : Float32) : Float32</a>
+        
+          <div class="summary"><p>Calculates the sine of <em>value</em>, measured in radians.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#sin%28value%3AFloat64%29%3AFloat64-instance-method" class="signature"><strong>#sin</strong>(value : Float64) : Float64</a>
+        
+          <div class="summary"><p>Calculates the sine of <em>value</em>, measured in radians.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#sin%28value%29-instance-method" class="signature"><strong>#sin</strong>(value)</a>
+        
+          <div class="summary"><p>Calculates the sine of <em>value</em>, measured in radians.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#sinh%28value%3AFloat32%29%3AFloat32-instance-method" class="signature"><strong>#sinh</strong>(value : Float32) : Float32</a>
+        
+          <div class="summary"><p>Calculates the hyperbolic sine of <em>value</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#sinh%28value%3AFloat64%29%3AFloat64-instance-method" class="signature"><strong>#sinh</strong>(value : Float64) : Float64</a>
+        
+          <div class="summary"><p>Calculates the hyperbolic sine of <em>value</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#sinh%28value%29-instance-method" class="signature"><strong>#sinh</strong>(value)</a>
+        
+          <div class="summary"><p>Calculates the hyperbolic sine of <em>value</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#sqrt%28value%3AFloat32%29%3AFloat32-instance-method" class="signature"><strong>#sqrt</strong>(value : Float32) : Float32</a>
+        
+          <div class="summary"><p>Calculates the square root of <em>value</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#sqrt%28value%3AFloat64%29%3AFloat64-instance-method" class="signature"><strong>#sqrt</strong>(value : Float64) : Float64</a>
+        
+          <div class="summary"><p>Calculates the square root of <em>value</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#sqrt%28value%3ABigInt%29%3ABigFloat-instance-method" class="signature"><strong>#sqrt</strong>(value : BigInt) : BigFloat</a>
+        
+          <div class="summary"><p>Calculates the square root of <em>value</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#sqrt%28value%3ABigFloat%29%3ABigFloat-instance-method" class="signature"><strong>#sqrt</strong>(value : BigFloat) : BigFloat</a>
+        
+          <div class="summary"><p>Calculates the square root of <em>value</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#sqrt%28value%3ABigRational%29%3ABigFloat-instance-method" class="signature"><strong>#sqrt</strong>(value : BigRational) : BigFloat</a>
+        
+          <div class="summary"><p>Calculates the square root of <em>value</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#sqrt%28value%3AComplex%29%3AComplex-instance-method" class="signature"><strong>#sqrt</strong>(value : Complex) : Complex</a>
+        
+          <div class="summary"><p>Calculates the square root of <em>value</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#sqrt%28value%29%3AFloat64-instance-method" class="signature"><strong>#sqrt</strong>(value) : Float64</a>
+        
+          <div class="summary"><p>Calculates the square root of <em>value</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#tan%28value%3AFloat32%29%3AFloat32-instance-method" class="signature"><strong>#tan</strong>(value : Float32) : Float32</a>
+        
+          <div class="summary"><p>Calculates the tangent of <em>value</em>, measured in radians.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#tan%28value%3AFloat64%29%3AFloat64-instance-method" class="signature"><strong>#tan</strong>(value : Float64) : Float64</a>
+        
+          <div class="summary"><p>Calculates the tangent of <em>value</em>, measured in radians.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#tan%28value%29-instance-method" class="signature"><strong>#tan</strong>(value)</a>
+        
+          <div class="summary"><p>Calculates the tangent of <em>value</em>, measured in radians.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#tanh%28value%3AFloat32%29%3AFloat32-instance-method" class="signature"><strong>#tanh</strong>(value : Float32) : Float32</a>
+        
+          <div class="summary"><p>Calculates the hyperbolic tangent of <em>value</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#tanh%28value%3AFloat64%29%3AFloat64-instance-method" class="signature"><strong>#tanh</strong>(value : Float64) : Float64</a>
+        
+          <div class="summary"><p>Calculates the hyperbolic tangent of <em>value</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#tanh%28value%29-instance-method" class="signature"><strong>#tanh</strong>(value)</a>
+        
+          <div class="summary"><p>Calculates the hyperbolic tangent of <em>value</em>.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+
+  <div class="methods-inherited">
+    
+  </div>
+
+  
+
+  
+
+  
+
+  
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="acos(value:Float32):Float32-instance-method">
+      <div class="signature">
+        
+        def <strong>acos</strong>(value : <a href="Float32.html">Float32</a>) : <a href="Float32.html">Float32</a>
+
+        <a class="method-permalink" href="#acos%28value%3AFloat32%29%3AFloat32-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the arc cosine of <em>value</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L76" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="acos(value:Float64):Float64-instance-method">
+      <div class="signature">
+        
+        def <strong>acos</strong>(value : <a href="Float64.html">Float64</a>) : <a href="Float64.html">Float64</a>
+
+        <a class="method-permalink" href="#acos%28value%3AFloat64%29%3AFloat64-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the arc cosine of <em>value</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L81" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="acos(value)-instance-method">
+      <div class="signature">
+        
+        def <strong>acos</strong>(value)
+
+        <a class="method-permalink" href="#acos%28value%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the arc cosine of <em>value</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L86" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="acosh(value:Float32):Float32-instance-method">
+      <div class="signature">
+        
+        def <strong>acosh</strong>(value : <a href="Float32.html">Float32</a>) : <a href="Float32.html">Float32</a>
+
+        <a class="method-permalink" href="#acosh%28value%3AFloat32%29%3AFloat32-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the inverse hyperbolic cosine of <em>value</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L181" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="acosh(value:Float64):Float64-instance-method">
+      <div class="signature">
+        
+        def <strong>acosh</strong>(value : <a href="Float64.html">Float64</a>) : <a href="Float64.html">Float64</a>
+
+        <a class="method-permalink" href="#acosh%28value%3AFloat64%29%3AFloat64-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the inverse hyperbolic cosine of <em>value</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L186" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="acosh(value)-instance-method">
+      <div class="signature">
+        
+        def <strong>acosh</strong>(value)
+
+        <a class="method-permalink" href="#acosh%28value%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the inverse hyperbolic cosine of <em>value</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L191" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="asin(value:Float32):Float32-instance-method">
+      <div class="signature">
+        
+        def <strong>asin</strong>(value : <a href="Float32.html">Float32</a>) : <a href="Float32.html">Float32</a>
+
+        <a class="method-permalink" href="#asin%28value%3AFloat32%29%3AFloat32-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the arc sine of <em>value</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L61" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="asin(value:Float64):Float64-instance-method">
+      <div class="signature">
+        
+        def <strong>asin</strong>(value : <a href="Float64.html">Float64</a>) : <a href="Float64.html">Float64</a>
+
+        <a class="method-permalink" href="#asin%28value%3AFloat64%29%3AFloat64-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the arc sine of <em>value</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L66" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="asin(value)-instance-method">
+      <div class="signature">
+        
+        def <strong>asin</strong>(value)
+
+        <a class="method-permalink" href="#asin%28value%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the arc sine of <em>value</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L71" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="asinh(value:Float32):Float32-instance-method">
+      <div class="signature">
+        
+        def <strong>asinh</strong>(value : <a href="Float32.html">Float32</a>) : <a href="Float32.html">Float32</a>
+
+        <a class="method-permalink" href="#asinh%28value%3AFloat32%29%3AFloat32-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the inverse hyperbolic sine of <em>value</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L166" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="asinh(value:Float64):Float64-instance-method">
+      <div class="signature">
+        
+        def <strong>asinh</strong>(value : <a href="Float64.html">Float64</a>) : <a href="Float64.html">Float64</a>
+
+        <a class="method-permalink" href="#asinh%28value%3AFloat64%29%3AFloat64-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the inverse hyperbolic sine of <em>value</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L171" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="asinh(value)-instance-method">
+      <div class="signature">
+        
+        def <strong>asinh</strong>(value)
+
+        <a class="method-permalink" href="#asinh%28value%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the inverse hyperbolic sine of <em>value</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L176" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="atan(value:Float32):Float32-instance-method">
+      <div class="signature">
+        
+        def <strong>atan</strong>(value : <a href="Float32.html">Float32</a>) : <a href="Float32.html">Float32</a>
+
+        <a class="method-permalink" href="#atan%28value%3AFloat32%29%3AFloat32-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the arc tangent of <em>value</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L91" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="atan(value:Float64):Float64-instance-method">
+      <div class="signature">
+        
+        def <strong>atan</strong>(value : <a href="Float64.html">Float64</a>) : <a href="Float64.html">Float64</a>
+
+        <a class="method-permalink" href="#atan%28value%3AFloat64%29%3AFloat64-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the arc tangent of <em>value</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L96" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="atan(value)-instance-method">
+      <div class="signature">
+        
+        def <strong>atan</strong>(value)
+
+        <a class="method-permalink" href="#atan%28value%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the arc tangent of <em>value</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L101" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="atan2(y:Float32,x:Float32):Float32-instance-method">
+      <div class="signature">
+        
+        def <strong>atan2</strong>(y : <a href="Float32.html">Float32</a>, x : <a href="Float32.html">Float32</a>) : <a href="Float32.html">Float32</a>
+
+        <a class="method-permalink" href="#atan2%28y%3AFloat32%2Cx%3AFloat32%29%3AFloat32-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the two-argument arc tangent of the ray from (0, 0) to (<em>x</em>, <em>y</em>).</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L106" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="atan2(y:Float64,x:Float64):Float64-instance-method">
+      <div class="signature">
+        
+        def <strong>atan2</strong>(y : <a href="Float64.html">Float64</a>, x : <a href="Float64.html">Float64</a>) : <a href="Float64.html">Float64</a>
+
+        <a class="method-permalink" href="#atan2%28y%3AFloat64%2Cx%3AFloat64%29%3AFloat64-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the two-argument arc tangent of the ray from (0, 0) to (<em>x</em>, <em>y</em>).</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L111" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="atan2(y,x):Float64-instance-method">
+      <div class="signature">
+        
+        def <strong>atan2</strong>(y, x) : <a href="Float64.html">Float64</a>
+
+        <a class="method-permalink" href="#atan2%28y%2Cx%29%3AFloat64-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the two-argument arc tangent of the ray from (0, 0) to (<em>x</em>, <em>y</em>).</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L116" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="atanh(value:Float32):Float32-instance-method">
+      <div class="signature">
+        
+        def <strong>atanh</strong>(value : <a href="Float32.html">Float32</a>) : <a href="Float32.html">Float32</a>
+
+        <a class="method-permalink" href="#atanh%28value%3AFloat32%29%3AFloat32-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the inverse hyperbolic tangent of <em>value</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L196" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="atanh(value:Float64):Float64-instance-method">
+      <div class="signature">
+        
+        def <strong>atanh</strong>(value : <a href="Float64.html">Float64</a>) : <a href="Float64.html">Float64</a>
+
+        <a class="method-permalink" href="#atanh%28value%3AFloat64%29%3AFloat64-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the inverse hyperbolic tangent of <em>value</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L201" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="atanh(value)-instance-method">
+      <div class="signature">
+        
+        def <strong>atanh</strong>(value)
+
+        <a class="method-permalink" href="#atanh%28value%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the inverse hyperbolic tangent of <em>value</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L206" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="besselj(order:Int32,value:Float32)-instance-method">
+      <div class="signature">
+        
+        def <strong>besselj</strong>(order : <a href="Int32.html">Int32</a>, value : <a href="Float32.html">Float32</a>)
+
+        <a class="method-permalink" href="#besselj%28order%3AInt32%2Cvalue%3AFloat32%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the cylindrical Bessel function of the first kind of <em>value</em> for the given <em>order</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L445" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="besselj(order:Int32,value:Float64):Float64-instance-method">
+      <div class="signature">
+        
+        def <strong>besselj</strong>(order : <a href="Int32.html">Int32</a>, value : <a href="Float64.html">Float64</a>) : <a href="Float64.html">Float64</a>
+
+        <a class="method-permalink" href="#besselj%28order%3AInt32%2Cvalue%3AFloat64%29%3AFloat64-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the cylindrical Bessel function of the first kind of <em>value</em> for the given <em>order</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L454" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="besselj(order,value)-instance-method">
+      <div class="signature">
+        
+        def <strong>besselj</strong>(order, value)
+
+        <a class="method-permalink" href="#besselj%28order%2Cvalue%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the cylindrical Bessel function of the first kind of <em>value</em> for the given <em>order</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L459" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="besselj0(value:Float32)-instance-method">
+      <div class="signature">
+        
+        def <strong>besselj0</strong>(value : <a href="Float32.html">Float32</a>)
+
+        <a class="method-permalink" href="#besselj0%28value%3AFloat32%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the cylindrical Bessel function of the first kind of <em>value</em> for order 0.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L464" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="besselj0(value:Float64):Float64-instance-method">
+      <div class="signature">
+        
+        def <strong>besselj0</strong>(value : <a href="Float64.html">Float64</a>) : <a href="Float64.html">Float64</a>
+
+        <a class="method-permalink" href="#besselj0%28value%3AFloat64%29%3AFloat64-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the cylindrical Bessel function of the first kind of <em>value</em> for order 0.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L473" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="besselj0(value)-instance-method">
+      <div class="signature">
+        
+        def <strong>besselj0</strong>(value)
+
+        <a class="method-permalink" href="#besselj0%28value%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the cylindrical Bessel function of the first kind of <em>value</em> for order 0.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L478" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="besselj1(value:Float32)-instance-method">
+      <div class="signature">
+        
+        def <strong>besselj1</strong>(value : <a href="Float32.html">Float32</a>)
+
+        <a class="method-permalink" href="#besselj1%28value%3AFloat32%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the cylindrical Bessel function of the first kind of <em>value</em> for order 1.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L483" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="besselj1(value:Float64):Float64-instance-method">
+      <div class="signature">
+        
+        def <strong>besselj1</strong>(value : <a href="Float64.html">Float64</a>) : <a href="Float64.html">Float64</a>
+
+        <a class="method-permalink" href="#besselj1%28value%3AFloat64%29%3AFloat64-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the cylindrical Bessel function of the first kind of <em>value</em> for order 1.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L492" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="besselj1(value)-instance-method">
+      <div class="signature">
+        
+        def <strong>besselj1</strong>(value)
+
+        <a class="method-permalink" href="#besselj1%28value%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the cylindrical Bessel function of the first kind of <em>value</em> for order 1.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L497" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="bessely(order:Int32,value:Float32)-instance-method">
+      <div class="signature">
+        
+        def <strong>bessely</strong>(order : <a href="Int32.html">Int32</a>, value : <a href="Float32.html">Float32</a>)
+
+        <a class="method-permalink" href="#bessely%28order%3AInt32%2Cvalue%3AFloat32%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the cylindrical Bessel function of the second kind of <em>value</em> for the given <em>order</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L502" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="bessely(order:Int32,value:Float64):Float64-instance-method">
+      <div class="signature">
+        
+        def <strong>bessely</strong>(order : <a href="Int32.html">Int32</a>, value : <a href="Float64.html">Float64</a>) : <a href="Float64.html">Float64</a>
+
+        <a class="method-permalink" href="#bessely%28order%3AInt32%2Cvalue%3AFloat64%29%3AFloat64-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the cylindrical Bessel function of the second kind of <em>value</em> for the given <em>order</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L511" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="bessely(order,value)-instance-method">
+      <div class="signature">
+        
+        def <strong>bessely</strong>(order, value)
+
+        <a class="method-permalink" href="#bessely%28order%2Cvalue%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the cylindrical Bessel function of the second kind of <em>value</em> for the given <em>order</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L516" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="bessely0(value:Float32)-instance-method">
+      <div class="signature">
+        
+        def <strong>bessely0</strong>(value : <a href="Float32.html">Float32</a>)
+
+        <a class="method-permalink" href="#bessely0%28value%3AFloat32%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the cylindrical Bessel function of the second kind of <em>value</em> for order 0.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L521" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="bessely0(value:Float64):Float64-instance-method">
+      <div class="signature">
+        
+        def <strong>bessely0</strong>(value : <a href="Float64.html">Float64</a>) : <a href="Float64.html">Float64</a>
+
+        <a class="method-permalink" href="#bessely0%28value%3AFloat64%29%3AFloat64-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the cylindrical Bessel function of the second kind of <em>value</em> for order 0.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L530" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="bessely0(value)-instance-method">
+      <div class="signature">
+        
+        def <strong>bessely0</strong>(value)
+
+        <a class="method-permalink" href="#bessely0%28value%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the cylindrical Bessel function of the second kind of <em>value</em> for order 0.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L535" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="bessely1(value:Float32)-instance-method">
+      <div class="signature">
+        
+        def <strong>bessely1</strong>(value : <a href="Float32.html">Float32</a>)
+
+        <a class="method-permalink" href="#bessely1%28value%3AFloat32%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the cylindrical Bessel function of the second kind of <em>value</em> for order 1.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L540" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="bessely1(value:Float64):Float64-instance-method">
+      <div class="signature">
+        
+        def <strong>bessely1</strong>(value : <a href="Float64.html">Float64</a>) : <a href="Float64.html">Float64</a>
+
+        <a class="method-permalink" href="#bessely1%28value%3AFloat64%29%3AFloat64-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the cylindrical Bessel function of the second kind of <em>value</em> for order 1.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L549" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="bessely1(value)-instance-method">
+      <div class="signature">
+        
+        def <strong>bessely1</strong>(value)
+
+        <a class="method-permalink" href="#bessely1%28value%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the cylindrical Bessel function of the second kind of <em>value</em> for order 1.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L554" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="cbrt(value:Float32):Float32-instance-method">
+      <div class="signature">
+        
+        def <strong>cbrt</strong>(value : <a href="Float32.html">Float32</a>) : <a href="Float32.html">Float32</a>
+
+        <a class="method-permalink" href="#cbrt%28value%3AFloat32%29%3AFloat32-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the cubic root of <em>value</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L355" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="cbrt(value:Float64):Float64-instance-method">
+      <div class="signature">
+        
+        def <strong>cbrt</strong>(value : <a href="Float64.html">Float64</a>) : <a href="Float64.html">Float64</a>
+
+        <a class="method-permalink" href="#cbrt%28value%3AFloat64%29%3AFloat64-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the cubic root of <em>value</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L360" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="cbrt(value)-instance-method">
+      <div class="signature">
+        
+        def <strong>cbrt</strong>(value)
+
+        <a class="method-permalink" href="#cbrt%28value%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the cubic root of <em>value</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L365" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="copysign(value1:Float32,value2:Float32)-instance-method">
+      <div class="signature">
+        
+        def <strong>copysign</strong>(value1 : <a href="Float32.html">Float32</a>, value2 : <a href="Float32.html">Float32</a>)
+
+        <a class="method-permalink" href="#copysign%28value1%3AFloat32%2Cvalue2%3AFloat32%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the floating-point value with the magnitude of <em>value1</em> and the sign of <em>value2</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L707" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="copysign(value1:Float64,value2:Float64):Float64-instance-method">
+      <div class="signature">
+        
+        def <strong>copysign</strong>(value1 : <a href="Float64.html">Float64</a>, value2 : <a href="Float64.html">Float64</a>) : <a href="Float64.html">Float64</a>
+
+        <a class="method-permalink" href="#copysign%28value1%3AFloat64%2Cvalue2%3AFloat64%29%3AFloat64-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the floating-point value with the magnitude of <em>value1</em> and the sign of <em>value2</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L712" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="copysign(value1:BigFloat,value2:BigFloat):BigFloat-instance-method">
+      <div class="signature">
+        
+        def <strong>copysign</strong>(value1 : <a href="BigFloat.html">BigFloat</a>, value2 : <a href="BigFloat.html">BigFloat</a>) : <a href="BigFloat.html">BigFloat</a>
+
+        <a class="method-permalink" href="#copysign%28value1%3ABigFloat%2Cvalue2%3ABigFloat%29%3ABigFloat-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the floating-point value with the magnitude of <em>value1</em> and the sign of <em>value2</em>.</p>
+<p><code><a href="BigFloat.html">BigFloat</a></code> does not support signed zeros; if <code>value2 == 0</code>, the returned value is non-negative.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/big/big_float.cr#L655" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="copysign(value1,value2)-instance-method">
+      <div class="signature">
+        
+        def <strong>copysign</strong>(value1, value2)
+
+        <a class="method-permalink" href="#copysign%28value1%2Cvalue2%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the floating-point value with the magnitude of <em>value1</em> and the sign of <em>value2</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L717" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="cos(value:Float32):Float32-instance-method">
+      <div class="signature">
+        
+        def <strong>cos</strong>(value : <a href="Float32.html">Float32</a>) : <a href="Float32.html">Float32</a>
+
+        <a class="method-permalink" href="#cos%28value%3AFloat32%29%3AFloat32-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the cosine of <em>value</em>, measured in radians.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L31" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="cos(value:Float64):Float64-instance-method">
+      <div class="signature">
+        
+        def <strong>cos</strong>(value : <a href="Float64.html">Float64</a>) : <a href="Float64.html">Float64</a>
+
+        <a class="method-permalink" href="#cos%28value%3AFloat64%29%3AFloat64-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the cosine of <em>value</em>, measured in radians.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L36" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="cos(value)-instance-method">
+      <div class="signature">
+        
+        def <strong>cos</strong>(value)
+
+        <a class="method-permalink" href="#cos%28value%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the cosine of <em>value</em>, measured in radians.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L41" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="cosh(value:Float32):Float32-instance-method">
+      <div class="signature">
+        
+        def <strong>cosh</strong>(value : <a href="Float32.html">Float32</a>) : <a href="Float32.html">Float32</a>
+
+        <a class="method-permalink" href="#cosh%28value%3AFloat32%29%3AFloat32-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the hyperbolic cosine of <em>value</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L136" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="cosh(value:Float64):Float64-instance-method">
+      <div class="signature">
+        
+        def <strong>cosh</strong>(value : <a href="Float64.html">Float64</a>) : <a href="Float64.html">Float64</a>
+
+        <a class="method-permalink" href="#cosh%28value%3AFloat64%29%3AFloat64-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the hyperbolic cosine of <em>value</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L141" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="cosh(value)-instance-method">
+      <div class="signature">
+        
+        def <strong>cosh</strong>(value)
+
+        <a class="method-permalink" href="#cosh%28value%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the hyperbolic cosine of <em>value</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L146" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="erf(value:Float32):Float32-instance-method">
+      <div class="signature">
+        
+        def <strong>erf</strong>(value : <a href="Float32.html">Float32</a>) : <a href="Float32.html">Float32</a>
+
+        <a class="method-permalink" href="#erf%28value%3AFloat32%29%3AFloat32-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the error function of <em>value</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L370" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="erf(value:Float64):Float64-instance-method">
+      <div class="signature">
+        
+        def <strong>erf</strong>(value : <a href="Float64.html">Float64</a>) : <a href="Float64.html">Float64</a>
+
+        <a class="method-permalink" href="#erf%28value%3AFloat64%29%3AFloat64-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the error function of <em>value</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L375" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="erf(value)-instance-method">
+      <div class="signature">
+        
+        def <strong>erf</strong>(value)
+
+        <a class="method-permalink" href="#erf%28value%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the error function of <em>value</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L380" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="erfc(value:Float32):Float32-instance-method">
+      <div class="signature">
+        
+        def <strong>erfc</strong>(value : <a href="Float32.html">Float32</a>) : <a href="Float32.html">Float32</a>
+
+        <a class="method-permalink" href="#erfc%28value%3AFloat32%29%3AFloat32-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates 1 minus the error function of <em>value</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L385" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="erfc(value:Float64):Float64-instance-method">
+      <div class="signature">
+        
+        def <strong>erfc</strong>(value : <a href="Float64.html">Float64</a>) : <a href="Float64.html">Float64</a>
+
+        <a class="method-permalink" href="#erfc%28value%3AFloat64%29%3AFloat64-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates 1 minus the error function of <em>value</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L390" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="erfc(value)-instance-method">
+      <div class="signature">
+        
+        def <strong>erfc</strong>(value)
+
+        <a class="method-permalink" href="#erfc%28value%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates 1 minus the error function of <em>value</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L395" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="exp(value:Float32):Float32-instance-method">
+      <div class="signature">
+        
+        def <strong>exp</strong>(value : <a href="Float32.html">Float32</a>) : <a href="Float32.html">Float32</a>
+
+        <a class="method-permalink" href="#exp%28value%3AFloat32%29%3AFloat32-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the exponential of <em>value</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L211" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="exp(value:Float64):Float64-instance-method">
+      <div class="signature">
+        
+        def <strong>exp</strong>(value : <a href="Float64.html">Float64</a>) : <a href="Float64.html">Float64</a>
+
+        <a class="method-permalink" href="#exp%28value%3AFloat64%29%3AFloat64-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the exponential of <em>value</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L216" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="exp(value:Complex):Complex-instance-method">
+      <div class="signature">
+        
+        def <strong>exp</strong>(value : <a href="Complex.html">Complex</a>) : <a href="Complex.html">Complex</a>
+
+        <a class="method-permalink" href="#exp%28value%3AComplex%29%3AComplex-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the exponential of <em>value</em>.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;complex&quot;</span>
+
+<span class="t">Math</span>.exp(<span class="n">4</span> <span class="o">+</span> <span class="n">2</span>.i) <span class="c"># =&gt; -22.720847417619233 + 49.645957334580565.i</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/complex.cr#L361" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="exp(value)-instance-method">
+      <div class="signature">
+        
+        def <strong>exp</strong>(value)
+
+        <a class="method-permalink" href="#exp%28value%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the exponential of <em>value</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L221" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="exp2(value:Float32):Float32-instance-method">
+      <div class="signature">
+        
+        def <strong>exp2</strong>(value : <a href="Float32.html">Float32</a>) : <a href="Float32.html">Float32</a>
+
+        <a class="method-permalink" href="#exp2%28value%3AFloat32%29%3AFloat32-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates 2 raised to the power <em>value</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L241" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="exp2(value:Float64):Float64-instance-method">
+      <div class="signature">
+        
+        def <strong>exp2</strong>(value : <a href="Float64.html">Float64</a>) : <a href="Float64.html">Float64</a>
+
+        <a class="method-permalink" href="#exp2%28value%3AFloat64%29%3AFloat64-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates 2 raised to the power <em>value</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L246" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="exp2(value)-instance-method">
+      <div class="signature">
+        
+        def <strong>exp2</strong>(value)
+
+        <a class="method-permalink" href="#exp2%28value%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates 2 raised to the power <em>value</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L251" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="expm1(value:Float32):Float32-instance-method">
+      <div class="signature">
+        
+        def <strong>expm1</strong>(value : <a href="Float32.html">Float32</a>) : <a href="Float32.html">Float32</a>
+
+        <a class="method-permalink" href="#expm1%28value%3AFloat32%29%3AFloat32-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the exponential of <em>value</em>, minus 1.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L226" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="expm1(value:Float64):Float64-instance-method">
+      <div class="signature">
+        
+        def <strong>expm1</strong>(value : <a href="Float64.html">Float64</a>) : <a href="Float64.html">Float64</a>
+
+        <a class="method-permalink" href="#expm1%28value%3AFloat64%29%3AFloat64-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the exponential of <em>value</em>, minus 1.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L231" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="expm1(value)-instance-method">
+      <div class="signature">
+        
+        def <strong>expm1</strong>(value)
+
+        <a class="method-permalink" href="#expm1%28value%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the exponential of <em>value</em>, minus 1.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L236" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="fma(value1:Float32,value2:Float32,value3:Float32):Float32-instance-method">
+      <div class="signature">
+        
+        def <strong>fma</strong>(value1 : <a href="Float32.html">Float32</a>, value2 : <a href="Float32.html">Float32</a>, value3 : <a href="Float32.html">Float32</a>) : <a href="Float32.html">Float32</a>
+
+        <a class="method-permalink" href="#fma%28value1%3AFloat32%2Cvalue2%3AFloat32%2Cvalue3%3AFloat32%29%3AFloat32-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Fused multiply-add; returns <code>value1 * value2 + value3</code>, performing a single
+rounding instead of two.</p>
+<pre><code class="language-crystal"><span class="t">Math</span>.fma(<span class="n">0.1</span>, <span class="n">10.0</span>, <span class="n">-1.0</span>) <span class="c"># =&gt; 5.551115123125783e-17</span>
+<span class="n">1.0</span> <span class="o">*</span> <span class="n">10.0</span> <span class="o">-</span> <span class="n">1.0</span>          <span class="c"># =&gt; 0.0</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L585" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="fma(value1:Float64,value2:Float64,value3:Float64):Float64-instance-method">
+      <div class="signature">
+        
+        def <strong>fma</strong>(value1 : <a href="Float64.html">Float64</a>, value2 : <a href="Float64.html">Float64</a>, value3 : <a href="Float64.html">Float64</a>) : <a href="Float64.html">Float64</a>
+
+        <a class="method-permalink" href="#fma%28value1%3AFloat64%2Cvalue2%3AFloat64%2Cvalue3%3AFloat64%29%3AFloat64-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Fused multiply-add; returns <code>value1 * value2 + value3</code>, performing a single
+rounding instead of two.</p>
+<pre><code class="language-crystal"><span class="t">Math</span>.fma(<span class="n">0.1</span>, <span class="n">10.0</span>, <span class="n">-1.0</span>) <span class="c"># =&gt; 5.551115123125783e-17</span>
+<span class="n">1.0</span> <span class="o">*</span> <span class="n">10.0</span> <span class="o">-</span> <span class="n">1.0</span>          <span class="c"># =&gt; 0.0</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L590" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="fma(value1,value2,value3)-instance-method">
+      <div class="signature">
+        
+        def <strong>fma</strong>(value1, value2, value3)
+
+        <a class="method-permalink" href="#fma%28value1%2Cvalue2%2Cvalue3%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Fused multiply-add; returns <code>value1 * value2 + value3</code>, performing a single
+rounding instead of two.</p>
+<pre><code class="language-crystal"><span class="t">Math</span>.fma(<span class="n">0.1</span>, <span class="n">10.0</span>, <span class="n">-1.0</span>) <span class="c"># =&gt; 5.551115123125783e-17</span>
+<span class="n">1.0</span> <span class="o">*</span> <span class="n">10.0</span> <span class="o">-</span> <span class="n">1.0</span>          <span class="c"># =&gt; 0.0</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L595" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="frexp(value:Float32):Tuple(Float32,Int32)-instance-method">
+      <div class="signature">
+        
+        def <strong>frexp</strong>(value : <a href="Float32.html">Float32</a>) : <a href="Tuple.html">Tuple</a>(<a href="Float32.html">Float32</a>, <a href="Int32.html">Int32</a>)
+
+        <a class="method-permalink" href="#frexp%28value%3AFloat32%29%3ATuple%28Float32%2CInt32%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Decomposes the given floating-point <em>value</em> into a normalized fraction and an integral power of two.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L684" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="frexp(value:Float64):Tuple(Float64,Int32)-instance-method">
+      <div class="signature">
+        
+        def <strong>frexp</strong>(value : <a href="Float64.html">Float64</a>) : <a href="Tuple.html">Tuple</a>(<a href="Float64.html">Float64</a>, <a href="Int32.html">Int32</a>)
+
+        <a class="method-permalink" href="#frexp%28value%3AFloat64%29%3ATuple%28Float64%2CInt32%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Decomposes the given floating-point <em>value</em> into a normalized fraction and an integral power of two.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L696" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="frexp(value:BigFloat):Tuple(BigFloat,Int64)-instance-method">
+      <div class="signature">
+        
+        def <strong>frexp</strong>(value : <a href="BigFloat.html">BigFloat</a>) : <a href="Tuple.html">Tuple</a>(<a href="BigFloat.html">BigFloat</a>, <a href="Int64.html">Int64</a>)
+
+        <a class="method-permalink" href="#frexp%28value%3ABigFloat%29%3ATuple%28BigFloat%2CInt64%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Decomposes the given floating-point <em>value</em> into a normalized fraction and an integral power of two.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/big/big_float.cr#L631" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="frexp(value)-instance-method">
+      <div class="signature">
+        
+        def <strong>frexp</strong>(value)
+
+        <a class="method-permalink" href="#frexp%28value%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Decomposes the given floating-point <em>value</em> into a normalized fraction and an integral power of two.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L702" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="gamma(value:Float32):Float32-instance-method">
+      <div class="signature">
+        
+        def <strong>gamma</strong>(value : <a href="Float32.html">Float32</a>) : <a href="Float32.html">Float32</a>
+
+        <a class="method-permalink" href="#gamma%28value%3AFloat32%29%3AFloat32-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the gamma function of <em>value</em>.</p>
+<p>Note that <code><a href="Math.html#gamma%28value%3AFloat32%29%3AFloat32-instance-method">#gamma(n)</a></code> is same as <code>fact(n - 1)</code> for integer <code>n &gt; 0</code>.
+However <code><a href="Math.html#gamma%28value%3AFloat32%29%3AFloat32-instance-method">#gamma(n)</a></code> returns float and can be an approximation.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L403" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="gamma(value:Float64):Float64-instance-method">
+      <div class="signature">
+        
+        def <strong>gamma</strong>(value : <a href="Float64.html">Float64</a>) : <a href="Float64.html">Float64</a>
+
+        <a class="method-permalink" href="#gamma%28value%3AFloat64%29%3AFloat64-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the gamma function of <em>value</em>.</p>
+<p>Note that <code><a href="Math.html#gamma%28value%3AFloat32%29%3AFloat32-instance-method">#gamma(n)</a></code> is same as <code>fact(n - 1)</code> for integer <code>n &gt; 0</code>.
+However <code><a href="Math.html#gamma%28value%3AFloat32%29%3AFloat32-instance-method">#gamma(n)</a></code> returns float and can be an approximation.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L408" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="gamma(value):Float64-instance-method">
+      <div class="signature">
+        
+        def <strong>gamma</strong>(value) : <a href="Float64.html">Float64</a>
+
+        <a class="method-permalink" href="#gamma%28value%29%3AFloat64-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the gamma function of <em>value</em>.</p>
+<p>Note that <code><a href="Math.html#gamma%28value%3AFloat32%29%3AFloat32-instance-method">#gamma(n)</a></code> is same as <code>fact(n - 1)</code> for integer <code>n &gt; 0</code>.
+However <code><a href="Math.html#gamma%28value%3AFloat32%29%3AFloat32-instance-method">#gamma(n)</a></code> returns float and can be an approximation.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L413" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="hypot(value1:Float32,value2:Float32):Float32-instance-method">
+      <div class="signature">
+        
+        def <strong>hypot</strong>(value1 : <a href="Float32.html">Float32</a>, value2 : <a href="Float32.html">Float32</a>) : <a href="Float32.html">Float32</a>
+
+        <a class="method-permalink" href="#hypot%28value1%3AFloat32%2Cvalue2%3AFloat32%29%3AFloat32-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the length of the hypotenuse from (0, 0) to (<em>value1</em>, <em>value2</em>).</p>
+<p>Equivalent to</p>
+<pre><code class="language-crystal"><span class="t">Math</span>.sqrt(value1 <span class="o">**</span> <span class="n">2</span> <span class="o">+</span> value2 <span class="o">**</span> <span class="n">2</span>)</code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L564" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="hypot(value1:Float64,value2:Float64):Float64-instance-method">
+      <div class="signature">
+        
+        def <strong>hypot</strong>(value1 : <a href="Float64.html">Float64</a>, value2 : <a href="Float64.html">Float64</a>) : <a href="Float64.html">Float64</a>
+
+        <a class="method-permalink" href="#hypot%28value1%3AFloat64%2Cvalue2%3AFloat64%29%3AFloat64-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the length of the hypotenuse from (0, 0) to (<em>value1</em>, <em>value2</em>).</p>
+<p>Equivalent to</p>
+<pre><code class="language-crystal"><span class="t">Math</span>.sqrt(value1 <span class="o">**</span> <span class="n">2</span> <span class="o">+</span> value2 <span class="o">**</span> <span class="n">2</span>)</code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L569" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="hypot(value1,value2)-instance-method">
+      <div class="signature">
+        
+        def <strong>hypot</strong>(value1, value2)
+
+        <a class="method-permalink" href="#hypot%28value1%2Cvalue2%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the length of the hypotenuse from (0, 0) to (<em>value1</em>, <em>value2</em>).</p>
+<p>Equivalent to</p>
+<pre><code class="language-crystal"><span class="t">Math</span>.sqrt(value1 <span class="o">**</span> <span class="n">2</span> <span class="o">+</span> value2 <span class="o">**</span> <span class="n">2</span>)</code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L574" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="ilogb(value:Float32):Int32-instance-method">
+      <div class="signature">
+        
+        def <strong>ilogb</strong>(value : <a href="Float32.html">Float32</a>) : <a href="Int32.html">Int32</a>
+
+        <a class="method-permalink" href="#ilogb%28value%3AFloat32%29%3AInt32-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the unbiased base 2 exponent of the given floating-point <em>value</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L600" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="ilogb(value:Float64):Int32-instance-method">
+      <div class="signature">
+        
+        def <strong>ilogb</strong>(value : <a href="Float64.html">Float64</a>) : <a href="Int32.html">Int32</a>
+
+        <a class="method-permalink" href="#ilogb%28value%3AFloat64%29%3AInt32-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the unbiased base 2 exponent of the given floating-point <em>value</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L605" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="ilogb(value:BigFloat):Int64-instance-method">
+      <div class="signature">
+        
+        def <strong>ilogb</strong>(value : <a href="BigFloat.html">BigFloat</a>) : <a href="Int64.html">Int64</a>
+
+        <a class="method-permalink" href="#ilogb%28value%3ABigFloat%29%3AInt64-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the unbiased base 2 exponent of the given floating-point <em>value</em>.</p>
+<p>Raises <code><a href="ArgumentError.html">ArgumentError</a></code> if <em>value</em> is zero.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/big/big_float.cr#L592" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="ilogb(value)-instance-method">
+      <div class="signature">
+        
+        def <strong>ilogb</strong>(value)
+
+        <a class="method-permalink" href="#ilogb%28value%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the unbiased base 2 exponent of the given floating-point <em>value</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L610" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="isqrt(value:Int::Primitive)-instance-method">
+      <div class="signature">
+        
+        def <strong>isqrt</strong>(value : <a href="Int/Primitive.html">Int::Primitive</a>)
+
+        <a class="method-permalink" href="#isqrt%28value%3AInt%3A%3APrimitive%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the integer square root of <em>value</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L336" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="isqrt(value:BigInt)-instance-method">
+      <div class="signature">
+        
+        def <strong>isqrt</strong>(value : <a href="BigInt.html">BigInt</a>)
+
+        <a class="method-permalink" href="#isqrt%28value%3ABigInt%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the integer square root of <em>value</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/big/big_int.cr#L922" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="ldexp(value:Float32,exp:Int32):Float32-instance-method">
+      <div class="signature">
+        
+        def <strong>ldexp</strong>(value : <a href="Float32.html">Float32</a>, exp : <a href="Int32.html">Int32</a>) : <a href="Float32.html">Float32</a>
+
+        <a class="method-permalink" href="#ldexp%28value%3AFloat32%2Cexp%3AInt32%29%3AFloat32-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Multiplies the given floating-point <em>value</em> by 2 raised to the power <em>exp</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L632" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="ldexp(value:Float64,exp:Int32):Float64-instance-method">
+      <div class="signature">
+        
+        def <strong>ldexp</strong>(value : <a href="Float64.html">Float64</a>, exp : <a href="Int32.html">Int32</a>) : <a href="Float64.html">Float64</a>
+
+        <a class="method-permalink" href="#ldexp%28value%3AFloat64%2Cexp%3AInt32%29%3AFloat64-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Multiplies the given floating-point <em>value</em> by 2 raised to the power <em>exp</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L642" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="ldexp(value:BigFloat,exp:Int):BigFloat-instance-method">
+      <div class="signature">
+        
+        def <strong>ldexp</strong>(value : <a href="BigFloat.html">BigFloat</a>, exp : <a href="Int.html">Int</a>) : <a href="BigFloat.html">BigFloat</a>
+
+        <a class="method-permalink" href="#ldexp%28value%3ABigFloat%2Cexp%3AInt%29%3ABigFloat-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Multiplies the given floating-point <em>value</em> by 2 raised to the power <em>exp</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/big/big_float.cr#L608" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="ldexp(value,exp)-instance-method">
+      <div class="signature">
+        
+        def <strong>ldexp</strong>(value, exp)
+
+        <a class="method-permalink" href="#ldexp%28value%2Cexp%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Multiplies the given floating-point <em>value</em> by 2 raised to the power <em>exp</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L647" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="lgamma(value:Float32)-instance-method">
+      <div class="signature">
+        
+        def <strong>lgamma</strong>(value : <a href="Float32.html">Float32</a>)
+
+        <a class="method-permalink" href="#lgamma%28value%3AFloat32%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the logarithmic gamma of <em>value</em>.</p>
+<pre><code class="language-crystal"><span class="t">Math</span>.lgamma(<span class="n">2.96</span>)</code></pre>
+<p>is equivalent to</p>
+<pre><code class="language-crystal"><span class="t">Math</span>.log(<span class="t">Math</span>.gamma(<span class="n">2.96</span>).abs)</code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L426" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="lgamma(value:Float64):Float64-instance-method">
+      <div class="signature">
+        
+        def <strong>lgamma</strong>(value : <a href="Float64.html">Float64</a>) : <a href="Float64.html">Float64</a>
+
+        <a class="method-permalink" href="#lgamma%28value%3AFloat64%29%3AFloat64-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the logarithmic gamma of <em>value</em>.</p>
+<pre><code class="language-crystal"><span class="t">Math</span>.lgamma(<span class="n">2.96</span>)</code></pre>
+<p>is equivalent to</p>
+<pre><code class="language-crystal"><span class="t">Math</span>.log(<span class="t">Math</span>.gamma(<span class="n">2.96</span>).abs)</code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L435" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="lgamma(value):Float64-instance-method">
+      <div class="signature">
+        
+        def <strong>lgamma</strong>(value) : <a href="Float64.html">Float64</a>
+
+        <a class="method-permalink" href="#lgamma%28value%29%3AFloat64-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the logarithmic gamma of <em>value</em>.</p>
+<pre><code class="language-crystal"><span class="t">Math</span>.lgamma(<span class="n">2.96</span>)</code></pre>
+<p>is equivalent to</p>
+<pre><code class="language-crystal"><span class="t">Math</span>.log(<span class="t">Math</span>.gamma(<span class="n">2.96</span>).abs)</code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L440" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="log(value,base)-instance-method">
+      <div class="signature">
+        
+        def <strong>log</strong>(value, base)
+
+        <a class="method-permalink" href="#log%28value%2Cbase%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the logarithm of <em>value</em> to the given <em>base</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L316" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="log(value:Float32):Float32-instance-method">
+      <div class="signature">
+        
+        def <strong>log</strong>(value : <a href="Float32.html">Float32</a>) : <a href="Float32.html">Float32</a>
+
+        <a class="method-permalink" href="#log%28value%3AFloat32%29%3AFloat32-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the natural logarithm of <em>value</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L256" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="log(value:Float64):Float64-instance-method">
+      <div class="signature">
+        
+        def <strong>log</strong>(value : <a href="Float64.html">Float64</a>) : <a href="Float64.html">Float64</a>
+
+        <a class="method-permalink" href="#log%28value%3AFloat64%29%3AFloat64-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the natural logarithm of <em>value</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L261" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="log(value:Complex):Complex-instance-method">
+      <div class="signature">
+        
+        def <strong>log</strong>(value : <a href="Complex.html">Complex</a>) : <a href="Complex.html">Complex</a>
+
+        <a class="method-permalink" href="#log%28value%3AComplex%29%3AComplex-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the natural logarithm of <em>value</em>.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;complex&quot;</span>
+
+<span class="t">Math</span>.log(<span class="n">4</span> <span class="o">+</span> <span class="n">2</span>.i) <span class="c"># =&gt; 1.4978661367769956 + 0.4636476090008061.i</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/complex.cr#L373" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="log(value):Float64-instance-method">
+      <div class="signature">
+        
+        def <strong>log</strong>(value) : <a href="Float64.html">Float64</a>
+
+        <a class="method-permalink" href="#log%28value%29%3AFloat64-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the natural logarithm of <em>value</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L266" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="log10(value:Float32):Float32-instance-method">
+      <div class="signature">
+        
+        def <strong>log10</strong>(value : <a href="Float32.html">Float32</a>) : <a href="Float32.html">Float32</a>
+
+        <a class="method-permalink" href="#log10%28value%3AFloat32%29%3AFloat32-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the logarithm of <em>value</em> to base 10.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L301" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="log10(value:Float64):Float64-instance-method">
+      <div class="signature">
+        
+        def <strong>log10</strong>(value : <a href="Float64.html">Float64</a>) : <a href="Float64.html">Float64</a>
+
+        <a class="method-permalink" href="#log10%28value%3AFloat64%29%3AFloat64-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the logarithm of <em>value</em> to base 10.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L306" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="log10(value:Complex):Complex-instance-method">
+      <div class="signature">
+        
+        def <strong>log10</strong>(value : <a href="Complex.html">Complex</a>) : <a href="Complex.html">Complex</a>
+
+        <a class="method-permalink" href="#log10%28value%3AComplex%29%3AComplex-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the logarithm of <em>value</em> to base 10.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;complex&quot;</span>
+
+<span class="t">Math</span>.log10(<span class="n">4</span> <span class="o">+</span> <span class="n">2</span>.i) <span class="c"># =&gt; 0.6505149978319906 + 0.20135959813668655.i</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/complex.cr#L395" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="log10(value)-instance-method">
+      <div class="signature">
+        
+        def <strong>log10</strong>(value)
+
+        <a class="method-permalink" href="#log10%28value%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the logarithm of <em>value</em> to base 10.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L311" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="log1p(value:Float32):Float32-instance-method">
+      <div class="signature">
+        
+        def <strong>log1p</strong>(value : <a href="Float32.html">Float32</a>) : <a href="Float32.html">Float32</a>
+
+        <a class="method-permalink" href="#log1p%28value%3AFloat32%29%3AFloat32-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the natural logarithm of 1 plus <em>value</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L271" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="log1p(value:Float64):Float64-instance-method">
+      <div class="signature">
+        
+        def <strong>log1p</strong>(value : <a href="Float64.html">Float64</a>) : <a href="Float64.html">Float64</a>
+
+        <a class="method-permalink" href="#log1p%28value%3AFloat64%29%3AFloat64-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the natural logarithm of 1 plus <em>value</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L276" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="log1p(value)-instance-method">
+      <div class="signature">
+        
+        def <strong>log1p</strong>(value)
+
+        <a class="method-permalink" href="#log1p%28value%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the natural logarithm of 1 plus <em>value</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L281" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="log2(value:Float32):Float32-instance-method">
+      <div class="signature">
+        
+        def <strong>log2</strong>(value : <a href="Float32.html">Float32</a>) : <a href="Float32.html">Float32</a>
+
+        <a class="method-permalink" href="#log2%28value%3AFloat32%29%3AFloat32-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the logarithm of <em>value</em> to base 2.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L286" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="log2(value:Float64):Float64-instance-method">
+      <div class="signature">
+        
+        def <strong>log2</strong>(value : <a href="Float64.html">Float64</a>) : <a href="Float64.html">Float64</a>
+
+        <a class="method-permalink" href="#log2%28value%3AFloat64%29%3AFloat64-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the logarithm of <em>value</em> to base 2.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L291" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="log2(value:Complex):Complex-instance-method">
+      <div class="signature">
+        
+        def <strong>log2</strong>(value : <a href="Complex.html">Complex</a>) : <a href="Complex.html">Complex</a>
+
+        <a class="method-permalink" href="#log2%28value%3AComplex%29%3AComplex-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the logarithm of <em>value</em> to base 2.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;complex&quot;</span>
+
+<span class="t">Math</span>.log2(<span class="n">4</span> <span class="o">+</span> <span class="n">2</span>.i) <span class="c"># =&gt; 2.1609640474436813 + 0.6689021062254881.i</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/complex.cr#L384" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="log2(value):Float64-instance-method">
+      <div class="signature">
+        
+        def <strong>log2</strong>(value) : <a href="Float64.html">Float64</a>
+
+        <a class="method-permalink" href="#log2%28value%29%3AFloat64-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the logarithm of <em>value</em> to base 2.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L296" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="logb(value:Float32):Float32-instance-method">
+      <div class="signature">
+        
+        def <strong>logb</strong>(value : <a href="Float32.html">Float32</a>) : <a href="Float32.html">Float32</a>
+
+        <a class="method-permalink" href="#logb%28value%3AFloat32%29%3AFloat32-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the unbiased radix-independent exponent of the given floating-point <em>value</em>.</p>
+<p>For <code><a href="Float32.html">Float32</a></code> and <code><a href="Float64.html">Float64</a></code> this is equivalent to <code><a href="Math.html#ilogb%28value%3AFloat32%29%3AInt32-instance-method">#ilogb</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L617" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="logb(value:Float64):Float64-instance-method">
+      <div class="signature">
+        
+        def <strong>logb</strong>(value : <a href="Float64.html">Float64</a>) : <a href="Float64.html">Float64</a>
+
+        <a class="method-permalink" href="#logb%28value%3AFloat64%29%3AFloat64-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the unbiased radix-independent exponent of the given floating-point <em>value</em>.</p>
+<p>For <code><a href="Float32.html">Float32</a></code> and <code><a href="Float64.html">Float64</a></code> this is equivalent to <code><a href="Math.html#ilogb%28value%3AFloat32%29%3AInt32-instance-method">#ilogb</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L622" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="logb(value:BigFloat):BigFloat-instance-method">
+      <div class="signature">
+        
+        def <strong>logb</strong>(value : <a href="BigFloat.html">BigFloat</a>) : <a href="BigFloat.html">BigFloat</a>
+
+        <a class="method-permalink" href="#logb%28value%3ABigFloat%29%3ABigFloat-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the unbiased radix-independent exponent of the given floating-point <em>value</em>.</p>
+<p>For <code><a href="BigFloat.html">BigFloat</a></code> this is equivalent to <code><a href="Math.html#ilogb%28value%3AFloat32%29%3AInt32-instance-method">#ilogb</a></code>.</p>
+<p>Raises <code><a href="ArgumentError.html">ArgumentError</a></code> is <em>value</em> is zero.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/big/big_float.cr#L603" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="logb(value)-instance-method">
+      <div class="signature">
+        
+        def <strong>logb</strong>(value)
+
+        <a class="method-permalink" href="#logb%28value%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the unbiased radix-independent exponent of the given floating-point <em>value</em>.</p>
+<p>For <code><a href="Float32.html">Float32</a></code> and <code><a href="Float64.html">Float64</a></code> this is equivalent to <code><a href="Math.html#ilogb%28value%3AFloat32%29%3AInt32-instance-method">#ilogb</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L627" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="max(value1:Float32,value2:Float32)-instance-method">
+      <div class="signature">
+        
+        def <strong>max</strong>(value1 : <a href="Float32.html">Float32</a>, value2 : <a href="Float32.html">Float32</a>)
+
+        <a class="method-permalink" href="#max%28value1%3AFloat32%2Cvalue2%3AFloat32%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the greater of <em>value1</em> and <em>value2</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L722" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="max(value1:Float64,value2:Float64):Float64-instance-method">
+      <div class="signature">
+        
+        def <strong>max</strong>(value1 : <a href="Float64.html">Float64</a>, value2 : <a href="Float64.html">Float64</a>) : <a href="Float64.html">Float64</a>
+
+        <a class="method-permalink" href="#max%28value1%3AFloat64%2Cvalue2%3AFloat64%29%3AFloat64-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the greater of <em>value1</em> and <em>value2</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L727" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="max(value1,value2)-instance-method">
+      <div class="signature">
+        
+        def <strong>max</strong>(value1, value2)
+
+        <a class="method-permalink" href="#max%28value1%2Cvalue2%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the greater of <em>value1</em> and <em>value2</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L732" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="min(value1:Float32,value2:Float32)-instance-method">
+      <div class="signature">
+        
+        def <strong>min</strong>(value1 : <a href="Float32.html">Float32</a>, value2 : <a href="Float32.html">Float32</a>)
+
+        <a class="method-permalink" href="#min%28value1%3AFloat32%2Cvalue2%3AFloat32%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the smaller of <em>value1</em> and <em>value2</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L737" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="min(value1:Float64,value2:Float64):Float64-instance-method">
+      <div class="signature">
+        
+        def <strong>min</strong>(value1 : <a href="Float64.html">Float64</a>, value2 : <a href="Float64.html">Float64</a>) : <a href="Float64.html">Float64</a>
+
+        <a class="method-permalink" href="#min%28value1%3AFloat64%2Cvalue2%3AFloat64%29%3AFloat64-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the smaller of <em>value1</em> and <em>value2</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L742" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="min(value1,value2)-instance-method">
+      <div class="signature">
+        
+        def <strong>min</strong>(value1, value2)
+
+        <a class="method-permalink" href="#min%28value1%2Cvalue2%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the smaller of <em>value1</em> and <em>value2</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L747" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="pw2ceil(v:Int::Primitive)-instance-method">
+      <div class="signature">
+        
+        def <strong>pw2ceil</strong>(v : <a href="Int/Primitive.html">Int::Primitive</a>)
+
+        <a class="method-permalink" href="#pw2ceil%28v%3AInt%3A%3APrimitive%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Computes the smallest nonnegative power of 2 that is greater than or equal
+to <em>v</em>.</p>
+<p>The returned value has the same type as the argument. Raises <code><a href="OverflowError.html">OverflowError</a></code>
+if the result does not fit into the argument's type.</p>
+<pre><code class="language-crystal"><span class="t">Math</span>.pw2ceil(<span class="n">33</span>) <span class="c"># =&gt; 64</span>
+<span class="t">Math</span>.pw2ceil(<span class="n">64</span>) <span class="c"># =&gt; 64</span>
+<span class="t">Math</span>.pw2ceil(<span class="n">-5</span>) <span class="c"># =&gt; 1</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L762" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="pw2ceil(v:BigInt):BigInt-instance-method">
+      <div class="signature">
+        
+        def <strong>pw2ceil</strong>(v : <a href="BigInt.html">BigInt</a>) : <a href="BigInt.html">BigInt</a>
+
+        <a class="method-permalink" href="#pw2ceil%28v%3ABigInt%29%3ABigInt-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Computes the smallest nonnegative power of 2 that is greater than or equal
+to <em>v</em>.</p>
+<p>The returned value has the same type as the argument.</p>
+<pre><code class="language-crystal"><span class="t">Math</span>.pw2ceil(<span class="n">33</span>) <span class="c"># =&gt; 64</span>
+<span class="t">Math</span>.pw2ceil(<span class="n">64</span>) <span class="c"># =&gt; 64</span>
+<span class="t">Math</span>.pw2ceil(<span class="n">-5</span>) <span class="c"># =&gt; 1</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/big/big_int.cr#L936" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="scalbln(value:Float32,exp:Int64)-instance-method">
+      <div class="signature">
+        
+        def <strong>scalbln</strong>(value : <a href="Float32.html">Float32</a>, exp : <a href="Int64.html">Int64</a>)
+
+        <a class="method-permalink" href="#scalbln%28value%3AFloat32%2Cexp%3AInt64%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the floating-point <em>value</em> with its exponent raised by <em>exp</em>.</p>
+<p>For <code><a href="Float32.html">Float32</a></code> and <code><a href="Float64.html">Float64</a></code> this is equivalent to <code><a href="Math.html#ldexp%28value%3AFloat32%2Cexp%3AInt32%29%3AFloat32-instance-method">#ldexp</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L669" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="scalbln(value:Float64,exp:Int64):Float64-instance-method">
+      <div class="signature">
+        
+        def <strong>scalbln</strong>(value : <a href="Float64.html">Float64</a>, exp : <a href="Int64.html">Int64</a>) : <a href="Float64.html">Float64</a>
+
+        <a class="method-permalink" href="#scalbln%28value%3AFloat64%2Cexp%3AInt64%29%3AFloat64-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the floating-point <em>value</em> with its exponent raised by <em>exp</em>.</p>
+<p>For <code><a href="Float32.html">Float32</a></code> and <code><a href="Float64.html">Float64</a></code> this is equivalent to <code><a href="Math.html#ldexp%28value%3AFloat32%2Cexp%3AInt32%29%3AFloat32-instance-method">#ldexp</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L674" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="scalbln(value:BigFloat,exp:Int):BigFloat-instance-method">
+      <div class="signature">
+        
+        def <strong>scalbln</strong>(value : <a href="BigFloat.html">BigFloat</a>, exp : <a href="Int.html">Int</a>) : <a href="BigFloat.html">BigFloat</a>
+
+        <a class="method-permalink" href="#scalbln%28value%3ABigFloat%2Cexp%3AInt%29%3ABigFloat-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the floating-point <em>value</em> with its exponent raised by <em>exp</em>.</p>
+<p>For <code><a href="BigFloat.html">BigFloat</a></code> this is equivalent to <code><a href="Math.html#ldexp%28value%3AFloat32%2Cexp%3AInt32%29%3AFloat32-instance-method">#ldexp</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/big/big_float.cr#L626" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="scalbln(value,exp):Float64-instance-method">
+      <div class="signature">
+        
+        def <strong>scalbln</strong>(value, exp) : <a href="Float64.html">Float64</a>
+
+        <a class="method-permalink" href="#scalbln%28value%2Cexp%29%3AFloat64-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the floating-point <em>value</em> with its exponent raised by <em>exp</em>.</p>
+<p>For <code><a href="Float32.html">Float32</a></code> and <code><a href="Float64.html">Float64</a></code> this is equivalent to <code><a href="Math.html#ldexp%28value%3AFloat32%2Cexp%3AInt32%29%3AFloat32-instance-method">#ldexp</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L679" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="scalbn(value:Float32,exp:Int32):Float32-instance-method">
+      <div class="signature">
+        
+        def <strong>scalbn</strong>(value : <a href="Float32.html">Float32</a>, exp : <a href="Int32.html">Int32</a>) : <a href="Float32.html">Float32</a>
+
+        <a class="method-permalink" href="#scalbn%28value%3AFloat32%2Cexp%3AInt32%29%3AFloat32-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the floating-point <em>value</em> with its exponent raised by <em>exp</em>.</p>
+<p>For <code><a href="Float32.html">Float32</a></code> and <code><a href="Float64.html">Float64</a></code> this is equivalent to <code><a href="Math.html#ldexp%28value%3AFloat32%2Cexp%3AInt32%29%3AFloat32-instance-method">#ldexp</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L654" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="scalbn(value:Float64,exp:Int32):Float64-instance-method">
+      <div class="signature">
+        
+        def <strong>scalbn</strong>(value : <a href="Float64.html">Float64</a>, exp : <a href="Int32.html">Int32</a>) : <a href="Float64.html">Float64</a>
+
+        <a class="method-permalink" href="#scalbn%28value%3AFloat64%2Cexp%3AInt32%29%3AFloat64-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the floating-point <em>value</em> with its exponent raised by <em>exp</em>.</p>
+<p>For <code><a href="Float32.html">Float32</a></code> and <code><a href="Float64.html">Float64</a></code> this is equivalent to <code><a href="Math.html#ldexp%28value%3AFloat32%2Cexp%3AInt32%29%3AFloat32-instance-method">#ldexp</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L659" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="scalbn(value:BigFloat,exp:Int):BigFloat-instance-method">
+      <div class="signature">
+        
+        def <strong>scalbn</strong>(value : <a href="BigFloat.html">BigFloat</a>, exp : <a href="Int.html">Int</a>) : <a href="BigFloat.html">BigFloat</a>
+
+        <a class="method-permalink" href="#scalbn%28value%3ABigFloat%2Cexp%3AInt%29%3ABigFloat-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the floating-point <em>value</em> with its exponent raised by <em>exp</em>.</p>
+<p>For <code><a href="BigFloat.html">BigFloat</a></code> this is equivalent to <code><a href="Math.html#ldexp%28value%3AFloat32%2Cexp%3AInt32%29%3AFloat32-instance-method">#ldexp</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/big/big_float.cr#L621" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="scalbn(value,exp)-instance-method">
+      <div class="signature">
+        
+        def <strong>scalbn</strong>(value, exp)
+
+        <a class="method-permalink" href="#scalbn%28value%2Cexp%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the floating-point <em>value</em> with its exponent raised by <em>exp</em>.</p>
+<p>For <code><a href="Float32.html">Float32</a></code> and <code><a href="Float64.html">Float64</a></code> this is equivalent to <code><a href="Math.html#ldexp%28value%3AFloat32%2Cexp%3AInt32%29%3AFloat32-instance-method">#ldexp</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L664" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="sin(value:Float32):Float32-instance-method">
+      <div class="signature">
+        
+        def <strong>sin</strong>(value : <a href="Float32.html">Float32</a>) : <a href="Float32.html">Float32</a>
+
+        <a class="method-permalink" href="#sin%28value%3AFloat32%29%3AFloat32-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the sine of <em>value</em>, measured in radians.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L16" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="sin(value:Float64):Float64-instance-method">
+      <div class="signature">
+        
+        def <strong>sin</strong>(value : <a href="Float64.html">Float64</a>) : <a href="Float64.html">Float64</a>
+
+        <a class="method-permalink" href="#sin%28value%3AFloat64%29%3AFloat64-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the sine of <em>value</em>, measured in radians.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L21" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="sin(value)-instance-method">
+      <div class="signature">
+        
+        def <strong>sin</strong>(value)
+
+        <a class="method-permalink" href="#sin%28value%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the sine of <em>value</em>, measured in radians.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L26" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="sinh(value:Float32):Float32-instance-method">
+      <div class="signature">
+        
+        def <strong>sinh</strong>(value : <a href="Float32.html">Float32</a>) : <a href="Float32.html">Float32</a>
+
+        <a class="method-permalink" href="#sinh%28value%3AFloat32%29%3AFloat32-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the hyperbolic sine of <em>value</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L121" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="sinh(value:Float64):Float64-instance-method">
+      <div class="signature">
+        
+        def <strong>sinh</strong>(value : <a href="Float64.html">Float64</a>) : <a href="Float64.html">Float64</a>
+
+        <a class="method-permalink" href="#sinh%28value%3AFloat64%29%3AFloat64-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the hyperbolic sine of <em>value</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L126" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="sinh(value)-instance-method">
+      <div class="signature">
+        
+        def <strong>sinh</strong>(value)
+
+        <a class="method-permalink" href="#sinh%28value%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the hyperbolic sine of <em>value</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L131" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="sqrt(value:Float32):Float32-instance-method">
+      <div class="signature">
+        
+        def <strong>sqrt</strong>(value : <a href="Float32.html">Float32</a>) : <a href="Float32.html">Float32</a>
+
+        <a class="method-permalink" href="#sqrt%28value%3AFloat32%29%3AFloat32-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the square root of <em>value</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L321" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="sqrt(value:Float64):Float64-instance-method">
+      <div class="signature">
+        
+        def <strong>sqrt</strong>(value : <a href="Float64.html">Float64</a>) : <a href="Float64.html">Float64</a>
+
+        <a class="method-permalink" href="#sqrt%28value%3AFloat64%29%3AFloat64-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the square root of <em>value</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L326" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="sqrt(value:BigInt):BigFloat-instance-method">
+      <div class="signature">
+        
+        def <strong>sqrt</strong>(value : <a href="BigInt.html">BigInt</a>) : <a href="BigFloat.html">BigFloat</a>
+
+        <a class="method-permalink" href="#sqrt%28value%3ABigInt%29%3ABigFloat-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the square root of <em>value</em>.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;big&quot;</span>
+
+<span class="t">Math</span>.sqrt(<span class="n">1_000_000_000_000</span>.to_big_i <span class="o">*</span> <span class="n">1_000_000_000_000</span>.to_big_i) <span class="c"># =&gt; 1000000000000.0</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/big/big_int.cr#L917" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="sqrt(value:BigFloat):BigFloat-instance-method">
+      <div class="signature">
+        
+        def <strong>sqrt</strong>(value : <a href="BigFloat.html">BigFloat</a>) : <a href="BigFloat.html">BigFloat</a>
+
+        <a class="method-permalink" href="#sqrt%28value%3ABigFloat%29%3ABigFloat-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the square root of <em>value</em>.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;big&quot;</span>
+
+<span class="t">Math</span>.sqrt(<span class="n">1_000_000_000_000</span>.to_big_f <span class="o">*</span> <span class="n">1_000_000_000_000</span>.to_big_f) <span class="c"># =&gt; 1000000000000.0</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/big/big_float.cr#L670" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="sqrt(value:BigRational):BigFloat-instance-method">
+      <div class="signature">
+        
+        def <strong>sqrt</strong>(value : <a href="BigRational.html">BigRational</a>) : <a href="BigFloat.html">BigFloat</a>
+
+        <a class="method-permalink" href="#sqrt%28value%3ABigRational%29%3ABigFloat-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the square root of <em>value</em>.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;big&quot;</span>
+
+<span class="t">Math</span>.sqrt(<span class="n">1_000_000_000_000</span>.to_big_r <span class="o">*</span> <span class="n">1_000_000_000_000</span>.to_big_r) <span class="c"># =&gt; 1000000000000.0</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/big/big_rational.cr#L459" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="sqrt(value:Complex):Complex-instance-method">
+      <div class="signature">
+        
+        def <strong>sqrt</strong>(value : <a href="Complex.html">Complex</a>) : <a href="Complex.html">Complex</a>
+
+        <a class="method-permalink" href="#sqrt%28value%3AComplex%29%3AComplex-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the square root of <em>value</em>.
+Inspired by the <a href="https://pavpanchekha.com/blog/casio-mathjs.html">following blog post</a> of Pavel Panchekha on floating point precision.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;complex&quot;</span>
+
+<span class="t">Math</span>.sqrt(<span class="n">4</span> <span class="o">+</span> <span class="n">2</span>.i) <span class="c"># =&gt; 2.0581710272714924 + 0.48586827175664565.i</span></code></pre>
+<p>Although the imaginary number is defined as i = sqrt(-1),
+calling <code><a href="Math.html#sqrt%28value%3AFloat32%29%3AFloat32-instance-method">Math.sqrt</a></code> with a negative number will return <code>-NaN</code>.
+To obtain the result in the complex plane, <code><a href="Math.html#sqrt%28value%3AFloat32%29%3AFloat32-instance-method">Math.sqrt</a></code> must
+be called with a complex number.</p>
+<pre><code class="language-crystal"><span class="t">Math</span>.sqrt(<span class="n">-1.0</span>)         <span class="c"># =&gt; -NaN</span>
+<span class="t">Math</span>.sqrt(<span class="n">-1.0</span> <span class="o">+</span> <span class="n">0.0</span>.i) <span class="c"># =&gt; 0.0 + 1.0.i</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/complex.cr#L417" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="sqrt(value):Float64-instance-method">
+      <div class="signature">
+        
+        def <strong>sqrt</strong>(value) : <a href="Float64.html">Float64</a>
+
+        <a class="method-permalink" href="#sqrt%28value%29%3AFloat64-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the square root of <em>value</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L331" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="tan(value:Float32):Float32-instance-method">
+      <div class="signature">
+        
+        def <strong>tan</strong>(value : <a href="Float32.html">Float32</a>) : <a href="Float32.html">Float32</a>
+
+        <a class="method-permalink" href="#tan%28value%3AFloat32%29%3AFloat32-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the tangent of <em>value</em>, measured in radians.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L46" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="tan(value:Float64):Float64-instance-method">
+      <div class="signature">
+        
+        def <strong>tan</strong>(value : <a href="Float64.html">Float64</a>) : <a href="Float64.html">Float64</a>
+
+        <a class="method-permalink" href="#tan%28value%3AFloat64%29%3AFloat64-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the tangent of <em>value</em>, measured in radians.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L51" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="tan(value)-instance-method">
+      <div class="signature">
+        
+        def <strong>tan</strong>(value)
+
+        <a class="method-permalink" href="#tan%28value%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the tangent of <em>value</em>, measured in radians.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L56" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="tanh(value:Float32):Float32-instance-method">
+      <div class="signature">
+        
+        def <strong>tanh</strong>(value : <a href="Float32.html">Float32</a>) : <a href="Float32.html">Float32</a>
+
+        <a class="method-permalink" href="#tanh%28value%3AFloat32%29%3AFloat32-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the hyperbolic tangent of <em>value</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L151" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="tanh(value:Float64):Float64-instance-method">
+      <div class="signature">
+        
+        def <strong>tanh</strong>(value : <a href="Float64.html">Float64</a>) : <a href="Float64.html">Float64</a>
+
+        <a class="method-permalink" href="#tanh%28value%3AFloat64%29%3AFloat64-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the hyperbolic tangent of <em>value</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L156" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="tanh(value)-instance-method">
+      <div class="signature">
+        
+        def <strong>tanh</strong>(value)
+
+        <a class="method-permalink" href="#tanh%28value%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates the hyperbolic tangent of <em>value</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/math/math.cr#L161" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+</div>
+
+</body>
+</html>

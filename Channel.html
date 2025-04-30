@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Crystal Docs 1.16.1">
+<meta name="crystal_docs.project_version" content="1.17.0-dev">
+<meta name="crystal_docs.project_name" content="Crystal">
+
+  <meta name="crystal_docs.json_config_url" content="/api/versions.json">
+
+
+    <link rel="canonical" href="https://crystal-lang.org/api/latest/Channel.html">
+
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/doc.js"></script>
+
+  <meta name="repository-name" content="Crystal">
+  <title>Channel(T) - Crystal 1.17.0-dev</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill="currentColor" fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<input type="checkbox" id="sidebar-btn">
+<label for="sidebar-btn" id="sidebar-btn-label">
+  <svg class="open" xmlns="http://www.w3.org/2000/svg" height="2em" width="2em" viewBox="0 0 512 512"><title>Open Sidebar</title><path fill="currentColor" d="M80 96v64h352V96H80zm0 112v64h352v-64H80zm0 112v64h352v-64H80z"></path></svg>
+  <svg class="close" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><title>Close Sidebar</title><path fill="currentColor" d="m118.6 73.4-45.2 45.2L210.7 256 73.4 393.4l45.2 45.2L256 301.3l137.4 137.3 45.2-45.2L301.3 256l137.3-137.4-45.2-45.2L256 210.7Z"></path></svg>
+</label>
+<iframe class="sidebar" src="sidebar.html"></iframe>
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">
+    class
+  </span> Channel(T)
+
+</h1>
+
+
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="Channel.html">Channel(T)</a></li><li class="superclass"><a href="Reference.html">Reference</a></li><li class="superclass"><a href="Object.html">Object</a></li></ul>
+
+
+
+
+  <h2>
+    <a id="overview" class="anchor" href="#overview">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Overview
+  </h2>
+
+  <p>A <code><a href="Channel.html">Channel</a></code> enables concurrent communication between fibers.</p>
+<p>They allow communicating data between fibers without sharing memory and without having to worry about locks, semaphores or other special structures.</p>
+<pre><code class="language-crystal">channel <span class="o">=</span> <span class="t">Channel</span>(<span class="t">Int32</span>).new
+
+spawn <span class="k">do</span>
+  channel.send(<span class="n">0</span>)
+  channel.send(<span class="n">1</span>)
+<span class="k">end</span>
+
+channel.receive <span class="c"># =&gt; 0</span>
+channel.receive <span class="c"># =&gt; 1</span></code></pre>
+<p><span class="flag purple">NOTE</span>  Although a <code><a href="Channel.html">Channel</a>(<a href="Nil.html">Nil</a>)</code> or any other nilable types like <code><a href="Channel.html">Channel</a>(<a href="Int32.html">Int32</a>?)</code> are valid
+they are discouraged since from certain methods or constructs it receiving a <code>nil</code> as data
+will be indistinguishable from a closed channel.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/channel.cr#L26" target="_blank">
+        channel.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/channel/select.cr#L1" target="_blank">
+        channel/select.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/channel/select/select_action.cr#L1" target="_blank">
+        channel/select/select_action.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/channel/select/timeout_action.cr#L17" target="_blank">
+        channel/select/timeout_action.cr
+      </a>
+    
+    <br/>
+  
+
+
+
+
+
+  
+  <h2>
+    <a id="constructors" class="anchor" href="#constructors">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructors
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#new%28capacity%3AInt32%3D0%29-class-method" class="signature"><strong>.new</strong>(capacity : Int32 = <span class="n">0</span>)</a>
+        
+      </li>
+    
+  </ul>
+
+
+  
+  <h2>
+    <a id="class-method-summary" class="anchor" href="#class-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Class Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#receive_first%28channels%3AEnumerable%28Channel%29%29-class-method" class="signature"><strong>.receive_first</strong>(channels : Enumerable(Channel))</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#receive_first%28%2Achannels%29-class-method" class="signature"><strong>.receive_first</strong>(*channels)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#send_first%28value%2Cchannels%3AEnumerable%28Channel%29%29%3ANil-class-method" class="signature"><strong>.send_first</strong>(value, channels : Enumerable(Channel)) : Nil</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#send_first%28value%2C%2Achannels%29%3ANil-class-method" class="signature"><strong>.send_first</strong>(value, *channels) : Nil</a>
+        
+      </li>
+    
+  </ul>
+
+
+  
+
+  
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#close%3ABool-instance-method" class="signature"><strong>#close</strong> : Bool</a>
+        
+          <div class="summary"><p>Closes the channel.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#closed%3F%3ABool-instance-method" class="signature"><strong>#closed?</strong> : Bool</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#inspect%28io%3AIO%29%3ANil-instance-method" class="signature"><strong>#inspect</strong>(io : IO) : Nil</a>
+        
+          <div class="summary"><p>Appends a String representation of this object which includes its class name, its object address and the values of all instance variables.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#pretty_print%28pp%29-instance-method" class="signature"><strong>#pretty_print</strong>(pp)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#receive%3AT-instance-method" class="signature"><strong>#receive</strong> : T</a>
+        
+          <div class="summary"><p>Receives a value from the channel.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#receive%3F%3AT%7CNil-instance-method" class="signature"><strong>#receive?</strong> : T | Nil</a>
+        
+          <div class="summary"><p>Receives a value from the channel.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#send%28value%3AT%29%3Aself-instance-method" class="signature"><strong>#send</strong>(value : T) : <span class="k">self</span></a>
+        
+          <div class="summary"><p>Sends a value to the channel.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+
+  <div class="methods-inherited">
+    
+      
+
+  <h3>Instance methods inherited from class <code><a href="Reference.html">Reference</a></code></h3>
+  
+  
+    <a href="Reference.html#%3D%3D%28other%3Aself%29-instance-method" class="tooltip">
+      <span>==(other : <span class="k">self</span>)<br/>==(other : JSON::Any)<br/>==(other : YAML::Any)<br/>==(other)</span>
+    ==</a>, 
+    
+  
+    <a href="Reference.html#dup-instance-method" class="tooltip">
+      <span>dup</span>
+    dup</a>, 
+    
+  
+    <a href="Reference.html#hash%28hasher%29-instance-method" class="tooltip">
+      <span>hash(hasher)</span>
+    hash</a>, 
+    
+  
+    <a href="Reference.html#initialize-instance-method" class="tooltip">
+      <span>initialize</span>
+    initialize</a>, 
+    
+  
+    <a href="Reference.html#inspect%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>inspect(io : IO) : Nil</span>
+    inspect</a>, 
+    
+  
+    <a href="Reference.html#object_id%3AUInt64-instance-method" class="tooltip">
+      <span>object_id : UInt64</span>
+    object_id</a>, 
+    
+  
+    <a href="Reference.html#pretty_print%28pp%29%3ANil-instance-method" class="tooltip">
+      <span>pretty_print(pp) : Nil</span>
+    pretty_print</a>, 
+    
+  
+    <a href="Reference.html#same%3F%28other%3AReference%29%3ABool-instance-method" class="tooltip">
+      <span>same?(other : Reference) : Bool<br/>same?(other : Nil)</span>
+    same?</a>, 
+    
+  
+    <a href="Reference.html#to_s%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_s(io : IO) : Nil</span>
+    to_s</a>
+    
+  
+
+
+      
+
+  <h3>Constructor methods inherited from class <code><a href="Reference.html">Reference</a></code></h3>
+  
+  
+    <a href="Reference.html#new-class-method" class="tooltip">
+      <span>new</span>
+    new</a>, 
+    
+  
+    <a href="Reference.html#unsafe_construct%28address%3APointer%2C%2Aargs%2C%2A%2Aopts%29%3Aself-class-method" class="tooltip">
+      <span>unsafe_construct(address : Pointer, *args, **opts) : <span class="k">self</span></span>
+    unsafe_construct</a>
+    
+  
+
+
+      
+
+  <h3>Class methods inherited from class <code><a href="Reference.html">Reference</a></code></h3>
+  
+  
+    <a href="Reference.html#pre_initialize%28address%3APointer%29-class-method" class="tooltip">
+      <span>pre_initialize(address : Pointer)</span>
+    pre_initialize</a>
+    
+  
+
+
+      
+
+
+    
+      
+
+  <h3>Instance methods inherited from class <code><a href="Object.html">Object</a></code></h3>
+  
+  
+    <a href="Object.html#%21%3ABool-instance-method" class="tooltip">
+      <span>! : Bool</span>
+    !</a>, 
+    
+  
+    <a href="Object.html#%21%3D%28other%29-instance-method" class="tooltip">
+      <span>!=(other)</span>
+    !=</a>, 
+    
+  
+    <a href="Object.html#%21~%28other%29-instance-method" class="tooltip">
+      <span>!~(other)</span>
+    !~</a>, 
+    
+  
+    <a href="Object.html#%3D%3D%28other%29-instance-method" class="tooltip">
+      <span>==(other)</span>
+    ==</a>, 
+    
+  
+    <a href="Object.html#%3D%3D%3D%28other%3AJSON%3A%3AAny%29-instance-method" class="tooltip">
+      <span>===(other : JSON::Any)<br/>===(other : YAML::Any)<br/>===(other)</span>
+    ===</a>, 
+    
+  
+    <a href="Object.html#%3D~%28other%29-instance-method" class="tooltip">
+      <span>=~(other)</span>
+    =~</a>, 
+    
+  
+    <a href="Object.html#as%28type%3AClass%29-instance-method" class="tooltip">
+      <span>as(type : Class)</span>
+    as</a>, 
+    
+  
+    <a href="Object.html#as%3F%28type%3AClass%29-instance-method" class="tooltip">
+      <span>as?(type : Class)</span>
+    as?</a>, 
+    
+  
+    <a href="Object.html#class-instance-method" class="tooltip">
+      <span>class</span>
+    class</a>, 
+    
+  
+    <a href="Object.html#dup-instance-method" class="tooltip">
+      <span>dup</span>
+    dup</a>, 
+    
+  
+    <a href="Object.html#hash%28hasher%29-instance-method" class="tooltip">
+      <span>hash(hasher)<br/>hash</span>
+    hash</a>, 
+    
+  
+    <a href="Object.html#in%3F%28collection%3AObject%29%3ABool-instance-method" class="tooltip">
+      <span>in?(collection : Object) : Bool<br/>in?(*values : Object) : Bool</span>
+    in?</a>, 
+    
+  
+    <a href="Object.html#inspect%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>inspect(io : IO) : Nil<br/>inspect : String</span>
+    inspect</a>, 
+    
+  
+    <a href="Object.html#is_a%3F%28type%3AClass%29%3ABool-instance-method" class="tooltip">
+      <span>is_a?(type : Class) : Bool</span>
+    is_a?</a>, 
+    
+  
+    <a href="Object.html#itself-instance-method" class="tooltip">
+      <span>itself</span>
+    itself</a>, 
+    
+  
+    <a href="Object.html#nil%3F%3ABool-instance-method" class="tooltip">
+      <span>nil? : Bool</span>
+    nil?</a>, 
+    
+  
+    <a href="Object.html#not_nil%21%28message%29-instance-method" class="tooltip">
+      <span>not_nil!(message)<br/>not_nil!</span>
+    not_nil!</a>, 
+    
+  
+    <a href="Object.html#pretty_inspect%28width%3D79%2Cnewline%3D%22%5Cn%22%2Cindent%3D0%29%3AString-instance-method" class="tooltip">
+      <span>pretty_inspect(width = <span class="n">79</span>, newline = <span class="s">&quot;\n&quot;</span>, indent = <span class="n">0</span>) : String</span>
+    pretty_inspect</a>, 
+    
+  
+    <a href="Object.html#pretty_print%28pp%3APrettyPrint%29%3ANil-instance-method" class="tooltip">
+      <span>pretty_print(pp : PrettyPrint) : Nil</span>
+    pretty_print</a>, 
+    
+  
+    <a href="Object.html#responds_to%3F%28name%3ASymbol%29%3ABool-instance-method" class="tooltip">
+      <span>responds_to?(name : Symbol) : Bool</span>
+    responds_to?</a>, 
+    
+  
+    <a href="Object.html#tap%28%26%29-instance-method" class="tooltip">
+      <span>tap(&)</span>
+    tap</a>, 
+    
+  
+    <a href="Object.html#to_json%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_json(io : IO) : Nil<br/>to_json : String</span>
+    to_json</a>, 
+    
+  
+    <a href="Object.html#to_pretty_json%28indent%3AString%3D%22%22%29%3AString-instance-method" class="tooltip">
+      <span>to_pretty_json(indent : String = <span class="s">&quot;  &quot;</span>) : String<br/>to_pretty_json(io : IO, indent : String = <span class="s">&quot;  &quot;</span>) : Nil</span>
+    to_pretty_json</a>, 
+    
+  
+    <a href="Object.html#to_s%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_s(io : IO) : Nil<br/>to_s : String</span>
+    to_s</a>, 
+    
+  
+    <a href="Object.html#to_yaml%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_yaml(io : IO) : Nil<br/>to_yaml : String</span>
+    to_yaml</a>, 
+    
+  
+    <a href="Object.html#try%28%26%29-instance-method" class="tooltip">
+      <span>try(&)</span>
+    try</a>, 
+    
+  
+    <a href="Object.html#unsafe_as%28type%3AT.class%29forallT-instance-method" class="tooltip">
+      <span>unsafe_as(type : <span class="t">T</span>.<span class="k">class</span>) forall T</span>
+    unsafe_as</a>
+    
+  
+
+
+      
+
+
+      
+
+  <h3>Class methods inherited from class <code><a href="Object.html">Object</a></code></h3>
+  
+  
+    <a href="Object.html#from_json%28string_or_io%2Croot%3AString%29-class-method" class="tooltip">
+      <span>from_json(string_or_io, root : String)<br/>from_json(string_or_io)</span>
+    from_json</a>, 
+    
+  
+    <a href="Object.html#from_yaml%28string_or_io%3AString%7CIO%29-class-method" class="tooltip">
+      <span>from_yaml(string_or_io : String | IO)</span>
+    from_yaml</a>
+    
+  
+
+
+      
+
+  <h3>Macros inherited from class <code><a href="Object.html">Object</a></code></h3>
+  
+  
+    <a href="Object.html#class_getter%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_getter(*names, &block)</span>
+    class_getter</a>, 
+    
+  
+    <a href="Object.html#class_getter%21%28%2Anames%29-macro" class="tooltip">
+      <span>class_getter!(*names)</span>
+    class_getter!</a>, 
+    
+  
+    <a href="Object.html#class_getter%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_getter?(*names, &block)</span>
+    class_getter?</a>, 
+    
+  
+    <a href="Object.html#class_property%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_property(*names, &block)</span>
+    class_property</a>, 
+    
+  
+    <a href="Object.html#class_property%21%28%2Anames%29-macro" class="tooltip">
+      <span>class_property!(*names)</span>
+    class_property!</a>, 
+    
+  
+    <a href="Object.html#class_property%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_property?(*names, &block)</span>
+    class_property?</a>, 
+    
+  
+    <a href="Object.html#class_setter%28%2Anames%29-macro" class="tooltip">
+      <span>class_setter(*names)</span>
+    class_setter</a>, 
+    
+  
+    <a href="Object.html#def_clone-macro" class="tooltip">
+      <span>def_clone</span>
+    def_clone</a>, 
+    
+  
+    <a href="Object.html#def_equals%28%2Afields%29-macro" class="tooltip">
+      <span>def_equals(*fields)</span>
+    def_equals</a>, 
+    
+  
+    <a href="Object.html#def_equals_and_hash%28%2Afields%29-macro" class="tooltip">
+      <span>def_equals_and_hash(*fields)</span>
+    def_equals_and_hash</a>, 
+    
+  
+    <a href="Object.html#def_hash%28%2Afields%29-macro" class="tooltip">
+      <span>def_hash(*fields)</span>
+    def_hash</a>, 
+    
+  
+    <a href="Object.html#delegate%28%2Amethods%2Ctoobject%29-macro" class="tooltip">
+      <span>delegate(*methods, to object)</span>
+    delegate</a>, 
+    
+  
+    <a href="Object.html#forward_missing_to%28delegate%29-macro" class="tooltip">
+      <span>forward_missing_to(delegate)</span>
+    forward_missing_to</a>, 
+    
+  
+    <a href="Object.html#getter%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>getter(*names, &block)</span>
+    getter</a>, 
+    
+  
+    <a href="Object.html#getter%21%28%2Anames%29-macro" class="tooltip">
+      <span>getter!(*names)</span>
+    getter!</a>, 
+    
+  
+    <a href="Object.html#getter%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>getter?(*names, &block)</span>
+    getter?</a>, 
+    
+  
+    <a href="Object.html#property%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>property(*names, &block)</span>
+    property</a>, 
+    
+  
+    <a href="Object.html#property%21%28%2Anames%29-macro" class="tooltip">
+      <span>property!(*names)</span>
+    property!</a>, 
+    
+  
+    <a href="Object.html#property%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>property?(*names, &block)</span>
+    property?</a>, 
+    
+  
+    <a href="Object.html#setter%28%2Anames%29-macro" class="tooltip">
+      <span>setter(*names)</span>
+    setter</a>
+    
+  
+
+
+    
+  </div>
+
+  
+  <h2>
+    <a id="constructor-detail" class="anchor" href="#constructor-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructor Detail
+  </h2>
+  
+    <div class="entry-detail" id="new(capacity:Int32=0)-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(capacity : <a href="Int32.html">Int32</a> = <span class="n">0</span>)
+
+        <a class="method-permalink" href="#new%28capacity%3AInt32%3D0%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/channel.cr#L81" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+  
+  <h2>
+    <a id="class-method-detail" class="anchor" href="#class-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Class Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="receive_first(channels:Enumerable(Channel))-class-method">
+      <div class="signature">
+        
+        def self.<strong>receive_first</strong>(channels : <a href="Enumerable.html">Enumerable</a>(<a href="Channel.html">Channel</a>))
+
+        <a class="method-permalink" href="#receive_first%28channels%3AEnumerable%28Channel%29%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/channel.cr#L297" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="receive_first(*channels)-class-method">
+      <div class="signature">
+        
+        def self.<strong>receive_first</strong>(*channels)
+
+        <a class="method-permalink" href="#receive_first%28%2Achannels%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/channel.cr#L293" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="send_first(value,channels:Enumerable(Channel)):Nil-class-method">
+      <div class="signature">
+        
+        def self.<strong>send_first</strong>(value, channels : <a href="Enumerable.html">Enumerable</a>(<a href="Channel.html">Channel</a>)) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#send_first%28value%2Cchannels%3AEnumerable%28Channel%29%29%3ANil-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/channel.cr#L306" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="send_first(value,*channels):Nil-class-method">
+      <div class="signature">
+        
+        def self.<strong>send_first</strong>(value, *channels) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#send_first%28value%2C%2Achannels%29%3ANil-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/channel.cr#L302" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+  
+
+  
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="close:Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>close</strong> : <a href="Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#close%3ABool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Closes the channel.
+The method prevents any new value from being sent to / received from the channel.
+All fibers blocked in <code><a href="Channel.html#send%28value%3AT%29%3Aself-instance-method">#send</a></code> or <code><a href="Channel.html#receive%3AT-instance-method">#receive</a></code> will be awakened with <code><a href="Channel/ClosedError.html">Channel::ClosedError</a></code></p>
+<p>Both awaiting and subsequent calls to <code><a href="Channel.html#send%28value%3AT%29%3Aself-instance-method">#send</a></code> will consider the channel closed.
+All items successfully sent to the channel can be received, before <code><a href="Channel.html#receive%3AT-instance-method">#receive</a></code> considers the channel closed.
+Calling <code><a href="Channel.html#close%3ABool-instance-method">#close</a></code> on a closed channel does not have any effect.</p>
+<p>It returns <code>true</code> when the channel was successfully closed, or <code>false</code> if it was already closed.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/channel.cr#L101" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="closed?:Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>closed?</strong> : <a href="Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#closed%3F%3ABool-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/channel.cr#L118" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="inspect(io:IO):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>inspect</strong>(io : <a href="IO.html">IO</a>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#inspect%28io%3AIO%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+            <div class="doc-inherited">
+              Description copied from class <a href="Reference.html">Reference</a>
+            </div>
+          
+          <p>Appends a String representation of this object
+which includes its class name, its object address
+and the values of all instance variables.</p>
+<pre><code class="language-crystal"><span class="k">class</span> <span class="t">Person</span>
+  <span class="k">def</span> <span class="m">initialize</span>(@name : <span class="t">String</span>, @age : <span class="t">Int32</span>)
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="t">Person</span>.new(<span class="s">&quot;John&quot;</span>, <span class="n">32</span>).inspect <span class="c"># =&gt; #&lt;Person:0x10fd31f20 @name=&quot;John&quot;, @age=32&gt;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/channel.cr#L285" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="pretty_print(pp)-instance-method">
+      <div class="signature">
+        
+        def <strong>pretty_print</strong>(pp)
+
+        <a class="method-permalink" href="#pretty_print%28pp%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/channel.cr#L289" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="receive:T-instance-method">
+      <div class="signature">
+        
+        def <strong>receive</strong> : T
+
+        <a class="method-permalink" href="#receive%3AT-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Receives a value from the channel.
+If there is a value waiting, then it is returned immediately. Otherwise, this method blocks until a value is sent to the channel.</p>
+<p>Raises <code><a href="Channel/ClosedError.html">ClosedError</a></code> if the channel is closed or closes while waiting for receive.</p>
+<pre><code class="language-crystal">channel <span class="o">=</span> <span class="t">Channel</span>(<span class="t">Int32</span>).new
+spawn <span class="k">do</span>
+  channel.send(<span class="n">1</span>)
+<span class="k">end</span>
+channel.receive <span class="c"># =&gt; 1</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/channel.cr#L189" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="receive?:T|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>receive?</strong> : T | <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#receive%3F%3AT%7CNil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Receives a value from the channel.
+If there is a value waiting, it is returned immediately. Otherwise, this method blocks until a value is sent to the channel.</p>
+<p>Returns <code>nil</code> if the channel is closed or closes while waiting for receive.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/channel.cr#L197" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="send(value:T):self-instance-method">
+      <div class="signature">
+        
+        def <strong>send</strong>(value : T) : <span class="k">self</span>
+
+        <a class="method-permalink" href="#send%28value%3AT%29%3Aself-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Sends a value to the channel.
+If the channel has spare capacity, then the method returns immediately.
+Otherwise, this method blocks the calling fiber until another fiber calls <code><a href="Channel.html#receive%3AT-instance-method">#receive</a></code> on the channel.</p>
+<p>Raises <code><a href="Channel/ClosedError.html">ClosedError</a></code> if the channel is closed or closes while waiting on a full channel.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/channel.cr#L127" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Crystal Docs 1.16.1">
+<meta name="crystal_docs.project_version" content="1.17.0-dev">
+<meta name="crystal_docs.project_name" content="Crystal">
+
+  <meta name="crystal_docs.json_config_url" content="/api/versions.json">
+
+
+    <link rel="canonical" href="https://crystal-lang.org/api/latest/Enum/ValueConverter.html">
+
+<link href="../css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../js/doc.js"></script>
+
+  <meta name="repository-name" content="Crystal">
+  <title>Enum::ValueConverter(T) - Crystal 1.17.0-dev</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "../";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill="currentColor" fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<input type="checkbox" id="sidebar-btn">
+<label for="sidebar-btn" id="sidebar-btn-label">
+  <svg class="open" xmlns="http://www.w3.org/2000/svg" height="2em" width="2em" viewBox="0 0 512 512"><title>Open Sidebar</title><path fill="currentColor" d="M80 96v64h352V96H80zm0 112v64h352v-64H80zm0 112v64h352v-64H80z"></path></svg>
+  <svg class="close" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><title>Close Sidebar</title><path fill="currentColor" d="m118.6 73.4-45.2 45.2L210.7 256 73.4 393.4l45.2 45.2L256 301.3l137.4 137.3 45.2-45.2L301.3 256l137.3-137.4-45.2-45.2L256 210.7Z"></path></svg>
+</label>
+<iframe class="sidebar" src="../sidebar.html"></iframe>
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">
+    module
+  </span> Enum::<wbr>ValueConverter(T)
+
+</h1>
+
+
+
+
+
+  <h2>
+    <a id="overview" class="anchor" href="#overview">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Overview
+  </h2>
+
+  <p>Converter for value-based serialization and deserialization of enum type <code>T</code>.</p>
+<p>The serialization format of <code><a href="../Enum.html#to_json%28json%3AJSON%3A%3ABuilder%29-instance-method">Enum#to_json</a></code> and <code>Enum.from_json</code> is based on
+the member name. This converter offers an alternative based on the member value.</p>
+<p>This converter can be used for its standalone serialization methods as a
+replacement of the default strategy of <code><a href="../Enum.html">Enum</a></code>. It also works as a serialization
+converter with <code><a href="../JSON/Field.html">JSON::Field</a></code> and <code><a href="../YAML/Field.html">YAML::Field</a></code></p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;json&quot;</span>
+<span class="k">require</span> <span class="s">&quot;yaml&quot;</span>
+
+<span class="k">enum</span> <span class="t">MyEnum</span>
+  <span class="t">ONE</span> <span class="o">=</span> <span class="n">1</span>
+  <span class="t">TWO</span> <span class="o">=</span> <span class="n">2</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="t">Foo</span>
+  <span class="k">include</span> <span class="t">JSON</span><span class="t">::</span><span class="t">Serializable</span>
+  <span class="k">include</span> <span class="t">YAML</span><span class="t">::</span><span class="t">Serializable</span>
+
+  @[<span class="t">JSON</span><span class="t">::</span><span class="t">Field</span>(converter: <span class="t">Enum</span><span class="t">::</span><span class="t">ValueConverter</span>(<span class="t">MyEnum</span>))]
+  @[<span class="t">YAML</span><span class="t">::</span><span class="t">Field</span>(converter: <span class="t">Enum</span><span class="t">::</span><span class="t">ValueConverter</span>(<span class="t">MyEnum</span>))]
+  property foo : <span class="t">MyEnum</span> <span class="o">=</span> <span class="t">MyEnum</span><span class="t">::</span><span class="t">ONE</span>
+
+  <span class="k">def</span> <span class="m">initialize</span>(@foo)
+  <span class="k">end</span>
+<span class="k">end</span>
+
+foo <span class="o">=</span> <span class="t">Foo</span>.new(<span class="t">MyEnum</span><span class="t">::</span><span class="t">ONE</span>)
+foo.to_json <span class="c"># =&gt; %({&quot;foo&quot;:1})</span>
+foo.to_yaml <span class="c"># =&gt; %(---\nfoo: 1\n)</span></code></pre>
+<p><span class="flag purple">NOTE</span>  Automatically assigned enum values are subject to change when the order
+of members by adding, removing or reordering them. This can affect the integrity
+of serialized data between two instances of a program based on different code
+versions. A way to avoid this is to explicitly assign fixed values to enum
+members.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/from_json.cr#L372" target="_blank">
+        json/from_json.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/to_json.cr#L231" target="_blank">
+        json/to_json.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/yaml/from_yaml.cr#L266" target="_blank">
+        yaml/from_yaml.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/yaml/to_yaml.cr#L185" target="_blank">
+        yaml/to_yaml.cr
+      </a>
+    
+    <br/>
+  
+
+
+
+
+
+  
+  <h2>
+    <a id="constructors" class="anchor" href="#constructors">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructors
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#new%28ctx%3AYAML%3A%3AParseContext%2Cnode%3AYAML%3A%3ANodes%3A%3ANode%29%3AT-class-method" class="signature"><strong>.new</strong>(ctx : YAML::ParseContext, node : YAML::Nodes::Node) : T</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#new%28pull%3AJSON%3A%3APullParser%29%3AT-class-method" class="signature"><strong>.new</strong>(pull : JSON::PullParser) : T</a>
+        
+      </li>
+    
+  </ul>
+
+
+  
+  <h2>
+    <a id="class-method-summary" class="anchor" href="#class-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Class Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#from_json%28pull%3AJSON%3A%3APullParser%29%3AT-class-method" class="signature"><strong>.from_json</strong>(pull : JSON::PullParser) : T</a>
+        
+          <div class="summary"><p>Reads a serialized enum member by value from <em>pull</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#from_yaml%28ctx%3AYAML%3A%3AParseContext%2Cnode%3AYAML%3A%3ANodes%3A%3ANode%29%3AT-class-method" class="signature"><strong>.from_yaml</strong>(ctx : YAML::ParseContext, node : YAML::Nodes::Node) : T</a>
+        
+          <div class="summary"><p>Reads a serialized enum member by value from <em>ctx</em> and <em>node</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_json%28value%3AT%2Cio%3AIO%29-class-method" class="signature"><strong>.to_json</strong>(value : T, io : IO)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_json%28member%3AT%2Cjson%3AJSON%3A%3ABuilder%29-class-method" class="signature"><strong>.to_json</strong>(member : T, json : JSON::Builder)</a>
+        
+          <div class="summary"><p>Serializes enum member <em>member</em> by value.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_json%28value%3AT%29-class-method" class="signature"><strong>.to_json</strong>(value : T)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_yaml%28value%3AT%2Cio%3AIO%29-class-method" class="signature"><strong>.to_yaml</strong>(value : T, io : IO)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_yaml%28member%3AT%2Cyaml%3AYAML%3A%3ANodes%3A%3ABuilder%29-class-method" class="signature"><strong>.to_yaml</strong>(member : T, yaml : YAML::Nodes::Builder)</a>
+        
+          <div class="summary"><p>Serializes enum member <em>member</em> by value.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_yaml%28value%3AT%29-class-method" class="signature"><strong>.to_yaml</strong>(value : T)</a>
+        
+      </li>
+    
+  </ul>
+
+
+  
+
+  
+
+
+  <div class="methods-inherited">
+    
+  </div>
+
+  
+  <h2>
+    <a id="constructor-detail" class="anchor" href="#constructor-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructor Detail
+  </h2>
+  
+    <div class="entry-detail" id="new(ctx:YAML::ParseContext,node:YAML::Nodes::Node):T-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(ctx : <a href="../YAML/ParseContext.html">YAML::ParseContext</a>, node : <a href="../YAML/Nodes/Node.html">YAML::Nodes::Node</a>) : T
+
+        <a class="method-permalink" href="#new%28ctx%3AYAML%3A%3AParseContext%2Cnode%3AYAML%3A%3ANodes%3A%3ANode%29%3AT-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/yaml/from_yaml.cr#L267" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="new(pull:JSON::PullParser):T-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(pull : <a href="../JSON/PullParser.html">JSON::PullParser</a>) : T
+
+        <a class="method-permalink" href="#new%28pull%3AJSON%3A%3APullParser%29%3AT-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/from_json.cr#L373" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+  
+  <h2>
+    <a id="class-method-detail" class="anchor" href="#class-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Class Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="from_json(pull:JSON::PullParser):T-class-method">
+      <div class="signature">
+        
+        def self.<strong>from_json</strong>(pull : <a href="../JSON/PullParser.html">JSON::PullParser</a>) : T
+
+        <a class="method-permalink" href="#from_json%28pull%3AJSON%3A%3APullParser%29%3AT-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Reads a serialized enum member by value from <em>pull</em>.</p>
+<p>See <code><a href="../Enum/ValueConverter.html#to_json%28value%3AT%2Cio%3AIO%29-class-method">.to_json</a></code> for reference.</p>
+<p>Raises <code><a href="../JSON/ParseException.html">JSON::ParseException</a></code> if the deserialization fails.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/from_json.cr#L382" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="from_yaml(ctx:YAML::ParseContext,node:YAML::Nodes::Node):T-class-method">
+      <div class="signature">
+        
+        def self.<strong>from_yaml</strong>(ctx : <a href="../YAML/ParseContext.html">YAML::ParseContext</a>, node : <a href="../YAML/Nodes/Node.html">YAML::Nodes::Node</a>) : T
+
+        <a class="method-permalink" href="#from_yaml%28ctx%3AYAML%3A%3AParseContext%2Cnode%3AYAML%3A%3ANodes%3A%3ANode%29%3AT-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Reads a serialized enum member by value from <em>ctx</em> and <em>node</em>.</p>
+<p>See <code><a href="../Enum/ValueConverter.html#to_yaml%28value%3AT%2Cio%3AIO%29-class-method">.to_yaml</a></code> for reference.</p>
+<p>Raises <code><a href="../YAML/ParseException.html">YAML::ParseException</a></code> if the deserialization fails.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/yaml/from_yaml.cr#L276" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_json(value:T,io:IO)-class-method">
+      <div class="signature">
+        
+        def self.<strong>to_json</strong>(value : T, io : <a href="../IO.html">IO</a>)
+
+        <a class="method-permalink" href="#to_json%28value%3AT%2Cio%3AIO%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/to_json.cr#L238" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_json(member:T,json:JSON::Builder)-class-method">
+      <div class="signature">
+        
+        def self.<strong>to_json</strong>(member : T, json : <a href="../JSON/Builder.html">JSON::Builder</a>)
+
+        <a class="method-permalink" href="#to_json%28member%3AT%2Cjson%3AJSON%3A%3ABuilder%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Serializes enum member <em>member</em> by value.</p>
+<p>For both flags enums and non-flags enums, the value of the enum member is
+used for serialization.</p>
+<pre><code class="language-crystal"><span class="k">enum</span> <span class="t">Stages</span>
+  <span class="t">INITIAL</span>
+  <span class="t">SECOND_STAGE</span>
+<span class="k">end</span>
+
+<span class="t">Enum</span><span class="t">::</span><span class="t">ValueConverter</span>.to_json(<span class="t">Stages</span><span class="t">::</span><span class="t">INITIAL</span>)      <span class="c"># =&gt; %(0)</span>
+<span class="t">Enum</span><span class="t">::</span><span class="t">ValueConverter</span>.to_json(<span class="t">Stages</span><span class="t">::</span><span class="t">SECOND_STAGE</span>) <span class="c"># =&gt; %(1)</span>
+
+@[<span class="t">Flags</span>]
+<span class="k">enum</span> <span class="t">Sides</span>
+  <span class="t">LEFT</span>
+  <span class="t">RIGHT</span>
+<span class="k">end</span>
+
+<span class="t">Enum</span><span class="t">::</span><span class="t">ValueConverter</span>.to_json(<span class="t">Sides</span><span class="t">::</span><span class="t">LEFT</span>)                <span class="c"># =&gt; %(1)</span>
+<span class="t">Enum</span><span class="t">::</span><span class="t">ValueConverter</span>.to_json(<span class="t">Sides</span><span class="t">::</span><span class="t">LEFT</span> <span class="o">|</span> <span class="t">Sides</span><span class="t">::</span><span class="t">RIGHT</span>) <span class="c"># =&gt; %(3)</span>
+<span class="t">Enum</span><span class="t">::</span><span class="t">ValueConverter</span>.to_json(<span class="t">Sides</span><span class="t">::</span><span class="t">All</span>)                 <span class="c"># =&gt; %(3)</span>
+<span class="t">Enum</span><span class="t">::</span><span class="t">ValueConverter</span>.to_json(<span class="t">Sides</span><span class="t">::</span><span class="t">None</span>)                <span class="c"># =&gt; %(0)</span></code></pre>
+<p><code><a href="../Enum.html#to_json%28json%3AJSON%3A%3ABuilder%29-instance-method">Enum#to_json</a></code> offers a different serialization strategy based on the member
+name.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/to_json.cr#L272" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_json(value:T)-class-method">
+      <div class="signature">
+        
+        def self.<strong>to_json</strong>(value : T)
+
+        <a class="method-permalink" href="#to_json%28value%3AT%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/to_json.cr#L232" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_yaml(value:T,io:IO)-class-method">
+      <div class="signature">
+        
+        def self.<strong>to_yaml</strong>(value : T, io : <a href="../IO.html">IO</a>)
+
+        <a class="method-permalink" href="#to_yaml%28value%3AT%2Cio%3AIO%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/yaml/to_yaml.cr#L192" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_yaml(member:T,yaml:YAML::Nodes::Builder)-class-method">
+      <div class="signature">
+        
+        def self.<strong>to_yaml</strong>(member : T, yaml : <a href="../YAML/Nodes/Builder.html">YAML::Nodes::Builder</a>)
+
+        <a class="method-permalink" href="#to_yaml%28member%3AT%2Cyaml%3AYAML%3A%3ANodes%3A%3ABuilder%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Serializes enum member <em>member</em> by value.</p>
+<p>For both flags enums and non-flags enums, the value of the enum member is
+used for serialization.</p>
+<pre><code class="language-crystal"><span class="k">enum</span> <span class="t">Stages</span>
+  <span class="t">INITIAL</span>
+  <span class="t">SECOND_STAGE</span>
+<span class="k">end</span>
+
+<span class="t">Enum</span><span class="t">::</span><span class="t">ValueConverter</span>.to_yaml(<span class="t">Stages</span><span class="t">::</span><span class="t">INITIAL</span>)      <span class="c"># =&gt; %(--- 0\n)</span>
+<span class="t">Enum</span><span class="t">::</span><span class="t">ValueConverter</span>.to_yaml(<span class="t">Stages</span><span class="t">::</span><span class="t">SECOND_STAGE</span>) <span class="c"># =&gt; %(--- 1\n)</span>
+
+@[<span class="t">Flags</span>]
+<span class="k">enum</span> <span class="t">Sides</span>
+  <span class="t">LEFT</span>
+  <span class="t">RIGHT</span>
+<span class="k">end</span>
+
+<span class="t">Enum</span><span class="t">::</span><span class="t">ValueConverter</span>.to_yaml(<span class="t">Sides</span><span class="t">::</span><span class="t">LEFT</span>)                <span class="c"># =&gt; %(--- 1\n)</span>
+<span class="t">Enum</span><span class="t">::</span><span class="t">ValueConverter</span>.to_yaml(<span class="t">Sides</span><span class="t">::</span><span class="t">LEFT</span> <span class="o">|</span> <span class="t">Sides</span><span class="t">::</span><span class="t">RIGHT</span>) <span class="c"># =&gt; %(--- 3\n)</span>
+<span class="t">Enum</span><span class="t">::</span><span class="t">ValueConverter</span>.to_yaml(<span class="t">Sides</span><span class="t">::</span><span class="t">All</span>)                 <span class="c"># =&gt; %(--- 3\n)</span>
+<span class="t">Enum</span><span class="t">::</span><span class="t">ValueConverter</span>.to_yaml(<span class="t">Sides</span><span class="t">::</span><span class="t">None</span>)                <span class="c"># =&gt; %(--- 0\n)</span></code></pre>
+<p><code><a href="../Enum.html#to_yaml%28yaml%3AYAML%3A%3ANodes%3A%3ABuilder%29-instance-method">Enum#to_yaml</a></code> offers a different serialization strategy based on the member
+name.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/yaml/to_yaml.cr#L230" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_yaml(value:T)-class-method">
+      <div class="signature">
+        
+        def self.<strong>to_yaml</strong>(value : T)
+
+        <a class="method-permalink" href="#to_yaml%28value%3AT%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/yaml/to_yaml.cr#L186" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+  
+
+  
+
+
+</div>
+
+</body>
+</html>

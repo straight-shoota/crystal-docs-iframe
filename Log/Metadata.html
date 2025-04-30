@@ -1,0 +1,1409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Crystal Docs 1.16.1">
+<meta name="crystal_docs.project_version" content="1.17.0-dev">
+<meta name="crystal_docs.project_name" content="Crystal">
+
+  <meta name="crystal_docs.json_config_url" content="/api/versions.json">
+
+
+    <link rel="canonical" href="https://crystal-lang.org/api/latest/Log/Metadata.html">
+
+<link href="../css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../js/doc.js"></script>
+
+  <meta name="repository-name" content="Crystal">
+  <title>Log::Metadata - Crystal 1.17.0-dev</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "../";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill="currentColor" fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<input type="checkbox" id="sidebar-btn">
+<label for="sidebar-btn" id="sidebar-btn-label">
+  <svg class="open" xmlns="http://www.w3.org/2000/svg" height="2em" width="2em" viewBox="0 0 512 512"><title>Open Sidebar</title><path fill="currentColor" d="M80 96v64h352V96H80zm0 112v64h352v-64H80zm0 112v64h352v-64H80z"></path></svg>
+  <svg class="close" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><title>Close Sidebar</title><path fill="currentColor" d="m118.6 73.4-45.2 45.2L210.7 256 73.4 393.4l45.2 45.2L256 301.3l137.4 137.3 45.2-45.2L301.3 256l137.3-137.4-45.2-45.2L256 210.7Z"></path></svg>
+</label>
+<iframe class="sidebar" src="../sidebar.html"></iframe>
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">
+    class
+  </span> Log::<wbr>Metadata
+
+</h1>
+
+
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../Log/Metadata.html">Log::Metadata</a></li><li class="superclass"><a href="../Reference.html">Reference</a></li><li class="superclass"><a href="../Object.html">Object</a></li></ul>
+
+
+
+
+  <h2>
+    <a id="overview" class="anchor" href="#overview">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Overview
+  </h2>
+
+  <p>Immutable structured metadata information for logging.</p>
+<p>See <code><a href="../Log.html#context%3ALog%3A%3AContext-class-method">Log.context</a></code>, <code><a href="../Log.html#context%3D%28value%3ALog%3A%3AMetadata%29-class-method">Log.context=</a></code>, <code><a href="../Log/Context.html#clear%3ANil-instance-method">Log::Context#clear</a></code>, <code><a href="../Log/Context.html#set%28%2A%2Akwargs%29-instance-method">Log::Context#set</a></code>, <code><a href="../Log.html#with_context%28%2A%2Akwargs%2C%26%29-class-method">Log.with_context</a></code>, and <code><a href="../Log/Emitter.html">Log::Emitter</a></code>.</p>
+<p><span class="flag purple">NOTE</span>  If you'd like to format the context as JSON, remember to <code>require &quot;log/json&quot;</code>.</p>
+
+
+
+
+
+
+
+  <h2>
+    <a id="included-modules" class="anchor" href="#included-modules">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Included Modules
+  </h2>
+  <ul class="other-types-list">
+    
+      <li class="other-type"><a href="../Enumerable.html">Enumerable</a>({<a href="../Symbol.html">Symbol</a>, <a href="../Log/Metadata/Value.html">Log::Metadata::Value</a>})</li>
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/log/json.cr#L3" target="_blank">
+        log/json.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/log/metadata.cr#L6" target="_blank">
+        log/metadata.cr
+      </a>
+    
+    <br/>
+  
+
+
+
+
+
+  
+  <h2>
+    <a id="constructors" class="anchor" href="#constructors">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructors
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#build%28value%3ANamedTuple%7CHash%29%3Aself-class-method" class="signature"><strong>.build</strong>(value : NamedTuple | Hash) : <span class="k">self</span></a>
+        
+          <div class="summary"><p>Returns a <code><a href="../Log/Metadata.html">Metadata</a></code> with the information of the argument.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#build%28value%3AMetadata%29%3AMetadata-class-method" class="signature"><strong>.build</strong>(value : Metadata) : Metadata</a>
+        
+          <div class="summary"><p>Returns a <code><a href="../Log/Metadata.html">Metadata</a></code> with the information of the argument.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#new%28parent%3AMetadata%7CNil%3Dnil%2Centries%3ANamedTuple%7CHash%3DNamedTuple.new%29-class-method" class="signature"><strong>.new</strong>(parent : Metadata | Nil = <span class="n">nil</span>, entries : NamedTuple | Hash = <span class="t">NamedTuple</span>.new)</a>
+        
+      </li>
+    
+  </ul>
+
+
+  
+  <h2>
+    <a id="class-method-summary" class="anchor" href="#class-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Class Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#empty%3ALog%3A%3AMetadata-class-method" class="signature"><strong>.empty</strong> : Log::Metadata</a>
+        
+          <div class="summary"><p>Returns an empty <code><a href="../Log/Metadata.html">Log::Metadata</a></code>.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+  
+
+  
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#%3D%3D%28other%3AMetadata%29-instance-method" class="signature"><strong>#==</strong>(other : Metadata)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%3D%3D%28other%29-instance-method" class="signature"><strong>#==</strong>(other)</a>
+        
+          <div class="summary"><p>Returns <code>false</code> (other can only be a <code><a href="../Log/Metadata/Value.html">Value</a></code> here).</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%5B%5D%28key%3ASymbol%29%3AValue-instance-method" class="signature"><strong>#[]</strong>(key : Symbol) : Value</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%5B%5D%3F%28key%3ASymbol%29%3AValue%7CNil-instance-method" class="signature"><strong>#[]?</strong>(key : Symbol) : Value | Nil</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#dup%3Aself-instance-method" class="signature"><strong>#dup</strong> : <span class="k">self</span></a>
+        
+          <div class="summary"><p>Returns a shallow copy of this object.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#each%28%26%3ATuple%28Symbol%2CValue%29-%3E%29-instance-method" class="signature"><strong>#each</strong>(& : Tuple(Symbol, Value) -> )</a>
+        
+          <div class="summary"><p>Must yield this collection's elements to the block.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#empty%3F%3ABool-instance-method" class="signature"><strong>#empty?</strong> : Bool</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if <code>self</code> does not contain any element.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#extend%28other%3ANamedTuple%7CHash%29%3AMetadata-instance-method" class="signature"><strong>#extend</strong>(other : NamedTuple | Hash) : Metadata</a>
+        
+          <div class="summary"><p>Returns a <code><a href="../Log/Metadata.html">Log::Metadata</a></code> with all the entries of <code>self</code> and <em>other</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#fetch%28key%2C%26%29-instance-method" class="signature"><strong>#fetch</strong>(key, &)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#hash%28hasher%29-instance-method" class="signature"><strong>#hash</strong>(hasher)</a>
+        
+          <div class="summary"><p>See <code><a href="../Object.html#hash%28hasher%29-instance-method">Object#hash(hasher)</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_json%28builder%3AJSON%3A%3ABuilder%29%3ANil-instance-method" class="signature"><strong>#to_json</strong>(builder : JSON::Builder) : Nil</a>
+        
+          <div class="summary"><p>Returns <code><a href="../Log/Metadata.html">Log::Metadata</a></code> as JSON value.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_s%28io%3AIO%29%3ANil-instance-method" class="signature"><strong>#to_s</strong>(io : IO) : Nil</a>
+        
+          <div class="summary"><p>Appends a short String representation of this object which includes its class name and its object address.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+
+  <div class="methods-inherited">
+    
+      
+
+  <h3>Instance methods inherited from module <code><a href="../Enumerable.html">Enumerable</a>({<a href="../Symbol.html">Symbol</a>, <a href="../Log/Metadata/Value.html">Log::Metadata::Value</a>})</code></h3>
+  
+  
+    <a href="../Enumerable.html#accumulate%28initial%3AU%29%3AArray%28U%29forallU-instance-method" class="tooltip">
+      <span>accumulate(initial : U) : Array(U) forall U<br/>accumulate : Array({Symbol, Log::Metadata::Value})<br/>accumulate(initial : U, &block : U, {Symbol, Log::Metadata::Value} -> U) : Array(U) forall U<br/>accumulate(&block : {Symbol, Log::Metadata::Value}, {Symbol, Log::Metadata::Value} -> {Symbol, Log::Metadata::Value}) : Array({Symbol, Log::Metadata::Value})</span>
+    accumulate</a>, 
+    
+  
+    <a href="../Enumerable.html#all%3F%28%26%3A%7BSymbol%2CLog%3A%3AMetadata%3A%3AValue%7D-%3E%29%3ABool-instance-method" class="tooltip">
+      <span>all?(& : {Symbol, Log::Metadata::Value} -> ) : Bool<br/>all?(pattern) : Bool<br/>all? : Bool</span>
+    all?</a>, 
+    
+  
+    <a href="../Enumerable.html#any%3F%28%26%3A%7BSymbol%2CLog%3A%3AMetadata%3A%3AValue%7D-%3E%29%3ABool-instance-method" class="tooltip">
+      <span>any?(& : {Symbol, Log::Metadata::Value} -> ) : Bool<br/>any?(pattern) : Bool<br/>any? : Bool</span>
+    any?</a>, 
+    
+  
+    <a href="../Enumerable.html#chunks%28%26block%3A%7BSymbol%2CLog%3A%3AMetadata%3A%3AValue%7D-%3EU%29forallU-instance-method" class="tooltip">
+      <span>chunks(&block : {Symbol, Log::Metadata::Value} -> U) forall U</span>
+    chunks</a>, 
+    
+  
+    <a href="../Enumerable.html#compact_map%28%26%3A%7BSymbol%2CLog%3A%3AMetadata%3A%3AValue%7D-%3E_%29-instance-method" class="tooltip">
+      <span>compact_map(& : {Symbol, Log::Metadata::Value} -> _)</span>
+    compact_map</a>, 
+    
+  
+    <a href="../Enumerable.html#count%28%26%3A%7BSymbol%2CLog%3A%3AMetadata%3A%3AValue%7D-%3E%29%3AInt32-instance-method" class="tooltip">
+      <span>count(& : {Symbol, Log::Metadata::Value} -> ) : Int32<br/>count(item) : Int32</span>
+    count</a>, 
+    
+  
+    <a href="../Enumerable.html#cycle%28n%2C%26%3A%7BSymbol%2CLog%3A%3AMetadata%3A%3AValue%7D-%3E%29%3ANil-instance-method" class="tooltip">
+      <span>cycle(n, & : {Symbol, Log::Metadata::Value} -> ) : Nil<br/>cycle(& : {Symbol, Log::Metadata::Value} -> ) : Nil</span>
+    cycle</a>, 
+    
+  
+    <a href="../Enumerable.html#each%28%26%3A%7BSymbol%2CLog%3A%3AMetadata%3A%3AValue%7D-%3E%29-instance-method" class="tooltip">
+      <span>each(& : {Symbol, Log::Metadata::Value} -> )</span>
+    each</a>, 
+    
+  
+    <a href="../Enumerable.html#each_cons%28count%3AInt%2Creuse%3Dfalse%2C%26%29-instance-method" class="tooltip">
+      <span>each_cons(count : Int, reuse = <span class="n">false</span>, &)</span>
+    each_cons</a>, 
+    
+  
+    <a href="../Enumerable.html#each_cons_pair%28%26%3A%7BSymbol%2CLog%3A%3AMetadata%3A%3AValue%7D%2C%7BSymbol%2CLog%3A%3AMetadata%3A%3AValue%7D-%3E%29%3ANil-instance-method" class="tooltip">
+      <span>each_cons_pair(& : {Symbol, Log::Metadata::Value}, {Symbol, Log::Metadata::Value} -> ) : Nil</span>
+    each_cons_pair</a>, 
+    
+  
+    <a href="../Enumerable.html#each_slice%28count%3AInt%2Creuse%3Dfalse%2C%26%29-instance-method" class="tooltip">
+      <span>each_slice(count : Int, reuse = <span class="n">false</span>, &)</span>
+    each_slice</a>, 
+    
+  
+    <a href="../Enumerable.html#each_step%28n%3AInt%2C%2A%2Coffset%3AInt%3D0%2C%26%3A%7BSymbol%2CLog%3A%3AMetadata%3A%3AValue%7D-%3E%29%3ANil-instance-method" class="tooltip">
+      <span>each_step(n : Int, *, offset : Int = <span class="n">0</span>, & : {Symbol, Log::Metadata::Value} -> ) : Nil</span>
+    each_step</a>, 
+    
+  
+    <a href="../Enumerable.html#each_with_index%28offset%3D0%2C%26%29-instance-method" class="tooltip">
+      <span>each_with_index(offset = <span class="n">0</span>, &)</span>
+    each_with_index</a>, 
+    
+  
+    <a href="../Enumerable.html#each_with_object%28obj%3AU%2C%26%3A%7BSymbol%2CLog%3A%3AMetadata%3A%3AValue%7D%2CU-%3E%29%3AUforallU-instance-method" class="tooltip">
+      <span>each_with_object(obj : U, & : {Symbol, Log::Metadata::Value}, U -> ) : U forall U</span>
+    each_with_object</a>, 
+    
+  
+    <a href="../Enumerable.html#empty%3F%3ABool-instance-method" class="tooltip">
+      <span>empty? : Bool</span>
+    empty?</a>, 
+    
+  
+    <a href="../Enumerable.html#find%28if_none%3Dnil%2C%26%3A%7BSymbol%2CLog%3A%3AMetadata%3A%3AValue%7D-%3E%29-instance-method" class="tooltip">
+      <span>find(if_none = <span class="n">nil</span>, & : {Symbol, Log::Metadata::Value} -> )</span>
+    find</a>, 
+    
+  
+    <a href="../Enumerable.html#find%21%28%26%3A%7BSymbol%2CLog%3A%3AMetadata%3A%3AValue%7D-%3E%29%3A%7BSymbol%2CLog%3A%3AMetadata%3A%3AValue%7D-instance-method" class="tooltip">
+      <span>find!(& : {Symbol, Log::Metadata::Value} -> ) : {Symbol, Log::Metadata::Value}</span>
+    find!</a>, 
+    
+  
+    <a href="../Enumerable.html#find_value%28if_none%3Dnil%2C%26%3A%7BSymbol%2CLog%3A%3AMetadata%3A%3AValue%7D-%3E%29-instance-method" class="tooltip">
+      <span>find_value(if_none = <span class="n">nil</span>, & : {Symbol, Log::Metadata::Value} -> )</span>
+    find_value</a>, 
+    
+  
+    <a href="../Enumerable.html#first%28%26%29-instance-method" class="tooltip">
+      <span>first(&)<br/>first(count : Int) : Array({Symbol, Log::Metadata::Value})<br/>first : {Symbol, Log::Metadata::Value}</span>
+    first</a>, 
+    
+  
+    <a href="../Enumerable.html#first%3F%3A%7BSymbol%2CLog%3A%3AMetadata%3A%3AValue%7D%7CNil-instance-method" class="tooltip">
+      <span>first? : {Symbol, Log::Metadata::Value} | Nil</span>
+    first?</a>, 
+    
+  
+    <a href="../Enumerable.html#flat_map%28%26%3A%7BSymbol%2CLog%3A%3AMetadata%3A%3AValue%7D-%3E_%29-instance-method" class="tooltip">
+      <span>flat_map(& : {Symbol, Log::Metadata::Value} -> _)</span>
+    flat_map</a>, 
+    
+  
+    <a href="../Enumerable.html#group_by%28%26%3A%7BSymbol%2CLog%3A%3AMetadata%3A%3AValue%7D-%3EU%29forallU-instance-method" class="tooltip">
+      <span>group_by(& : {Symbol, Log::Metadata::Value} -> U) forall U</span>
+    group_by</a>, 
+    
+  
+    <a href="../Enumerable.html#in_groups_of%28size%3AInt%2Cfilled_up_with%3AU%3Dnil%29forallU-instance-method" class="tooltip">
+      <span>in_groups_of(size : Int, filled_up_with : U = <span class="n">nil</span>) forall U<br/>in_groups_of(size : Int, filled_up_with : U = <span class="n">nil</span>, reuse = <span class="n">false</span>, &) forall U</span>
+    in_groups_of</a>, 
+    
+  
+    <a href="../Enumerable.html#in_slices_of%28size%3AInt%29%3AArray%28Array%28%7BSymbol%2CLog%3A%3AMetadata%3A%3AValue%7D%29%29-instance-method" class="tooltip">
+      <span>in_slices_of(size : Int) : Array(Array({Symbol, Log::Metadata::Value}))</span>
+    in_slices_of</a>, 
+    
+  
+    <a href="../Enumerable.html#includes%3F%28obj%29%3ABool-instance-method" class="tooltip">
+      <span>includes?(obj) : Bool</span>
+    includes?</a>, 
+    
+  
+    <a href="../Enumerable.html#index%28%26%3A%7BSymbol%2CLog%3A%3AMetadata%3A%3AValue%7D-%3E%29%3AInt32%7CNil-instance-method" class="tooltip">
+      <span>index(& : {Symbol, Log::Metadata::Value} -> ) : Int32 | Nil<br/>index(obj) : Int32 | Nil</span>
+    index</a>, 
+    
+  
+    <a href="../Enumerable.html#index%21%28%26%3A%7BSymbol%2CLog%3A%3AMetadata%3A%3AValue%7D-%3E%29%3AInt32-instance-method" class="tooltip">
+      <span>index!(& : {Symbol, Log::Metadata::Value} -> ) : Int32<br/>index!(obj) : Int32</span>
+    index!</a>, 
+    
+  
+    <a href="../Enumerable.html#index_by%28%26%3A%7BSymbol%2CLog%3A%3AMetadata%3A%3AValue%7D-%3EU%29%3AHash%28U%2C%7BSymbol%2CLog%3A%3AMetadata%3A%3AValue%7D%29forallU-instance-method" class="tooltip">
+      <span>index_by(& : {Symbol, Log::Metadata::Value} -> U) : Hash(U, {Symbol, Log::Metadata::Value}) forall U</span>
+    index_by</a>, 
+    
+  
+    <a href="../Enumerable.html#join%28io%3AIO%2Cseparator%3D%22%22%29%3ANil-instance-method" class="tooltip">
+      <span>join(io : IO, separator = <span class="s">&quot;&quot;</span>) : Nil<br/>join(separator, io : IO) : Nil<br/>join(separator = <span class="s">&quot;&quot;</span>) : String<br/>join(io : IO, separator = <span class="s">&quot;&quot;</span>, & : {Symbol, Log::Metadata::Value}, IO -> )<br/>join(separator, io : IO, &)<br/>join(separator = <span class="s">&quot;&quot;</span>, & : {Symbol, Log::Metadata::Value} -> )</span>
+    join</a>, 
+    
+  
+    <a href="../Enumerable.html#map%28%26%3A%7BSymbol%2CLog%3A%3AMetadata%3A%3AValue%7D-%3EU%29%3AArray%28U%29forallU-instance-method" class="tooltip">
+      <span>map(& : {Symbol, Log::Metadata::Value} -> U) : Array(U) forall U</span>
+    map</a>, 
+    
+  
+    <a href="../Enumerable.html#map_with_index%28offset%3D0%2C%26%3A%7BSymbol%2CLog%3A%3AMetadata%3A%3AValue%7D%2CInt32-%3EU%29%3AArray%28U%29forallU-instance-method" class="tooltip">
+      <span>map_with_index(offset = <span class="n">0</span>, & : {Symbol, Log::Metadata::Value}, Int32 -> U) : Array(U) forall U</span>
+    map_with_index</a>, 
+    
+  
+    <a href="../Enumerable.html#max%28count%3AInt%29%3AArray%28%7BSymbol%2CLog%3A%3AMetadata%3A%3AValue%7D%29-instance-method" class="tooltip">
+      <span>max(count : Int) : Array({Symbol, Log::Metadata::Value})<br/>max : {Symbol, Log::Metadata::Value}</span>
+    max</a>, 
+    
+  
+    <a href="../Enumerable.html#max%3F%3A%7BSymbol%2CLog%3A%3AMetadata%3A%3AValue%7D%7CNil-instance-method" class="tooltip">
+      <span>max? : {Symbol, Log::Metadata::Value} | Nil</span>
+    max?</a>, 
+    
+  
+    <a href="../Enumerable.html#max_by%28%26%3A%7BSymbol%2CLog%3A%3AMetadata%3A%3AValue%7D-%3EU%29%3A%7BSymbol%2CLog%3A%3AMetadata%3A%3AValue%7DforallU-instance-method" class="tooltip">
+      <span>max_by(& : {Symbol, Log::Metadata::Value} -> U) : {Symbol, Log::Metadata::Value} forall U</span>
+    max_by</a>, 
+    
+  
+    <a href="../Enumerable.html#max_by%3F%28%26%3A%7BSymbol%2CLog%3A%3AMetadata%3A%3AValue%7D-%3EU%29%3A%7BSymbol%2CLog%3A%3AMetadata%3A%3AValue%7D%7CNilforallU-instance-method" class="tooltip">
+      <span>max_by?(& : {Symbol, Log::Metadata::Value} -> U) : {Symbol, Log::Metadata::Value} | Nil forall U</span>
+    max_by?</a>, 
+    
+  
+    <a href="../Enumerable.html#max_of%28%26%3A%7BSymbol%2CLog%3A%3AMetadata%3A%3AValue%7D-%3EU%29%3AUforallU-instance-method" class="tooltip">
+      <span>max_of(& : {Symbol, Log::Metadata::Value} -> U) : U forall U</span>
+    max_of</a>, 
+    
+  
+    <a href="../Enumerable.html#max_of%3F%28%26%3A%7BSymbol%2CLog%3A%3AMetadata%3A%3AValue%7D-%3EU%29%3AU%7CNilforallU-instance-method" class="tooltip">
+      <span>max_of?(& : {Symbol, Log::Metadata::Value} -> U) : U | Nil forall U</span>
+    max_of?</a>, 
+    
+  
+    <a href="../Enumerable.html#min%28count%3AInt%29%3AArray%28%7BSymbol%2CLog%3A%3AMetadata%3A%3AValue%7D%29-instance-method" class="tooltip">
+      <span>min(count : Int) : Array({Symbol, Log::Metadata::Value})<br/>min : {Symbol, Log::Metadata::Value}</span>
+    min</a>, 
+    
+  
+    <a href="../Enumerable.html#min%3F%3A%7BSymbol%2CLog%3A%3AMetadata%3A%3AValue%7D%7CNil-instance-method" class="tooltip">
+      <span>min? : {Symbol, Log::Metadata::Value} | Nil</span>
+    min?</a>, 
+    
+  
+    <a href="../Enumerable.html#min_by%28%26%3A%7BSymbol%2CLog%3A%3AMetadata%3A%3AValue%7D-%3EU%29%3A%7BSymbol%2CLog%3A%3AMetadata%3A%3AValue%7DforallU-instance-method" class="tooltip">
+      <span>min_by(& : {Symbol, Log::Metadata::Value} -> U) : {Symbol, Log::Metadata::Value} forall U</span>
+    min_by</a>, 
+    
+  
+    <a href="../Enumerable.html#min_by%3F%28%26%3A%7BSymbol%2CLog%3A%3AMetadata%3A%3AValue%7D-%3EU%29%3A%7BSymbol%2CLog%3A%3AMetadata%3A%3AValue%7D%7CNilforallU-instance-method" class="tooltip">
+      <span>min_by?(& : {Symbol, Log::Metadata::Value} -> U) : {Symbol, Log::Metadata::Value} | Nil forall U</span>
+    min_by?</a>, 
+    
+  
+    <a href="../Enumerable.html#min_of%28%26%3A%7BSymbol%2CLog%3A%3AMetadata%3A%3AValue%7D-%3EU%29%3AUforallU-instance-method" class="tooltip">
+      <span>min_of(& : {Symbol, Log::Metadata::Value} -> U) : U forall U</span>
+    min_of</a>, 
+    
+  
+    <a href="../Enumerable.html#min_of%3F%28%26%3A%7BSymbol%2CLog%3A%3AMetadata%3A%3AValue%7D-%3EU%29%3AU%7CNilforallU-instance-method" class="tooltip">
+      <span>min_of?(& : {Symbol, Log::Metadata::Value} -> U) : U | Nil forall U</span>
+    min_of?</a>, 
+    
+  
+    <a href="../Enumerable.html#minmax%3ATuple%28%7BSymbol%2CLog%3A%3AMetadata%3A%3AValue%7D%2C%7BSymbol%2CLog%3A%3AMetadata%3A%3AValue%7D%29-instance-method" class="tooltip">
+      <span>minmax : Tuple({Symbol, Log::Metadata::Value}, {Symbol, Log::Metadata::Value})</span>
+    minmax</a>, 
+    
+  
+    <a href="../Enumerable.html#minmax%3F%3ATuple%28%7BSymbol%2CLog%3A%3AMetadata%3A%3AValue%7D%7CNil%2C%7BSymbol%2CLog%3A%3AMetadata%3A%3AValue%7D%7CNil%29-instance-method" class="tooltip">
+      <span>minmax? : Tuple({Symbol, Log::Metadata::Value} | Nil, {Symbol, Log::Metadata::Value} | Nil)</span>
+    minmax?</a>, 
+    
+  
+    <a href="../Enumerable.html#minmax_by%28%26%3A%7BSymbol%2CLog%3A%3AMetadata%3A%3AValue%7D-%3EU%29%3ATuple%28%7BSymbol%2CLog%3A%3AMetadata%3A%3AValue%7D%2C%7BSymbol%2CLog%3A%3AMetadata%3A%3AValue%7D%29forallU-instance-method" class="tooltip">
+      <span>minmax_by(& : {Symbol, Log::Metadata::Value} -> U) : Tuple({Symbol, Log::Metadata::Value}, {Symbol, Log::Metadata::Value}) forall U</span>
+    minmax_by</a>, 
+    
+  
+    <a href="../Enumerable.html#minmax_by%3F%28%26%3A%7BSymbol%2CLog%3A%3AMetadata%3A%3AValue%7D-%3EU%29%3ATuple%28%7BSymbol%2CLog%3A%3AMetadata%3A%3AValue%7D%2C%7BSymbol%2CLog%3A%3AMetadata%3A%3AValue%7D%29%7CTuple%28Nil%2CNil%29forallU-instance-method" class="tooltip">
+      <span>minmax_by?(& : {Symbol, Log::Metadata::Value} -> U) : Tuple({Symbol, Log::Metadata::Value}, {Symbol, Log::Metadata::Value}) | Tuple(Nil, Nil) forall U</span>
+    minmax_by?</a>, 
+    
+  
+    <a href="../Enumerable.html#minmax_of%28%26%3A%7BSymbol%2CLog%3A%3AMetadata%3A%3AValue%7D-%3EU%29%3ATuple%28U%2CU%29forallU-instance-method" class="tooltip">
+      <span>minmax_of(& : {Symbol, Log::Metadata::Value} -> U) : Tuple(U, U) forall U</span>
+    minmax_of</a>, 
+    
+  
+    <a href="../Enumerable.html#minmax_of%3F%28%26%3A%7BSymbol%2CLog%3A%3AMetadata%3A%3AValue%7D-%3EU%29%3ATuple%28U%2CU%29%7CTuple%28Nil%2CNil%29forallU-instance-method" class="tooltip">
+      <span>minmax_of?(& : {Symbol, Log::Metadata::Value} -> U) : Tuple(U, U) | Tuple(Nil, Nil) forall U</span>
+    minmax_of?</a>, 
+    
+  
+    <a href="../Enumerable.html#none%3F%28%26%3A%7BSymbol%2CLog%3A%3AMetadata%3A%3AValue%7D-%3E%29%3ABool-instance-method" class="tooltip">
+      <span>none?(& : {Symbol, Log::Metadata::Value} -> ) : Bool<br/>none?(pattern) : Bool<br/>none? : Bool</span>
+    none?</a>, 
+    
+  
+    <a href="../Enumerable.html#one%3F%28%26%3A%7BSymbol%2CLog%3A%3AMetadata%3A%3AValue%7D-%3E%29%3ABool-instance-method" class="tooltip">
+      <span>one?(& : {Symbol, Log::Metadata::Value} -> ) : Bool<br/>one?(pattern) : Bool<br/>one? : Bool</span>
+    one?</a>, 
+    
+  
+    <a href="../Enumerable.html#partition%28%26%3A%7BSymbol%2CLog%3A%3AMetadata%3A%3AValue%7D-%3E%29%3ATuple%28Array%28%7BSymbol%2CLog%3A%3AMetadata%3A%3AValue%7D%29%2CArray%28%7BSymbol%2CLog%3A%3AMetadata%3A%3AValue%7D%29%29-instance-method" class="tooltip">
+      <span>partition(& : {Symbol, Log::Metadata::Value} -> ) : Tuple(Array({Symbol, Log::Metadata::Value}), Array({Symbol, Log::Metadata::Value}))<br/>partition(type : <span class="t">U</span>.<span class="k">class</span>) forall U</span>
+    partition</a>, 
+    
+  
+    <a href="../Enumerable.html#present%3F%3ABool-instance-method" class="tooltip">
+      <span>present? : Bool</span>
+    present?</a>, 
+    
+  
+    <a href="../Enumerable.html#product%28initial%3ANumber%29-instance-method" class="tooltip">
+      <span>product(initial : Number)<br/>product<br/>product(initial : Number, & : {Symbol, Log::Metadata::Value} -> )<br/>product(& : {Symbol, Log::Metadata::Value} -> _)</span>
+    product</a>, 
+    
+  
+    <a href="../Enumerable.html#reduce%28memo%2C%26%29-instance-method" class="tooltip">
+      <span>reduce(memo, &)<br/>reduce(&)</span>
+    reduce</a>, 
+    
+  
+    <a href="../Enumerable.html#reduce%3F%28%26%29-instance-method" class="tooltip">
+      <span>reduce?(&)</span>
+    reduce?</a>, 
+    
+  
+    <a href="../Enumerable.html#reject%28%26%3A%7BSymbol%2CLog%3A%3AMetadata%3A%3AValue%7D-%3E%29-instance-method" class="tooltip">
+      <span>reject(& : {Symbol, Log::Metadata::Value} -> )<br/>reject(type : <span class="t">U</span>.<span class="k">class</span>) forall U<br/>reject(pattern) : Array({Symbol, Log::Metadata::Value})</span>
+    reject</a>, 
+    
+  
+    <a href="../Enumerable.html#sample%28n%3AInt%2Crandom%3ARandom%3DRandom%3A%3ADEFAULT%29%3AArray%28%7BSymbol%2CLog%3A%3AMetadata%3A%3AValue%7D%29-instance-method" class="tooltip">
+      <span>sample(n : Int, random : Random = <span class="t">Random</span><span class="t">::</span><span class="t">DEFAULT</span>) : Array({Symbol, Log::Metadata::Value})<br/>sample(random : Random = <span class="t">Random</span><span class="t">::</span><span class="t">DEFAULT</span>) : {Symbol, Log::Metadata::Value}</span>
+    sample</a>, 
+    
+  
+    <a href="../Enumerable.html#select%28%26%3A%7BSymbol%2CLog%3A%3AMetadata%3A%3AValue%7D-%3E%29-instance-method" class="tooltip">
+      <span>select(& : {Symbol, Log::Metadata::Value} -> )<br/>select(type : <span class="t">U</span>.<span class="k">class</span>) : Array(U) forall U<br/>select(pattern) : Array({Symbol, Log::Metadata::Value})</span>
+    select</a>, 
+    
+  
+    <a href="../Enumerable.html#size%3AInt32-instance-method" class="tooltip">
+      <span>size : Int32</span>
+    size</a>, 
+    
+  
+    <a href="../Enumerable.html#skip%28count%3AInt%29-instance-method" class="tooltip">
+      <span>skip(count : Int)</span>
+    skip</a>, 
+    
+  
+    <a href="../Enumerable.html#skip_while%28%26%3A%7BSymbol%2CLog%3A%3AMetadata%3A%3AValue%7D-%3E%29%3AArray%28%7BSymbol%2CLog%3A%3AMetadata%3A%3AValue%7D%29-instance-method" class="tooltip">
+      <span>skip_while(& : {Symbol, Log::Metadata::Value} -> ) : Array({Symbol, Log::Metadata::Value})</span>
+    skip_while</a>, 
+    
+  
+    <a href="../Enumerable.html#sum%28initial%29-instance-method" class="tooltip">
+      <span>sum(initial)<br/>sum<br/>sum(initial, & : {Symbol, Log::Metadata::Value} -> )<br/>sum(& : {Symbol, Log::Metadata::Value} -> )</span>
+    sum</a>, 
+    
+  
+    <a href="../Enumerable.html#take_while%28%26%3A%7BSymbol%2CLog%3A%3AMetadata%3A%3AValue%7D-%3E%29%3AArray%28%7BSymbol%2CLog%3A%3AMetadata%3A%3AValue%7D%29-instance-method" class="tooltip">
+      <span>take_while(& : {Symbol, Log::Metadata::Value} -> ) : Array({Symbol, Log::Metadata::Value})</span>
+    take_while</a>, 
+    
+  
+    <a href="../Enumerable.html#tally%28hash%29-instance-method" class="tooltip">
+      <span>tally(hash)<br/>tally : Hash({Symbol, Log::Metadata::Value}, Int32)</span>
+    tally</a>, 
+    
+  
+    <a href="../Enumerable.html#tally_by%28hash%2C%26%29-instance-method" class="tooltip">
+      <span>tally_by(hash, &)<br/>tally_by(&block : {Symbol, Log::Metadata::Value} -> U) : Hash(U, Int32) forall U</span>
+    tally_by</a>, 
+    
+  
+    <a href="../Enumerable.html#to_a%3AArray%28%7BSymbol%2CLog%3A%3AMetadata%3A%3AValue%7D%29-instance-method" class="tooltip">
+      <span>to_a : Array({Symbol, Log::Metadata::Value})<br/>to_a(& : {Symbol, Log::Metadata::Value} -> U) : Array(U) forall U</span>
+    to_a</a>, 
+    
+  
+    <a href="../Enumerable.html#to_h-instance-method" class="tooltip">
+      <span>to_h<br/>to_h(& : {Symbol, Log::Metadata::Value} -> Tuple(K, V)) forall K, V</span>
+    to_h</a>, 
+    
+  
+    <a href="../Enumerable.html#to_set%3ASet%28%7BSymbol%2CLog%3A%3AMetadata%3A%3AValue%7D%29-instance-method" class="tooltip">
+      <span>to_set : Set({Symbol, Log::Metadata::Value})<br/>to_set(&block : {Symbol, Log::Metadata::Value} -> U) : Set(U) forall U</span>
+    to_set</a>, 
+    
+  
+    <a href="../Enumerable.html#zip%28%2Aothers%3AIndexable%7CIterable%7CIterator%2C%26%29-instance-method" class="tooltip">
+      <span>zip(*others : Indexable | Iterable | Iterator, &)<br/>zip(*others : Indexable | Iterable | Iterator)</span>
+    zip</a>, 
+    
+  
+    <a href="../Enumerable.html#zip%3F%28%2Aothers%3AIndexable%7CIterable%7CIterator%2C%26%29-instance-method" class="tooltip">
+      <span>zip?(*others : Indexable | Iterable | Iterator, &)<br/>zip?(*others : Indexable | Iterable | Iterator)</span>
+    zip?</a>
+    
+  
+
+
+      
+
+
+      
+
+  <h3>Class methods inherited from module <code><a href="../Enumerable.html">Enumerable</a>({<a href="../Symbol.html">Symbol</a>, <a href="../Log/Metadata/Value.html">Log::Metadata::Value</a>})</code></h3>
+  
+  
+    <a href="../Enumerable.html#element_type%28x%29-class-method" class="tooltip">
+      <span>element_type(x)</span>
+    element_type</a>
+    
+  
+
+
+      
+
+
+    
+      
+
+  <h3>Instance methods inherited from class <code><a href="../Reference.html">Reference</a></code></h3>
+  
+  
+    <a href="../Reference.html#%3D%3D%28other%3Aself%29-instance-method" class="tooltip">
+      <span>==(other : <span class="k">self</span>)<br/>==(other : JSON::Any)<br/>==(other : YAML::Any)<br/>==(other)</span>
+    ==</a>, 
+    
+  
+    <a href="../Reference.html#dup-instance-method" class="tooltip">
+      <span>dup</span>
+    dup</a>, 
+    
+  
+    <a href="../Reference.html#hash%28hasher%29-instance-method" class="tooltip">
+      <span>hash(hasher)</span>
+    hash</a>, 
+    
+  
+    <a href="../Reference.html#initialize-instance-method" class="tooltip">
+      <span>initialize</span>
+    initialize</a>, 
+    
+  
+    <a href="../Reference.html#inspect%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>inspect(io : IO) : Nil</span>
+    inspect</a>, 
+    
+  
+    <a href="../Reference.html#object_id%3AUInt64-instance-method" class="tooltip">
+      <span>object_id : UInt64</span>
+    object_id</a>, 
+    
+  
+    <a href="../Reference.html#pretty_print%28pp%29%3ANil-instance-method" class="tooltip">
+      <span>pretty_print(pp) : Nil</span>
+    pretty_print</a>, 
+    
+  
+    <a href="../Reference.html#same%3F%28other%3AReference%29%3ABool-instance-method" class="tooltip">
+      <span>same?(other : Reference) : Bool<br/>same?(other : Nil)</span>
+    same?</a>, 
+    
+  
+    <a href="../Reference.html#to_s%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_s(io : IO) : Nil</span>
+    to_s</a>
+    
+  
+
+
+      
+
+  <h3>Constructor methods inherited from class <code><a href="../Reference.html">Reference</a></code></h3>
+  
+  
+    <a href="../Reference.html#new-class-method" class="tooltip">
+      <span>new</span>
+    new</a>, 
+    
+  
+    <a href="../Reference.html#unsafe_construct%28address%3APointer%2C%2Aargs%2C%2A%2Aopts%29%3Aself-class-method" class="tooltip">
+      <span>unsafe_construct(address : Pointer, *args, **opts) : <span class="k">self</span></span>
+    unsafe_construct</a>
+    
+  
+
+
+      
+
+  <h3>Class methods inherited from class <code><a href="../Reference.html">Reference</a></code></h3>
+  
+  
+    <a href="../Reference.html#pre_initialize%28address%3APointer%29-class-method" class="tooltip">
+      <span>pre_initialize(address : Pointer)</span>
+    pre_initialize</a>
+    
+  
+
+
+      
+
+
+    
+      
+
+  <h3>Instance methods inherited from class <code><a href="../Object.html">Object</a></code></h3>
+  
+  
+    <a href="../Object.html#%21%3ABool-instance-method" class="tooltip">
+      <span>! : Bool</span>
+    !</a>, 
+    
+  
+    <a href="../Object.html#%21%3D%28other%29-instance-method" class="tooltip">
+      <span>!=(other)</span>
+    !=</a>, 
+    
+  
+    <a href="../Object.html#%21~%28other%29-instance-method" class="tooltip">
+      <span>!~(other)</span>
+    !~</a>, 
+    
+  
+    <a href="../Object.html#%3D%3D%28other%29-instance-method" class="tooltip">
+      <span>==(other)</span>
+    ==</a>, 
+    
+  
+    <a href="../Object.html#%3D%3D%3D%28other%3AJSON%3A%3AAny%29-instance-method" class="tooltip">
+      <span>===(other : JSON::Any)<br/>===(other : YAML::Any)<br/>===(other)</span>
+    ===</a>, 
+    
+  
+    <a href="../Object.html#%3D~%28other%29-instance-method" class="tooltip">
+      <span>=~(other)</span>
+    =~</a>, 
+    
+  
+    <a href="../Object.html#as%28type%3AClass%29-instance-method" class="tooltip">
+      <span>as(type : Class)</span>
+    as</a>, 
+    
+  
+    <a href="../Object.html#as%3F%28type%3AClass%29-instance-method" class="tooltip">
+      <span>as?(type : Class)</span>
+    as?</a>, 
+    
+  
+    <a href="../Object.html#class-instance-method" class="tooltip">
+      <span>class</span>
+    class</a>, 
+    
+  
+    <a href="../Object.html#dup-instance-method" class="tooltip">
+      <span>dup</span>
+    dup</a>, 
+    
+  
+    <a href="../Object.html#hash%28hasher%29-instance-method" class="tooltip">
+      <span>hash(hasher)<br/>hash</span>
+    hash</a>, 
+    
+  
+    <a href="../Object.html#in%3F%28collection%3AObject%29%3ABool-instance-method" class="tooltip">
+      <span>in?(collection : Object) : Bool<br/>in?(*values : Object) : Bool</span>
+    in?</a>, 
+    
+  
+    <a href="../Object.html#inspect%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>inspect(io : IO) : Nil<br/>inspect : String</span>
+    inspect</a>, 
+    
+  
+    <a href="../Object.html#is_a%3F%28type%3AClass%29%3ABool-instance-method" class="tooltip">
+      <span>is_a?(type : Class) : Bool</span>
+    is_a?</a>, 
+    
+  
+    <a href="../Object.html#itself-instance-method" class="tooltip">
+      <span>itself</span>
+    itself</a>, 
+    
+  
+    <a href="../Object.html#nil%3F%3ABool-instance-method" class="tooltip">
+      <span>nil? : Bool</span>
+    nil?</a>, 
+    
+  
+    <a href="../Object.html#not_nil%21%28message%29-instance-method" class="tooltip">
+      <span>not_nil!(message)<br/>not_nil!</span>
+    not_nil!</a>, 
+    
+  
+    <a href="../Object.html#pretty_inspect%28width%3D79%2Cnewline%3D%22%5Cn%22%2Cindent%3D0%29%3AString-instance-method" class="tooltip">
+      <span>pretty_inspect(width = <span class="n">79</span>, newline = <span class="s">&quot;\n&quot;</span>, indent = <span class="n">0</span>) : String</span>
+    pretty_inspect</a>, 
+    
+  
+    <a href="../Object.html#pretty_print%28pp%3APrettyPrint%29%3ANil-instance-method" class="tooltip">
+      <span>pretty_print(pp : PrettyPrint) : Nil</span>
+    pretty_print</a>, 
+    
+  
+    <a href="../Object.html#responds_to%3F%28name%3ASymbol%29%3ABool-instance-method" class="tooltip">
+      <span>responds_to?(name : Symbol) : Bool</span>
+    responds_to?</a>, 
+    
+  
+    <a href="../Object.html#tap%28%26%29-instance-method" class="tooltip">
+      <span>tap(&)</span>
+    tap</a>, 
+    
+  
+    <a href="../Object.html#to_json%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_json(io : IO) : Nil<br/>to_json : String</span>
+    to_json</a>, 
+    
+  
+    <a href="../Object.html#to_pretty_json%28indent%3AString%3D%22%22%29%3AString-instance-method" class="tooltip">
+      <span>to_pretty_json(indent : String = <span class="s">&quot;  &quot;</span>) : String<br/>to_pretty_json(io : IO, indent : String = <span class="s">&quot;  &quot;</span>) : Nil</span>
+    to_pretty_json</a>, 
+    
+  
+    <a href="../Object.html#to_s%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_s(io : IO) : Nil<br/>to_s : String</span>
+    to_s</a>, 
+    
+  
+    <a href="../Object.html#to_yaml%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_yaml(io : IO) : Nil<br/>to_yaml : String</span>
+    to_yaml</a>, 
+    
+  
+    <a href="../Object.html#try%28%26%29-instance-method" class="tooltip">
+      <span>try(&)</span>
+    try</a>, 
+    
+  
+    <a href="../Object.html#unsafe_as%28type%3AT.class%29forallT-instance-method" class="tooltip">
+      <span>unsafe_as(type : <span class="t">T</span>.<span class="k">class</span>) forall T</span>
+    unsafe_as</a>
+    
+  
+
+
+      
+
+
+      
+
+  <h3>Class methods inherited from class <code><a href="../Object.html">Object</a></code></h3>
+  
+  
+    <a href="../Object.html#from_json%28string_or_io%2Croot%3AString%29-class-method" class="tooltip">
+      <span>from_json(string_or_io, root : String)<br/>from_json(string_or_io)</span>
+    from_json</a>, 
+    
+  
+    <a href="../Object.html#from_yaml%28string_or_io%3AString%7CIO%29-class-method" class="tooltip">
+      <span>from_yaml(string_or_io : String | IO)</span>
+    from_yaml</a>
+    
+  
+
+
+      
+
+  <h3>Macros inherited from class <code><a href="../Object.html">Object</a></code></h3>
+  
+  
+    <a href="../Object.html#class_getter%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_getter(*names, &block)</span>
+    class_getter</a>, 
+    
+  
+    <a href="../Object.html#class_getter%21%28%2Anames%29-macro" class="tooltip">
+      <span>class_getter!(*names)</span>
+    class_getter!</a>, 
+    
+  
+    <a href="../Object.html#class_getter%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_getter?(*names, &block)</span>
+    class_getter?</a>, 
+    
+  
+    <a href="../Object.html#class_property%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_property(*names, &block)</span>
+    class_property</a>, 
+    
+  
+    <a href="../Object.html#class_property%21%28%2Anames%29-macro" class="tooltip">
+      <span>class_property!(*names)</span>
+    class_property!</a>, 
+    
+  
+    <a href="../Object.html#class_property%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_property?(*names, &block)</span>
+    class_property?</a>, 
+    
+  
+    <a href="../Object.html#class_setter%28%2Anames%29-macro" class="tooltip">
+      <span>class_setter(*names)</span>
+    class_setter</a>, 
+    
+  
+    <a href="../Object.html#def_clone-macro" class="tooltip">
+      <span>def_clone</span>
+    def_clone</a>, 
+    
+  
+    <a href="../Object.html#def_equals%28%2Afields%29-macro" class="tooltip">
+      <span>def_equals(*fields)</span>
+    def_equals</a>, 
+    
+  
+    <a href="../Object.html#def_equals_and_hash%28%2Afields%29-macro" class="tooltip">
+      <span>def_equals_and_hash(*fields)</span>
+    def_equals_and_hash</a>, 
+    
+  
+    <a href="../Object.html#def_hash%28%2Afields%29-macro" class="tooltip">
+      <span>def_hash(*fields)</span>
+    def_hash</a>, 
+    
+  
+    <a href="../Object.html#delegate%28%2Amethods%2Ctoobject%29-macro" class="tooltip">
+      <span>delegate(*methods, to object)</span>
+    delegate</a>, 
+    
+  
+    <a href="../Object.html#forward_missing_to%28delegate%29-macro" class="tooltip">
+      <span>forward_missing_to(delegate)</span>
+    forward_missing_to</a>, 
+    
+  
+    <a href="../Object.html#getter%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>getter(*names, &block)</span>
+    getter</a>, 
+    
+  
+    <a href="../Object.html#getter%21%28%2Anames%29-macro" class="tooltip">
+      <span>getter!(*names)</span>
+    getter!</a>, 
+    
+  
+    <a href="../Object.html#getter%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>getter?(*names, &block)</span>
+    getter?</a>, 
+    
+  
+    <a href="../Object.html#property%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>property(*names, &block)</span>
+    property</a>, 
+    
+  
+    <a href="../Object.html#property%21%28%2Anames%29-macro" class="tooltip">
+      <span>property!(*names)</span>
+    property!</a>, 
+    
+  
+    <a href="../Object.html#property%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>property?(*names, &block)</span>
+    property?</a>, 
+    
+  
+    <a href="../Object.html#setter%28%2Anames%29-macro" class="tooltip">
+      <span>setter(*names)</span>
+    setter</a>
+    
+  
+
+
+    
+  </div>
+
+  
+  <h2>
+    <a id="constructor-detail" class="anchor" href="#constructor-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructor Detail
+  </h2>
+  
+    <div class="entry-detail" id="build(value:NamedTuple|Hash):self-class-method">
+      <div class="signature">
+        
+        def self.<strong>build</strong>(value : <a href="../NamedTuple.html">NamedTuple</a> | <a href="../Hash.html">Hash</a>) : <span class="k">self</span>
+
+        <a class="method-permalink" href="#build%28value%3ANamedTuple%7CHash%29%3Aself-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns a <code><a href="../Log/Metadata.html">Metadata</a></code> with the information of the argument.
+Used to handle <code><a href="../Log/Context.html#set%28%2A%2Akwargs%29-instance-method">Log::Context#set</a></code> and <code>Log#Emitter.emit</code> overloads.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/log/metadata.cr#L62" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="build(value:Metadata):Metadata-class-method">
+      <div class="signature">
+        
+        def self.<strong>build</strong>(value : <a href="../Log/Metadata.html">Metadata</a>) : <a href="../Log/Metadata.html">Metadata</a>
+
+        <a class="method-permalink" href="#build%28value%3AMetadata%29%3AMetadata-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns a <code><a href="../Log/Metadata.html">Metadata</a></code> with the information of the argument.
+Used to handle <code><a href="../Log/Context.html#set%28%2A%2Akwargs%29-instance-method">Log::Context#set</a></code> and <code>Log#Emitter.emit</code> overloads.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/log/metadata.cr#L68" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="new(parent:Metadata|Nil=nil,entries:NamedTuple|Hash=NamedTuple.new)-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(parent : <a href="../Log/Metadata.html">Metadata</a> | <a href="../Nil.html">Nil</a> = <span class="n">nil</span>, entries : <a href="../NamedTuple.html">NamedTuple</a> | <a href="../Hash.html">Hash</a> = <span class="t">NamedTuple</span>.new)
+
+        <a class="method-permalink" href="#new%28parent%3AMetadata%7CNil%3Dnil%2Centries%3ANamedTuple%7CHash%3DNamedTuple.new%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/log/metadata.cr#L33" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+  
+  <h2>
+    <a id="class-method-detail" class="anchor" href="#class-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Class Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="empty:Log::Metadata-class-method">
+      <div class="signature">
+        
+        def self.<strong>empty</strong> : <a href="../Log/Metadata.html">Log::Metadata</a>
+
+        <a class="method-permalink" href="#empty%3ALog%3A%3AMetadata-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns an empty <code><a href="../Log/Metadata.html">Log::Metadata</a></code>.</p>
+<p><span class="flag purple">NOTE</span>  Since <code><a href="../Log/Metadata.html">Log::Metadata</a></code> is immutable, it's safe to share this instance.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/log/metadata.cr#L15" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+  
+
+  
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="==(other:Metadata)-instance-method">
+      <div class="signature">
+        
+        def <strong>==</strong>(other : <a href="../Log/Metadata.html">Metadata</a>)
+
+        <a class="method-permalink" href="#%3D%3D%28other%3AMetadata%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/log/metadata.cr#L165" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="==(other)-instance-method">
+      <div class="signature">
+        
+        def <strong>==</strong>(other)
+
+        <a class="method-permalink" href="#%3D%3D%28other%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+            <div class="doc-inherited">
+              Description copied from class <a href="../Reference.html">Reference</a>
+            </div>
+          
+          <p>Returns <code>false</code> (other can only be a <code><a href="../Log/Metadata/Value.html">Value</a></code> here).</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/log/metadata.cr#L182" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="[](key:Symbol):Value-instance-method">
+      <div class="signature">
+        
+        def <strong>[]</strong>(key : <a href="../Symbol.html">Symbol</a>) : <a href="../Log/Metadata/Value.html">Value</a>
+
+        <a class="method-permalink" href="#%5B%5D%28key%3ASymbol%29%3AValue-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/log/metadata.cr#L135" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="[]?(key:Symbol):Value|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>[]?</strong>(key : <a href="../Symbol.html">Symbol</a>) : <a href="../Log/Metadata/Value.html">Value</a> | <a href="../Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#%5B%5D%3F%28key%3ASymbol%29%3AValue%7CNil-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/log/metadata.cr#L139" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="dup:self-instance-method">
+      <div class="signature">
+        
+        def <strong>dup</strong> : <span class="k">self</span>
+
+        <a class="method-permalink" href="#dup%3Aself-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+            <div class="doc-inherited">
+              Description copied from class <a href="../Reference.html">Reference</a>
+            </div>
+          
+          <p>Returns a shallow copy of this object.</p>
+<p>This allocates a new object and copies the contents of
+<code>self</code> into it.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/log/metadata.cr#L40" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="each(&amp;:Tuple(Symbol,Value)-&gt;)-instance-method">
+      <div class="signature">
+        
+        def <strong>each</strong>(& : <a href="../Tuple.html">Tuple</a>(<a href="../Symbol.html">Symbol</a>, <a href="../Log/Metadata/Value.html">Value</a>) -> )
+
+        <a class="method-permalink" href="#each%28%26%3ATuple%28Symbol%2CValue%29-%3E%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+            <div class="doc-inherited">
+              Description copied from module <a href="../Enumerable.html">Enumerable</a>({<a href="../Symbol.html">Symbol</a>, <a href="../Log/Metadata/Value.html">Log::Metadata::Value</a>})
+            </div>
+          
+          <p>Must yield this collection's elements to the block.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/log/metadata.cr#L125" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="empty?:Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>empty?</strong> : <a href="../Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#empty%3F%3ABool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+            <div class="doc-inherited">
+              Description copied from module <a href="../Enumerable.html">Enumerable</a>({<a href="../Symbol.html">Symbol</a>, <a href="../Log/Metadata/Value.html">Log::Metadata::Value</a>})
+            </div>
+          
+          <p>Returns <code>true</code> if <code>self</code> does not contain any element.</p>
+<pre><code class="language-crystal">(<span class="o">[]</span> <span class="k">of</span> <span class="t">Int32</span>).empty? <span class="c"># =&gt; true</span>
+([<span class="n">1</span>]).empty?         <span class="c"># =&gt; false</span>
+[<span class="n">nil</span>, <span class="n">false</span>].empty?  <span class="c"># =&gt; false</span></code></pre>
+<ul>
+<li><code>#present?</code> returns the inverse.</li>
+</ul>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/log/metadata.cr#L81" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="extend(other:NamedTuple|Hash):Metadata-instance-method">
+      <div class="signature">
+        
+        def <strong>extend</strong>(other : <a href="../NamedTuple.html">NamedTuple</a> | <a href="../Hash.html">Hash</a>) : <a href="../Log/Metadata.html">Metadata</a>
+
+        <a class="method-permalink" href="#extend%28other%3ANamedTuple%7CHash%29%3AMetadata-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns a <code><a href="../Log/Metadata.html">Log::Metadata</a></code> with all the entries of <code>self</code>
+and <em>other</em>. If a key is defined in both, the values in <em>other</em> are used.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/log/metadata.cr#L74" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="fetch(key,&amp;)-instance-method">
+      <div class="signature">
+        
+        def <strong>fetch</strong>(key, &)
+
+        <a class="method-permalink" href="#fetch%28key%2C%26%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/log/metadata.cr#L143" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="hash(hasher)-instance-method">
+      <div class="signature">
+        
+        def <strong>hash</strong>(hasher)
+
+        <a class="method-permalink" href="#hash%28hasher%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+            <div class="doc-inherited">
+              Description copied from class <a href="../Reference.html">Reference</a>
+            </div>
+          
+          <p>See <code><a href="../Object.html#hash%28hasher%29-instance-method">Object#hash(hasher)</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/log/metadata.cr#L186" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_json(builder:JSON::Builder):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>to_json</strong>(builder : <a href="../JSON/Builder.html">JSON::Builder</a>) : <a href="../Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#to_json%28builder%3AJSON%3A%3ABuilder%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code><a href="../Log/Metadata.html">Log::Metadata</a></code> as JSON value.</p>
+<p><span class="flag purple">NOTE</span>  <code>require &quot;log/json&quot;</code> is required to opt-in to this feature.</p>
+<pre><code class="language-crystal">log_entry.context.to_json <span class="c"># =&gt; &quot;{\&quot;user_id\&quot;:1}&quot;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/log/json.cr#L11" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_s(io:IO):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>to_s</strong>(io : <a href="../IO.html">IO</a>) : <a href="../Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#to_s%28io%3AIO%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+            <div class="doc-inherited">
+              Description copied from class <a href="../Reference.html">Reference</a>
+            </div>
+          
+          <p>Appends a short String representation of this object
+which includes its class name and its object address.</p>
+<pre><code class="language-crystal"><span class="k">class</span> <span class="t">Person</span>
+  <span class="k">def</span> <span class="m">initialize</span>(@name : <span class="t">String</span>, @age : <span class="t">Int32</span>)
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="t">Person</span>.new(<span class="s">&quot;John&quot;</span>, <span class="n">32</span>).to_s <span class="c"># =&gt; #&lt;Person:0x10a199f20&gt;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/log/metadata.cr#L190" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+</div>
+
+</body>
+</html>

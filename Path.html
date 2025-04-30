@@ -1,0 +1,2521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Crystal Docs 1.16.1">
+<meta name="crystal_docs.project_version" content="1.17.0-dev">
+<meta name="crystal_docs.project_name" content="Crystal">
+
+  <meta name="crystal_docs.json_config_url" content="/api/versions.json">
+
+
+    <link rel="canonical" href="https://crystal-lang.org/api/latest/Path.html">
+
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/doc.js"></script>
+
+  <meta name="repository-name" content="Crystal">
+  <title>Path - Crystal 1.17.0-dev</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill="currentColor" fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<input type="checkbox" id="sidebar-btn">
+<label for="sidebar-btn" id="sidebar-btn-label">
+  <svg class="open" xmlns="http://www.w3.org/2000/svg" height="2em" width="2em" viewBox="0 0 512 512"><title>Open Sidebar</title><path fill="currentColor" d="M80 96v64h352V96H80zm0 112v64h352v-64H80zm0 112v64h352v-64H80z"></path></svg>
+  <svg class="close" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><title>Close Sidebar</title><path fill="currentColor" d="m118.6 73.4-45.2 45.2L210.7 256 73.4 393.4l45.2 45.2L256 301.3l137.4 137.3 45.2-45.2L301.3 256l137.3-137.4-45.2-45.2L256 210.7Z"></path></svg>
+</label>
+<iframe class="sidebar" src="sidebar.html"></iframe>
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">
+    struct
+  </span> Path
+
+</h1>
+
+
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="Path.html">Path</a></li><li class="superclass"><a href="Struct.html">Struct</a></li><li class="superclass"><a href="Value.html">Value</a></li><li class="superclass"><a href="Object.html">Object</a></li></ul>
+
+
+
+
+  <h2>
+    <a id="overview" class="anchor" href="#overview">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Overview
+  </h2>
+
+  <p>A <code><a href="Path.html">Path</a></code> represents a filesystem path and allows path-handling operations
+such as querying its components as well as semantic manipulations.</p>
+<p>A path is hierarchical and composed of a sequence of directory and file name
+elements separated by a special separator or delimiter. A root component,
+that identifies a file system hierarchy, may also be present.
+The name element that is farthest from the root of the directory hierarchy is
+the name of a file or directory. The other name elements are directory names.
+A <code><a href="Path.html">Path</a></code> can represent a root, a root and a sequence of names, or simply one or
+more name elements.
+A <code><a href="Path.html">Path</a></code> is considered to be an empty path if it consists solely of one name
+element that is empty or equal to <code>&quot;.&quot;</code>. Accessing a file using an empty path
+is equivalent to accessing the default directory of the process.</p>
+<h1><a id="examples" class="anchor" href="#examples">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Examples</h1>
+<pre><code class="language-crystal"><span class="t">Path</span>[<span class="s">&quot;foo/bar/baz.cr&quot;</span>].parent    <span class="c"># =&gt; Path[&quot;foo/bar&quot;]</span>
+<span class="t">Path</span>[<span class="s">&quot;foo/bar/baz.cr&quot;</span>].basename  <span class="c"># =&gt; &quot;baz.cr&quot;</span>
+<span class="t">Path</span>[<span class="s">&quot;./foo/../bar&quot;</span>].normalize   <span class="c"># =&gt; Path[&quot;bar&quot;]</span>
+<span class="t">Path</span>[<span class="s">&quot;~/bin&quot;</span>].expand(home: <span class="n">true</span>) <span class="c"># =&gt; Path[&quot;/home/crystal/bin&quot;]</span></code></pre>
+<p>For now, its methods are purely lexical, there is no direct filesystem access.</p>
+<p>Path handling comes in different kinds depending on operating system:</p>
+<ul>
+<li><code><a href="Path.html#posix%28name%3AString%3D%22%22%29%3APath-class-method">Path.posix()</a></code> creates a new POSIX path</li>
+<li><code><a href="Path.html#windows%28name%3AString%3D%22%22%29%3APath-class-method">Path.windows()</a></code> creates a new Windows path</li>
+<li><code><a href="Path.html#new%28ctx%3AYAML%3A%3AParseContext%2Cnode%3AYAML%3A%3ANodes%3A%3ANode%29-class-method">Path.new()</a></code> means <code><a href="Path.html#posix%28name%3AString%3D%22%22%29%3APath-class-method">Path.posix</a></code> on POSIX platforms and <code><a href="Path.html#windows%28name%3AString%3D%22%22%29%3APath-class-method">Path.windows()</a></code>
+on Windows platforms.</li>
+</ul>
+<pre><code class="language-crystal"><span class="c"># On POSIX system:</span>
+<span class="t">Path</span>.new(<span class="s">&quot;foo&quot;</span>, <span class="s">&quot;bar&quot;</span>, <span class="s">&quot;baz.cr&quot;</span>) <span class="o">==</span> <span class="t">Path</span>.posix(<span class="s">&quot;foo/bar/baz.cr&quot;</span>)
+<span class="c"># On Windows system:</span>
+<span class="t">Path</span>.new(<span class="s">&quot;foo&quot;</span>, <span class="s">&quot;bar&quot;</span>, <span class="s">&quot;baz.cr&quot;</span>) <span class="o">==</span> <span class="t">Path</span>.windows(<span class="s">&quot;foo\\bar\\baz.cr&quot;</span>)</code></pre>
+<p>The main differences between Windows and POSIX paths:</p>
+<ul>
+<li>POSIX paths use forward slash (<code><a href="Path.html#/%28part%3APath%7CString%29%3APath-instance-method">#/</a></code>) as only path separator, Windows paths use
+backslash (<code>\</code>) as default separator but also recognize forward slashes.</li>
+<li>POSIX paths are generally case-sensitive, Windows paths case-insensitive
+(see <code>#&lt;=&gt;</code>).</li>
+<li>A POSIX path is absolute if it begins with a forward slash (<code><a href="Path.html#/%28part%3APath%7CString%29%3APath-instance-method">#/</a></code>). A Windows path
+is absolute if it starts with both a drive and a root (see <code><a href="Path.html#absolute%3F%3ABool-instance-method">#absolute?</a></code>).</li>
+</ul>
+<pre><code class="language-crystal"><span class="t">Path</span>.posix(<span class="s">&quot;/foo/./bar&quot;</span>).normalize   <span class="c"># =&gt; Path.posix(&quot;/foo/bar&quot;)</span>
+<span class="t">Path</span>.windows(<span class="s">&quot;/foo/./bar&quot;</span>).normalize <span class="c"># =&gt; Path.windows(&quot;\\foo\\bar&quot;)</span>
+
+<span class="t">Path</span>.posix(<span class="s">&quot;/foo&quot;</span>).absolute?   <span class="c"># =&gt; true</span>
+<span class="t">Path</span>.windows(<span class="s">&quot;/foo&quot;</span>).absolute? <span class="c"># =&gt; false</span>
+
+<span class="t">Path</span>.posix(<span class="s">&quot;foo&quot;</span>) <span class="o">==</span> <span class="t">Path</span>.posix(<span class="s">&quot;FOO&quot;</span>)     <span class="c"># =&gt; false</span>
+<span class="t">Path</span>.windows(<span class="s">&quot;foo&quot;</span>) <span class="o">==</span> <span class="t">Path</span>.windows(<span class="s">&quot;FOO&quot;</span>) <span class="c"># =&gt; true</span></code></pre>
+
+
+
+
+
+
+
+  <h2>
+    <a id="included-modules" class="anchor" href="#included-modules">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Included Modules
+  </h2>
+  <ul class="other-types-list">
+    
+      <li class="other-type"><a href="Comparable.html">Comparable</a>(<a href="Path.html">Path</a>)</li>
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/to_json.cr#L73" target="_blank">
+        json/to_json.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/path.cr#L60" target="_blank">
+        path.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/yaml/to_yaml.cr#L83" target="_blank">
+        yaml/to_yaml.cr
+      </a>
+    
+    <br/>
+  
+
+
+
+  
+    <h2>
+      <a id="constant-summary" class="anchor" href="#constant-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+      Constant Summary
+    </h2>
+  
+  <dl>
+    
+      <dt class="entry-const" id="SEPARATORS">
+        <strong>SEPARATORS</strong> = <code>separators(<span class="t">Kind</span>.native)</code>
+      </dt>
+      
+      <dd class="entry-const-doc">
+        <p>The file/directory separator characters of the current platform.
+<code>{'/'}</code> on POSIX, <code>{'\\', '/'}</code> on Windows.</p>
+      </dd>
+      
+    
+  </dl>
+
+
+
+  
+  <h2>
+    <a id="constructors" class="anchor" href="#constructors">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructors
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#%5B%5D%28parts%3AEnumerable%29%3APath-class-method" class="signature"><strong>.[]</strong>(parts : Enumerable) : Path</a>
+        
+          <div class="summary"><p>Creates a new <code><a href="Path.html">Path</a></code> of native kind.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%5B%5D%28name%3AString%7CPath%2C%2Aparts%29%3APath-class-method" class="signature"><strong>.[]</strong>(name : String | Path, *parts) : Path</a>
+        
+          <div class="summary"><p>Creates a new <code><a href="Path.html">Path</a></code> of native kind.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#home%3APath-class-method" class="signature"><strong>.home</strong> : Path</a>
+        
+          <div class="summary"><p>Returns the path of the home directory of the current user.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#new%28ctx%3AYAML%3A%3AParseContext%2Cnode%3AYAML%3A%3ANodes%3A%3ANode%29-class-method" class="signature"><strong>.new</strong>(ctx : YAML::ParseContext, node : YAML::Nodes::Node)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#new%28name%3AString%3D%22%22%29%3APath-class-method" class="signature"><strong>.new</strong>(name : String = <span class="s">&quot;&quot;</span>) : Path</a>
+        
+          <div class="summary"><p>Creates a new <code><a href="Path.html">Path</a></code> of native kind.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#new%28path%3APath%29%3APath-class-method" class="signature"><strong>.new</strong>(path : Path) : Path</a>
+        
+          <div class="summary"><p>Creates a new <code><a href="Path.html">Path</a></code> of native kind.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#new%28parts%3AEnumerable%29%3APath-class-method" class="signature"><strong>.new</strong>(parts : Enumerable) : Path</a>
+        
+          <div class="summary"><p>Creates a new <code><a href="Path.html">Path</a></code> of native kind.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#new%28pull%3AJSON%3A%3APullParser%29-class-method" class="signature"><strong>.new</strong>(pull : JSON::PullParser)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#new%28name%3AString%7CPath%2C%2Aparts%3AString%7CPath%29%3APath-class-method" class="signature"><strong>.new</strong>(name : String | Path, *parts : String | Path) : Path</a>
+        
+          <div class="summary"><p>Creates a new <code><a href="Path.html">Path</a></code> of native kind.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#posix%28name%3AString%3D%22%22%29%3APath-class-method" class="signature"><strong>.posix</strong>(name : String = <span class="s">&quot;&quot;</span>) : Path</a>
+        
+          <div class="summary"><p>Creates a new <code><a href="Path.html">Path</a></code> of POSIX kind.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#posix%28path%3APath%29%3APath-class-method" class="signature"><strong>.posix</strong>(path : Path) : Path</a>
+        
+          <div class="summary"><p>Creates a new <code><a href="Path.html">Path</a></code> of POSIX kind.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#posix%28parts%3AEnumerable%29%3APath-class-method" class="signature"><strong>.posix</strong>(parts : Enumerable) : Path</a>
+        
+          <div class="summary"><p>Creates a new <code><a href="Path.html">Path</a></code> of POSIX kind.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#posix%28name%3AString%7CPath%2C%2Aparts%3AString%7CPath%29%3APath-class-method" class="signature"><strong>.posix</strong>(name : String | Path, *parts : String | Path) : Path</a>
+        
+          <div class="summary"><p>Creates a new <code><a href="Path.html">Path</a></code> of POSIX kind.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#windows%28name%3AString%3D%22%22%29%3APath-class-method" class="signature"><strong>.windows</strong>(name : String = <span class="s">&quot;&quot;</span>) : Path</a>
+        
+          <div class="summary"><p>Creates a new <code><a href="Path.html">Path</a></code> of Windows kind.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#windows%28path%3APath%29%3APath-class-method" class="signature"><strong>.windows</strong>(path : Path) : Path</a>
+        
+          <div class="summary"><p>Creates a new <code><a href="Path.html">Path</a></code> of Windows kind.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#windows%28parts%3AEnumerable%29%3APath-class-method" class="signature"><strong>.windows</strong>(parts : Enumerable) : Path</a>
+        
+          <div class="summary"><p>Creates a new <code><a href="Path.html">Path</a></code> of Windows kind.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#windows%28name%3AString%7CPath%2C%2Aparts%3AString%7CPath%29%3APath-class-method" class="signature"><strong>.windows</strong>(name : String | Path, *parts : String | Path) : Path</a>
+        
+          <div class="summary"><p>Creates a new <code><a href="Path.html">Path</a></code> of Windows kind.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+  
+
+  
+
+  
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#/%28part%3APath%7CString%29%3APath-instance-method" class="signature"><strong>#/</strong>(part : Path | String) : Path</a>
+        
+          <div class="summary"><p>Appends the given <em>part</em> to this path and returns the joined path.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%3C%3D%3E%28other%3APath%29-instance-method" class="signature"><strong>#<=></strong>(other : Path)</a>
+        
+          <div class="summary"><p>Compares this path to <em>other</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%3D%3D%28other%3Aself%29-instance-method" class="signature"><strong>#==</strong>(other : <span class="k">self</span>)</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this path is considered equivalent to <em>other</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#absolute%3F%3ABool-instance-method" class="signature"><strong>#absolute?</strong> : Bool</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this path is absolute.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#anchor%3APath%7CNil-instance-method" class="signature"><strong>#anchor</strong> : Path | Nil</a>
+        
+          <div class="summary"><p>Returns the concatenation of <code><a href="Path.html#drive%3APath%7CNil-instance-method">#drive</a></code> and <code><a href="Path.html#root%3APath%7CNil-instance-method">#root</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#basename%28suffix%3AString%7CNil%3Dnil%29%3AString-instance-method" class="signature"><strong>#basename</strong>(suffix : String | Nil = <span class="n">nil</span>) : String</a>
+        
+          <div class="summary"><p>Returns the last component of this path.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#dirname%3AString-instance-method" class="signature"><strong>#dirname</strong> : String</a>
+        
+          <div class="summary"><p>Returns all components of this path except the last one.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#drive%3APath%7CNil-instance-method" class="signature"><strong>#drive</strong> : Path | Nil</a>
+        
+          <div class="summary"><p>Returns a path representing the drive component or <code>nil</code> if this path does not contain a drive.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#drive_and_root%3ATuple%28String%7CNil%2CString%7CNil%29-instance-method" class="signature"><strong>#drive_and_root</strong> : Tuple(String | Nil, String | Nil)</a>
+        
+          <div class="summary"><p>Returns a tuple of <code><a href="Path.html#drive%3APath%7CNil-instance-method">#drive</a></code> and <code><a href="Path.html#root%3APath%7CNil-instance-method">#root</a></code> as strings.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#each_parent%28%26block%3APath-%3E%29-instance-method" class="signature"><strong>#each_parent</strong>(&block : Path -> )</a>
+        
+          <div class="summary"><p>Yields each parent of this path beginning with the topmost parent.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#each_part%28%26%3AString-%3E%29-instance-method" class="signature"><strong>#each_part</strong>(& : String -> )</a>
+        
+          <div class="summary"><p>Yields each component of this path as a <code><a href="String.html">String</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#each_part%3AIterator%28String%29-instance-method" class="signature"><strong>#each_part</strong> : Iterator(String)</a>
+        
+          <div class="summary"><p>Returns an iterator over all components of this path.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#ends_with_separator%3F%3ABool-instance-method" class="signature"><strong>#ends_with_separator?</strong> : Bool</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#expand%28base%3APath%7CString%3DDir.current%2C%2A%2Chome%3APath%7CString%7CBool%3Dfalse%2Cexpand_base%3Dtrue%29%3APath-instance-method" class="signature"><strong>#expand</strong>(base : Path | String = <span class="t">Dir</span>.current, *, home : Path | String | Bool = <span class="n">false</span>, expand_base = <span class="n">true</span>) : Path</a>
+        
+          <div class="summary"><p>Converts this path to an absolute path.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#extension%3AString-instance-method" class="signature"><strong>#extension</strong> : String</a>
+        
+          <div class="summary"><p>Returns the extension of this path, or an empty string if it has no extension.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#hash%28hasher%29-instance-method" class="signature"><strong>#hash</strong>(hasher)</a>
+        
+          <div class="summary"><p>See <code><a href="Object.html#hash%28hasher%29-instance-method">Object#hash(hasher)</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#inspect%28io%3AIO%29-instance-method" class="signature"><strong>#inspect</strong>(io : IO)</a>
+        
+          <div class="summary"><p>Inspects this path to <em>io</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#join%28parts%3AEnumerable%29%3APath-instance-method" class="signature"><strong>#join</strong>(parts : Enumerable) : Path</a>
+        
+          <div class="summary"><p>Appends the given <em>parts</em> to this path and returns the joined path.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#join%28part%29%3APath-instance-method" class="signature"><strong>#join</strong>(part) : Path</a>
+        
+          <div class="summary"><p>Appends the given <em>part</em> to this path and returns the joined path.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#join%28%2Aparts%29%3APath-instance-method" class="signature"><strong>#join</strong>(*parts) : Path</a>
+        
+          <div class="summary"><p>Appends the given <em>parts</em> to this path and returns the joined path.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#native%3F%3ABool-instance-method" class="signature"><strong>#native?</strong> : Bool</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this is a native path for the target platform.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#normalize%28%2A%2Cremove_final_separator%3ABool%3Dtrue%29%3APath-instance-method" class="signature"><strong>#normalize</strong>(*, remove_final_separator : Bool = <span class="n">true</span>) : Path</a>
+        
+          <div class="summary"><p>Removes redundant elements from this path and returns the shortest equivalent path by purely lexical processing.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#parent%3APath-instance-method" class="signature"><strong>#parent</strong> : Path</a>
+        
+          <div class="summary"><p>Returns the parent path of this path.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#parents%3AArray%28Path%29-instance-method" class="signature"><strong>#parents</strong> : Array(Path)</a>
+        
+          <div class="summary"><p>Returns all parent paths of this path beginning with the topmost path.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#parts%3AArray%28String%29-instance-method" class="signature"><strong>#parts</strong> : Array(String)</a>
+        
+          <div class="summary"><p>Returns the components of this path as an <code><a href="Array.html">Array</a>(<a href="String.html">String</a>)</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#posix%3F%3ABool-instance-method" class="signature"><strong>#posix?</strong> : Bool</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this is a POSIX path.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#relative_to%28base%3APath%7CString%29%3APath-instance-method" class="signature"><strong>#relative_to</strong>(base : Path | String) : Path</a>
+        
+          <div class="summary"><p>Same as <code><a href="Path.html#relative_to%28base%3APath%7CString%29%3APath-instance-method">#relative_to</a></code> but returns <code>self</code> if <code>self</code> can't be expressed as relative path to <em>base</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#relative_to%3F%28base%3APath%29%3APath%7CNil-instance-method" class="signature"><strong>#relative_to?</strong>(base : Path) : Path | Nil</a>
+        
+          <div class="summary"><p>Returns a relative path that is lexically equivalent to <code>self</code> when joined to <em>base</em> with an intervening separator.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#relative_to%3F%28base%3AString%29%3APath%7CNil-instance-method" class="signature"><strong>#relative_to?</strong>(base : String) : Path | Nil</a>
+        
+          <div class="summary"><p>Returns a relative path that is lexically equivalent to <code>self</code> when joined to <em>base</em> with an intervening separator.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#root%3APath%7CNil-instance-method" class="signature"><strong>#root</strong> : Path | Nil</a>
+        
+          <div class="summary"><p>Returns the root path component of this path or <code>nil</code> if it is not rooted.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#sibling%28name%3APath%7CString%29%3APath-instance-method" class="signature"><strong>#sibling</strong>(name : Path | String) : Path</a>
+        
+          <div class="summary"><p>Resolves path <em>name</em> in this path's parent directory.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#stem%3AString-instance-method" class="signature"><strong>#stem</strong> : String</a>
+        
+          <div class="summary"><p>Returns the last component of this path without the extension.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_json%28json%3AJSON%3A%3ABuilder%29%3ANil-instance-method" class="signature"><strong>#to_json</strong>(json : JSON::Builder) : Nil</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_json_object_key%3AString-instance-method" class="signature"><strong>#to_json_object_key</strong> : String</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_kind%28kind%2C%2A%2Cmappings%3ABool%3Dtrue%29%3APath-instance-method" class="signature"><strong>#to_kind</strong>(kind, *, mappings : Bool = <span class="n">true</span>) : Path</a>
+        
+          <div class="summary"><p>Converts this path to the given <em>kind</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_native%3APath-instance-method" class="signature"><strong>#to_native</strong> : Path</a>
+        
+          <div class="summary"><p>Converts this path to a native path.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_posix%28%2A%2Cmappings%3ABool%3Dtrue%29%3APath-instance-method" class="signature"><strong>#to_posix</strong>(*, mappings : Bool = <span class="n">true</span>) : Path</a>
+        
+          <div class="summary"><p>Converts this path to a POSIX path.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_s%28io%3AIO%29-instance-method" class="signature"><strong>#to_s</strong>(io : IO)</a>
+        
+          <div class="summary"><p>Appends the string representation of this path to <em>io</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_s%3AString-instance-method" class="signature"><strong>#to_s</strong> : String</a>
+        
+          <div class="summary"><p>Returns the string representation of this path.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_uri%3AURI-instance-method" class="signature"><strong>#to_uri</strong> : URI</a>
+        
+          <div class="summary"><p>Returns a new <code><a href="URI.html">URI</a></code> with <code>file</code> scheme from this path.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_windows%28%2A%2Cmappings%3ABool%3Dtrue%29%3APath-instance-method" class="signature"><strong>#to_windows</strong>(*, mappings : Bool = <span class="n">true</span>) : Path</a>
+        
+          <div class="summary"><p>Converts this path to a Windows path.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_yaml%28yaml%3AYAML%3A%3ANodes%3A%3ABuilder%29%3ANil-instance-method" class="signature"><strong>#to_yaml</strong>(yaml : YAML::Nodes::Builder) : Nil</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#windows%3F%3ABool-instance-method" class="signature"><strong>#windows?</strong> : Bool</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this is a Windows path.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+
+  <div class="methods-inherited">
+    
+      
+
+  <h3>Instance methods inherited from module <code><a href="Comparable.html">Comparable</a>(<a href="Path.html">Path</a>)</code></h3>
+  
+  
+    <a href="Comparable.html#%3C%28other%3AT%29%3ABool-instance-method" class="tooltip">
+      <span><(other : T) : Bool</span>
+    <</a>, 
+    
+  
+    <a href="Comparable.html#%3C%3D%28other%3AT%29-instance-method" class="tooltip">
+      <span><=(other : T)</span>
+    <=</a>, 
+    
+  
+    <a href="Comparable.html#%3C%3D%3E%28other%3AT%29-instance-method" class="tooltip">
+      <span><=>(other : T)</span>
+    <=></a>, 
+    
+  
+    <a href="Comparable.html#%3D%3D%28other%3AT%29-instance-method" class="tooltip">
+      <span>==(other : T)</span>
+    ==</a>, 
+    
+  
+    <a href="Comparable.html#%3E%28other%3AT%29%3ABool-instance-method" class="tooltip">
+      <span>>(other : T) : Bool</span>
+    ></a>, 
+    
+  
+    <a href="Comparable.html#%3E%3D%28other%3AT%29-instance-method" class="tooltip">
+      <span>>=(other : T)</span>
+    >=</a>, 
+    
+  
+    <a href="Comparable.html#clamp%28min%2Cmax%29-instance-method" class="tooltip">
+      <span>clamp(min, max)<br/>clamp(range : Range)</span>
+    clamp</a>
+    
+  
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+      
+
+  <h3>Instance methods inherited from struct <code><a href="Struct.html">Struct</a></code></h3>
+  
+  
+    <a href="Struct.html#%3D%3D%28other%29%3ABool-instance-method" class="tooltip">
+      <span>==(other) : Bool</span>
+    ==</a>, 
+    
+  
+    <a href="Struct.html#hash%28hasher%29-instance-method" class="tooltip">
+      <span>hash(hasher)</span>
+    hash</a>, 
+    
+  
+    <a href="Struct.html#inspect%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>inspect(io : IO) : Nil</span>
+    inspect</a>, 
+    
+  
+    <a href="Struct.html#pretty_print%28pp%29%3ANil-instance-method" class="tooltip">
+      <span>pretty_print(pp) : Nil</span>
+    pretty_print</a>, 
+    
+  
+    <a href="Struct.html#to_s%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_s(io : IO) : Nil</span>
+    to_s</a>
+    
+  
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+      
+
+  <h3>Instance methods inherited from struct <code><a href="Value.html">Value</a></code></h3>
+  
+  
+    <a href="Value.html#%3D%3D%28other%3AJSON%3A%3AAny%29-instance-method" class="tooltip">
+      <span>==(other : JSON::Any)<br/>==(other : YAML::Any)<br/>==(other)</span>
+    ==</a>, 
+    
+  
+    <a href="Value.html#dup-instance-method" class="tooltip">
+      <span>dup</span>
+    dup</a>
+    
+  
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+      
+
+  <h3>Instance methods inherited from class <code><a href="Object.html">Object</a></code></h3>
+  
+  
+    <a href="Object.html#%21%3ABool-instance-method" class="tooltip">
+      <span>! : Bool</span>
+    !</a>, 
+    
+  
+    <a href="Object.html#%21%3D%28other%29-instance-method" class="tooltip">
+      <span>!=(other)</span>
+    !=</a>, 
+    
+  
+    <a href="Object.html#%21~%28other%29-instance-method" class="tooltip">
+      <span>!~(other)</span>
+    !~</a>, 
+    
+  
+    <a href="Object.html#%3D%3D%28other%29-instance-method" class="tooltip">
+      <span>==(other)</span>
+    ==</a>, 
+    
+  
+    <a href="Object.html#%3D%3D%3D%28other%3AJSON%3A%3AAny%29-instance-method" class="tooltip">
+      <span>===(other : JSON::Any)<br/>===(other : YAML::Any)<br/>===(other)</span>
+    ===</a>, 
+    
+  
+    <a href="Object.html#%3D~%28other%29-instance-method" class="tooltip">
+      <span>=~(other)</span>
+    =~</a>, 
+    
+  
+    <a href="Object.html#as%28type%3AClass%29-instance-method" class="tooltip">
+      <span>as(type : Class)</span>
+    as</a>, 
+    
+  
+    <a href="Object.html#as%3F%28type%3AClass%29-instance-method" class="tooltip">
+      <span>as?(type : Class)</span>
+    as?</a>, 
+    
+  
+    <a href="Object.html#class-instance-method" class="tooltip">
+      <span>class</span>
+    class</a>, 
+    
+  
+    <a href="Object.html#dup-instance-method" class="tooltip">
+      <span>dup</span>
+    dup</a>, 
+    
+  
+    <a href="Object.html#hash%28hasher%29-instance-method" class="tooltip">
+      <span>hash(hasher)<br/>hash</span>
+    hash</a>, 
+    
+  
+    <a href="Object.html#in%3F%28collection%3AObject%29%3ABool-instance-method" class="tooltip">
+      <span>in?(collection : Object) : Bool<br/>in?(*values : Object) : Bool</span>
+    in?</a>, 
+    
+  
+    <a href="Object.html#inspect%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>inspect(io : IO) : Nil<br/>inspect : String</span>
+    inspect</a>, 
+    
+  
+    <a href="Object.html#is_a%3F%28type%3AClass%29%3ABool-instance-method" class="tooltip">
+      <span>is_a?(type : Class) : Bool</span>
+    is_a?</a>, 
+    
+  
+    <a href="Object.html#itself-instance-method" class="tooltip">
+      <span>itself</span>
+    itself</a>, 
+    
+  
+    <a href="Object.html#nil%3F%3ABool-instance-method" class="tooltip">
+      <span>nil? : Bool</span>
+    nil?</a>, 
+    
+  
+    <a href="Object.html#not_nil%21%28message%29-instance-method" class="tooltip">
+      <span>not_nil!(message)<br/>not_nil!</span>
+    not_nil!</a>, 
+    
+  
+    <a href="Object.html#pretty_inspect%28width%3D79%2Cnewline%3D%22%5Cn%22%2Cindent%3D0%29%3AString-instance-method" class="tooltip">
+      <span>pretty_inspect(width = <span class="n">79</span>, newline = <span class="s">&quot;\n&quot;</span>, indent = <span class="n">0</span>) : String</span>
+    pretty_inspect</a>, 
+    
+  
+    <a href="Object.html#pretty_print%28pp%3APrettyPrint%29%3ANil-instance-method" class="tooltip">
+      <span>pretty_print(pp : PrettyPrint) : Nil</span>
+    pretty_print</a>, 
+    
+  
+    <a href="Object.html#responds_to%3F%28name%3ASymbol%29%3ABool-instance-method" class="tooltip">
+      <span>responds_to?(name : Symbol) : Bool</span>
+    responds_to?</a>, 
+    
+  
+    <a href="Object.html#tap%28%26%29-instance-method" class="tooltip">
+      <span>tap(&)</span>
+    tap</a>, 
+    
+  
+    <a href="Object.html#to_json%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_json(io : IO) : Nil<br/>to_json : String</span>
+    to_json</a>, 
+    
+  
+    <a href="Object.html#to_pretty_json%28indent%3AString%3D%22%22%29%3AString-instance-method" class="tooltip">
+      <span>to_pretty_json(indent : String = <span class="s">&quot;  &quot;</span>) : String<br/>to_pretty_json(io : IO, indent : String = <span class="s">&quot;  &quot;</span>) : Nil</span>
+    to_pretty_json</a>, 
+    
+  
+    <a href="Object.html#to_s%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_s(io : IO) : Nil<br/>to_s : String</span>
+    to_s</a>, 
+    
+  
+    <a href="Object.html#to_yaml%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_yaml(io : IO) : Nil<br/>to_yaml : String</span>
+    to_yaml</a>, 
+    
+  
+    <a href="Object.html#try%28%26%29-instance-method" class="tooltip">
+      <span>try(&)</span>
+    try</a>, 
+    
+  
+    <a href="Object.html#unsafe_as%28type%3AT.class%29forallT-instance-method" class="tooltip">
+      <span>unsafe_as(type : <span class="t">T</span>.<span class="k">class</span>) forall T</span>
+    unsafe_as</a>
+    
+  
+
+
+      
+
+
+      
+
+  <h3>Class methods inherited from class <code><a href="Object.html">Object</a></code></h3>
+  
+  
+    <a href="Object.html#from_json%28string_or_io%2Croot%3AString%29-class-method" class="tooltip">
+      <span>from_json(string_or_io, root : String)<br/>from_json(string_or_io)</span>
+    from_json</a>, 
+    
+  
+    <a href="Object.html#from_yaml%28string_or_io%3AString%7CIO%29-class-method" class="tooltip">
+      <span>from_yaml(string_or_io : String | IO)</span>
+    from_yaml</a>
+    
+  
+
+
+      
+
+  <h3>Macros inherited from class <code><a href="Object.html">Object</a></code></h3>
+  
+  
+    <a href="Object.html#class_getter%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_getter(*names, &block)</span>
+    class_getter</a>, 
+    
+  
+    <a href="Object.html#class_getter%21%28%2Anames%29-macro" class="tooltip">
+      <span>class_getter!(*names)</span>
+    class_getter!</a>, 
+    
+  
+    <a href="Object.html#class_getter%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_getter?(*names, &block)</span>
+    class_getter?</a>, 
+    
+  
+    <a href="Object.html#class_property%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_property(*names, &block)</span>
+    class_property</a>, 
+    
+  
+    <a href="Object.html#class_property%21%28%2Anames%29-macro" class="tooltip">
+      <span>class_property!(*names)</span>
+    class_property!</a>, 
+    
+  
+    <a href="Object.html#class_property%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_property?(*names, &block)</span>
+    class_property?</a>, 
+    
+  
+    <a href="Object.html#class_setter%28%2Anames%29-macro" class="tooltip">
+      <span>class_setter(*names)</span>
+    class_setter</a>, 
+    
+  
+    <a href="Object.html#def_clone-macro" class="tooltip">
+      <span>def_clone</span>
+    def_clone</a>, 
+    
+  
+    <a href="Object.html#def_equals%28%2Afields%29-macro" class="tooltip">
+      <span>def_equals(*fields)</span>
+    def_equals</a>, 
+    
+  
+    <a href="Object.html#def_equals_and_hash%28%2Afields%29-macro" class="tooltip">
+      <span>def_equals_and_hash(*fields)</span>
+    def_equals_and_hash</a>, 
+    
+  
+    <a href="Object.html#def_hash%28%2Afields%29-macro" class="tooltip">
+      <span>def_hash(*fields)</span>
+    def_hash</a>, 
+    
+  
+    <a href="Object.html#delegate%28%2Amethods%2Ctoobject%29-macro" class="tooltip">
+      <span>delegate(*methods, to object)</span>
+    delegate</a>, 
+    
+  
+    <a href="Object.html#forward_missing_to%28delegate%29-macro" class="tooltip">
+      <span>forward_missing_to(delegate)</span>
+    forward_missing_to</a>, 
+    
+  
+    <a href="Object.html#getter%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>getter(*names, &block)</span>
+    getter</a>, 
+    
+  
+    <a href="Object.html#getter%21%28%2Anames%29-macro" class="tooltip">
+      <span>getter!(*names)</span>
+    getter!</a>, 
+    
+  
+    <a href="Object.html#getter%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>getter?(*names, &block)</span>
+    getter?</a>, 
+    
+  
+    <a href="Object.html#property%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>property(*names, &block)</span>
+    property</a>, 
+    
+  
+    <a href="Object.html#property%21%28%2Anames%29-macro" class="tooltip">
+      <span>property!(*names)</span>
+    property!</a>, 
+    
+  
+    <a href="Object.html#property%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>property?(*names, &block)</span>
+    property?</a>, 
+    
+  
+    <a href="Object.html#setter%28%2Anames%29-macro" class="tooltip">
+      <span>setter(*names)</span>
+    setter</a>
+    
+  
+
+
+    
+  </div>
+
+  
+  <h2>
+    <a id="constructor-detail" class="anchor" href="#constructor-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructor Detail
+  </h2>
+  
+    <div class="entry-detail" id="[](parts:Enumerable):Path-class-method">
+      <div class="signature">
+        
+        def self.<strong>[]</strong>(parts : <a href="Enumerable.html">Enumerable</a>) : <a href="Path.html">Path</a>
+
+        <a class="method-permalink" href="#%5B%5D%28parts%3AEnumerable%29%3APath-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Creates a new <code><a href="Path.html">Path</a></code> of native kind.</p>
+<p>When compiling for a windows target, this is equal to <code><a href="Path.html#windows%28name%3AString%3D%22%22%29%3APath-class-method">Path.windows()</a></code>,
+otherwise <code><a href="Path.html#posix%28name%3AString%3D%22%22%29%3APath-class-method">Path.posix</a></code> is used.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/path.cr#L123" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="[](name:String|Path,*parts):Path-class-method">
+      <div class="signature">
+        
+        def self.<strong>[]</strong>(name : <a href="String.html">String</a> | <a href="Path.html">Path</a>, *parts) : <a href="Path.html">Path</a>
+
+        <a class="method-permalink" href="#%5B%5D%28name%3AString%7CPath%2C%2Aparts%29%3APath-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Creates a new <code><a href="Path.html">Path</a></code> of native kind.</p>
+<p>When compiling for a windows target, this is equal to <code><a href="Path.html#windows%28name%3AString%3D%22%22%29%3APath-class-method">Path.windows()</a></code>,
+otherwise <code><a href="Path.html#posix%28name%3AString%3D%22%22%29%3APath-class-method">Path.posix</a></code> is used.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/path.cr#L113" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="home:Path-class-method">
+      <div class="signature">
+        
+        def self.<strong>home</strong> : <a href="Path.html">Path</a>
+
+        <a class="method-permalink" href="#home%3APath-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the path of the home directory of the current user.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/path.cr#L1419" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="new(ctx:YAML::ParseContext,node:YAML::Nodes::Node)-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(ctx : <a href="YAML/ParseContext.html">YAML::ParseContext</a>, node : <a href="YAML/Nodes/Node.html">YAML::Nodes::Node</a>)
+
+        <a class="method-permalink" href="#new%28ctx%3AYAML%3A%3AParseContext%2Cnode%3AYAML%3A%3ANodes%3A%3ANode%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/yaml/from_yaml.cr#L90" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="new(name:String=&quot;&quot;):Path-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(name : <a href="String.html">String</a> = <span class="s">&quot;&quot;</span>) : <a href="Path.html">Path</a>
+
+        <a class="method-permalink" href="#new%28name%3AString%3D%22%22%29%3APath-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Creates a new <code><a href="Path.html">Path</a></code> of native kind.</p>
+<p>When compiling for a windows target, this is equal to <code><a href="Path.html#windows%28name%3AString%3D%22%22%29%3APath-class-method">Path.windows()</a></code>,
+otherwise <code><a href="Path.html#posix%28name%3AString%3D%22%22%29%3APath-class-method">Path.posix</a></code> is used.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/path.cr#L98" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="new(path:Path):Path-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(path : <a href="Path.html">Path</a>) : <a href="Path.html">Path</a>
+
+        <a class="method-permalink" href="#new%28path%3APath%29%3APath-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Creates a new <code><a href="Path.html">Path</a></code> of native kind.</p>
+<p>When compiling for a windows target, this is equal to <code><a href="Path.html#windows%28name%3AString%3D%22%22%29%3APath-class-method">Path.windows()</a></code>,
+otherwise <code><a href="Path.html#posix%28name%3AString%3D%22%22%29%3APath-class-method">Path.posix</a></code> is used.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/path.cr#L103" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="new(parts:Enumerable):Path-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(parts : <a href="Enumerable.html">Enumerable</a>) : <a href="Path.html">Path</a>
+
+        <a class="method-permalink" href="#new%28parts%3AEnumerable%29%3APath-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Creates a new <code><a href="Path.html">Path</a></code> of native kind.</p>
+<p>When compiling for a windows target, this is equal to <code><a href="Path.html#windows%28name%3AString%3D%22%22%29%3APath-class-method">Path.windows()</a></code>,
+otherwise <code><a href="Path.html#posix%28name%3AString%3D%22%22%29%3APath-class-method">Path.posix</a></code> is used.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/path.cr#L118" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="new(pull:JSON::PullParser)-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(pull : <a href="JSON/PullParser.html">JSON::PullParser</a>)
+
+        <a class="method-permalink" href="#new%28pull%3AJSON%3A%3APullParser%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/from_json.cr#L194" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="new(name:String|Path,*parts:String|Path):Path-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(name : <a href="String.html">String</a> | <a href="Path.html">Path</a>, *parts : <a href="String.html">String</a> | <a href="Path.html">Path</a>) : <a href="Path.html">Path</a>
+
+        <a class="method-permalink" href="#new%28name%3AString%7CPath%2C%2Aparts%3AString%7CPath%29%3APath-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Creates a new <code><a href="Path.html">Path</a></code> of native kind.</p>
+<p>When compiling for a windows target, this is equal to <code><a href="Path.html#windows%28name%3AString%3D%22%22%29%3APath-class-method">Path.windows()</a></code>,
+otherwise <code><a href="Path.html#posix%28name%3AString%3D%22%22%29%3APath-class-method">Path.posix</a></code> is used.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/path.cr#L108" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="posix(name:String=&quot;&quot;):Path-class-method">
+      <div class="signature">
+        
+        def self.<strong>posix</strong>(name : <a href="String.html">String</a> = <span class="s">&quot;&quot;</span>) : <a href="Path.html">Path</a>
+
+        <a class="method-permalink" href="#posix%28name%3AString%3D%22%22%29%3APath-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Creates a new <code><a href="Path.html">Path</a></code> of POSIX kind.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/path.cr#L128" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="posix(path:Path):Path-class-method">
+      <div class="signature">
+        
+        def self.<strong>posix</strong>(path : <a href="Path.html">Path</a>) : <a href="Path.html">Path</a>
+
+        <a class="method-permalink" href="#posix%28path%3APath%29%3APath-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Creates a new <code><a href="Path.html">Path</a></code> of POSIX kind.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/path.cr#L133" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="posix(parts:Enumerable):Path-class-method">
+      <div class="signature">
+        
+        def self.<strong>posix</strong>(parts : <a href="Enumerable.html">Enumerable</a>) : <a href="Path.html">Path</a>
+
+        <a class="method-permalink" href="#posix%28parts%3AEnumerable%29%3APath-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Creates a new <code><a href="Path.html">Path</a></code> of POSIX kind.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/path.cr#L143" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="posix(name:String|Path,*parts:String|Path):Path-class-method">
+      <div class="signature">
+        
+        def self.<strong>posix</strong>(name : <a href="String.html">String</a> | <a href="Path.html">Path</a>, *parts : <a href="String.html">String</a> | <a href="Path.html">Path</a>) : <a href="Path.html">Path</a>
+
+        <a class="method-permalink" href="#posix%28name%3AString%7CPath%2C%2Aparts%3AString%7CPath%29%3APath-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Creates a new <code><a href="Path.html">Path</a></code> of POSIX kind.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/path.cr#L138" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="windows(name:String=&quot;&quot;):Path-class-method">
+      <div class="signature">
+        
+        def self.<strong>windows</strong>(name : <a href="String.html">String</a> = <span class="s">&quot;&quot;</span>) : <a href="Path.html">Path</a>
+
+        <a class="method-permalink" href="#windows%28name%3AString%3D%22%22%29%3APath-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Creates a new <code><a href="Path.html">Path</a></code> of Windows kind.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/path.cr#L148" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="windows(path:Path):Path-class-method">
+      <div class="signature">
+        
+        def self.<strong>windows</strong>(path : <a href="Path.html">Path</a>) : <a href="Path.html">Path</a>
+
+        <a class="method-permalink" href="#windows%28path%3APath%29%3APath-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Creates a new <code><a href="Path.html">Path</a></code> of Windows kind.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/path.cr#L153" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="windows(parts:Enumerable):Path-class-method">
+      <div class="signature">
+        
+        def self.<strong>windows</strong>(parts : <a href="Enumerable.html">Enumerable</a>) : <a href="Path.html">Path</a>
+
+        <a class="method-permalink" href="#windows%28parts%3AEnumerable%29%3APath-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Creates a new <code><a href="Path.html">Path</a></code> of Windows kind.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/path.cr#L163" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="windows(name:String|Path,*parts:String|Path):Path-class-method">
+      <div class="signature">
+        
+        def self.<strong>windows</strong>(name : <a href="String.html">String</a> | <a href="Path.html">Path</a>, *parts : <a href="String.html">String</a> | <a href="Path.html">Path</a>) : <a href="Path.html">Path</a>
+
+        <a class="method-permalink" href="#windows%28name%3AString%7CPath%2C%2Aparts%3AString%7CPath%29%3APath-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Creates a new <code><a href="Path.html">Path</a></code> of Windows kind.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/path.cr#L158" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+  
+
+  
+
+  
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="/(part:Path|String):Path-instance-method">
+      <div class="signature">
+        
+        def <strong>/</strong>(part : <a href="Path.html">Path</a> | <a href="String.html">String</a>) : <a href="Path.html">Path</a>
+
+        <a class="method-permalink" href="#/%28part%3APath%7CString%29%3APath-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Appends the given <em>part</em> to this path and returns the joined path.</p>
+<pre><code class="language-crystal"><span class="t">Path</span>[<span class="s">&quot;foo&quot;</span>] <span class="o">/</span> <span class="s">&quot;bar&quot;</span> <span class="o">/</span> <span class="s">&quot;baz&quot;</span>     <span class="c"># =&gt; Path[&quot;foo/bar/baz&quot;]</span>
+<span class="t">Path</span>[<span class="s">&quot;foo/&quot;</span>] <span class="o">/</span> <span class="t">Path</span>[<span class="s">&quot;/bar/baz&quot;</span>] <span class="c"># =&gt; Path[&quot;foo/bar/baz&quot;]</span></code></pre>
+<p>See <code><a href="Path.html#join%28parts%3AEnumerable%29%3APath-instance-method">#join(part)</a></code> for details.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/path.cr#L946" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="&lt;=&gt;(other:Path)-instance-method">
+      <div class="signature">
+        
+        def <strong><=></strong>(other : <a href="Path.html">Path</a>)
+
+        <a class="method-permalink" href="#%3C%3D%3E%28other%3APath%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Compares this path to <em>other</em>.</p>
+<p>The comparison is performed strictly lexically: <code>foo</code> and <code>./foo</code> are <em>not</em>
+treated as equal. Nor are paths of different <code>kind</code>.
+To compare paths semantically, they need to be normalized and converted to
+the same kind.</p>
+<pre><code class="language-crystal"><span class="t">Path</span>[<span class="s">&quot;foo&quot;</span>] <span class="o">&lt;=&gt;</span> <span class="t">Path</span>[<span class="s">&quot;foo&quot;</span>]               <span class="c"># =&gt; 0</span>
+<span class="t">Path</span>[<span class="s">&quot;foo&quot;</span>] <span class="o">&lt;=&gt;</span> <span class="t">Path</span>[<span class="s">&quot;./foo&quot;</span>]             <span class="c"># =&gt; 1</span>
+<span class="t">Path</span>[<span class="s">&quot;foo&quot;</span>] <span class="o">&lt;=&gt;</span> <span class="t">Path</span>[<span class="s">&quot;foo/&quot;</span>]              <span class="c"># =&gt; -1</span>
+<span class="t">Path</span>.posix(<span class="s">&quot;foo&quot;</span>) <span class="o">&lt;=&gt;</span> <span class="t">Path</span>.windows(<span class="s">&quot;foo&quot;</span>) <span class="c"># =&gt; -1</span></code></pre>
+<p>Comparison is case-sensitive for POSIX paths and case-insensitive for
+Windows paths.</p>
+<pre><code class="language-crystal"><span class="t">Path</span>.posix(<span class="s">&quot;foo&quot;</span>) <span class="o">&lt;=&gt;</span> <span class="t">Path</span>.posix(<span class="s">&quot;FOO&quot;</span>)     <span class="c"># =&gt; 1</span>
+<span class="t">Path</span>.windows(<span class="s">&quot;foo&quot;</span>) <span class="o">&lt;=&gt;</span> <span class="t">Path</span>.windows(<span class="s">&quot;FOO&quot;</span>) <span class="c"># =&gt; 0</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/path.cr#L1080" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="==(other:self)-instance-method">
+      <div class="signature">
+        
+        def <strong>==</strong>(other : <span class="k">self</span>)
+
+        <a class="method-permalink" href="#%3D%3D%28other%3Aself%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this path is considered equivalent to <em>other</em>.</p>
+<p>The comparison is performed strictly lexically: <code>foo</code> and <code>./foo</code> are <em>not</em>
+treated as equal. Nor are paths of different <code>kind</code>.
+To compare paths semantically, they need to be normalized and converted to
+the same kind.</p>
+<pre><code class="language-crystal"><span class="t">Path</span>[<span class="s">&quot;foo&quot;</span>] <span class="o">==</span> <span class="t">Path</span>[<span class="s">&quot;foo&quot;</span>]               <span class="c"># =&gt; true</span>
+<span class="t">Path</span>[<span class="s">&quot;foo&quot;</span>] <span class="o">==</span> <span class="t">Path</span>[<span class="s">&quot;./foo&quot;</span>]             <span class="c"># =&gt; false</span>
+<span class="t">Path</span>[<span class="s">&quot;foo&quot;</span>] <span class="o">==</span> <span class="t">Path</span>[<span class="s">&quot;foo/&quot;</span>]              <span class="c"># =&gt; false</span>
+<span class="t">Path</span>.posix(<span class="s">&quot;foo&quot;</span>) <span class="o">==</span> <span class="t">Path</span>.windows(<span class="s">&quot;foo&quot;</span>) <span class="c"># =&gt; false</span></code></pre>
+<p>Comparison is case-sensitive for POSIX paths and case-insensitive for
+Windows paths.</p>
+<pre><code class="language-crystal"><span class="t">Path</span>.posix(<span class="s">&quot;foo&quot;</span>) <span class="o">==</span> <span class="t">Path</span>.posix(<span class="s">&quot;FOO&quot;</span>)     <span class="c"># =&gt; false</span>
+<span class="t">Path</span>.windows(<span class="s">&quot;foo&quot;</span>) <span class="o">==</span> <span class="t">Path</span>.windows(<span class="s">&quot;FOO&quot;</span>) <span class="c"># =&gt; true</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/path.cr#L1108" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="absolute?:Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>absolute?</strong> : <a href="Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#absolute%3F%3ABool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this path is absolute.</p>
+<p>A POSIX path is absolute if it begins with a forward slash (<code><a href="Path.html#/%28part%3APath%7CString%29%3APath-instance-method">#/</a></code>).</p>
+<p>A Windows path is absolute if it begins with a drive letter (<code>C:</code>), a UNC
+share (<code>\\server\share</code>), or a root local device path (<code>\\.</code>, <code>\\?</code>), which
+is then followed by a root path separator. Drive-relative paths (<code>C:foo</code>),
+rooted paths (<code>\foo</code>), and root local device paths (<code>\\.</code>) are not absolute.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/path.cr#L1319" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="anchor:Path|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>anchor</strong> : <a href="Path.html">Path</a> | <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#anchor%3APath%7CNil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the concatenation of <code><a href="Path.html#drive%3APath%7CNil-instance-method">#drive</a></code> and <code><a href="Path.html#root%3APath%7CNil-instance-method">#root</a></code>.</p>
+<pre><code class="language-crystal"><span class="t">Path</span>[<span class="s">&quot;/etc/&quot;</span>].anchor                           <span class="c"># =&gt; Path[&quot;/&quot;]</span>
+<span class="t">Path</span>.windows(<span class="s">&quot;C:Program Files&quot;</span>).anchor         <span class="c"># =&gt; Path.windows(&quot;C:&quot;)</span>
+<span class="t">Path</span>.windows(<span class="s">&quot;C:\\Program Files&quot;</span>).anchor       <span class="c"># =&gt; Path.windows(&quot;C:\\&quot;)</span>
+<span class="t">Path</span>.windows(<span class="s">&quot;\\\\host\\share\\folder&quot;</span>).anchor <span class="c"># =&gt; Path.windows(&quot;\\\\host\\share\\&quot;)</span>
+<span class="t">Path</span>.windows(<span class="s">&quot;\\\\.\\NUL&quot;</span>).anchor              <span class="c"># =&gt; Path.windows(&quot;\\\\.\\&quot;)</span>
+<span class="t">Path</span>.windows(<span class="s">&quot;//?&quot;</span>).anchor                     <span class="c"># =&gt; Path.windows(&quot;//?&quot;)</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/path.cr#L1178" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="basename(suffix:String|Nil=nil):String-instance-method">
+      <div class="signature">
+        
+        def <strong>basename</strong>(suffix : <a href="String.html">String</a> | <a href="Nil.html">Nil</a> = <span class="n">nil</span>) : <a href="String.html">String</a>
+
+        <a class="method-permalink" href="#basename%28suffix%3AString%7CNil%3Dnil%29%3AString-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the last component of this path.</p>
+<p>If <em>suffix</em> is given, it is stripped from the end.</p>
+<p>In case the last component is the empty string (i.e. the path has a trailing
+separator), the second to last component is returned.
+For a path that only consists of an anchor, or an empty path, the base name
+is equivalent to the full path.</p>
+<pre><code class="language-crystal"><span class="t">Path</span>[<span class="s">&quot;/foo/bar/file.cr&quot;</span>].basename <span class="c"># =&gt; &quot;file.cr&quot;</span>
+<span class="t">Path</span>[<span class="s">&quot;/foo/bar/&quot;</span>].basename        <span class="c"># =&gt; &quot;bar&quot;</span>
+<span class="t">Path</span>[<span class="s">&quot;/foo/bar/.&quot;</span>].basename       <span class="c"># =&gt; &quot;.&quot;</span>
+<span class="t">Path</span>[<span class="s">&quot;/&quot;</span>].basename                <span class="c"># =&gt; &quot;/&quot;</span>
+<span class="t">Path</span>[<span class="s">&quot;&quot;</span>].basename                 <span class="c"># =&gt; &quot;&quot;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/path.cr#L309" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="dirname:String-instance-method">
+      <div class="signature">
+        
+        def <strong>dirname</strong> : <a href="String.html">String</a>
+
+        <a class="method-permalink" href="#dirname%3AString-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns all components of this path except the last one.</p>
+<pre><code class="language-crystal"><span class="t">Path</span>[<span class="s">&quot;/foo/bar/file.cr&quot;</span>].dirname <span class="c"># =&gt; &quot;/foo/bar&quot;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/path.cr#L196" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="drive:Path|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>drive</strong> : <a href="Path.html">Path</a> | <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#drive%3APath%7CNil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns a path representing the drive component or <code>nil</code> if this path does not contain a drive.</p>
+<p>See <code><a href="Path.html#anchor%3APath%7CNil-instance-method">#anchor</a></code> for the combination of drive and <code><a href="Path.html#root%3APath%7CNil-instance-method">#root</a></code>.</p>
+<pre><code class="language-crystal"><span class="t">Path</span>.windows(<span class="s">&quot;C:\\Program Files&quot;</span>).drive       <span class="c"># =&gt; Path.windows(&quot;C:&quot;)</span>
+<span class="t">Path</span>.windows(<span class="s">&quot;\\\\host\\share\\folder&quot;</span>).drive <span class="c"># =&gt; Path.windows(&quot;\\\\host\\share&quot;)</span>
+<span class="t">Path</span>.windows(<span class="s">&quot;\\\\.\\NUL&quot;</span>).drive              <span class="c"># =&gt; Path.windows(&quot;\\\\.&quot;)</span>
+<span class="t">Path</span>.windows(<span class="s">&quot;//?&quot;</span>).drive                     <span class="c"># =&gt; Path.windows(&quot;//?&quot;)</span></code></pre>
+<p><span class="flag purple">NOTE</span>  Drives are only available for Windows paths. It can be a drive letter
+(<code>C:</code>), a UNC share (<code>\\host\share</code>), or a root local device path (<code>\\.</code>,
+<code>\\?</code>).</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/path.cr#L1137" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="drive_and_root:Tuple(String|Nil,String|Nil)-instance-method">
+      <div class="signature">
+        
+        def <strong>drive_and_root</strong> : <a href="Tuple.html">Tuple</a>(<a href="String.html">String</a> | <a href="Nil.html">Nil</a>, <a href="String.html">String</a> | <a href="Nil.html">Nil</a>)
+
+        <a class="method-permalink" href="#drive_and_root%3ATuple%28String%7CNil%2CString%7CNil%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns a tuple of <code><a href="Path.html#drive%3APath%7CNil-instance-method">#drive</a></code> and <code><a href="Path.html#root%3APath%7CNil-instance-method">#root</a></code> as strings.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/path.cr#L1188" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="each_parent(&amp;block:Path-&gt;)-instance-method">
+      <div class="signature">
+        
+        def <strong>each_parent</strong>(&block : <a href="Path.html">Path</a> -> )
+
+        <a class="method-permalink" href="#each_parent%28%26block%3APath-%3E%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Yields each parent of this path beginning with the topmost parent.</p>
+<pre><code class="language-crystal"><span class="t">Path</span>[<span class="s">&quot;foo/bar/file.cr&quot;</span>].each_parent { <span class="o">|</span>parent<span class="o">|</span> puts parent }
+<span class="c"># Path[&quot;.&quot;]</span>
+<span class="c"># Path[&quot;foo&quot;]</span>
+<span class="c"># Path[&quot;foo/bar&quot;]</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/path.cr#L273" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="each_part(&amp;:String-&gt;)-instance-method">
+      <div class="signature">
+        
+        def <strong>each_part</strong>(& : <a href="String.html">String</a> -> )
+
+        <a class="method-permalink" href="#each_part%28%26%3AString-%3E%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Yields each component of this path as a <code><a href="String.html">String</a></code>.</p>
+<pre><code class="language-crystal"><span class="t">Path</span>.new(<span class="s">&quot;foo/bar/&quot;</span>).each_part <span class="c"># yields: &quot;foo&quot;, &quot;bar&quot;</span></code></pre>
+<p>See <code><a href="Path.html#parts%3AArray%28String%29-instance-method">#parts</a></code> for more examples.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/path.cr#L499" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="each_part:Iterator(String)-instance-method">
+      <div class="signature">
+        
+        def <strong>each_part</strong> : <a href="Iterator.html">Iterator</a>(<a href="String.html">String</a>)
+
+        <a class="method-permalink" href="#each_part%3AIterator%28String%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns an iterator over all components of this path.</p>
+<pre><code class="language-crystal">parts <span class="o">=</span> <span class="t">Path</span>.new(<span class="s">&quot;foo/bar/&quot;</span>).each_part
+parts.<span class="k">next</span> <span class="c"># =&gt; &quot;foo&quot;</span>
+parts.<span class="k">next</span> <span class="c"># =&gt; &quot;bar&quot;</span>
+parts.<span class="k">next</span> <span class="c"># =&gt; Iterator::Stop::INSTANCE</span></code></pre>
+<p>See <code><a href="Path.html#parts%3AArray%28String%29-instance-method">#parts</a></code> for more examples.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/path.cr#L531" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="ends_with_separator?:Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>ends_with_separator?</strong> : <a href="Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#ends_with_separator%3F%3ABool-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/path.cr#L1372" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="expand(base:Path|String=Dir.current,*,home:Path|String|Bool=false,expand_base=true):Path-instance-method">
+      <div class="signature">
+        
+        def <strong>expand</strong>(base : <a href="Path.html">Path</a> | <a href="String.html">String</a> = <span class="t">Dir</span>.current, *, home : <a href="Path.html">Path</a> | <a href="String.html">String</a> | <a href="Bool.html">Bool</a> = <span class="n">false</span>, expand_base = <span class="n">true</span>) : <a href="Path.html">Path</a>
+
+        <a class="method-permalink" href="#expand%28base%3APath%7CString%3DDir.current%2C%2A%2Chome%3APath%7CString%7CBool%3Dfalse%2Cexpand_base%3Dtrue%29%3APath-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Converts this path to an absolute path. Relative paths are
+referenced from the current working directory of the process (<code><a href="Dir.html#current%3AString-class-method">Dir.current</a></code>)
+unless <em>base</em> is given, in which case it will be used as the reference path.</p>
+<pre><code class="language-crystal"><span class="t">Path</span>[<span class="s">&quot;foo&quot;</span>].expand                 <span class="c"># =&gt; Path[&quot;/current/path/foo&quot;]</span>
+<span class="t">Path</span>[<span class="s">&quot;~/foo&quot;</span>].expand(home: <span class="s">&quot;/bar&quot;</span>) <span class="c"># =&gt; Path[&quot;/bar/foo&quot;]</span>
+<span class="t">Path</span>[<span class="s">&quot;baz&quot;</span>].expand(<span class="s">&quot;/foo/bar&quot;</span>)     <span class="c"># =&gt; Path[&quot;/foo/bar/baz&quot;]</span></code></pre>
+<p><em>home</em> specifies the home directory which <code>~</code> will expand to.
+&quot;~&quot; is expanded to the value passed to <em>home</em>.
+If it is <code>false</code> (default), home is not expanded.
+If <code>true</code>, it is expanded to the user's home directory (<code><a href="Path.html#home%3APath-class-method">Path.home</a></code>).</p>
+<p>If <em>expand_base</em> is <code>true</code>, <em>base</em> itself will be expanded in <code><a href="Dir.html#current%3AString-class-method">Dir.current</a></code>
+if it is not an absolute path. This guarantees the method returns an absolute
+path (assuming that <code><a href="Dir.html#current%3AString-class-method">Dir.current</a></code> is absolute).</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/path.cr#L747" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="extension:String-instance-method">
+      <div class="signature">
+        
+        def <strong>extension</strong> : <a href="String.html">String</a>
+
+        <a class="method-permalink" href="#extension%3AString-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the extension of this path, or an empty string if it has no extension.</p>
+<pre><code class="language-crystal"><span class="t">Path</span>[<span class="s">&quot;foo.cr&quot;</span>].extension     <span class="c"># =&gt; &quot;.cr&quot;</span>
+<span class="t">Path</span>[<span class="s">&quot;foo&quot;</span>].extension        <span class="c"># =&gt; &quot;&quot;</span>
+<span class="t">Path</span>[<span class="s">&quot;foo.tar.gz&quot;</span>].extension <span class="c"># =&gt; &quot;.gz&quot;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/path.cr#L357" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="hash(hasher)-instance-method">
+      <div class="signature">
+        
+        def <strong>hash</strong>(hasher)
+
+        <a class="method-permalink" href="#hash%28hasher%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+            <div class="doc-inherited">
+              Description copied from struct <a href="Struct.html">Struct</a>
+            </div>
+          
+          <p>See <code><a href="Object.html#hash%28hasher%29-instance-method">Object#hash(hasher)</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/path.cr#L1114" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="inspect(io:IO)-instance-method">
+      <div class="signature">
+        
+        def <strong>inspect</strong>(io : <a href="IO.html">IO</a>)
+
+        <a class="method-permalink" href="#inspect%28io%3AIO%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Inspects this path to <em>io</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/path.cr#L1395" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="join(parts:Enumerable):Path-instance-method">
+      <div class="signature">
+        
+        def <strong>join</strong>(parts : <a href="Enumerable.html">Enumerable</a>) : <a href="Path.html">Path</a>
+
+        <a class="method-permalink" href="#join%28parts%3AEnumerable%29%3APath-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Appends the given <em>parts</em> to this path and returns the joined path.</p>
+<pre><code class="language-crystal"><span class="t">Path</span>[<span class="s">&quot;foo&quot;</span>].join(<span class="s">&quot;bar&quot;</span>, <span class="s">&quot;baz&quot;</span>)           <span class="c"># =&gt; Path[&quot;foo/bar/baz&quot;]</span>
+<span class="t">Path</span>[<span class="s">&quot;foo/&quot;</span>].join(<span class="t">Path</span>[<span class="s">&quot;/bar/&quot;</span>, <span class="s">&quot;/baz&quot;</span>]) <span class="c"># =&gt; Path[&quot;foo/bar/baz&quot;]</span>
+<span class="t">Path</span>[<span class="s">&quot;/foo/&quot;</span>].join(<span class="s">&quot;/bar/&quot;</span>, <span class="s">&quot;/baz/&quot;</span>)     <span class="c"># =&gt; Path[&quot;/foo/bar/baz/&quot;]</span></code></pre>
+<p>Non-matching paths are implicitly converted to this path's kind.</p>
+<pre><code class="language-crystal"><span class="t">Path</span>.posix(<span class="s">&quot;foo/bar&quot;</span>).join(<span class="t">Path</span>.windows(<span class="s">&quot;baz\\baq&quot;</span>)) <span class="c"># =&gt; Path.posix(&quot;foo/bar/baz/baq&quot;)</span>
+<span class="t">Path</span>.windows(<span class="s">&quot;foo\\bar&quot;</span>).join(<span class="t">Path</span>.posix(<span class="s">&quot;baz/baq&quot;</span>)) <span class="c"># =&gt; Path.windows(&quot;foo\\bar\\baz/baq&quot;)</span></code></pre>
+<p>See <code><a href="Path.html#join%28parts%3AEnumerable%29%3APath-instance-method">#join(part)</a></code> for details.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/path.cr#L934" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="join(part):Path-instance-method">
+      <div class="signature">
+        
+        def <strong>join</strong>(part) : <a href="Path.html">Path</a>
+
+        <a class="method-permalink" href="#join%28part%29%3APath-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Appends the given <em>part</em> to this path and returns the joined path.</p>
+<pre><code class="language-crystal"><span class="t">Path</span>[<span class="s">&quot;foo&quot;</span>].join(<span class="s">&quot;bar&quot;</span>)     <span class="c"># =&gt; Path[&quot;foo/bar&quot;]</span>
+<span class="t">Path</span>[<span class="s">&quot;foo/&quot;</span>].join(<span class="s">&quot;/bar&quot;</span>)   <span class="c"># =&gt; Path[&quot;foo/bar&quot;]</span>
+<span class="t">Path</span>[<span class="s">&quot;/foo/&quot;</span>].join(<span class="s">&quot;/bar/&quot;</span>) <span class="c"># =&gt; Path[&quot;/foo/bar/&quot;]</span></code></pre>
+<p>Joining an empty string (<code>&quot;&quot;</code>) appends a trailing path separator.
+In case the path already ends with a trailing separator, no additional
+separator is added.</p>
+<pre><code class="language-crystal"><span class="t">Path</span>[<span class="s">&quot;a/b&quot;</span>].join(<span class="s">&quot;&quot;</span>)   <span class="c"># =&gt; Path[&quot;a/b/&quot;]</span>
+<span class="t">Path</span>[<span class="s">&quot;a/b/&quot;</span>].join(<span class="s">&quot;&quot;</span>)  <span class="c"># =&gt; Path[&quot;a/b/&quot;]</span>
+<span class="t">Path</span>[<span class="s">&quot;a/b/&quot;</span>].join(<span class="s">&quot;c&quot;</span>) <span class="c"># =&gt; Path[&quot;a/b/c&quot;]</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/path.cr#L843" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="join(*parts):Path-instance-method">
+      <div class="signature">
+        
+        def <strong>join</strong>(*parts) : <a href="Path.html">Path</a>
+
+        <a class="method-permalink" href="#join%28%2Aparts%29%3APath-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Appends the given <em>parts</em> to this path and returns the joined path.</p>
+<pre><code class="language-crystal"><span class="t">Path</span>[<span class="s">&quot;foo&quot;</span>].join(<span class="s">&quot;bar&quot;</span>, <span class="s">&quot;baz&quot;</span>)       <span class="c"># =&gt; Path[&quot;foo/bar/baz&quot;]</span>
+<span class="t">Path</span>[<span class="s">&quot;foo/&quot;</span>].join(<span class="s">&quot;/bar/&quot;</span>, <span class="s">&quot;/baz&quot;</span>)   <span class="c"># =&gt; Path[&quot;foo/bar/baz&quot;]</span>
+<span class="t">Path</span>[<span class="s">&quot;/foo/&quot;</span>].join(<span class="s">&quot;/bar/&quot;</span>, <span class="s">&quot;/baz/&quot;</span>) <span class="c"># =&gt; Path[&quot;/foo/bar/baz/&quot;]</span></code></pre>
+<p>See <code><a href="Path.html#join%28parts%3AEnumerable%29%3APath-instance-method">#join(part)</a></code> for details.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/path.cr#L914" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="native?:Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>native?</strong> : <a href="Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#native%3F%3ABool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this is a native path for the target platform.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/path.cr#L187" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="normalize(*,remove_final_separator:Bool=true):Path-instance-method">
+      <div class="signature">
+        
+        def <strong>normalize</strong>(*, remove_final_separator : <a href="Bool.html">Bool</a> = <span class="n">true</span>) : <a href="Path.html">Path</a>
+
+        <a class="method-permalink" href="#normalize%28%2A%2Cremove_final_separator%3ABool%3Dtrue%29%3APath-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Removes redundant elements from this path and returns the shortest equivalent path by purely lexical processing.
+It applies the following rules iteratively until no further processing can be done:</p>
+<ol>
+<li>Replace multiple slashes with a single slash.</li>
+<li>Eliminate each <code>.</code> path name element (the current directory).</li>
+<li>Eliminate each <code>..</code> path name element (the parent directory) preceded
+by a non-<code>..</code> element along with the latter.</li>
+<li>Eliminate <code>..</code> elements that begin a rooted path:
+that is, replace <code>&quot;/..&quot;</code> by <code>&quot;/&quot;</code> at the beginning of a path.</li>
+</ol>
+<p>If the path turns to be empty, the current directory (<code>&quot;.&quot;</code>) is returned.</p>
+<p>The returned path ends in a slash if it is the root (<code>&quot;/&quot;</code>, <code>\</code>, or <code>C:\</code>),
+or if this path is a Windows local device path that also ends in a slash.
+This trailing slash is significant; <code>\\.\C:</code> refers to the <em>volume</em> <code>C:</code>, on
+which most I/O functions fail, whereas <code>\\.\C:\</code> refers to the root
+<em>directory</em> of said volume.</p>
+<p>See also Rob Pike: <em><a href="https://9p.io/sys/doc/lexnames.html">Lexical File Names in Plan 9 or Getting Dot-Dot Right</a></em></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/path.cr#L417" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="parent:Path-instance-method">
+      <div class="signature">
+        
+        def <strong>parent</strong> : <a href="Path.html">Path</a>
+
+        <a class="method-permalink" href="#parent%3APath-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the parent path of this path.</p>
+<p>If the path is empty, it returns <code>&quot;.&quot;</code>. If the path is rooted
+and in the top-most hierarchy, the root path is returned.</p>
+<pre><code class="language-crystal"><span class="t">Path</span>[<span class="s">&quot;foo/bar/file.cr&quot;</span>].parent <span class="c"># =&gt; Path[&quot;foo/bar&quot;]</span>
+<span class="t">Path</span>[<span class="s">&quot;foo&quot;</span>].parent             <span class="c"># =&gt; Path[&quot;.&quot;]</span>
+<span class="t">Path</span>[<span class="s">&quot;/foo&quot;</span>].parent            <span class="c"># =&gt; Path[&quot;/&quot;]</span>
+<span class="t">Path</span>[<span class="s">&quot;/&quot;</span>].parent               <span class="c"># =&gt; Path[&quot;/&quot;]</span>
+<span class="t">Path</span>[<span class="s">&quot;&quot;</span>].parent                <span class="c"># =&gt; Path[&quot;.&quot;]</span>
+<span class="t">Path</span>[<span class="s">&quot;foo/bar/.&quot;</span>].parent       <span class="c"># =&gt; Path[&quot;foo/bar&quot;]</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/path.cr#L248" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="parents:Array(Path)-instance-method">
+      <div class="signature">
+        
+        def <strong>parents</strong> : <a href="Array.html">Array</a>(<a href="Path.html">Path</a>)
+
+        <a class="method-permalink" href="#parents%3AArray%28Path%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns all parent paths of this path beginning with the topmost path.</p>
+<pre><code class="language-crystal"><span class="t">Path</span>[<span class="s">&quot;foo/bar/file.cr&quot;</span>].parents <span class="c"># =&gt; [Path[&quot;.&quot;], Path[&quot;foo&quot;], Path[&quot;foo/bar&quot;]]</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/path.cr#L257" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="parts:Array(String)-instance-method">
+      <div class="signature">
+        
+        def <strong>parts</strong> : <a href="Array.html">Array</a>(<a href="String.html">String</a>)
+
+        <a class="method-permalink" href="#parts%3AArray%28String%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the components of this path as an <code><a href="Array.html">Array</a>(<a href="String.html">String</a>)</code>.</p>
+<pre><code class="language-crystal"><span class="t">Path</span>.new(<span class="s">&quot;foo/bar/&quot;</span>).parts                   <span class="c"># =&gt; [&quot;foo&quot;, &quot;bar&quot;]</span>
+<span class="t">Path</span>.new(<span class="s">&quot;/Users/foo/bar.cr&quot;</span>).parts          <span class="c"># =&gt; [&quot;/&quot;, &quot;Users&quot;, &quot;foo&quot;, &quot;bar.cr&quot;]</span>
+<span class="t">Path</span>.windows(<span class="s">&quot;C:\\Users\\foo\\bar.cr&quot;</span>).parts <span class="c"># =&gt; [&quot;C:\\&quot;, &quot;Users&quot;, &quot;foo&quot;, &quot;bar.cr&quot;]</span>
+<span class="t">Path</span>.posix(<span class="s">&quot;C:\\Users\\foo\\bar.cr&quot;</span>).parts   <span class="c"># =&gt; [&quot;C:\\Users\\foo\\bar.cr&quot;]</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/path.cr#L513" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="posix?:Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>posix?</strong> : <a href="Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#posix%3F%3ABool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this is a POSIX path.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/path.cr#L182" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="relative_to(base:Path|String):Path-instance-method">
+      <div class="signature">
+        
+        def <strong>relative_to</strong>(base : <a href="Path.html">Path</a> | <a href="String.html">String</a>) : <a href="Path.html">Path</a>
+
+        <a class="method-permalink" href="#relative_to%28base%3APath%7CString%29%3APath-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Same as <code><a href="Path.html#relative_to%28base%3APath%7CString%29%3APath-instance-method">#relative_to</a></code> but returns <code>self</code> if <code>self</code> can't be expressed as
+relative path to <em>base</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/path.cr#L1055" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="relative_to?(base:Path):Path|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>relative_to?</strong>(base : <a href="Path.html">Path</a>) : <a href="Path.html">Path</a> | <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#relative_to%3F%28base%3APath%29%3APath%7CNil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns a relative path that is lexically equivalent to <code>self</code> when joined
+to <em>base</em> with an intervening separator.</p>
+<p>The returned path is in normalized form.</p>
+<p>That means with normalized paths <code>base.join(target.relative_to(base))</code> is
+equivalent to <code>target</code>.</p>
+<p>Returns <code>nil</code> if <code>self</code> cannot be expressed as relative to <em>base</em> or if
+knowing the current working directory would be necessary to resolve it. The
+latter can be avoided by expanding the paths first.</p>
+<p>For Windows paths, the drive and the root must be identical; relative paths
+between different path types are not supported, even if they would resolve
+to the same roots (e.g. <code>\\.\C:\foo</code> and <code>C:\foo</code> are not equivalent, nor
+are <code>\\?\UNC\server\share\foo</code> and <code>\\server\share\foo</code>).</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/path.cr#L981" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="relative_to?(base:String):Path|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>relative_to?</strong>(base : <a href="String.html">String</a>) : <a href="Path.html">Path</a> | <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#relative_to%3F%28base%3AString%29%3APath%7CNil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns a relative path that is lexically equivalent to <code>self</code> when joined
+to <em>base</em> with an intervening separator.</p>
+<p>The returned path is in normalized form.</p>
+<p>That means with normalized paths <code>base.join(target.relative_to(base))</code> is
+equivalent to <code>target</code>.</p>
+<p>Returns <code>nil</code> if <code>self</code> cannot be expressed as relative to <em>base</em> or if
+knowing the current working directory would be necessary to resolve it. The
+latter can be avoided by expanding the paths first.</p>
+<p>For Windows paths, the drive and the root must be identical; relative paths
+between different path types are not supported, even if they would resolve
+to the same roots (e.g. <code>\\.\C:\foo</code> and <code>C:\foo</code> are not equivalent, nor
+are <code>\\?\UNC\server\share\foo</code> and <code>\\server\share\foo</code>).</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/path.cr#L1049" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="root:Path|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>root</strong> : <a href="Path.html">Path</a> | <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#root%3APath%7CNil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the root path component of this path or <code>nil</code> if it is not rooted.</p>
+<p>See <code><a href="Path.html#anchor%3APath%7CNil-instance-method">#anchor</a></code> for the combination of <code><a href="Path.html#drive%3APath%7CNil-instance-method">#drive</a></code> and root.</p>
+<pre><code class="language-crystal"><span class="t">Path</span>[<span class="s">&quot;/etc/&quot;</span>].root                           <span class="c"># =&gt; Path[&quot;/&quot;]</span>
+<span class="t">Path</span>.windows(<span class="s">&quot;C:Program Files&quot;</span>).root         <span class="c"># =&gt; nil</span>
+<span class="t">Path</span>.windows(<span class="s">&quot;C:\\Program Files&quot;</span>).root       <span class="c"># =&gt; Path.windows(&quot;\\&quot;)</span>
+<span class="t">Path</span>.windows(<span class="s">&quot;\\\\host\\share\\folder&quot;</span>).root <span class="c"># =&gt; Path.windows(&quot;\\&quot;)</span>
+<span class="t">Path</span>.windows(<span class="s">&quot;//./NUL&quot;</span>).root                 <span class="c"># =&gt; Path.windows(&quot;/&quot;)</span>
+<span class="t">Path</span>.windows(<span class="s">&quot;\\\\?&quot;</span>).root                   <span class="c"># =&gt; nil</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/path.cr#L1158" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="sibling(name:Path|String):Path-instance-method">
+      <div class="signature">
+        
+        def <strong>sibling</strong>(name : <a href="Path.html">Path</a> | <a href="String.html">String</a>) : <a href="Path.html">Path</a>
+
+        <a class="method-permalink" href="#sibling%28name%3APath%7CString%29%3APath-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Resolves path <em>name</em> in this path's parent directory.</p>
+<p>Raises <code><a href="Path/Error.html">Path::Error</a></code> if <code><a href="Path.html#parent%3APath-instance-method">#parent</a></code> is <code>nil</code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/path.cr#L953" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="stem:String-instance-method">
+      <div class="signature">
+        
+        def <strong>stem</strong> : <a href="String.html">String</a>
+
+        <a class="method-permalink" href="#stem%3AString-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the last component of this path without the extension.</p>
+<p>This is equivalent to <code>self<a href="Path.html#basename%28suffix%3AString%7CNil%3Dnil%29%3AString-instance-method">.basename(self.extension)</a></code>.</p>
+<pre><code class="language-crystal"><span class="t">Path</span>[<span class="s">&quot;file.cr&quot;</span>].stem     <span class="c"># =&gt; &quot;file&quot;</span>
+<span class="t">Path</span>[<span class="s">&quot;file.tar.gz&quot;</span>].stem <span class="c"># =&gt; &quot;file.tar&quot;</span>
+<span class="t">Path</span>[<span class="s">&quot;foo/file.cr&quot;</span>].stem <span class="c"># =&gt; &quot;file&quot;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/path.cr#L394" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_json(json:JSON::Builder):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>to_json</strong>(json : <a href="JSON/Builder.html">JSON::Builder</a>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#to_json%28json%3AJSON%3A%3ABuilder%29%3ANil-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/to_json.cr#L74" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_json_object_key:String-instance-method">
+      <div class="signature">
+        
+        def <strong>to_json_object_key</strong> : <a href="String.html">String</a>
+
+        <a class="method-permalink" href="#to_json_object_key%3AString-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/to_json.cr#L78" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_kind(kind,*,mappings:Bool=true):Path-instance-method">
+      <div class="signature">
+        
+        def <strong>to_kind</strong>(kind, *, mappings : <a href="Bool.html">Bool</a> = <span class="n">true</span>) : <a href="Path.html">Path</a>
+
+        <a class="method-permalink" href="#to_kind%28kind%2C%2A%2Cmappings%3ABool%3Dtrue%29%3APath-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Converts this path to the given <em>kind</em>.</p>
+<p>See <code><a href="Path.html#to_windows%28%2A%2Cmappings%3ABool%3Dtrue%29%3APath-instance-method">#to_windows</a></code> and <code><a href="Path.html#to_posix%28%2A%2Cmappings%3ABool%3Dtrue%29%3APath-instance-method">#to_posix</a></code> for details.</p>
+<ul>
+<li><code><a href="Path.html#to_native%3APath-instance-method">#to_native</a></code> converts to the native path semantics.</li>
+</ul>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/path.cr#L721" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_native:Path-instance-method">
+      <div class="signature">
+        
+        def <strong>to_native</strong> : <a href="Path.html">Path</a>
+
+        <a class="method-permalink" href="#to_native%3APath-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Converts this path to a native path.</p>
+<ul>
+<li><code><a href="Path.html#to_kind%28kind%2C%2A%2Cmappings%3ABool%3Dtrue%29%3APath-instance-method">#to_kind</a></code> performs a configurable conversion.</li>
+</ul>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/path.cr#L643" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_posix(*,mappings:Bool=true):Path-instance-method">
+      <div class="signature">
+        
+        def <strong>to_posix</strong>(*, mappings : <a href="Bool.html">Bool</a> = <span class="n">true</span>) : <a href="Path.html">Path</a>
+
+        <a class="method-permalink" href="#to_posix%28%2A%2Cmappings%3ABool%3Dtrue%29%3APath-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Converts this path to a POSIX path.</p>
+<p>It returns a new instance with <code><a href="Path/Kind.html#POSIX">Kind::POSIX</a></code> and all occurrences of Windows'
+backslash file separators (<code>\\</code>) replaced by forward slash (<code><a href="Path.html#/%28part%3APath%7CString%29%3APath-instance-method">#/</a></code>).
+If <code><a href="Path.html#posix%3F%3ABool-instance-method">#posix?</a></code> is true, this is a no-op.</p>
+<pre><code class="language-crystal"><span class="t">Path</span>.windows(<span class="s">&quot;foo/bar\\baz&quot;</span>).to_posix <span class="c"># =&gt; Path.posix(&quot;foo/bar/baz&quot;)</span>
+<span class="t">Path</span>.posix(<span class="s">&quot;foo/bar\\baz&quot;</span>).to_posix   <span class="c"># =&gt; Path.posix(&quot;foo/bar\\baz&quot;)</span></code></pre>
+<p>When <em>mappings</em> is <code>true</code> (default), replacements  for forbidden characters in Windows
+paths are substituted by the original characters when converting to a POSIX path.
+Originals are calculated by subtracting <code>0xF000</code> from the replacement codepoint.
+For example, the <code>U+F05C</code> becomes <code>U+005C</code>, the backslash character.</p>
+<pre><code class="language-crystal"><span class="t">Path</span>.windows(<span class="s">&quot;foo\uF05Cbar&quot;</span>).to_posix(mappings: <span class="n">true</span>)  <span class="c"># =&gt; Path.posix(&quot;foo\\bar&quot;)</span>
+<span class="t">Path</span>.windows(<span class="s">&quot;foo\uF05Cbar&quot;</span>).to_posix(mappings: <span class="n">false</span>) <span class="c"># =&gt; Path.posix(&quot;foo\uF05Cbar&quot;)</span></code></pre>
+<ul>
+<li><code><a href="Path.html#to_windows%28%2A%2Cmappings%3ABool%3Dtrue%29%3APath-instance-method">#to_windows</a></code> performs the inverse conversion.</li>
+<li><code><a href="Path.html#to_kind%28kind%2C%2A%2Cmappings%3ABool%3Dtrue%29%3APath-instance-method">#to_kind</a></code> performs a configurable conversion.</li>
+</ul>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/path.cr#L705" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_s(io:IO)-instance-method">
+      <div class="signature">
+        
+        def <strong>to_s</strong>(io : <a href="IO.html">IO</a>)
+
+        <a class="method-permalink" href="#to_s%28io%3AIO%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Appends the string representation of this path to <em>io</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/path.cr#L1390" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_s:String-instance-method">
+      <div class="signature">
+        
+        def <strong>to_s</strong> : <a href="String.html">String</a>
+
+        <a class="method-permalink" href="#to_s%3AString-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the string representation of this path.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/path.cr#L1385" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_uri:URI-instance-method">
+      <div class="signature">
+        
+        def <strong>to_uri</strong> : <a href="URI.html">URI</a>
+
+        <a class="method-permalink" href="#to_uri%3AURI-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns a new <code><a href="URI.html">URI</a></code> with <code>file</code> scheme from this path.</p>
+<p>A URI can only be created with an absolute path. Raises <code><a href="Path/Error.html">Path::Error</a></code> if
+this path is not absolute.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/path.cr#L1413" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_windows(*,mappings:Bool=true):Path-instance-method">
+      <div class="signature">
+        
+        def <strong>to_windows</strong>(*, mappings : <a href="Bool.html">Bool</a> = <span class="n">true</span>) : <a href="Path.html">Path</a>
+
+        <a class="method-permalink" href="#to_windows%28%2A%2Cmappings%3ABool%3Dtrue%29%3APath-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Converts this path to a Windows path.</p>
+<p>This creates a new instance with the same string representation but with
+<code><a href="Path/Kind.html#WINDOWS">Kind::WINDOWS</a></code>. If <code><a href="Path.html#windows%3F%3ABool-instance-method">#windows?</a></code> is true, this is a no-op.</p>
+<pre><code class="language-crystal"><span class="t">Path</span>.posix(<span class="s">&quot;foo/bar&quot;</span>).to_windows   <span class="c"># =&gt; Path.windows(&quot;foo/bar&quot;)</span>
+<span class="t">Path</span>.windows(<span class="s">&quot;foo/bar&quot;</span>).to_windows <span class="c"># =&gt; Path.windows(&quot;foo/bar&quot;)</span></code></pre>
+<p>When <em>mappings</em> is <code>true</code> (default), forbidden characters in Windows paths are
+substituted by replacement characters when converting from a POSIX path.
+Replacements are calculated by adding <code>0xF000</code> to their codepoint.
+For example, the backslash character <code>U+005C</code> becomes <code>U+F05C</code>.</p>
+<pre><code class="language-crystal"><span class="t">Path</span>.posix(<span class="s">&quot;foo\\bar&quot;</span>).to_windows(mappings: <span class="n">true</span>)  <span class="c"># =&gt; Path.windows(&quot;foo\uF05Cbar&quot;)</span>
+<span class="t">Path</span>.posix(<span class="s">&quot;foo\\bar&quot;</span>).to_windows(mappings: <span class="n">false</span>) <span class="c"># =&gt; Path.windows(&quot;foo\\bar&quot;)</span></code></pre>
+<ul>
+<li><code><a href="Path.html#to_posix%28%2A%2Cmappings%3ABool%3Dtrue%29%3APath-instance-method">#to_posix</a></code> performs the inverse conversion.</li>
+<li><code><a href="Path.html#to_kind%28kind%2C%2A%2Cmappings%3ABool%3Dtrue%29%3APath-instance-method">#to_kind</a></code> performs a configurable conversion.</li>
+</ul>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/path.cr#L669" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_yaml(yaml:YAML::Nodes::Builder):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>to_yaml</strong>(yaml : <a href="YAML/Nodes/Builder.html">YAML::Nodes::Builder</a>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#to_yaml%28yaml%3AYAML%3A%3ANodes%3A%3ABuilder%29%3ANil-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/yaml/to_yaml.cr#L84" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="windows?:Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>windows?</strong> : <a href="Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#windows%3F%3ABool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this is a Windows path.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/path.cr#L177" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+</div>
+
+</body>
+</html>

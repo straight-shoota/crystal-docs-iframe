@@ -1,0 +1,1424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Crystal Docs 1.16.1">
+<meta name="crystal_docs.project_version" content="1.17.0-dev">
+<meta name="crystal_docs.project_name" content="Crystal">
+
+  <meta name="crystal_docs.json_config_url" content="/api/versions.json">
+
+
+    <link rel="canonical" href="https://crystal-lang.org/api/latest/HTTP/Cookie.html">
+
+<link href="../css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../js/doc.js"></script>
+
+  <meta name="repository-name" content="Crystal">
+  <title>HTTP::Cookie - Crystal 1.17.0-dev</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "../";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill="currentColor" fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<input type="checkbox" id="sidebar-btn">
+<label for="sidebar-btn" id="sidebar-btn-label">
+  <svg class="open" xmlns="http://www.w3.org/2000/svg" height="2em" width="2em" viewBox="0 0 512 512"><title>Open Sidebar</title><path fill="currentColor" d="M80 96v64h352V96H80zm0 112v64h352v-64H80zm0 112v64h352v-64H80z"></path></svg>
+  <svg class="close" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><title>Close Sidebar</title><path fill="currentColor" d="m118.6 73.4-45.2 45.2L210.7 256 73.4 393.4l45.2 45.2L256 301.3l137.4 137.3 45.2-45.2L301.3 256l137.3-137.4-45.2-45.2L256 210.7Z"></path></svg>
+</label>
+<iframe class="sidebar" src="../sidebar.html"></iframe>
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">
+    class
+  </span> HTTP::<wbr>Cookie
+
+</h1>
+
+
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../HTTP/Cookie.html">HTTP::Cookie</a></li><li class="superclass"><a href="../Reference.html">Reference</a></li><li class="superclass"><a href="../Object.html">Object</a></li></ul>
+
+
+
+
+  <h2>
+    <a id="overview" class="anchor" href="#overview">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Overview
+  </h2>
+
+  <p>Represents a cookie with all its attributes. Provides convenient access and modification of them.</p>
+<p><span class="flag purple">NOTE</span>  To use <code><a href="../HTTP/Cookie.html">Cookie</a></code>, you must explicitly import it with <code>require &quot;http/cookie&quot;</code></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/http/cookie.cr#L5" target="_blank">
+        http/cookie.cr
+      </a>
+    
+    <br/>
+  
+
+
+
+
+
+  
+  <h2>
+    <a id="constructors" class="anchor" href="#constructors">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructors
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#new%28name%3AString%2Cvalue%3AString%2Cpath%3AString%7CNil%3Dnil%2Cexpires%3ATime%7CNil%3Dnil%2Cdomain%3AString%7CNil%3Dnil%2Csecure%3ABool%7CNil%3Dnil%2Chttp_only%3ABool%3Dfalse%2Csamesite%3ASameSite%7CNil%3Dnil%2Cextension%3AString%7CNil%3Dnil%2Cmax_age%3ATime%3A%3ASpan%7CNil%3Dnil%2Ccreation_time%3ATime%3DTime.utc%29-class-method" class="signature"><strong>.new</strong>(name : String, value : String, path : String | Nil = <span class="n">nil</span>, expires : Time | Nil = <span class="n">nil</span>, domain : String | Nil = <span class="n">nil</span>, secure : Bool | Nil = <span class="n">nil</span>, http_only : Bool = <span class="n">false</span>, samesite : SameSite | Nil = <span class="n">nil</span>, extension : String | Nil = <span class="n">nil</span>, max_age : Time::Span | Nil = <span class="n">nil</span>, creation_time : Time = <span class="t">Time</span>.utc)</a>
+        
+          <div class="summary"><p>Creates a new <code><a href="../HTTP/Cookie.html">Cookie</a></code> instance.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+  
+
+  
+
+  
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#%3D%3D%28other%3Aself%29-instance-method" class="signature"><strong>#==</strong>(other : <span class="k">self</span>)</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this reference is the same as <em>other</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#creation_time%3ATime-instance-method" class="signature"><strong>#creation_time</strong> : Time</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#domain%3AString%7CNil-instance-method" class="signature"><strong>#domain</strong> : String | Nil</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#domain%3D%28domain%3AString%7CNil%29-instance-method" class="signature"><strong>#domain=</strong>(domain : String | Nil)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#expiration_time%3ATime%7CNil-instance-method" class="signature"><strong>#expiration_time</strong> : Time | Nil</a>
+        
+          <div class="summary"><p>Returns the expiration time of this cookie.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#expire-instance-method" class="signature"><strong>#expire</strong></a>
+        
+          <div class="summary"><p>Expires the cookie.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#expired%3F%28time_reference%3DTime.utc%29%3ABool-instance-method" class="signature"><strong>#expired?</strong>(time_reference = <span class="t">Time</span>.utc) : Bool</a>
+        
+          <div class="summary"><p>Returns the expiration status of this cookie as a <code><a href="../Bool.html">Bool</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#expires%3ATime%7CNil-instance-method" class="signature"><strong>#expires</strong> : Time | Nil</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#expires%3D%28expires%3ATime%7CNil%29-instance-method" class="signature"><strong>#expires=</strong>(expires : Time | Nil)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#extension%3AString%7CNil-instance-method" class="signature"><strong>#extension</strong> : String | Nil</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#extension%3D%28extension%3AString%7CNil%29-instance-method" class="signature"><strong>#extension=</strong>(extension : String | Nil)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#hash%28hasher%29-instance-method" class="signature"><strong>#hash</strong>(hasher)</a>
+        
+          <div class="summary"><p>See <code><a href="../Object.html#hash%28hasher%29-instance-method">Object#hash(hasher)</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#http_only%3ABool-instance-method" class="signature"><strong>#http_only</strong> : Bool</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#http_only%3D%28http_only%3ABool%29-instance-method" class="signature"><strong>#http_only=</strong>(http_only : Bool)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#inspect%28io%3AIO%29%3ANil-instance-method" class="signature"><strong>#inspect</strong>(io : IO) : Nil</a>
+        
+          <div class="summary"><p>Returns an unambiguous string representation of this cookie.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#max_age%3ATime%3A%3ASpan%7CNil-instance-method" class="signature"><strong>#max_age</strong> : Time::Span | Nil</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#max_age%3D%28max_age%3ATime%3A%3ASpan%7CNil%29-instance-method" class="signature"><strong>#max_age=</strong>(max_age : Time::Span | Nil)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#name%3AString-instance-method" class="signature"><strong>#name</strong> : String</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#name%3D%28name%3AString%29-instance-method" class="signature"><strong>#name=</strong>(name : String)</a>
+        
+          <div class="summary"><p>Sets the name of this cookie.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#path%3AString%7CNil-instance-method" class="signature"><strong>#path</strong> : String | Nil</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#path%3D%28path%3AString%7CNil%29-instance-method" class="signature"><strong>#path=</strong>(path : String | Nil)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#samesite%3ASameSite%7CNil-instance-method" class="signature"><strong>#samesite</strong> : SameSite | Nil</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#samesite%3D%28samesite%3ASameSite%7CNil%29-instance-method" class="signature"><strong>#samesite=</strong>(samesite : SameSite | Nil)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#secure%3ABool-instance-method" class="signature"><strong>#secure</strong> : Bool</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this cookie has the <em>Secure</em> flag.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#secure%3D%28secure%3ABool%29%3ABool-instance-method" class="signature"><strong>#secure=</strong>(secure : Bool) : Bool</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_cookie_header%28io%29%3ANil-instance-method" class="signature"><strong>#to_cookie_header</strong>(io) : Nil</a>
+        
+          <div class="summary"><p>Returns a string representation of this cookie in the format used by the <code><a href="../HTTP/Cookie.html">Cookie</a></code> header of an HTTP request.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_cookie_header%3AString-instance-method" class="signature"><strong>#to_cookie_header</strong> : String</a>
+        
+          <div class="summary"><p>Returns a string representation of this cookie in the format used by the <code><a href="../HTTP/Cookie.html">Cookie</a></code> header of an HTTP request.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_s%28io%3AIO%29%3ANil-instance-method" class="signature"><strong>#to_s</strong>(io : IO) : Nil</a>
+        
+          <div class="summary"><p>Returns a string representation of this cookie.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_set_cookie_header%28io%3AIO%29%3ANil-instance-method" class="signature"><strong>#to_set_cookie_header</strong>(io : IO) : Nil</a>
+        
+          <div class="summary"><p>Returns a string representation of this cookie in the format used by the <code><a href="../Set.html">Set</a>-<a href="../HTTP/Cookie.html">Cookie</a></code> header of an HTTP response.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_set_cookie_header%3AString-instance-method" class="signature"><strong>#to_set_cookie_header</strong> : String</a>
+        
+          <div class="summary"><p>Returns a string representation of this cookie in the format used by the <code><a href="../Set.html">Set</a>-<a href="../HTTP/Cookie.html">Cookie</a></code> header of an HTTP response.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#valid%3F%3ABool-instance-method" class="signature"><strong>#valid?</strong> : Bool</a>
+        
+          <div class="summary"><p>Returns <code>false</code> if <code><a href="../HTTP/Cookie.html#name%3AString-instance-method">#name</a></code> has a security prefix but the requirements are not met as per <a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-rfc6265bis-07#section-4.1.3">RFC 6265 bis §4.1.3</a>, otherwise returns <code>true</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#validate%21%3Aself-instance-method" class="signature"><strong>#validate!</strong> : <span class="k">self</span></a>
+        
+          <div class="summary"><p>Raises <code><a href="../ArgumentError.html">ArgumentError</a></code> if <code>self</code> is not <code><a href="../HTTP/Cookie.html#valid%3F%3ABool-instance-method">#valid?</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#value%3AString-instance-method" class="signature"><strong>#value</strong> : String</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#value%3D%28value%3AString%29-instance-method" class="signature"><strong>#value=</strong>(value : String)</a>
+        
+          <div class="summary"><p>Sets the value of this cookie.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+
+  <div class="methods-inherited">
+    
+      
+
+  <h3>Instance methods inherited from class <code><a href="../Reference.html">Reference</a></code></h3>
+  
+  
+    <a href="../Reference.html#%3D%3D%28other%3Aself%29-instance-method" class="tooltip">
+      <span>==(other : <span class="k">self</span>)<br/>==(other : JSON::Any)<br/>==(other : YAML::Any)<br/>==(other)</span>
+    ==</a>, 
+    
+  
+    <a href="../Reference.html#dup-instance-method" class="tooltip">
+      <span>dup</span>
+    dup</a>, 
+    
+  
+    <a href="../Reference.html#hash%28hasher%29-instance-method" class="tooltip">
+      <span>hash(hasher)</span>
+    hash</a>, 
+    
+  
+    <a href="../Reference.html#initialize-instance-method" class="tooltip">
+      <span>initialize</span>
+    initialize</a>, 
+    
+  
+    <a href="../Reference.html#inspect%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>inspect(io : IO) : Nil</span>
+    inspect</a>, 
+    
+  
+    <a href="../Reference.html#object_id%3AUInt64-instance-method" class="tooltip">
+      <span>object_id : UInt64</span>
+    object_id</a>, 
+    
+  
+    <a href="../Reference.html#pretty_print%28pp%29%3ANil-instance-method" class="tooltip">
+      <span>pretty_print(pp) : Nil</span>
+    pretty_print</a>, 
+    
+  
+    <a href="../Reference.html#same%3F%28other%3AReference%29%3ABool-instance-method" class="tooltip">
+      <span>same?(other : Reference) : Bool<br/>same?(other : Nil)</span>
+    same?</a>, 
+    
+  
+    <a href="../Reference.html#to_s%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_s(io : IO) : Nil</span>
+    to_s</a>
+    
+  
+
+
+      
+
+  <h3>Constructor methods inherited from class <code><a href="../Reference.html">Reference</a></code></h3>
+  
+  
+    <a href="../Reference.html#new-class-method" class="tooltip">
+      <span>new</span>
+    new</a>, 
+    
+  
+    <a href="../Reference.html#unsafe_construct%28address%3APointer%2C%2Aargs%2C%2A%2Aopts%29%3Aself-class-method" class="tooltip">
+      <span>unsafe_construct(address : Pointer, *args, **opts) : <span class="k">self</span></span>
+    unsafe_construct</a>
+    
+  
+
+
+      
+
+  <h3>Class methods inherited from class <code><a href="../Reference.html">Reference</a></code></h3>
+  
+  
+    <a href="../Reference.html#pre_initialize%28address%3APointer%29-class-method" class="tooltip">
+      <span>pre_initialize(address : Pointer)</span>
+    pre_initialize</a>
+    
+  
+
+
+      
+
+
+    
+      
+
+  <h3>Instance methods inherited from class <code><a href="../Object.html">Object</a></code></h3>
+  
+  
+    <a href="../Object.html#%21%3ABool-instance-method" class="tooltip">
+      <span>! : Bool</span>
+    !</a>, 
+    
+  
+    <a href="../Object.html#%21%3D%28other%29-instance-method" class="tooltip">
+      <span>!=(other)</span>
+    !=</a>, 
+    
+  
+    <a href="../Object.html#%21~%28other%29-instance-method" class="tooltip">
+      <span>!~(other)</span>
+    !~</a>, 
+    
+  
+    <a href="../Object.html#%3D%3D%28other%29-instance-method" class="tooltip">
+      <span>==(other)</span>
+    ==</a>, 
+    
+  
+    <a href="../Object.html#%3D%3D%3D%28other%3AJSON%3A%3AAny%29-instance-method" class="tooltip">
+      <span>===(other : JSON::Any)<br/>===(other : YAML::Any)<br/>===(other)</span>
+    ===</a>, 
+    
+  
+    <a href="../Object.html#%3D~%28other%29-instance-method" class="tooltip">
+      <span>=~(other)</span>
+    =~</a>, 
+    
+  
+    <a href="../Object.html#as%28type%3AClass%29-instance-method" class="tooltip">
+      <span>as(type : Class)</span>
+    as</a>, 
+    
+  
+    <a href="../Object.html#as%3F%28type%3AClass%29-instance-method" class="tooltip">
+      <span>as?(type : Class)</span>
+    as?</a>, 
+    
+  
+    <a href="../Object.html#class-instance-method" class="tooltip">
+      <span>class</span>
+    class</a>, 
+    
+  
+    <a href="../Object.html#dup-instance-method" class="tooltip">
+      <span>dup</span>
+    dup</a>, 
+    
+  
+    <a href="../Object.html#hash%28hasher%29-instance-method" class="tooltip">
+      <span>hash(hasher)<br/>hash</span>
+    hash</a>, 
+    
+  
+    <a href="../Object.html#in%3F%28collection%3AObject%29%3ABool-instance-method" class="tooltip">
+      <span>in?(collection : Object) : Bool<br/>in?(*values : Object) : Bool</span>
+    in?</a>, 
+    
+  
+    <a href="../Object.html#inspect%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>inspect(io : IO) : Nil<br/>inspect : String</span>
+    inspect</a>, 
+    
+  
+    <a href="../Object.html#is_a%3F%28type%3AClass%29%3ABool-instance-method" class="tooltip">
+      <span>is_a?(type : Class) : Bool</span>
+    is_a?</a>, 
+    
+  
+    <a href="../Object.html#itself-instance-method" class="tooltip">
+      <span>itself</span>
+    itself</a>, 
+    
+  
+    <a href="../Object.html#nil%3F%3ABool-instance-method" class="tooltip">
+      <span>nil? : Bool</span>
+    nil?</a>, 
+    
+  
+    <a href="../Object.html#not_nil%21%28message%29-instance-method" class="tooltip">
+      <span>not_nil!(message)<br/>not_nil!</span>
+    not_nil!</a>, 
+    
+  
+    <a href="../Object.html#pretty_inspect%28width%3D79%2Cnewline%3D%22%5Cn%22%2Cindent%3D0%29%3AString-instance-method" class="tooltip">
+      <span>pretty_inspect(width = <span class="n">79</span>, newline = <span class="s">&quot;\n&quot;</span>, indent = <span class="n">0</span>) : String</span>
+    pretty_inspect</a>, 
+    
+  
+    <a href="../Object.html#pretty_print%28pp%3APrettyPrint%29%3ANil-instance-method" class="tooltip">
+      <span>pretty_print(pp : PrettyPrint) : Nil</span>
+    pretty_print</a>, 
+    
+  
+    <a href="../Object.html#responds_to%3F%28name%3ASymbol%29%3ABool-instance-method" class="tooltip">
+      <span>responds_to?(name : Symbol) : Bool</span>
+    responds_to?</a>, 
+    
+  
+    <a href="../Object.html#tap%28%26%29-instance-method" class="tooltip">
+      <span>tap(&)</span>
+    tap</a>, 
+    
+  
+    <a href="../Object.html#to_json%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_json(io : IO) : Nil<br/>to_json : String</span>
+    to_json</a>, 
+    
+  
+    <a href="../Object.html#to_pretty_json%28indent%3AString%3D%22%22%29%3AString-instance-method" class="tooltip">
+      <span>to_pretty_json(indent : String = <span class="s">&quot;  &quot;</span>) : String<br/>to_pretty_json(io : IO, indent : String = <span class="s">&quot;  &quot;</span>) : Nil</span>
+    to_pretty_json</a>, 
+    
+  
+    <a href="../Object.html#to_s%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_s(io : IO) : Nil<br/>to_s : String</span>
+    to_s</a>, 
+    
+  
+    <a href="../Object.html#to_yaml%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_yaml(io : IO) : Nil<br/>to_yaml : String</span>
+    to_yaml</a>, 
+    
+  
+    <a href="../Object.html#try%28%26%29-instance-method" class="tooltip">
+      <span>try(&)</span>
+    try</a>, 
+    
+  
+    <a href="../Object.html#unsafe_as%28type%3AT.class%29forallT-instance-method" class="tooltip">
+      <span>unsafe_as(type : <span class="t">T</span>.<span class="k">class</span>) forall T</span>
+    unsafe_as</a>
+    
+  
+
+
+      
+
+
+      
+
+  <h3>Class methods inherited from class <code><a href="../Object.html">Object</a></code></h3>
+  
+  
+    <a href="../Object.html#from_json%28string_or_io%2Croot%3AString%29-class-method" class="tooltip">
+      <span>from_json(string_or_io, root : String)<br/>from_json(string_or_io)</span>
+    from_json</a>, 
+    
+  
+    <a href="../Object.html#from_yaml%28string_or_io%3AString%7CIO%29-class-method" class="tooltip">
+      <span>from_yaml(string_or_io : String | IO)</span>
+    from_yaml</a>
+    
+  
+
+
+      
+
+  <h3>Macros inherited from class <code><a href="../Object.html">Object</a></code></h3>
+  
+  
+    <a href="../Object.html#class_getter%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_getter(*names, &block)</span>
+    class_getter</a>, 
+    
+  
+    <a href="../Object.html#class_getter%21%28%2Anames%29-macro" class="tooltip">
+      <span>class_getter!(*names)</span>
+    class_getter!</a>, 
+    
+  
+    <a href="../Object.html#class_getter%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_getter?(*names, &block)</span>
+    class_getter?</a>, 
+    
+  
+    <a href="../Object.html#class_property%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_property(*names, &block)</span>
+    class_property</a>, 
+    
+  
+    <a href="../Object.html#class_property%21%28%2Anames%29-macro" class="tooltip">
+      <span>class_property!(*names)</span>
+    class_property!</a>, 
+    
+  
+    <a href="../Object.html#class_property%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_property?(*names, &block)</span>
+    class_property?</a>, 
+    
+  
+    <a href="../Object.html#class_setter%28%2Anames%29-macro" class="tooltip">
+      <span>class_setter(*names)</span>
+    class_setter</a>, 
+    
+  
+    <a href="../Object.html#def_clone-macro" class="tooltip">
+      <span>def_clone</span>
+    def_clone</a>, 
+    
+  
+    <a href="../Object.html#def_equals%28%2Afields%29-macro" class="tooltip">
+      <span>def_equals(*fields)</span>
+    def_equals</a>, 
+    
+  
+    <a href="../Object.html#def_equals_and_hash%28%2Afields%29-macro" class="tooltip">
+      <span>def_equals_and_hash(*fields)</span>
+    def_equals_and_hash</a>, 
+    
+  
+    <a href="../Object.html#def_hash%28%2Afields%29-macro" class="tooltip">
+      <span>def_hash(*fields)</span>
+    def_hash</a>, 
+    
+  
+    <a href="../Object.html#delegate%28%2Amethods%2Ctoobject%29-macro" class="tooltip">
+      <span>delegate(*methods, to object)</span>
+    delegate</a>, 
+    
+  
+    <a href="../Object.html#forward_missing_to%28delegate%29-macro" class="tooltip">
+      <span>forward_missing_to(delegate)</span>
+    forward_missing_to</a>, 
+    
+  
+    <a href="../Object.html#getter%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>getter(*names, &block)</span>
+    getter</a>, 
+    
+  
+    <a href="../Object.html#getter%21%28%2Anames%29-macro" class="tooltip">
+      <span>getter!(*names)</span>
+    getter!</a>, 
+    
+  
+    <a href="../Object.html#getter%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>getter?(*names, &block)</span>
+    getter?</a>, 
+    
+  
+    <a href="../Object.html#property%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>property(*names, &block)</span>
+    property</a>, 
+    
+  
+    <a href="../Object.html#property%21%28%2Anames%29-macro" class="tooltip">
+      <span>property!(*names)</span>
+    property!</a>, 
+    
+  
+    <a href="../Object.html#property%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>property?(*names, &block)</span>
+    property?</a>, 
+    
+  
+    <a href="../Object.html#setter%28%2Anames%29-macro" class="tooltip">
+      <span>setter(*names)</span>
+    setter</a>
+    
+  
+
+
+    
+  </div>
+
+  
+  <h2>
+    <a id="constructor-detail" class="anchor" href="#constructor-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructor Detail
+  </h2>
+  
+    <div class="entry-detail" id="new(name:String,value:String,path:String|Nil=nil,expires:Time|Nil=nil,domain:String|Nil=nil,secure:Bool|Nil=nil,http_only:Bool=false,samesite:SameSite|Nil=nil,extension:String|Nil=nil,max_age:Time::Span|Nil=nil,creation_time:Time=Time.utc)-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(name : <a href="../String.html">String</a>, value : <a href="../String.html">String</a>, path : <a href="../String.html">String</a> | <a href="../Nil.html">Nil</a> = <span class="n">nil</span>, expires : <a href="../Time.html">Time</a> | <a href="../Nil.html">Nil</a> = <span class="n">nil</span>, domain : <a href="../String.html">String</a> | <a href="../Nil.html">Nil</a> = <span class="n">nil</span>, secure : <a href="../Bool.html">Bool</a> | <a href="../Nil.html">Nil</a> = <span class="n">nil</span>, http_only : <a href="../Bool.html">Bool</a> = <span class="n">false</span>, samesite : <a href="../HTTP/Cookie/SameSite.html">SameSite</a> | <a href="../Nil.html">Nil</a> = <span class="n">nil</span>, extension : <a href="../String.html">String</a> | <a href="../Nil.html">Nil</a> = <span class="n">nil</span>, max_age : <a href="../Time/Span.html">Time::Span</a> | <a href="../Nil.html">Nil</a> = <span class="n">nil</span>, creation_time : <a href="../Time.html">Time</a> = <span class="t">Time</span>.utc)
+
+        <a class="method-permalink" href="#new%28name%3AString%2Cvalue%3AString%2Cpath%3AString%7CNil%3Dnil%2Cexpires%3ATime%7CNil%3Dnil%2Cdomain%3AString%7CNil%3Dnil%2Csecure%3ABool%7CNil%3Dnil%2Chttp_only%3ABool%3Dfalse%2Csamesite%3ASameSite%7CNil%3Dnil%2Cextension%3AString%7CNil%3Dnil%2Cmax_age%3ATime%3A%3ASpan%7CNil%3Dnil%2Ccreation_time%3ATime%3DTime.utc%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Creates a new <code><a href="../HTTP/Cookie.html">Cookie</a></code> instance.</p>
+<p>Raises <code><a href="../IO/Error.html">IO::Error</a></code> if <em>name</em> or <em>value</em> are invalid as per <a href="https://tools.ietf.org/html/rfc6265#section-4.1.1">RFC 6265 §4.1.1</a>.
+Raises <code><a href="../ArgumentError.html">ArgumentError</a></code> if <em>name</em> has a security prefix but the requirements are not met as per <a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-rfc6265bis-07#section-4.1.3">RFC 6265 bis §4.1.3</a>.
+Alternatively, if <em>name</em> has a security prefix, and the related properties are <code>nil</code>, the prefix will automatically be applied to the cookie.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/http/cookie.cr#L38" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+  
+
+  
+
+  
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="==(other:self)-instance-method">
+      <div class="signature">
+        
+        def <strong>==</strong>(other : <span class="k">self</span>)
+
+        <a class="method-permalink" href="#%3D%3D%28other%3Aself%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+            <div class="doc-inherited">
+              Description copied from class <a href="../Reference.html">Reference</a>
+            </div>
+          
+          <p>Returns <code>true</code> if this reference is the same as <em>other</em>. Invokes <code>same?</code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="creation_time:Time-instance-method">
+      <div class="signature">
+        
+        def <strong>creation_time</strong> : <a href="../Time.html">Time</a>
+
+        <a class="method-permalink" href="#creation_time%3ATime-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/http/cookie.cr#L27" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="domain:String|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>domain</strong> : <a href="../String.html">String</a> | <a href="../Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#domain%3AString%7CNil-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/http/cookie.cr#L22" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="domain=(domain:String|Nil)-instance-method">
+      <div class="signature">
+        
+        def <strong>domain=</strong>(domain : <a href="../String.html">String</a> | <a href="../Nil.html">Nil</a>)
+
+        <a class="method-permalink" href="#domain%3D%28domain%3AString%7CNil%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/http/cookie.cr#L22" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="expiration_time:Time|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>expiration_time</strong> : <a href="../Time.html">Time</a> | <a href="../Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#expiration_time%3ATime%7CNil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the expiration time of this cookie.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/http/cookie.cr#L188" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="expire-instance-method">
+      <div class="signature">
+        
+        def <strong>expire</strong>
+
+        <a class="method-permalink" href="#expire-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Expires the cookie.</p>
+<p>Causes the cookie to be destroyed. Sets the value to the empty string and
+expires its lifetime.</p>
+<pre><code class="language-crystal">cookie <span class="o">=</span> <span class="t">HTTP</span><span class="t">::</span><span class="t">Cookie</span>.new(<span class="s">&quot;hello&quot;</span>, <span class="s">&quot;world&quot;</span>)
+cookie.expire
+
+cookie.value    <span class="c"># =&gt; &quot;&quot;</span>
+cookie.expired? <span class="c"># =&gt; true</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/http/cookie.cr#L256" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="expired?(time_reference=Time.utc):Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>expired?</strong>(time_reference = <span class="t">Time</span>.utc) : <a href="../Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#expired%3F%28time_reference%3DTime.utc%29%3ABool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the expiration status of this cookie as a <code><a href="../Bool.html">Bool</a></code>.</p>
+<p><em>time_reference</em> can be passed to use a different reference time for
+comparison. Default is the current time (<code><a href="../Time.html#utc%3ATime-class-method">Time.utc</a></code>).</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/http/cookie.cr#L200" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="expires:Time|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>expires</strong> : <a href="../Time.html">Time</a> | <a href="../Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#expires%3ATime%7CNil-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/http/cookie.cr#L21" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="expires=(expires:Time|Nil)-instance-method">
+      <div class="signature">
+        
+        def <strong>expires=</strong>(expires : <a href="../Time.html">Time</a> | <a href="../Nil.html">Nil</a>)
+
+        <a class="method-permalink" href="#expires%3D%28expires%3ATime%7CNil%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/http/cookie.cr#L21" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="extension:String|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>extension</strong> : <a href="../String.html">String</a> | <a href="../Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#extension%3AString%7CNil-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/http/cookie.cr#L25" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="extension=(extension:String|Nil)-instance-method">
+      <div class="signature">
+        
+        def <strong>extension=</strong>(extension : <a href="../String.html">String</a> | <a href="../Nil.html">Nil</a>)
+
+        <a class="method-permalink" href="#extension%3D%28extension%3AString%7CNil%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/http/cookie.cr#L25" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="hash(hasher)-instance-method">
+      <div class="signature">
+        
+        def <strong>hash</strong>(hasher)
+
+        <a class="method-permalink" href="#hash%28hasher%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+            <div class="doc-inherited">
+              Description copied from class <a href="../Reference.html">Reference</a>
+            </div>
+          
+          <p>See <code><a href="../Object.html#hash%28hasher%29-instance-method">Object#hash(hasher)</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="http_only:Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>http_only</strong> : <a href="../Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#http_only%3ABool-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/http/cookie.cr#L23" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="http_only=(http_only:Bool)-instance-method">
+      <div class="signature">
+        
+        def <strong>http_only=</strong>(http_only : <a href="../Bool.html">Bool</a>)
+
+        <a class="method-permalink" href="#http_only%3D%28http_only%3ABool%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/http/cookie.cr#L23" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="inspect(io:IO):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>inspect</strong>(io : <a href="../IO.html">IO</a>) : <a href="../Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#inspect%28io%3AIO%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns an unambiguous string representation of this cookie.</p>
+<p>It uses the <code><a href="../Set.html">Set</a>-<a href="../HTTP/Cookie.html">Cookie</a></code> serialization from <code><a href="../HTTP/Cookie.html#to_set_cookie_header%3AString-instance-method">#to_set_cookie_header</a></code> which
+represents the full state of the cookie.</p>
+<pre><code class="language-crystal"><span class="t">HTTP</span><span class="t">::</span><span class="t">Cookie</span>.new(<span class="s">&quot;foo&quot;</span>, <span class="s">&quot;bar&quot;</span>).inspect                        <span class="c"># =&gt; HTTP::Cookie[&quot;foo=bar&quot;]</span>
+<span class="t">HTTP</span><span class="t">::</span><span class="t">Cookie</span>.new(<span class="s">&quot;foo&quot;</span>, <span class="s">&quot;bar&quot;</span>, domain: <span class="s">&quot;example.com&quot;</span>).inspect <span class="c"># =&gt; HTTP::Cookie[&quot;foo=bar; domain=example.com&quot;]</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/http/cookie.cr#L114" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="max_age:Time::Span|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>max_age</strong> : <a href="../Time/Span.html">Time::Span</a> | <a href="../Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#max_age%3ATime%3A%3ASpan%7CNil-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/http/cookie.cr#L26" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="max_age=(max_age:Time::Span|Nil)-instance-method">
+      <div class="signature">
+        
+        def <strong>max_age=</strong>(max_age : <a href="../Time/Span.html">Time::Span</a> | <a href="../Nil.html">Nil</a>)
+
+        <a class="method-permalink" href="#max_age%3D%28max_age%3ATime%3A%3ASpan%7CNil%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/http/cookie.cr#L26" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="name:String-instance-method">
+      <div class="signature">
+        
+        def <strong>name</strong> : <a href="../String.html">String</a>
+
+        <a class="method-permalink" href="#name%3AString-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/http/cookie.cr#L18" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="name=(name:String)-instance-method">
+      <div class="signature">
+        
+        def <strong>name=</strong>(name : <a href="../String.html">String</a>)
+
+        <a class="method-permalink" href="#name%3D%28name%3AString%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Sets the name of this cookie.</p>
+<p>Raises <code><a href="../IO/Error.html">IO::Error</a></code> if the value is invalid as per <a href="https://tools.ietf.org/html/rfc6265#section-4.1.1">RFC 6265 §4.1.1</a>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/http/cookie.cr#L64" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="path:String|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>path</strong> : <a href="../String.html">String</a> | <a href="../Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#path%3AString%7CNil-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/http/cookie.cr#L20" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="path=(path:String|Nil)-instance-method">
+      <div class="signature">
+        
+        def <strong>path=</strong>(path : <a href="../String.html">String</a> | <a href="../Nil.html">Nil</a>)
+
+        <a class="method-permalink" href="#path%3D%28path%3AString%7CNil%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/http/cookie.cr#L20" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="samesite:SameSite|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>samesite</strong> : <a href="../HTTP/Cookie/SameSite.html">SameSite</a> | <a href="../Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#samesite%3ASameSite%7CNil-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/http/cookie.cr#L24" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="samesite=(samesite:SameSite|Nil)-instance-method">
+      <div class="signature">
+        
+        def <strong>samesite=</strong>(samesite : <a href="../HTTP/Cookie/SameSite.html">SameSite</a> | <a href="../Nil.html">Nil</a>)
+
+        <a class="method-permalink" href="#samesite%3D%28samesite%3ASameSite%7CNil%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/http/cookie.cr#L24" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="secure:Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>secure</strong> : <a href="../Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#secure%3ABool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this cookie has the <em>Secure</em> flag.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/http/cookie.cr#L54" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="secure=(secure:Bool):Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>secure=</strong>(secure : <a href="../Bool.html">Bool</a>) : <a href="../Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#secure%3D%28secure%3ABool%29%3ABool-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/http/cookie.cr#L58" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_cookie_header(io):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>to_cookie_header</strong>(io) : <a href="../Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#to_cookie_header%28io%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns a string representation of this cookie in the format used by the
+<code><a href="../HTTP/Cookie.html">Cookie</a></code> header of an HTTP request.
+This includes only the <code><a href="../HTTP/Cookie.html#name%3AString-instance-method">#name</a></code> and <code><a href="../HTTP/Cookie.html#value%3AString-instance-method">#value</a></code>. All other attributes are left
+out.</p>
+<pre><code class="language-crystal"><span class="t">HTTP</span><span class="t">::</span><span class="t">Cookie</span>.new(<span class="s">&quot;foo&quot;</span>, <span class="s">&quot;bar&quot;</span>).to_cookie_header                        <span class="c"># =&gt; &quot;foo=bar&quot;</span>
+<span class="t">HTTP</span><span class="t">::</span><span class="t">Cookie</span>.new(<span class="s">&quot;foo&quot;</span>, <span class="s">&quot;bar&quot;</span>, domain: <span class="s">&quot;example.com&quot;</span>).to_cookie_header <span class="c"># =&gt; &quot;foo=bar</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/http/cookie.cr#L181" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_cookie_header:String-instance-method">
+      <div class="signature">
+        
+        def <strong>to_cookie_header</strong> : <a href="../String.html">String</a>
+
+        <a class="method-permalink" href="#to_cookie_header%3AString-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns a string representation of this cookie in the format used by the
+<code><a href="../HTTP/Cookie.html">Cookie</a></code> header of an HTTP request.
+This includes only the <code><a href="../HTTP/Cookie.html#name%3AString-instance-method">#name</a></code> and <code><a href="../HTTP/Cookie.html#value%3AString-instance-method">#value</a></code>. All other attributes are left
+out.</p>
+<pre><code class="language-crystal"><span class="t">HTTP</span><span class="t">::</span><span class="t">Cookie</span>.new(<span class="s">&quot;foo&quot;</span>, <span class="s">&quot;bar&quot;</span>).to_cookie_header                        <span class="c"># =&gt; &quot;foo=bar&quot;</span>
+<span class="t">HTTP</span><span class="t">::</span><span class="t">Cookie</span>.new(<span class="s">&quot;foo&quot;</span>, <span class="s">&quot;bar&quot;</span>, domain: <span class="s">&quot;example.com&quot;</span>).to_cookie_header <span class="c"># =&gt; &quot;foo=bar</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/http/cookie.cr#L174" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_s(io:IO):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>to_s</strong>(io : <a href="../IO.html">IO</a>) : <a href="../Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#to_s%28io%3AIO%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns a string representation of this cookie.</p>
+<p>It uses the <code><a href="../Set.html">Set</a>-<a href="../HTTP/Cookie.html">Cookie</a></code> serialization from <code><a href="../HTTP/Cookie.html#to_set_cookie_header%3AString-instance-method">#to_set_cookie_header</a></code> which
+represents the full state of the cookie.</p>
+<pre><code class="language-crystal"><span class="t">HTTP</span><span class="t">::</span><span class="t">Cookie</span>.new(<span class="s">&quot;foo&quot;</span>, <span class="s">&quot;bar&quot;</span>).to_s                        <span class="c"># =&gt; &quot;foo=bar&quot;</span>
+<span class="t">HTTP</span><span class="t">::</span><span class="t">Cookie</span>.new(<span class="s">&quot;foo&quot;</span>, <span class="s">&quot;bar&quot;</span>, domain: <span class="s">&quot;example.com&quot;</span>).to_s <span class="c"># =&gt; &quot;foo=bar; domain=example.com&quot;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/http/cookie.cr#L129" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_set_cookie_header(io:IO):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>to_set_cookie_header</strong>(io : <a href="../IO.html">IO</a>) : <a href="../Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#to_set_cookie_header%28io%3AIO%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns a string representation of this cookie in the format used by the
+<code><a href="../Set.html">Set</a>-<a href="../HTTP/Cookie.html">Cookie</a></code> header of an HTTP response.</p>
+<pre><code class="language-crystal"><span class="t">HTTP</span><span class="t">::</span><span class="t">Cookie</span>.new(<span class="s">&quot;foo&quot;</span>, <span class="s">&quot;bar&quot;</span>).to_set_cookie_header                        <span class="c"># =&gt; &quot;foo=bar&quot;</span>
+<span class="t">HTTP</span><span class="t">::</span><span class="t">Cookie</span>.new(<span class="s">&quot;foo&quot;</span>, <span class="s">&quot;bar&quot;</span>, domain: <span class="s">&quot;example.com&quot;</span>).to_set_cookie_header <span class="c"># =&gt; &quot;foo=bar; domain=example.com&quot;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/http/cookie.cr#L147" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_set_cookie_header:String-instance-method">
+      <div class="signature">
+        
+        def <strong>to_set_cookie_header</strong> : <a href="../String.html">String</a>
+
+        <a class="method-permalink" href="#to_set_cookie_header%3AString-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns a string representation of this cookie in the format used by the
+<code><a href="../Set.html">Set</a>-<a href="../HTTP/Cookie.html">Cookie</a></code> header of an HTTP response.</p>
+<pre><code class="language-crystal"><span class="t">HTTP</span><span class="t">::</span><span class="t">Cookie</span>.new(<span class="s">&quot;foo&quot;</span>, <span class="s">&quot;bar&quot;</span>).to_set_cookie_header                        <span class="c"># =&gt; &quot;foo=bar&quot;</span>
+<span class="t">HTTP</span><span class="t">::</span><span class="t">Cookie</span>.new(<span class="s">&quot;foo&quot;</span>, <span class="s">&quot;bar&quot;</span>, domain: <span class="s">&quot;example.com&quot;</span>).to_set_cookie_header <span class="c"># =&gt; &quot;foo=bar; domain=example.com&quot;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/http/cookie.cr#L140" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="valid?:Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>valid?</strong> : <a href="../Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#valid%3F%3ABool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>false</code> if <code><a href="../HTTP/Cookie.html#name%3AString-instance-method">#name</a></code> has a security prefix but the requirements are not met as per
+<a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-rfc6265bis-07#section-4.1.3">RFC 6265 bis §4.1.3</a>,
+otherwise returns <code>true</code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/http/cookie.cr#L213" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="validate!:self-instance-method">
+      <div class="signature">
+        
+        def <strong>validate!</strong> : <span class="k">self</span>
+
+        <a class="method-permalink" href="#validate%21%3Aself-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Raises <code><a href="../ArgumentError.html">ArgumentError</a></code> if <code>self</code> is not <code><a href="../HTTP/Cookie.html#valid%3F%3ABool-instance-method">#valid?</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/http/cookie.cr#L218" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="value:String-instance-method">
+      <div class="signature">
+        
+        def <strong>value</strong> : <a href="../String.html">String</a>
+
+        <a class="method-permalink" href="#value%3AString-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/http/cookie.cr#L19" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="value=(value:String)-instance-method">
+      <div class="signature">
+        
+        def <strong>value=</strong>(value : <a href="../String.html">String</a>)
+
+        <a class="method-permalink" href="#value%3D%28value%3AString%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Sets the value of this cookie.</p>
+<p>Raises <code><a href="../IO/Error.html">IO::Error</a></code> if the value is invalid as per <a href="https://tools.ietf.org/html/rfc6265#section-4.1.1">RFC 6265 §4.1.1</a>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/http/cookie.cr#L90" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Crystal Docs 1.16.1">
+<meta name="crystal_docs.project_version" content="1.17.0-dev">
+<meta name="crystal_docs.project_name" content="Crystal">
+
+  <meta name="crystal_docs.json_config_url" content="/api/versions.json">
+
+
+    <link rel="canonical" href="https://crystal-lang.org/api/latest/HTTP.html">
+
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/doc.js"></script>
+
+  <meta name="repository-name" content="Crystal">
+  <title>HTTP - Crystal 1.17.0-dev</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill="currentColor" fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<input type="checkbox" id="sidebar-btn">
+<label for="sidebar-btn" id="sidebar-btn-label">
+  <svg class="open" xmlns="http://www.w3.org/2000/svg" height="2em" width="2em" viewBox="0 0 512 512"><title>Open Sidebar</title><path fill="currentColor" d="M80 96v64h352V96H80zm0 112v64h352v-64H80zm0 112v64h352v-64H80z"></path></svg>
+  <svg class="close" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><title>Close Sidebar</title><path fill="currentColor" d="m118.6 73.4-45.2 45.2L210.7 256 73.4 393.4l45.2 45.2L256 301.3l137.4 137.3 45.2-45.2L301.3 256l137.3-137.4-45.2-45.2L256 210.7Z"></path></svg>
+</label>
+<iframe class="sidebar" src="sidebar.html"></iframe>
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">
+    module
+  </span> HTTP
+
+</h1>
+
+
+
+
+
+  <h2>
+    <a id="overview" class="anchor" href="#overview">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Overview
+  </h2>
+
+  <p>The HTTP module contains <code><a href="HTTP/Client.html">HTTP::Client</a></code>, <code><a href="HTTP/Server.html">HTTP::Server</a></code> and <code><a href="HTTP/WebSocket.html">HTTP::WebSocket</a></code> implementations.</p>
+<p><span class="flag purple">NOTE</span>  To use <code><a href="HTTP.html">HTTP</a></code>, you must explicitly import it with <code>require &quot;http&quot;</code></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/http.cr#L10" target="_blank">
+        http.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/http/client.cr#L76" target="_blank">
+        http/client.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/http/common.cr#L7" target="_blank">
+        http/common.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/http/content.cr#L3" target="_blank">
+        http/content.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/http/cookie.cr#L1" target="_blank">
+        http/cookie.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/http/cookies.cr#L3" target="_blank">
+        http/cookies.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/http/params.cr#L3" target="_blank">
+        http/params.cr
+      </a>
+    
+    <br/>
+  
+
+
+
+  
+    <h2>
+      <a id="constant-summary" class="anchor" href="#constant-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+      Constant Summary
+    </h2>
+  
+  <dl>
+    
+      <dt class="entry-const" id="MAX_HEADERS_SIZE">
+        <strong>MAX_HEADERS_SIZE</strong> = <code><span class="n">16384</span></code>
+      </dt>
+      
+      <dd class="entry-const-doc">
+        <p>Default maximum permitted combined size (in bytes) of the headers in an HTTP request.</p>
+      </dd>
+      
+    
+      <dt class="entry-const" id="MAX_REQUEST_LINE_SIZE">
+        <strong>MAX_REQUEST_LINE_SIZE</strong> = <code><span class="n">8192</span></code>
+      </dt>
+      
+      <dd class="entry-const-doc">
+        <p>Default maximum permitted size (in bytes) of the request line in an HTTP request.</p>
+      </dd>
+      
+    
+      <dt class="entry-const" id="SUPPORTED_VERSIONS">
+        <strong>SUPPORTED_VERSIONS</strong> = <code>{<span class="s">&quot;HTTP/1.0&quot;</span>, <span class="s">&quot;HTTP/1.1&quot;</span>}</code>
+      </dt>
+      
+    
+  </dl>
+
+
+
+  
+
+  
+  <h2>
+    <a id="class-method-summary" class="anchor" href="#class-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Class Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#dequote_string%28str%29%3AString-class-method" class="signature"><strong>.dequote_string</strong>(str) : String</a>
+        
+          <div class="summary"><p>Dequotes an <a href="https://tools.ietf.org/html/rfc2616#page-17">RFC 2616</a> quoted-string.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#expect_continue%3F%28headers%29%3ABool-class-method" class="signature"><strong>.expect_continue?</strong>(headers) : Bool</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#format_time%28time%3ATime%29%3AString-class-method" class="signature"><strong>.format_time</strong>(time : Time) : String</a>
+        
+          <div class="summary"><p>Format a <code><a href="Time.html">Time</a></code> object as a <code><a href="String.html">String</a></code> using the format specified as <code>sane-cookie-date</code> by <a href="https://tools.ietf.org/html/rfc6265#section-4.1.1">RFC 6265</a> which is according to <a href="https://tools.ietf.org/html/rfc2616#section-3.3.1">RFC 2616</a> a <a href="https://tools.ietf.org/html/rfc1123#page-55">RFC 1123</a> format with explicit timezone <code>GMT</code> (interpreted as <code>UTC</code>).</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#parse_time%28time_str%3AString%29%3ATime%7CNil-class-method" class="signature"><strong>.parse_time</strong>(time_str : String) : Time | Nil</a>
+        
+          <div class="summary"><p>Parse a time string using the formats specified by <a href="https://tools.ietf.org/html/rfc2616#section-3.3.1">RFC 2616</a></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#quote_string%28string%2Cio%29%3ANil-class-method" class="signature"><strong>.quote_string</strong>(string, io) : Nil</a>
+        
+          <div class="summary"><p>Encodes a string to an <a href="https://tools.ietf.org/html/rfc2616#page-17">RFC 2616</a> quoted-string.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#quote_string%28string%29%3AString-class-method" class="signature"><strong>.quote_string</strong>(string) : String</a>
+        
+          <div class="summary"><p>Encodes a string to an <a href="https://tools.ietf.org/html/rfc2616#page-17">RFC 2616</a> quoted-string.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#serialize_chunked_body%28io%2Cbody%29-class-method" class="signature"><strong>.serialize_chunked_body</strong>(io, body)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#serialize_headers%28io%2Cheaders%29-class-method" class="signature"><strong>.serialize_headers</strong>(io, headers)</a>
+        
+          <div class="summary"><p><span class="flag red">DEPRECATED</span>  Use <code><a href="HTTP/Headers.html#serialize%3AString-instance-method">HTTP::Headers#serialize</a></code> instead.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#serialize_headers_and_string_body%28io%2Cheaders%2Cbody%29-class-method" class="signature"><strong>.serialize_headers_and_string_body</strong>(io, headers, body)</a>
+        
+      </li>
+    
+  </ul>
+
+
+  
+
+  
+
+
+  <div class="methods-inherited">
+    
+  </div>
+
+  
+
+  
+  <h2>
+    <a id="class-method-detail" class="anchor" href="#class-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Class Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="dequote_string(str):String-class-method">
+      <div class="signature">
+        
+        def self.<strong>dequote_string</strong>(str) : <a href="String.html">String</a>
+
+        <a class="method-permalink" href="#dequote_string%28str%29%3AString-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Dequotes an <a href="https://tools.ietf.org/html/rfc2616#page-17">RFC 2616</a>
+quoted-string.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;http&quot;</span>
+
+quoted <span class="o">=</span> <span class="s">%q(\&quot;foo\\bar\&quot;)</span>
+<span class="t">HTTP</span>.dequote_string(quoted) <span class="c"># =&gt; %q(&quot;foo\bar&quot;)</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/http/common.cr#L383" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="expect_continue?(headers):Bool-class-method">
+      <div class="signature">
+        
+        def self.<strong>expect_continue?</strong>(headers) : <a href="Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#expect_continue%3F%28headers%29%3ABool-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/http/common.cr#L337" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="format_time(time:Time):String-class-method">
+      <div class="signature">
+        
+        def self.<strong>format_time</strong>(time : <a href="Time.html">Time</a>) : <a href="String.html">String</a>
+
+        <a class="method-permalink" href="#format_time%28time%3ATime%29%3AString-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Format a <code><a href="Time.html">Time</a></code> object as a <code><a href="String.html">String</a></code> using the format specified as <code>sane-cookie-date</code>
+by <a href="https://tools.ietf.org/html/rfc6265#section-4.1.1">RFC 6265</a> which is
+according to <a href="https://tools.ietf.org/html/rfc2616#section-3.3.1">RFC 2616</a> a
+<a href="https://tools.ietf.org/html/rfc1123#page-55">RFC 1123</a> format with explicit
+timezone <code>GMT</code> (interpreted as <code>UTC</code>).</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;http&quot;</span>
+
+<span class="t">HTTP</span>.format_time(<span class="t">Time</span>.utc(<span class="n">2016</span>, <span class="n">2</span>, <span class="n">15</span>)) <span class="c"># =&gt; &quot;Mon, 15 Feb 2016 00:00:00 GMT&quot;</span></code></pre>
+<p>Uses <code><a href="Time/Format/HTTP_DATE.html">Time::Format::HTTP_DATE</a></code> as formatter.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/http/common.cr#L370" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="parse_time(time_str:String):Time|Nil-class-method">
+      <div class="signature">
+        
+        def self.<strong>parse_time</strong>(time_str : <a href="String.html">String</a>) : <a href="Time.html">Time</a> | <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#parse_time%28time_str%3AString%29%3ATime%7CNil-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Parse a time string using the formats specified by <a href="https://tools.ietf.org/html/rfc2616#section-3.3.1">RFC 2616</a></p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;http&quot;</span>
+
+<span class="t">HTTP</span>.parse_time(<span class="s">&quot;Sun, 14 Feb 2016 21:00:00 GMT&quot;</span>)  <span class="c"># =&gt; &quot;2016-02-14 21:00:00 UTC&quot;</span>
+<span class="t">HTTP</span>.parse_time(<span class="s">&quot;Sunday, 14-Feb-16 21:00:00 GMT&quot;</span>) <span class="c"># =&gt; &quot;2016-02-14 21:00:00 UTC&quot;</span>
+<span class="t">HTTP</span>.parse_time(<span class="s">&quot;Sun Feb 14 21:00:00 2016&quot;</span>)       <span class="c"># =&gt; &quot;2016-02-14 21:00:00 UTC&quot;</span></code></pre>
+<p>Uses <code><a href="Time/Format/HTTP_DATE.html">Time::Format::HTTP_DATE</a></code> as parser.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/http/common.cr#L352" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="quote_string(string,io):Nil-class-method">
+      <div class="signature">
+        
+        def self.<strong>quote_string</strong>(string, io) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#quote_string%28string%2Cio%29%3ANil-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Encodes a string to an <a href="https://tools.ietf.org/html/rfc2616#page-17">RFC 2616</a>
+quoted-string. Encoded string is written to <em>io</em>. May raise when <em>string</em>
+contains an invalid character.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;http&quot;</span>
+
+string <span class="o">=</span> <span class="s">%q(&quot;foo\ bar&quot;)</span>
+io <span class="o">=</span> <span class="t">IO</span><span class="t">::</span><span class="t">Memory</span>.new
+<span class="t">HTTP</span>.quote_string(string, io)
+io.rewind
+io.gets_to_end <span class="c"># =&gt; %q(\&quot;foo\\\ bar\&quot;)</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/http/common.cr#L413" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="quote_string(string):String-class-method">
+      <div class="signature">
+        
+        def self.<strong>quote_string</strong>(string) : <a href="String.html">String</a>
+
+        <a class="method-permalink" href="#quote_string%28string%29%3AString-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Encodes a string to an <a href="https://tools.ietf.org/html/rfc2616#page-17">RFC 2616</a>
+quoted-string. May raise when <em>string</em> contains an invalid character.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;http&quot;</span>
+
+string <span class="o">=</span> <span class="s">%q(&quot;foo\ bar&quot;)</span>
+<span class="t">HTTP</span>.quote_string(string) <span class="c"># =&gt; %q(\&quot;foo\\\ bar\&quot;)</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/http/common.cr#L438" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="serialize_chunked_body(io,body)-class-method">
+      <div class="signature">
+        
+        def self.<strong>serialize_chunked_body</strong>(io, body)
+
+        <a class="method-permalink" href="#serialize_chunked_body%28io%2Cbody%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/http/common.cr#L298" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="serialize_headers(io,headers)-class-method">
+      <div class="signature">
+        
+        def self.<strong>serialize_headers</strong>(io, headers)
+
+        <a class="method-permalink" href="#serialize_headers%28io%2Cheaders%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p><span class="flag red">DEPRECATED</span>  Use <code><a href="HTTP/Headers.html#serialize%3AString-instance-method">HTTP::Headers#serialize</a></code> instead.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/http/common.cr#L293" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="serialize_headers_and_string_body(io,headers,body)-class-method">
+      <div class="signature">
+        
+        def self.<strong>serialize_headers_and_string_body</strong>(io, headers, body)
+
+        <a class="method-permalink" href="#serialize_headers_and_string_body%28io%2Cheaders%2Cbody%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/http/common.cr#L285" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+  
+
+  
+
+
+</div>
+
+</body>
+</html>

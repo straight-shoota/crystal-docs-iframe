@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Crystal Docs 1.16.1">
+<meta name="crystal_docs.project_version" content="1.17.0-dev">
+<meta name="crystal_docs.project_name" content="Crystal">
+
+  <meta name="crystal_docs.json_config_url" content="/api/versions.json">
+
+
+    <link rel="canonical" href="https://crystal-lang.org/api/latest/URI/Params/Serializable.html">
+
+<link href="../../css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../../js/doc.js"></script>
+
+  <meta name="repository-name" content="Crystal">
+  <title>URI::Params::Serializable - Crystal 1.17.0-dev</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "../../";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill="currentColor" fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<input type="checkbox" id="sidebar-btn">
+<label for="sidebar-btn" id="sidebar-btn-label">
+  <svg class="open" xmlns="http://www.w3.org/2000/svg" height="2em" width="2em" viewBox="0 0 512 512"><title>Open Sidebar</title><path fill="currentColor" d="M80 96v64h352V96H80zm0 112v64h352v-64H80zm0 112v64h352v-64H80z"></path></svg>
+  <svg class="close" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><title>Close Sidebar</title><path fill="currentColor" d="m118.6 73.4-45.2 45.2L210.7 256 73.4 393.4l45.2 45.2L256 301.3l137.4 137.3 45.2-45.2L301.3 256l137.3-137.4-45.2-45.2L256 210.7Z"></path></svg>
+</label>
+<iframe class="sidebar" src="../../sidebar.html"></iframe>
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">
+    module
+  </span> URI::<wbr>Params::<wbr>Serializable
+
+</h1>
+
+
+
+
+
+  <h2>
+    <a id="overview" class="anchor" href="#overview">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Overview
+  </h2>
+
+  <p>The <code><a href="../../URI/Params/Serializable.html">URI::Params::Serializable</a></code> module automatically generates methods for <code>x-www-form-urlencoded</code> serialization when included.</p>
+<p><span class="flag purple">NOTE</span>  To use this module, you must explicitly import it with <code>require &quot;uri/params/serializable&quot;</code>.</p>
+<h3><a id="example" class="anchor" href="#example">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Example</h3>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;uri/params/serializable&quot;</span>
+
+<span class="k">struct</span> <span class="t">Applicant</span>
+  <span class="k">include</span> <span class="t">URI</span><span class="t">::</span><span class="t">Params</span><span class="t">::</span><span class="t">Serializable</span>
+
+  getter first_name : <span class="t">String</span>
+  getter last_name : <span class="t">String</span>
+  getter qualities : <span class="t">Array</span>(<span class="t">String</span>)
+<span class="k">end</span>
+
+applicant <span class="o">=</span> <span class="t">Applicant</span>.from_www_form <span class="s">&quot;first_name=John&amp;last_name=Doe&amp;qualities=kind&amp;qualities=smart&quot;</span>
+applicant.first_name  <span class="c"># =&gt; &quot;John&quot;</span>
+applicant.last_name   <span class="c"># =&gt; &quot;Doe&quot;</span>
+applicant.qualities   <span class="c"># =&gt; [&quot;kind&quot;, &quot;smart&quot;]</span>
+applicant.to_www_form <span class="c"># =&gt; &quot;first_name=John&amp;last_name=Doe&amp;qualities=kind&amp;qualities=smart&quot;</span></code></pre>
+<h3><a id="usage" class="anchor" href="#usage">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Usage</h3>
+<p>Including <code><a href="../../URI/Params/Serializable.html">URI::Params::Serializable</a></code> will create <code><a href="../../URI/Params/Serializable.html#to_www_form%28%2A%2Cspace_to_plus%3ABool%3Dtrue%29%3AString-instance-method">#to_www_form</a></code> and <code>self.from_www_form</code> methods on the current class.
+By default, these methods serialize into a www form encoded string containing the value of every instance variable, the keys being the instance variable name.
+Union types are also supported, including unions with nil.
+If multiple types in a union parse correctly, it is undefined which one will be chosen.</p>
+<p>To change how individual instance variables are parsed, the annotation <code><a href="../../URI/Params/Field.html">URI::Params::Field</a></code> can be placed on the instance variable.
+Annotating property, getter and setter macros is also allowed.</p>
+<p><code><a href="../../URI/Params/Field.html">URI::Params::Field</a></code> properties:</p>
+<ul>
+<li><strong>converter</strong>: specify an alternate type for parsing. The converter must define <code>.from_www_form(params : URI::Params, name : String)</code>.
+An example use case would be customizing the format when parsing <code><a href="../../Time.html">Time</a></code> instances, or supporting a type not natively supported.</li>
+</ul>
+<p>Deserialization also respects default values of variables:</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;uri/params/serializable&quot;</span>
+
+<span class="k">struct</span> <span class="t">A</span>
+  <span class="k">include</span> <span class="t">URI</span><span class="t">::</span><span class="t">Params</span><span class="t">::</span><span class="t">Serializable</span>
+
+  @a : <span class="t">Int32</span>
+  @b : <span class="t">Float64</span> <span class="o">=</span> <span class="n">1.0</span>
+<span class="k">end</span>
+
+<span class="t">A</span>.from_www_form(<span class="s">&quot;a=1&quot;</span>) <span class="c"># =&gt; A(@a=1, @b=1.0)</span></code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri/params/serializable.cr#L60" target="_blank">
+        uri/params/serializable.cr
+      </a>
+    
+    <br/>
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#to_www_form%28%2A%2Cspace_to_plus%3ABool%3Dtrue%29%3AString-instance-method" class="signature"><strong>#to_www_form</strong>(*, space_to_plus : Bool = <span class="n">true</span>) : String</a>
+        
+      </li>
+    
+  </ul>
+
+
+
+  <div class="methods-inherited">
+    
+  </div>
+
+  
+
+  
+
+  
+
+  
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="to_www_form(*,space_to_plus:Bool=true):String-instance-method">
+      <div class="signature">
+        
+        def <strong>to_www_form</strong>(*, space_to_plus : <a href="../../Bool.html">Bool</a> = <span class="n">true</span>) : <a href="../../String.html">String</a>
+
+        <a class="method-permalink" href="#to_www_form%28%2A%2Cspace_to_plus%3ABool%3Dtrue%29%3AString-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri/params/serializable.cr#L111" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Crystal Docs 1.16.1">
+<meta name="crystal_docs.project_version" content="1.17.0-dev">
+<meta name="crystal_docs.project_name" content="Crystal">
+
+  <meta name="crystal_docs.json_config_url" content="/api/versions.json">
+
+
+    <link rel="canonical" href="https://crystal-lang.org/api/latest/Crystal/Macros/ASTNode.html">
+
+<link href="../../css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../../js/doc.js"></script>
+
+  <meta name="repository-name" content="Crystal">
+  <title>Crystal::Macros::ASTNode - Crystal 1.17.0-dev</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "../../";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill="currentColor" fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<input type="checkbox" id="sidebar-btn">
+<label for="sidebar-btn" id="sidebar-btn-label">
+  <svg class="open" xmlns="http://www.w3.org/2000/svg" height="2em" width="2em" viewBox="0 0 512 512"><title>Open Sidebar</title><path fill="currentColor" d="M80 96v64h352V96H80zm0 112v64h352v-64H80zm0 112v64h352v-64H80z"></path></svg>
+  <svg class="close" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><title>Close Sidebar</title><path fill="currentColor" d="m118.6 73.4-45.2 45.2L210.7 256 73.4 393.4l45.2 45.2L256 301.3l137.4 137.3 45.2-45.2L301.3 256l137.3-137.4-45.2-45.2L256 210.7Z"></path></svg>
+</label>
+<iframe class="sidebar" src="../../sidebar.html"></iframe>
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">
+    abstract class
+  </span> Crystal::<wbr>Macros::<wbr>ASTNode
+
+</h1>
+
+
+
+
+
+  <h2>
+    <a id="overview" class="anchor" href="#overview">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Overview
+  </h2>
+
+  <p>This is the base class of all AST nodes. This methods are
+available to all AST nodes.</p>
+
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="direct-known-subclasses" class="anchor" href="#direct-known-subclasses">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Direct Known Subclasses
+  </h2>
+  <ul class="other-types-list">
+    
+      <li class="other-type"><a href="../../Crystal/Macros/Alias.html">Crystal::Macros::Alias</a></li>
+    
+      <li class="other-type"><a href="../../Crystal/Macros/Annotation.html">Crystal::Macros::Annotation</a></li>
+    
+      <li class="other-type"><a href="../../Crystal/Macros/AnnotationDef.html">Crystal::Macros::AnnotationDef</a></li>
+    
+      <li class="other-type"><a href="../../Crystal/Macros/Arg.html">Crystal::Macros::Arg</a></li>
+    
+      <li class="other-type"><a href="../../Crystal/Macros/ArrayLiteral.html">Crystal::Macros::ArrayLiteral</a></li>
+    
+      <li class="other-type"><a href="../../Crystal/Macros/Asm.html">Crystal::Macros::Asm</a></li>
+    
+      <li class="other-type"><a href="../../Crystal/Macros/AsmOperand.html">Crystal::Macros::AsmOperand</a></li>
+    
+      <li class="other-type"><a href="../../Crystal/Macros/Assign.html">Crystal::Macros::Assign</a></li>
+    
+      <li class="other-type"><a href="../../Crystal/Macros/BinaryOp.html">Crystal::Macros::BinaryOp</a></li>
+    
+      <li class="other-type"><a href="../../Crystal/Macros/Block.html">Crystal::Macros::Block</a></li>
+    
+      <li class="other-type"><a href="../../Crystal/Macros/BoolLiteral.html">Crystal::Macros::BoolLiteral</a></li>
+    
+      <li class="other-type"><a href="../../Crystal/Macros/Call.html">Crystal::Macros::Call</a></li>
+    
+      <li class="other-type"><a href="../../Crystal/Macros/Case.html">Crystal::Macros::Case</a></li>
+    
+      <li class="other-type"><a href="../../Crystal/Macros/Cast.html">Crystal::Macros::Cast</a></li>
+    
+      <li class="other-type"><a href="../../Crystal/Macros/CharLiteral.html">Crystal::Macros::CharLiteral</a></li>
+    
+      <li class="other-type"><a href="../../Crystal/Macros/ClassDef.html">Crystal::Macros::ClassDef</a></li>
+    
+      <li class="other-type"><a href="../../Crystal/Macros/ClassVar.html">Crystal::Macros::ClassVar</a></li>
+    
+      <li class="other-type"><a href="../../Crystal/Macros/ControlExpression.html">Crystal::Macros::ControlExpression</a></li>
+    
+      <li class="other-type"><a href="../../Crystal/Macros/CStructOrUnionDef.html">Crystal::Macros::CStructOrUnionDef</a></li>
+    
+      <li class="other-type"><a href="../../Crystal/Macros/Def.html">Crystal::Macros::Def</a></li>
+    
+      <li class="other-type"><a href="../../Crystal/Macros/EnumDef.html">Crystal::Macros::EnumDef</a></li>
+    
+      <li class="other-type"><a href="../../Crystal/Macros/ExceptionHandler.html">Crystal::Macros::ExceptionHandler</a></li>
+    
+      <li class="other-type"><a href="../../Crystal/Macros/Expressions.html">Crystal::Macros::Expressions</a></li>
+    
+      <li class="other-type"><a href="../../Crystal/Macros/Extend.html">Crystal::Macros::Extend</a></li>
+    
+      <li class="other-type"><a href="../../Crystal/Macros/ExternalVar.html">Crystal::Macros::ExternalVar</a></li>
+    
+      <li class="other-type"><a href="../../Crystal/Macros/FunDef.html">Crystal::Macros::FunDef</a></li>
+    
+      <li class="other-type"><a href="../../Crystal/Macros/Generic.html">Crystal::Macros::Generic</a></li>
+    
+      <li class="other-type"><a href="../../Crystal/Macros/Global.html">Crystal::Macros::Global</a></li>
+    
+      <li class="other-type"><a href="../../Crystal/Macros/HashLiteral.html">Crystal::Macros::HashLiteral</a></li>
+    
+      <li class="other-type"><a href="../../Crystal/Macros/If.html">Crystal::Macros::If</a></li>
+    
+      <li class="other-type"><a href="../../Crystal/Macros/ImplicitObj.html">Crystal::Macros::ImplicitObj</a></li>
+    
+      <li class="other-type"><a href="../../Crystal/Macros/Include.html">Crystal::Macros::Include</a></li>
+    
+      <li class="other-type"><a href="../../Crystal/Macros/InstanceVar.html">Crystal::Macros::InstanceVar</a></li>
+    
+      <li class="other-type"><a href="../../Crystal/Macros/IsA.html">Crystal::Macros::IsA</a></li>
+    
+      <li class="other-type"><a href="../../Crystal/Macros/LibDef.html">Crystal::Macros::LibDef</a></li>
+    
+      <li class="other-type"><a href="../../Crystal/Macros/Macro.html">Crystal::Macros::Macro</a></li>
+    
+      <li class="other-type"><a href="../../Crystal/Macros/MacroExpression.html">Crystal::Macros::MacroExpression</a></li>
+    
+      <li class="other-type"><a href="../../Crystal/Macros/MacroFor.html">Crystal::Macros::MacroFor</a></li>
+    
+      <li class="other-type"><a href="../../Crystal/Macros/MacroId.html">Crystal::Macros::MacroId</a></li>
+    
+      <li class="other-type"><a href="../../Crystal/Macros/MacroIf.html">Crystal::Macros::MacroIf</a></li>
+    
+      <li class="other-type"><a href="../../Crystal/Macros/MacroLiteral.html">Crystal::Macros::MacroLiteral</a></li>
+    
+      <li class="other-type"><a href="../../Crystal/Macros/MacroVar.html">Crystal::Macros::MacroVar</a></li>
+    
+      <li class="other-type"><a href="../../Crystal/Macros/MagicConstant.html">Crystal::Macros::MagicConstant</a></li>
+    
+      <li class="other-type"><a href="../../Crystal/Macros/Metaclass.html">Crystal::Macros::Metaclass</a></li>
+    
+      <li class="other-type"><a href="../../Crystal/Macros/MetaVar.html">Crystal::Macros::MetaVar</a></li>
+    
+      <li class="other-type"><a href="../../Crystal/Macros/ModuleDef.html">Crystal::Macros::ModuleDef</a></li>
+    
+      <li class="other-type"><a href="../../Crystal/Macros/MultiAssign.html">Crystal::Macros::MultiAssign</a></li>
+    
+      <li class="other-type"><a href="../../Crystal/Macros/NamedArgument.html">Crystal::Macros::NamedArgument</a></li>
+    
+      <li class="other-type"><a href="../../Crystal/Macros/NamedTupleLiteral.html">Crystal::Macros::NamedTupleLiteral</a></li>
+    
+      <li class="other-type"><a href="../../Crystal/Macros/NilableCast.html">Crystal::Macros::NilableCast</a></li>
+    
+      <li class="other-type"><a href="../../Crystal/Macros/NilLiteral.html">Crystal::Macros::NilLiteral</a></li>
+    
+      <li class="other-type"><a href="../../Crystal/Macros/Nop.html">Crystal::Macros::Nop</a></li>
+    
+      <li class="other-type"><a href="../../Crystal/Macros/NumberLiteral.html">Crystal::Macros::NumberLiteral</a></li>
+    
+      <li class="other-type"><a href="../../Crystal/Macros/OffsetOf.html">Crystal::Macros::OffsetOf</a></li>
+    
+      <li class="other-type"><a href="../../Crystal/Macros/Path.html">Crystal::Macros::Path</a></li>
+    
+      <li class="other-type"><a href="../../Crystal/Macros/Primitive.html">Crystal::Macros::Primitive</a></li>
+    
+      <li class="other-type"><a href="../../Crystal/Macros/ProcLiteral.html">Crystal::Macros::ProcLiteral</a></li>
+    
+      <li class="other-type"><a href="../../Crystal/Macros/ProcNotation.html">Crystal::Macros::ProcNotation</a></li>
+    
+      <li class="other-type"><a href="../../Crystal/Macros/ProcPointer.html">Crystal::Macros::ProcPointer</a></li>
+    
+      <li class="other-type"><a href="../../Crystal/Macros/RangeLiteral.html">Crystal::Macros::RangeLiteral</a></li>
+    
+      <li class="other-type"><a href="../../Crystal/Macros/ReadInstanceVar.html">Crystal::Macros::ReadInstanceVar</a></li>
+    
+      <li class="other-type"><a href="../../Crystal/Macros/RegexLiteral.html">Crystal::Macros::RegexLiteral</a></li>
+    
+      <li class="other-type"><a href="../../Crystal/Macros/Require.html">Crystal::Macros::Require</a></li>
+    
+      <li class="other-type"><a href="../../Crystal/Macros/Rescue.html">Crystal::Macros::Rescue</a></li>
+    
+      <li class="other-type"><a href="../../Crystal/Macros/RespondsTo.html">Crystal::Macros::RespondsTo</a></li>
+    
+      <li class="other-type"><a href="../../Crystal/Macros/Select.html">Crystal::Macros::Select</a></li>
+    
+      <li class="other-type"><a href="../../Crystal/Macros/Self.html">Crystal::Macros::Self</a></li>
+    
+      <li class="other-type"><a href="../../Crystal/Macros/StringInterpolation.html">Crystal::Macros::StringInterpolation</a></li>
+    
+      <li class="other-type"><a href="../../Crystal/Macros/StringLiteral.html">Crystal::Macros::StringLiteral</a></li>
+    
+      <li class="other-type"><a href="../../Crystal/Macros/SymbolLiteral.html">Crystal::Macros::SymbolLiteral</a></li>
+    
+      <li class="other-type"><a href="../../Crystal/Macros/TupleLiteral.html">Crystal::Macros::TupleLiteral</a></li>
+    
+      <li class="other-type"><a href="../../Crystal/Macros/TypeDeclaration.html">Crystal::Macros::TypeDeclaration</a></li>
+    
+      <li class="other-type"><a href="../../Crystal/Macros/TypeDef.html">Crystal::Macros::TypeDef</a></li>
+    
+      <li class="other-type"><a href="../../Crystal/Macros/TypeNode.html">Crystal::Macros::TypeNode</a></li>
+    
+      <li class="other-type"><a href="../../Crystal/Macros/TypeOf.html">Crystal::Macros::TypeOf</a></li>
+    
+      <li class="other-type"><a href="../../Crystal/Macros/UnaryExpression.html">Crystal::Macros::UnaryExpression</a></li>
+    
+      <li class="other-type"><a href="../../Crystal/Macros/Underscore.html">Crystal::Macros::Underscore</a></li>
+    
+      <li class="other-type"><a href="../../Crystal/Macros/UninitializedVar.html">Crystal::Macros::UninitializedVar</a></li>
+    
+      <li class="other-type"><a href="../../Crystal/Macros/Union.html">Crystal::Macros::Union</a></li>
+    
+      <li class="other-type"><a href="../../Crystal/Macros/Var.html">Crystal::Macros::Var</a></li>
+    
+      <li class="other-type"><a href="../../Crystal/Macros/VisibilityModifier.html">Crystal::Macros::VisibilityModifier</a></li>
+    
+      <li class="other-type"><a href="../../Crystal/Macros/When.html">Crystal::Macros::When</a></li>
+    
+      <li class="other-type"><a href="../../Crystal/Macros/While.html">Crystal::Macros::While</a></li>
+    
+      <li class="other-type"><a href="../../Crystal/Macros/Yield.html">Crystal::Macros::Yield</a></li>
+    
+  </ul>
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/compiler/crystal/macros.cr#L370" target="_blank">
+        compiler/crystal/macros.cr
+      </a>
+    
+    <br/>
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#%21%3D%28other%3AASTNode%29%3ABoolLiteral-instance-method" class="signature"><strong>#!=</strong>(other : ASTNode) : BoolLiteral</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this node's textual representation is not the same as the <em>other</em> node.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%3D%3D%28other%3AASTNode%29%3ABoolLiteral-instance-method" class="signature"><strong>#==</strong>(other : ASTNode) : BoolLiteral</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this node's textual representation is the same as the <em>other</em> node.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#class_name%3AStringLiteral-instance-method" class="signature"><strong>#class_name</strong> : StringLiteral</a>
+        
+          <div class="summary"><p>Returns a <code><a href="../../Crystal/Macros/StringLiteral.html">StringLiteral</a></code> that contains this node's name.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#column_number%3AStringLiteral%7CNilLiteral-instance-method" class="signature"><strong>#column_number</strong> : StringLiteral | NilLiteral</a>
+        
+          <div class="summary"><p>Returns the column number where this node begins.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#doc%3AStringLiteral-instance-method" class="signature"><strong>#doc</strong> : StringLiteral</a>
+        
+          <div class="summary"><p>Returns a <code><a href="../../Crystal/Macros/StringLiteral.html">StringLiteral</a></code> that contains the documentation comments attached to this node, or an empty string if there are none.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#doc_comment%3AMacroId-instance-method" class="signature"><strong>#doc_comment</strong> : MacroId</a>
+        
+          <div class="summary"><p>Returns a <code><a href="../../Crystal/Macros/MacroId.html">MacroId</a></code> that contains the documentation comments attached to this node, or an empty <code><a href="../../Crystal/Macros/MacroId.html">MacroId</a></code> if there are none.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#end_column_number%3AStringLiteral%7CNilLiteral-instance-method" class="signature"><strong>#end_column_number</strong> : StringLiteral | NilLiteral</a>
+        
+          <div class="summary"><p>Returns the column number where this node ends.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#end_line_number%3AStringLiteral%7CNilLiteral-instance-method" class="signature"><strong>#end_line_number</strong> : StringLiteral | NilLiteral</a>
+        
+          <div class="summary"><p>Returns the line number where this node ends.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#filename%3AStringLiteral%7CNilLiteral-instance-method" class="signature"><strong>#filename</strong> : StringLiteral | NilLiteral</a>
+        
+          <div class="summary"><p>Returns the filename where this node is located.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#id%3AMacroId-instance-method" class="signature"><strong>#id</strong> : MacroId</a>
+        
+          <div class="summary"><p>Returns this node as a <code><a href="../../Crystal/Macros/MacroId.html">MacroId</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#is_a%3F%28type%3ATypeNode%29%3ABoolLiteral-instance-method" class="signature"><strong>#is_a?</strong>(type : TypeNode) : BoolLiteral</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this node's type is the given <em>type</em> or any of its subclasses.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#line_number%3AStringLiteral%7CNilLiteral-instance-method" class="signature"><strong>#line_number</strong> : StringLiteral | NilLiteral</a>
+        
+          <div class="summary"><p>Returns the line number where this node begins.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#nil%3F%3ABoolLiteral-instance-method" class="signature"><strong>#nil?</strong> : BoolLiteral</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this node is a <code><a href="../../Crystal/Macros/NilLiteral.html">NilLiteral</a></code> or <code><a href="../../Crystal/Macros/Nop.html">Nop</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#raise%28message%29%3ANoReturn-instance-method" class="signature"><strong>#raise</strong>(message) : NoReturn</a>
+        
+          <div class="summary"><p>Gives a compile-time error with the given <em>message</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#stringify%3AStringLiteral-instance-method" class="signature"><strong>#stringify</strong> : StringLiteral</a>
+        
+          <div class="summary"><p>Returns a <code><a href="../../Crystal/Macros/StringLiteral.html">StringLiteral</a></code> that contains this node's textual representation.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#symbolize%3ASymbolLiteral-instance-method" class="signature"><strong>#symbolize</strong> : SymbolLiteral</a>
+        
+          <div class="summary"><p>Returns a <code><a href="../../Crystal/Macros/SymbolLiteral.html">SymbolLiteral</a></code> that contains this node's textual representation.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#warning%28message%3AStringLiteral%29%3ANilLiteral-instance-method" class="signature"><strong>#warning</strong>(message : StringLiteral) : NilLiteral</a>
+        
+          <div class="summary"><p>Emits a compile-time warning with the given <em>message</em>.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+
+  <div class="methods-inherited">
+    
+  </div>
+
+  
+
+  
+
+  
+
+  
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="!=(other:ASTNode):BoolLiteral-instance-method">
+      <div class="signature">
+        
+        def <strong>!=</strong>(other : <a href="../../Crystal/Macros/ASTNode.html">ASTNode</a>) : <a href="../../Crystal/Macros/BoolLiteral.html">BoolLiteral</a>
+
+        <a class="method-permalink" href="#%21%3D%28other%3AASTNode%29%3ABoolLiteral-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this node's textual representation is not the same as
+the <em>other</em> node.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/compiler/crystal/macros.cr#L466" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="==(other:ASTNode):BoolLiteral-instance-method">
+      <div class="signature">
+        
+        def <strong>==</strong>(other : <a href="../../Crystal/Macros/ASTNode.html">ASTNode</a>) : <a href="../../Crystal/Macros/BoolLiteral.html">BoolLiteral</a>
+
+        <a class="method-permalink" href="#%3D%3D%28other%3AASTNode%29%3ABoolLiteral-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this node's textual representation is the same as
+the <em>other</em> node.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/compiler/crystal/macros.cr#L461" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="class_name:StringLiteral-instance-method">
+      <div class="signature">
+        
+        def <strong>class_name</strong> : <a href="../../Crystal/Macros/StringLiteral.html">StringLiteral</a>
+
+        <a class="method-permalink" href="#class_name%3AStringLiteral-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns a <code><a href="../../Crystal/Macros/StringLiteral.html">StringLiteral</a></code> that contains this node's name.</p>
+<pre><code class="language-crystal"><span class="k">macro</span> test
+  <span class="o">{{</span> <span class="s">&quot;foo&quot;</span>.class_name }}
+<span class="k">end</span>
+
+puts test <span class="c"># =&gt; prints StringLiteral</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/compiler/crystal/macros.cr#L423" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="column_number:StringLiteral|NilLiteral-instance-method">
+      <div class="signature">
+        
+        def <strong>column_number</strong> : <a href="../../Crystal/Macros/StringLiteral.html">StringLiteral</a> | <a href="../../Crystal/Macros/NilLiteral.html">NilLiteral</a>
+
+        <a class="method-permalink" href="#column_number%3AStringLiteral%7CNilLiteral-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the column number where this node begins.
+Might return <code>nil</code> if the location is not known.</p>
+<p>The first column number in a line is <code>1</code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/compiler/crystal/macros.cr#L442" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="doc:StringLiteral-instance-method">
+      <div class="signature">
+        
+        def <strong>doc</strong> : <a href="../../Crystal/Macros/StringLiteral.html">StringLiteral</a>
+
+        <a class="method-permalink" href="#doc%3AStringLiteral-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns a <code><a href="../../Crystal/Macros/StringLiteral.html">StringLiteral</a></code> that contains the documentation comments attached to this node, or an empty string if there are none.</p>
+<p><span class="flag yellow">WARNING</span>  The return value will be an empty string when executed outside of the <code>crystal docs</code> command.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/compiler/crystal/macros.cr#L482" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="doc_comment:MacroId-instance-method">
+      <div class="signature">
+        
+        def <strong>doc_comment</strong> : <a href="../../Crystal/Macros/MacroId.html">MacroId</a>
+
+        <a class="method-permalink" href="#doc_comment%3AMacroId-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns a <code><a href="../../Crystal/Macros/MacroId.html">MacroId</a></code> that contains the documentation comments attached to this node, or an empty <code><a href="../../Crystal/Macros/MacroId.html">MacroId</a></code> if there are none.
+Each line is prefixed with a <code>#</code> character to allow the output to be used directly within another node's documentation comment.</p>
+<p>A common use case is combining this method with the <code>@caller</code> macro instance variable in order to allow <a href="https://crystal-lang.org/reference/syntax_and_semantics/macros/index.html#merging-expansion-and-call-comments">merging macro expansion and call comments</a>.</p>
+<p><span class="flag yellow">WARNING</span>  The return value will be empty when executed outside of the <code>crystal docs</code> command.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/compiler/crystal/macros.cr#L491" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="end_column_number:StringLiteral|NilLiteral-instance-method">
+      <div class="signature">
+        
+        def <strong>end_column_number</strong> : <a href="../../Crystal/Macros/StringLiteral.html">StringLiteral</a> | <a href="../../Crystal/Macros/NilLiteral.html">NilLiteral</a>
+
+        <a class="method-permalink" href="#end_column_number%3AStringLiteral%7CNilLiteral-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the column number where this node ends.
+Might return <code>nil</code> if the location is not known.</p>
+<p>The first column number in a line is <code>1</code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/compiler/crystal/macros.cr#L456" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="end_line_number:StringLiteral|NilLiteral-instance-method">
+      <div class="signature">
+        
+        def <strong>end_line_number</strong> : <a href="../../Crystal/Macros/StringLiteral.html">StringLiteral</a> | <a href="../../Crystal/Macros/NilLiteral.html">NilLiteral</a>
+
+        <a class="method-permalink" href="#end_line_number%3AStringLiteral%7CNilLiteral-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the line number where this node ends.
+Might return <code>nil</code> if the location is not known.</p>
+<p>The first line number in a file is <code>1</code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/compiler/crystal/macros.cr#L449" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="filename:StringLiteral|NilLiteral-instance-method">
+      <div class="signature">
+        
+        def <strong>filename</strong> : <a href="../../Crystal/Macros/StringLiteral.html">StringLiteral</a> | <a href="../../Crystal/Macros/NilLiteral.html">NilLiteral</a>
+
+        <a class="method-permalink" href="#filename%3AStringLiteral%7CNilLiteral-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the filename where this node is located.
+Might return <code>nil</code> if the location is not known.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/compiler/crystal/macros.cr#L428" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="id:MacroId-instance-method">
+      <div class="signature">
+        
+        def <strong>id</strong> : <a href="../../Crystal/Macros/MacroId.html">MacroId</a>
+
+        <a class="method-permalink" href="#id%3AMacroId-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns this node as a <code><a href="../../Crystal/Macros/MacroId.html">MacroId</a></code>. Useful when you need an identifier
+out of a <code><a href="../../Crystal/Macros/StringLiteral.html">StringLiteral</a></code>, <code><a href="../../Crystal/Macros/SymbolLiteral.html">SymbolLiteral</a></code>, <code><a href="../../Crystal/Macros/Var.html">Var</a></code> or <code><a href="../../Crystal/Macros/Call.html">Call</a></code>.</p>
+<pre><code class="language-crystal"><span class="k">macro</span> define_method(name, content)
+  <span class="k">def</span> <span class="o">{{</span>name.id}}
+    <span class="o">{{</span>content}}
+  <span class="k">end</span>
+<span class="k">end</span>
+
+define_method <span class="n">:foo</span>, <span class="n">1</span>
+define_method <span class="s">&quot;bar&quot;</span>, <span class="n">2</span>
+define_method baz, <span class="n">3</span>
+
+puts foo <span class="c"># =&gt; prints 1</span>
+puts bar <span class="c"># =&gt; prints 2</span>
+puts baz <span class="c"># =&gt; prints 3</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/compiler/crystal/macros.cr#L389" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="is_a?(type:TypeNode):BoolLiteral-instance-method">
+      <div class="signature">
+        
+        def <strong>is_a?</strong>(type : <a href="../../Crystal/Macros/TypeNode.html">TypeNode</a>) : <a href="../../Crystal/Macros/BoolLiteral.html">BoolLiteral</a>
+
+        <a class="method-permalink" href="#is_a%3F%28type%3ATypeNode%29%3ABoolLiteral-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this node's type is the given <em>type</em> or any of its
+subclasses.</p>
+<p><em>type</em> always refers to an AST node type, never a type in the program.</p>
+<pre><code class="language-crystal"><span class="o">{{</span> <span class="n">1</span>.<span class="k">is_a?</span>(<span class="t">NumberLiteral</span>) }} <span class="c"># =&gt; true</span>
+<span class="o">{{</span> <span class="n">1</span>.<span class="k">is_a?</span>(<span class="t">BoolLiteral</span>) }}   <span class="c"># =&gt; false</span>
+<span class="o">{{</span> <span class="n">1</span>.<span class="k">is_a?</span>(<span class="t">ASTNode</span>) }}       <span class="c"># =&gt; true</span>
+<span class="o">{{</span> <span class="n">1</span>.<span class="k">is_a?</span>(<span class="t">Int32</span>) }}         <span class="c"># =&gt; false</span></code></pre>
+<p><span class="flag purple">NOTE</span>  This is a pseudo-method provided directly by the Crystal compiler.
+It cannot be redefined nor overridden.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/compiler/crystal/macros.cr#L505" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="line_number:StringLiteral|NilLiteral-instance-method">
+      <div class="signature">
+        
+        def <strong>line_number</strong> : <a href="../../Crystal/Macros/StringLiteral.html">StringLiteral</a> | <a href="../../Crystal/Macros/NilLiteral.html">NilLiteral</a>
+
+        <a class="method-permalink" href="#line_number%3AStringLiteral%7CNilLiteral-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the line number where this node begins.
+Might return <code>nil</code> if the location is not known.</p>
+<p>The first line number in a file is 1.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/compiler/crystal/macros.cr#L435" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="nil?:BoolLiteral-instance-method">
+      <div class="signature">
+        
+        def <strong>nil?</strong> : <a href="../../Crystal/Macros/BoolLiteral.html">BoolLiteral</a>
+
+        <a class="method-permalink" href="#nil%3F%3ABoolLiteral-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this node is a <code><a href="../../Crystal/Macros/NilLiteral.html">NilLiteral</a></code> or <code><a href="../../Crystal/Macros/Nop.html">Nop</a></code>.</p>
+<p><span class="flag purple">NOTE</span>  This is a pseudo-method provided directly by the Crystal compiler.
+It cannot be redefined nor overridden.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/compiler/crystal/macros.cr#L509" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="raise(message):NoReturn-instance-method">
+      <div class="signature">
+        
+        def <strong>raise</strong>(message) : NoReturn
+
+        <a class="method-permalink" href="#raise%28message%29%3ANoReturn-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Gives a compile-time error with the given <em>message</em>.
+This will highlight this node in the error message.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/compiler/crystal/macros.cr#L471" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="stringify:StringLiteral-instance-method">
+      <div class="signature">
+        
+        def <strong>stringify</strong> : <a href="../../Crystal/Macros/StringLiteral.html">StringLiteral</a>
+
+        <a class="method-permalink" href="#stringify%3AStringLiteral-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns a <code><a href="../../Crystal/Macros/StringLiteral.html">StringLiteral</a></code> that contains this node's textual representation.
+Note that invoking stringify on a string literal will return a <code><a href="../../Crystal/Macros/StringLiteral.html">StringLiteral</a></code>
+that contains a string literal.</p>
+<pre><code class="language-crystal"><span class="k">macro</span> test
+  <span class="o">{{</span> <span class="s">&quot;foo&quot;</span>.stringify }}
+<span class="k">end</span>
+
+puts test <span class="c"># prints &quot;foo&quot; (including the double quotes)</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/compiler/crystal/macros.cr#L403" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="symbolize:SymbolLiteral-instance-method">
+      <div class="signature">
+        
+        def <strong>symbolize</strong> : <a href="../../Crystal/Macros/SymbolLiteral.html">SymbolLiteral</a>
+
+        <a class="method-permalink" href="#symbolize%3ASymbolLiteral-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns a <code><a href="../../Crystal/Macros/SymbolLiteral.html">SymbolLiteral</a></code> that contains this node's textual representation.</p>
+<pre><code class="language-crystal"><span class="o">{{</span> <span class="s">&quot;foo&quot;</span>.id.symbolize }} <span class="c"># =&gt; :foo</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/compiler/crystal/macros.cr#L411" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="warning(message:StringLiteral):NilLiteral-instance-method">
+      <div class="signature">
+        
+        def <strong>warning</strong>(message : <a href="../../Crystal/Macros/StringLiteral.html">StringLiteral</a>) : <a href="../../Crystal/Macros/NilLiteral.html">NilLiteral</a>
+
+        <a class="method-permalink" href="#warning%28message%3AStringLiteral%29%3ANilLiteral-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Emits a compile-time warning with the given <em>message</em>.
+This will highlight this node in the warning message.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/compiler/crystal/macros.cr#L476" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Crystal Docs 1.16.1">
+<meta name="crystal_docs.project_version" content="1.17.0-dev">
+<meta name="crystal_docs.project_name" content="Crystal">
+
+  <meta name="crystal_docs.json_config_url" content="/api/versions.json">
+
+
+    <link rel="canonical" href="https://crystal-lang.org/api/latest/OAuth.html">
+
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/doc.js"></script>
+
+  <meta name="repository-name" content="Crystal">
+  <title>OAuth - Crystal 1.17.0-dev</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill="currentColor" fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<input type="checkbox" id="sidebar-btn">
+<label for="sidebar-btn" id="sidebar-btn-label">
+  <svg class="open" xmlns="http://www.w3.org/2000/svg" height="2em" width="2em" viewBox="0 0 512 512"><title>Open Sidebar</title><path fill="currentColor" d="M80 96v64h352V96H80zm0 112v64h352v-64H80zm0 112v64h352v-64H80z"></path></svg>
+  <svg class="close" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><title>Close Sidebar</title><path fill="currentColor" d="m118.6 73.4-45.2 45.2L210.7 256 73.4 393.4l45.2 45.2L256 301.3l137.4 137.3 45.2-45.2L301.3 256l137.3-137.4-45.2-45.2L256 210.7Z"></path></svg>
+</label>
+<iframe class="sidebar" src="sidebar.html"></iframe>
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">
+    module
+  </span> OAuth
+
+</h1>
+
+
+
+
+
+  <h2>
+    <a id="overview" class="anchor" href="#overview">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Overview
+  </h2>
+
+  <p>The OAuth module provides an <code><a href="OAuth/Consumer.html">OAuth::Consumer</a></code> as specified by
+<a href="https://tools.ietf.org/html/rfc5849">RFC 5849</a>.</p>
+<p><span class="flag purple">NOTE</span>  To use <code><a href="OAuth.html">OAuth</a></code>, you must explicitly import it with <code>require &quot;oauth&quot;</code></p>
+<h3><a id="performing-http-client-requests-with-o-auth-authentication" class="anchor" href="#performing-http-client-requests-with-o-auth-authentication">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Performing HTTP client requests with OAuth authentication</h3>
+<p>Assuming you have an access token, its secret, the consumer key and the consumer secret,
+you can setup an <code><a href="HTTP/Client.html">HTTP::Client</a></code> to be authenticated with OAuth using this code:</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;http/client&quot;</span>
+<span class="k">require</span> <span class="s">&quot;oauth&quot;</span>
+
+token <span class="o">=</span> <span class="s">&quot;some_token&quot;</span>
+secret <span class="o">=</span> <span class="s">&quot;some_secret&quot;</span>
+consumer_key <span class="o">=</span> <span class="s">&quot;some_consumer_key&quot;</span>
+consumer_secret <span class="o">=</span> <span class="s">&quot;some_consumer_secret&quot;</span>
+
+<span class="c"># Create an HTTP::Client as usual</span>
+client <span class="o">=</span> <span class="t">HTTP</span><span class="t">::</span><span class="t">Client</span>.new(<span class="s">&quot;api.example.com&quot;</span>, tls: <span class="n">true</span>)
+
+<span class="c"># Prepare it for using OAuth authentication</span>
+<span class="t">OAuth</span>.authenticate(client, token, secret, consumer_key, consumer_secret)
+
+<span class="c"># Execute requests as usual: they will be authenticated</span>
+client.get(<span class="s">&quot;/some_path&quot;</span>)</code></pre>
+<p>This is implemented with <code><a href="HTTP/Client.html#before_request%28%26callback%3AHTTP%3A%3ARequest-%3E%29%3ANil-instance-method">HTTP::Client#before_request</a></code> to add an authorization
+header to every request.</p>
+<p>Alternatively, you can create an <code><a href="OAuth/Consumer.html">OAuth::Consumer</a></code> and then invoke its
+<code><a href="OAuth/Consumer.html#authenticate%28client%3AHTTP%3A%3AClient%2Ctoken%3AAccessToken%29%3ANil-instance-method">OAuth::Consumer#authenticate</a></code> method, or create an <code><a href="OAuth/AccessToken.html">OAuth::AccessToken</a></code>
+and invoke its <code><a href="OAuth/AccessToken.html#authenticate%28client%2Cconsumer_key%2Cconsumer_secret%2Cextra_params%3Dnil%29-instance-method">OAuth::AccessToken#authenticate</a></code>.</p>
+<h3><a id="obtaining-access-tokens" class="anchor" href="#obtaining-access-tokens">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Obtaining access tokens</h3>
+<p>See <code><a href="OAuth/Consumer.html">OAuth::Consumer</a></code> for an example.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/oauth/access_token.cr#L1" target="_blank">
+        oauth/access_token.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/oauth/oauth.cr#L40" target="_blank">
+        oauth/oauth.cr
+      </a>
+    
+    <br/>
+  
+
+
+
+
+
+  
+
+  
+  <h2>
+    <a id="class-method-summary" class="anchor" href="#class-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Class Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#authenticate%28client%3AHTTP%3A%3AClient%2Ctoken%2Ctoken_secret%2Cconsumer_key%2Cconsumer_secret%2Cextra_params%3Dnil%29%3ANil-class-method" class="signature"><strong>.authenticate</strong>(client : HTTP::Client, token, token_secret, consumer_key, consumer_secret, extra_params = <span class="n">nil</span>) : Nil</a>
+        
+          <div class="summary"><p>Sets up an <code><a href="HTTP/Client.html">HTTP::Client</a></code> to add an OAuth authorization header to every request performed.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+  
+
+  
+
+
+  <div class="methods-inherited">
+    
+  </div>
+
+  
+
+  
+  <h2>
+    <a id="class-method-detail" class="anchor" href="#class-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Class Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="authenticate(client:HTTP::Client,token,token_secret,consumer_key,consumer_secret,extra_params=nil):Nil-class-method">
+      <div class="signature">
+        
+        def self.<strong>authenticate</strong>(client : <a href="HTTP/Client.html">HTTP::Client</a>, token, token_secret, consumer_key, consumer_secret, extra_params = <span class="n">nil</span>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#authenticate%28client%3AHTTP%3A%3AClient%2Ctoken%2Ctoken_secret%2Cconsumer_key%2Cconsumer_secret%2Cextra_params%3Dnil%29%3ANil-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Sets up an <code><a href="HTTP/Client.html">HTTP::Client</a></code> to add an OAuth authorization header to every request performed.
+Check this module's docs for an example usage.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/oauth/oauth.cr#L43" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+  
+
+  
+
+
+</div>
+
+</body>
+</html>

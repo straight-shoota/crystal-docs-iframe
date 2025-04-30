@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Crystal Docs 1.16.1">
+<meta name="crystal_docs.project_version" content="1.17.0-dev">
+<meta name="crystal_docs.project_name" content="Crystal">
+
+  <meta name="crystal_docs.json_config_url" content="/api/versions.json">
+
+
+    <link rel="canonical" href="https://crystal-lang.org/api/latest/Socket/Addrinfo.html">
+
+<link href="../css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../js/doc.js"></script>
+
+  <meta name="repository-name" content="Crystal">
+  <title>Socket::Addrinfo - Crystal 1.17.0-dev</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "../";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill="currentColor" fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<input type="checkbox" id="sidebar-btn">
+<label for="sidebar-btn" id="sidebar-btn-label">
+  <svg class="open" xmlns="http://www.w3.org/2000/svg" height="2em" width="2em" viewBox="0 0 512 512"><title>Open Sidebar</title><path fill="currentColor" d="M80 96v64h352V96H80zm0 112v64h352v-64H80zm0 112v64h352v-64H80z"></path></svg>
+  <svg class="close" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><title>Close Sidebar</title><path fill="currentColor" d="m118.6 73.4-45.2 45.2L210.7 256 73.4 393.4l45.2 45.2L256 301.3l137.4 137.3 45.2-45.2L301.3 256l137.3-137.4-45.2-45.2L256 210.7Z"></path></svg>
+</label>
+<iframe class="sidebar" src="../sidebar.html"></iframe>
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">
+    struct
+  </span> Socket::<wbr>Addrinfo
+
+</h1>
+
+
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../Socket/Addrinfo.html">Socket::Addrinfo</a></li><li class="superclass"><a href="../Struct.html">Struct</a></li><li class="superclass"><a href="../Value.html">Value</a></li><li class="superclass"><a href="../Object.html">Object</a></li></ul>
+
+
+
+
+  <h2>
+    <a id="overview" class="anchor" href="#overview">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Overview
+  </h2>
+
+  <p>Domain name resolver.</p>
+<h1><a id="query-concurrency-behaviour" class="anchor" href="#query-concurrency-behaviour">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Query Concurrency Behaviour</h1>
+<p>On most platforms, DNS queries are currently resolved synchronously.
+Calling a resolve method blocks the entire thread until it returns.
+This can cause latencies, especially in single-threaded processes.</p>
+<p>DNS queries resolve asynchronously on the following platforms:</p>
+<ul>
+<li>Windows 8 and higher</li>
+</ul>
+<p><span class="flag purple">NOTE</span>  Follow the discussion in <a href="https://github.com/crystal-lang/crystal/issues/13619">Async DNS resolution (#13619)</a>
+for more details.</p>
+
+
+
+
+
+
+
+  <h2>
+    <a id="included-modules" class="anchor" href="#included-modules">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Included Modules
+  </h2>
+  <ul class="other-types-list">
+    
+      <li class="other-type">Crystal::System::Addrinfo</li>
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/socket/addrinfo.cr#L20" target="_blank">
+        socket/addrinfo.cr
+      </a>
+    
+    <br/>
+  
+
+
+
+
+
+  
+
+  
+  <h2>
+    <a id="class-method-summary" class="anchor" href="#class-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Class Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#resolve%28domain%3AString%2Cservice%2Cfamily%3AFamily%7CNil%3Dnil%2Ctype%3AType%3Dnil%2Cprotocol%3AProtocol%3DProtocol%3A%3AIP%2Ctimeout%3Dnil%29%3AArray%28Addrinfo%29-class-method" class="signature"><strong>.resolve</strong>(domain : String, service, family : Family | Nil = <span class="n">nil</span>, type : Type = <span class="n">nil</span>, protocol : Protocol = <span class="t">Protocol</span><span class="t">::</span><span class="t">IP</span>, timeout = <span class="n">nil</span>) : Array(Addrinfo)</a>
+        
+          <div class="summary"><p>Resolves a domain that best matches the given options.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#resolve%28domain%3AString%2Cservice%2Cfamily%3AFamily%7CNil%3Dnil%2Ctype%3AType%3Dnil%2Cprotocol%3AProtocol%3DProtocol%3A%3AIP%2Ctimeout%3Dnil%2C%26%29-class-method" class="signature"><strong>.resolve</strong>(domain : String, service, family : Family | Nil = <span class="n">nil</span>, type : Type = <span class="n">nil</span>, protocol : Protocol = <span class="t">Protocol</span><span class="t">::</span><span class="t">IP</span>, timeout = <span class="n">nil</span>, &)</a>
+        
+          <div class="summary"><p>Resolves a domain that best matches the given options.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#tcp%28domain%3AString%2Cservice%2Cfamily%3DFamily%3A%3AUNSPEC%2Ctimeout%3Dnil%29%3AArray%28Addrinfo%29-class-method" class="signature"><strong>.tcp</strong>(domain : String, service, family = <span class="t">Family</span><span class="t">::</span><span class="t">UNSPEC</span>, timeout = <span class="n">nil</span>) : Array(Addrinfo)</a>
+        
+          <div class="summary"><p>Resolves <em>domain</em> for the TCP protocol and returns an <code><a href="../Array.html">Array</a></code> of possible <code><a href="../Socket/Addrinfo.html">Addrinfo</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#tcp%28domain%3AString%2Cservice%2Cfamily%3DFamily%3A%3AUNSPEC%2Ctimeout%3Dnil%2C%26%29-class-method" class="signature"><strong>.tcp</strong>(domain : String, service, family = <span class="t">Family</span><span class="t">::</span><span class="t">UNSPEC</span>, timeout = <span class="n">nil</span>, &)</a>
+        
+          <div class="summary"><p>Resolves a domain for the TCP protocol with STREAM type, and yields each possible <code><a href="../Socket/Addrinfo.html">Addrinfo</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#udp%28domain%3AString%2Cservice%2Cfamily%3DFamily%3A%3AUNSPEC%2Ctimeout%3Dnil%29%3AArray%28Addrinfo%29-class-method" class="signature"><strong>.udp</strong>(domain : String, service, family = <span class="t">Family</span><span class="t">::</span><span class="t">UNSPEC</span>, timeout = <span class="n">nil</span>) : Array(Addrinfo)</a>
+        
+          <div class="summary"><p>Resolves <em>domain</em> for the UDP protocol and returns an <code><a href="../Array.html">Array</a></code> of possible <code><a href="../Socket/Addrinfo.html">Addrinfo</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#udp%28domain%3AString%2Cservice%2Cfamily%3DFamily%3A%3AUNSPEC%2Ctimeout%3Dnil%2C%26%29-class-method" class="signature"><strong>.udp</strong>(domain : String, service, family = <span class="t">Family</span><span class="t">::</span><span class="t">UNSPEC</span>, timeout = <span class="n">nil</span>, &)</a>
+        
+          <div class="summary"><p>Resolves a domain for the UDP protocol with DGRAM type, and yields each possible <code><a href="../Socket/Addrinfo.html">Addrinfo</a></code>.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+  
+
+  
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#family%3AFamily-instance-method" class="signature"><strong>#family</strong> : Family</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#inspect%28io%3AIO%29-instance-method" class="signature"><strong>#inspect</strong>(io : IO)</a>
+        
+          <div class="summary"><p>Appends this struct's name and instance variables names and values to the given IO.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#ip_address%3ASocket%3A%3AIPAddress-instance-method" class="signature"><strong>#ip_address</strong> : Socket::IPAddress</a>
+        
+          <div class="summary"><p>Returns an <code><a href="../Socket/IPAddress.html">IPAddress</a></code> matching this addrinfo.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#protocol%3AProtocol-instance-method" class="signature"><strong>#protocol</strong> : Protocol</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#size%3AInt32-instance-method" class="signature"><strong>#size</strong> : Int32</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#type%3AType-instance-method" class="signature"><strong>#type</strong> : Type</a>
+        
+      </li>
+    
+  </ul>
+
+
+
+  <div class="methods-inherited">
+    
+      
+
+  <h3>Instance methods inherited from module <code>Crystal::System::Addrinfo</code></h3>
+  
+  
+    <a href="../Crystal/System/Addrinfo.html#system_ip_address%3A%3A%3ASocket%3A%3AIPAddress-instance-method" class="tooltip">
+      <span>system_ip_address : ::Socket::IPAddress</span>
+    system_ip_address</a>, 
+    
+  
+    <a href="../Crystal/System/Addrinfo.html#to_unsafe-instance-method" class="tooltip">
+      <span>to_unsafe</span>
+    to_unsafe</a>
+    
+  
+
+
+      
+
+
+      
+
+  <h3>Class methods inherited from module <code>Crystal::System::Addrinfo</code></h3>
+  
+  
+    <a href="../Crystal/System/Addrinfo.html#free_addrinfo%28addrinfo%3AHandle%29-class-method" class="tooltip">
+      <span>free_addrinfo(addrinfo : Handle)</span>
+    free_addrinfo</a>, 
+    
+  
+    <a href="../Crystal/System/Addrinfo.html#getaddrinfo%28domain%2Cservice%2Cfamily%2Ctype%2Cprotocol%2Ctimeout%2C%26%3A%3A%3ASocket%3A%3AAddrinfo-%3E%29-class-method" class="tooltip">
+      <span>getaddrinfo(domain, service, family, type, protocol, timeout, & : ::Socket::Addrinfo -> )<br/>getaddrinfo(domain, service, family, type, protocol, timeout) : Handle</span>
+    getaddrinfo</a>, 
+    
+  
+    <a href="../Crystal/System/Addrinfo.html#next_addrinfo%28addrinfo%3AHandle%29%3AHandle-class-method" class="tooltip">
+      <span>next_addrinfo(addrinfo : Handle) : Handle</span>
+    next_addrinfo</a>
+    
+  
+
+
+      
+
+
+    
+      
+
+  <h3>Instance methods inherited from struct <code><a href="../Struct.html">Struct</a></code></h3>
+  
+  
+    <a href="../Struct.html#%3D%3D%28other%29%3ABool-instance-method" class="tooltip">
+      <span>==(other) : Bool</span>
+    ==</a>, 
+    
+  
+    <a href="../Struct.html#hash%28hasher%29-instance-method" class="tooltip">
+      <span>hash(hasher)</span>
+    hash</a>, 
+    
+  
+    <a href="../Struct.html#inspect%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>inspect(io : IO) : Nil</span>
+    inspect</a>, 
+    
+  
+    <a href="../Struct.html#pretty_print%28pp%29%3ANil-instance-method" class="tooltip">
+      <span>pretty_print(pp) : Nil</span>
+    pretty_print</a>, 
+    
+  
+    <a href="../Struct.html#to_s%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_s(io : IO) : Nil</span>
+    to_s</a>
+    
+  
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+      
+
+  <h3>Instance methods inherited from struct <code><a href="../Value.html">Value</a></code></h3>
+  
+  
+    <a href="../Value.html#%3D%3D%28other%3AJSON%3A%3AAny%29-instance-method" class="tooltip">
+      <span>==(other : JSON::Any)<br/>==(other : YAML::Any)<br/>==(other)</span>
+    ==</a>, 
+    
+  
+    <a href="../Value.html#dup-instance-method" class="tooltip">
+      <span>dup</span>
+    dup</a>
+    
+  
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+      
+
+  <h3>Instance methods inherited from class <code><a href="../Object.html">Object</a></code></h3>
+  
+  
+    <a href="../Object.html#%21%3ABool-instance-method" class="tooltip">
+      <span>! : Bool</span>
+    !</a>, 
+    
+  
+    <a href="../Object.html#%21%3D%28other%29-instance-method" class="tooltip">
+      <span>!=(other)</span>
+    !=</a>, 
+    
+  
+    <a href="../Object.html#%21~%28other%29-instance-method" class="tooltip">
+      <span>!~(other)</span>
+    !~</a>, 
+    
+  
+    <a href="../Object.html#%3D%3D%28other%29-instance-method" class="tooltip">
+      <span>==(other)</span>
+    ==</a>, 
+    
+  
+    <a href="../Object.html#%3D%3D%3D%28other%3AJSON%3A%3AAny%29-instance-method" class="tooltip">
+      <span>===(other : JSON::Any)<br/>===(other : YAML::Any)<br/>===(other)</span>
+    ===</a>, 
+    
+  
+    <a href="../Object.html#%3D~%28other%29-instance-method" class="tooltip">
+      <span>=~(other)</span>
+    =~</a>, 
+    
+  
+    <a href="../Object.html#as%28type%3AClass%29-instance-method" class="tooltip">
+      <span>as(type : Class)</span>
+    as</a>, 
+    
+  
+    <a href="../Object.html#as%3F%28type%3AClass%29-instance-method" class="tooltip">
+      <span>as?(type : Class)</span>
+    as?</a>, 
+    
+  
+    <a href="../Object.html#class-instance-method" class="tooltip">
+      <span>class</span>
+    class</a>, 
+    
+  
+    <a href="../Object.html#dup-instance-method" class="tooltip">
+      <span>dup</span>
+    dup</a>, 
+    
+  
+    <a href="../Object.html#hash%28hasher%29-instance-method" class="tooltip">
+      <span>hash(hasher)<br/>hash</span>
+    hash</a>, 
+    
+  
+    <a href="../Object.html#in%3F%28collection%3AObject%29%3ABool-instance-method" class="tooltip">
+      <span>in?(collection : Object) : Bool<br/>in?(*values : Object) : Bool</span>
+    in?</a>, 
+    
+  
+    <a href="../Object.html#inspect%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>inspect(io : IO) : Nil<br/>inspect : String</span>
+    inspect</a>, 
+    
+  
+    <a href="../Object.html#is_a%3F%28type%3AClass%29%3ABool-instance-method" class="tooltip">
+      <span>is_a?(type : Class) : Bool</span>
+    is_a?</a>, 
+    
+  
+    <a href="../Object.html#itself-instance-method" class="tooltip">
+      <span>itself</span>
+    itself</a>, 
+    
+  
+    <a href="../Object.html#nil%3F%3ABool-instance-method" class="tooltip">
+      <span>nil? : Bool</span>
+    nil?</a>, 
+    
+  
+    <a href="../Object.html#not_nil%21%28message%29-instance-method" class="tooltip">
+      <span>not_nil!(message)<br/>not_nil!</span>
+    not_nil!</a>, 
+    
+  
+    <a href="../Object.html#pretty_inspect%28width%3D79%2Cnewline%3D%22%5Cn%22%2Cindent%3D0%29%3AString-instance-method" class="tooltip">
+      <span>pretty_inspect(width = <span class="n">79</span>, newline = <span class="s">&quot;\n&quot;</span>, indent = <span class="n">0</span>) : String</span>
+    pretty_inspect</a>, 
+    
+  
+    <a href="../Object.html#pretty_print%28pp%3APrettyPrint%29%3ANil-instance-method" class="tooltip">
+      <span>pretty_print(pp : PrettyPrint) : Nil</span>
+    pretty_print</a>, 
+    
+  
+    <a href="../Object.html#responds_to%3F%28name%3ASymbol%29%3ABool-instance-method" class="tooltip">
+      <span>responds_to?(name : Symbol) : Bool</span>
+    responds_to?</a>, 
+    
+  
+    <a href="../Object.html#tap%28%26%29-instance-method" class="tooltip">
+      <span>tap(&)</span>
+    tap</a>, 
+    
+  
+    <a href="../Object.html#to_json%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_json(io : IO) : Nil<br/>to_json : String</span>
+    to_json</a>, 
+    
+  
+    <a href="../Object.html#to_pretty_json%28indent%3AString%3D%22%22%29%3AString-instance-method" class="tooltip">
+      <span>to_pretty_json(indent : String = <span class="s">&quot;  &quot;</span>) : String<br/>to_pretty_json(io : IO, indent : String = <span class="s">&quot;  &quot;</span>) : Nil</span>
+    to_pretty_json</a>, 
+    
+  
+    <a href="../Object.html#to_s%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_s(io : IO) : Nil<br/>to_s : String</span>
+    to_s</a>, 
+    
+  
+    <a href="../Object.html#to_yaml%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_yaml(io : IO) : Nil<br/>to_yaml : String</span>
+    to_yaml</a>, 
+    
+  
+    <a href="../Object.html#try%28%26%29-instance-method" class="tooltip">
+      <span>try(&)</span>
+    try</a>, 
+    
+  
+    <a href="../Object.html#unsafe_as%28type%3AT.class%29forallT-instance-method" class="tooltip">
+      <span>unsafe_as(type : <span class="t">T</span>.<span class="k">class</span>) forall T</span>
+    unsafe_as</a>
+    
+  
+
+
+      
+
+
+      
+
+  <h3>Class methods inherited from class <code><a href="../Object.html">Object</a></code></h3>
+  
+  
+    <a href="../Object.html#from_json%28string_or_io%2Croot%3AString%29-class-method" class="tooltip">
+      <span>from_json(string_or_io, root : String)<br/>from_json(string_or_io)</span>
+    from_json</a>, 
+    
+  
+    <a href="../Object.html#from_yaml%28string_or_io%3AString%7CIO%29-class-method" class="tooltip">
+      <span>from_yaml(string_or_io : String | IO)</span>
+    from_yaml</a>
+    
+  
+
+
+      
+
+  <h3>Macros inherited from class <code><a href="../Object.html">Object</a></code></h3>
+  
+  
+    <a href="../Object.html#class_getter%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_getter(*names, &block)</span>
+    class_getter</a>, 
+    
+  
+    <a href="../Object.html#class_getter%21%28%2Anames%29-macro" class="tooltip">
+      <span>class_getter!(*names)</span>
+    class_getter!</a>, 
+    
+  
+    <a href="../Object.html#class_getter%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_getter?(*names, &block)</span>
+    class_getter?</a>, 
+    
+  
+    <a href="../Object.html#class_property%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_property(*names, &block)</span>
+    class_property</a>, 
+    
+  
+    <a href="../Object.html#class_property%21%28%2Anames%29-macro" class="tooltip">
+      <span>class_property!(*names)</span>
+    class_property!</a>, 
+    
+  
+    <a href="../Object.html#class_property%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_property?(*names, &block)</span>
+    class_property?</a>, 
+    
+  
+    <a href="../Object.html#class_setter%28%2Anames%29-macro" class="tooltip">
+      <span>class_setter(*names)</span>
+    class_setter</a>, 
+    
+  
+    <a href="../Object.html#def_clone-macro" class="tooltip">
+      <span>def_clone</span>
+    def_clone</a>, 
+    
+  
+    <a href="../Object.html#def_equals%28%2Afields%29-macro" class="tooltip">
+      <span>def_equals(*fields)</span>
+    def_equals</a>, 
+    
+  
+    <a href="../Object.html#def_equals_and_hash%28%2Afields%29-macro" class="tooltip">
+      <span>def_equals_and_hash(*fields)</span>
+    def_equals_and_hash</a>, 
+    
+  
+    <a href="../Object.html#def_hash%28%2Afields%29-macro" class="tooltip">
+      <span>def_hash(*fields)</span>
+    def_hash</a>, 
+    
+  
+    <a href="../Object.html#delegate%28%2Amethods%2Ctoobject%29-macro" class="tooltip">
+      <span>delegate(*methods, to object)</span>
+    delegate</a>, 
+    
+  
+    <a href="../Object.html#forward_missing_to%28delegate%29-macro" class="tooltip">
+      <span>forward_missing_to(delegate)</span>
+    forward_missing_to</a>, 
+    
+  
+    <a href="../Object.html#getter%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>getter(*names, &block)</span>
+    getter</a>, 
+    
+  
+    <a href="../Object.html#getter%21%28%2Anames%29-macro" class="tooltip">
+      <span>getter!(*names)</span>
+    getter!</a>, 
+    
+  
+    <a href="../Object.html#getter%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>getter?(*names, &block)</span>
+    getter?</a>, 
+    
+  
+    <a href="../Object.html#property%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>property(*names, &block)</span>
+    property</a>, 
+    
+  
+    <a href="../Object.html#property%21%28%2Anames%29-macro" class="tooltip">
+      <span>property!(*names)</span>
+    property!</a>, 
+    
+  
+    <a href="../Object.html#property%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>property?(*names, &block)</span>
+    property?</a>, 
+    
+  
+    <a href="../Object.html#setter%28%2Anames%29-macro" class="tooltip">
+      <span>setter(*names)</span>
+    setter</a>
+    
+  
+
+
+    
+  </div>
+
+  
+
+  
+  <h2>
+    <a id="class-method-detail" class="anchor" href="#class-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Class Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="resolve(domain:String,service,family:Family|Nil=nil,type:Type=nil,protocol:Protocol=Protocol::IP,timeout=nil):Array(Addrinfo)-class-method">
+      <div class="signature">
+        
+        def self.<strong>resolve</strong>(domain : <a href="../String.html">String</a>, service, family : <a href="../Socket/Family.html">Family</a> | <a href="../Nil.html">Nil</a> = <span class="n">nil</span>, type : <a href="../Socket/Type.html">Type</a> = <span class="n">nil</span>, protocol : <a href="../Socket/Protocol.html">Protocol</a> = <span class="t">Protocol</span><span class="t">::</span><span class="t">IP</span>, timeout = <span class="n">nil</span>) : <a href="../Array.html">Array</a>(<a href="../Socket/Addrinfo.html">Addrinfo</a>)
+
+        <a class="method-permalink" href="#resolve%28domain%3AString%2Cservice%2Cfamily%3AFamily%7CNil%3Dnil%2Ctype%3AType%3Dnil%2Cprotocol%3AProtocol%3DProtocol%3A%3AIP%2Ctimeout%3Dnil%29%3AArray%28Addrinfo%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Resolves a domain that best matches the given options.</p>
+<ul>
+<li><em>domain</em> may be an IP address or a domain name.</li>
+<li><em>service</em> may be a port number or a service name. It must be specified,
+because different servers may handle the <code>mail</code> or <code>http</code> services for
+example.</li>
+<li><em>family</em> is optional and defaults to <code><a href="../Socket/Family.html#UNSPEC">Family::UNSPEC</a></code></li>
+<li><em>type</em> is the intended socket type (e.g. <code><a href="../Socket/Type.html#STREAM">Type::STREAM</a></code>) and must be
+specified.</li>
+<li><em>protocol</em> is the intended socket protocol (e.g. <code><a href="../Socket/Protocol.html#TCP">Protocol::TCP</a></code>) and
+should be specified.</li>
+<li><em>timeout</em> is optional and specifies the maximum time to wait before
+<code><a href="../IO/TimeoutError.html">IO::TimeoutError</a></code> is raised. Currently this is only supported on
+Windows.</li>
+</ul>
+<p>Example:</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;socket&quot;</span>
+
+addrinfos <span class="o">=</span> <span class="t">Socket</span><span class="t">::</span><span class="t">Addrinfo</span>.resolve(<span class="s">&quot;example.org&quot;</span>, <span class="s">&quot;http&quot;</span>, <span class="k">type</span>: <span class="t">Socket</span><span class="t">::</span><span class="t">Type</span><span class="t">::</span><span class="t">STREAM</span>, protocol: <span class="t">Socket</span><span class="t">::</span><span class="t">Protocol</span><span class="t">::</span><span class="t">TCP</span>)</code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/socket/addrinfo.cr#L49" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="resolve(domain:String,service,family:Family|Nil=nil,type:Type=nil,protocol:Protocol=Protocol::IP,timeout=nil,&amp;)-class-method">
+      <div class="signature">
+        
+        def self.<strong>resolve</strong>(domain : <a href="../String.html">String</a>, service, family : <a href="../Socket/Family.html">Family</a> | <a href="../Nil.html">Nil</a> = <span class="n">nil</span>, type : <a href="../Socket/Type.html">Type</a> = <span class="n">nil</span>, protocol : <a href="../Socket/Protocol.html">Protocol</a> = <span class="t">Protocol</span><span class="t">::</span><span class="t">IP</span>, timeout = <span class="n">nil</span>, &)
+
+        <a class="method-permalink" href="#resolve%28domain%3AString%2Cservice%2Cfamily%3AFamily%7CNil%3Dnil%2Ctype%3AType%3Dnil%2Cprotocol%3AProtocol%3DProtocol%3A%3AIP%2Ctimeout%3Dnil%2C%26%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Resolves a domain that best matches the given options.</p>
+<p>Yields each possible <code><a href="../Socket/Addrinfo.html">Addrinfo</a></code> resolution since a domain may resolve to
+many IP. Implementations are supposed to try all the addresses until the
+socket is connected (or bound) or there are no addresses to try anymore.</p>
+<p>Raising is an expensive operation, so instead of raising on a connect or
+bind error, just to rescue it immediately after, the block is expected to
+return the error instead, which will be raised once there are no more
+addresses to try.</p>
+<p>The iteration will be stopped once the block returns something that isn't
+an <code><a href="../Exception.html">Exception</a></code> (e.g. a <code><a href="../Socket.html">Socket</a></code> or <code>nil</code>).</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/socket/addrinfo.cr#L72" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="tcp(domain:String,service,family=Family::UNSPEC,timeout=nil):Array(Addrinfo)-class-method">
+      <div class="signature">
+        
+        def self.<strong>tcp</strong>(domain : <a href="../String.html">String</a>, service, family = <span class="t">Family</span><span class="t">::</span><span class="t">UNSPEC</span>, timeout = <span class="n">nil</span>) : <a href="../Array.html">Array</a>(<a href="../Socket/Addrinfo.html">Addrinfo</a>)
+
+        <a class="method-permalink" href="#tcp%28domain%3AString%2Cservice%2Cfamily%3DFamily%3A%3AUNSPEC%2Ctimeout%3Dnil%29%3AArray%28Addrinfo%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Resolves <em>domain</em> for the TCP protocol and returns an <code><a href="../Array.html">Array</a></code> of possible
+<code><a href="../Socket/Addrinfo.html">Addrinfo</a></code>. See <code><a href="../Socket/Addrinfo.html#resolve%28domain%3AString%2Cservice%2Cfamily%3AFamily%7CNil%3Dnil%2Ctype%3AType%3Dnil%2Cprotocol%3AProtocol%3DProtocol%3A%3AIP%2Ctimeout%3Dnil%29%3AArray%28Addrinfo%29-class-method">#resolve</a></code> for details.</p>
+<p>Example:</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;socket&quot;</span>
+
+addrinfos <span class="o">=</span> <span class="t">Socket</span><span class="t">::</span><span class="t">Addrinfo</span>.tcp(<span class="s">&quot;example.org&quot;</span>, <span class="n">80</span>)</code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/socket/addrinfo.cr#L171" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="tcp(domain:String,service,family=Family::UNSPEC,timeout=nil,&amp;)-class-method">
+      <div class="signature">
+        
+        def self.<strong>tcp</strong>(domain : <a href="../String.html">String</a>, service, family = <span class="t">Family</span><span class="t">::</span><span class="t">UNSPEC</span>, timeout = <span class="n">nil</span>, &)
+
+        <a class="method-permalink" href="#tcp%28domain%3AString%2Cservice%2Cfamily%3DFamily%3A%3AUNSPEC%2Ctimeout%3Dnil%2C%26%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Resolves a domain for the TCP protocol with STREAM type, and yields each
+possible <code><a href="../Socket/Addrinfo.html">Addrinfo</a></code>. See <code><a href="../Socket/Addrinfo.html#resolve%28domain%3AString%2Cservice%2Cfamily%3AFamily%7CNil%3Dnil%2Ctype%3AType%3Dnil%2Cprotocol%3AProtocol%3DProtocol%3A%3AIP%2Ctimeout%3Dnil%29%3AArray%28Addrinfo%29-class-method">#resolve</a></code> for details.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/socket/addrinfo.cr#L177" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="udp(domain:String,service,family=Family::UNSPEC,timeout=nil):Array(Addrinfo)-class-method">
+      <div class="signature">
+        
+        def self.<strong>udp</strong>(domain : <a href="../String.html">String</a>, service, family = <span class="t">Family</span><span class="t">::</span><span class="t">UNSPEC</span>, timeout = <span class="n">nil</span>) : <a href="../Array.html">Array</a>(<a href="../Socket/Addrinfo.html">Addrinfo</a>)
+
+        <a class="method-permalink" href="#udp%28domain%3AString%2Cservice%2Cfamily%3DFamily%3A%3AUNSPEC%2Ctimeout%3Dnil%29%3AArray%28Addrinfo%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Resolves <em>domain</em> for the UDP protocol and returns an <code><a href="../Array.html">Array</a></code> of possible
+<code><a href="../Socket/Addrinfo.html">Addrinfo</a></code>. See <code><a href="../Socket/Addrinfo.html#resolve%28domain%3AString%2Cservice%2Cfamily%3AFamily%7CNil%3Dnil%2Ctype%3AType%3Dnil%2Cprotocol%3AProtocol%3DProtocol%3A%3AIP%2Ctimeout%3Dnil%29%3AArray%28Addrinfo%29-class-method">#resolve</a></code> for details.</p>
+<p>Example:</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;socket&quot;</span>
+
+addrinfos <span class="o">=</span> <span class="t">Socket</span><span class="t">::</span><span class="t">Addrinfo</span>.udp(<span class="s">&quot;example.org&quot;</span>, <span class="n">53</span>)</code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/socket/addrinfo.cr#L190" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="udp(domain:String,service,family=Family::UNSPEC,timeout=nil,&amp;)-class-method">
+      <div class="signature">
+        
+        def self.<strong>udp</strong>(domain : <a href="../String.html">String</a>, service, family = <span class="t">Family</span><span class="t">::</span><span class="t">UNSPEC</span>, timeout = <span class="n">nil</span>, &)
+
+        <a class="method-permalink" href="#udp%28domain%3AString%2Cservice%2Cfamily%3DFamily%3A%3AUNSPEC%2Ctimeout%3Dnil%2C%26%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Resolves a domain for the UDP protocol with DGRAM type, and yields each
+possible <code><a href="../Socket/Addrinfo.html">Addrinfo</a></code>. See <code><a href="../Socket/Addrinfo.html#resolve%28domain%3AString%2Cservice%2Cfamily%3AFamily%7CNil%3Dnil%2Ctype%3AType%3Dnil%2Cprotocol%3AProtocol%3DProtocol%3A%3AIP%2Ctimeout%3Dnil%29%3AArray%28Addrinfo%29-class-method">#resolve</a></code> for details.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/socket/addrinfo.cr#L196" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+  
+
+  
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="family:Family-instance-method">
+      <div class="signature">
+        
+        def <strong>family</strong> : <a href="../Socket/Family.html">Family</a>
+
+        <a class="method-permalink" href="#family%3AFamily-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/socket/addrinfo.cr#L23" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="inspect(io:IO)-instance-method">
+      <div class="signature">
+        
+        def <strong>inspect</strong>(io : <a href="../IO.html">IO</a>)
+
+        <a class="method-permalink" href="#inspect%28io%3AIO%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+            <div class="doc-inherited">
+              Description copied from struct <a href="../Struct.html">Struct</a>
+            </div>
+          
+          <p>Appends this struct's name and instance variables names and values
+to the given IO.</p>
+<pre><code class="language-crystal"><span class="k">struct</span> <span class="t">Point</span>
+  <span class="k">def</span> <span class="m">initialize</span>(@x : <span class="t">Int32</span>, @y : <span class="t">Int32</span>)
+  <span class="k">end</span>
+<span class="k">end</span>
+
+p1 <span class="o">=</span> <span class="t">Point</span>.new <span class="n">1</span>, <span class="n">2</span>
+p1.to_s    <span class="c"># &quot;Point(@x=1, @y=2)&quot;</span>
+p1.inspect <span class="c"># &quot;Point(@x=1, @y=2)&quot;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/socket/addrinfo.cr#L205" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="ip_address:Socket::IPAddress-instance-method">
+      <div class="signature">
+        
+        def <strong>ip_address</strong> : <a href="../Socket/IPAddress.html">Socket::IPAddress</a>
+
+        <a class="method-permalink" href="#ip_address%3ASocket%3A%3AIPAddress-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns an <code><a href="../Socket/IPAddress.html">IPAddress</a></code> matching this addrinfo.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/socket/addrinfo.cr#L201" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="protocol:Protocol-instance-method">
+      <div class="signature">
+        
+        def <strong>protocol</strong> : <a href="../Socket/Protocol.html">Protocol</a>
+
+        <a class="method-permalink" href="#protocol%3AProtocol-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/socket/addrinfo.cr#L25" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="size:Int32-instance-method">
+      <div class="signature">
+        
+        def <strong>size</strong> : <a href="../Int32.html">Int32</a>
+
+        <a class="method-permalink" href="#size%3AInt32-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/socket/addrinfo.cr#L26" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="type:Type-instance-method">
+      <div class="signature">
+        
+        def <strong>type</strong> : <a href="../Socket/Type.html">Type</a>
+
+        <a class="method-permalink" href="#type%3AType-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/socket/addrinfo.cr#L24" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+</div>
+
+</body>
+</html>

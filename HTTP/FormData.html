@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Crystal Docs 1.16.1">
+<meta name="crystal_docs.project_version" content="1.17.0-dev">
+<meta name="crystal_docs.project_name" content="Crystal">
+
+  <meta name="crystal_docs.json_config_url" content="/api/versions.json">
+
+
+    <link rel="canonical" href="https://crystal-lang.org/api/latest/HTTP/FormData.html">
+
+<link href="../css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../js/doc.js"></script>
+
+  <meta name="repository-name" content="Crystal">
+  <title>HTTP::FormData - Crystal 1.17.0-dev</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "../";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill="currentColor" fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<input type="checkbox" id="sidebar-btn">
+<label for="sidebar-btn" id="sidebar-btn-label">
+  <svg class="open" xmlns="http://www.w3.org/2000/svg" height="2em" width="2em" viewBox="0 0 512 512"><title>Open Sidebar</title><path fill="currentColor" d="M80 96v64h352V96H80zm0 112v64h352v-64H80zm0 112v64h352v-64H80z"></path></svg>
+  <svg class="close" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><title>Close Sidebar</title><path fill="currentColor" d="m118.6 73.4-45.2 45.2L210.7 256 73.4 393.4l45.2 45.2L256 301.3l137.4 137.3 45.2-45.2L301.3 256l137.3-137.4-45.2-45.2L256 210.7Z"></path></svg>
+</label>
+<iframe class="sidebar" src="../sidebar.html"></iframe>
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">
+    module
+  </span> HTTP::<wbr>FormData
+
+</h1>
+
+
+
+
+
+  <h2>
+    <a id="overview" class="anchor" href="#overview">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Overview
+  </h2>
+
+  <p>Contains utilities for parsing <code>multipart/form-data</code> messages, which are
+commonly used for encoding HTML form data.</p>
+<p><span class="flag purple">NOTE</span>  To use <code><a href="../HTTP/FormData.html">FormData</a></code>, you must explicitly import it with <code>require &quot;http&quot;</code></p>
+<h3><a id="examples" class="anchor" href="#examples">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Examples</h3>
+<p>Commonly, you'll want to parse a from response from a HTTP request, and
+process it. An example server which performs this task is shown below.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;http&quot;</span>
+
+server <span class="o">=</span> <span class="t">HTTP</span><span class="t">::</span><span class="t">Server</span>.new <span class="k">do</span> <span class="o">|</span>context<span class="o">|</span>
+  name <span class="o">=</span> <span class="n">nil</span>
+  file <span class="o">=</span> <span class="n">nil</span>
+  <span class="t">HTTP</span><span class="t">::</span><span class="t">FormData</span>.parse(context.request) <span class="k">do</span> <span class="o">|</span>part<span class="o">|</span>
+    <span class="k">case</span> part.name
+    <span class="k">when</span> <span class="s">&quot;name&quot;</span>
+      name <span class="o">=</span> part.body.gets_to_end
+    <span class="k">when</span> <span class="s">&quot;file&quot;</span>
+      file <span class="o">=</span> <span class="t">File</span>.tempfile(<span class="s">&quot;upload&quot;</span>) <span class="k">do</span> <span class="o">|</span>file<span class="o">|</span>
+        <span class="t">IO</span>.copy(part.body, file)
+      <span class="k">end</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+
+  <span class="k">unless</span> name <span class="o">&amp;&amp;</span> file
+    context.response.respond_with_status(<span class="n">:bad_request</span>)
+    <span class="k">next</span>
+  <span class="k">end</span>
+
+  context.response <span class="o">&lt;&lt;</span> file.path
+<span class="k">end</span>
+
+server.bind_tcp <span class="n">8085</span>
+server.listen</code></pre>
+<p>To test the server, use the curl command below.</p>
+<pre><code class="language-console">$ curl http://localhost:8085/ -F name=foo -F file=@/path/to/test.file
+/tmp/upload.Yxn7cc</code></pre>
+<p>Another common case is sending formdata to a server using HTTP::Client. Here
+is an example showing how to upload a file to the server above in crystal.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;http&quot;</span>
+
+<span class="t">IO</span>.pipe <span class="k">do</span> <span class="o">|</span>reader, writer<span class="o">|</span>
+  channel <span class="o">=</span> <span class="t">Channel</span>(<span class="t">String</span>).new(<span class="n">1</span>)
+
+  spawn <span class="k">do</span>
+    <span class="t">HTTP</span><span class="t">::</span><span class="t">FormData</span>.build(writer) <span class="k">do</span> <span class="o">|</span>formdata<span class="o">|</span>
+      channel.send(formdata.content_type)
+
+      formdata.field(<span class="s">&quot;name&quot;</span>, <span class="s">&quot;foo&quot;</span>)
+      <span class="t">File</span>.open(<span class="s">&quot;foo.png&quot;</span>) <span class="k">do</span> <span class="o">|</span>file<span class="o">|</span>
+        metadata <span class="o">=</span> <span class="t">HTTP</span><span class="t">::</span><span class="t">FormData</span><span class="t">::</span><span class="t">FileMetadata</span>.new(filename: <span class="s">&quot;foo.png&quot;</span>)
+        headers <span class="o">=</span> <span class="t">HTTP</span><span class="t">::</span><span class="t">Headers</span>{<span class="s">&quot;Content-Type&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;image/png&quot;</span>}
+        formdata.file(<span class="s">&quot;file&quot;</span>, file, metadata, headers)
+      <span class="k">end</span>
+    <span class="k">end</span>
+
+    writer.close
+  <span class="k">end</span>
+
+  headers <span class="o">=</span> <span class="t">HTTP</span><span class="t">::</span><span class="t">Headers</span>{<span class="s">&quot;Content-Type&quot;</span> <span class="o">=&gt;</span> channel.receive}
+  response <span class="o">=</span> <span class="t">HTTP</span><span class="t">::</span><span class="t">Client</span>.post(<span class="s">&quot;http://localhost:8085/&quot;</span>, body: reader, headers: headers)
+
+  puts <span class="s">&quot;Response code </span><span class="i">#{</span>response.status_code<span class="i">}</span><span class="s">&quot;</span>
+  puts <span class="s">&quot;File path: </span><span class="i">#{</span>response.body<span class="i">}</span><span class="s">&quot;</span>
+<span class="k">end</span></code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/http/formdata.cr#L81" target="_blank">
+        http/formdata.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/http/formdata/builder.cr#L1" target="_blank">
+        http/formdata/builder.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/http/formdata/parser.cr#L1" target="_blank">
+        http/formdata/parser.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/http/formdata/part.cr#L1" target="_blank">
+        http/formdata/part.cr
+      </a>
+    
+    <br/>
+  
+
+
+
+
+
+  
+
+  
+  <h2>
+    <a id="class-method-summary" class="anchor" href="#class-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Class Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#build%28response%3AHTTP%3A%3AServer%3A%3AResponse%2Cboundary%3DMIME%3A%3AMultipart.generate_boundary%2C%26%29-class-method" class="signature"><strong>.build</strong>(response : HTTP::Server::Response, boundary = <span class="t">MIME</span><span class="t">::</span><span class="t">Multipart</span>.generate_boundary, &)</a>
+        
+          <div class="summary"><p>Builds a multipart/form-data message, yielding a <code><a href="../HTTP/FormData/Builder.html">FormData::Builder</a></code> object to the block which writes to <em>response</em> using *boundary.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#build%28io%2Cboundary%3DMIME%3A%3AMultipart.generate_boundary%2C%26%29-class-method" class="signature"><strong>.build</strong>(io, boundary = <span class="t">MIME</span><span class="t">::</span><span class="t">Multipart</span>.generate_boundary, &)</a>
+        
+          <div class="summary"><p>Builds a multipart/form-data message, yielding a <code><a href="../HTTP/FormData/Builder.html">FormData::Builder</a></code> object to the block which writes to <em>io</em> using <em>boundary</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#parse%28io%2Cboundary%2C%26%29-class-method" class="signature"><strong>.parse</strong>(io, boundary, &)</a>
+        
+          <div class="summary"><p>Parses a multipart/form-data message, yielding a <code><a href="../HTTP/FormData/Part.html">FormData::Part</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#parse%28request%3AHTTP%3A%3ARequest%2C%26%29-class-method" class="signature"><strong>.parse</strong>(request : HTTP::Request, &)</a>
+        
+          <div class="summary"><p>Parses a multipart/form-data message, yielding a <code><a href="../HTTP/FormData/Part.html">FormData::Part</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#parse_content_disposition%28content_disposition%29%3ATuple%28String%2CFileMetadata%29-class-method" class="signature"><strong>.parse_content_disposition</strong>(content_disposition) : Tuple(String, FileMetadata)</a>
+        
+          <div class="summary"><p>Parses a <code>Content-Disposition</code> header string into a field name and <code><a href="../HTTP/FormData/FileMetadata.html">FileMetadata</a></code>.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+  
+
+  
+
+
+  <div class="methods-inherited">
+    
+  </div>
+
+  
+
+  
+  <h2>
+    <a id="class-method-detail" class="anchor" href="#class-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Class Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="build(response:HTTP::Server::Response,boundary=MIME::Multipart.generate_boundary,&amp;)-class-method">
+      <div class="signature">
+        
+        def self.<strong>build</strong>(response : <a href="../HTTP/Server/Response.html">HTTP::Server::Response</a>, boundary = <span class="t">MIME</span><span class="t">::</span><span class="t">Multipart</span>.generate_boundary, &)
+
+        <a class="method-permalink" href="#build%28response%3AHTTP%3A%3AServer%3A%3AResponse%2Cboundary%3DMIME%3A%3AMultipart.generate_boundary%2C%26%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Builds a multipart/form-data message, yielding a <code><a href="../HTTP/FormData/Builder.html">FormData::Builder</a></code>
+object to the block which writes to <em>response</em> using *boundary.
+Content-Type is set on <em>response</em> and <code><a href="../HTTP/FormData/Builder.html#finish%3ANil-instance-method">Builder#finish</a></code> is called on the
+builder when the block returns.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;http&quot;</span>
+
+io <span class="o">=</span> <span class="t">IO</span><span class="t">::</span><span class="t">Memory</span>.new
+response <span class="o">=</span> <span class="t">HTTP</span><span class="t">::</span><span class="t">Server</span><span class="t">::</span><span class="t">Response</span>.new io
+<span class="t">HTTP</span><span class="t">::</span><span class="t">FormData</span>.build(response, <span class="s">&quot;boundary&quot;</span>) <span class="k">do</span> <span class="o">|</span>builder<span class="o">|</span>
+  builder.field(<span class="s">&quot;foo&quot;</span>, <span class="s">&quot;bar&quot;</span>)
+<span class="k">end</span>
+response.close
+
+response.headers[<span class="s">&quot;Content-Type&quot;</span>] <span class="c"># =&gt; &quot;multipart/form-data; boundary=\&quot;boundary\&quot;&quot;</span>
+io.to_s                          <span class="c"># =&gt; &quot;HTTP/1.1 200 OK\r\nContent-Type: multipart/form-data; boundary=\&quot;boundary\&quot;\r\nContent-Length: 75\r\n\r\n--boundary\r\nContent-Disposition: form-data; name=\&quot;foo\&quot;\r\n\r\nbar\r\n--boundary--&quot;</span></code></pre>
+<p>See: <code><a href="../HTTP/FormData/Builder.html">FormData::Builder</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/http/formdata.cr#L215" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="build(io,boundary=MIME::Multipart.generate_boundary,&amp;)-class-method">
+      <div class="signature">
+        
+        def self.<strong>build</strong>(io, boundary = <span class="t">MIME</span><span class="t">::</span><span class="t">Multipart</span>.generate_boundary, &)
+
+        <a class="method-permalink" href="#build%28io%2Cboundary%3DMIME%3A%3AMultipart.generate_boundary%2C%26%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Builds a multipart/form-data message, yielding a <code><a href="../HTTP/FormData/Builder.html">FormData::Builder</a></code>
+object to the block which writes to <em>io</em> using <em>boundary</em>.
+<code><a href="../HTTP/FormData/Builder.html#finish%3ANil-instance-method">Builder#finish</a></code> is called on the builder when the block returns.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;http&quot;</span>
+
+io <span class="o">=</span> <span class="t">IO</span><span class="t">::</span><span class="t">Memory</span>.new
+<span class="t">HTTP</span><span class="t">::</span><span class="t">FormData</span>.build(io, <span class="s">&quot;boundary&quot;</span>) <span class="k">do</span> <span class="o">|</span>builder<span class="o">|</span>
+  builder.field(<span class="s">&quot;foo&quot;</span>, <span class="s">&quot;bar&quot;</span>)
+<span class="k">end</span>
+io.to_s <span class="c"># =&gt; &quot;--boundary\r\nContent-Disposition: form-data; name=\&quot;foo\&quot;\r\n\r\nbar\r\n--boundary--&quot;</span></code></pre>
+<p>See: <code><a href="../HTTP/FormData/Builder.html">FormData::Builder</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/http/formdata.cr#L189" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="parse(io,boundary,&amp;)-class-method">
+      <div class="signature">
+        
+        def self.<strong>parse</strong>(io, boundary, &)
+
+        <a class="method-permalink" href="#parse%28io%2Cboundary%2C%26%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Parses a multipart/form-data message, yielding a <code><a href="../HTTP/FormData/Part.html">FormData::Part</a></code>.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;http&quot;</span>
+
+form_data <span class="o">=</span> <span class="s">&quot;--aA40\r\nContent-Disposition: form-data; name=\&quot;field1\&quot;\r\n\r\nfield data\r\n--aA40--&quot;</span>
+<span class="t">HTTP</span><span class="t">::</span><span class="t">FormData</span>.parse(<span class="t">IO</span><span class="t">::</span><span class="t">Memory</span>.new(form_data), <span class="s">&quot;aA40&quot;</span>) <span class="k">do</span> <span class="o">|</span>part<span class="o">|</span>
+  part.name             <span class="c"># =&gt; &quot;field1&quot;</span>
+  part.body.gets_to_end <span class="c"># =&gt; &quot;field data&quot;</span>
+<span class="k">end</span></code></pre>
+<p>See: <code><a href="../HTTP/FormData/Parser.html">FormData::Parser</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/http/formdata.cr#L95" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="parse(request:HTTP::Request,&amp;)-class-method">
+      <div class="signature">
+        
+        def self.<strong>parse</strong>(request : <a href="../HTTP/Request.html">HTTP::Request</a>, &)
+
+        <a class="method-permalink" href="#parse%28request%3AHTTP%3A%3ARequest%2C%26%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Parses a multipart/form-data message, yielding a <code><a href="../HTTP/FormData/Part.html">FormData::Part</a></code>.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;http&quot;</span>
+
+headers <span class="o">=</span> <span class="t">HTTP</span><span class="t">::</span><span class="t">Headers</span>{<span class="s">&quot;Content-Type&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;multipart/form-data; boundary=aA40&quot;</span>}
+body <span class="o">=</span> <span class="s">&quot;--aA40\r\nContent-Disposition: form-data; name=\&quot;field1\&quot;\r\n\r\nfield data\r\n--aA40--&quot;</span>
+request <span class="o">=</span> <span class="t">HTTP</span><span class="t">::</span><span class="t">Request</span>.new(<span class="s">&quot;POST&quot;</span>, <span class="s">&quot;/&quot;</span>, headers, body)
+
+<span class="t">HTTP</span><span class="t">::</span><span class="t">FormData</span>.parse(request) <span class="k">do</span> <span class="o">|</span>part<span class="o">|</span>
+  part.name             <span class="c"># =&gt; &quot;field1&quot;</span>
+  part.body.gets_to_end <span class="c"># =&gt; &quot;field data&quot;</span>
+<span class="k">end</span></code></pre>
+<p>See: <code><a href="../HTTP/FormData/Parser.html">FormData::Parser</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/http/formdata.cr#L118" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="parse_content_disposition(content_disposition):Tuple(String,FileMetadata)-class-method">
+      <div class="signature">
+        
+        def self.<strong>parse_content_disposition</strong>(content_disposition) : <a href="../Tuple.html">Tuple</a>(<a href="../String.html">String</a>, <a href="../HTTP/FormData/FileMetadata.html">FileMetadata</a>)
+
+        <a class="method-permalink" href="#parse_content_disposition%28content_disposition%29%3ATuple%28String%2CFileMetadata%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Parses a <code>Content-Disposition</code> header string into a field name and
+<code><a href="../HTTP/FormData/FileMetadata.html">FileMetadata</a></code>. Please note that the <code>Content-Disposition</code> header for
+<code>multipart/form-data</code> is not compatible with the original definition in
+<a href="https://tools.ietf.org/html/rfc2183">RFC 2183</a>, but are instead specified
+in <a href="https://tools.ietf.org/html/rfc2388">RFC 2388</a>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/http/formdata.cr#L133" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+  
+
+  
+
+
+</div>
+
+</body>
+</html>

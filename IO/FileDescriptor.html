@@ -1,0 +1,2300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Crystal Docs 1.16.1">
+<meta name="crystal_docs.project_version" content="1.17.0-dev">
+<meta name="crystal_docs.project_name" content="Crystal">
+
+  <meta name="crystal_docs.json_config_url" content="/api/versions.json">
+
+
+    <link rel="canonical" href="https://crystal-lang.org/api/latest/IO/FileDescriptor.html">
+
+<link href="../css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../js/doc.js"></script>
+
+  <meta name="repository-name" content="Crystal">
+  <title>IO::FileDescriptor - Crystal 1.17.0-dev</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "../";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill="currentColor" fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<input type="checkbox" id="sidebar-btn">
+<label for="sidebar-btn" id="sidebar-btn-label">
+  <svg class="open" xmlns="http://www.w3.org/2000/svg" height="2em" width="2em" viewBox="0 0 512 512"><title>Open Sidebar</title><path fill="currentColor" d="M80 96v64h352V96H80zm0 112v64h352v-64H80zm0 112v64h352v-64H80z"></path></svg>
+  <svg class="close" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><title>Close Sidebar</title><path fill="currentColor" d="m118.6 73.4-45.2 45.2L210.7 256 73.4 393.4l45.2 45.2L256 301.3l137.4 137.3 45.2-45.2L301.3 256l137.3-137.4-45.2-45.2L256 210.7Z"></path></svg>
+</label>
+<iframe class="sidebar" src="../sidebar.html"></iframe>
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">
+    class
+  </span> IO::<wbr>FileDescriptor
+
+</h1>
+
+
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../IO/FileDescriptor.html">IO::FileDescriptor</a></li><li class="superclass"><a href="../IO.html">IO</a></li><li class="superclass"><a href="../Reference.html">Reference</a></li><li class="superclass"><a href="../Object.html">Object</a></li></ul>
+
+
+
+
+  <h2>
+    <a id="overview" class="anchor" href="#overview">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Overview
+  </h2>
+
+  <p>An <code><a href="../IO.html">IO</a></code> over a file descriptor.</p>
+
+
+
+
+
+
+
+  <h2>
+    <a id="included-modules" class="anchor" href="#included-modules">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Included Modules
+  </h2>
+  <ul class="other-types-list">
+    
+      <li class="other-type">Crystal::System::FileDescriptor</li>
+    
+      <li class="other-type"><a href="../IO/Buffered.html">IO::Buffered</a></li>
+    
+  </ul>
+
+
+
+
+
+  <h2>
+    <a id="direct-known-subclasses" class="anchor" href="#direct-known-subclasses">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Direct Known Subclasses
+  </h2>
+  <ul class="other-types-list">
+    
+      <li class="other-type"><a href="../File.html">File</a></li>
+    
+  </ul>
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/console.cr#L1" target="_blank">
+        io/console.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/file_descriptor.cr#L4" target="_blank">
+        io/file_descriptor.cr
+      </a>
+    
+    <br/>
+  
+
+
+
+
+
+  
+  <h2>
+    <a id="constructors" class="anchor" href="#constructors">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructors
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#new%28fd%3AHandle%2Cblocking%3Dnil%2C%2A%2Cclose_on_finalize%3ABool%3Dtrue%29-class-method" class="signature"><strong>.new</strong>(fd : Handle, blocking = <span class="n">nil</span>, *, close_on_finalize : Bool = <span class="n">true</span>)</a>
+        
+      </li>
+    
+  </ul>
+
+
+  
+  <h2>
+    <a id="class-method-summary" class="anchor" href="#class-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Class Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#fcntl%28fd%2Ccmd%2Carg%3D0%29-class-method" class="signature"><strong>.fcntl</strong>(fd, cmd, arg = <span class="n">0</span>)</a>
+        
+      </li>
+    
+  </ul>
+
+
+  
+  <h2>
+    <a id="macro-summary" class="anchor" href="#macro-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Macro Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#cooked_from_tc_mode%21-macro" class="signature"><strong>cooked_from_tc_mode!</strong></a>
+        
+          <div class="summary"><p><span class="flag red">DEPRECATED</span> </p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#noecho_from_tc_mode%21-macro" class="signature"><strong>noecho_from_tc_mode!</strong></a>
+        
+          <div class="summary"><p><span class="flag red">DEPRECATED</span> </p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#raw_from_tc_mode%21-macro" class="signature"><strong>raw_from_tc_mode!</strong></a>
+        
+          <div class="summary"><p><span class="flag red">DEPRECATED</span> </p></div>
+        
+      </li>
+    
+  </ul>
+
+
+  
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#blocking-instance-method" class="signature"><strong>#blocking</strong></a>
+        
+          <div class="summary"><p>Returns whether I/O operations on this file descriptor block the current thread.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#blocking%3D%28value%29-instance-method" class="signature"><strong>#blocking=</strong>(value)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#close_on_exec%3D%28value%3ABool%29-instance-method" class="signature"><strong>#close_on_exec=</strong>(value : Bool)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#close_on_exec%3F%3ABool-instance-method" class="signature"><strong>#close_on_exec?</strong> : Bool</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#close_on_finalize%3D%28close_on_finalize%3ABool%29-instance-method" class="signature"><strong>#close_on_finalize=</strong>(close_on_finalize : Bool)</a>
+        
+          <div class="summary"><p>Whether or not to close the file descriptor when this object is finalized.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#close_on_finalize%3F%3ABool-instance-method" class="signature"><strong>#close_on_finalize?</strong> : Bool</a>
+        
+          <div class="summary"><p>Whether or not to close the file descriptor when this object is finalized.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#closed%3F%3ABool-instance-method" class="signature"><strong>#closed?</strong> : Bool</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this <code><a href="../IO.html">IO</a></code> is closed.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#cooked%28%26%3Aself-%3E_%29-instance-method" class="signature"><strong>#cooked</strong>(& : <span class="k">self</span> -> _)</a>
+        
+          <div class="summary"><p>Yields <code>self</code> to the given block, enables character processing for the duration of the block, and returns the block's value.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#cooked%21%3ANil-instance-method" class="signature"><strong>#cooked!</strong> : Nil</a>
+        
+          <div class="summary"><p>Enables character processing on this <code><a href="../IO.html">IO</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#echo%28%26%3Aself-%3E_%29-instance-method" class="signature"><strong>#echo</strong>(& : <span class="k">self</span> -> _)</a>
+        
+          <div class="summary"><p>Yields <code>self</code> to the given block, enables character echoing for the duration of the block, and returns the block's value.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#echo%21%3ANil-instance-method" class="signature"><strong>#echo!</strong> : Nil</a>
+        
+          <div class="summary"><p>Enables character echoing on this <code><a href="../IO.html">IO</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#fcntl%28cmd%2Carg%3D0%29-instance-method" class="signature"><strong>#fcntl</strong>(cmd, arg = <span class="n">0</span>)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#fd%3AHandle-instance-method" class="signature"><strong>#fd</strong> : Handle</a>
+        
+          <div class="summary"><p>Returns the raw file-descriptor handle.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#finalize-instance-method" class="signature"><strong>#finalize</strong></a>
+        
+          <div class="summary"><p>Finalizes the file descriptor resource.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#flock_exclusive%28blocking%3Dtrue%2C%26%29-instance-method" class="signature"><strong>#flock_exclusive</strong>(blocking = <span class="n">true</span>, &)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#flock_exclusive%28blocking%3Dtrue%29%3ANil-instance-method" class="signature"><strong>#flock_exclusive</strong>(blocking = <span class="n">true</span>) : Nil</a>
+        
+          <div class="summary"><p>Places an exclusive advisory lock.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#flock_shared%28blocking%3Dtrue%2C%26%29-instance-method" class="signature"><strong>#flock_shared</strong>(blocking = <span class="n">true</span>, &)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#flock_shared%28blocking%3Dtrue%29%3ANil-instance-method" class="signature"><strong>#flock_shared</strong>(blocking = <span class="n">true</span>) : Nil</a>
+        
+          <div class="summary"><p>Places a shared advisory lock.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#flock_unlock%3ANil-instance-method" class="signature"><strong>#flock_unlock</strong> : Nil</a>
+        
+          <div class="summary"><p>Removes an existing advisory lock held by this process.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#fsync%28flush_metadata%3Dtrue%29%3ANil-instance-method" class="signature"><strong>#fsync</strong>(flush_metadata = <span class="n">true</span>) : Nil</a>
+        
+          <div class="summary"><p>Flushes all data written to this File Descriptor to the disk device so that all changed information can be retrieved even if the system crashes or is rebooted.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#info%3AFile%3A%3AInfo-instance-method" class="signature"><strong>#info</strong> : File::Info</a>
+        
+          <div class="summary"><p>Returns a <code><a href="../File/Info.html">File::Info</a></code> object for this file descriptor, or raises <code><a href="../IO/Error.html">IO::Error</a></code> in case of an error.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#inspect%28io%3AIO%29%3ANil-instance-method" class="signature"><strong>#inspect</strong>(io : IO) : Nil</a>
+        
+          <div class="summary"><p>Appends a String representation of this object which includes its class name, its object address and the values of all instance variables.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#noecho%28%26%3Aself-%3E_%29-instance-method" class="signature"><strong>#noecho</strong>(& : <span class="k">self</span> -> _)</a>
+        
+          <div class="summary"><p>Yields <code>self</code> to the given block, disables character echoing for the duration of the block, and returns the block's value.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#noecho%21%3ANil-instance-method" class="signature"><strong>#noecho!</strong> : Nil</a>
+        
+          <div class="summary"><p>Disables character echoing on this <code><a href="../IO.html">IO</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#pos%3D%28value%29-instance-method" class="signature"><strong>#pos=</strong>(value)</a>
+        
+          <div class="summary"><p>Sets the current position (in bytes) in this <code><a href="../IO.html">IO</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#pretty_print%28pp%29-instance-method" class="signature"><strong>#pretty_print</strong>(pp)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#raw%28%26%3Aself-%3E_%29-instance-method" class="signature"><strong>#raw</strong>(& : <span class="k">self</span> -> _)</a>
+        
+          <div class="summary"><p>Yields <code>self</code> to the given block, enables raw mode for the duration of the block, and returns the block's value.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#raw%21%3ANil-instance-method" class="signature"><strong>#raw!</strong> : Nil</a>
+        
+          <div class="summary"><p>Enables raw mode on this <code><a href="../IO.html">IO</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#read_timeout%3ATime%3A%3ASpan%7CNil-instance-method" class="signature"><strong>#read_timeout</strong> : Time::Span | Nil</a>
+        
+          <div class="summary"><p>The time to wait when reading before raising an <code><a href="../IO/TimeoutError.html">IO::TimeoutError</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#read_timeout%3D%28read_timeout%3ANumber%29%3ANumber-instance-method" class="signature"><strong>#read_timeout=</strong>(read_timeout : Number) : Number</a>
+        
+          <div class="summary"><p>Sets the number of seconds to wait when reading before raising an <code><a href="../IO/TimeoutError.html">IO::TimeoutError</a></code>.</p>
+<p><span class="flag red">DEPRECATED</span>  Use <code><a href="../IO/FileDescriptor.html#read_timeout%3D%28read_timeout%3ANumber%29%3ANumber-instance-method">#read_timeout=(Time::Span?)</a></code> instead.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#read_timeout%3D%28read_timeout%3ATime%3A%3ASpan%7CNil%29-instance-method" class="signature"><strong>#read_timeout=</strong>(read_timeout : Time::Span | Nil)</a>
+        
+          <div class="summary"><p>The time to wait when reading before raising an <code><a href="../IO/TimeoutError.html">IO::TimeoutError</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#reopen%28other%3AIO%3A%3AFileDescriptor%29-instance-method" class="signature"><strong>#reopen</strong>(other : IO::FileDescriptor)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#seek%28offset%2Cwhence%3ASeek%3DSeek%3A%3ASet%29-instance-method" class="signature"><strong>#seek</strong>(offset, whence : Seek = <span class="t">Seek</span><span class="t">::</span><span class="t">Set</span>)</a>
+        
+          <div class="summary"><p>Seeks to a given <em>offset</em> (in bytes) according to the <em>whence</em> argument.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#seek%28offset%2Cwhence%3ASeek%3DSeek%3A%3ASet%2C%26%29-instance-method" class="signature"><strong>#seek</strong>(offset, whence : Seek = <span class="t">Seek</span><span class="t">::</span><span class="t">Set</span>, &)</a>
+        
+          <div class="summary"><p>Same as <code><a href="../IO/FileDescriptor.html#seek%28offset%2Cwhence%3ASeek%3DSeek%3A%3ASet%29-instance-method">#seek</a></code> but yields to the block after seeking and eventually seeks back to the original position when the block returns.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#tty%3F%3ABool-instance-method" class="signature"><strong>#tty?</strong> : Bool</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this <code><a href="../IO.html">IO</a></code> is associated with a terminal device (tty), <code>false</code> otherwise.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#write_timeout%3ATime%3A%3ASpan%7CNil-instance-method" class="signature"><strong>#write_timeout</strong> : Time::Span | Nil</a>
+        
+          <div class="summary"><p>Sets the time to wait when writing before raising an <code><a href="../IO/TimeoutError.html">IO::TimeoutError</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#write_timeout%3D%28write_timeout%3ANumber%29%3ANumber-instance-method" class="signature"><strong>#write_timeout=</strong>(write_timeout : Number) : Number</a>
+        
+          <div class="summary"><p>Sets the number of seconds to wait when writing before raising an <code><a href="../IO/TimeoutError.html">IO::TimeoutError</a></code>.</p>
+<p><span class="flag red">DEPRECATED</span>  Use <code><a href="../IO/FileDescriptor.html#write_timeout%3D%28write_timeout%3ANumber%29%3ANumber-instance-method">#write_timeout=(Time::Span?)</a></code> instead.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#write_timeout%3D%28write_timeout%3ATime%3A%3ASpan%7CNil%29-instance-method" class="signature"><strong>#write_timeout=</strong>(write_timeout : Time::Span | Nil)</a>
+        
+          <div class="summary"><p>Sets the time to wait when writing before raising an <code><a href="../IO/TimeoutError.html">IO::TimeoutError</a></code>.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+
+  <div class="methods-inherited">
+    
+      
+
+  <h3>Instance methods inherited from module <code><a href="../IO/Buffered.html">IO::Buffered</a></code></h3>
+  
+  
+    <a href="../IO/Buffered.html#buffer_size%3AInt32-instance-method" class="tooltip">
+      <span>buffer_size : Int32</span>
+    buffer_size</a>, 
+    
+  
+    <a href="../IO/Buffered.html#buffer_size%3D%28value%29-instance-method" class="tooltip">
+      <span>buffer_size=(value)</span>
+    buffer_size=</a>, 
+    
+  
+    <a href="../IO/Buffered.html#close%3ANil-instance-method" class="tooltip">
+      <span>close : Nil</span>
+    close</a>, 
+    
+  
+    <a href="../IO/Buffered.html#flush-instance-method" class="tooltip">
+      <span>flush</span>
+    flush</a>, 
+    
+  
+    <a href="../IO/Buffered.html#flush_on_newline%3D%28flush_on_newline%29-instance-method" class="tooltip">
+      <span>flush_on_newline=(flush_on_newline)</span>
+    flush_on_newline=</a>, 
+    
+  
+    <a href="../IO/Buffered.html#flush_on_newline%3F%3ABool-instance-method" class="tooltip">
+      <span>flush_on_newline? : Bool</span>
+    flush_on_newline?</a>, 
+    
+  
+    <a href="../IO/Buffered.html#peek%3ABytes-instance-method" class="tooltip">
+      <span>peek : Bytes</span>
+    peek</a>, 
+    
+  
+    <a href="../IO/Buffered.html#pos%3AInt64-instance-method" class="tooltip">
+      <span>pos : Int64</span>
+    pos</a>, 
+    
+  
+    <a href="../IO/Buffered.html#read%28slice%3ABytes%29%3AInt32-instance-method" class="tooltip">
+      <span>read(slice : Bytes) : Int32</span>
+    read</a>, 
+    
+  
+    <a href="../IO/Buffered.html#read_buffering%3D%28read_buffering%29-instance-method" class="tooltip">
+      <span>read_buffering=(read_buffering)</span>
+    read_buffering=</a>, 
+    
+  
+    <a href="../IO/Buffered.html#read_buffering%3F%3ABool-instance-method" class="tooltip">
+      <span>read_buffering? : Bool</span>
+    read_buffering?</a>, 
+    
+  
+    <a href="../IO/Buffered.html#rewind-instance-method" class="tooltip">
+      <span>rewind</span>
+    rewind</a>, 
+    
+  
+    <a href="../IO/Buffered.html#sync%3D%28sync%29-instance-method" class="tooltip">
+      <span>sync=(sync)</span>
+    sync=</a>, 
+    
+  
+    <a href="../IO/Buffered.html#sync%3F%3ABool-instance-method" class="tooltip">
+      <span>sync? : Bool</span>
+    sync?</a>, 
+    
+  
+    <a href="../IO/Buffered.html#unbuffered_close-instance-method" class="tooltip">
+      <span>unbuffered_close</span>
+    unbuffered_close</a>, 
+    
+  
+    <a href="../IO/Buffered.html#unbuffered_flush-instance-method" class="tooltip">
+      <span>unbuffered_flush</span>
+    unbuffered_flush</a>, 
+    
+  
+    <a href="../IO/Buffered.html#unbuffered_read%28slice%3ABytes%29-instance-method" class="tooltip">
+      <span>unbuffered_read(slice : Bytes)</span>
+    unbuffered_read</a>, 
+    
+  
+    <a href="../IO/Buffered.html#unbuffered_rewind-instance-method" class="tooltip">
+      <span>unbuffered_rewind</span>
+    unbuffered_rewind</a>, 
+    
+  
+    <a href="../IO/Buffered.html#unbuffered_write%28slice%3ABytes%29-instance-method" class="tooltip">
+      <span>unbuffered_write(slice : Bytes)</span>
+    unbuffered_write</a>, 
+    
+  
+    <a href="../IO/Buffered.html#write%28slice%3ABytes%29%3ANil-instance-method" class="tooltip">
+      <span>write(slice : Bytes) : Nil</span>
+    write</a>
+    
+  
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+      
+
+  <h3>Instance methods inherited from module <code>Crystal::System::FileDescriptor</code></h3>
+  
+  
+    <a href="../Crystal/System/FileDescriptor.html#__evloop_data%3AEventLoop%3A%3APolling%3A%3AArena%3A%3AIndex-instance-method" class="tooltip">
+      <span>__evloop_data : EventLoop::Polling::Arena::Index</span>
+    __evloop_data</a>, 
+    
+  
+    <a href="../Crystal/System/FileDescriptor.html#__evloop_data%3D%28__evloop_data%3AEventLoop%3A%3APolling%3A%3AArena%3A%3AIndex%29-instance-method" class="tooltip">
+      <span>__evloop_data=(__evloop_data : EventLoop::Polling::Arena::Index)</span>
+    __evloop_data=</a>, 
+    
+  
+    <a href="../Crystal/System/FileDescriptor.html#close_volatile_fd%3F%3AInt32%7CNil-instance-method" class="tooltip">
+      <span>close_volatile_fd? : Int32 | Nil</span>
+    close_volatile_fd?</a>, 
+    
+  
+    <a href="../Crystal/System/FileDescriptor.html#file_descriptor_close%28%26%29%3ANil-instance-method" class="tooltip">
+      <span>file_descriptor_close(&) : Nil<br/>file_descriptor_close</span>
+    file_descriptor_close</a>
+    
+  
+
+
+      
+
+
+      
+
+  <h3>Class methods inherited from module <code>Crystal::System::FileDescriptor</code></h3>
+  
+  
+    <a href="../Crystal/System/FileDescriptor.html#cfmakeraw%28termios%29-class-method" class="tooltip">
+      <span>cfmakeraw(termios)</span>
+    cfmakeraw</a>, 
+    
+  
+    <a href="../Crystal/System/FileDescriptor.html#fcntl%28fd%2Ccmd%2Carg%3D0%29-class-method" class="tooltip">
+      <span>fcntl(fd, cmd, arg = <span class="n">0</span>)</span>
+    fcntl</a>, 
+    
+  
+    <a href="../Crystal/System/FileDescriptor.html#from_stdio%28fd%29-class-method" class="tooltip">
+      <span>from_stdio(fd)</span>
+    from_stdio</a>, 
+    
+  
+    <a href="../Crystal/System/FileDescriptor.html#pipe%28read_blocking%2Cwrite_blocking%29-class-method" class="tooltip">
+      <span>pipe(read_blocking, write_blocking)</span>
+    pipe</a>, 
+    
+  
+    <a href="../Crystal/System/FileDescriptor.html#pread%28file%2Cbuffer%2Coffset%29-class-method" class="tooltip">
+      <span>pread(file, buffer, offset)</span>
+    pread</a>, 
+    
+  
+    <a href="../Crystal/System/FileDescriptor.html#system_info%28fd%29-class-method" class="tooltip">
+      <span>system_info(fd)</span>
+    system_info</a>, 
+    
+  
+    <a href="../Crystal/System/FileDescriptor.html#system_pipe%3AStaticArray%28LibC%3A%3AInt%2C2%29-class-method" class="tooltip">
+      <span>system_pipe : StaticArray(LibC::Int, <span class="n">2</span>)</span>
+    system_pipe</a>, 
+    
+  
+    <a href="../Crystal/System/FileDescriptor.html#tcgetattr%28fd%29-class-method" class="tooltip">
+      <span>tcgetattr(fd)</span>
+    tcgetattr</a>, 
+    
+  
+    <a href="../Crystal/System/FileDescriptor.html#tcsetattr%28fd%2Coptional_actions%2Ctermios_p%29-class-method" class="tooltip">
+      <span>tcsetattr(fd, optional_actions, termios_p)</span>
+    tcsetattr</a>, 
+    
+  
+    <a href="../Crystal/System/FileDescriptor.html#write_fully%28fd%3ALibC%3A%3AInt%2Cpointer%3APointer%2Csize%3AInt32%3D1%29%3ANil-class-method" class="tooltip">
+      <span>write_fully(fd : LibC::Int, pointer : Pointer, size : Int32 = <span class="n">1</span>) : Nil<br/>write_fully(fd : LibC::Int, slice : Slice(UInt8)) : Nil</span>
+    write_fully</a>
+    
+  
+
+
+      
+
+
+    
+      
+
+  <h3>Instance methods inherited from class <code><a href="../IO.html">IO</a></code></h3>
+  
+  
+    <a href="../IO.html#%3C%3C%28obj%29%3Aself-instance-method" class="tooltip">
+      <span><<(obj) : <span class="k">self</span></span>
+    <<</a>, 
+    
+  
+    <a href="../IO.html#close-instance-method" class="tooltip">
+      <span>close</span>
+    close</a>, 
+    
+  
+    <a href="../IO.html#closed%3F%3ABool-instance-method" class="tooltip">
+      <span>closed? : Bool</span>
+    closed?</a>, 
+    
+  
+    <a href="../IO.html#each_byte%28%26%29%3ANil-instance-method" class="tooltip">
+      <span>each_byte(&) : Nil<br/>each_byte</span>
+    each_byte</a>, 
+    
+  
+    <a href="../IO.html#each_char%28%26%29%3ANil-instance-method" class="tooltip">
+      <span>each_char(&) : Nil<br/>each_char</span>
+    each_char</a>, 
+    
+  
+    <a href="../IO.html#each_line%28%2Aargs%2C%2A%2Aoptions%2C%26block%3AString-%3E%29%3ANil-instance-method" class="tooltip">
+      <span>each_line(*args, **options, &block : String -> ) : Nil<br/>each_line(*args, **options)</span>
+    each_line</a>, 
+    
+  
+    <a href="../IO.html#encoding%3AString-instance-method" class="tooltip">
+      <span>encoding : String</span>
+    encoding</a>, 
+    
+  
+    <a href="../IO.html#flush-instance-method" class="tooltip">
+      <span>flush</span>
+    flush</a>, 
+    
+  
+    <a href="../IO.html#getb_to_end%3ABytes-instance-method" class="tooltip">
+      <span>getb_to_end : Bytes</span>
+    getb_to_end</a>, 
+    
+  
+    <a href="../IO.html#gets%28limit%3AInt%2Cchomp%3Dfalse%29%3AString%7CNil-instance-method" class="tooltip">
+      <span>gets(limit : Int, chomp = <span class="n">false</span>) : String | Nil<br/>gets(delimiter : Char, limit : Int, chomp = <span class="n">false</span>) : String | Nil<br/>gets(delimiter : Char, chomp = <span class="n">false</span>) : String | Nil<br/>gets(delimiter : String, chomp = <span class="n">false</span>) : String | Nil<br/>gets(chomp = <span class="n">true</span>) : String | Nil</span>
+    gets</a>, 
+    
+  
+    <a href="../IO.html#gets_to_end%3AString-instance-method" class="tooltip">
+      <span>gets_to_end : String</span>
+    gets_to_end</a>, 
+    
+  
+    <a href="../IO.html#peek%3ABytes%7CNil-instance-method" class="tooltip">
+      <span>peek : Bytes | Nil</span>
+    peek</a>, 
+    
+  
+    <a href="../IO.html#pos-instance-method" class="tooltip">
+      <span>pos</span>
+    pos</a>, 
+    
+  
+    <a href="../IO.html#pos%3D%28value%29-instance-method" class="tooltip">
+      <span>pos=(value)</span>
+    pos=</a>, 
+    
+  
+    <a href="../IO.html#print%28obj%3A_%29%3ANil-instance-method" class="tooltip">
+      <span>print(obj : _) : Nil<br/>print(*objects : _) : Nil</span>
+    print</a>, 
+    
+  
+    <a href="../IO.html#printf%28format_string%2Cargs%3AArray%7CTuple%29%3ANil-instance-method" class="tooltip">
+      <span>printf(format_string, args : Array | Tuple) : Nil<br/>printf(format_string, *args) : Nil</span>
+    printf</a>, 
+    
+  
+    <a href="../IO.html#puts%28string%3AString%29%3ANil-instance-method" class="tooltip">
+      <span>puts(string : String) : Nil<br/>puts(obj : _) : Nil<br/>puts : Nil<br/>puts(*objects : _) : Nil</span>
+    puts</a>, 
+    
+  
+    <a href="../IO.html#read%28slice%3ABytes%29-instance-method" class="tooltip">
+      <span>read(slice : Bytes)</span>
+    read</a>, 
+    
+  
+    <a href="../IO.html#read_at%28offset%2Cbytesize%2C%26%3AIO-%3E%29-instance-method" class="tooltip">
+      <span>read_at(offset, bytesize, & : IO -> )</span>
+    read_at</a>, 
+    
+  
+    <a href="../IO.html#read_byte%3AUInt8%7CNil-instance-method" class="tooltip">
+      <span>read_byte : UInt8 | Nil</span>
+    read_byte</a>, 
+    
+  
+    <a href="../IO.html#read_bytes%28type%2Cformat%3AIO%3A%3AByteFormat%3DIO%3A%3AByteFormat%3A%3ASystemEndian%29-instance-method" class="tooltip">
+      <span>read_bytes(type, format : IO::ByteFormat = <span class="t">IO</span><span class="t">::</span><span class="t">ByteFormat</span><span class="t">::</span><span class="t">SystemEndian</span>)</span>
+    read_bytes</a>, 
+    
+  
+    <a href="../IO.html#read_char%3AChar%7CNil-instance-method" class="tooltip">
+      <span>read_char : Char | Nil</span>
+    read_char</a>, 
+    
+  
+    <a href="../IO.html#read_fully%28slice%3ABytes%29%3AInt32-instance-method" class="tooltip">
+      <span>read_fully(slice : Bytes) : Int32</span>
+    read_fully</a>, 
+    
+  
+    <a href="../IO.html#read_fully%3F%28slice%3ABytes%29%3AInt32%7CNil-instance-method" class="tooltip">
+      <span>read_fully?(slice : Bytes) : Int32 | Nil</span>
+    read_fully?</a>, 
+    
+  
+    <a href="../IO.html#read_line%28%2Aargs%2C%2A%2Aoptions%29%3AString-instance-method" class="tooltip">
+      <span>read_line(*args, **options) : String</span>
+    read_line</a>, 
+    
+  
+    <a href="../IO.html#read_string%28bytesize%3AInt%29%3AString-instance-method" class="tooltip">
+      <span>read_string(bytesize : Int) : String</span>
+    read_string</a>, 
+    
+  
+    <a href="../IO.html#read_utf8%28slice%3ABytes%29-instance-method" class="tooltip">
+      <span>read_utf8(slice : Bytes)</span>
+    read_utf8</a>, 
+    
+  
+    <a href="../IO.html#read_utf8_byte%3AUInt8%7CNil-instance-method" class="tooltip">
+      <span>read_utf8_byte : UInt8 | Nil</span>
+    read_utf8_byte</a>, 
+    
+  
+    <a href="../IO.html#rewind-instance-method" class="tooltip">
+      <span>rewind</span>
+    rewind</a>, 
+    
+  
+    <a href="../IO.html#seek%28offset%2Cwhence%3ASeek%3DSeek%3A%3ASet%29-instance-method" class="tooltip">
+      <span>seek(offset, whence : Seek = <span class="t">Seek</span><span class="t">::</span><span class="t">Set</span>)</span>
+    seek</a>, 
+    
+  
+    <a href="../IO.html#set_encoding%28encoding%3AString%2Cinvalid%3ASymbol%7CNil%3Dnil%29%3ANil-instance-method" class="tooltip">
+      <span>set_encoding(encoding : String, invalid : Symbol | Nil = <span class="n">nil</span>) : Nil</span>
+    set_encoding</a>, 
+    
+  
+    <a href="../IO.html#skip%28bytes_count%3AInt%29%3ANil-instance-method" class="tooltip">
+      <span>skip(bytes_count : Int) : Nil</span>
+    skip</a>, 
+    
+  
+    <a href="../IO.html#skip_to_end%3ANil-instance-method" class="tooltip">
+      <span>skip_to_end : Nil</span>
+    skip_to_end</a>, 
+    
+  
+    <a href="../IO.html#tell-instance-method" class="tooltip">
+      <span>tell</span>
+    tell</a>, 
+    
+  
+    <a href="../IO.html#tty%3F%3ABool-instance-method" class="tooltip">
+      <span>tty? : Bool</span>
+    tty?</a>, 
+    
+  
+    <a href="../IO.html#write%28slice%3ABytes%29%3ANil-instance-method" class="tooltip">
+      <span>write(slice : Bytes) : Nil</span>
+    write</a>, 
+    
+  
+    <a href="../IO.html#write_byte%28byte%3AUInt8%29%3ANil-instance-method" class="tooltip">
+      <span>write_byte(byte : UInt8) : Nil</span>
+    write_byte</a>, 
+    
+  
+    <a href="../IO.html#write_bytes%28object%2Cformat%3AIO%3A%3AByteFormat%3DIO%3A%3AByteFormat%3A%3ASystemEndian%29%3ANil-instance-method" class="tooltip">
+      <span>write_bytes(object, format : IO::ByteFormat = <span class="t">IO</span><span class="t">::</span><span class="t">ByteFormat</span><span class="t">::</span><span class="t">SystemEndian</span>) : Nil</span>
+    write_bytes</a>, 
+    
+  
+    <a href="../IO.html#write_string%28slice%3ABytes%29%3ANil-instance-method" class="tooltip">
+      <span>write_string(slice : Bytes) : Nil</span>
+    write_string</a>, 
+    
+  
+    <a href="../IO.html#write_utf8%28slice%3ABytes%29%3ANil-instance-method" class="tooltip">
+      <span>write_utf8(slice : Bytes) : Nil</span>
+    write_utf8</a>
+    
+  
+
+
+      
+
+
+      
+
+  <h3>Class methods inherited from class <code><a href="../IO.html">IO</a></code></h3>
+  
+  
+    <a href="../IO.html#copy%28src%2Cdst%2Climit%3AInt%29%3AInt64-class-method" class="tooltip">
+      <span>copy(src, dst, limit : Int) : Int64<br/>copy(src, dst) : Int64</span>
+    copy</a>, 
+    
+  
+    <a href="../IO.html#pipe%28read_blocking%3Dfalse%2Cwrite_blocking%3Dfalse%29%3ATuple%28IO%3A%3AFileDescriptor%2CIO%3A%3AFileDescriptor%29-class-method" class="tooltip">
+      <span>pipe(read_blocking = <span class="n">false</span>, write_blocking = <span class="n">false</span>) : Tuple(IO::FileDescriptor, IO::FileDescriptor)<br/>pipe(read_blocking = <span class="n">false</span>, write_blocking = <span class="n">false</span>, &)</span>
+    pipe</a>, 
+    
+  
+    <a href="../IO.html#same_content%3F%28stream1%3AIO%2Cstream2%3AIO%29%3ABool-class-method" class="tooltip">
+      <span>same_content?(stream1 : IO, stream2 : IO) : Bool</span>
+    same_content?</a>
+    
+  
+
+
+      
+
+
+    
+      
+
+  <h3>Instance methods inherited from class <code><a href="../Reference.html">Reference</a></code></h3>
+  
+  
+    <a href="../Reference.html#%3D%3D%28other%3Aself%29-instance-method" class="tooltip">
+      <span>==(other : <span class="k">self</span>)<br/>==(other : JSON::Any)<br/>==(other : YAML::Any)<br/>==(other)</span>
+    ==</a>, 
+    
+  
+    <a href="../Reference.html#dup-instance-method" class="tooltip">
+      <span>dup</span>
+    dup</a>, 
+    
+  
+    <a href="../Reference.html#hash%28hasher%29-instance-method" class="tooltip">
+      <span>hash(hasher)</span>
+    hash</a>, 
+    
+  
+    <a href="../Reference.html#initialize-instance-method" class="tooltip">
+      <span>initialize</span>
+    initialize</a>, 
+    
+  
+    <a href="../Reference.html#inspect%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>inspect(io : IO) : Nil</span>
+    inspect</a>, 
+    
+  
+    <a href="../Reference.html#object_id%3AUInt64-instance-method" class="tooltip">
+      <span>object_id : UInt64</span>
+    object_id</a>, 
+    
+  
+    <a href="../Reference.html#pretty_print%28pp%29%3ANil-instance-method" class="tooltip">
+      <span>pretty_print(pp) : Nil</span>
+    pretty_print</a>, 
+    
+  
+    <a href="../Reference.html#same%3F%28other%3AReference%29%3ABool-instance-method" class="tooltip">
+      <span>same?(other : Reference) : Bool<br/>same?(other : Nil)</span>
+    same?</a>, 
+    
+  
+    <a href="../Reference.html#to_s%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_s(io : IO) : Nil</span>
+    to_s</a>
+    
+  
+
+
+      
+
+  <h3>Constructor methods inherited from class <code><a href="../Reference.html">Reference</a></code></h3>
+  
+  
+    <a href="../Reference.html#new-class-method" class="tooltip">
+      <span>new</span>
+    new</a>, 
+    
+  
+    <a href="../Reference.html#unsafe_construct%28address%3APointer%2C%2Aargs%2C%2A%2Aopts%29%3Aself-class-method" class="tooltip">
+      <span>unsafe_construct(address : Pointer, *args, **opts) : <span class="k">self</span></span>
+    unsafe_construct</a>
+    
+  
+
+
+      
+
+  <h3>Class methods inherited from class <code><a href="../Reference.html">Reference</a></code></h3>
+  
+  
+    <a href="../Reference.html#pre_initialize%28address%3APointer%29-class-method" class="tooltip">
+      <span>pre_initialize(address : Pointer)</span>
+    pre_initialize</a>
+    
+  
+
+
+      
+
+
+    
+      
+
+  <h3>Instance methods inherited from class <code><a href="../Object.html">Object</a></code></h3>
+  
+  
+    <a href="../Object.html#%21%3ABool-instance-method" class="tooltip">
+      <span>! : Bool</span>
+    !</a>, 
+    
+  
+    <a href="../Object.html#%21%3D%28other%29-instance-method" class="tooltip">
+      <span>!=(other)</span>
+    !=</a>, 
+    
+  
+    <a href="../Object.html#%21~%28other%29-instance-method" class="tooltip">
+      <span>!~(other)</span>
+    !~</a>, 
+    
+  
+    <a href="../Object.html#%3D%3D%28other%29-instance-method" class="tooltip">
+      <span>==(other)</span>
+    ==</a>, 
+    
+  
+    <a href="../Object.html#%3D%3D%3D%28other%3AJSON%3A%3AAny%29-instance-method" class="tooltip">
+      <span>===(other : JSON::Any)<br/>===(other : YAML::Any)<br/>===(other)</span>
+    ===</a>, 
+    
+  
+    <a href="../Object.html#%3D~%28other%29-instance-method" class="tooltip">
+      <span>=~(other)</span>
+    =~</a>, 
+    
+  
+    <a href="../Object.html#as%28type%3AClass%29-instance-method" class="tooltip">
+      <span>as(type : Class)</span>
+    as</a>, 
+    
+  
+    <a href="../Object.html#as%3F%28type%3AClass%29-instance-method" class="tooltip">
+      <span>as?(type : Class)</span>
+    as?</a>, 
+    
+  
+    <a href="../Object.html#class-instance-method" class="tooltip">
+      <span>class</span>
+    class</a>, 
+    
+  
+    <a href="../Object.html#dup-instance-method" class="tooltip">
+      <span>dup</span>
+    dup</a>, 
+    
+  
+    <a href="../Object.html#hash%28hasher%29-instance-method" class="tooltip">
+      <span>hash(hasher)<br/>hash</span>
+    hash</a>, 
+    
+  
+    <a href="../Object.html#in%3F%28collection%3AObject%29%3ABool-instance-method" class="tooltip">
+      <span>in?(collection : Object) : Bool<br/>in?(*values : Object) : Bool</span>
+    in?</a>, 
+    
+  
+    <a href="../Object.html#inspect%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>inspect(io : IO) : Nil<br/>inspect : String</span>
+    inspect</a>, 
+    
+  
+    <a href="../Object.html#is_a%3F%28type%3AClass%29%3ABool-instance-method" class="tooltip">
+      <span>is_a?(type : Class) : Bool</span>
+    is_a?</a>, 
+    
+  
+    <a href="../Object.html#itself-instance-method" class="tooltip">
+      <span>itself</span>
+    itself</a>, 
+    
+  
+    <a href="../Object.html#nil%3F%3ABool-instance-method" class="tooltip">
+      <span>nil? : Bool</span>
+    nil?</a>, 
+    
+  
+    <a href="../Object.html#not_nil%21%28message%29-instance-method" class="tooltip">
+      <span>not_nil!(message)<br/>not_nil!</span>
+    not_nil!</a>, 
+    
+  
+    <a href="../Object.html#pretty_inspect%28width%3D79%2Cnewline%3D%22%5Cn%22%2Cindent%3D0%29%3AString-instance-method" class="tooltip">
+      <span>pretty_inspect(width = <span class="n">79</span>, newline = <span class="s">&quot;\n&quot;</span>, indent = <span class="n">0</span>) : String</span>
+    pretty_inspect</a>, 
+    
+  
+    <a href="../Object.html#pretty_print%28pp%3APrettyPrint%29%3ANil-instance-method" class="tooltip">
+      <span>pretty_print(pp : PrettyPrint) : Nil</span>
+    pretty_print</a>, 
+    
+  
+    <a href="../Object.html#responds_to%3F%28name%3ASymbol%29%3ABool-instance-method" class="tooltip">
+      <span>responds_to?(name : Symbol) : Bool</span>
+    responds_to?</a>, 
+    
+  
+    <a href="../Object.html#tap%28%26%29-instance-method" class="tooltip">
+      <span>tap(&)</span>
+    tap</a>, 
+    
+  
+    <a href="../Object.html#to_json%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_json(io : IO) : Nil<br/>to_json : String</span>
+    to_json</a>, 
+    
+  
+    <a href="../Object.html#to_pretty_json%28indent%3AString%3D%22%22%29%3AString-instance-method" class="tooltip">
+      <span>to_pretty_json(indent : String = <span class="s">&quot;  &quot;</span>) : String<br/>to_pretty_json(io : IO, indent : String = <span class="s">&quot;  &quot;</span>) : Nil</span>
+    to_pretty_json</a>, 
+    
+  
+    <a href="../Object.html#to_s%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_s(io : IO) : Nil<br/>to_s : String</span>
+    to_s</a>, 
+    
+  
+    <a href="../Object.html#to_yaml%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_yaml(io : IO) : Nil<br/>to_yaml : String</span>
+    to_yaml</a>, 
+    
+  
+    <a href="../Object.html#try%28%26%29-instance-method" class="tooltip">
+      <span>try(&)</span>
+    try</a>, 
+    
+  
+    <a href="../Object.html#unsafe_as%28type%3AT.class%29forallT-instance-method" class="tooltip">
+      <span>unsafe_as(type : <span class="t">T</span>.<span class="k">class</span>) forall T</span>
+    unsafe_as</a>
+    
+  
+
+
+      
+
+
+      
+
+  <h3>Class methods inherited from class <code><a href="../Object.html">Object</a></code></h3>
+  
+  
+    <a href="../Object.html#from_json%28string_or_io%2Croot%3AString%29-class-method" class="tooltip">
+      <span>from_json(string_or_io, root : String)<br/>from_json(string_or_io)</span>
+    from_json</a>, 
+    
+  
+    <a href="../Object.html#from_yaml%28string_or_io%3AString%7CIO%29-class-method" class="tooltip">
+      <span>from_yaml(string_or_io : String | IO)</span>
+    from_yaml</a>
+    
+  
+
+
+      
+
+  <h3>Macros inherited from class <code><a href="../Object.html">Object</a></code></h3>
+  
+  
+    <a href="../Object.html#class_getter%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_getter(*names, &block)</span>
+    class_getter</a>, 
+    
+  
+    <a href="../Object.html#class_getter%21%28%2Anames%29-macro" class="tooltip">
+      <span>class_getter!(*names)</span>
+    class_getter!</a>, 
+    
+  
+    <a href="../Object.html#class_getter%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_getter?(*names, &block)</span>
+    class_getter?</a>, 
+    
+  
+    <a href="../Object.html#class_property%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_property(*names, &block)</span>
+    class_property</a>, 
+    
+  
+    <a href="../Object.html#class_property%21%28%2Anames%29-macro" class="tooltip">
+      <span>class_property!(*names)</span>
+    class_property!</a>, 
+    
+  
+    <a href="../Object.html#class_property%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_property?(*names, &block)</span>
+    class_property?</a>, 
+    
+  
+    <a href="../Object.html#class_setter%28%2Anames%29-macro" class="tooltip">
+      <span>class_setter(*names)</span>
+    class_setter</a>, 
+    
+  
+    <a href="../Object.html#def_clone-macro" class="tooltip">
+      <span>def_clone</span>
+    def_clone</a>, 
+    
+  
+    <a href="../Object.html#def_equals%28%2Afields%29-macro" class="tooltip">
+      <span>def_equals(*fields)</span>
+    def_equals</a>, 
+    
+  
+    <a href="../Object.html#def_equals_and_hash%28%2Afields%29-macro" class="tooltip">
+      <span>def_equals_and_hash(*fields)</span>
+    def_equals_and_hash</a>, 
+    
+  
+    <a href="../Object.html#def_hash%28%2Afields%29-macro" class="tooltip">
+      <span>def_hash(*fields)</span>
+    def_hash</a>, 
+    
+  
+    <a href="../Object.html#delegate%28%2Amethods%2Ctoobject%29-macro" class="tooltip">
+      <span>delegate(*methods, to object)</span>
+    delegate</a>, 
+    
+  
+    <a href="../Object.html#forward_missing_to%28delegate%29-macro" class="tooltip">
+      <span>forward_missing_to(delegate)</span>
+    forward_missing_to</a>, 
+    
+  
+    <a href="../Object.html#getter%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>getter(*names, &block)</span>
+    getter</a>, 
+    
+  
+    <a href="../Object.html#getter%21%28%2Anames%29-macro" class="tooltip">
+      <span>getter!(*names)</span>
+    getter!</a>, 
+    
+  
+    <a href="../Object.html#getter%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>getter?(*names, &block)</span>
+    getter?</a>, 
+    
+  
+    <a href="../Object.html#property%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>property(*names, &block)</span>
+    property</a>, 
+    
+  
+    <a href="../Object.html#property%21%28%2Anames%29-macro" class="tooltip">
+      <span>property!(*names)</span>
+    property!</a>, 
+    
+  
+    <a href="../Object.html#property%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>property?(*names, &block)</span>
+    property?</a>, 
+    
+  
+    <a href="../Object.html#setter%28%2Anames%29-macro" class="tooltip">
+      <span>setter(*names)</span>
+    setter</a>
+    
+  
+
+
+    
+  </div>
+
+  
+  <h2>
+    <a id="constructor-detail" class="anchor" href="#constructor-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructor Detail
+  </h2>
+  
+    <div class="entry-detail" id="new(fd:Handle,blocking=nil,*,close_on_finalize:Bool=true)-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(fd : Handle, blocking = <span class="n">nil</span>, *, close_on_finalize : <a href="../Bool.html">Bool</a> = <span class="n">true</span>)
+
+        <a class="method-permalink" href="#new%28fd%3AHandle%2Cblocking%3Dnil%2C%2A%2Cclose_on_finalize%3ABool%3Dtrue%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/file_descriptor.cr#L42" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+  
+  <h2>
+    <a id="class-method-detail" class="anchor" href="#class-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Class Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="fcntl(fd,cmd,arg=0)-class-method">
+      <div class="signature">
+        
+        def self.<strong>fcntl</strong>(fd, cmd, arg = <span class="n">0</span>)
+
+        <a class="method-permalink" href="#fcntl%28fd%2Ccmd%2Carg%3D0%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/file_descriptor.cr#L93" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+  
+  <h2>
+    <a id="macro-detail" class="anchor" href="#macro-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Macro Detail
+  </h2>
+  
+    <div class="entry-detail" id="cooked_from_tc_mode!-macro">
+      <div class="signature">
+        
+        macro <strong>cooked_from_tc_mode!</strong>
+
+        <a class="method-permalink" href="#cooked_from_tc_mode%21-macro">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p><span class="flag red">DEPRECATED</span> </p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/console.cr#L99" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="noecho_from_tc_mode!-macro">
+      <div class="signature">
+        
+        macro <strong>noecho_from_tc_mode!</strong>
+
+        <a class="method-permalink" href="#noecho_from_tc_mode%21-macro">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p><span class="flag red">DEPRECATED</span> </p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/console.cr#L93" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="raw_from_tc_mode!-macro">
+      <div class="signature">
+        
+        macro <strong>raw_from_tc_mode!</strong>
+
+        <a class="method-permalink" href="#raw_from_tc_mode%21-macro">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p><span class="flag red">DEPRECATED</span> </p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/console.cr#L116" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+  
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="blocking-instance-method">
+      <div class="signature">
+        
+        def <strong>blocking</strong>
+
+        <a class="method-permalink" href="#blocking-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns whether I/O operations on this file descriptor block the current
+thread. If false, operations might opt to suspend the current fiber instead.</p>
+<p>This might be different from the internal file descriptor. For example, when
+<code><a href="../toplevel.html#STDIN">STDIN</a></code> is a terminal on Windows, this returns <code>false</code> since the underlying
+blocking reads are done on a completely separate thread.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/file_descriptor.cr#L75" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="blocking=(value)-instance-method">
+      <div class="signature">
+        
+        def <strong>blocking=</strong>(value)
+
+        <a class="method-permalink" href="#blocking%3D%28value%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/file_descriptor.cr#L81" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="close_on_exec=(value:Bool)-instance-method">
+      <div class="signature">
+        
+        def <strong>close_on_exec=</strong>(value : <a href="../Bool.html">Bool</a>)
+
+        <a class="method-permalink" href="#close_on_exec%3D%28value%3ABool%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/file_descriptor.cr#L89" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="close_on_exec?:Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>close_on_exec?</strong> : <a href="../Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#close_on_exec%3F%3ABool-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/file_descriptor.cr#L85" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="close_on_finalize=(close_on_finalize:Bool)-instance-method">
+      <div class="signature">
+        
+        def <strong>close_on_finalize=</strong>(close_on_finalize : <a href="../Bool.html">Bool</a>)
+
+        <a class="method-permalink" href="#close_on_finalize%3D%28close_on_finalize%3ABool%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Whether or not to close the file descriptor when this object is finalized.
+Disabling this is useful in order to create an IO wrapper over a file
+descriptor returned from a C API that keeps ownership of the descriptor. Do
+note that, if the fd is closed by its owner at any point, any IO operations
+will then fail.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/file_descriptor.cr#L20" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="close_on_finalize?:Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>close_on_finalize?</strong> : <a href="../Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#close_on_finalize%3F%3ABool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Whether or not to close the file descriptor when this object is finalized.
+Disabling this is useful in order to create an IO wrapper over a file
+descriptor returned from a C API that keeps ownership of the descriptor. Do
+note that, if the fd is closed by its owner at any point, any IO operations
+will then fail.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/file_descriptor.cr#L20" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="closed?:Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>closed?</strong> : <a href="../Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#closed%3F%3ABool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+            <div class="doc-inherited">
+              Description copied from class <a href="../IO.html">IO</a>
+            </div>
+          
+          <p>Returns <code>true</code> if this <code><a href="../IO.html">IO</a></code> is closed.</p>
+<p><code><a href="../IO.html">IO</a></code> defines returns <code>false</code>, but including types may override.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/file_descriptor.cr#L262" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="cooked(&amp;:self-&gt;_)-instance-method">
+      <div class="signature">
+        
+        def <strong>cooked</strong>(& : <span class="k">self</span> -> _)
+
+        <a class="method-permalink" href="#cooked%28%26%3Aself-%3E_%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Yields <code>self</code> to the given block, enables character processing for the
+duration of the block, and returns the block's value.</p>
+<p>The so called cooked mode is the standard behavior of a terminal,
+doing line wise editing by the terminal and only sending the input to
+the program on a newline.</p>
+<p>Raises <code><a href="../IO/Error.html">IO::Error</a></code> if this <code><a href="../IO.html">IO</a></code> is not a terminal device.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/console.cr#L54" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="cooked!:Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>cooked!</strong> : <a href="../Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#cooked%21%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Enables character processing on this <code><a href="../IO.html">IO</a></code>.</p>
+<p>The so called cooked mode is the standard behavior of a terminal,
+doing line wise editing by the terminal and only sending the input to
+the program on a newline.</p>
+<p>Raises <code><a href="../IO/Error.html">IO::Error</a></code> if this <code><a href="../IO.html">IO</a></code> is not a terminal device.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/console.cr#L77" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="echo(&amp;:self-&gt;_)-instance-method">
+      <div class="signature">
+        
+        def <strong>echo</strong>(& : <span class="k">self</span> -> _)
+
+        <a class="method-permalink" href="#echo%28%26%3Aself-%3E_%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Yields <code>self</code> to the given block, enables character echoing for the
+duration of the block, and returns the block's value.</p>
+<p>This causes user input to be displayed as they are entered on the terminal.</p>
+<p>Raises <code><a href="../IO/Error.html">IO::Error</a></code> if this <code><a href="../IO.html">IO</a></code> is not a terminal device.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/console.cr#L24" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="echo!:Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>echo!</strong> : <a href="../Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#echo%21%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Enables character echoing on this <code><a href="../IO.html">IO</a></code>.</p>
+<p>This causes user input to be displayed as they are entered on the terminal.</p>
+<p>Raises <code><a href="../IO/Error.html">IO::Error</a></code> if this <code><a href="../IO.html">IO</a></code> is not a terminal device.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/console.cr#L42" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="fcntl(cmd,arg=0)-instance-method">
+      <div class="signature">
+        
+        def <strong>fcntl</strong>(cmd, arg = <span class="n">0</span>)
+
+        <a class="method-permalink" href="#fcntl%28cmd%2Carg%3D0%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/file_descriptor.cr#L97" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="fd:Handle-instance-method">
+      <div class="signature">
+        
+        def <strong>fd</strong> : Handle
+
+        <a class="method-permalink" href="#fd%3AHandle-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the raw file-descriptor handle. Its type is platform-specific.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/file_descriptor.cr#L11" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="finalize-instance-method">
+      <div class="signature">
+        
+        def <strong>finalize</strong>
+
+        <a class="method-permalink" href="#finalize-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Finalizes the file descriptor resource.</p>
+<p>This involves releasing the handle to the operating system, i.e. closing it.
+It does <em>not</em> implicitly call <code>#flush</code>, so data waiting in the buffer may be
+lost.
+It's recommended to always close the file descriptor explicitly via <code>#close</code>
+(or implicitly using the <code>.open</code> constructor).</p>
+<p>Resource release can be disabled with <code>close_on_finalize = false</code>.</p>
+<p>This method is a no-op if the file descriptor has already been closed.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/file_descriptor.cr#L255" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="flock_exclusive(blocking=true,&amp;)-instance-method">
+      <div class="signature">
+        
+        def <strong>flock_exclusive</strong>(blocking = <span class="n">true</span>, &)
+
+        <a class="method-permalink" href="#flock_exclusive%28blocking%3Dtrue%2C%26%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/file_descriptor.cr#L224" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="flock_exclusive(blocking=true):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>flock_exclusive</strong>(blocking = <span class="n">true</span>) : <a href="../Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#flock_exclusive%28blocking%3Dtrue%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Places an exclusive advisory lock. Only one process may hold an exclusive lock for a given file descriptor at a given time.
+<code><a href="../IO/Error.html">IO::Error</a></code> is raised if <em>blocking</em> is set to <code>false</code> and any existing lock is set.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/file_descriptor.cr#L235" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="flock_shared(blocking=true,&amp;)-instance-method">
+      <div class="signature">
+        
+        def <strong>flock_shared</strong>(blocking = <span class="n">true</span>, &)
+
+        <a class="method-permalink" href="#flock_shared%28blocking%3Dtrue%2C%26%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/file_descriptor.cr#L209" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="flock_shared(blocking=true):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>flock_shared</strong>(blocking = <span class="n">true</span>) : <a href="../Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#flock_shared%28blocking%3Dtrue%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Places a shared advisory lock. More than one process may hold a shared lock for a given file descriptor at a given time.
+<code><a href="../IO/Error.html">IO::Error</a></code> is raised if <em>blocking</em> is set to <code>false</code> and an existing exclusive lock is set.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/file_descriptor.cr#L220" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="flock_unlock:Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>flock_unlock</strong> : <a href="../Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#flock_unlock%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Removes an existing advisory lock held by this process.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/file_descriptor.cr#L240" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="fsync(flush_metadata=true):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>fsync</strong>(flush_metadata = <span class="n">true</span>) : <a href="../Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#fsync%28flush_metadata%3Dtrue%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Flushes all data written to this File Descriptor to the disk device so that
+all changed information can be retrieved even if the system
+crashes or is rebooted. The call blocks until the device reports that
+the transfer has completed.
+To reduce disk activity the <em>flush_metadata</em> parameter can be set to false,
+then the syscall <em>fdatasync</em> will be used and only data required for
+subsequent data retrieval is flushed. Metadata such as modified time and
+access time is not written.</p>
+<p><span class="flag purple">NOTE</span>  Metadata is flushed even when <em>flush_metadata</em> is false on Windows
+and DragonFly BSD.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/file_descriptor.cr#L202" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="info:File::Info-instance-method">
+      <div class="signature">
+        
+        def <strong>info</strong> : <a href="../File/Info.html">File::Info</a>
+
+        <a class="method-permalink" href="#info%3AFile%3A%3AInfo-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns a <code><a href="../File/Info.html">File::Info</a></code> object for this file descriptor, or raises
+<code><a href="../IO/Error.html">IO::Error</a></code> in case of an error.</p>
+<p>Certain fields like the file size may not be updated until an explicit
+flush.</p>
+<pre><code class="language-crystal"><span class="t">File</span>.write(<span class="s">&quot;testfile&quot;</span>, <span class="s">&quot;abc&quot;</span>)
+
+file <span class="o">=</span> <span class="t">File</span>.new(<span class="s">&quot;testfile&quot;</span>, <span class="s">&quot;a&quot;</span>)
+file.info.size <span class="c"># =&gt; 3</span>
+file <span class="o">&lt;&lt;</span> <span class="s">&quot;defgh&quot;</span>
+file.info.size <span class="c"># =&gt; 3</span>
+file.flush
+file.info.size <span class="c"># =&gt; 8</span></code></pre>
+<p>Use <code><a href="../File.html#info%28path%3APath%7CString%2Cfollow_symlinks%3Dtrue%29%3AInfo-class-method">File.info</a></code> if the file is not open and a path to the file is available.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/file_descriptor.cr#L119" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="inspect(io:IO):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>inspect</strong>(io : <a href="../IO.html">IO</a>) : <a href="../Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#inspect%28io%3AIO%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+            <div class="doc-inherited">
+              Description copied from class <a href="../Reference.html">Reference</a>
+            </div>
+          
+          <p>Appends a String representation of this object
+which includes its class name, its object address
+and the values of all instance variables.</p>
+<pre><code class="language-crystal"><span class="k">class</span> <span class="t">Person</span>
+  <span class="k">def</span> <span class="m">initialize</span>(@name : <span class="t">String</span>, @age : <span class="t">Int32</span>)
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="t">Person</span>.new(<span class="s">&quot;John&quot;</span>, <span class="n">32</span>).inspect <span class="c"># =&gt; #&lt;Person:0x10fd31f20 @name=&quot;John&quot;, @age=32&gt;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/file_descriptor.cr#L277" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="noecho(&amp;:self-&gt;_)-instance-method">
+      <div class="signature">
+        
+        def <strong>noecho</strong>(& : <span class="k">self</span> -> _)
+
+        <a class="method-permalink" href="#noecho%28%26%3Aself-%3E_%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Yields <code>self</code> to the given block, disables character echoing for the
+duration of the block, and returns the block's value.</p>
+<p>This will prevent displaying back to the user what they enter on the terminal.</p>
+<p>Raises <code><a href="../IO/Error.html">IO::Error</a></code> if this <code><a href="../IO.html">IO</a></code> is not a terminal device.</p>
+<pre><code class="language-crystal">print <span class="s">&quot;Enter password: &quot;</span>
+password <span class="o">=</span> <span class="t">STDIN</span>.noecho <span class="o">&amp;</span>.gets.try <span class="o">&amp;</span>.chomp
+puts</code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/console.cr#L14" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="noecho!:Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>noecho!</strong> : <a href="../Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#noecho%21%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Disables character echoing on this <code><a href="../IO.html">IO</a></code>.</p>
+<p>This will prevent displaying back to the user what they enter on the terminal.</p>
+<p>Raises <code><a href="../IO/Error.html">IO::Error</a></code> if this <code><a href="../IO.html">IO</a></code> is not a terminal device.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/console.cr#L33" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="pos=(value)-instance-method">
+      <div class="signature">
+        
+        def <strong>pos=</strong>(value)
+
+        <a class="method-permalink" href="#pos%3D%28value%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Sets the current position (in bytes) in this <code><a href="../IO.html">IO</a></code>.</p>
+<pre><code class="language-crystal"><span class="t">File</span>.write(<span class="s">&quot;testfile&quot;</span>, <span class="s">&quot;hello&quot;</span>)
+
+file <span class="o">=</span> <span class="t">File</span>.new(<span class="s">&quot;testfile&quot;</span>)
+file.pos <span class="o">=</span> <span class="n">3</span>
+file.gets_to_end <span class="c"># =&gt; &quot;lo&quot;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/file_descriptor.cr#L186" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="pretty_print(pp)-instance-method">
+      <div class="signature">
+        
+        def <strong>pretty_print</strong>(pp)
+
+        <a class="method-permalink" href="#pretty_print%28pp%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/file_descriptor.cr#L287" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="raw(&amp;:self-&gt;_)-instance-method">
+      <div class="signature">
+        
+        def <strong>raw</strong>(& : <span class="k">self</span> -> _)
+
+        <a class="method-permalink" href="#raw%28%26%3Aself-%3E_%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Yields <code>self</code> to the given block, enables raw mode for the duration of the
+block, and returns the block's value.</p>
+<p>In raw mode every keypress is directly sent to the program, no interpretation
+is done by the terminal. On Windows, this also enables ANSI input escape
+sequences.</p>
+<p>Raises <code><a href="../IO/Error.html">IO::Error</a></code> if this <code><a href="../IO.html">IO</a></code> is not a terminal device.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/console.cr#L66" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="raw!:Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>raw!</strong> : <a href="../Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#raw%21%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Enables raw mode on this <code><a href="../IO.html">IO</a></code>.</p>
+<p>In raw mode every keypress is directly sent to the program, no interpretation
+is done by the terminal. On Windows, this also enables ANSI input escape
+sequences.</p>
+<p>Raises <code><a href="../IO/Error.html">IO::Error</a></code> if this <code><a href="../IO.html">IO</a></code> is not a terminal device.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/console.cr#L88" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="read_timeout:Time::Span|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>read_timeout</strong> : <a href="../Time/Span.html">Time::Span</a> | <a href="../Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#read_timeout%3ATime%3A%3ASpan%7CNil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>The time to wait when reading before raising an <code><a href="../IO/TimeoutError.html">IO::TimeoutError</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/file_descriptor.cr#L23" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="read_timeout=(read_timeout:Number):Number-instance-method">
+      <div class="signature">
+        
+        def <strong>read_timeout=</strong>(read_timeout : <a href="../Number.html">Number</a>) : <a href="../Number.html">Number</a>
+
+        <a class="method-permalink" href="#read_timeout%3D%28read_timeout%3ANumber%29%3ANumber-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Sets the number of seconds to wait when reading before raising an <code><a href="../IO/TimeoutError.html">IO::TimeoutError</a></code>.</p>
+<p><span class="flag red">DEPRECATED</span>  Use <code><a href="../IO/FileDescriptor.html#read_timeout%3D%28read_timeout%3ANumber%29%3ANumber-instance-method">#read_timeout=(Time::Span?)</a></code> instead.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/file_descriptor.cr#L27" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="read_timeout=(read_timeout:Time::Span|Nil)-instance-method">
+      <div class="signature">
+        
+        def <strong>read_timeout=</strong>(read_timeout : <a href="../Time/Span.html">Time::Span</a> | <a href="../Nil.html">Nil</a>)
+
+        <a class="method-permalink" href="#read_timeout%3D%28read_timeout%3ATime%3A%3ASpan%7CNil%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>The time to wait when reading before raising an <code><a href="../IO/TimeoutError.html">IO::TimeoutError</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/file_descriptor.cr#L23" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="reopen(other:IO::FileDescriptor)-instance-method">
+      <div class="signature">
+        
+        def <strong>reopen</strong>(other : <a href="../IO/FileDescriptor.html">IO::FileDescriptor</a>)
+
+        <a class="method-permalink" href="#reopen%28other%3AIO%3A%3AFileDescriptor%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/file_descriptor.cr#L270" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="seek(offset,whence:Seek=Seek::Set)-instance-method">
+      <div class="signature">
+        
+        def <strong>seek</strong>(offset, whence : <a href="../IO/Seek.html">Seek</a> = <span class="t">Seek</span><span class="t">::</span><span class="t">Set</span>)
+
+        <a class="method-permalink" href="#seek%28offset%2Cwhence%3ASeek%3DSeek%3A%3ASet%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Seeks to a given <em>offset</em> (in bytes) according to the <em>whence</em> argument.
+Returns <code>self</code>.</p>
+<pre><code class="language-crystal"><span class="t">File</span>.write(<span class="s">&quot;testfile&quot;</span>, <span class="s">&quot;abc&quot;</span>)
+
+file <span class="o">=</span> <span class="t">File</span>.new(<span class="s">&quot;testfile&quot;</span>)
+file.gets(<span class="n">3</span>) <span class="c"># =&gt; &quot;abc&quot;</span>
+file.seek(<span class="n">1</span>, <span class="t">IO</span><span class="t">::</span><span class="t">Seek</span><span class="t">::</span><span class="t">Set</span>)
+file.gets(<span class="n">2</span>) <span class="c"># =&gt; &quot;bc&quot;</span>
+file.seek(<span class="n">-1</span>, <span class="t">IO</span><span class="t">::</span><span class="t">Seek</span><span class="t">::</span><span class="t">Current</span>)
+file.gets(<span class="n">1</span>) <span class="c"># =&gt; &quot;c&quot;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/file_descriptor.cr#L136" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="seek(offset,whence:Seek=Seek::Set,&amp;)-instance-method">
+      <div class="signature">
+        
+        def <strong>seek</strong>(offset, whence : <a href="../IO/Seek.html">Seek</a> = <span class="t">Seek</span><span class="t">::</span><span class="t">Set</span>, &)
+
+        <a class="method-permalink" href="#seek%28offset%2Cwhence%3ASeek%3DSeek%3A%3ASet%2C%26%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Same as <code><a href="../IO/FileDescriptor.html#seek%28offset%2Cwhence%3ASeek%3DSeek%3A%3ASet%29-instance-method">#seek</a></code> but yields to the block after seeking and eventually seeks
+back to the original position when the block returns.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/file_descriptor.cr#L151" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="tty?:Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>tty?</strong> : <a href="../Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#tty%3F%3ABool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+            <div class="doc-inherited">
+              Description copied from class <a href="../IO.html">IO</a>
+            </div>
+          
+          <p>Returns <code>true</code> if this <code><a href="../IO.html">IO</a></code> is associated with a terminal device (tty), <code>false</code> otherwise.</p>
+<p>IO returns <code>false</code>, but including types may override.</p>
+<pre><code class="language-crystal"><span class="t">STDIN</span>.tty?          <span class="c"># =&gt; true</span>
+<span class="t">IO</span><span class="t">::</span><span class="t">Memory</span>.new.tty? <span class="c"># =&gt; false</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/file_descriptor.cr#L266" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="write_timeout:Time::Span|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>write_timeout</strong> : <a href="../Time/Span.html">Time::Span</a> | <a href="../Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#write_timeout%3ATime%3A%3ASpan%7CNil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Sets the time to wait when writing before raising an <code><a href="../IO/TimeoutError.html">IO::TimeoutError</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/file_descriptor.cr#L33" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="write_timeout=(write_timeout:Number):Number-instance-method">
+      <div class="signature">
+        
+        def <strong>write_timeout=</strong>(write_timeout : <a href="../Number.html">Number</a>) : <a href="../Number.html">Number</a>
+
+        <a class="method-permalink" href="#write_timeout%3D%28write_timeout%3ANumber%29%3ANumber-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Sets the number of seconds to wait when writing before raising an <code><a href="../IO/TimeoutError.html">IO::TimeoutError</a></code>.</p>
+<p><span class="flag red">DEPRECATED</span>  Use <code><a href="../IO/FileDescriptor.html#write_timeout%3D%28write_timeout%3ANumber%29%3ANumber-instance-method">#write_timeout=(Time::Span?)</a></code> instead.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/file_descriptor.cr#L37" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="write_timeout=(write_timeout:Time::Span|Nil)-instance-method">
+      <div class="signature">
+        
+        def <strong>write_timeout=</strong>(write_timeout : <a href="../Time/Span.html">Time::Span</a> | <a href="../Nil.html">Nil</a>)
+
+        <a class="method-permalink" href="#write_timeout%3D%28write_timeout%3ATime%3A%3ASpan%7CNil%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Sets the time to wait when writing before raising an <code><a href="../IO/TimeoutError.html">IO::TimeoutError</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/file_descriptor.cr#L33" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+</div>
+
+</body>
+</html>

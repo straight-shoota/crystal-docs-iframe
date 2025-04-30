@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Crystal Docs 1.16.1">
+<meta name="crystal_docs.project_version" content="1.17.0-dev">
+<meta name="crystal_docs.project_name" content="Crystal">
+
+  <meta name="crystal_docs.json_config_url" content="/api/versions.json">
+
+
+    <link rel="canonical" href="https://crystal-lang.org/api/latest/Socket/Server.html">
+
+<link href="../css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../js/doc.js"></script>
+
+  <meta name="repository-name" content="Crystal">
+  <title>Socket::Server - Crystal 1.17.0-dev</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "../";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill="currentColor" fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<input type="checkbox" id="sidebar-btn">
+<label for="sidebar-btn" id="sidebar-btn-label">
+  <svg class="open" xmlns="http://www.w3.org/2000/svg" height="2em" width="2em" viewBox="0 0 512 512"><title>Open Sidebar</title><path fill="currentColor" d="M80 96v64h352V96H80zm0 112v64h352v-64H80zm0 112v64h352v-64H80z"></path></svg>
+  <svg class="close" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><title>Close Sidebar</title><path fill="currentColor" d="m118.6 73.4-45.2 45.2L210.7 256 73.4 393.4l45.2 45.2L256 301.3l137.4 137.3 45.2-45.2L301.3 256l137.3-137.4-45.2-45.2L256 210.7Z"></path></svg>
+</label>
+<iframe class="sidebar" src="../sidebar.html"></iframe>
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">
+    module
+  </span> Socket::<wbr>Server
+
+</h1>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="direct-including-types" class="anchor" href="#direct-including-types">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Direct including types
+  </h2>
+  <ul class="other-types-list">
+    
+      <li class="other-type"><a href="../OpenSSL/SSL/Server.html">OpenSSL::SSL::Server</a></li>
+    
+      <li class="other-type"><a href="../TCPServer.html">TCPServer</a></li>
+    
+      <li class="other-type"><a href="../UNIXServer.html">UNIXServer</a></li>
+    
+  </ul>
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/socket/server.cr#L2" target="_blank">
+        socket/server.cr
+      </a>
+    
+    <br/>
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#accept%3AIO-instance-method" class="signature"><strong>#accept</strong> : IO</a>
+        
+          <div class="summary"><p>Accepts an incoming connection and returns the client socket.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#accept%28%26%29-instance-method" class="signature"><strong>#accept</strong>(&)</a>
+        
+          <div class="summary"><p>Accepts an incoming connection and yields the client socket to the block.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#accept%3F%3AIO%7CNil-instance-method" class="signature"><strong>#accept?</strong> : IO | Nil</a>
+        
+          <div class="summary"><p>Accepts an incoming connection and returns the client socket.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#accept%3F%28%26%29-instance-method" class="signature"><strong>#accept?</strong>(&)</a>
+        
+          <div class="summary"><p>Accepts an incoming connection and yields the client socket to the block.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+
+  <div class="methods-inherited">
+    
+  </div>
+
+  
+
+  
+
+  
+
+  
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="accept:IO-instance-method">
+      <div class="signature">
+        abstract 
+        def <strong>accept</strong> : <a href="../IO.html">IO</a>
+
+        <a class="method-permalink" href="#accept%3AIO-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Accepts an incoming connection and returns the client socket.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;socket&quot;</span>
+
+server <span class="o">=</span> <span class="t">TCPServer</span>.new(<span class="n">2202</span>)
+<span class="k">while</span> <span class="n">true</span>
+  socket <span class="o">=</span> server.accept
+  socket.puts <span class="t">Time</span>.utc
+  socket.close
+<span class="k">end</span></code></pre>
+<p>If the server is closed after invoking this method, an <code><a href="../IO/Error.html">IO::Error</a></code> (closed stream) exception must be raised.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/socket/server.cr#L17" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="accept(&amp;)-instance-method">
+      <div class="signature">
+        
+        def <strong>accept</strong>(&)
+
+        <a class="method-permalink" href="#accept%28%26%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Accepts an incoming connection and yields the client socket to the block.
+Eventually closes the connection when the block returns.</p>
+<p>Returns the value of the block. If the server is closed after invoking this
+method, an <code><a href="../IO/Error.html">IO::Error</a></code> (closed stream) exception will be raised.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;socket&quot;</span>
+
+server <span class="o">=</span> <span class="t">TCPServer</span>.new(<span class="n">2202</span>)
+server.accept <span class="k">do</span> <span class="o">|</span>socket<span class="o">|</span>
+  socket.puts <span class="t">Time</span>.utc
+<span class="k">end</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/socket/server.cr#L48" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="accept?:IO|Nil-instance-method">
+      <div class="signature">
+        abstract 
+        def <strong>accept?</strong> : <a href="../IO.html">IO</a> | <a href="../Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#accept%3F%3AIO%7CNil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Accepts an incoming connection and returns the client socket.</p>
+<p>Returns <code>nil</code> if the server is closed after invoking this method.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;socket&quot;</span>
+
+server <span class="o">=</span> <span class="t">TCPServer</span>.new(<span class="n">2202</span>)
+<span class="k">while</span> socket <span class="o">=</span> server.accept?
+  socket.puts <span class="t">Time</span>.utc
+  socket.close
+<span class="k">end</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/socket/server.cr#L32" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="accept?(&amp;)-instance-method">
+      <div class="signature">
+        
+        def <strong>accept?</strong>(&)
+
+        <a class="method-permalink" href="#accept%3F%28%26%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Accepts an incoming connection and yields the client socket to the block.
+Eventually closes the connection when the block returns.</p>
+<p>Returns the value of the block or <code>nil</code> if the server is closed after
+invoking this method.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;socket&quot;</span>
+
+server <span class="o">=</span> <span class="t">UNIXServer</span>.new(<span class="s">&quot;/tmp/service.sock&quot;</span>)
+server.accept? <span class="k">do</span> <span class="o">|</span>socket<span class="o">|</span>
+  socket.puts <span class="t">Time</span>.utc
+<span class="k">end</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/socket/server.cr#L71" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+</div>
+
+</body>
+</html>

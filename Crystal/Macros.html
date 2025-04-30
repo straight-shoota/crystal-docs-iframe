@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Crystal Docs 1.16.1">
+<meta name="crystal_docs.project_version" content="1.17.0-dev">
+<meta name="crystal_docs.project_name" content="Crystal">
+
+  <meta name="crystal_docs.json_config_url" content="/api/versions.json">
+
+
+    <link rel="canonical" href="https://crystal-lang.org/api/latest/Crystal/Macros.html">
+
+<link href="../css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../js/doc.js"></script>
+
+  <meta name="repository-name" content="Crystal">
+  <title>Crystal::Macros - Crystal 1.17.0-dev</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "../";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill="currentColor" fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<input type="checkbox" id="sidebar-btn">
+<label for="sidebar-btn" id="sidebar-btn-label">
+  <svg class="open" xmlns="http://www.w3.org/2000/svg" height="2em" width="2em" viewBox="0 0 512 512"><title>Open Sidebar</title><path fill="currentColor" d="M80 96v64h352V96H80zm0 112v64h352v-64H80zm0 112v64h352v-64H80z"></path></svg>
+  <svg class="close" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><title>Close Sidebar</title><path fill="currentColor" d="m118.6 73.4-45.2 45.2L210.7 256 73.4 393.4l45.2 45.2L256 301.3l137.4 137.3 45.2-45.2L301.3 256l137.3-137.4-45.2-45.2L256 210.7Z"></path></svg>
+</label>
+<iframe class="sidebar" src="../sidebar.html"></iframe>
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">
+    module
+  </span> Crystal::<wbr>Macros
+
+</h1>
+
+
+
+
+
+  <h2>
+    <a id="overview" class="anchor" href="#overview">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Overview
+  </h2>
+
+  <p>The <code><a href="../Crystal/Macros.html">Macros</a></code> module is a fictitious module used to document macros
+and macro methods.</p>
+<p>You can invoke a <strong>fixed subset</strong> of methods on AST nodes at compile-time. These methods
+are documented on the classes in this module. Additionally, methods of the
+<code><a href="../Crystal/Macros.html">Macros</a></code> module are top-level methods that you can invoke, like <code><a href="../Crystal/Macros.html#puts%28%2Aexpressions%29%3ANop-instance-method">#puts</a></code> and <code><a href="../Crystal/Macros.html#run%28filename%2C%2Aargs%29%3AMacroId-instance-method">#run</a></code>.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/compiler/crystal/macros.cr#L122" target="_blank">
+        compiler/crystal/macros.cr
+      </a>
+    
+    <br/>
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#%60%28command%29%3AMacroId-instance-method" class="signature"><strong>#`</strong>(command) : MacroId</a>
+        
+          <div class="summary"><p>Executes a system command and returns the output as a <code><a href="../Crystal/Macros/MacroId.html">MacroId</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#alignof%28type%29%3ANumberLiteral-instance-method" class="signature"><strong>#alignof</strong>(type) : NumberLiteral</a>
+        
+          <div class="summary"><p>Returns the alignment of the given <em>type</em> as number of bytes.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#compare_versions%28v1%3AStringLiteral%2Cv2%3AStringLiteral%29%3ANumberLiteral-instance-method" class="signature"><strong>#compare_versions</strong>(v1 : StringLiteral, v2 : StringLiteral) : NumberLiteral</a>
+        
+          <div class="summary"><p>Compares two <a href="http://semver.org/">semantic versions</a>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#debug%28format%3Dtrue%29%3ANop-instance-method" class="signature"><strong>#debug</strong>(format = <span class="n">true</span>) : Nop</a>
+        
+          <div class="summary"><p>Outputs the current macro's buffer to the standard output.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#env%28name%29%3AStringLiteral%7CNilLiteral-instance-method" class="signature"><strong>#env</strong>(name) : StringLiteral | NilLiteral</a>
+        
+          <div class="summary"><p>Gets the value of an environment variable at compile-time, or <code>nil</code> if it doesn't exist.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#file_exists%3F%28filename%29%3ABoolLiteral-instance-method" class="signature"><strong>#file_exists?</strong>(filename) : BoolLiteral</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if the given <em>filename</em> exists, <code>false</code> otherwise.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#flag%3F%28name%29%3ABoolLiteral-instance-method" class="signature"><strong>#flag?</strong>(name) : BoolLiteral</a>
+        
+          <div class="summary"><p>Returns whether a <a href="https://crystal-lang.org/docs/syntax_and_semantics/compile_time_flags.html">compile-time flag</a> is set.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#host_flag%3F%28name%29%3ABoolLiteral-instance-method" class="signature"><strong>#host_flag?</strong>(name) : BoolLiteral</a>
+        
+          <div class="summary"><p>Returns whether a <a href="https://crystal-lang.org/docs/syntax_and_semantics/compile_time_flags.html">compile-time flag</a> is set for the <em>host</em> platform, which can differ from the target platform (<code><a href="../Crystal/Macros.html#flag%3F%28name%29%3ABoolLiteral-instance-method">#flag?</a></code>) during cross-compilation.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#p%28%2Aexpressions%29%3ANop-instance-method" class="signature"><strong>#p</strong>(*expressions) : Nop</a>
+        
+          <div class="summary"><p>Same as <code><a href="../Crystal/Macros.html#puts%28%2Aexpressions%29%3ANop-instance-method">#puts</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#p%21%28%2Aexpressions%29%3ANop-instance-method" class="signature"><strong>#p!</strong>(*expressions) : Nop</a>
+        
+          <div class="summary"><p>Prints macro expressions together with their values at compile-time.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#parse_type%28type_name%3AStringLiteral%29%3APath%7CGeneric%7CProcNotation%7CMetaclass-instance-method" class="signature"><strong>#parse_type</strong>(type_name : StringLiteral) : Path | Generic | ProcNotation | Metaclass</a>
+        
+          <div class="summary"><p>Parses <em>type_name</em> into a <code><a href="../Crystal/Macros/Path.html">Path</a></code>, <code><a href="../Crystal/Macros/Generic.html">Generic</a></code> (also used for unions), <code><a href="../Crystal/Macros/ProcNotation.html">ProcNotation</a></code>, or <code><a href="../Crystal/Macros/Metaclass.html">Metaclass</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#pp%28%2Aexpressions%29%3ANop-instance-method" class="signature"><strong>#pp</strong>(*expressions) : Nop</a>
+        
+          <div class="summary"><p>Same as <code><a href="../Crystal/Macros.html#puts%28%2Aexpressions%29%3ANop-instance-method">#puts</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#pp%21%28%2Aexpressions%29%3ANop-instance-method" class="signature"><strong>#pp!</strong>(*expressions) : Nop</a>
+        
+          <div class="summary"><p>Same as <code><a href="../Crystal/Macros.html#p%21%28%2Aexpressions%29%3ANop-instance-method">#p!</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#print%28%2Aexpressions%29%3ANop-instance-method" class="signature"><strong>#print</strong>(*expressions) : Nop</a>
+        
+          <div class="summary"><p>Prints AST nodes at compile-time.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#puts%28%2Aexpressions%29%3ANop-instance-method" class="signature"><strong>#puts</strong>(*expressions) : Nop</a>
+        
+          <div class="summary"><p>Prints AST nodes at compile-time.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#raise%28message%29%3ANoReturn-instance-method" class="signature"><strong>#raise</strong>(message) : NoReturn</a>
+        
+          <div class="summary"><p>Gives a compile-time error with the given <em>message</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#read_file%28filename%29%3AStringLiteral-instance-method" class="signature"><strong>#read_file</strong>(filename) : StringLiteral</a>
+        
+          <div class="summary"><p>Reads a file and returns a <code><a href="../Crystal/Macros/StringLiteral.html">StringLiteral</a></code> with its contents.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#read_file%3F%28filename%29%3AStringLiteral%7CNilLiteral-instance-method" class="signature"><strong>#read_file?</strong>(filename) : StringLiteral | NilLiteral</a>
+        
+          <div class="summary"><p>Same as <code><a href="../Crystal/Macros.html#read_file%28filename%29%3AStringLiteral-instance-method">#read_file</a></code>, except that <code>nil</code> is returned on any I/O failure instead of issuing a compile-time failure.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#run%28filename%2C%2Aargs%29%3AMacroId-instance-method" class="signature"><strong>#run</strong>(filename, *args) : MacroId</a>
+        
+          <div class="summary"><p>Compiles and execute a Crystal program and returns its output as a <code><a href="../Crystal/Macros/MacroId.html">MacroId</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#sizeof%28type%29%3ANumberLiteral-instance-method" class="signature"><strong>#sizeof</strong>(type) : NumberLiteral</a>
+        
+          <div class="summary"><p>Returns the size of the given <em>type</em> as number of bytes.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#skip_file%3ANop-instance-method" class="signature"><strong>#skip_file</strong> : Nop</a>
+        
+          <div class="summary"><p>Skips the rest of the file from which it is executed.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#system%28command%29%3AMacroId-instance-method" class="signature"><strong>#system</strong>(command) : MacroId</a>
+        
+          <div class="summary"><p>Executes a system command and returns the output as a <code><a href="../Crystal/Macros/MacroId.html">MacroId</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#warning%28message%3AStringLiteral%29%3ANilLiteral-instance-method" class="signature"><strong>#warning</strong>(message : StringLiteral) : NilLiteral</a>
+        
+          <div class="summary"><p>Emits a compile-time warning with the given <em>message</em>.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+
+  <div class="methods-inherited">
+    
+  </div>
+
+  
+
+  
+
+  
+
+  
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="`(command):MacroId-instance-method">
+      <div class="signature">
+        
+        def <strong>`</strong>(command) : <a href="../Crystal/Macros/MacroId.html">MacroId</a>
+
+        <a class="method-permalink" href="#%60%28command%29%3AMacroId-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Executes a system command and returns the output as a <code><a href="../Crystal/Macros/MacroId.html">MacroId</a></code>.
+Gives a compile-time error if the command failed to execute.</p>
+<p>It is impossible to call this method with any regular call syntax. There is an associated literal type which calls the method with the literal content as command:</p>
+<pre><code class="language-crystal"><span class="o">{{</span> <span class="s">`echo hi`</span> }} <span class="c"># =&gt; &quot;hi\n&quot;</span></code></pre>
+<p>See <a href="https://crystal-lang.org/reference/syntax_and_semantics/literals/command.html"><code>Command</code> literals</a> in the language reference.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/compiler/crystal/macros.cr#L227" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="alignof(type):NumberLiteral-instance-method">
+      <div class="signature">
+        
+        def <strong>alignof</strong>(type) : <a href="../Crystal/Macros/NumberLiteral.html">NumberLiteral</a>
+
+        <a class="method-permalink" href="#alignof%28type%29%3ANumberLiteral-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the alignment of the given <em>type</em> as number of bytes.</p>
+<p><em>type</em> must be a constant referring to a stable type. It cannot be evaluated
+at macro evaluation time, nor a <code>typeof</code> expression.</p>
+<p>See <code><a href="../Crystal/Macros.html#sizeof%28type%29%3ANumberLiteral-instance-method">#sizeof</a></code> for the definition of a stable type.</p>
+<pre><code class="language-crystal"><span class="o">{{</span> <span class="k">alignof</span>(<span class="t">Int32</span>) }} <span class="c"># =&gt; 4</span>
+<span class="o">{{</span> <span class="k">alignof</span>(<span class="t">Void</span><span class="o">*</span>) }} <span class="c"># usually 4 or 8</span></code></pre>
+<p><span class="flag purple">NOTE</span>  This is a pseudo-method provided directly by the Crystal compiler.
+It cannot be redefined nor overridden.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/compiler/crystal/macros.cr#L365" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="compare_versions(v1:StringLiteral,v2:StringLiteral):NumberLiteral-instance-method">
+      <div class="signature">
+        
+        def <strong>compare_versions</strong>(v1 : <a href="../Crystal/Macros/StringLiteral.html">StringLiteral</a>, v2 : <a href="../Crystal/Macros/StringLiteral.html">StringLiteral</a>) : <a href="../Crystal/Macros/NumberLiteral.html">NumberLiteral</a>
+
+        <a class="method-permalink" href="#compare_versions%28v1%3AStringLiteral%2Cv2%3AStringLiteral%29%3ANumberLiteral-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Compares two <a href="http://semver.org/">semantic versions</a>.</p>
+<p>Returns <code>-1</code>, <code>0</code> or <code>1</code> depending on whether <em>v1</em> is lower than <em>v2</em>,
+equal to <em>v2</em> or greater than <em>v2</em>.</p>
+<pre><code class="language-crystal"><span class="o">{{</span> compare_versions(<span class="s">&quot;1.10.0&quot;</span>, <span class="s">&quot;1.2.0&quot;</span>) }} <span class="c"># =&gt; 1</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/compiler/crystal/macros.cr#L131" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="debug(format=true):Nop-instance-method">
+      <div class="signature">
+        
+        def <strong>debug</strong>(format = <span class="n">true</span>) : <a href="../Crystal/Macros/Nop.html">Nop</a>
+
+        <a class="method-permalink" href="#debug%28format%3Dtrue%29%3ANop-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Outputs the current macro's buffer to the standard output. Useful for debugging
+a macro to see what's being generated.</p>
+<p>By default, the output is tried to be formatted using Crystal's
+formatter, but you can disable this by passing <code>false</code> to this method.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/compiler/crystal/macros.cr#L139" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="env(name):StringLiteral|NilLiteral-instance-method">
+      <div class="signature">
+        
+        def <strong>env</strong>(name) : <a href="../Crystal/Macros/StringLiteral.html">StringLiteral</a> | <a href="../Crystal/Macros/NilLiteral.html">NilLiteral</a>
+
+        <a class="method-permalink" href="#env%28name%29%3AStringLiteral%7CNilLiteral-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Gets the value of an environment variable at compile-time, or <code>nil</code> if it doesn't exist.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/compiler/crystal/macros.cr#L143" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="file_exists?(filename):BoolLiteral-instance-method">
+      <div class="signature">
+        
+        def <strong>file_exists?</strong>(filename) : <a href="../Crystal/Macros/BoolLiteral.html">BoolLiteral</a>
+
+        <a class="method-permalink" href="#file_exists%3F%28filename%29%3ABoolLiteral-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if the given <em>filename</em> exists, <code>false</code> otherwise.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/compiler/crystal/macros.cr#L248" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="flag?(name):BoolLiteral-instance-method">
+      <div class="signature">
+        
+        def <strong>flag?</strong>(name) : <a href="../Crystal/Macros/BoolLiteral.html">BoolLiteral</a>
+
+        <a class="method-permalink" href="#flag%3F%28name%29%3ABoolLiteral-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns whether a <a href="https://crystal-lang.org/docs/syntax_and_semantics/compile_time_flags.html">compile-time flag</a> is set.</p>
+<pre><code class="language-crystal"><span class="o">{{</span> flag?(<span class="n">:x86_64</span>) }} <span class="c"># true or false</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/compiler/crystal/macros.cr#L151" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="host_flag?(name):BoolLiteral-instance-method">
+      <div class="signature">
+        
+        def <strong>host_flag?</strong>(name) : <a href="../Crystal/Macros/BoolLiteral.html">BoolLiteral</a>
+
+        <a class="method-permalink" href="#host_flag%3F%28name%29%3ABoolLiteral-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns whether a <a href="https://crystal-lang.org/docs/syntax_and_semantics/compile_time_flags.html">compile-time flag</a>
+is set for the <em>host</em> platform, which can differ from the target platform
+(<code><a href="../Crystal/Macros.html#flag%3F%28name%29%3ABoolLiteral-instance-method">#flag?</a></code>) during cross-compilation.</p>
+<pre><code class="language-crystal"><span class="o">{{</span> host_flag?(<span class="n">:win32</span>) }} <span class="c"># true or false</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/compiler/crystal/macros.cr#L161" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="p(*expressions):Nop-instance-method">
+      <div class="signature">
+        
+        def <strong>p</strong>(*expressions) : <a href="../Crystal/Macros/Nop.html">Nop</a>
+
+        <a class="method-permalink" href="#p%28%2Aexpressions%29%3ANop-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Same as <code><a href="../Crystal/Macros.html#puts%28%2Aexpressions%29%3ANop-instance-method">#puts</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/compiler/crystal/macros.cr#L202" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="p!(*expressions):Nop-instance-method">
+      <div class="signature">
+        
+        def <strong>p!</strong>(*expressions) : <a href="../Crystal/Macros/Nop.html">Nop</a>
+
+        <a class="method-permalink" href="#p%21%28%2Aexpressions%29%3ANop-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Prints macro expressions together with their values at compile-time. Useful for debugging macros.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/compiler/crystal/macros.cr#L210" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="parse_type(type_name:StringLiteral):Path|Generic|ProcNotation|Metaclass-instance-method">
+      <div class="signature">
+        
+        def <strong>parse_type</strong>(type_name : <a href="../Crystal/Macros/StringLiteral.html">StringLiteral</a>) : <a href="../Crystal/Macros/Path.html">Path</a> | <a href="../Crystal/Macros/Generic.html">Generic</a> | <a href="../Crystal/Macros/ProcNotation.html">ProcNotation</a> | <a href="../Crystal/Macros/Metaclass.html">Metaclass</a>
+
+        <a class="method-permalink" href="#parse_type%28type_name%3AStringLiteral%29%3APath%7CGeneric%7CProcNotation%7CMetaclass-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Parses <em>type_name</em> into a <code><a href="../Crystal/Macros/Path.html">Path</a></code>, <code><a href="../Crystal/Macros/Generic.html">Generic</a></code> (also used for unions), <code><a href="../Crystal/Macros/ProcNotation.html">ProcNotation</a></code>, or <code><a href="../Crystal/Macros/Metaclass.html">Metaclass</a></code>.</p>
+<p>The <code>#resolve</code> method could then be used to resolve the value into a <code><a href="../Crystal/Macros/TypeNode.html">TypeNode</a></code>, if the <em>type_name</em> represents a type,
+otherwise the value of the constant.</p>
+<p>A compile time error is raised if the type/constant does not actually exist,
+or if a required generic argument was not provided.</p>
+<pre><code class="language-crystal"><span class="k">class</span> <span class="t">Foo</span>; <span class="k">end</span>
+
+<span class="k">struct</span> <span class="t">Some</span><span class="t">::</span><span class="t">Namespace</span><span class="t">::</span><span class="t">Foo</span>; <span class="k">end</span>
+
+<span class="k">module</span> <span class="t">Bar</span>(<span class="t">T</span>); <span class="k">end</span>
+
+<span class="t">MY_CONST</span> <span class="o">=</span> <span class="n">1234</span>
+
+<span class="o">{{</span> parse_type(<span class="s">&quot;Foo&quot;</span>).resolve.class? }}                                   <span class="c"># =&gt; true</span>
+<span class="o">{{</span> parse_type(<span class="s">&quot;Some::Namespace::Foo&quot;</span>).resolve.struct? }}                 <span class="c"># =&gt; true</span>
+<span class="o">{{</span> parse_type(<span class="s">&quot;Foo|Some::Namespace::Foo&quot;</span>).resolve.union_types.size }}    <span class="c"># =&gt; 2</span>
+<span class="o">{{</span> parse_type(<span class="s">&quot;Bar(Int32)|Foo&quot;</span>).resolve.union_types[<span class="n">0</span>].type_vars.size }} <span class="c"># =&gt; 1</span>
+<span class="o">{{</span> parse_type(<span class="s">&quot;MY_CONST&quot;</span>).resolve }}                                     <span class="c"># =&gt; 1234</span>
+
+<span class="o">{{</span> parse_type(<span class="s">&quot;MissingType&quot;</span>).resolve }}   <span class="c"># Error: undefined constant MissingType</span>
+<span class="o">{{</span> parse_type(<span class="s">&quot;UNKNOWN_CONST&quot;</span>).resolve }} <span class="c"># Error: undefined constant UNKNOWN_CONST</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/compiler/crystal/macros.cr#L190" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="pp(*expressions):Nop-instance-method">
+      <div class="signature">
+        
+        def <strong>pp</strong>(*expressions) : <a href="../Crystal/Macros/Nop.html">Nop</a>
+
+        <a class="method-permalink" href="#pp%28%2Aexpressions%29%3ANop-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Same as <code><a href="../Crystal/Macros.html#puts%28%2Aexpressions%29%3ANop-instance-method">#puts</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/compiler/crystal/macros.cr#L206" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="pp!(*expressions):Nop-instance-method">
+      <div class="signature">
+        
+        def <strong>pp!</strong>(*expressions) : <a href="../Crystal/Macros/Nop.html">Nop</a>
+
+        <a class="method-permalink" href="#pp%21%28%2Aexpressions%29%3ANop-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Same as <code><a href="../Crystal/Macros.html#p%21%28%2Aexpressions%29%3ANop-instance-method">#p!</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/compiler/crystal/macros.cr#L214" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="print(*expressions):Nop-instance-method">
+      <div class="signature">
+        
+        def <strong>print</strong>(*expressions) : <a href="../Crystal/Macros/Nop.html">Nop</a>
+
+        <a class="method-permalink" href="#print%28%2Aexpressions%29%3ANop-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Prints AST nodes at compile-time. Useful for debugging macros.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/compiler/crystal/macros.cr#L198" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="puts(*expressions):Nop-instance-method">
+      <div class="signature">
+        
+        def <strong>puts</strong>(*expressions) : <a href="../Crystal/Macros/Nop.html">Nop</a>
+
+        <a class="method-permalink" href="#puts%28%2Aexpressions%29%3ANop-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Prints AST nodes at compile-time. Useful for debugging macros.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/compiler/crystal/macros.cr#L194" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="raise(message):NoReturn-instance-method">
+      <div class="signature">
+        
+        def <strong>raise</strong>(message) : NoReturn
+
+        <a class="method-permalink" href="#raise%28message%29%3ANoReturn-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Gives a compile-time error with the given <em>message</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/compiler/crystal/macros.cr#L240" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="read_file(filename):StringLiteral-instance-method">
+      <div class="signature">
+        
+        def <strong>read_file</strong>(filename) : <a href="../Crystal/Macros/StringLiteral.html">StringLiteral</a>
+
+        <a class="method-permalink" href="#read_file%28filename%29%3AStringLiteral-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Reads a file and returns a <code><a href="../Crystal/Macros/StringLiteral.html">StringLiteral</a></code> with its contents.</p>
+<p>Gives a compile-time error if the file doesn't exist or if
+reading the file fails.</p>
+<p>To read a file relative to where the macro is defined, use:</p>
+<pre><code class="language-crystal">read_file(<span class="s">&quot;</span><span class="i">#{</span>__DIR__<span class="i">}</span><span class="s">/some_file.txt&quot;</span>)</code></pre>
+<p><span class="flag purple">NOTE</span>  Relative paths are resolved to the current working directory.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/compiler/crystal/macros.cr#L263" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="read_file?(filename):StringLiteral|NilLiteral-instance-method">
+      <div class="signature">
+        
+        def <strong>read_file?</strong>(filename) : <a href="../Crystal/Macros/StringLiteral.html">StringLiteral</a> | <a href="../Crystal/Macros/NilLiteral.html">NilLiteral</a>
+
+        <a class="method-permalink" href="#read_file%3F%28filename%29%3AStringLiteral%7CNilLiteral-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Same as <code><a href="../Crystal/Macros.html#read_file%28filename%29%3AStringLiteral-instance-method">#read_file</a></code>, except that <code>nil</code> is returned on any I/O failure
+instead of issuing a compile-time failure.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/compiler/crystal/macros.cr#L268" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="run(filename,*args):MacroId-instance-method">
+      <div class="signature">
+        
+        def <strong>run</strong>(filename, *args) : <a href="../Crystal/Macros/MacroId.html">MacroId</a>
+
+        <a class="method-permalink" href="#run%28filename%2C%2Aargs%29%3AMacroId-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Compiles and execute a Crystal program and returns its output
+as a <code><a href="../Crystal/Macros/MacroId.html">MacroId</a></code>.</p>
+<p>The file denoted by <em>filename</em> must be a valid Crystal program.
+This macro invocation passes <em>args</em> to the program as regular
+program arguments. This output is the result of this macro invocation,
+as a <code><a href="../Crystal/Macros/MacroId.html">MacroId</a></code>.</p>
+<p>The <code><a href="../Crystal/Macros.html#run%28filename%2C%2Aargs%29%3AMacroId-instance-method">#run</a></code> macro is useful when the subset of available macro methods
+are not enough for your purposes and you need something more powerful.
+With <code><a href="../Crystal/Macros.html#run%28filename%2C%2Aargs%29%3AMacroId-instance-method">#run</a></code> you can read files at compile time, connect to the internet
+or to a database.</p>
+<p>A simple example:</p>
+<pre><code class="language-crystal"><span class="c"># read.cr</span>
+puts <span class="t">File</span>.read(<span class="t">ARGV</span>[<span class="n">0</span>])</code></pre>
+<pre><code class="language-crystal"><span class="c"># main.cr</span>
+<span class="k">macro</span> read_file_at_compile_time(filename)
+  <span class="o">{{</span> run(<span class="s">&quot;./read&quot;</span>, filename).stringify }}
+<span class="k">end</span>
+
+puts read_file_at_compile_time(<span class="s">&quot;some_file.txt&quot;</span>)</code></pre>
+<p>The above generates a program that will have the contents of <code>some_file.txt</code>.
+The file, however, is read at compile time and will not be needed at runtime.</p>
+<p><span class="flag purple">NOTE</span>  the compiler is allowed to cache the executable generated for
+<em>filename</em> and only recompile it if any of the files it depends on changes
+(their modified time). This is why it's <strong>strongly discouraged</strong> to use a program
+for <code><a href="../Crystal/Macros.html#run%28filename%2C%2Aargs%29%3AMacroId-instance-method">#run</a></code> that changes in subsequent compilations (for example, if it executes
+shell commands at compile time, or other macro run programs). It's also strongly
+discouraged to have a macro run program take a lot of time, because this will
+slow down compilation times. Reading files is OK, opening an HTTP connection
+at compile-time will most likely result in very slow compilations.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/compiler/crystal/macros.cr#L311" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="sizeof(type):NumberLiteral-instance-method">
+      <div class="signature">
+        
+        def <strong>sizeof</strong>(type) : <a href="../Crystal/Macros/NumberLiteral.html">NumberLiteral</a>
+
+        <a class="method-permalink" href="#sizeof%28type%29%3ANumberLiteral-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the size of the given <em>type</em> as number of bytes.</p>
+<p>For definition purposes, a type is considered to be <strong>stable</strong> if its size
+and alignment do not change as new code is being processed. Currently, all
+Crystal types are stable, <em>except</em> the following:</p>
+<ul>
+<li>Structs, e.g. <code><a href="../Bytes.html">Bytes</a></code></li>
+<li><code><a href="../ReferenceStorage.html">ReferenceStorage</a></code> instances</li>
+<li>Modules, e.g. <code><a href="../Math.html">Math</a></code> (however, <code>Math.class</code> is stable)</li>
+<li>Uninstantiated generic types, e.g. <code><a href="../Array.html">Array</a></code></li>
+<li><code><a href="../StaticArray.html">StaticArray</a></code>, <code><a href="../Tuple.html">Tuple</a></code>, <code><a href="../NamedTuple.html">NamedTuple</a></code> instances with unstable element types</li>
+<li>Unions containing any unstable types</li>
+</ul>
+<p><em>type</em> must be a constant referring to a stable type. It cannot be evaluated
+at macro evaluation time, nor a <code>typeof</code> expression.</p>
+<pre><code class="language-crystal"><span class="o">{{</span> <span class="k">sizeof</span>(<span class="t">Int32</span>) }} <span class="c"># =&gt; 4</span>
+<span class="o">{{</span> <span class="k">sizeof</span>(<span class="t">Void</span><span class="o">*</span>) }} <span class="c"># usually 4 or 8</span></code></pre>
+<p><span class="flag purple">NOTE</span>  This is a pseudo-method provided directly by the Crystal compiler.
+It cannot be redefined nor overridden.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/compiler/crystal/macros.cr#L351" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="skip_file:Nop-instance-method">
+      <div class="signature">
+        
+        def <strong>skip_file</strong> : <a href="../Crystal/Macros/Nop.html">Nop</a>
+
+        <a class="method-permalink" href="#skip_file%3ANop-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Skips the rest of the file from which it is executed.
+Typical usage is to skip files that have platform specific code,
+without having to surround the most relevant code in <code>{% if flag?(...) %} ... {% end %}</code> macro blocks.</p>
+<p>Example:</p>
+<pre><code class="language-crystal"><span class="c"># sth_for_osx.cr</span>
+<span class="o">{%</span> skip_file <span class="k">unless</span> flag?(<span class="n">:darwin</span>) <span class="o">%}</span>
+
+<span class="c"># Class FooForMac will only be defined if we&#39;re compiling on OS X</span>
+<span class="k">class</span> <span class="t">FooForMac</span>
+<span class="k">end</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/compiler/crystal/macros.cr#L328" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="system(command):MacroId-instance-method">
+      <div class="signature">
+        
+        def <strong>system</strong>(command) : <a href="../Crystal/Macros/MacroId.html">MacroId</a>
+
+        <a class="method-permalink" href="#system%28command%29%3AMacroId-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Executes a system command and returns the output as a <code><a href="../Crystal/Macros/MacroId.html">MacroId</a></code>.
+Gives a compile-time error if the command failed to execute.</p>
+<pre><code class="language-crystal"><span class="o">{{</span> system(<span class="s">&quot;echo hi&quot;</span>) }} <span class="c"># =&gt; &quot;hi\n&quot;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/compiler/crystal/macros.cr#L236" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="warning(message:StringLiteral):NilLiteral-instance-method">
+      <div class="signature">
+        
+        def <strong>warning</strong>(message : <a href="../Crystal/Macros/StringLiteral.html">StringLiteral</a>) : <a href="../Crystal/Macros/NilLiteral.html">NilLiteral</a>
+
+        <a class="method-permalink" href="#warning%28message%3AStringLiteral%29%3ANilLiteral-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Emits a compile-time warning with the given <em>message</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/compiler/crystal/macros.cr#L244" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+</div>
+
+</body>
+</html>

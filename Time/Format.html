@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Crystal Docs 1.16.1">
+<meta name="crystal_docs.project_version" content="1.17.0-dev">
+<meta name="crystal_docs.project_name" content="Crystal">
+
+  <meta name="crystal_docs.json_config_url" content="/api/versions.json">
+
+
+    <link rel="canonical" href="https://crystal-lang.org/api/latest/Time/Format.html">
+
+<link href="../css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../js/doc.js"></script>
+
+  <meta name="repository-name" content="Crystal">
+  <title>Time::Format - Crystal 1.17.0-dev</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "../";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill="currentColor" fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<input type="checkbox" id="sidebar-btn">
+<label for="sidebar-btn" id="sidebar-btn-label">
+  <svg class="open" xmlns="http://www.w3.org/2000/svg" height="2em" width="2em" viewBox="0 0 512 512"><title>Open Sidebar</title><path fill="currentColor" d="M80 96v64h352V96H80zm0 112v64h352v-64H80zm0 112v64h352v-64H80z"></path></svg>
+  <svg class="close" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><title>Close Sidebar</title><path fill="currentColor" d="m118.6 73.4-45.2 45.2L210.7 256 73.4 393.4l45.2 45.2L256 301.3l137.4 137.3 45.2-45.2L301.3 256l137.3-137.4-45.2-45.2L256 210.7Z"></path></svg>
+</label>
+<iframe class="sidebar" src="../sidebar.html"></iframe>
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">
+    struct
+  </span> Time::<wbr>Format
+
+</h1>
+
+
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../Time/Format.html">Time::Format</a></li><li class="superclass"><a href="../Struct.html">Struct</a></li><li class="superclass"><a href="../Value.html">Value</a></li><li class="superclass"><a href="../Object.html">Object</a></li></ul>
+
+
+
+
+  <h2>
+    <a id="overview" class="anchor" href="#overview">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Overview
+  </h2>
+
+  <p>Specifies the format to convert a <code><a href="../Time.html">Time</a></code> to and from a <code><a href="../String.html">String</a></code>.</p>
+<p>The pattern of a format is a <code><a href="../String.html">String</a></code> with directives. Directives
+being with a percent (<code>%</code>) character. Any text not listed as a directive
+will be passed/parsed through the output/input string.</p>
+<p>The directives are:</p>
+<ul>
+<li><strong>%a</strong>: short day name (Sun, Mon, Tue, ...)</li>
+<li><strong>%^a</strong>: short day name, upcase (SUN, MON, TUE, ...)</li>
+<li><strong>%A</strong>: day name (Sunday, Monday, Tuesday, ...)</li>
+<li><strong>%^A</strong>: day name, upcase (SUNDAY, MONDAY, TUESDAY, ...)</li>
+<li><strong>%b</strong>: short month name (Jan, Feb, Mar, ...)</li>
+<li><strong>%^b</strong>: short month name, upcase (JAN, FEB, MAR, ...)</li>
+<li><strong>%B</strong>: month name (January, February, March, ...)</li>
+<li><strong>%^B</strong>: month name, upcase (JANUARY, FEBRUARY, MARCH, ...)</li>
+<li><strong>%c</strong>: date and time (Tue Apr  5 10:26:19 2016)</li>
+<li><strong>%C</strong>: year divided by 100</li>
+<li><strong>%d</strong>: day of month, zero padded (01, 02, ...)</li>
+<li><strong>%-d</strong>: day of month (1, 2, ..., 31)</li>
+<li><strong>%D</strong>: date (04/05/16)</li>
+<li><strong>%e</strong>: day of month, blank padded (&quot; 1&quot;, &quot; 2&quot;, ..., &quot;10&quot;, &quot;11&quot;, ...)</li>
+<li><strong>%F</strong>: ISO 8601 date (2016-04-05)</li>
+<li><strong>%g</strong>: week-based calendar year modulo 100 (00..99)</li>
+<li><strong>%G</strong>: week-based calendar year (0001..9999)</li>
+<li><strong>%h</strong>: (same as %b) short month name (Jan, Feb, Mar, ...)</li>
+<li><strong>%H</strong>: hour of the day, 24-hour clock, zero padded (00, 01, ..., 24)</li>
+<li><strong>%I</strong>: hour of the day, 12-hour clock, zero padded (00, 01, ..., 12)</li>
+<li><strong>%j</strong>: day of year, zero padded (001, 002, ..., 365)</li>
+<li><strong>%k</strong>: hour of the day, 24-hour clock, blank padded (&quot; 0&quot;, &quot; 1&quot;, ..., &quot;24&quot;)</li>
+<li><strong>%l</strong>: hour of the day, 12-hour clock, blank padded (&quot; 0&quot;, &quot; 1&quot;, ..., &quot;12&quot;)</li>
+<li><strong>%L</strong>: milliseconds, zero padded (000, 001, ..., 999) (same as <strong>%3N</strong>)</li>
+<li><strong>%m</strong>: month number, zero padded (01, 02, ..., 12)</li>
+<li><strong>%_m</strong>: month number, blank padded (&quot; 1&quot;, &quot; 2&quot;, ..., &quot;12&quot;)</li>
+<li><strong>%-m</strong>: month number (1, 2, ..., 12)</li>
+<li><strong>%M</strong>: minute, zero padded (00, 01, 02, ..., 59)</li>
+<li><strong>%3N</strong>: milliseconds, zero padded (000, 001, ..., 999) (same as <strong>%L</strong>)</li>
+<li><strong>%6N</strong>: microseconds, zero padded (000000, 000001, ..., 999999)</li>
+<li><strong>%9N</strong>: nanoseconds, zero padded (000000000, 000000001, ..., 999999999)</li>
+<li><strong>%N</strong>: second fraction, zero padded. (Same as <code>%9N</code> but may consume more than 9 digits while parsing)</li>
+<li><strong>%p</strong>: am-pm (lowercase)</li>
+<li><strong>%P</strong>: AM-PM (uppercase)</li>
+<li><strong>%r</strong>: 12-hour time (03:04:05 AM)</li>
+<li><strong>%R</strong>: 24-hour time (13:04)</li>
+<li><strong>%s</strong>: seconds since unix epoch (see <code><a href="../Time.html#to_unix%3AInt64-instance-method">Time#to_unix</a></code>)</li>
+<li><strong>%S</strong>: seconds, zero padded (00, 01, ..., 59)</li>
+<li><strong>%T</strong>: 24-hour time (13:04:05)</li>
+<li><strong>%u</strong>: day of week (Monday is 1, 1..7)</li>
+<li><strong>%V</strong>: ISO calendar week number of the week-based year (01..53)</li>
+<li><strong>%w</strong>: day of week (Sunday is 0, 0..6)</li>
+<li><strong>%x</strong>: (same as %D) date (04/05/16)</li>
+<li><strong>%X</strong>: (same as %T) 24-hour time (13:04:05)</li>
+<li><strong>%y</strong>: year modulo 100</li>
+<li><strong>%Y</strong>: year, zero padded</li>
+<li><strong>%z</strong>: time zone offset from UTC as hour and minute with no separator (+0900)</li>
+<li><strong>%:z</strong>: time zone offset from UTC as hour and minute separated by colon (+09:00)</li>
+<li><strong>%::z</strong>: time zone offset from UTC as hour, minute and second separated by colon (+09:00:00)</li>
+<li><strong>%Z</strong>: location name or offset (e.g. <code>Europe/Berlin</code>)</li>
+<li><strong>%^Z</strong>: abbreviated time zone identifier or offset (e.g. <code>CET</code>)</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/from_json.cr#L477" target="_blank">
+        json/from_json.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/to_json.cr#L174" target="_blank">
+        json/to_json.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/time/format.cr#L63" target="_blank">
+        time/format.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/time/format/custom/http_date.cr#L3" target="_blank">
+        time/format/custom/http_date.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/time/format/custom/iso_8601.cr#L1" target="_blank">
+        time/format/custom/iso_8601.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/time/format/custom/rfc_2822.cr#L1" target="_blank">
+        time/format/custom/rfc_2822.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/time/format/custom/rfc_3339.cr#L1" target="_blank">
+        time/format/custom/rfc_3339.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/time/format/custom/yaml_date.cr#L1" target="_blank">
+        time/format/custom/yaml_date.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/time/format/formatter.cr#L3" target="_blank">
+        time/format/formatter.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/time/format/parser.cr#L1" target="_blank">
+        time/format/parser.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/time/format/pattern.cr#L1" target="_blank">
+        time/format/pattern.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/yaml/from_yaml.cr#L334" target="_blank">
+        yaml/from_yaml.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/yaml/to_yaml.cr#L241" target="_blank">
+        yaml/to_yaml.cr
+      </a>
+    
+    <br/>
+  
+
+
+
+
+
+  
+  <h2>
+    <a id="constructors" class="anchor" href="#constructors">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructors
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#new%28pattern%3AString%2Clocation%3ALocation%7CNil%3Dnil%29-class-method" class="signature"><strong>.new</strong>(pattern : String, location : Location | Nil = <span class="n">nil</span>)</a>
+        
+          <div class="summary"><p>Creates a new <code><a href="../Time/Format.html">Time::Format</a></code> with the given <em>pattern</em>.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+  
+
+  
+
+  
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#format%28time%3ATime%2Cio%3AIO%29%3ANil-instance-method" class="signature"><strong>#format</strong>(time : Time, io : IO) : Nil</a>
+        
+          <div class="summary"><p>Formats a <code><a href="../Time.html">Time</a></code> into the given <em>io</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#format%28time%3ATime%29%3AString-instance-method" class="signature"><strong>#format</strong>(time : Time) : String</a>
+        
+          <div class="summary"><p>Turns a <code><a href="../Time.html">Time</a></code> into a <code><a href="../String.html">String</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#from_json%28pull%3AJSON%3A%3APullParser%29%3ATime-instance-method" class="signature"><strong>#from_json</strong>(pull : JSON::PullParser) : Time</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#from_yaml%28ctx%3AYAML%3A%3AParseContext%2Cnode%3AYAML%3A%3ANodes%3A%3ANode%29%3ATime-instance-method" class="signature"><strong>#from_yaml</strong>(ctx : YAML::ParseContext, node : YAML::Nodes::Node) : Time</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#parse%28string%2Clocation%3D%40location%29%3ATime-instance-method" class="signature"><strong>#parse</strong>(string, location = @location) : Time</a>
+        
+          <div class="summary"><p>Parses a string into a <code><a href="../Time.html">Time</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#pattern%3AString-instance-method" class="signature"><strong>#pattern</strong> : String</a>
+        
+          <div class="summary"><p>Returns the string pattern of this format.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_json%28value%3ATime%2Cjson%3AJSON%3A%3ABuilder%29%3ANil-instance-method" class="signature"><strong>#to_json</strong>(value : Time, json : JSON::Builder) : Nil</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_yaml%28value%3ATime%2Cyaml%3AYAML%3A%3ANodes%3A%3ABuilder%29%3ANil-instance-method" class="signature"><strong>#to_yaml</strong>(value : Time, yaml : YAML::Nodes::Builder) : Nil</a>
+        
+      </li>
+    
+  </ul>
+
+
+
+  <div class="methods-inherited">
+    
+      
+
+  <h3>Instance methods inherited from struct <code><a href="../Struct.html">Struct</a></code></h3>
+  
+  
+    <a href="../Struct.html#%3D%3D%28other%29%3ABool-instance-method" class="tooltip">
+      <span>==(other) : Bool</span>
+    ==</a>, 
+    
+  
+    <a href="../Struct.html#hash%28hasher%29-instance-method" class="tooltip">
+      <span>hash(hasher)</span>
+    hash</a>, 
+    
+  
+    <a href="../Struct.html#inspect%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>inspect(io : IO) : Nil</span>
+    inspect</a>, 
+    
+  
+    <a href="../Struct.html#pretty_print%28pp%29%3ANil-instance-method" class="tooltip">
+      <span>pretty_print(pp) : Nil</span>
+    pretty_print</a>, 
+    
+  
+    <a href="../Struct.html#to_s%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_s(io : IO) : Nil</span>
+    to_s</a>
+    
+  
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+      
+
+  <h3>Instance methods inherited from struct <code><a href="../Value.html">Value</a></code></h3>
+  
+  
+    <a href="../Value.html#%3D%3D%28other%3AJSON%3A%3AAny%29-instance-method" class="tooltip">
+      <span>==(other : JSON::Any)<br/>==(other : YAML::Any)<br/>==(other)</span>
+    ==</a>, 
+    
+  
+    <a href="../Value.html#dup-instance-method" class="tooltip">
+      <span>dup</span>
+    dup</a>
+    
+  
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+      
+
+  <h3>Instance methods inherited from class <code><a href="../Object.html">Object</a></code></h3>
+  
+  
+    <a href="../Object.html#%21%3ABool-instance-method" class="tooltip">
+      <span>! : Bool</span>
+    !</a>, 
+    
+  
+    <a href="../Object.html#%21%3D%28other%29-instance-method" class="tooltip">
+      <span>!=(other)</span>
+    !=</a>, 
+    
+  
+    <a href="../Object.html#%21~%28other%29-instance-method" class="tooltip">
+      <span>!~(other)</span>
+    !~</a>, 
+    
+  
+    <a href="../Object.html#%3D%3D%28other%29-instance-method" class="tooltip">
+      <span>==(other)</span>
+    ==</a>, 
+    
+  
+    <a href="../Object.html#%3D%3D%3D%28other%3AJSON%3A%3AAny%29-instance-method" class="tooltip">
+      <span>===(other : JSON::Any)<br/>===(other : YAML::Any)<br/>===(other)</span>
+    ===</a>, 
+    
+  
+    <a href="../Object.html#%3D~%28other%29-instance-method" class="tooltip">
+      <span>=~(other)</span>
+    =~</a>, 
+    
+  
+    <a href="../Object.html#as%28type%3AClass%29-instance-method" class="tooltip">
+      <span>as(type : Class)</span>
+    as</a>, 
+    
+  
+    <a href="../Object.html#as%3F%28type%3AClass%29-instance-method" class="tooltip">
+      <span>as?(type : Class)</span>
+    as?</a>, 
+    
+  
+    <a href="../Object.html#class-instance-method" class="tooltip">
+      <span>class</span>
+    class</a>, 
+    
+  
+    <a href="../Object.html#dup-instance-method" class="tooltip">
+      <span>dup</span>
+    dup</a>, 
+    
+  
+    <a href="../Object.html#hash%28hasher%29-instance-method" class="tooltip">
+      <span>hash(hasher)<br/>hash</span>
+    hash</a>, 
+    
+  
+    <a href="../Object.html#in%3F%28collection%3AObject%29%3ABool-instance-method" class="tooltip">
+      <span>in?(collection : Object) : Bool<br/>in?(*values : Object) : Bool</span>
+    in?</a>, 
+    
+  
+    <a href="../Object.html#inspect%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>inspect(io : IO) : Nil<br/>inspect : String</span>
+    inspect</a>, 
+    
+  
+    <a href="../Object.html#is_a%3F%28type%3AClass%29%3ABool-instance-method" class="tooltip">
+      <span>is_a?(type : Class) : Bool</span>
+    is_a?</a>, 
+    
+  
+    <a href="../Object.html#itself-instance-method" class="tooltip">
+      <span>itself</span>
+    itself</a>, 
+    
+  
+    <a href="../Object.html#nil%3F%3ABool-instance-method" class="tooltip">
+      <span>nil? : Bool</span>
+    nil?</a>, 
+    
+  
+    <a href="../Object.html#not_nil%21%28message%29-instance-method" class="tooltip">
+      <span>not_nil!(message)<br/>not_nil!</span>
+    not_nil!</a>, 
+    
+  
+    <a href="../Object.html#pretty_inspect%28width%3D79%2Cnewline%3D%22%5Cn%22%2Cindent%3D0%29%3AString-instance-method" class="tooltip">
+      <span>pretty_inspect(width = <span class="n">79</span>, newline = <span class="s">&quot;\n&quot;</span>, indent = <span class="n">0</span>) : String</span>
+    pretty_inspect</a>, 
+    
+  
+    <a href="../Object.html#pretty_print%28pp%3APrettyPrint%29%3ANil-instance-method" class="tooltip">
+      <span>pretty_print(pp : PrettyPrint) : Nil</span>
+    pretty_print</a>, 
+    
+  
+    <a href="../Object.html#responds_to%3F%28name%3ASymbol%29%3ABool-instance-method" class="tooltip">
+      <span>responds_to?(name : Symbol) : Bool</span>
+    responds_to?</a>, 
+    
+  
+    <a href="../Object.html#tap%28%26%29-instance-method" class="tooltip">
+      <span>tap(&)</span>
+    tap</a>, 
+    
+  
+    <a href="../Object.html#to_json%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_json(io : IO) : Nil<br/>to_json : String</span>
+    to_json</a>, 
+    
+  
+    <a href="../Object.html#to_pretty_json%28indent%3AString%3D%22%22%29%3AString-instance-method" class="tooltip">
+      <span>to_pretty_json(indent : String = <span class="s">&quot;  &quot;</span>) : String<br/>to_pretty_json(io : IO, indent : String = <span class="s">&quot;  &quot;</span>) : Nil</span>
+    to_pretty_json</a>, 
+    
+  
+    <a href="../Object.html#to_s%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_s(io : IO) : Nil<br/>to_s : String</span>
+    to_s</a>, 
+    
+  
+    <a href="../Object.html#to_yaml%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_yaml(io : IO) : Nil<br/>to_yaml : String</span>
+    to_yaml</a>, 
+    
+  
+    <a href="../Object.html#try%28%26%29-instance-method" class="tooltip">
+      <span>try(&)</span>
+    try</a>, 
+    
+  
+    <a href="../Object.html#unsafe_as%28type%3AT.class%29forallT-instance-method" class="tooltip">
+      <span>unsafe_as(type : <span class="t">T</span>.<span class="k">class</span>) forall T</span>
+    unsafe_as</a>
+    
+  
+
+
+      
+
+
+      
+
+  <h3>Class methods inherited from class <code><a href="../Object.html">Object</a></code></h3>
+  
+  
+    <a href="../Object.html#from_json%28string_or_io%2Croot%3AString%29-class-method" class="tooltip">
+      <span>from_json(string_or_io, root : String)<br/>from_json(string_or_io)</span>
+    from_json</a>, 
+    
+  
+    <a href="../Object.html#from_yaml%28string_or_io%3AString%7CIO%29-class-method" class="tooltip">
+      <span>from_yaml(string_or_io : String | IO)</span>
+    from_yaml</a>
+    
+  
+
+
+      
+
+  <h3>Macros inherited from class <code><a href="../Object.html">Object</a></code></h3>
+  
+  
+    <a href="../Object.html#class_getter%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_getter(*names, &block)</span>
+    class_getter</a>, 
+    
+  
+    <a href="../Object.html#class_getter%21%28%2Anames%29-macro" class="tooltip">
+      <span>class_getter!(*names)</span>
+    class_getter!</a>, 
+    
+  
+    <a href="../Object.html#class_getter%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_getter?(*names, &block)</span>
+    class_getter?</a>, 
+    
+  
+    <a href="../Object.html#class_property%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_property(*names, &block)</span>
+    class_property</a>, 
+    
+  
+    <a href="../Object.html#class_property%21%28%2Anames%29-macro" class="tooltip">
+      <span>class_property!(*names)</span>
+    class_property!</a>, 
+    
+  
+    <a href="../Object.html#class_property%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_property?(*names, &block)</span>
+    class_property?</a>, 
+    
+  
+    <a href="../Object.html#class_setter%28%2Anames%29-macro" class="tooltip">
+      <span>class_setter(*names)</span>
+    class_setter</a>, 
+    
+  
+    <a href="../Object.html#def_clone-macro" class="tooltip">
+      <span>def_clone</span>
+    def_clone</a>, 
+    
+  
+    <a href="../Object.html#def_equals%28%2Afields%29-macro" class="tooltip">
+      <span>def_equals(*fields)</span>
+    def_equals</a>, 
+    
+  
+    <a href="../Object.html#def_equals_and_hash%28%2Afields%29-macro" class="tooltip">
+      <span>def_equals_and_hash(*fields)</span>
+    def_equals_and_hash</a>, 
+    
+  
+    <a href="../Object.html#def_hash%28%2Afields%29-macro" class="tooltip">
+      <span>def_hash(*fields)</span>
+    def_hash</a>, 
+    
+  
+    <a href="../Object.html#delegate%28%2Amethods%2Ctoobject%29-macro" class="tooltip">
+      <span>delegate(*methods, to object)</span>
+    delegate</a>, 
+    
+  
+    <a href="../Object.html#forward_missing_to%28delegate%29-macro" class="tooltip">
+      <span>forward_missing_to(delegate)</span>
+    forward_missing_to</a>, 
+    
+  
+    <a href="../Object.html#getter%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>getter(*names, &block)</span>
+    getter</a>, 
+    
+  
+    <a href="../Object.html#getter%21%28%2Anames%29-macro" class="tooltip">
+      <span>getter!(*names)</span>
+    getter!</a>, 
+    
+  
+    <a href="../Object.html#getter%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>getter?(*names, &block)</span>
+    getter?</a>, 
+    
+  
+    <a href="../Object.html#property%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>property(*names, &block)</span>
+    property</a>, 
+    
+  
+    <a href="../Object.html#property%21%28%2Anames%29-macro" class="tooltip">
+      <span>property!(*names)</span>
+    property!</a>, 
+    
+  
+    <a href="../Object.html#property%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>property?(*names, &block)</span>
+    property?</a>, 
+    
+  
+    <a href="../Object.html#setter%28%2Anames%29-macro" class="tooltip">
+      <span>setter(*names)</span>
+    setter</a>
+    
+  
+
+
+    
+  </div>
+
+  
+  <h2>
+    <a id="constructor-detail" class="anchor" href="#constructor-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructor Detail
+  </h2>
+  
+    <div class="entry-detail" id="new(pattern:String,location:Location|Nil=nil)-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(pattern : <a href="../String.html">String</a>, location : <a href="../Time/Location.html">Location</a> | <a href="../Nil.html">Nil</a> = <span class="n">nil</span>)
+
+        <a class="method-permalink" href="#new%28pattern%3AString%2Clocation%3ALocation%7CNil%3Dnil%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Creates a new <code><a href="../Time/Format.html">Time::Format</a></code> with the given <em>pattern</em>. The given time
+<em>location</em> will be used when parsing a <code><a href="../Time.html">Time</a></code> and no time zone is found in it.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/time/format.cr#L79" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+  
+
+  
+
+  
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="format(time:Time,io:IO):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>format</strong>(time : <a href="../Time.html">Time</a>, io : <a href="../IO.html">IO</a>) : <a href="../Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#format%28time%3ATime%2Cio%3AIO%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Formats a <code><a href="../Time.html">Time</a></code> into the given <em>io</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/time/format.cr#L97" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="format(time:Time):String-instance-method">
+      <div class="signature">
+        
+        def <strong>format</strong>(time : <a href="../Time.html">Time</a>) : <a href="../String.html">String</a>
+
+        <a class="method-permalink" href="#format%28time%3ATime%29%3AString-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Turns a <code><a href="../Time.html">Time</a></code> into a <code><a href="../String.html">String</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/time/format.cr#L90" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="from_json(pull:JSON::PullParser):Time-instance-method">
+      <div class="signature">
+        
+        def <strong>from_json</strong>(pull : <a href="../JSON/PullParser.html">JSON::PullParser</a>) : <a href="../Time.html">Time</a>
+
+        <a class="method-permalink" href="#from_json%28pull%3AJSON%3A%3APullParser%29%3ATime-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/from_json.cr#L478" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="from_yaml(ctx:YAML::ParseContext,node:YAML::Nodes::Node):Time-instance-method">
+      <div class="signature">
+        
+        def <strong>from_yaml</strong>(ctx : <a href="../YAML/ParseContext.html">YAML::ParseContext</a>, node : <a href="../YAML/Nodes/Node.html">YAML::Nodes::Node</a>) : <a href="../Time.html">Time</a>
+
+        <a class="method-permalink" href="#from_yaml%28ctx%3AYAML%3A%3AParseContext%2Cnode%3AYAML%3A%3ANodes%3A%3ANode%29%3ATime-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/yaml/from_yaml.cr#L335" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="parse(string,location=@location):Time-instance-method">
+      <div class="signature">
+        
+        def <strong>parse</strong>(string, location = @location) : <a href="../Time.html">Time</a>
+
+        <a class="method-permalink" href="#parse%28string%2Clocation%3D%40location%29%3ATime-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Parses a string into a <code><a href="../Time.html">Time</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/time/format.cr#L83" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="pattern:String-instance-method">
+      <div class="signature">
+        
+        def <strong>pattern</strong> : <a href="../String.html">String</a>
+
+        <a class="method-permalink" href="#pattern%3AString-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the string pattern of this format.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/time/format.cr#L75" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_json(value:Time,json:JSON::Builder):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>to_json</strong>(value : <a href="../Time.html">Time</a>, json : <a href="../JSON/Builder.html">JSON::Builder</a>) : <a href="../Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#to_json%28value%3ATime%2Cjson%3AJSON%3A%3ABuilder%29%3ANil-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/to_json.cr#L175" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_yaml(value:Time,yaml:YAML::Nodes::Builder):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>to_yaml</strong>(value : <a href="../Time.html">Time</a>, yaml : <a href="../YAML/Nodes/Builder.html">YAML::Nodes::Builder</a>) : <a href="../Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#to_yaml%28value%3ATime%2Cyaml%3AYAML%3A%3ANodes%3A%3ABuilder%29%3ANil-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/yaml/to_yaml.cr#L242" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+</div>
+
+</body>
+</html>

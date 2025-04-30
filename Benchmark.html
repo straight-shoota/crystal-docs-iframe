@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Crystal Docs 1.16.1">
+<meta name="crystal_docs.project_version" content="1.17.0-dev">
+<meta name="crystal_docs.project_name" content="Crystal">
+
+  <meta name="crystal_docs.json_config_url" content="/api/versions.json">
+
+
+    <link rel="canonical" href="https://crystal-lang.org/api/latest/Benchmark.html">
+
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/doc.js"></script>
+
+  <meta name="repository-name" content="Crystal">
+  <title>Benchmark - Crystal 1.17.0-dev</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill="currentColor" fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<input type="checkbox" id="sidebar-btn">
+<label for="sidebar-btn" id="sidebar-btn-label">
+  <svg class="open" xmlns="http://www.w3.org/2000/svg" height="2em" width="2em" viewBox="0 0 512 512"><title>Open Sidebar</title><path fill="currentColor" d="M80 96v64h352V96H80zm0 112v64h352v-64H80zm0 112v64h352v-64H80z"></path></svg>
+  <svg class="close" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><title>Close Sidebar</title><path fill="currentColor" d="m118.6 73.4-45.2 45.2L210.7 256 73.4 393.4l45.2 45.2L256 301.3l137.4 137.3 45.2-45.2L301.3 256l137.3-137.4-45.2-45.2L256 210.7Z"></path></svg>
+</label>
+<iframe class="sidebar" src="sidebar.html"></iframe>
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">
+    module
+  </span> Benchmark
+
+</h1>
+
+
+
+
+
+  <h2>
+    <a id="overview" class="anchor" href="#overview">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Overview
+  </h2>
+
+  <p>The Benchmark module provides methods for benchmarking Crystal code, giving
+detailed reports on the time and memory taken for each task.</p>
+<p><span class="flag purple">NOTE</span>  To use <code><a href="Benchmark.html">Benchmark</a></code>, you must explicitly import it with <code>require &quot;benchmark&quot;</code></p>
+<h3><a id="measure-the-number-of-iterations-per-second-of-each-task" class="anchor" href="#measure-the-number-of-iterations-per-second-of-each-task">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Measure the number of iterations per second of each task</h3>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;benchmark&quot;</span>
+
+<span class="t">Benchmark</span>.ips <span class="k">do</span> <span class="o">|</span>x<span class="o">|</span>
+  x.report(<span class="s">&quot;short sleep&quot;</span>) { sleep <span class="n">10</span>.milliseconds }
+  x.report(<span class="s">&quot;shorter sleep&quot;</span>) { sleep <span class="n">1</span>.millisecond }
+<span class="k">end</span></code></pre>
+<p>This generates the following output showing the mean iterations per second,
+the mean times per iteration, the standard deviation relative to the mean, and a comparison:</p>
+<pre><code class="language-text">  short sleep   88.7  ( 11.27ms) (± 3.33%)  8.90× slower
+shorter sleep  789.7  (  1.27ms) (± 3.02%)       fastest</code></pre>
+<p><code><a href="Benchmark/IPS.html">Benchmark::IPS</a></code> defaults to 2 seconds of warmup time and 5 seconds of
+calculation time. This can be configured:</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;benchmark&quot;</span>
+
+<span class="t">Benchmark</span>.ips(warmup: <span class="n">4</span>, calculation: <span class="n">10</span>) <span class="k">do</span> <span class="o">|</span>x<span class="o">|</span>
+  x.report(<span class="s">&quot;sleep&quot;</span>) { sleep <span class="n">10</span>.milliseconds }
+<span class="k">end</span></code></pre>
+<h3><a id="measure-the-time-to-construct-the-string-given-by-the-expression-a1-000-000-000" class="anchor" href="#measure-the-time-to-construct-the-string-given-by-the-expression-a1-000-000-000">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Measure the time to construct the string given by the expression: <code>&quot;a&quot;*1_000_000_000</code></h3>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;benchmark&quot;</span>
+
+puts <span class="t">Benchmark</span>.measure { <span class="s">&quot;a&quot;</span><span class="o">*</span><span class="n">1_000_000_000</span> }</code></pre>
+<p>This generates the following output:</p>
+<pre><code class="language-text"> 0.190000   0.220000   0.410000 (  0.420185)</code></pre>
+<p>This report shows the user CPU time, system CPU time, the sum of
+the user and system CPU times, and the elapsed real time. The unit
+of time is seconds.</p>
+<h3><a id="do-some-experiments-sequentially-using-the-bm-method" class="anchor" href="#do-some-experiments-sequentially-using-the-bm-method">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Do some experiments sequentially using the <code><a href="Benchmark.html#bm%28%26%29-instance-method">#bm</a></code> method:</h3>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;benchmark&quot;</span>
+
+n <span class="o">=</span> <span class="n">5000000</span>
+<span class="t">Benchmark</span>.bm <span class="k">do</span> <span class="o">|</span>x<span class="o">|</span>
+  x.report(<span class="s">&quot;times:&quot;</span>) <span class="k">do</span>
+    n.times <span class="k">do</span>
+      a <span class="o">=</span> <span class="s">&quot;1&quot;</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+  x.report(<span class="s">&quot;upto:&quot;</span>) <span class="k">do</span>
+    <span class="n">1</span>.upto(n) <span class="k">do</span>
+      a <span class="o">=</span> <span class="s">&quot;1&quot;</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span></code></pre>
+<p>The result:</p>
+<pre><code class="language-text">           user     system      total        real
+times:   0.010000   0.000000   0.010000 (  0.008976)
+upto:    0.010000   0.000000   0.010000 (  0.010466)</code></pre>
+<p><span class="flag purple">NOTE</span>  Make sure to always benchmark code by compiling with the <code>--release</code> flag.</p>
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="extended-modules" class="anchor" href="#extended-modules">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Extended Modules
+  </h2>
+  <ul class="other-types-list">
+    
+      <li class="other-type"><a href="Benchmark.html">Benchmark</a></li>
+    
+  </ul>
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/benchmark.cr#L85" target="_blank">
+        benchmark.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/benchmark/bm.cr#L1" target="_blank">
+        benchmark/bm.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/benchmark/ips.cr#L1" target="_blank">
+        benchmark/ips.cr
+      </a>
+    
+    <br/>
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#bm%28%26%29-instance-method" class="signature"><strong>#bm</strong>(&)</a>
+        
+          <div class="summary"><p>Main interface of the <code><a href="Benchmark.html">Benchmark</a></code> module.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#ips%28calculation%3ATime%3A%3ASpan%3D5.seconds%2Cwarmup%3ATime%3A%3ASpan%3D2.seconds%2Cinteractive%3ABool%3DSTDOUT.tty%3F%2C%26%29-instance-method" class="signature"><strong>#ips</strong>(calculation : Time::Span = <span class="n">5</span>.seconds, warmup : Time::Span = <span class="n">2</span>.seconds, interactive : Bool = <span class="t">STDOUT</span>.tty?, &)</a>
+        
+          <div class="summary"><p>Instruction per second interface of the <code><a href="Benchmark.html">Benchmark</a></code> module.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#ips%28calculation%3D5%2Cwarmup%3D2%2Cinteractive%3DSTDOUT.tty%3F%2C%26%29-instance-method" class="signature"><strong>#ips</strong>(calculation = <span class="n">5</span>, warmup = <span class="n">2</span>, interactive = <span class="t">STDOUT</span>.tty?, &)</a>
+        
+          <div class="summary"><p>Instruction per second interface of the <code><a href="Benchmark.html">Benchmark</a></code> module.</p>
+<p><span class="flag red">DEPRECATED</span>  Use <code>#ips(Time::Span, Time::Span, Bool, &amp;)</code> instead.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#measure%28label%3D%22%22%2C%26%29%3ABM%3A%3ATms-instance-method" class="signature"><strong>#measure</strong>(label = <span class="s">&quot;&quot;</span>, &) : BM::Tms</a>
+        
+          <div class="summary"><p>Returns the time used to execute the given block.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#memory%28%26%29-instance-method" class="signature"><strong>#memory</strong>(&)</a>
+        
+          <div class="summary"><p>Returns the memory in bytes that the given block consumes.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#realtime%28%26%29%3ATime%3A%3ASpan-instance-method" class="signature"><strong>#realtime</strong>(&) : Time::Span</a>
+        
+          <div class="summary"><p>Returns the elapsed real time used to execute the given block.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+
+  <div class="methods-inherited">
+    
+  </div>
+
+  
+
+  
+
+  
+
+  
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="bm(&amp;)-instance-method">
+      <div class="signature">
+        
+        def <strong>bm</strong>(&)
+
+        <a class="method-permalink" href="#bm%28%26%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Main interface of the <code><a href="Benchmark.html">Benchmark</a></code> module. Yields a <code>Job</code> to which
+one can report the benchmarks. See the module's description.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/benchmark.cr#L90" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="ips(calculation:Time::Span=5.seconds,warmup:Time::Span=2.seconds,interactive:Bool=STDOUT.tty?,&amp;)-instance-method">
+      <div class="signature">
+        
+        def <strong>ips</strong>(calculation : <a href="Time/Span.html">Time::Span</a> = <span class="n">5</span>.seconds, warmup : <a href="Time/Span.html">Time::Span</a> = <span class="n">2</span>.seconds, interactive : <a href="Bool.html">Bool</a> = <span class="t">STDOUT</span>.tty?, &)
+
+        <a class="method-permalink" href="#ips%28calculation%3ATime%3A%3ASpan%3D5.seconds%2Cwarmup%3ATime%3A%3ASpan%3D2.seconds%2Cinteractive%3ABool%3DSTDOUT.tty%3F%2C%26%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Instruction per second interface of the <code><a href="Benchmark.html">Benchmark</a></code> module. Yields a <code>Job</code>
+to which one can report the benchmarks. See the module's description.</p>
+<p>The optional parameters <em>calculation</em> and <em>warmup</em> set the duration of
+those stages. For more detail on these stages see
+<code><a href="Benchmark/IPS.html">Benchmark::IPS</a></code>. When the <em>interactive</em> parameter is <code>true</code>, results are
+displayed and updated as they are calculated, otherwise all at once after they finished.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/benchmark.cr#L108" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="ips(calculation=5,warmup=2,interactive=STDOUT.tty?,&amp;)-instance-method">
+      <div class="signature">
+        
+        def <strong>ips</strong>(calculation = <span class="n">5</span>, warmup = <span class="n">2</span>, interactive = <span class="t">STDOUT</span>.tty?, &)
+
+        <a class="method-permalink" href="#ips%28calculation%3D5%2Cwarmup%3D2%2Cinteractive%3DSTDOUT.tty%3F%2C%26%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Instruction per second interface of the <code><a href="Benchmark.html">Benchmark</a></code> module. Yields a <code>Job</code>
+to which one can report the benchmarks. See the module's description.</p>
+<p>The optional parameters <em>calculation</em> and <em>warmup</em> set the duration of
+those stages in seconds. For more detail on these stages see
+<code><a href="Benchmark/IPS.html">Benchmark::IPS</a></code>. When the <em>interactive</em> parameter is <code>true</code>, results are
+displayed and updated as they are calculated, otherwise all at once after they finished.</p>
+<p><span class="flag red">DEPRECATED</span>  Use <code>#ips(Time::Span, Time::Span, Bool, &amp;)</code> instead.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/benchmark.cr#L128" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="measure(label=&quot;&quot;,&amp;):BM::Tms-instance-method">
+      <div class="signature">
+        
+        def <strong>measure</strong>(label = <span class="s">&quot;&quot;</span>, &) : <a href="Benchmark/BM/Tms.html">BM::Tms</a>
+
+        <a class="method-permalink" href="#measure%28label%3D%22%22%2C%26%29%3ABM%3A%3ATms-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the time used to execute the given block.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/benchmark.cr#L133" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="memory(&amp;)-instance-method">
+      <div class="signature">
+        
+        def <strong>memory</strong>(&)
+
+        <a class="method-permalink" href="#memory%28%26%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the memory in bytes that the given block consumes.</p>
+<pre><code class="language-crystal"><span class="t">Benchmark</span>.memory { <span class="t">Array</span>(<span class="t">Int32</span>).new } <span class="c"># =&gt; 32</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/benchmark.cr#L159" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="realtime(&amp;):Time::Span-instance-method">
+      <div class="signature">
+        
+        def <strong>realtime</strong>(&) : <a href="Time/Span.html">Time::Span</a>
+
+        <a class="method-permalink" href="#realtime%28%26%29%3ATime%3A%3ASpan-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the elapsed real time used to execute the given block.</p>
+<pre><code class="language-crystal"><span class="t">Benchmark</span>.realtime { <span class="s">&quot;a&quot;</span> <span class="o">*</span> <span class="n">100_000</span> } <span class="c"># =&gt; 00:00:00.0005840</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/benchmark.cr#L150" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+</div>
+
+</body>
+</html>

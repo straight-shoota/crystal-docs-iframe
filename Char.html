@@ -1,0 +1,3385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Crystal Docs 1.16.1">
+<meta name="crystal_docs.project_version" content="1.17.0-dev">
+<meta name="crystal_docs.project_name" content="Crystal">
+
+  <meta name="crystal_docs.json_config_url" content="/api/versions.json">
+
+
+    <link rel="canonical" href="https://crystal-lang.org/api/latest/Char.html">
+
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/doc.js"></script>
+
+  <meta name="repository-name" content="Crystal">
+  <title>Char - Crystal 1.17.0-dev</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill="currentColor" fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<input type="checkbox" id="sidebar-btn">
+<label for="sidebar-btn" id="sidebar-btn-label">
+  <svg class="open" xmlns="http://www.w3.org/2000/svg" height="2em" width="2em" viewBox="0 0 512 512"><title>Open Sidebar</title><path fill="currentColor" d="M80 96v64h352V96H80zm0 112v64h352v-64H80zm0 112v64h352v-64H80z"></path></svg>
+  <svg class="close" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><title>Close Sidebar</title><path fill="currentColor" d="m118.6 73.4-45.2 45.2L210.7 256 73.4 393.4l45.2 45.2L256 301.3l137.4 137.3 45.2-45.2L301.3 256l137.3-137.4-45.2-45.2L256 210.7Z"></path></svg>
+</label>
+<iframe class="sidebar" src="sidebar.html"></iframe>
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">
+    struct
+  </span> Char
+
+</h1>
+
+
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="Char.html">Char</a></li><li class="superclass"><a href="Value.html">Value</a></li><li class="superclass"><a href="Object.html">Object</a></li></ul>
+
+
+
+
+  <h2>
+    <a id="overview" class="anchor" href="#overview">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Overview
+  </h2>
+
+  <p>A <code><a href="Char.html">Char</a></code> represents a <a href="http://en.wikipedia.org/wiki/Unicode">Unicode</a> <a href="http://en.wikipedia.org/wiki/Code_point">code point</a>.
+It occupies 32 bits.</p>
+<p>It is created by enclosing an UTF-8 character in single quotes.</p>
+<pre><code class="language-crystal"><span class="s">&#39;a&#39;</span>
+<span class="s">&#39;z&#39;</span>
+<span class="s">&#39;0&#39;</span>
+<span class="s">&#39;_&#39;</span>
+<span class="s">&#39;あ&#39;</span></code></pre>
+<p>You can use a backslash to denote some characters:</p>
+<pre><code class="language-crystal"><span class="s">&#39;\&#39;&#39;</span> <span class="c"># single quote</span>
+<span class="s">&#39;\\&#39;</span> <span class="c"># backslash</span>
+<span class="s">&#39;\e&#39;</span> <span class="c"># escape</span>
+<span class="s">&#39;\f&#39;</span> <span class="c"># form feed</span>
+<span class="s">&#39;\n&#39;</span> <span class="c"># newline</span>
+<span class="s">&#39;\r&#39;</span> <span class="c"># carriage return</span>
+<span class="s">&#39;\t&#39;</span> <span class="c"># tab</span>
+<span class="s">&#39;\v&#39;</span> <span class="c"># vertical tab</span></code></pre>
+<p>You can use a backslash followed by an <em>u</em> and four hexadecimal characters to denote a unicode codepoint written:</p>
+<pre><code class="language-crystal"><span class="s">&#39;\u0041&#39;</span> <span class="c"># == &#39;A&#39;</span></code></pre>
+<p>Or you can use curly braces and specify up to four hexadecimal numbers:</p>
+<pre><code class="language-crystal"><span class="s">&#39;\u{41}&#39;</span> <span class="c"># == &#39;A&#39;</span></code></pre>
+<p>See <a href="https://crystal-lang.org/reference/syntax_and_semantics/literals/char.html"><code>Char</code> literals</a> in the language reference.</p>
+
+
+
+
+
+
+
+  <h2>
+    <a id="included-modules" class="anchor" href="#included-modules">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Included Modules
+  </h2>
+  <ul class="other-types-list">
+    
+      <li class="other-type"><a href="Comparable.html">Comparable</a>(<a href="Char.html">Char</a>)</li>
+    
+      <li class="other-type"><a href="Steppable.html">Steppable</a></li>
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/char.cr#L43" target="_blank">
+        char.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/char/reader.cr#L1" target="_blank">
+        char/reader.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/primitives.cr#L128" target="_blank">
+        primitives.cr
+      </a>
+    
+    <br/>
+  
+
+
+
+  
+    <h2>
+      <a id="constant-summary" class="anchor" href="#constant-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+      Constant Summary
+    </h2>
+  
+  <dl>
+    
+      <dt class="entry-const" id="MAX">
+        <strong>MAX</strong> = <code><span class="n">1114111</span>.unsafe_chr</code>
+      </dt>
+      
+      <dd class="entry-const-doc">
+        <p>The maximum character.</p>
+      </dd>
+      
+    
+      <dt class="entry-const" id="MAX_CODEPOINT">
+        <strong>MAX_CODEPOINT</strong> = <code><span class="n">1114111</span></code>
+      </dt>
+      
+      <dd class="entry-const-doc">
+        <p>The maximum valid codepoint for a character.</p>
+      </dd>
+      
+    
+      <dt class="entry-const" id="REPLACEMENT">
+        <strong>REPLACEMENT</strong> = <code><span class="s">&#39;�&#39;</span></code>
+      </dt>
+      
+      <dd class="entry-const-doc">
+        <p>The replacement character, used on invalid UTF-8 byte sequences.</p>
+      </dd>
+      
+    
+      <dt class="entry-const" id="ZERO">
+        <strong>ZERO</strong> = <code><span class="s">&#39;\0&#39;</span></code>
+      </dt>
+      
+      <dd class="entry-const-doc">
+        <p>The character representing the end of a C string.</p>
+      </dd>
+      
+    
+  </dl>
+
+
+
+  
+
+  
+
+  
+
+  
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#%21%3D%28other%3AChar%29%3ABool-instance-method" class="signature"><strong>#!=</strong>(other : Char) : Bool</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if <code>self</code>'s codepoint is not equal to <em>other</em>'s codepoint.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%2B%28str%3AString%29%3AString-instance-method" class="signature"><strong>#+</strong>(str : String) : String</a>
+        
+          <div class="summary"><p>Concatenates this char and <em>string</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%2B%28other%3AInt%29%3AChar-instance-method" class="signature"><strong>#+</strong>(other : Int) : Char</a>
+        
+          <div class="summary"><p>Returns a char that has this char's codepoint plus <em>other</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#-%28other%3AChar%29%3AInt32-instance-method" class="signature"><strong>#-</strong>(other : Char) : Int32</a>
+        
+          <div class="summary"><p>Returns the difference of the codepoint values of this char and <em>other</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#-%28other%3AInt%29%3AChar-instance-method" class="signature"><strong>#-</strong>(other : Int) : Char</a>
+        
+          <div class="summary"><p>Returns a char that has this char's codepoint minus <em>other</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%3C%28other%3AChar%29%3ABool-instance-method" class="signature"><strong>#<</strong>(other : Char) : Bool</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if <code>self</code>'s codepoint is less than <em>other</em>'s codepoint.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%3C%3D%28other%3AChar%29%3ABool-instance-method" class="signature"><strong>#<=</strong>(other : Char) : Bool</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if <code>self</code>'s codepoint is less than or equal to <em>other</em>'s codepoint.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%3C%3D%3E%28other%3AChar%29-instance-method" class="signature"><strong>#<=></strong>(other : Char)</a>
+        
+          <div class="summary"><p>The comparison operator.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%3D%3D%28other%3AChar%29%3ABool-instance-method" class="signature"><strong>#==</strong>(other : Char) : Bool</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if <code>self</code>'s codepoint is equal to <em>other</em>'s codepoint.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%3D%3D%3D%28byte%3AInt%29-instance-method" class="signature"><strong>#===</strong>(byte : Int)</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if the codepoint is equal to <em>byte</em> ignoring the type.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%3E%28other%3AChar%29%3ABool-instance-method" class="signature"><strong>#></strong>(other : Char) : Bool</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if <code>self</code>'s codepoint is greater than <em>other</em>'s codepoint.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%3E%3D%28other%3AChar%29%3ABool-instance-method" class="signature"><strong>#>=</strong>(other : Char) : Bool</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if <code>self</code>'s codepoint is greater than or equal to <em>other</em>'s codepoint.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#alphanumeric%3F%3ABool-instance-method" class="signature"><strong>#alphanumeric?</strong> : Bool</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this char is a letter or a number according to unicode.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#ascii%3F%3ABool-instance-method" class="signature"><strong>#ascii?</strong> : Bool</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this char is an ASCII character (codepoint is in (0..127))</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#ascii_alphanumeric%3F%3ABool-instance-method" class="signature"><strong>#ascii_alphanumeric?</strong> : Bool</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this char is an ASCII letter or number ('0' to '9', 'a' to 'z', 'A' to 'Z').</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#ascii_control%3F%3ABool-instance-method" class="signature"><strong>#ascii_control?</strong> : Bool</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this char is an ASCII control character.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#ascii_letter%3F%3ABool-instance-method" class="signature"><strong>#ascii_letter?</strong> : Bool</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this char is an ASCII letter ('a' to 'z', 'A' to 'Z').</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#ascii_lowercase%3F%3ABool-instance-method" class="signature"><strong>#ascii_lowercase?</strong> : Bool</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this char is a lowercase ASCII letter.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#ascii_number%3F%28base%3AInt%3D10%29%3ABool-instance-method" class="signature"><strong>#ascii_number?</strong>(base : Int = <span class="n">10</span>) : Bool</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this char is an ASCII number in specified base.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#ascii_uppercase%3F%3ABool-instance-method" class="signature"><strong>#ascii_uppercase?</strong> : Bool</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this char is an ASCII uppercase letter.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#ascii_whitespace%3F%3ABool-instance-method" class="signature"><strong>#ascii_whitespace?</strong> : Bool</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this char is an ASCII whitespace.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#bytes%3AArray%28UInt8%29-instance-method" class="signature"><strong>#bytes</strong> : Array(UInt8)</a>
+        
+          <div class="summary"><p>Returns this char bytes as encoded by UTF-8, as an <code><a href="Array.html">Array</a>(<a href="UInt8.html">UInt8</a>)</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#bytesize%3AInt32-instance-method" class="signature"><strong>#bytesize</strong> : Int32</a>
+        
+          <div class="summary"><p>Returns the number of UTF-8 bytes in this char.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#clone-instance-method" class="signature"><strong>#clone</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#control%3F%3ABool-instance-method" class="signature"><strong>#control?</strong> : Bool</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this char is a control character according to unicode.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#downcase%28io%3AIO%2Coptions%3AUnicode%3A%3ACaseOptions%3D%3Anone%29%3ANil-instance-method" class="signature"><strong>#downcase</strong>(io : IO, options : Unicode::CaseOptions = <span class="n">:none</span>) : Nil</a>
+        
+          <div class="summary"><p>Writes the downcase equivalent of this char to the given <em>io</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#downcase%28options%3AUnicode%3A%3ACaseOptions%3D%3Anone%29%3AChar-instance-method" class="signature"><strong>#downcase</strong>(options : Unicode::CaseOptions = <span class="n">:none</span>) : Char</a>
+        
+          <div class="summary"><p>Returns the downcase equivalent of this char.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#downcase%28options%3AUnicode%3A%3ACaseOptions%3D%3Anone%2C%26%29-instance-method" class="signature"><strong>#downcase</strong>(options : Unicode::CaseOptions = <span class="n">:none</span>, &)</a>
+        
+          <div class="summary"><p>Yields each char for the downcase equivalent of this char.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#dump%28io%29-instance-method" class="signature"><strong>#dump</strong>(io)</a>
+        
+          <div class="summary"><p>Returns a representation of <code>self</code> as an ASCII-compatible Crystal char literal, wrapped in single quotes.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#dump%3AString-instance-method" class="signature"><strong>#dump</strong> : String</a>
+        
+          <div class="summary"><p>Returns a representation of <code>self</code> as an ASCII-compatible Crystal char literal, wrapped in single quotes.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#each_byte%28%26%29%3ANil-instance-method" class="signature"><strong>#each_byte</strong>(&) : Nil</a>
+        
+          <div class="summary"><p>Yields each of the bytes of this char as encoded by UTF-8.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#hash%28hasher%29-instance-method" class="signature"><strong>#hash</strong>(hasher)</a>
+        
+          <div class="summary"><p>See <code><a href="Object.html#hash%28hasher%29-instance-method">Object#hash(hasher)</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#hex%3F%3ABool-instance-method" class="signature"><strong>#hex?</strong> : Bool</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this char is an ASCII hex digit ('0' to '9', 'a' to 'f', 'A' to 'F').</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#in_set%3F%28%2Asets%3AString%29%3ABool-instance-method" class="signature"><strong>#in_set?</strong>(*sets : String) : Bool</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this char is matched by the given <em>sets</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#inspect%28io%3AIO%29%3ANil-instance-method" class="signature"><strong>#inspect</strong>(io : IO) : Nil</a>
+        
+          <div class="summary"><p>Returns a representation of <code>self</code> as a Crystal char literal, wrapped in single quotes.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#inspect%3AString-instance-method" class="signature"><strong>#inspect</strong> : String</a>
+        
+          <div class="summary"><p>Returns a representation of <code>self</code> as a Crystal char literal, wrapped in single quotes.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#letter%3F%3ABool-instance-method" class="signature"><strong>#letter?</strong> : Bool</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this char is a letter.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#lowercase%3F%3ABool-instance-method" class="signature"><strong>#lowercase?</strong> : Bool</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this char is a lowercase letter.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#mark%3F%3ABool-instance-method" class="signature"><strong>#mark?</strong> : Bool</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this char is a mark character according to unicode.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#number%3F%3ABool-instance-method" class="signature"><strong>#number?</strong> : Bool</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this char is a number according to unicode.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#ord%3AInt32-instance-method" class="signature"><strong>#ord</strong> : Int32</a>
+        
+          <div class="summary"><p>Returns the codepoint of this char.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#pred%3AChar-instance-method" class="signature"><strong>#pred</strong> : Char</a>
+        
+          <div class="summary"><p>Returns the predecessor codepoint before this one.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#printable%3F-instance-method" class="signature"><strong>#printable?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this char is a printable character.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#step%28%2A%2Ctolimit%3Dnil%2Cexclusive%3ABool%3Dfalse%2C%26%29-instance-method" class="signature"><strong>#step</strong>(*, to limit = <span class="n">nil</span>, exclusive : Bool = <span class="n">false</span>, &)</a>
+        
+          <div class="summary"><p>Performs a <code><a href="Char.html#step%28%2A%2Ctolimit%3Dnil%2Cexclusive%3ABool%3Dfalse%2C%26%29-instance-method">#step</a></code> in the direction of the <em>limit</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#step%28%2A%2Ctolimit%3Dnil%2Cexclusive%3ABool%3Dfalse%29-instance-method" class="signature"><strong>#step</strong>(*, to limit = <span class="n">nil</span>, exclusive : Bool = <span class="n">false</span>)</a>
+        
+          <div class="summary"><p>Performs a <code><a href="Char.html#step%28%2A%2Ctolimit%3Dnil%2Cexclusive%3ABool%3Dfalse%2C%26%29-instance-method">#step</a></code> in the direction of the <em>limit</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#succ%3AChar-instance-method" class="signature"><strong>#succ</strong> : Char</a>
+        
+          <div class="summary"><p>Returns the successor codepoint after this one.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#titlecase%28io%3AIO%2Coptions%3AUnicode%3A%3ACaseOptions%3D%3Anone%29%3ANil-instance-method" class="signature"><strong>#titlecase</strong>(io : IO, options : Unicode::CaseOptions = <span class="n">:none</span>) : Nil</a>
+        
+          <div class="summary"><p>Writes the titlecase equivalent of this char to the given <em>io</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#titlecase%28options%3AUnicode%3A%3ACaseOptions%3D%3Anone%29%3AChar-instance-method" class="signature"><strong>#titlecase</strong>(options : Unicode::CaseOptions = <span class="n">:none</span>) : Char</a>
+        
+          <div class="summary"><p>Returns the titlecase equivalent of this char.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#titlecase%28options%3AUnicode%3A%3ACaseOptions%3D%3Anone%2C%26%29-instance-method" class="signature"><strong>#titlecase</strong>(options : Unicode::CaseOptions = <span class="n">:none</span>, &)</a>
+        
+          <div class="summary"><p>Yields each char for the titlecase equivalent of this char.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#titlecase%3F%3ABool-instance-method" class="signature"><strong>#titlecase?</strong> : Bool</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this char is a titlecase character, i.e.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_f%3AFloat64-instance-method" class="signature"><strong>#to_f</strong> : Float64</a>
+        
+          <div class="summary"><p>Returns the integer value of this char as a float if it's an ASCII char denoting a digit, raises otherwise.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_f32%3AFloat32-instance-method" class="signature"><strong>#to_f32</strong> : Float32</a>
+        
+          <div class="summary"><p>See also: <code><a href="Char.html#to_f%3AFloat64-instance-method">#to_f</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_f32%3F%3AFloat32%7CNil-instance-method" class="signature"><strong>#to_f32?</strong> : Float32 | Nil</a>
+        
+          <div class="summary"><p>See also: <code><a href="Char.html#to_f%3F%3AFloat64%7CNil-instance-method">#to_f?</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_f64%3AFloat64-instance-method" class="signature"><strong>#to_f64</strong> : Float64</a>
+        
+          <div class="summary"><p>Same as <code><a href="Char.html#to_f%3AFloat64-instance-method">#to_f</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_f64%3F%3AFloat64%7CNil-instance-method" class="signature"><strong>#to_f64?</strong> : Float64 | Nil</a>
+        
+          <div class="summary"><p>Same as <code><a href="Char.html#to_f%3F%3AFloat64%7CNil-instance-method">#to_f?</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_f%3F%3AFloat64%7CNil-instance-method" class="signature"><strong>#to_f?</strong> : Float64 | Nil</a>
+        
+          <div class="summary"><p>Returns the integer value of this char as a float if it's an ASCII char denoting a digit, <code>nil</code> otherwise.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_i%28base%3AInt%3D10%29%3AInt32-instance-method" class="signature"><strong>#to_i</strong>(base : Int = <span class="n">10</span>) : Int32</a>
+        
+          <div class="summary"><p>Returns the integer value of this char if it's an ASCII char denoting a digit in <em>base</em>, raises otherwise.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_i128%28base%3AInt%3D10%29-instance-method" class="signature"><strong>#to_i128</strong>(base : Int = <span class="n">10</span>)</a>
+        
+          <div class="summary"><p>See also: <code><a href="Char.html#to_i%28base%3AInt%3D10%29%3AInt32-instance-method">#to_i</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_i128%3F%28base%3AInt%3D10%29-instance-method" class="signature"><strong>#to_i128?</strong>(base : Int = <span class="n">10</span>)</a>
+        
+          <div class="summary"><p>See also: <code><a href="Char.html#to_i%3F%28base%3AInt%3D10%29%3AInt32%7CNil-instance-method">#to_i?</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_i16%28base%3AInt%3D10%29-instance-method" class="signature"><strong>#to_i16</strong>(base : Int = <span class="n">10</span>)</a>
+        
+          <div class="summary"><p>See also: <code><a href="Char.html#to_i%28base%3AInt%3D10%29%3AInt32-instance-method">#to_i</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_i16%3F%28base%3AInt%3D10%29-instance-method" class="signature"><strong>#to_i16?</strong>(base : Int = <span class="n">10</span>)</a>
+        
+          <div class="summary"><p>See also: <code><a href="Char.html#to_i%3F%28base%3AInt%3D10%29%3AInt32%7CNil-instance-method">#to_i?</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_i32%28base%3AInt%3D10%29%3AInt32-instance-method" class="signature"><strong>#to_i32</strong>(base : Int = <span class="n">10</span>) : Int32</a>
+        
+          <div class="summary"><p>Same as <code><a href="Char.html#to_i%28base%3AInt%3D10%29%3AInt32-instance-method">#to_i</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_i32%3F%28base%3AInt%3D10%29%3AInt32%7CNil-instance-method" class="signature"><strong>#to_i32?</strong>(base : Int = <span class="n">10</span>) : Int32 | Nil</a>
+        
+          <div class="summary"><p>Same as <code><a href="Char.html#to_i%3F%28base%3AInt%3D10%29%3AInt32%7CNil-instance-method">#to_i?</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_i64%28base%3AInt%3D10%29-instance-method" class="signature"><strong>#to_i64</strong>(base : Int = <span class="n">10</span>)</a>
+        
+          <div class="summary"><p>See also: <code><a href="Char.html#to_i%28base%3AInt%3D10%29%3AInt32-instance-method">#to_i</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_i64%3F%28base%3AInt%3D10%29-instance-method" class="signature"><strong>#to_i64?</strong>(base : Int = <span class="n">10</span>)</a>
+        
+          <div class="summary"><p>See also: <code><a href="Char.html#to_i%3F%28base%3AInt%3D10%29%3AInt32%7CNil-instance-method">#to_i?</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_i8%28base%3AInt%3D10%29-instance-method" class="signature"><strong>#to_i8</strong>(base : Int = <span class="n">10</span>)</a>
+        
+          <div class="summary"><p>See also: <code><a href="Char.html#to_i%28base%3AInt%3D10%29%3AInt32-instance-method">#to_i</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_i8%3F%28base%3AInt%3D10%29-instance-method" class="signature"><strong>#to_i8?</strong>(base : Int = <span class="n">10</span>)</a>
+        
+          <div class="summary"><p>See also: <code><a href="Char.html#to_i%3F%28base%3AInt%3D10%29%3AInt32%7CNil-instance-method">#to_i?</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_i%3F%28base%3AInt%3D10%29%3AInt32%7CNil-instance-method" class="signature"><strong>#to_i?</strong>(base : Int = <span class="n">10</span>) : Int32 | Nil</a>
+        
+          <div class="summary"><p>Returns the integer value of this char if it's an ASCII char denoting a digit in <em>base</em>, <code>nil</code> otherwise.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_s%28io%3AIO%29%3ANil-instance-method" class="signature"><strong>#to_s</strong>(io : IO) : Nil</a>
+        
+          <div class="summary"><p>Appends this char to the given <code><a href="IO.html">IO</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_s%3AString-instance-method" class="signature"><strong>#to_s</strong> : String</a>
+        
+          <div class="summary"><p>Returns this char as a string containing this char as a single character.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_u128%28base%3AInt%3D10%29-instance-method" class="signature"><strong>#to_u128</strong>(base : Int = <span class="n">10</span>)</a>
+        
+          <div class="summary"><p>See also: <code><a href="Char.html#to_i%28base%3AInt%3D10%29%3AInt32-instance-method">#to_i</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_u128%3F%28base%3AInt%3D10%29-instance-method" class="signature"><strong>#to_u128?</strong>(base : Int = <span class="n">10</span>)</a>
+        
+          <div class="summary"><p>See also: <code><a href="Char.html#to_i%3F%28base%3AInt%3D10%29%3AInt32%7CNil-instance-method">#to_i?</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_u16%28base%3AInt%3D10%29-instance-method" class="signature"><strong>#to_u16</strong>(base : Int = <span class="n">10</span>)</a>
+        
+          <div class="summary"><p>See also: <code><a href="Char.html#to_i%28base%3AInt%3D10%29%3AInt32-instance-method">#to_i</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_u16%3F%28base%3AInt%3D10%29-instance-method" class="signature"><strong>#to_u16?</strong>(base : Int = <span class="n">10</span>)</a>
+        
+          <div class="summary"><p>See also: <code><a href="Char.html#to_i%3F%28base%3AInt%3D10%29%3AInt32%7CNil-instance-method">#to_i?</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_u32%28base%3AInt%3D10%29-instance-method" class="signature"><strong>#to_u32</strong>(base : Int = <span class="n">10</span>)</a>
+        
+          <div class="summary"><p>See also: <code><a href="Char.html#to_i%28base%3AInt%3D10%29%3AInt32-instance-method">#to_i</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_u32%3F%28base%3AInt%3D10%29-instance-method" class="signature"><strong>#to_u32?</strong>(base : Int = <span class="n">10</span>)</a>
+        
+          <div class="summary"><p>See also: <code><a href="Char.html#to_i%3F%28base%3AInt%3D10%29%3AInt32%7CNil-instance-method">#to_i?</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_u64%28base%3AInt%3D10%29-instance-method" class="signature"><strong>#to_u64</strong>(base : Int = <span class="n">10</span>)</a>
+        
+          <div class="summary"><p>See also: <code><a href="Char.html#to_i%28base%3AInt%3D10%29%3AInt32-instance-method">#to_i</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_u64%3F%28base%3AInt%3D10%29-instance-method" class="signature"><strong>#to_u64?</strong>(base : Int = <span class="n">10</span>)</a>
+        
+          <div class="summary"><p>See also: <code><a href="Char.html#to_i%3F%28base%3AInt%3D10%29%3AInt32%7CNil-instance-method">#to_i?</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_u8%28base%3AInt%3D10%29-instance-method" class="signature"><strong>#to_u8</strong>(base : Int = <span class="n">10</span>)</a>
+        
+          <div class="summary"><p>See also: <code><a href="Char.html#to_i%28base%3AInt%3D10%29%3AInt32-instance-method">#to_i</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_u8%3F%28base%3AInt%3D10%29-instance-method" class="signature"><strong>#to_u8?</strong>(base : Int = <span class="n">10</span>)</a>
+        
+          <div class="summary"><p>See also: <code><a href="Char.html#to_i%3F%28base%3AInt%3D10%29%3AInt32%7CNil-instance-method">#to_i?</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#unicode_escape%28io%3AIO%29%3ANil-instance-method" class="signature"><strong>#unicode_escape</strong>(io : IO) : Nil</a>
+        
+          <div class="summary"><p>Returns the Unicode escape sequence representing this character.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#unicode_escape%3AString-instance-method" class="signature"><strong>#unicode_escape</strong> : String</a>
+        
+          <div class="summary"><p>Returns the Unicode escape sequence representing this character.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#upcase%28io%3AIO%2Coptions%3AUnicode%3A%3ACaseOptions%3D%3Anone%29%3ANil-instance-method" class="signature"><strong>#upcase</strong>(io : IO, options : Unicode::CaseOptions = <span class="n">:none</span>) : Nil</a>
+        
+          <div class="summary"><p>Writes the upcase equivalent of this char to the given <em>io</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#upcase%28options%3AUnicode%3A%3ACaseOptions%3D%3Anone%29%3AChar-instance-method" class="signature"><strong>#upcase</strong>(options : Unicode::CaseOptions = <span class="n">:none</span>) : Char</a>
+        
+          <div class="summary"><p>Returns the upcase equivalent of this char.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#upcase%28options%3AUnicode%3A%3ACaseOptions%3D%3Anone%2C%26%29-instance-method" class="signature"><strong>#upcase</strong>(options : Unicode::CaseOptions = <span class="n">:none</span>, &)</a>
+        
+          <div class="summary"><p>Yields each char for the upcase equivalent of this char.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#uppercase%3F%3ABool-instance-method" class="signature"><strong>#uppercase?</strong> : Bool</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this char is an uppercase letter.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#whitespace%3F%3ABool-instance-method" class="signature"><strong>#whitespace?</strong> : Bool</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this char is a whitespace according to unicode.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+
+  <div class="methods-inherited">
+    
+      
+
+  <h3>Instance methods inherited from module <code><a href="Steppable.html">Steppable</a></code></h3>
+  
+  
+    <a href="Steppable.html#step%28%2A%2Ctolimit%3Dnil%2Cbystep%2Cexclusive%3ABool%3Dfalse%2C%26%29%3ANil-instance-method" class="tooltip">
+      <span>step(*, to limit = <span class="n">nil</span>, by step, exclusive : Bool = <span class="n">false</span>, &) : Nil<br/>step(*, to limit = <span class="n">nil</span>, by step, exclusive : Bool = <span class="n">false</span>)</span>
+    step</a>
+    
+  
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+      
+
+  <h3>Instance methods inherited from module <code><a href="Comparable.html">Comparable</a>(<a href="Char.html">Char</a>)</code></h3>
+  
+  
+    <a href="Comparable.html#%3C%28other%3AT%29%3ABool-instance-method" class="tooltip">
+      <span><(other : T) : Bool</span>
+    <</a>, 
+    
+  
+    <a href="Comparable.html#%3C%3D%28other%3AT%29-instance-method" class="tooltip">
+      <span><=(other : T)</span>
+    <=</a>, 
+    
+  
+    <a href="Comparable.html#%3C%3D%3E%28other%3AT%29-instance-method" class="tooltip">
+      <span><=>(other : T)</span>
+    <=></a>, 
+    
+  
+    <a href="Comparable.html#%3D%3D%28other%3AT%29-instance-method" class="tooltip">
+      <span>==(other : T)</span>
+    ==</a>, 
+    
+  
+    <a href="Comparable.html#%3E%28other%3AT%29%3ABool-instance-method" class="tooltip">
+      <span>>(other : T) : Bool</span>
+    ></a>, 
+    
+  
+    <a href="Comparable.html#%3E%3D%28other%3AT%29-instance-method" class="tooltip">
+      <span>>=(other : T)</span>
+    >=</a>, 
+    
+  
+    <a href="Comparable.html#clamp%28min%2Cmax%29-instance-method" class="tooltip">
+      <span>clamp(min, max)<br/>clamp(range : Range)</span>
+    clamp</a>
+    
+  
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+      
+
+  <h3>Instance methods inherited from struct <code><a href="Value.html">Value</a></code></h3>
+  
+  
+    <a href="Value.html#%3D%3D%28other%3AJSON%3A%3AAny%29-instance-method" class="tooltip">
+      <span>==(other : JSON::Any)<br/>==(other : YAML::Any)<br/>==(other)</span>
+    ==</a>, 
+    
+  
+    <a href="Value.html#dup-instance-method" class="tooltip">
+      <span>dup</span>
+    dup</a>
+    
+  
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+      
+
+  <h3>Instance methods inherited from class <code><a href="Object.html">Object</a></code></h3>
+  
+  
+    <a href="Object.html#%21%3ABool-instance-method" class="tooltip">
+      <span>! : Bool</span>
+    !</a>, 
+    
+  
+    <a href="Object.html#%21%3D%28other%29-instance-method" class="tooltip">
+      <span>!=(other)</span>
+    !=</a>, 
+    
+  
+    <a href="Object.html#%21~%28other%29-instance-method" class="tooltip">
+      <span>!~(other)</span>
+    !~</a>, 
+    
+  
+    <a href="Object.html#%3D%3D%28other%29-instance-method" class="tooltip">
+      <span>==(other)</span>
+    ==</a>, 
+    
+  
+    <a href="Object.html#%3D%3D%3D%28other%3AJSON%3A%3AAny%29-instance-method" class="tooltip">
+      <span>===(other : JSON::Any)<br/>===(other : YAML::Any)<br/>===(other)</span>
+    ===</a>, 
+    
+  
+    <a href="Object.html#%3D~%28other%29-instance-method" class="tooltip">
+      <span>=~(other)</span>
+    =~</a>, 
+    
+  
+    <a href="Object.html#as%28type%3AClass%29-instance-method" class="tooltip">
+      <span>as(type : Class)</span>
+    as</a>, 
+    
+  
+    <a href="Object.html#as%3F%28type%3AClass%29-instance-method" class="tooltip">
+      <span>as?(type : Class)</span>
+    as?</a>, 
+    
+  
+    <a href="Object.html#class-instance-method" class="tooltip">
+      <span>class</span>
+    class</a>, 
+    
+  
+    <a href="Object.html#dup-instance-method" class="tooltip">
+      <span>dup</span>
+    dup</a>, 
+    
+  
+    <a href="Object.html#hash%28hasher%29-instance-method" class="tooltip">
+      <span>hash(hasher)<br/>hash</span>
+    hash</a>, 
+    
+  
+    <a href="Object.html#in%3F%28collection%3AObject%29%3ABool-instance-method" class="tooltip">
+      <span>in?(collection : Object) : Bool<br/>in?(*values : Object) : Bool</span>
+    in?</a>, 
+    
+  
+    <a href="Object.html#inspect%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>inspect(io : IO) : Nil<br/>inspect : String</span>
+    inspect</a>, 
+    
+  
+    <a href="Object.html#is_a%3F%28type%3AClass%29%3ABool-instance-method" class="tooltip">
+      <span>is_a?(type : Class) : Bool</span>
+    is_a?</a>, 
+    
+  
+    <a href="Object.html#itself-instance-method" class="tooltip">
+      <span>itself</span>
+    itself</a>, 
+    
+  
+    <a href="Object.html#nil%3F%3ABool-instance-method" class="tooltip">
+      <span>nil? : Bool</span>
+    nil?</a>, 
+    
+  
+    <a href="Object.html#not_nil%21%28message%29-instance-method" class="tooltip">
+      <span>not_nil!(message)<br/>not_nil!</span>
+    not_nil!</a>, 
+    
+  
+    <a href="Object.html#pretty_inspect%28width%3D79%2Cnewline%3D%22%5Cn%22%2Cindent%3D0%29%3AString-instance-method" class="tooltip">
+      <span>pretty_inspect(width = <span class="n">79</span>, newline = <span class="s">&quot;\n&quot;</span>, indent = <span class="n">0</span>) : String</span>
+    pretty_inspect</a>, 
+    
+  
+    <a href="Object.html#pretty_print%28pp%3APrettyPrint%29%3ANil-instance-method" class="tooltip">
+      <span>pretty_print(pp : PrettyPrint) : Nil</span>
+    pretty_print</a>, 
+    
+  
+    <a href="Object.html#responds_to%3F%28name%3ASymbol%29%3ABool-instance-method" class="tooltip">
+      <span>responds_to?(name : Symbol) : Bool</span>
+    responds_to?</a>, 
+    
+  
+    <a href="Object.html#tap%28%26%29-instance-method" class="tooltip">
+      <span>tap(&)</span>
+    tap</a>, 
+    
+  
+    <a href="Object.html#to_json%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_json(io : IO) : Nil<br/>to_json : String</span>
+    to_json</a>, 
+    
+  
+    <a href="Object.html#to_pretty_json%28indent%3AString%3D%22%22%29%3AString-instance-method" class="tooltip">
+      <span>to_pretty_json(indent : String = <span class="s">&quot;  &quot;</span>) : String<br/>to_pretty_json(io : IO, indent : String = <span class="s">&quot;  &quot;</span>) : Nil</span>
+    to_pretty_json</a>, 
+    
+  
+    <a href="Object.html#to_s%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_s(io : IO) : Nil<br/>to_s : String</span>
+    to_s</a>, 
+    
+  
+    <a href="Object.html#to_yaml%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_yaml(io : IO) : Nil<br/>to_yaml : String</span>
+    to_yaml</a>, 
+    
+  
+    <a href="Object.html#try%28%26%29-instance-method" class="tooltip">
+      <span>try(&)</span>
+    try</a>, 
+    
+  
+    <a href="Object.html#unsafe_as%28type%3AT.class%29forallT-instance-method" class="tooltip">
+      <span>unsafe_as(type : <span class="t">T</span>.<span class="k">class</span>) forall T</span>
+    unsafe_as</a>
+    
+  
+
+
+      
+
+
+      
+
+  <h3>Class methods inherited from class <code><a href="Object.html">Object</a></code></h3>
+  
+  
+    <a href="Object.html#from_json%28string_or_io%2Croot%3AString%29-class-method" class="tooltip">
+      <span>from_json(string_or_io, root : String)<br/>from_json(string_or_io)</span>
+    from_json</a>, 
+    
+  
+    <a href="Object.html#from_yaml%28string_or_io%3AString%7CIO%29-class-method" class="tooltip">
+      <span>from_yaml(string_or_io : String | IO)</span>
+    from_yaml</a>
+    
+  
+
+
+      
+
+  <h3>Macros inherited from class <code><a href="Object.html">Object</a></code></h3>
+  
+  
+    <a href="Object.html#class_getter%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_getter(*names, &block)</span>
+    class_getter</a>, 
+    
+  
+    <a href="Object.html#class_getter%21%28%2Anames%29-macro" class="tooltip">
+      <span>class_getter!(*names)</span>
+    class_getter!</a>, 
+    
+  
+    <a href="Object.html#class_getter%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_getter?(*names, &block)</span>
+    class_getter?</a>, 
+    
+  
+    <a href="Object.html#class_property%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_property(*names, &block)</span>
+    class_property</a>, 
+    
+  
+    <a href="Object.html#class_property%21%28%2Anames%29-macro" class="tooltip">
+      <span>class_property!(*names)</span>
+    class_property!</a>, 
+    
+  
+    <a href="Object.html#class_property%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_property?(*names, &block)</span>
+    class_property?</a>, 
+    
+  
+    <a href="Object.html#class_setter%28%2Anames%29-macro" class="tooltip">
+      <span>class_setter(*names)</span>
+    class_setter</a>, 
+    
+  
+    <a href="Object.html#def_clone-macro" class="tooltip">
+      <span>def_clone</span>
+    def_clone</a>, 
+    
+  
+    <a href="Object.html#def_equals%28%2Afields%29-macro" class="tooltip">
+      <span>def_equals(*fields)</span>
+    def_equals</a>, 
+    
+  
+    <a href="Object.html#def_equals_and_hash%28%2Afields%29-macro" class="tooltip">
+      <span>def_equals_and_hash(*fields)</span>
+    def_equals_and_hash</a>, 
+    
+  
+    <a href="Object.html#def_hash%28%2Afields%29-macro" class="tooltip">
+      <span>def_hash(*fields)</span>
+    def_hash</a>, 
+    
+  
+    <a href="Object.html#delegate%28%2Amethods%2Ctoobject%29-macro" class="tooltip">
+      <span>delegate(*methods, to object)</span>
+    delegate</a>, 
+    
+  
+    <a href="Object.html#forward_missing_to%28delegate%29-macro" class="tooltip">
+      <span>forward_missing_to(delegate)</span>
+    forward_missing_to</a>, 
+    
+  
+    <a href="Object.html#getter%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>getter(*names, &block)</span>
+    getter</a>, 
+    
+  
+    <a href="Object.html#getter%21%28%2Anames%29-macro" class="tooltip">
+      <span>getter!(*names)</span>
+    getter!</a>, 
+    
+  
+    <a href="Object.html#getter%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>getter?(*names, &block)</span>
+    getter?</a>, 
+    
+  
+    <a href="Object.html#property%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>property(*names, &block)</span>
+    property</a>, 
+    
+  
+    <a href="Object.html#property%21%28%2Anames%29-macro" class="tooltip">
+      <span>property!(*names)</span>
+    property!</a>, 
+    
+  
+    <a href="Object.html#property%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>property?(*names, &block)</span>
+    property?</a>, 
+    
+  
+    <a href="Object.html#setter%28%2Anames%29-macro" class="tooltip">
+      <span>setter(*names)</span>
+    setter</a>
+    
+  
+
+
+    
+  </div>
+
+  
+
+  
+
+  
+
+  
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="!=(other:Char):Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>!=</strong>(other : <a href="Char.html">Char</a>) : <a href="Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#%21%3D%28other%3AChar%29%3ABool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if <code>self</code>'s codepoint is not equal to <em>other</em>'s codepoint.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/primitives.cr#L148" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="+(str:String):String-instance-method">
+      <div class="signature">
+        
+        def <strong>+</strong>(str : <a href="String.html">String</a>) : <a href="String.html">String</a>
+
+        <a class="method-permalink" href="#%2B%28str%3AString%29%3AString-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Concatenates this char and <em>string</em>.</p>
+<pre><code class="language-crystal"><span class="s">&#39;f&#39;</span> <span class="o">+</span> <span class="s">&quot;oo&quot;</span> <span class="c"># =&gt; &quot;foo&quot;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/char.cr#L75" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="+(other:Int):Char-instance-method">
+      <div class="signature">
+        
+        def <strong>+</strong>(other : <a href="Int.html">Int</a>) : <a href="Char.html">Char</a>
+
+        <a class="method-permalink" href="#%2B%28other%3AInt%29%3AChar-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns a char that has this char's codepoint plus <em>other</em>.</p>
+<pre><code class="language-crystal"><span class="s">&#39;a&#39;</span> <span class="o">+</span> <span class="n">1</span> <span class="c"># =&gt; &#39;b&#39;</span>
+<span class="s">&#39;a&#39;</span> <span class="o">+</span> <span class="n">2</span> <span class="c"># =&gt; &#39;c&#39;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/char.cr#L96" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="-(other:Char):Int32-instance-method">
+      <div class="signature">
+        
+        def <strong>-</strong>(other : <a href="Char.html">Char</a>) : <a href="Int32.html">Int32</a>
+
+        <a class="method-permalink" href="#-%28other%3AChar%29%3AInt32-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the difference of the codepoint values of this char and <em>other</em>.</p>
+<pre><code class="language-crystal"><span class="s">&#39;a&#39;</span> <span class="o">-</span> <span class="s">&#39;a&#39;</span> <span class="c"># =&gt; 0</span>
+<span class="s">&#39;b&#39;</span> <span class="o">-</span> <span class="s">&#39;a&#39;</span> <span class="c"># =&gt; 1</span>
+<span class="s">&#39;c&#39;</span> <span class="o">-</span> <span class="s">&#39;a&#39;</span> <span class="c"># =&gt; 2</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/char.cr#L66" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="-(other:Int):Char-instance-method">
+      <div class="signature">
+        
+        def <strong>-</strong>(other : <a href="Int.html">Int</a>) : <a href="Char.html">Char</a>
+
+        <a class="method-permalink" href="#-%28other%3AInt%29%3AChar-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns a char that has this char's codepoint minus <em>other</em>.</p>
+<pre><code class="language-crystal"><span class="s">&#39;c&#39;</span> <span class="o">-</span> <span class="n">1</span> <span class="c"># =&gt; &#39;b&#39;</span>
+<span class="s">&#39;c&#39;</span> <span class="o">-</span> <span class="n">2</span> <span class="c"># =&gt; &#39;a&#39;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/char.cr#L106" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="&lt;(other:Char):Bool-instance-method">
+      <div class="signature">
+        
+        def <strong><</strong>(other : <a href="Char.html">Char</a>) : <a href="Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#%3C%28other%3AChar%29%3ABool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if <code>self</code>'s codepoint is less than <em>other</em>'s codepoint.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/primitives.cr#L148" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="&lt;=(other:Char):Bool-instance-method">
+      <div class="signature">
+        
+        def <strong><=</strong>(other : <a href="Char.html">Char</a>) : <a href="Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#%3C%3D%28other%3AChar%29%3ABool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if <code>self</code>'s codepoint is less than or equal to <em>other</em>'s codepoint.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/primitives.cr#L148" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="&lt;=&gt;(other:Char)-instance-method">
+      <div class="signature">
+        
+        def <strong><=></strong>(other : <a href="Char.html">Char</a>)
+
+        <a class="method-permalink" href="#%3C%3D%3E%28other%3AChar%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>The comparison operator.</p>
+<p>Returns the difference of the codepoint values of <code>self</code> and <em>other</em>.
+The result is either negative, <code>0</code> or positive based on whether <code>other</code>'s codepoint is
+less, equal, or greater than <code>self</code>'s codepoint.</p>
+<pre><code class="language-crystal"><span class="s">&#39;a&#39;</span> <span class="o">&lt;=&gt;</span> <span class="s">&#39;c&#39;</span> <span class="c"># =&gt; -2</span>
+<span class="s">&#39;z&#39;</span> <span class="o">&lt;=&gt;</span> <span class="s">&#39;z&#39;</span> <span class="c"># =&gt; 0</span>
+<span class="s">&#39;c&#39;</span> <span class="o">&lt;=&gt;</span> <span class="s">&#39;a&#39;</span> <span class="c"># =&gt; 2</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/char.cr#L121" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="==(other:Char):Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>==</strong>(other : <a href="Char.html">Char</a>) : <a href="Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#%3D%3D%28other%3AChar%29%3ABool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if <code>self</code>'s codepoint is equal to <em>other</em>'s codepoint.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/primitives.cr#L148" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="===(byte:Int)-instance-method">
+      <div class="signature">
+        
+        def <strong>===</strong>(byte : <a href="Int.html">Int</a>)
+
+        <a class="method-permalink" href="#%3D%3D%3D%28byte%3AInt%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if the codepoint is equal to <em>byte</em> ignoring the type.</p>
+<pre><code class="language-crystal"><span class="s">&#39;c&#39;</span>.ord       <span class="c"># =&gt; 99</span>
+<span class="s">&#39;c&#39;</span> <span class="o">===</span> <span class="n">99_u8</span> <span class="c"># =&gt; true</span>
+<span class="s">&#39;c&#39;</span> <span class="o">===</span> <span class="n">99</span>    <span class="c"># =&gt; true</span>
+<span class="s">&#39;z&#39;</span> <span class="o">===</span> <span class="n">99</span>    <span class="c"># =&gt; false</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/char.cr#L1053" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="&gt;(other:Char):Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>></strong>(other : <a href="Char.html">Char</a>) : <a href="Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#%3E%28other%3AChar%29%3ABool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if <code>self</code>'s codepoint is greater than <em>other</em>'s codepoint.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/primitives.cr#L148" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="&gt;=(other:Char):Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>>=</strong>(other : <a href="Char.html">Char</a>) : <a href="Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#%3E%3D%28other%3AChar%29%3ABool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if <code>self</code>'s codepoint is greater than or equal to <em>other</em>'s codepoint.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/primitives.cr#L148" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="alphanumeric?:Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>alphanumeric?</strong> : <a href="Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#alphanumeric%3F%3ABool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this char is a letter or a number according to unicode.</p>
+<pre><code class="language-crystal"><span class="s">&#39;c&#39;</span>.alphanumeric? <span class="c"># =&gt; true</span>
+<span class="s">&#39;8&#39;</span>.alphanumeric? <span class="c"># =&gt; true</span>
+<span class="s">&#39;.&#39;</span>.alphanumeric? <span class="c"># =&gt; false</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/char.cr#L286" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="ascii?:Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>ascii?</strong> : <a href="Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#ascii%3F%3ABool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this char is an ASCII character
+(codepoint is in (0..127))</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/char.cr#L154" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="ascii_alphanumeric?:Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>ascii_alphanumeric?</strong> : <a href="Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#ascii_alphanumeric%3F%3ABool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this char is an ASCII letter or number ('0' to '9', 'a' to 'z', 'A' to 'Z').</p>
+<pre><code class="language-crystal"><span class="s">&#39;c&#39;</span>.ascii_alphanumeric? <span class="c"># =&gt; true</span>
+<span class="s">&#39;8&#39;</span>.ascii_alphanumeric? <span class="c"># =&gt; true</span>
+<span class="s">&#39;.&#39;</span>.ascii_alphanumeric? <span class="c"># =&gt; false</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/char.cr#L275" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="ascii_control?:Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>ascii_control?</strong> : <a href="Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#ascii_control%3F%3ABool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this char is an ASCII control character.</p>
+<p>This includes the <em>C0 control codes</em> (<code>U+0000</code> through <code>U+001F</code>) and the
+<em>Delete</em> character (<code>U+007F</code>).</p>
+<pre><code class="language-crystal">(<span class="s">&#39;\u0000&#39;</span>..<span class="s">&#39;\u0019&#39;</span>).each <span class="k">do</span> <span class="o">|</span>char<span class="o">|</span>
+  char.control? <span class="c"># =&gt; true</span>
+<span class="k">end</span>
+
+(<span class="s">&#39;\u007F&#39;</span>..<span class="s">&#39;\u009F&#39;</span>).each <span class="k">do</span> <span class="o">|</span>char<span class="o">|</span>
+  char.control? <span class="c"># =&gt; true</span>
+<span class="k">end</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/char.cr#L662" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="ascii_letter?:Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>ascii_letter?</strong> : <a href="Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#ascii_letter%3F%3ABool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this char is an ASCII letter ('a' to 'z', 'A' to 'Z').</p>
+<pre><code class="language-crystal"><span class="s">&#39;c&#39;</span>.ascii_letter? <span class="c"># =&gt; true</span>
+<span class="s">&#39;á&#39;</span>.ascii_letter? <span class="c"># =&gt; false</span>
+<span class="s">&#39;8&#39;</span>.ascii_letter? <span class="c"># =&gt; false</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/char.cr#L250" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="ascii_lowercase?:Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>ascii_lowercase?</strong> : <a href="Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#ascii_lowercase%3F%3ABool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this char is a lowercase ASCII letter.</p>
+<pre><code class="language-crystal"><span class="s">&#39;c&#39;</span>.ascii_lowercase? <span class="c"># =&gt; true</span>
+<span class="s">&#39;ç&#39;</span>.lowercase?       <span class="c"># =&gt; true</span>
+<span class="s">&#39;G&#39;</span>.ascii_lowercase? <span class="c"># =&gt; false</span>
+<span class="s">&#39;.&#39;</span>.ascii_lowercase? <span class="c"># =&gt; false</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/char.cr#L189" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="ascii_number?(base:Int=10):Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>ascii_number?</strong>(base : <a href="Int.html">Int</a> = <span class="n">10</span>) : <a href="Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#ascii_number%3F%28base%3AInt%3D10%29%3ABool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this char is an ASCII number in specified base.</p>
+<p>Base can be from 2 to 36 with digits from '0' to '9' and 'a' to 'z' or 'A' to 'Z'.</p>
+<pre><code class="language-crystal"><span class="s">&#39;4&#39;</span>.ascii_number?     <span class="c"># =&gt; true</span>
+<span class="s">&#39;z&#39;</span>.ascii_number?     <span class="c"># =&gt; false</span>
+<span class="s">&#39;z&#39;</span>.ascii_number?(<span class="n">36</span>) <span class="c"># =&gt; true</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/char.cr#L167" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="ascii_uppercase?:Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>ascii_uppercase?</strong> : <a href="Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#ascii_uppercase%3F%3ABool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this char is an ASCII uppercase letter.</p>
+<pre><code class="language-crystal"><span class="s">&#39;H&#39;</span>.ascii_uppercase? <span class="c"># =&gt; true</span>
+<span class="s">&#39;Á&#39;</span>.ascii_uppercase? <span class="c"># =&gt; false</span>
+<span class="s">&#39;c&#39;</span>.ascii_uppercase? <span class="c"># =&gt; false</span>
+<span class="s">&#39;.&#39;</span>.ascii_uppercase? <span class="c"># =&gt; false</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/char.cr#L214" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="ascii_whitespace?:Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>ascii_whitespace?</strong> : <a href="Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#ascii_whitespace%3F%3ABool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this char is an ASCII whitespace.</p>
+<pre><code class="language-crystal"><span class="s">&#39; &#39;</span>.ascii_whitespace?  <span class="c"># =&gt; true</span>
+<span class="s">&#39;\t&#39;</span>.ascii_whitespace? <span class="c"># =&gt; true</span>
+<span class="s">&#39;b&#39;</span>.ascii_whitespace?  <span class="c"># =&gt; false</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/char.cr#L297" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="bytes:Array(UInt8)-instance-method">
+      <div class="signature">
+        
+        def <strong>bytes</strong> : <a href="Array.html">Array</a>(<a href="UInt8.html">UInt8</a>)
+
+        <a class="method-permalink" href="#bytes%3AArray%28UInt8%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns this char bytes as encoded by UTF-8, as an <code><a href="Array.html">Array</a>(<a href="UInt8.html">UInt8</a>)</code>.</p>
+<pre><code class="language-crystal"><span class="s">&#39;a&#39;</span>.bytes <span class="c"># =&gt; [97]</span>
+<span class="s">&#39;あ&#39;</span>.bytes <span class="c"># =&gt; [227, 129, 130]</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/char.cr#L998" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="bytesize:Int32-instance-method">
+      <div class="signature">
+        
+        def <strong>bytesize</strong> : <a href="Int32.html">Int32</a>
+
+        <a class="method-permalink" href="#bytesize%3AInt32-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the number of UTF-8 bytes in this char.</p>
+<pre><code class="language-crystal"><span class="s">&#39;a&#39;</span>.bytesize <span class="c"># =&gt; 1</span>
+<span class="s">&#39;好&#39;</span>.bytesize <span class="c"># =&gt; 3</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/char.cr#L973" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="clone-instance-method">
+      <div class="signature">
+        
+        def <strong>clone</strong>
+
+        <a class="method-permalink" href="#clone-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/char.cr#L1057" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="control?:Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>control?</strong> : <a href="Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#control%3F%3ABool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this char is a control character according to unicode.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/char.cr#L667" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="downcase(io:IO,options:Unicode::CaseOptions=:none):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>downcase</strong>(io : <a href="IO.html">IO</a>, options : <a href="Unicode/CaseOptions.html">Unicode::CaseOptions</a> = <span class="n">:none</span>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#downcase%28io%3AIO%2Coptions%3AUnicode%3A%3ACaseOptions%3D%3Anone%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Writes the downcase equivalent of this char to the given <em>io</em>.</p>
+<p>This method takes into account the possibility that an downcase
+version of a char might result in multiple chars, like for
+'İ', which results in 'i' and a dot mark.</p>
+<pre><code class="language-crystal"><span class="s">&#39;Z&#39;</span>.downcase(<span class="t">STDOUT</span>)                             <span class="c"># prints &quot;z&quot;</span>
+<span class="s">&#39;ς&#39;</span>.downcase(<span class="t">STDOUT</span>, <span class="t">Unicode</span><span class="t">::</span><span class="t">CaseOptions</span><span class="t">::</span><span class="t">Fold</span>) <span class="c"># prints &quot;σ&quot;</span>
+<span class="s">&#39;ẞ&#39;</span>.downcase(<span class="t">STDOUT</span>, <span class="t">Unicode</span><span class="t">::</span><span class="t">CaseOptions</span><span class="t">::</span><span class="t">Fold</span>) <span class="c"># prints &quot;ss&quot;</span>
+<span class="s">&#39;ᾈ&#39;</span>.downcase(<span class="t">STDOUT</span>, <span class="t">Unicode</span><span class="t">::</span><span class="t">CaseOptions</span><span class="t">::</span><span class="t">Fold</span>) <span class="c"># prints &quot;ἀι&quot;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/char.cr#L471" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="downcase(options:Unicode::CaseOptions=:none):Char-instance-method">
+      <div class="signature">
+        
+        def <strong>downcase</strong>(options : <a href="Unicode/CaseOptions.html">Unicode::CaseOptions</a> = <span class="n">:none</span>) : <a href="Char.html">Char</a>
+
+        <a class="method-permalink" href="#downcase%28options%3AUnicode%3A%3ACaseOptions%3D%3Anone%29%3AChar-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the downcase equivalent of this char.</p>
+<p>Note that this only works for characters whose downcase
+equivalent yields a single codepoint. There are a few
+characters, like 'İ', than when downcased result in multiple
+characters (in this case: 'I' and the dot mark).</p>
+<p>For more correct behavior see the overloads that receive a block or an <code><a href="IO.html">IO</a></code>.</p>
+<pre><code class="language-crystal"><span class="s">&#39;Z&#39;</span>.downcase <span class="c"># =&gt; &#39;z&#39;</span>
+<span class="s">&#39;x&#39;</span>.downcase <span class="c"># =&gt; &#39;x&#39;</span>
+<span class="s">&#39;.&#39;</span>.downcase <span class="c"># =&gt; &#39;.&#39;</span></code></pre>
+<p>If <code>options.fold?</code> is true, then returns the case-folded equivalent instead.
+Note that this will return <code>self</code> if a multiple-character case folding
+exists, even if a separate single-character transformation is also defined
+in Unicode.</p>
+<pre><code class="language-crystal"><span class="s">&#39;Z&#39;</span>.downcase(<span class="t">Unicode</span><span class="t">::</span><span class="t">CaseOptions</span><span class="t">::</span><span class="t">Fold</span>) <span class="c"># =&gt; &#39;z&#39;</span>
+<span class="s">&#39;x&#39;</span>.downcase(<span class="t">Unicode</span><span class="t">::</span><span class="t">CaseOptions</span><span class="t">::</span><span class="t">Fold</span>) <span class="c"># =&gt; &#39;x&#39;</span>
+<span class="s">&#39;ς&#39;</span>.downcase(<span class="t">Unicode</span><span class="t">::</span><span class="t">CaseOptions</span><span class="t">::</span><span class="t">Fold</span>) <span class="c"># =&gt; &#39;σ&#39;</span>
+<span class="s">&#39;ꭰ&#39;</span>.downcase(<span class="t">Unicode</span><span class="t">::</span><span class="t">CaseOptions</span><span class="t">::</span><span class="t">Fold</span>) <span class="c"># =&gt; &#39;Ꭰ&#39;</span>
+<span class="s">&#39;ẞ&#39;</span>.downcase(<span class="t">Unicode</span><span class="t">::</span><span class="t">CaseOptions</span><span class="t">::</span><span class="t">Fold</span>) <span class="c"># =&gt; &#39;ẞ&#39; # not U+00DF &#39;ß&#39;</span>
+<span class="s">&#39;ᾈ&#39;</span>.downcase(<span class="t">Unicode</span><span class="t">::</span><span class="t">CaseOptions</span><span class="t">::</span><span class="t">Fold</span>) <span class="c"># =&gt; &quot;ᾈ&quot; # not U+1F80 &#39;ᾀ&#39;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/char.cr#L431" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="downcase(options:Unicode::CaseOptions=:none,&amp;)-instance-method">
+      <div class="signature">
+        
+        def <strong>downcase</strong>(options : <a href="Unicode/CaseOptions.html">Unicode::CaseOptions</a> = <span class="n">:none</span>, &)
+
+        <a class="method-permalink" href="#downcase%28options%3AUnicode%3A%3ACaseOptions%3D%3Anone%2C%26%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Yields each char for the downcase equivalent of this char.</p>
+<p>This method takes into account the possibility that an downcase
+version of a char might result in multiple chars, like for
+'İ', which results in 'i' and a dot mark.</p>
+<pre><code class="language-crystal"><span class="s">&#39;Z&#39;</span>.downcase { <span class="o">|</span>v<span class="o">|</span> puts v }                             <span class="c"># prints &#39;z&#39;</span>
+<span class="s">&#39;ς&#39;</span>.downcase(<span class="t">Unicode</span><span class="t">::</span><span class="t">CaseOptions</span><span class="t">::</span><span class="t">Fold</span>) { <span class="o">|</span>v<span class="o">|</span> puts v } <span class="c"># prints &#39;σ&#39;</span>
+<span class="s">&#39;ẞ&#39;</span>.downcase(<span class="t">Unicode</span><span class="t">::</span><span class="t">CaseOptions</span><span class="t">::</span><span class="t">Fold</span>) { <span class="o">|</span>v<span class="o">|</span> puts v } <span class="c"># prints &#39;s&#39;, &#39;s&#39;</span>
+<span class="s">&#39;ᾈ&#39;</span>.downcase(<span class="t">Unicode</span><span class="t">::</span><span class="t">CaseOptions</span><span class="t">::</span><span class="t">Fold</span>) { <span class="o">|</span>v<span class="o">|</span> puts v } <span class="c"># prints &#39;ἀ&#39;, &#39;ι&#39;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/char.cr#L451" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="dump(io)-instance-method">
+      <div class="signature">
+        
+        def <strong>dump</strong>(io)
+
+        <a class="method-permalink" href="#dump%28io%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns a representation of <code>self</code> as an ASCII-compatible Crystal char literal,
+wrapped in single quotes.</p>
+<p>Non-printable characters (see <code><a href="Char.html#printable%3F-instance-method">#printable?</a></code>) and non-ASCII characters
+(codepoints larger <code>U+007F</code>) are escaped.</p>
+<pre><code class="language-crystal"><span class="s">&#39;a&#39;</span>.dump      <span class="c"># =&gt; &quot;&#39;a&#39;&quot;</span>
+<span class="s">&#39;\t&#39;</span>.dump     <span class="c"># =&gt; &quot;&#39;\\t&#39;&quot;</span>
+<span class="s">&#39;あ&#39;</span>.dump      <span class="c"># =&gt; &quot;&#39;\\u3042&#39;&quot;</span>
+<span class="s">&#39;\u0012&#39;</span>.dump <span class="c"># =&gt; &quot;&#39;\\u0012&#39;&quot;</span>
+<span class="s">&#39;😀&#39;</span>.dump      <span class="c"># =&gt; &quot;&#39;\\u{1F600}&#39;&quot;</span></code></pre>
+<p>See <code><a href="Char.html#unicode_escape%3AString-instance-method">#unicode_escape</a></code> for the format used to escape characters without a
+special escape sequence.</p>
+<ul>
+<li><code><a href="Char.html#inspect%3AString-instance-method">#inspect</a></code> only escapes non-printable characters.</li>
+</ul>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/char.cr#L749" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="dump:String-instance-method">
+      <div class="signature">
+        
+        def <strong>dump</strong> : <a href="String.html">String</a>
+
+        <a class="method-permalink" href="#dump%3AString-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns a representation of <code>self</code> as an ASCII-compatible Crystal char literal,
+wrapped in single quotes.</p>
+<p>Non-printable characters (see <code><a href="Char.html#printable%3F-instance-method">#printable?</a></code>) and non-ASCII characters
+(codepoints larger <code>U+007F</code>) are escaped.</p>
+<pre><code class="language-crystal"><span class="s">&#39;a&#39;</span>.dump      <span class="c"># =&gt; &quot;&#39;a&#39;&quot;</span>
+<span class="s">&#39;\t&#39;</span>.dump     <span class="c"># =&gt; &quot;&#39;\\t&#39;&quot;</span>
+<span class="s">&#39;あ&#39;</span>.dump      <span class="c"># =&gt; &quot;&#39;\\u3042&#39;&quot;</span>
+<span class="s">&#39;\u0012&#39;</span>.dump <span class="c"># =&gt; &quot;&#39;\\u0012&#39;&quot;</span>
+<span class="s">&#39;😀&#39;</span>.dump      <span class="c"># =&gt; &quot;&#39;\\u{1F600}&#39;&quot;</span></code></pre>
+<p>See <code><a href="Char.html#unicode_escape%3AString-instance-method">#unicode_escape</a></code> for the format used to escape characters without a
+special escape sequence.</p>
+<ul>
+<li><code><a href="Char.html#inspect%3AString-instance-method">#inspect</a></code> only escapes non-printable characters.</li>
+</ul>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/char.cr#L738" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="each_byte(&amp;):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>each_byte</strong>(&) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#each_byte%28%26%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Yields each of the bytes of this char as encoded by UTF-8.</p>
+<pre><code class="language-crystal">puts <span class="s">&quot;&#39;a&#39;&quot;</span>
+<span class="s">&#39;a&#39;</span>.each_byte <span class="k">do</span> <span class="o">|</span>byte<span class="o">|</span>
+  puts byte
+<span class="k">end</span>
+puts
+
+puts <span class="s">&quot;&#39;あ&#39;&quot;</span>
+<span class="s">&#39;あ&#39;</span>.each_byte <span class="k">do</span> <span class="o">|</span>byte<span class="o">|</span>
+  puts byte
+<span class="k">end</span></code></pre>
+<p>Output:</p>
+<pre><code class="language-text">'a'
+97
+
+'あ'
+227
+129
+130</code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/char.cr#L942" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="hash(hasher)-instance-method">
+      <div class="signature">
+        
+        def <strong>hash</strong>(hasher)
+
+        <a class="method-permalink" href="#hash%28hasher%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>See <code><a href="Object.html#hash%28hasher%29-instance-method">Object#hash(hasher)</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/char.cr#L584" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="hex?:Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>hex?</strong> : <a href="Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#hex%3F%3ABool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this char is an ASCII hex digit ('0' to '9', 'a' to 'f', 'A' to 'F').</p>
+<pre><code class="language-crystal"><span class="s">&#39;5&#39;</span>.hex? <span class="c"># =&gt; true</span>
+<span class="s">&#39;a&#39;</span>.hex? <span class="c"># =&gt; true</span>
+<span class="s">&#39;F&#39;</span>.hex? <span class="c"># =&gt; true</span>
+<span class="s">&#39;g&#39;</span>.hex? <span class="c"># =&gt; false</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/char.cr#L320" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="in_set?(*sets:String):Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>in_set?</strong>(*sets : <a href="String.html">String</a>) : <a href="Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#in_set%3F%28%2Asets%3AString%29%3ABool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this char is matched by the given <em>sets</em>.</p>
+<p>Each parameter defines a set, the character is matched against
+the intersection of those, in other words it needs to
+match all sets.</p>
+<p>If a set starts with a ^, it is negated. The sequence c1-c2
+means all characters between and including c1 and c2
+and is known as a range.</p>
+<p>The backslash character \ can be used to escape ^ or - and
+is otherwise ignored unless it appears at the end of a range
+or set.</p>
+<pre><code class="language-crystal"><span class="s">&#39;l&#39;</span>.in_set? <span class="s">&quot;lo&quot;</span>          <span class="c"># =&gt; true</span>
+<span class="s">&#39;l&#39;</span>.in_set? <span class="s">&quot;lo&quot;</span>, <span class="s">&quot;o&quot;</span>     <span class="c"># =&gt; false</span>
+<span class="s">&#39;l&#39;</span>.in_set? <span class="s">&quot;hello&quot;</span>, <span class="s">&quot;^l&quot;</span> <span class="c"># =&gt; false</span>
+<span class="s">&#39;l&#39;</span>.in_set? <span class="s">&quot;j-m&quot;</span>         <span class="c"># =&gt; true</span>
+
+<span class="s">&#39;^&#39;</span>.in_set? <span class="s">&quot;\\^aeiou&quot;</span> <span class="c"># =&gt; true</span>
+<span class="s">&#39;-&#39;</span>.in_set? <span class="s">&quot;a\\-eo&quot;</span>   <span class="c"># =&gt; true</span>
+
+<span class="s">&#39;\\&#39;</span>.in_set? <span class="s">&quot;\\&quot;</span>    <span class="c"># =&gt; true</span>
+<span class="s">&#39;\\&#39;</span>.in_set? <span class="s">&quot;\\A&quot;</span>   <span class="c"># =&gt; false</span>
+<span class="s">&#39;\\&#39;</span>.in_set? <span class="s">&quot;X-\\w&quot;</span> <span class="c"># =&gt; true</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/char.cr#L351" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="inspect(io:IO):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>inspect</strong>(io : <a href="IO.html">IO</a>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#inspect%28io%3AIO%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns a representation of <code>self</code> as a Crystal char literal, wrapped in single
+quotes.</p>
+<p>Non-printable characters (see <code><a href="Char.html#printable%3F-instance-method">#printable?</a></code>) are escaped.</p>
+<pre><code class="language-crystal"><span class="s">&#39;a&#39;</span>.inspect      <span class="c"># =&gt; &quot;&#39;a&#39;&quot;</span>
+<span class="s">&#39;\t&#39;</span>.inspect     <span class="c"># =&gt; &quot;&#39;\\t&#39;&quot;</span>
+<span class="s">&#39;あ&#39;</span>.inspect      <span class="c"># =&gt; &quot;&#39;あ&#39;&quot;</span>
+<span class="s">&#39;\u0012&#39;</span>.inspect <span class="c"># =&gt; &quot;&#39;\\u0012&#39;&quot;</span>
+<span class="s">&#39;😀&#39;</span>.inspect      <span class="c"># =&gt; &quot;&#39;\u{1F600}&#39;&quot;</span></code></pre>
+<p>See <code><a href="Char.html#unicode_escape%3AString-instance-method">#unicode_escape</a></code> for the format used to escape characters without a
+special escape sequence.</p>
+<ul>
+<li><code><a href="Char.html#dump%3AString-instance-method">#dump</a></code> additionally escapes all non-ASCII characters.</li>
+</ul>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/char.cr#L716" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="inspect:String-instance-method">
+      <div class="signature">
+        
+        def <strong>inspect</strong> : <a href="String.html">String</a>
+
+        <a class="method-permalink" href="#inspect%3AString-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns a representation of <code>self</code> as a Crystal char literal, wrapped in single
+quotes.</p>
+<p>Non-printable characters (see <code><a href="Char.html#printable%3F-instance-method">#printable?</a></code>) are escaped.</p>
+<pre><code class="language-crystal"><span class="s">&#39;a&#39;</span>.inspect      <span class="c"># =&gt; &quot;&#39;a&#39;&quot;</span>
+<span class="s">&#39;\t&#39;</span>.inspect     <span class="c"># =&gt; &quot;&#39;\\t&#39;&quot;</span>
+<span class="s">&#39;あ&#39;</span>.inspect      <span class="c"># =&gt; &quot;&#39;あ&#39;&quot;</span>
+<span class="s">&#39;\u0012&#39;</span>.inspect <span class="c"># =&gt; &quot;&#39;\\u0012&#39;&quot;</span>
+<span class="s">&#39;😀&#39;</span>.inspect      <span class="c"># =&gt; &quot;&#39;\u{1F600}&#39;&quot;</span></code></pre>
+<p>See <code><a href="Char.html#unicode_escape%3AString-instance-method">#unicode_escape</a></code> for the format used to escape characters without a
+special escape sequence.</p>
+<ul>
+<li><code><a href="Char.html#dump%3AString-instance-method">#dump</a></code> additionally escapes all non-ASCII characters.</li>
+</ul>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/char.cr#L705" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="letter?:Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>letter?</strong> : <a href="Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#letter%3F%3ABool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this char is a letter.</p>
+<p>All codepoints in the Unicode General Category <code>L</code> (Letter) are considered
+a letter.</p>
+<pre><code class="language-crystal"><span class="s">&#39;c&#39;</span>.letter? <span class="c"># =&gt; true</span>
+<span class="s">&#39;á&#39;</span>.letter? <span class="c"># =&gt; true</span>
+<span class="s">&#39;8&#39;</span>.letter? <span class="c"># =&gt; false</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/char.cr#L264" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="lowercase?:Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>lowercase?</strong> : <a href="Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#lowercase%3F%3ABool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this char is a lowercase letter.</p>
+<pre><code class="language-crystal"><span class="s">&#39;c&#39;</span>.lowercase? <span class="c"># =&gt; true</span>
+<span class="s">&#39;ç&#39;</span>.lowercase? <span class="c"># =&gt; true</span>
+<span class="s">&#39;G&#39;</span>.lowercase? <span class="c"># =&gt; false</span>
+<span class="s">&#39;.&#39;</span>.lowercase? <span class="c"># =&gt; false</span>
+<span class="s">&#39;ǲ&#39;</span>.lowercase? <span class="c"># =&gt; false</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/char.cr#L202" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="mark?:Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>mark?</strong> : <a href="Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#mark%3F%3ABool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this char is a mark character according to unicode.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/char.cr#L672" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="number?:Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>number?</strong> : <a href="Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#number%3F%3ABool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this char is a number according to unicode.</p>
+<pre><code class="language-crystal"><span class="s">&#39;1&#39;</span>.number? <span class="c"># =&gt; true</span>
+<span class="s">&#39;a&#39;</span>.number? <span class="c"># =&gt; false</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/char.cr#L177" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="ord:Int32-instance-method">
+      <div class="signature">
+        
+        def <strong>ord</strong> : <a href="Int32.html">Int32</a>
+
+        <a class="method-permalink" href="#ord%3AInt32-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the codepoint of this char.</p>
+<p>The codepoint is the integer representation.
+The Universal Coded Character Set (UCS) standard, commonly known as Unicode,
+assigns names and meanings to numbers, these numbers are called codepoints.</p>
+<p>For values below and including 127 this matches the ASCII codes
+and thus its byte representation.</p>
+<pre><code class="language-crystal"><span class="s">&#39;a&#39;</span>.ord      <span class="c"># =&gt; 97</span>
+<span class="s">&#39;\0&#39;</span>.ord     <span class="c"># =&gt; 0</span>
+<span class="s">&#39;\u007f&#39;</span>.ord <span class="c"># =&gt; 127</span>
+<span class="s">&#39;☃&#39;</span>.ord      <span class="c"># =&gt; 9731</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/primitives.cr#L145" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="pred:Char-instance-method">
+      <div class="signature">
+        
+        def <strong>pred</strong> : <a href="Char.html">Char</a>
+
+        <a class="method-permalink" href="#pred%3AChar-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the predecessor codepoint before this one.</p>
+<p>This can be used for iterating a range of characters (see <code><a href="Range.html#each%28%26%29%3ANil-instance-method">Range#each</a></code>).</p>
+<pre><code class="language-crystal"><span class="s">&#39;b&#39;</span>.pred <span class="c"># =&gt; &#39;a&#39;</span>
+<span class="s">&#39;ぃ&#39;</span>.pred <span class="c"># =&gt; &#39;あ&#39;</span></code></pre>
+<p>This does not always return <code>codepoint - 1</code>. There is a gap in the
+range of Unicode scalars: The surrogate codepoints <code>U+D800</code> through <code>U+DFFF</code>.</p>
+<pre><code class="language-crystal"><span class="s">&#39;\uE000&#39;</span>.pred <span class="c"># =&gt; &#39;\uD7FF&#39;</span></code></pre>
+<p>Raises <code><a href="OverflowError.html">OverflowError</a></code> for <code><a href="Char.html#ZERO">Char::ZERO</a></code>.</p>
+<ul>
+<li><code><a href="Char.html#succ%3AChar-instance-method">#succ</a></code> returns the successor codepoint.</li>
+</ul>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/char.cr#L637" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="printable?-instance-method">
+      <div class="signature">
+        
+        def <strong>printable?</strong>
+
+        <a class="method-permalink" href="#printable%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this char is a printable character.</p>
+<p>There is no universal definition of printable characters in Unicode.
+For the purpose of this method, all characters with a visible glyph and the
+ASCII whitespace (<code> </code>) are considered printable.</p>
+<p>This means characters which are <code><a href="Char.html#control%3F%3ABool-instance-method">#control?</a></code> or <code><a href="Char.html#whitespace%3F%3ABool-instance-method">#whitespace?</a></code> (except for <code> </code>)
+are non-printable.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/char.cr#L684" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="step(*,tolimit=nil,exclusive:Bool=false,&amp;)-instance-method">
+      <div class="signature">
+        
+        def <strong>step</strong>(*, to limit = <span class="n">nil</span>, exclusive : <a href="Bool.html">Bool</a> = <span class="n">false</span>, &)
+
+        <a class="method-permalink" href="#step%28%2A%2Ctolimit%3Dnil%2Cexclusive%3ABool%3Dfalse%2C%26%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Performs a <code><a href="Char.html#step%28%2A%2Ctolimit%3Dnil%2Cexclusive%3ABool%3Dfalse%2C%26%29-instance-method">#step</a></code> in the direction of the <em>limit</em>. For instance:</p>
+<pre><code class="language-crystal"><span class="s">&#39;d&#39;</span>.step(to: <span class="s">&#39;a&#39;</span>).to_a <span class="c"># =&gt; [&#39;d&#39;, &#39;c&#39;, &#39;b&#39;, &#39;a&#39;]</span>
+<span class="s">&#39;a&#39;</span>.step(to: <span class="s">&#39;d&#39;</span>).to_a <span class="c"># =&gt; [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;]</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/char.cr#L131" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="step(*,tolimit=nil,exclusive:Bool=false)-instance-method">
+      <div class="signature">
+        
+        def <strong>step</strong>(*, to limit = <span class="n">nil</span>, exclusive : <a href="Bool.html">Bool</a> = <span class="n">false</span>)
+
+        <a class="method-permalink" href="#step%28%2A%2Ctolimit%3Dnil%2Cexclusive%3ABool%3Dfalse%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Performs a <code><a href="Char.html#step%28%2A%2Ctolimit%3Dnil%2Cexclusive%3ABool%3Dfalse%2C%26%29-instance-method">#step</a></code> in the direction of the <em>limit</em>. For instance:</p>
+<pre><code class="language-crystal"><span class="s">&#39;d&#39;</span>.step(to: <span class="s">&#39;a&#39;</span>).to_a <span class="c"># =&gt; [&#39;d&#39;, &#39;c&#39;, &#39;b&#39;, &#39;a&#39;]</span>
+<span class="s">&#39;a&#39;</span>.step(to: <span class="s">&#39;d&#39;</span>).to_a <span class="c"># =&gt; [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;]</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/char.cr#L143" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="succ:Char-instance-method">
+      <div class="signature">
+        
+        def <strong>succ</strong> : <a href="Char.html">Char</a>
+
+        <a class="method-permalink" href="#succ%3AChar-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the successor codepoint after this one.</p>
+<p>This can be used for iterating a range of characters (see <code><a href="Range.html#each%28%26%29%3ANil-instance-method">Range#each</a></code>).</p>
+<pre><code class="language-crystal"><span class="s">&#39;a&#39;</span>.succ <span class="c"># =&gt; &#39;b&#39;</span>
+<span class="s">&#39;あ&#39;</span>.succ <span class="c"># =&gt; &#39;ぃ&#39;</span></code></pre>
+<p>This does not always return <code>codepoint + 1</code>. There is a gap in the
+range of Unicode scalars: The surrogate codepoints <code>U+D800</code> through <code>U+DFFF</code>.</p>
+<pre><code class="language-crystal"><span class="s">&#39;\uD7FF&#39;</span>.succ <span class="c"># =&gt; &#39;\uE000&#39;</span></code></pre>
+<p>Raises <code><a href="OverflowError.html">OverflowError</a></code> for <code><a href="Char.html#MAX">Char::MAX</a></code>.</p>
+<ul>
+<li><code><a href="Char.html#pred%3AChar-instance-method">#pred</a></code> returns the predecessor codepoint.</li>
+</ul>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/char.cr#L607" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="titlecase(io:IO,options:Unicode::CaseOptions=:none):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>titlecase</strong>(io : <a href="IO.html">IO</a>, options : <a href="Unicode/CaseOptions.html">Unicode::CaseOptions</a> = <span class="n">:none</span>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#titlecase%28io%3AIO%2Coptions%3AUnicode%3A%3ACaseOptions%3D%3Anone%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Writes the titlecase equivalent of this char to the given <em>io</em>.</p>
+<p>Usually this is equivalent to <code><a href="Char.html#upcase%28io%3AIO%2Coptions%3AUnicode%3A%3ACaseOptions%3D%3Anone%29%3ANil-instance-method">#upcase</a></code>, but a few precomposed characters
+consisting of multiple letters may yield a different character sequence
+where only the first letter is uppercase and the rest lowercase.</p>
+<p>This method takes into account the possibility that a titlecase
+version of a char might result in multiple chars, like for
+'ﬄ', which results in 'F', 'f' and 'l'.</p>
+<pre><code class="language-crystal"><span class="s">&#39;z&#39;</span>.titlecase(<span class="t">STDOUT</span>) <span class="c"># prints &quot;Z&quot;</span>
+<span class="s">&#39;Ǳ&#39;</span>.titlecase(<span class="t">STDOUT</span>) <span class="c"># prints &quot;ǲ&quot;</span>
+<span class="s">&#39;ﬄ&#39;</span>.titlecase(<span class="t">STDOUT</span>) <span class="c"># prints &quot;Ffl&quot;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/char.cr#L579" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="titlecase(options:Unicode::CaseOptions=:none):Char-instance-method">
+      <div class="signature">
+        
+        def <strong>titlecase</strong>(options : <a href="Unicode/CaseOptions.html">Unicode::CaseOptions</a> = <span class="n">:none</span>) : <a href="Char.html">Char</a>
+
+        <a class="method-permalink" href="#titlecase%28options%3AUnicode%3A%3ACaseOptions%3D%3Anone%29%3AChar-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the titlecase equivalent of this char.</p>
+<p>Usually this is equivalent to <code><a href="Char.html#upcase%28io%3AIO%2Coptions%3AUnicode%3A%3ACaseOptions%3D%3Anone%29%3ANil-instance-method">#upcase</a></code>, but a few precomposed characters
+consisting of multiple letters may return a different character where only
+the first letter is uppercase and the rest lowercase.</p>
+<p>Note that this only works for characters whose titlecase
+equivalent yields a single codepoint. There are a few
+characters, like 'ﬄ', than when titlecased result in multiple
+characters (in this case: 'F', 'f', 'l').</p>
+<p>For more correct behavior see the overloads that receive a block or an <code><a href="IO.html">IO</a></code>.</p>
+<pre><code class="language-crystal"><span class="s">&#39;z&#39;</span>.titlecase <span class="c"># =&gt; &#39;Z&#39;</span>
+<span class="s">&#39;X&#39;</span>.titlecase <span class="c"># =&gt; &#39;X&#39;</span>
+<span class="s">&#39;.&#39;</span>.titlecase <span class="c"># =&gt; &#39;.&#39;</span>
+<span class="s">&#39;Ǳ&#39;</span>.titlecase <span class="c"># =&gt; &#39;ǲ&#39;</span>
+<span class="s">&#39;ǳ&#39;</span>.titlecase <span class="c"># =&gt; &#39;ǲ&#39;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/char.cr#L541" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="titlecase(options:Unicode::CaseOptions=:none,&amp;)-instance-method">
+      <div class="signature">
+        
+        def <strong>titlecase</strong>(options : <a href="Unicode/CaseOptions.html">Unicode::CaseOptions</a> = <span class="n">:none</span>, &)
+
+        <a class="method-permalink" href="#titlecase%28options%3AUnicode%3A%3ACaseOptions%3D%3Anone%2C%26%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Yields each char for the titlecase equivalent of this char.</p>
+<p>Usually this is equivalent to <code><a href="Char.html#upcase%28io%3AIO%2Coptions%3AUnicode%3A%3ACaseOptions%3D%3Anone%29%3ANil-instance-method">#upcase</a></code>, but a few precomposed characters
+consisting of multiple letters may yield a different character sequence
+where only the first letter is uppercase and the rest lowercase.</p>
+<p>This method takes into account the possibility that a titlecase
+version of a char might result in multiple chars, like for
+'ﬄ', which results in 'F', 'f' and 'l'.</p>
+<pre><code class="language-crystal"><span class="s">&#39;z&#39;</span>.titlecase { <span class="o">|</span>v<span class="o">|</span> puts v } <span class="c"># prints &#39;Z&#39;</span>
+<span class="s">&#39;Ǳ&#39;</span>.titlecase { <span class="o">|</span>v<span class="o">|</span> puts v } <span class="c"># prints &#39;ǲ&#39;</span>
+<span class="s">&#39;ﬄ&#39;</span>.titlecase { <span class="o">|</span>v<span class="o">|</span> puts v } <span class="c"># prints &#39;F&#39;, &#39;f&#39;, &#39;l&#39;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/char.cr#L560" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="titlecase?:Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>titlecase?</strong> : <a href="Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#titlecase%3F%3ABool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this char is a titlecase character, i.e. a ligature
+consisting of an uppercase letter followed by lowercase characters.</p>
+<pre><code class="language-crystal"><span class="s">&#39;ǲ&#39;</span>.titlecase? <span class="c"># =&gt; true</span>
+<span class="s">&#39;H&#39;</span>.titlecase? <span class="c"># =&gt; false</span>
+<span class="s">&#39;c&#39;</span>.titlecase? <span class="c"># =&gt; false</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/char.cr#L239" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_f:Float64-instance-method">
+      <div class="signature">
+        
+        def <strong>to_f</strong> : <a href="Float64.html">Float64</a>
+
+        <a class="method-permalink" href="#to_f%3AFloat64-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the integer value of this char as a float if it's an ASCII char denoting a digit,
+raises otherwise.</p>
+<pre><code class="language-crystal"><span class="s">&#39;1&#39;</span>.to_f <span class="c"># =&gt; 1.0</span>
+<span class="s">&#39;8&#39;</span>.to_f <span class="c"># =&gt; 8.0</span>
+<span class="s">&#39;c&#39;</span>.to_f <span class="c"># raises ArgumentError</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/char.cr#L880" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_f32:Float32-instance-method">
+      <div class="signature">
+        
+        def <strong>to_f32</strong> : <a href="Float32.html">Float32</a>
+
+        <a class="method-permalink" href="#to_f32%3AFloat32-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>See also: <code><a href="Char.html#to_f%3AFloat64-instance-method">#to_f</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/char.cr#L897" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_f32?:Float32|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>to_f32?</strong> : <a href="Float32.html">Float32</a> | <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#to_f32%3F%3AFloat32%7CNil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>See also: <code><a href="Char.html#to_f%3F%3AFloat64%7CNil-instance-method">#to_f?</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/char.cr#L902" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_f64:Float64-instance-method">
+      <div class="signature">
+        
+        def <strong>to_f64</strong> : <a href="Float64.html">Float64</a>
+
+        <a class="method-permalink" href="#to_f64%3AFloat64-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Same as <code><a href="Char.html#to_f%3AFloat64-instance-method">#to_f</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/char.cr#L907" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_f64?:Float64|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>to_f64?</strong> : <a href="Float64.html">Float64</a> | <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#to_f64%3F%3AFloat64%7CNil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Same as <code><a href="Char.html#to_f%3F%3AFloat64%7CNil-instance-method">#to_f?</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/char.cr#L912" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_f?:Float64|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>to_f?</strong> : <a href="Float64.html">Float64</a> | <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#to_f%3F%3AFloat64%7CNil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the integer value of this char as a float if it's an ASCII char denoting a digit,
+<code>nil</code> otherwise.</p>
+<pre><code class="language-crystal"><span class="s">&#39;1&#39;</span>.to_f? <span class="c"># =&gt; 1.0</span>
+<span class="s">&#39;8&#39;</span>.to_f? <span class="c"># =&gt; 8.0</span>
+<span class="s">&#39;c&#39;</span>.to_f? <span class="c"># =&gt; nil</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/char.cr#L892" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_i(base:Int=10):Int32-instance-method">
+      <div class="signature">
+        
+        def <strong>to_i</strong>(base : <a href="Int.html">Int</a> = <span class="n">10</span>) : <a href="Int32.html">Int32</a>
+
+        <a class="method-permalink" href="#to_i%28base%3AInt%3D10%29%3AInt32-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the integer value of this char if it's an ASCII char denoting a digit
+in <em>base</em>, raises otherwise.</p>
+<pre><code class="language-crystal"><span class="s">&#39;1&#39;</span>.to_i     <span class="c"># =&gt; 1</span>
+<span class="s">&#39;8&#39;</span>.to_i     <span class="c"># =&gt; 8</span>
+<span class="s">&#39;c&#39;</span>.to_i     <span class="c"># raises ArgumentError</span>
+<span class="s">&#39;1&#39;</span>.to_i(<span class="n">16</span>) <span class="c"># =&gt; 1</span>
+<span class="s">&#39;a&#39;</span>.to_i(<span class="n">16</span>) <span class="c"># =&gt; 10</span>
+<span class="s">&#39;f&#39;</span>.to_i(<span class="n">16</span>) <span class="c"># =&gt; 15</span>
+<span class="s">&#39;z&#39;</span>.to_i(<span class="n">16</span>) <span class="c"># raises ArgumentError</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/char.cr#L818" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_i128(base:Int=10)-instance-method">
+      <div class="signature">
+        
+        def <strong>to_i128</strong>(base : <a href="Int.html">Int</a> = <span class="n">10</span>)
+
+        <a class="method-permalink" href="#to_i128%28base%3AInt%3D10%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>See also: <code><a href="Char.html#to_i%28base%3AInt%3D10%29%3AInt32-instance-method">#to_i</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/char.cr#L860" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_i128?(base:Int=10)-instance-method">
+      <div class="signature">
+        
+        def <strong>to_i128?</strong>(base : <a href="Int.html">Int</a> = <span class="n">10</span>)
+
+        <a class="method-permalink" href="#to_i128%3F%28base%3AInt%3D10%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>See also: <code><a href="Char.html#to_i%3F%28base%3AInt%3D10%29%3AInt32%7CNil-instance-method">#to_i?</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/char.cr#L860" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_i16(base:Int=10)-instance-method">
+      <div class="signature">
+        
+        def <strong>to_i16</strong>(base : <a href="Int.html">Int</a> = <span class="n">10</span>)
+
+        <a class="method-permalink" href="#to_i16%28base%3AInt%3D10%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>See also: <code><a href="Char.html#to_i%28base%3AInt%3D10%29%3AInt32-instance-method">#to_i</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/char.cr#L860" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_i16?(base:Int=10)-instance-method">
+      <div class="signature">
+        
+        def <strong>to_i16?</strong>(base : <a href="Int.html">Int</a> = <span class="n">10</span>)
+
+        <a class="method-permalink" href="#to_i16%3F%28base%3AInt%3D10%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>See also: <code><a href="Char.html#to_i%3F%28base%3AInt%3D10%29%3AInt32%7CNil-instance-method">#to_i?</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/char.cr#L860" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_i32(base:Int=10):Int32-instance-method">
+      <div class="signature">
+        
+        def <strong>to_i32</strong>(base : <a href="Int.html">Int</a> = <span class="n">10</span>) : <a href="Int32.html">Int32</a>
+
+        <a class="method-permalink" href="#to_i32%28base%3AInt%3D10%29%3AInt32-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Same as <code><a href="Char.html#to_i%28base%3AInt%3D10%29%3AInt32-instance-method">#to_i</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/char.cr#L851" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_i32?(base:Int=10):Int32|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>to_i32?</strong>(base : <a href="Int.html">Int</a> = <span class="n">10</span>) : <a href="Int32.html">Int32</a> | <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#to_i32%3F%28base%3AInt%3D10%29%3AInt32%7CNil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Same as <code><a href="Char.html#to_i%3F%28base%3AInt%3D10%29%3AInt32%7CNil-instance-method">#to_i?</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/char.cr#L856" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_i64(base:Int=10)-instance-method">
+      <div class="signature">
+        
+        def <strong>to_i64</strong>(base : <a href="Int.html">Int</a> = <span class="n">10</span>)
+
+        <a class="method-permalink" href="#to_i64%28base%3AInt%3D10%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>See also: <code><a href="Char.html#to_i%28base%3AInt%3D10%29%3AInt32-instance-method">#to_i</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/char.cr#L860" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_i64?(base:Int=10)-instance-method">
+      <div class="signature">
+        
+        def <strong>to_i64?</strong>(base : <a href="Int.html">Int</a> = <span class="n">10</span>)
+
+        <a class="method-permalink" href="#to_i64%3F%28base%3AInt%3D10%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>See also: <code><a href="Char.html#to_i%3F%28base%3AInt%3D10%29%3AInt32%7CNil-instance-method">#to_i?</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/char.cr#L860" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_i8(base:Int=10)-instance-method">
+      <div class="signature">
+        
+        def <strong>to_i8</strong>(base : <a href="Int.html">Int</a> = <span class="n">10</span>)
+
+        <a class="method-permalink" href="#to_i8%28base%3AInt%3D10%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>See also: <code><a href="Char.html#to_i%28base%3AInt%3D10%29%3AInt32-instance-method">#to_i</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/char.cr#L860" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_i8?(base:Int=10)-instance-method">
+      <div class="signature">
+        
+        def <strong>to_i8?</strong>(base : <a href="Int.html">Int</a> = <span class="n">10</span>)
+
+        <a class="method-permalink" href="#to_i8%3F%28base%3AInt%3D10%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>See also: <code><a href="Char.html#to_i%3F%28base%3AInt%3D10%29%3AInt32%7CNil-instance-method">#to_i?</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/char.cr#L860" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_i?(base:Int=10):Int32|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>to_i?</strong>(base : <a href="Int.html">Int</a> = <span class="n">10</span>) : <a href="Int32.html">Int32</a> | <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#to_i%3F%28base%3AInt%3D10%29%3AInt32%7CNil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the integer value of this char if it's an ASCII char denoting a digit
+in <em>base</em>, <code>nil</code> otherwise.</p>
+<pre><code class="language-crystal"><span class="s">&#39;1&#39;</span>.to_i?     <span class="c"># =&gt; 1</span>
+<span class="s">&#39;8&#39;</span>.to_i?     <span class="c"># =&gt; 8</span>
+<span class="s">&#39;c&#39;</span>.to_i?     <span class="c"># =&gt; nil</span>
+<span class="s">&#39;1&#39;</span>.to_i?(<span class="n">16</span>) <span class="c"># =&gt; 1</span>
+<span class="s">&#39;a&#39;</span>.to_i?(<span class="n">16</span>) <span class="c"># =&gt; 10</span>
+<span class="s">&#39;f&#39;</span>.to_i?(<span class="n">16</span>) <span class="c"># =&gt; 15</span>
+<span class="s">&#39;z&#39;</span>.to_i?(<span class="n">16</span>) <span class="c"># =&gt; nil</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/char.cr#L834" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_s(io:IO):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>to_s</strong>(io : <a href="IO.html">IO</a>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#to_s%28io%3AIO%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Appends this char to the given <code><a href="IO.html">IO</a></code>.</p>
+<p>This appends this char's bytes as encoded by UTF-8 to the given <code><a href="IO.html">IO</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/char.cr#L1024" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_s:String-instance-method">
+      <div class="signature">
+        
+        def <strong>to_s</strong> : <a href="String.html">String</a>
+
+        <a class="method-permalink" href="#to_s%3AString-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns this char as a string containing this char as a single character.</p>
+<pre><code class="language-crystal"><span class="s">&#39;a&#39;</span>.to_s <span class="c"># =&gt; &quot;a&quot;</span>
+<span class="s">&#39;あ&#39;</span>.to_s <span class="c"># =&gt; &quot;あ&quot;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/char.cr#L1012" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_u128(base:Int=10)-instance-method">
+      <div class="signature">
+        
+        def <strong>to_u128</strong>(base : <a href="Int.html">Int</a> = <span class="n">10</span>)
+
+        <a class="method-permalink" href="#to_u128%28base%3AInt%3D10%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>See also: <code><a href="Char.html#to_i%28base%3AInt%3D10%29%3AInt32-instance-method">#to_i</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/char.cr#L860" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_u128?(base:Int=10)-instance-method">
+      <div class="signature">
+        
+        def <strong>to_u128?</strong>(base : <a href="Int.html">Int</a> = <span class="n">10</span>)
+
+        <a class="method-permalink" href="#to_u128%3F%28base%3AInt%3D10%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>See also: <code><a href="Char.html#to_i%3F%28base%3AInt%3D10%29%3AInt32%7CNil-instance-method">#to_i?</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/char.cr#L860" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_u16(base:Int=10)-instance-method">
+      <div class="signature">
+        
+        def <strong>to_u16</strong>(base : <a href="Int.html">Int</a> = <span class="n">10</span>)
+
+        <a class="method-permalink" href="#to_u16%28base%3AInt%3D10%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>See also: <code><a href="Char.html#to_i%28base%3AInt%3D10%29%3AInt32-instance-method">#to_i</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/char.cr#L860" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_u16?(base:Int=10)-instance-method">
+      <div class="signature">
+        
+        def <strong>to_u16?</strong>(base : <a href="Int.html">Int</a> = <span class="n">10</span>)
+
+        <a class="method-permalink" href="#to_u16%3F%28base%3AInt%3D10%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>See also: <code><a href="Char.html#to_i%3F%28base%3AInt%3D10%29%3AInt32%7CNil-instance-method">#to_i?</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/char.cr#L860" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_u32(base:Int=10)-instance-method">
+      <div class="signature">
+        
+        def <strong>to_u32</strong>(base : <a href="Int.html">Int</a> = <span class="n">10</span>)
+
+        <a class="method-permalink" href="#to_u32%28base%3AInt%3D10%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>See also: <code><a href="Char.html#to_i%28base%3AInt%3D10%29%3AInt32-instance-method">#to_i</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/char.cr#L860" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_u32?(base:Int=10)-instance-method">
+      <div class="signature">
+        
+        def <strong>to_u32?</strong>(base : <a href="Int.html">Int</a> = <span class="n">10</span>)
+
+        <a class="method-permalink" href="#to_u32%3F%28base%3AInt%3D10%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>See also: <code><a href="Char.html#to_i%3F%28base%3AInt%3D10%29%3AInt32%7CNil-instance-method">#to_i?</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/char.cr#L860" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_u64(base:Int=10)-instance-method">
+      <div class="signature">
+        
+        def <strong>to_u64</strong>(base : <a href="Int.html">Int</a> = <span class="n">10</span>)
+
+        <a class="method-permalink" href="#to_u64%28base%3AInt%3D10%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>See also: <code><a href="Char.html#to_i%28base%3AInt%3D10%29%3AInt32-instance-method">#to_i</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/char.cr#L860" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_u64?(base:Int=10)-instance-method">
+      <div class="signature">
+        
+        def <strong>to_u64?</strong>(base : <a href="Int.html">Int</a> = <span class="n">10</span>)
+
+        <a class="method-permalink" href="#to_u64%3F%28base%3AInt%3D10%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>See also: <code><a href="Char.html#to_i%3F%28base%3AInt%3D10%29%3AInt32%7CNil-instance-method">#to_i?</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/char.cr#L860" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_u8(base:Int=10)-instance-method">
+      <div class="signature">
+        
+        def <strong>to_u8</strong>(base : <a href="Int.html">Int</a> = <span class="n">10</span>)
+
+        <a class="method-permalink" href="#to_u8%28base%3AInt%3D10%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>See also: <code><a href="Char.html#to_i%28base%3AInt%3D10%29%3AInt32-instance-method">#to_i</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/char.cr#L860" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_u8?(base:Int=10)-instance-method">
+      <div class="signature">
+        
+        def <strong>to_u8?</strong>(base : <a href="Int.html">Int</a> = <span class="n">10</span>)
+
+        <a class="method-permalink" href="#to_u8%3F%28base%3AInt%3D10%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>See also: <code><a href="Char.html#to_i%3F%28base%3AInt%3D10%29%3AInt32%7CNil-instance-method">#to_i?</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/char.cr#L860" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="unicode_escape(io:IO):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>unicode_escape</strong>(io : <a href="IO.html">IO</a>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#unicode_escape%28io%3AIO%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the Unicode escape sequence representing this character.</p>
+<p>The codepoints are expressed as hexadecimal digits with uppercase letters.
+Unicode escapes always use the four digit style for codepoints <code>U+FFFF</code>
+and lower, adding leading zeros when necessary. Higher codepoints have their
+digits wrapped in curly braces and no leading zeros.</p>
+<pre><code class="language-crystal"><span class="s">&#39;a&#39;</span>.unicode_escape      <span class="c"># =&gt; &quot;\\u0061&quot;</span>
+<span class="s">&#39;\t&#39;</span>.unicode_escape     <span class="c"># =&gt; &quot;\\u0009&quot;</span>
+<span class="s">&#39;あ&#39;</span>.unicode_escape      <span class="c"># =&gt; &quot;\\u3042&quot;</span>
+<span class="s">&#39;\u0012&#39;</span>.unicode_escape <span class="c"># =&gt; &quot;\\u0012&quot;</span>
+<span class="s">&#39;😀&#39;</span>.unicode_escape      <span class="c"># =&gt; &quot;\\u{1F600}&quot;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/char.cr#L796" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="unicode_escape:String-instance-method">
+      <div class="signature">
+        
+        def <strong>unicode_escape</strong> : <a href="String.html">String</a>
+
+        <a class="method-permalink" href="#unicode_escape%3AString-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the Unicode escape sequence representing this character.</p>
+<p>The codepoints are expressed as hexadecimal digits with uppercase letters.
+Unicode escapes always use the four digit style for codepoints <code>U+FFFF</code>
+and lower, adding leading zeros when necessary. Higher codepoints have their
+digits wrapped in curly braces and no leading zeros.</p>
+<pre><code class="language-crystal"><span class="s">&#39;a&#39;</span>.unicode_escape      <span class="c"># =&gt; &quot;\\u0061&quot;</span>
+<span class="s">&#39;\t&#39;</span>.unicode_escape     <span class="c"># =&gt; &quot;\\u0009&quot;</span>
+<span class="s">&#39;あ&#39;</span>.unicode_escape      <span class="c"># =&gt; &quot;\\u3042&quot;</span>
+<span class="s">&#39;\u0012&#39;</span>.unicode_escape <span class="c"># =&gt; &quot;\\u0012&quot;</span>
+<span class="s">&#39;😀&#39;</span>.unicode_escape      <span class="c"># =&gt; &quot;\\u{1F600}&quot;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/char.cr#L789" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="upcase(io:IO,options:Unicode::CaseOptions=:none):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>upcase</strong>(io : <a href="IO.html">IO</a>, options : <a href="Unicode/CaseOptions.html">Unicode::CaseOptions</a> = <span class="n">:none</span>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#upcase%28io%3AIO%2Coptions%3AUnicode%3A%3ACaseOptions%3D%3Anone%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Writes the upcase equivalent of this char to the given <em>io</em>.</p>
+<p>This method takes into account the possibility that an upcase
+version of a char might result in multiple chars, like for
+'ﬄ', which results in 'F', 'F' and 'L'.</p>
+<pre><code class="language-crystal"><span class="s">&#39;z&#39;</span>.upcase(<span class="t">STDOUT</span>) <span class="c"># prints &quot;Z&quot;</span>
+<span class="s">&#39;ﬄ&#39;</span>.upcase(<span class="t">STDOUT</span>) <span class="c"># prints &quot;FFL&quot;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/char.cr#L517" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="upcase(options:Unicode::CaseOptions=:none):Char-instance-method">
+      <div class="signature">
+        
+        def <strong>upcase</strong>(options : <a href="Unicode/CaseOptions.html">Unicode::CaseOptions</a> = <span class="n">:none</span>) : <a href="Char.html">Char</a>
+
+        <a class="method-permalink" href="#upcase%28options%3AUnicode%3A%3ACaseOptions%3D%3Anone%29%3AChar-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the upcase equivalent of this char.</p>
+<p>Note that this only works for characters whose upcase
+equivalent yields a single codepoint. There are a few
+characters, like 'ﬄ', than when upcased result in multiple
+characters (in this case: 'F', 'F', 'L').</p>
+<p>For more correct behavior see the overloads that receive a block or an <code><a href="IO.html">IO</a></code>.</p>
+<pre><code class="language-crystal"><span class="s">&#39;z&#39;</span>.upcase <span class="c"># =&gt; &#39;Z&#39;</span>
+<span class="s">&#39;X&#39;</span>.upcase <span class="c"># =&gt; &#39;X&#39;</span>
+<span class="s">&#39;.&#39;</span>.upcase <span class="c"># =&gt; &#39;.&#39;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/char.cr#L489" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="upcase(options:Unicode::CaseOptions=:none,&amp;)-instance-method">
+      <div class="signature">
+        
+        def <strong>upcase</strong>(options : <a href="Unicode/CaseOptions.html">Unicode::CaseOptions</a> = <span class="n">:none</span>, &)
+
+        <a class="method-permalink" href="#upcase%28options%3AUnicode%3A%3ACaseOptions%3D%3Anone%2C%26%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Yields each char for the upcase equivalent of this char.</p>
+<p>This method takes into account the possibility that an upcase
+version of a char might result in multiple chars, like for
+'ﬄ', which results in 'F', 'F' and 'L'.</p>
+<pre><code class="language-crystal"><span class="s">&#39;z&#39;</span>.upcase { <span class="o">|</span>v<span class="o">|</span> puts v } <span class="c"># prints &#39;Z&#39;</span>
+<span class="s">&#39;ﬄ&#39;</span>.upcase { <span class="o">|</span>v<span class="o">|</span> puts v } <span class="c"># prints &#39;F&#39;, &#39;F&#39;, &#39;L&#39;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/char.cr#L503" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="uppercase?:Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>uppercase?</strong> : <a href="Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#uppercase%3F%3ABool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this char is an uppercase letter.</p>
+<pre><code class="language-crystal"><span class="s">&#39;H&#39;</span>.uppercase? <span class="c"># =&gt; true</span>
+<span class="s">&#39;Á&#39;</span>.uppercase? <span class="c"># =&gt; true</span>
+<span class="s">&#39;c&#39;</span>.uppercase? <span class="c"># =&gt; false</span>
+<span class="s">&#39;.&#39;</span>.uppercase? <span class="c"># =&gt; false</span>
+<span class="s">&#39;ǲ&#39;</span>.uppercase? <span class="c"># =&gt; false</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/char.cr#L227" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="whitespace?:Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>whitespace?</strong> : <a href="Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#whitespace%3F%3ABool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this char is a whitespace according to unicode.</p>
+<pre><code class="language-crystal"><span class="s">&#39; &#39;</span>.whitespace?  <span class="c"># =&gt; true</span>
+<span class="s">&#39;\t&#39;</span>.whitespace? <span class="c"># =&gt; true</span>
+<span class="s">&#39;b&#39;</span>.whitespace?  <span class="c"># =&gt; false</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/char.cr#L308" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,1809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Crystal Docs 1.16.1">
+<meta name="crystal_docs.project_version" content="1.17.0-dev">
+<meta name="crystal_docs.project_name" content="Crystal">
+
+  <meta name="crystal_docs.json_config_url" content="/api/versions.json">
+
+
+    <link rel="canonical" href="https://crystal-lang.org/api/latest/Float.html">
+
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/doc.js"></script>
+
+  <meta name="repository-name" content="Crystal">
+  <title>Float - Crystal 1.17.0-dev</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill="currentColor" fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<input type="checkbox" id="sidebar-btn">
+<label for="sidebar-btn" id="sidebar-btn-label">
+  <svg class="open" xmlns="http://www.w3.org/2000/svg" height="2em" width="2em" viewBox="0 0 512 512"><title>Open Sidebar</title><path fill="currentColor" d="M80 96v64h352V96H80zm0 112v64h352v-64H80zm0 112v64h352v-64H80z"></path></svg>
+  <svg class="close" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><title>Close Sidebar</title><path fill="currentColor" d="m118.6 73.4-45.2 45.2L210.7 256 73.4 393.4l45.2 45.2L256 301.3l137.4 137.3 45.2-45.2L301.3 256l137.3-137.4-45.2-45.2L256 210.7Z"></path></svg>
+</label>
+<iframe class="sidebar" src="sidebar.html"></iframe>
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">
+    abstract struct
+  </span> Float
+
+</h1>
+
+
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="Float.html">Float</a></li><li class="superclass"><a href="Number.html">Number</a></li><li class="superclass"><a href="Value.html">Value</a></li><li class="superclass"><a href="Object.html">Object</a></li></ul>
+
+
+
+
+  <h2>
+    <a id="overview" class="anchor" href="#overview">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Overview
+  </h2>
+
+  <p>Float is the base type of all floating point numbers.</p>
+<p>There are two floating point types, <code><a href="Float32.html">Float32</a></code> and <code><a href="Float64.html">Float64</a></code>,
+which correspond to the <a href="http://en.wikipedia.org/wiki/Single_precision_floating-point_format">binary32</a>
+and <a href="http://en.wikipedia.org/wiki/Double_precision_floating-point_format">binary64</a>
+types defined by IEEE.</p>
+<p>A floating point literal is an optional <code>+</code> or <code><a href="Float.html#--instance-method">#-</a></code> sign, followed by
+a sequence of numbers or underscores, followed by a dot,
+followed by numbers or underscores, followed by an optional exponent suffix,
+followed by an optional type suffix. If no suffix is present, the literal's type is <code><a href="Float64.html">Float64</a></code>.</p>
+<pre><code class="language-crystal"><span class="n">1.0</span>     <span class="c"># Float64</span>
+<span class="n">1.0_f32</span> <span class="c"># Float32</span>
+<span class="n">1_f32</span>   <span class="c"># Float32</span>
+
+<span class="n">1e10</span>   <span class="c"># Float64</span>
+<span class="n">1.5e10</span> <span class="c"># Float64</span>
+<span class="n">1.5e-7</span> <span class="c"># Float64</span>
+
+<span class="n">+1.3</span> <span class="c"># Float64</span>
+<span class="n">-0.5</span> <span class="c"># Float64</span></code></pre>
+<p>The underscore <code>_</code> before the suffix is optional.</p>
+<p>Underscores can be used to make some numbers more readable:</p>
+<pre><code class="language-crystal"><span class="n">1_000_000.111_111</span> <span class="c"># better than 1000000.111111</span></code></pre>
+<p>See <a href="https://crystal-lang.org/reference/syntax_and_semantics/literals/floats.html"><code>Float</code> literals</a> in the language reference.</p>
+
+
+
+
+
+
+
+  <h2>
+    <a id="included-modules" class="anchor" href="#included-modules">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Included Modules
+  </h2>
+  <ul class="other-types-list">
+    
+      <li class="other-type"><a href="Comparable.html">Comparable</a>(<a href="BigDecimal.html">BigDecimal</a>)</li>
+    
+      <li class="other-type"><a href="Comparable.html">Comparable</a>(<a href="BigRational.html">BigRational</a>)</li>
+    
+      <li class="other-type"><a href="Comparable.html">Comparable</a>(<a href="BigInt.html">BigInt</a>)</li>
+    
+  </ul>
+
+
+
+
+
+  <h2>
+    <a id="direct-known-subclasses" class="anchor" href="#direct-known-subclasses">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Direct Known Subclasses
+  </h2>
+  <ul class="other-types-list">
+    
+      <li class="other-type"><a href="BigFloat.html">BigFloat</a></li>
+    
+      <li class="other-type"><a href="Float32.html">Float32</a></li>
+    
+      <li class="other-type"><a href="Float64.html">Float64</a></li>
+    
+  </ul>
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/big/big_decimal.cr#L828" target="_blank">
+        big/big_decimal.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/big/big_float.cr#L569" target="_blank">
+        big/big_float.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/big/big_int.cr#L876" target="_blank">
+        big/big_int.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/big/big_rational.cr#L426" target="_blank">
+        big/big_rational.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/big/number.cr#L140" target="_blank">
+        big/number.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/float.cr#L39" target="_blank">
+        float.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/float/fast_float.cr#L1" target="_blank">
+        float/fast_float.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/to_json.cr#L53" target="_blank">
+        json/to_json.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/time/span.cr#L503" target="_blank">
+        time/span.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/yaml/to_yaml.cr#L95" target="_blank">
+        yaml/to_yaml.cr
+      </a>
+    
+    <br/>
+  
+
+
+
+
+
+  
+  <h2>
+    <a id="constructors" class="anchor" href="#constructors">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructors
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#from_io%28io%3AIO%2Cformat%3AIO%3A%3AByteFormat%29%3Aself-class-method" class="signature"><strong>.from_io</strong>(io : IO, format : IO::ByteFormat) : <span class="k">self</span></a>
+        
+          <div class="summary"><p>Reads a float from the given <em>io</em> in the given <em>format</em>.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+  
+
+  
+
+  
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#%25%28other%29-instance-method" class="signature"><strong>#%</strong>(other)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#--instance-method" class="signature"><strong>#-</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#//%28other%29-instance-method" class="signature"><strong>#//</strong>(other)</a>
+        
+          <div class="summary"><p>Divides <code>self</code> by <em>other</em> using floored division.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%3C%3D%3E%28other%3ABigInt%29-instance-method" class="signature"><strong>#<=></strong>(other : BigInt)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%3C%3D%3E%28other%3ABigFloat%29-instance-method" class="signature"><strong>#<=></strong>(other : BigFloat)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%3C%3D%3E%28other%3ABigRational%29-instance-method" class="signature"><strong>#<=></strong>(other : BigRational)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%3C%3D%3E%28other%3ABigDecimal%29-instance-method" class="signature"><strong>#<=></strong>(other : BigDecimal)</a>
+        
+          <div class="summary"><p>The comparison operator.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#days%3ATime%3A%3ASpan-instance-method" class="signature"><strong>#days</strong> : Time::Span</a>
+        
+          <div class="summary"><p>Returns a <code><a href="Time/Span.html">Time::Span</a></code> of <code>self</code> days.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#fdiv%28other%3ABigInt%7CBigFloat%7CBigDecimal%7CBigRational%29%3Aself-instance-method" class="signature"><strong>#fdiv</strong>(other : BigInt | BigFloat | BigDecimal | BigRational) : <span class="k">self</span></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#finite%3F%3ABool-instance-method" class="signature"><strong>#finite?</strong> : Bool</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#hours%3ATime%3A%3ASpan-instance-method" class="signature"><strong>#hours</strong> : Time::Span</a>
+        
+          <div class="summary"><p>Returns a <code><a href="Time/Span.html">Time::Span</a></code> of <code>self</code> hours.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#infinite%3F%3AInt32%7CNil-instance-method" class="signature"><strong>#infinite?</strong> : Int32 | Nil</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#microseconds%3ATime%3A%3ASpan-instance-method" class="signature"><strong>#microseconds</strong> : Time::Span</a>
+        
+          <div class="summary"><p>Returns a <code><a href="Time/Span.html">Time::Span</a></code> of <code>self</code> microseconds.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#milliseconds%3ATime%3A%3ASpan-instance-method" class="signature"><strong>#milliseconds</strong> : Time::Span</a>
+        
+          <div class="summary"><p>Returns a <code><a href="Time/Span.html">Time::Span</a></code> of <code>self</code> milliseconds.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#minutes%3ATime%3A%3ASpan-instance-method" class="signature"><strong>#minutes</strong> : Time::Span</a>
+        
+          <div class="summary"><p>Returns a <code><a href="Time/Span.html">Time::Span</a></code> of <code>self</code> minutes.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#modulo%28other%29-instance-method" class="signature"><strong>#modulo</strong>(other)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#nan%3F%3ABool-instance-method" class="signature"><strong>#nan?</strong> : Bool</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#nanoseconds%3ATime%3A%3ASpan-instance-method" class="signature"><strong>#nanoseconds</strong> : Time::Span</a>
+        
+          <div class="summary"><p>Returns a <code><a href="Time/Span.html">Time::Span</a></code> of <code>self</code> nanoseconds.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#remainder%28other%29-instance-method" class="signature"><strong>#remainder</strong>(other)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#seconds%3ATime%3A%3ASpan-instance-method" class="signature"><strong>#seconds</strong> : Time::Span</a>
+        
+          <div class="summary"><p>Returns a <code><a href="Time/Span.html">Time::Span</a></code> of <code>self</code> seconds.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_big_d%3ABigDecimal-instance-method" class="signature"><strong>#to_big_d</strong> : BigDecimal</a>
+        
+          <div class="summary"><p>Converts <code>self</code> to <code><a href="BigDecimal.html">BigDecimal</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_big_i%3ABigInt-instance-method" class="signature"><strong>#to_big_i</strong> : BigInt</a>
+        
+          <div class="summary"><p>Returns a <code><a href="BigInt.html">BigInt</a></code> representing this float (rounded using <code>floor</code>).</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_big_r%3ABigRational-instance-method" class="signature"><strong>#to_big_r</strong> : BigRational</a>
+        
+          <div class="summary"><p>Returns a <code><a href="BigRational.html">BigRational</a></code> representing this float.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_io%28io%3AIO%2Cformat%3AIO%3A%3AByteFormat%29%3ANil-instance-method" class="signature"><strong>#to_io</strong>(io : IO, format : IO::ByteFormat) : Nil</a>
+        
+          <div class="summary"><p>Writes this float to the given <em>io</em> in the given <em>format</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_json%28json%3AJSON%3A%3ABuilder%29%3ANil-instance-method" class="signature"><strong>#to_json</strong>(json : JSON::Builder) : Nil</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_json_object_key%3AString-instance-method" class="signature"><strong>#to_json_object_key</strong> : String</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_yaml%28yaml%3AYAML%3A%3ANodes%3A%3ABuilder%29%3ANil-instance-method" class="signature"><strong>#to_yaml</strong>(yaml : YAML::Nodes::Builder) : Nil</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#weeks%3ATime%3A%3ASpan-instance-method" class="signature"><strong>#weeks</strong> : Time::Span</a>
+        
+          <div class="summary"><p>Returns a <code><a href="Time/Span.html">Time::Span</a></code> of <code>self</code> weeks.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+
+  <div class="methods-inherited">
+    
+      
+
+  <h3>Instance methods inherited from module <code><a href="Comparable.html">Comparable</a>(<a href="BigDecimal.html">BigDecimal</a>)</code></h3>
+  
+  
+    <a href="Comparable.html#%3C%28other%3AT%29%3ABool-instance-method" class="tooltip">
+      <span><(other : T) : Bool</span>
+    <</a>, 
+    
+  
+    <a href="Comparable.html#%3C%3D%28other%3AT%29-instance-method" class="tooltip">
+      <span><=(other : T)</span>
+    <=</a>, 
+    
+  
+    <a href="Comparable.html#%3C%3D%3E%28other%3AT%29-instance-method" class="tooltip">
+      <span><=>(other : T)</span>
+    <=></a>, 
+    
+  
+    <a href="Comparable.html#%3D%3D%28other%3AT%29-instance-method" class="tooltip">
+      <span>==(other : T)</span>
+    ==</a>, 
+    
+  
+    <a href="Comparable.html#%3E%28other%3AT%29%3ABool-instance-method" class="tooltip">
+      <span>>(other : T) : Bool</span>
+    ></a>, 
+    
+  
+    <a href="Comparable.html#%3E%3D%28other%3AT%29-instance-method" class="tooltip">
+      <span>>=(other : T)</span>
+    >=</a>, 
+    
+  
+    <a href="Comparable.html#clamp%28min%2Cmax%29-instance-method" class="tooltip">
+      <span>clamp(min, max)<br/>clamp(range : Range)</span>
+    clamp</a>
+    
+  
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+      
+
+  <h3>Instance methods inherited from module <code><a href="Comparable.html">Comparable</a>(<a href="BigRational.html">BigRational</a>)</code></h3>
+  
+  
+    <a href="Comparable.html#%3C%28other%3AT%29%3ABool-instance-method" class="tooltip">
+      <span><(other : T) : Bool</span>
+    <</a>, 
+    
+  
+    <a href="Comparable.html#%3C%3D%28other%3AT%29-instance-method" class="tooltip">
+      <span><=(other : T)</span>
+    <=</a>, 
+    
+  
+    <a href="Comparable.html#%3C%3D%3E%28other%3AT%29-instance-method" class="tooltip">
+      <span><=>(other : T)</span>
+    <=></a>, 
+    
+  
+    <a href="Comparable.html#%3D%3D%28other%3AT%29-instance-method" class="tooltip">
+      <span>==(other : T)</span>
+    ==</a>, 
+    
+  
+    <a href="Comparable.html#%3E%28other%3AT%29%3ABool-instance-method" class="tooltip">
+      <span>>(other : T) : Bool</span>
+    ></a>, 
+    
+  
+    <a href="Comparable.html#%3E%3D%28other%3AT%29-instance-method" class="tooltip">
+      <span>>=(other : T)</span>
+    >=</a>, 
+    
+  
+    <a href="Comparable.html#clamp%28min%2Cmax%29-instance-method" class="tooltip">
+      <span>clamp(min, max)<br/>clamp(range : Range)</span>
+    clamp</a>
+    
+  
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+      
+
+  <h3>Instance methods inherited from module <code><a href="Comparable.html">Comparable</a>(<a href="BigInt.html">BigInt</a>)</code></h3>
+  
+  
+    <a href="Comparable.html#%3C%28other%3AT%29%3ABool-instance-method" class="tooltip">
+      <span><(other : T) : Bool</span>
+    <</a>, 
+    
+  
+    <a href="Comparable.html#%3C%3D%28other%3AT%29-instance-method" class="tooltip">
+      <span><=(other : T)</span>
+    <=</a>, 
+    
+  
+    <a href="Comparable.html#%3C%3D%3E%28other%3AT%29-instance-method" class="tooltip">
+      <span><=>(other : T)</span>
+    <=></a>, 
+    
+  
+    <a href="Comparable.html#%3D%3D%28other%3AT%29-instance-method" class="tooltip">
+      <span>==(other : T)</span>
+    ==</a>, 
+    
+  
+    <a href="Comparable.html#%3E%28other%3AT%29%3ABool-instance-method" class="tooltip">
+      <span>>(other : T) : Bool</span>
+    ></a>, 
+    
+  
+    <a href="Comparable.html#%3E%3D%28other%3AT%29-instance-method" class="tooltip">
+      <span>>=(other : T)</span>
+    >=</a>, 
+    
+  
+    <a href="Comparable.html#clamp%28min%2Cmax%29-instance-method" class="tooltip">
+      <span>clamp(min, max)<br/>clamp(range : Range)</span>
+    clamp</a>
+    
+  
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+      
+
+  <h3>Instance methods inherited from struct <code><a href="Number.html">Number</a></code></h3>
+  
+  
+    <a href="Number.html#%2A%28other%3ABigFloat%29%3ABigFloat-instance-method" class="tooltip">
+      <span>*(other : BigFloat) : BigFloat<br/>*(other : Complex) : Complex</span>
+    *</a>, 
+    
+  
+    <a href="Number.html#%2B%28other%3ABigFloat%29-instance-method" class="tooltip">
+      <span>+(other : BigFloat)<br/>+(other : Complex) : Complex<br/>+</span>
+    +</a>, 
+    
+  
+    <a href="Number.html#-%28other%3ABigFloat%29-instance-method" class="tooltip">
+      <span>-(other : BigFloat)<br/>-(other : Complex) : Complex</span>
+    -</a>, 
+    
+  
+    <a href="Number.html#/%28other%3ABigFloat%29%3ABigFloat-instance-method" class="tooltip">
+      <span>/(other : BigFloat) : BigFloat<br/>/(other : Complex) : Complex</span>
+    /</a>, 
+    
+  
+    <a href="Number.html#//%28other%29-instance-method" class="tooltip">
+      <span>//(other)</span>
+    //</a>, 
+    
+  
+    <a href="Number.html#%3C%3D%3E%28other%29%3AInt32%7CNil-instance-method" class="tooltip">
+      <span><=>(other) : Int32 | Nil</span>
+    <=></a>, 
+    
+  
+    <a href="Number.html#%3D%3D%28other%3AComplex%29-instance-method" class="tooltip">
+      <span>==(other : Complex)</span>
+    ==</a>, 
+    
+  
+    <a href="Number.html#abs%3Aself-instance-method" class="tooltip">
+      <span>abs : <span class="k">self</span></span>
+    abs</a>, 
+    
+  
+    <a href="Number.html#abs2-instance-method" class="tooltip">
+      <span>abs2</span>
+    abs2</a>, 
+    
+  
+    <a href="Number.html#cis%3AComplex-instance-method" class="tooltip">
+      <span>cis : Complex</span>
+    cis</a>, 
+    
+  
+    <a href="Number.html#divmod%28number%29-instance-method" class="tooltip">
+      <span>divmod(number)</span>
+    divmod</a>, 
+    
+  
+    <a href="Number.html#format%28io%3AIO%2Cseparator%3D%27.%27%2Cdelimiter%3D%27%2C%27%2Cdecimal_places%3AInt%7CNil%3Dnil%2C%2A%2Cgroup%3AInt%3D3%2Conly_significant%3ABool%3Dfalse%29%3ANil-instance-method" class="tooltip">
+      <span>format(io : IO, separator = <span class="s">&#39;.&#39;</span>, delimiter = <span class="s">&#39;,&#39;</span>, decimal_places : Int | Nil = <span class="n">nil</span>, *, group : Int = <span class="n">3</span>, only_significant : Bool = <span class="n">false</span>) : Nil<br/>format(separator = <span class="s">&#39;.&#39;</span>, delimiter = <span class="s">&#39;,&#39;</span>, decimal_places : Int | Nil = <span class="n">nil</span>, *, group : Int = <span class="n">3</span>, only_significant : Bool = <span class="n">false</span>) : String</span>
+    format</a>, 
+    
+  
+    <a href="Number.html#hash%28hasher%29-instance-method" class="tooltip">
+      <span>hash(hasher)</span>
+    hash</a>, 
+    
+  
+    <a href="Number.html#humanize%28io%3AIO%2Cprecision%3D3%2Cseparator%3D%27.%27%2Cdelimiter%3D%27%2C%27%2C%2A%2Cbase%3D10%2A%2A3%2Csignificant%3Dtrue%2Cunit_separator%3Dnil%2Cprefixes%3AIndexable%3DSI_PREFIXES%29%3ANil-instance-method" class="tooltip">
+      <span>humanize(io : IO, precision = <span class="n">3</span>, separator = <span class="s">&#39;.&#39;</span>, delimiter = <span class="s">&#39;,&#39;</span>, *, base = <span class="n">10</span> <span class="o">**</span> <span class="n">3</span>, significant = <span class="n">true</span>, unit_separator = <span class="n">nil</span>, prefixes : Indexable = <span class="t">SI_PREFIXES</span>) : Nil<br/>humanize(io : IO, precision = <span class="n">3</span>, separator = <span class="s">&#39;.&#39;</span>, delimiter = <span class="s">&#39;,&#39;</span>, *, base = <span class="n">10</span> <span class="o">**</span> <span class="n">3</span>, significant = <span class="n">true</span>, unit_separator = <span class="n">nil</span>, prefixes : Proc) : Nil<br/>humanize(precision = <span class="n">3</span>, separator = <span class="s">&#39;.&#39;</span>, delimiter = <span class="s">&#39;,&#39;</span>, *, base = <span class="n">10</span> <span class="o">**</span> <span class="n">3</span>, significant = <span class="n">true</span>, unit_separator = <span class="n">nil</span>, prefixes = <span class="t">SI_PREFIXES</span>) : String<br/>humanize(io : IO, precision = <span class="n">3</span>, separator = <span class="s">&#39;.&#39;</span>, delimiter = <span class="s">&#39;,&#39;</span>, *, base = <span class="n">10</span> <span class="o">**</span> <span class="n">3</span>, significant = <span class="n">true</span>, unit_separator = <span class="n">nil</span>, &prefixes : Int32, Float64 -> Tuple(Int32, _) | Tuple(Int32, _, Bool)) : Nil<br/>humanize(precision = <span class="n">3</span>, separator = <span class="s">&#39;.&#39;</span>, delimiter = <span class="s">&#39;,&#39;</span>, *, base = <span class="n">10</span> <span class="o">**</span> <span class="n">3</span>, significant = <span class="n">true</span>, unit_separator = <span class="n">nil</span>, &) : String<br/>humanize(precision = <span class="n">3</span>, separator = <span class="s">&#39;.&#39;</span>, delimiter = <span class="s">&#39;,&#39;</span>, *, base = <span class="n">10</span> <span class="o">**</span> <span class="n">3</span>, significant = <span class="n">true</span>, unit_separator = <span class="n">nil</span>, prefixes : Proc) : String</span>
+    humanize</a>, 
+    
+  
+    <a href="Number.html#i%3AComplex-instance-method" class="tooltip">
+      <span>i : Complex</span>
+    i</a>, 
+    
+  
+    <a href="Number.html#integer%3F%3ABool-instance-method" class="tooltip">
+      <span>integer? : Bool</span>
+    integer?</a>, 
+    
+  
+    <a href="Number.html#negative%3F%3ABool-instance-method" class="tooltip">
+      <span>negative? : Bool</span>
+    negative?</a>, 
+    
+  
+    <a href="Number.html#positive%3F%3ABool-instance-method" class="tooltip">
+      <span>positive? : Bool</span>
+    positive?</a>, 
+    
+  
+    <a href="Number.html#round%28mode%3ARoundingMode%3D%3Aties_even%29%3Aself-instance-method" class="tooltip">
+      <span>round(mode : RoundingMode = <span class="n">:ties_even</span>) : <span class="k">self</span><br/>round(digits : Number, base = <span class="n">10</span>, *, mode : RoundingMode = <span class="n">:ties_even</span>)</span>
+    round</a>, 
+    
+  
+    <a href="Number.html#sign%3AInt32-instance-method" class="tooltip">
+      <span>sign : Int32</span>
+    sign</a>, 
+    
+  
+    <a href="Number.html#significant%28digits%2Cbase%3D10%29-instance-method" class="tooltip">
+      <span>significant(digits, base = <span class="n">10</span>)</span>
+    significant</a>, 
+    
+  
+    <a href="Number.html#step%28%2A%2Ctolimit%3Dnil%2Cexclusive%3ABool%3Dfalse%2C%26%29%3ANil-instance-method" class="tooltip">
+      <span>step(*, to limit = <span class="n">nil</span>, exclusive : Bool = <span class="n">false</span>, &) : Nil<br/>step(*, to limit = <span class="n">nil</span>, exclusive : Bool = <span class="n">false</span>)</span>
+    step</a>, 
+    
+  
+    <a href="Number.html#to_big_f%3ABigFloat-instance-method" class="tooltip">
+      <span>to_big_f : BigFloat</span>
+    to_big_f</a>, 
+    
+  
+    <a href="Number.html#to_c%3AComplex-instance-method" class="tooltip">
+      <span>to_c : Complex</span>
+    to_c</a>, 
+    
+  
+    <a href="Number.html#to_yaml%28yaml%3AYAML%3A%3ANodes%3A%3ABuilder%29%3ANil-instance-method" class="tooltip">
+      <span>to_yaml(yaml : YAML::Nodes::Builder) : Nil</span>
+    to_yaml</a>, 
+    
+  
+    <a href="Number.html#zero%3F%3ABool-instance-method" class="tooltip">
+      <span>zero? : Bool</span>
+    zero?</a>
+    
+  
+
+
+      
+
+  <h3>Constructor methods inherited from struct <code><a href="Number.html">Number</a></code></h3>
+  
+  
+    <a href="Number.html#additive_identity%3Aself-class-method" class="tooltip">
+      <span>additive_identity : <span class="k">self</span></span>
+    additive_identity</a>, 
+    
+  
+    <a href="Number.html#multiplicative_identity%3Aself-class-method" class="tooltip">
+      <span>multiplicative_identity : <span class="k">self</span></span>
+    multiplicative_identity</a>, 
+    
+  
+    <a href="Number.html#zero%3Aself-class-method" class="tooltip">
+      <span>zero : <span class="k">self</span></span>
+    zero</a>
+    
+  
+
+
+      
+
+  <h3>Class methods inherited from struct <code><a href="Number.html">Number</a></code></h3>
+  
+  
+    <a href="Number.html#si_prefix%28magnitude%3AInt%2Cprefixes%3DSI_PREFIXES%29%3AChar%7CNil-class-method" class="tooltip">
+      <span>si_prefix(magnitude : Int, prefixes = <span class="t">SI_PREFIXES</span>) : Char | Nil</span>
+    si_prefix</a>
+    
+  
+
+
+      
+
+  <h3>Macros inherited from struct <code><a href="Number.html">Number</a></code></h3>
+  
+  
+    <a href="Number.html#%5B%5D%28%2Anums%29-macro" class="tooltip">
+      <span>[](*nums)</span>
+    []</a>, 
+    
+  
+    <a href="Number.html#slice%28%2Anums%2Cread_only%3Dfalse%29-macro" class="tooltip">
+      <span>slice(*nums, read_only = <span class="n">false</span>)</span>
+    slice</a>, 
+    
+  
+    <a href="Number.html#static_array%28%2Anums%29-macro" class="tooltip">
+      <span>static_array(*nums)</span>
+    static_array</a>
+    
+  
+
+
+    
+      
+
+  <h3>Instance methods inherited from module <code><a href="Comparable.html">Comparable</a>(<a href="BigFloat.html">BigFloat</a>)</code></h3>
+  
+  
+    <a href="Comparable.html#%3C%28other%3AT%29%3ABool-instance-method" class="tooltip">
+      <span><(other : T) : Bool</span>
+    <</a>, 
+    
+  
+    <a href="Comparable.html#%3C%3D%28other%3AT%29-instance-method" class="tooltip">
+      <span><=(other : T)</span>
+    <=</a>, 
+    
+  
+    <a href="Comparable.html#%3C%3D%3E%28other%3AT%29-instance-method" class="tooltip">
+      <span><=>(other : T)</span>
+    <=></a>, 
+    
+  
+    <a href="Comparable.html#%3D%3D%28other%3AT%29-instance-method" class="tooltip">
+      <span>==(other : T)</span>
+    ==</a>, 
+    
+  
+    <a href="Comparable.html#%3E%28other%3AT%29%3ABool-instance-method" class="tooltip">
+      <span>>(other : T) : Bool</span>
+    ></a>, 
+    
+  
+    <a href="Comparable.html#%3E%3D%28other%3AT%29-instance-method" class="tooltip">
+      <span>>=(other : T)</span>
+    >=</a>, 
+    
+  
+    <a href="Comparable.html#clamp%28min%2Cmax%29-instance-method" class="tooltip">
+      <span>clamp(min, max)<br/>clamp(range : Range)</span>
+    clamp</a>
+    
+  
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+      
+
+  <h3>Instance methods inherited from module <code><a href="Steppable.html">Steppable</a></code></h3>
+  
+  
+    <a href="Steppable.html#step%28%2A%2Ctolimit%3Dnil%2Cbystep%2Cexclusive%3ABool%3Dfalse%2C%26%29%3ANil-instance-method" class="tooltip">
+      <span>step(*, to limit = <span class="n">nil</span>, by step, exclusive : Bool = <span class="n">false</span>, &) : Nil<br/>step(*, to limit = <span class="n">nil</span>, by step, exclusive : Bool = <span class="n">false</span>)</span>
+    step</a>
+    
+  
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+      
+
+  <h3>Instance methods inherited from module <code><a href="Comparable.html">Comparable</a>(<a href="Number.html">Number</a>)</code></h3>
+  
+  
+    <a href="Comparable.html#%3C%28other%3AT%29%3ABool-instance-method" class="tooltip">
+      <span><(other : T) : Bool</span>
+    <</a>, 
+    
+  
+    <a href="Comparable.html#%3C%3D%28other%3AT%29-instance-method" class="tooltip">
+      <span><=(other : T)</span>
+    <=</a>, 
+    
+  
+    <a href="Comparable.html#%3C%3D%3E%28other%3AT%29-instance-method" class="tooltip">
+      <span><=>(other : T)</span>
+    <=></a>, 
+    
+  
+    <a href="Comparable.html#%3D%3D%28other%3AT%29-instance-method" class="tooltip">
+      <span>==(other : T)</span>
+    ==</a>, 
+    
+  
+    <a href="Comparable.html#%3E%28other%3AT%29%3ABool-instance-method" class="tooltip">
+      <span>>(other : T) : Bool</span>
+    ></a>, 
+    
+  
+    <a href="Comparable.html#%3E%3D%28other%3AT%29-instance-method" class="tooltip">
+      <span>>=(other : T)</span>
+    >=</a>, 
+    
+  
+    <a href="Comparable.html#clamp%28min%2Cmax%29-instance-method" class="tooltip">
+      <span>clamp(min, max)<br/>clamp(range : Range)</span>
+    clamp</a>
+    
+  
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+      
+
+  <h3>Instance methods inherited from struct <code><a href="Value.html">Value</a></code></h3>
+  
+  
+    <a href="Value.html#%3D%3D%28other%3AJSON%3A%3AAny%29-instance-method" class="tooltip">
+      <span>==(other : JSON::Any)<br/>==(other : YAML::Any)<br/>==(other)</span>
+    ==</a>, 
+    
+  
+    <a href="Value.html#dup-instance-method" class="tooltip">
+      <span>dup</span>
+    dup</a>
+    
+  
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+      
+
+  <h3>Instance methods inherited from class <code><a href="Object.html">Object</a></code></h3>
+  
+  
+    <a href="Object.html#%21%3ABool-instance-method" class="tooltip">
+      <span>! : Bool</span>
+    !</a>, 
+    
+  
+    <a href="Object.html#%21%3D%28other%29-instance-method" class="tooltip">
+      <span>!=(other)</span>
+    !=</a>, 
+    
+  
+    <a href="Object.html#%21~%28other%29-instance-method" class="tooltip">
+      <span>!~(other)</span>
+    !~</a>, 
+    
+  
+    <a href="Object.html#%3D%3D%28other%29-instance-method" class="tooltip">
+      <span>==(other)</span>
+    ==</a>, 
+    
+  
+    <a href="Object.html#%3D%3D%3D%28other%3AJSON%3A%3AAny%29-instance-method" class="tooltip">
+      <span>===(other : JSON::Any)<br/>===(other : YAML::Any)<br/>===(other)</span>
+    ===</a>, 
+    
+  
+    <a href="Object.html#%3D~%28other%29-instance-method" class="tooltip">
+      <span>=~(other)</span>
+    =~</a>, 
+    
+  
+    <a href="Object.html#as%28type%3AClass%29-instance-method" class="tooltip">
+      <span>as(type : Class)</span>
+    as</a>, 
+    
+  
+    <a href="Object.html#as%3F%28type%3AClass%29-instance-method" class="tooltip">
+      <span>as?(type : Class)</span>
+    as?</a>, 
+    
+  
+    <a href="Object.html#class-instance-method" class="tooltip">
+      <span>class</span>
+    class</a>, 
+    
+  
+    <a href="Object.html#dup-instance-method" class="tooltip">
+      <span>dup</span>
+    dup</a>, 
+    
+  
+    <a href="Object.html#hash%28hasher%29-instance-method" class="tooltip">
+      <span>hash(hasher)<br/>hash</span>
+    hash</a>, 
+    
+  
+    <a href="Object.html#in%3F%28collection%3AObject%29%3ABool-instance-method" class="tooltip">
+      <span>in?(collection : Object) : Bool<br/>in?(*values : Object) : Bool</span>
+    in?</a>, 
+    
+  
+    <a href="Object.html#inspect%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>inspect(io : IO) : Nil<br/>inspect : String</span>
+    inspect</a>, 
+    
+  
+    <a href="Object.html#is_a%3F%28type%3AClass%29%3ABool-instance-method" class="tooltip">
+      <span>is_a?(type : Class) : Bool</span>
+    is_a?</a>, 
+    
+  
+    <a href="Object.html#itself-instance-method" class="tooltip">
+      <span>itself</span>
+    itself</a>, 
+    
+  
+    <a href="Object.html#nil%3F%3ABool-instance-method" class="tooltip">
+      <span>nil? : Bool</span>
+    nil?</a>, 
+    
+  
+    <a href="Object.html#not_nil%21%28message%29-instance-method" class="tooltip">
+      <span>not_nil!(message)<br/>not_nil!</span>
+    not_nil!</a>, 
+    
+  
+    <a href="Object.html#pretty_inspect%28width%3D79%2Cnewline%3D%22%5Cn%22%2Cindent%3D0%29%3AString-instance-method" class="tooltip">
+      <span>pretty_inspect(width = <span class="n">79</span>, newline = <span class="s">&quot;\n&quot;</span>, indent = <span class="n">0</span>) : String</span>
+    pretty_inspect</a>, 
+    
+  
+    <a href="Object.html#pretty_print%28pp%3APrettyPrint%29%3ANil-instance-method" class="tooltip">
+      <span>pretty_print(pp : PrettyPrint) : Nil</span>
+    pretty_print</a>, 
+    
+  
+    <a href="Object.html#responds_to%3F%28name%3ASymbol%29%3ABool-instance-method" class="tooltip">
+      <span>responds_to?(name : Symbol) : Bool</span>
+    responds_to?</a>, 
+    
+  
+    <a href="Object.html#tap%28%26%29-instance-method" class="tooltip">
+      <span>tap(&)</span>
+    tap</a>, 
+    
+  
+    <a href="Object.html#to_json%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_json(io : IO) : Nil<br/>to_json : String</span>
+    to_json</a>, 
+    
+  
+    <a href="Object.html#to_pretty_json%28indent%3AString%3D%22%22%29%3AString-instance-method" class="tooltip">
+      <span>to_pretty_json(indent : String = <span class="s">&quot;  &quot;</span>) : String<br/>to_pretty_json(io : IO, indent : String = <span class="s">&quot;  &quot;</span>) : Nil</span>
+    to_pretty_json</a>, 
+    
+  
+    <a href="Object.html#to_s%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_s(io : IO) : Nil<br/>to_s : String</span>
+    to_s</a>, 
+    
+  
+    <a href="Object.html#to_yaml%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_yaml(io : IO) : Nil<br/>to_yaml : String</span>
+    to_yaml</a>, 
+    
+  
+    <a href="Object.html#try%28%26%29-instance-method" class="tooltip">
+      <span>try(&)</span>
+    try</a>, 
+    
+  
+    <a href="Object.html#unsafe_as%28type%3AT.class%29forallT-instance-method" class="tooltip">
+      <span>unsafe_as(type : <span class="t">T</span>.<span class="k">class</span>) forall T</span>
+    unsafe_as</a>
+    
+  
+
+
+      
+
+
+      
+
+  <h3>Class methods inherited from class <code><a href="Object.html">Object</a></code></h3>
+  
+  
+    <a href="Object.html#from_json%28string_or_io%2Croot%3AString%29-class-method" class="tooltip">
+      <span>from_json(string_or_io, root : String)<br/>from_json(string_or_io)</span>
+    from_json</a>, 
+    
+  
+    <a href="Object.html#from_yaml%28string_or_io%3AString%7CIO%29-class-method" class="tooltip">
+      <span>from_yaml(string_or_io : String | IO)</span>
+    from_yaml</a>
+    
+  
+
+
+      
+
+  <h3>Macros inherited from class <code><a href="Object.html">Object</a></code></h3>
+  
+  
+    <a href="Object.html#class_getter%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_getter(*names, &block)</span>
+    class_getter</a>, 
+    
+  
+    <a href="Object.html#class_getter%21%28%2Anames%29-macro" class="tooltip">
+      <span>class_getter!(*names)</span>
+    class_getter!</a>, 
+    
+  
+    <a href="Object.html#class_getter%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_getter?(*names, &block)</span>
+    class_getter?</a>, 
+    
+  
+    <a href="Object.html#class_property%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_property(*names, &block)</span>
+    class_property</a>, 
+    
+  
+    <a href="Object.html#class_property%21%28%2Anames%29-macro" class="tooltip">
+      <span>class_property!(*names)</span>
+    class_property!</a>, 
+    
+  
+    <a href="Object.html#class_property%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_property?(*names, &block)</span>
+    class_property?</a>, 
+    
+  
+    <a href="Object.html#class_setter%28%2Anames%29-macro" class="tooltip">
+      <span>class_setter(*names)</span>
+    class_setter</a>, 
+    
+  
+    <a href="Object.html#def_clone-macro" class="tooltip">
+      <span>def_clone</span>
+    def_clone</a>, 
+    
+  
+    <a href="Object.html#def_equals%28%2Afields%29-macro" class="tooltip">
+      <span>def_equals(*fields)</span>
+    def_equals</a>, 
+    
+  
+    <a href="Object.html#def_equals_and_hash%28%2Afields%29-macro" class="tooltip">
+      <span>def_equals_and_hash(*fields)</span>
+    def_equals_and_hash</a>, 
+    
+  
+    <a href="Object.html#def_hash%28%2Afields%29-macro" class="tooltip">
+      <span>def_hash(*fields)</span>
+    def_hash</a>, 
+    
+  
+    <a href="Object.html#delegate%28%2Amethods%2Ctoobject%29-macro" class="tooltip">
+      <span>delegate(*methods, to object)</span>
+    delegate</a>, 
+    
+  
+    <a href="Object.html#forward_missing_to%28delegate%29-macro" class="tooltip">
+      <span>forward_missing_to(delegate)</span>
+    forward_missing_to</a>, 
+    
+  
+    <a href="Object.html#getter%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>getter(*names, &block)</span>
+    getter</a>, 
+    
+  
+    <a href="Object.html#getter%21%28%2Anames%29-macro" class="tooltip">
+      <span>getter!(*names)</span>
+    getter!</a>, 
+    
+  
+    <a href="Object.html#getter%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>getter?(*names, &block)</span>
+    getter?</a>, 
+    
+  
+    <a href="Object.html#property%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>property(*names, &block)</span>
+    property</a>, 
+    
+  
+    <a href="Object.html#property%21%28%2Anames%29-macro" class="tooltip">
+      <span>property!(*names)</span>
+    property!</a>, 
+    
+  
+    <a href="Object.html#property%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>property?(*names, &block)</span>
+    property?</a>, 
+    
+  
+    <a href="Object.html#setter%28%2Anames%29-macro" class="tooltip">
+      <span>setter(*names)</span>
+    setter</a>
+    
+  
+
+
+    
+  </div>
+
+  
+  <h2>
+    <a id="constructor-detail" class="anchor" href="#constructor-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructor Detail
+  </h2>
+  
+    <div class="entry-detail" id="from_io(io:IO,format:IO::ByteFormat):self-class-method">
+      <div class="signature">
+        
+        def self.<strong>from_io</strong>(io : <a href="IO.html">IO</a>, format : <a href="IO/ByteFormat.html">IO::ByteFormat</a>) : <span class="k">self</span>
+
+        <a class="method-permalink" href="#from_io%28io%3AIO%2Cformat%3AIO%3A%3AByteFormat%29%3Aself-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Reads a float from the given <em>io</em> in the given <em>format</em>.
+See also: <code><a href="IO.html#read_bytes%28type%2Cformat%3AIO%3A%3AByteFormat%3DIO%3A%3AByteFormat%3A%3ASystemEndian%29-instance-method">IO#read_bytes</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/float.cr#L99" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+  
+
+  
+
+  
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="%(other)-instance-method">
+      <div class="signature">
+        
+        def <strong>%</strong>(other)
+
+        <a class="method-permalink" href="#%25%28other%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/float.cr#L50" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="--instance-method">
+      <div class="signature">
+        
+        def <strong>-</strong>
+
+        <a class="method-permalink" href="#--instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/float.cr#L42" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="//(other)-instance-method">
+      <div class="signature">
+        
+        def <strong>//</strong>(other)
+
+        <a class="method-permalink" href="#//%28other%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+            <div class="doc-inherited">
+              Description copied from struct <a href="Number.html">Number</a>
+            </div>
+          
+          <p>Divides <code>self</code> by <em>other</em> using floored division.</p>
+<p>The result will be of the same type as <code>self</code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/float.cr#L46" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="&lt;=&gt;(other:BigInt)-instance-method">
+      <div class="signature">
+        
+        def <strong><=></strong>(other : <a href="BigInt.html">BigInt</a>)
+
+        <a class="method-permalink" href="#%3C%3D%3E%28other%3ABigInt%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/big/big_int.cr#L879" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="&lt;=&gt;(other:BigFloat)-instance-method">
+      <div class="signature">
+        
+        def <strong><=></strong>(other : <a href="BigFloat.html">BigFloat</a>)
+
+        <a class="method-permalink" href="#%3C%3D%3E%28other%3ABigFloat%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/big/big_float.cr#L570" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="&lt;=&gt;(other:BigRational)-instance-method">
+      <div class="signature">
+        
+        def <strong><=></strong>(other : <a href="BigRational.html">BigRational</a>)
+
+        <a class="method-permalink" href="#%3C%3D%3E%28other%3ABigRational%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/big/big_rational.cr#L439" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="&lt;=&gt;(other:BigDecimal)-instance-method">
+      <div class="signature">
+        
+        def <strong><=></strong>(other : <a href="BigDecimal.html">BigDecimal</a>)
+
+        <a class="method-permalink" href="#%3C%3D%3E%28other%3ABigDecimal%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+            <div class="doc-inherited">
+              Description copied from module <a href="Comparable.html">Comparable</a>(<a href="BigDecimal.html">BigDecimal</a>)
+            </div>
+          
+          <p>The comparison operator. Returns <code>0</code> if the two objects are equal,
+a negative number if this object is considered less than <em>other</em>,
+a positive number if this object is considered greater than <em>other</em>,
+or <code>nil</code> if the two objects are not comparable.</p>
+<p>Subclasses define this method to provide class-specific ordering.</p>
+<p>The comparison operator is usually used to sort values:</p>
+<pre><code class="language-crystal"><span class="c"># Sort in a descending way:</span>
+[<span class="n">3</span>, <span class="n">1</span>, <span class="n">2</span>].sort { <span class="o">|</span>x, y<span class="o">|</span> y <span class="o">&lt;=&gt;</span> x } <span class="c"># =&gt; [3, 2, 1]</span>
+
+<span class="c"># Sort in an ascending way:</span>
+[<span class="n">3</span>, <span class="n">1</span>, <span class="n">2</span>].sort { <span class="o">|</span>x, y<span class="o">|</span> x <span class="o">&lt;=&gt;</span> y } <span class="c"># =&gt; [1, 2, 3]</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/big/big_decimal.cr#L831" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="days:Time::Span-instance-method">
+      <div class="signature">
+        
+        def <strong>days</strong> : <a href="Time/Span.html">Time::Span</a>
+
+        <a class="method-permalink" href="#days%3ATime%3A%3ASpan-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns a <code><a href="Time/Span.html">Time::Span</a></code> of <code>self</code> days.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/time/span.cr#L510" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="fdiv(other:BigInt|BigFloat|BigDecimal|BigRational):self-instance-method">
+      <div class="signature">
+        
+        def <strong>fdiv</strong>(other : <a href="BigInt.html">BigInt</a> | <a href="BigFloat.html">BigFloat</a> | <a href="BigDecimal.html">BigDecimal</a> | <a href="BigRational.html">BigRational</a>) : <span class="k">self</span>
+
+        <a class="method-permalink" href="#fdiv%28other%3ABigInt%7CBigFloat%7CBigDecimal%7CBigRational%29%3Aself-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/big/number.cr#L141" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="finite?:Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>finite?</strong> : <a href="Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#finite%3F%3ABool-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/float.cr#L66" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="hours:Time::Span-instance-method">
+      <div class="signature">
+        
+        def <strong>hours</strong> : <a href="Time/Span.html">Time::Span</a>
+
+        <a class="method-permalink" href="#hours%3ATime%3A%3ASpan-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns a <code><a href="Time/Span.html">Time::Span</a></code> of <code>self</code> hours.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/time/span.cr#L515" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="infinite?:Int32|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>infinite?</strong> : <a href="Int32.html">Int32</a> | <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#infinite%3F%3AInt32%7CNil-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/float.cr#L58" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="microseconds:Time::Span-instance-method">
+      <div class="signature">
+        
+        def <strong>microseconds</strong> : <a href="Time/Span.html">Time::Span</a>
+
+        <a class="method-permalink" href="#microseconds%3ATime%3A%3ASpan-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns a <code><a href="Time/Span.html">Time::Span</a></code> of <code>self</code> microseconds.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/time/span.cr#L544" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="milliseconds:Time::Span-instance-method">
+      <div class="signature">
+        
+        def <strong>milliseconds</strong> : <a href="Time/Span.html">Time::Span</a>
+
+        <a class="method-permalink" href="#milliseconds%3ATime%3A%3ASpan-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns a <code><a href="Time/Span.html">Time::Span</a></code> of <code>self</code> milliseconds.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/time/span.cr#L539" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="minutes:Time::Span-instance-method">
+      <div class="signature">
+        
+        def <strong>minutes</strong> : <a href="Time/Span.html">Time::Span</a>
+
+        <a class="method-permalink" href="#minutes%3ATime%3A%3ASpan-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns a <code><a href="Time/Span.html">Time::Span</a></code> of <code>self</code> minutes.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/time/span.cr#L520" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="modulo(other)-instance-method">
+      <div class="signature">
+        
+        def <strong>modulo</strong>(other)
+
+        <a class="method-permalink" href="#modulo%28other%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/float.cr#L70" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="nan?:Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>nan?</strong> : <a href="Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#nan%3F%3ABool-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/float.cr#L54" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="nanoseconds:Time::Span-instance-method">
+      <div class="signature">
+        
+        def <strong>nanoseconds</strong> : <a href="Time/Span.html">Time::Span</a>
+
+        <a class="method-permalink" href="#nanoseconds%3ATime%3A%3ASpan-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns a <code><a href="Time/Span.html">Time::Span</a></code> of <code>self</code> nanoseconds.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/time/span.cr#L549" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="remainder(other)-instance-method">
+      <div class="signature">
+        
+        def <strong>remainder</strong>(other)
+
+        <a class="method-permalink" href="#remainder%28other%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/float.cr#L78" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="seconds:Time::Span-instance-method">
+      <div class="signature">
+        
+        def <strong>seconds</strong> : <a href="Time/Span.html">Time::Span</a>
+
+        <a class="method-permalink" href="#seconds%3ATime%3A%3ASpan-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns a <code><a href="Time/Span.html">Time::Span</a></code> of <code>self</code> seconds.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/time/span.cr#L525" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_big_d:BigDecimal-instance-method">
+      <div class="signature">
+        
+        def <strong>to_big_d</strong> : <a href="BigDecimal.html">BigDecimal</a>
+
+        <a class="method-permalink" href="#to_big_d%3ABigDecimal-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Converts <code>self</code> to <code><a href="BigDecimal.html">BigDecimal</a></code>.</p>
+<p><span class="flag purple">NOTE</span>  Floats are fundamentally less precise than BigDecimals,
+which makes conversion to them risky.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;big&quot;</span>
+<span class="n">1212341515125412412412421.0</span>.to_big_d</code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/big/big_decimal.cr#L844" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_big_i:BigInt-instance-method">
+      <div class="signature">
+        
+        def <strong>to_big_i</strong> : <a href="BigInt.html">BigInt</a>
+
+        <a class="method-permalink" href="#to_big_i%3ABigInt-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns a <code><a href="BigInt.html">BigInt</a></code> representing this float (rounded using <code>floor</code>).</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;big&quot;</span>
+
+<span class="n">1212341515125412412412421.0</span>.to_big_i</code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/big/big_int.cr#L890" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_big_r:BigRational-instance-method">
+      <div class="signature">
+        
+        def <strong>to_big_r</strong> : <a href="BigRational.html">BigRational</a>
+
+        <a class="method-permalink" href="#to_big_r%3ABigRational-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns a <code><a href="BigRational.html">BigRational</a></code> representing this float.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;big&quot;</span>
+
+<span class="n">123.0</span>.to_big_r</code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/big/big_rational.cr#L435" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_io(io:IO,format:IO::ByteFormat):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>to_io</strong>(io : <a href="IO.html">IO</a>, format : <a href="IO/ByteFormat.html">IO::ByteFormat</a>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#to_io%28io%3AIO%2Cformat%3AIO%3A%3AByteFormat%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Writes this float to the given <em>io</em> in the given <em>format</em>.
+See also: <code><a href="IO.html#write_bytes%28object%2Cformat%3AIO%3A%3AByteFormat%3DIO%3A%3AByteFormat%3A%3ASystemEndian%29%3ANil-instance-method">IO#write_bytes</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/float.cr#L93" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_json(json:JSON::Builder):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>to_json</strong>(json : <a href="JSON/Builder.html">JSON::Builder</a>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#to_json%28json%3AJSON%3A%3ABuilder%29%3ANil-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/to_json.cr#L54" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_json_object_key:String-instance-method">
+      <div class="signature">
+        
+        def <strong>to_json_object_key</strong> : <a href="String.html">String</a>
+
+        <a class="method-permalink" href="#to_json_object_key%3AString-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/to_json.cr#L58" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_yaml(yaml:YAML::Nodes::Builder):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>to_yaml</strong>(yaml : <a href="YAML/Nodes/Builder.html">YAML::Nodes::Builder</a>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#to_yaml%28yaml%3AYAML%3A%3ANodes%3A%3ABuilder%29%3ANil-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/yaml/to_yaml.cr#L96" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="weeks:Time::Span-instance-method">
+      <div class="signature">
+        
+        def <strong>weeks</strong> : <a href="Time/Span.html">Time::Span</a>
+
+        <a class="method-permalink" href="#weeks%3ATime%3A%3ASpan-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns a <code><a href="Time/Span.html">Time::Span</a></code> of <code>self</code> weeks.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/time/span.cr#L505" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+</div>
+
+</body>
+</html>

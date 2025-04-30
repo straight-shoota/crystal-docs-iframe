@@ -1,0 +1,2246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Crystal Docs 1.16.1">
+<meta name="crystal_docs.project_version" content="1.17.0-dev">
+<meta name="crystal_docs.project_name" content="Crystal">
+
+  <meta name="crystal_docs.json_config_url" content="/api/versions.json">
+
+
+    <link rel="canonical" href="https://crystal-lang.org/api/latest/Number.html">
+
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/doc.js"></script>
+
+  <meta name="repository-name" content="Crystal">
+  <title>Number - Crystal 1.17.0-dev</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill="currentColor" fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<input type="checkbox" id="sidebar-btn">
+<label for="sidebar-btn" id="sidebar-btn-label">
+  <svg class="open" xmlns="http://www.w3.org/2000/svg" height="2em" width="2em" viewBox="0 0 512 512"><title>Open Sidebar</title><path fill="currentColor" d="M80 96v64h352V96H80zm0 112v64h352v-64H80zm0 112v64h352v-64H80z"></path></svg>
+  <svg class="close" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><title>Close Sidebar</title><path fill="currentColor" d="m118.6 73.4-45.2 45.2L210.7 256 73.4 393.4l45.2 45.2L256 301.3l137.4 137.3 45.2-45.2L301.3 256l137.3-137.4-45.2-45.2L256 210.7Z"></path></svg>
+</label>
+<iframe class="sidebar" src="sidebar.html"></iframe>
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">
+    abstract struct
+  </span> Number
+
+</h1>
+
+
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="Number.html">Number</a></li><li class="superclass"><a href="Value.html">Value</a></li><li class="superclass"><a href="Object.html">Object</a></li></ul>
+
+
+
+
+  <h2>
+    <a id="overview" class="anchor" href="#overview">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Overview
+  </h2>
+
+  <p>The top-level number type.</p>
+
+
+
+
+
+
+
+  <h2>
+    <a id="included-modules" class="anchor" href="#included-modules">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Included Modules
+  </h2>
+  <ul class="other-types-list">
+    
+      <li class="other-type"><a href="Comparable.html">Comparable</a>(<a href="BigFloat.html">BigFloat</a>)</li>
+    
+      <li class="other-type"><a href="Comparable.html">Comparable</a>(<a href="Number.html">Number</a>)</li>
+    
+      <li class="other-type"><a href="Steppable.html">Steppable</a></li>
+    
+  </ul>
+
+
+
+
+
+  <h2>
+    <a id="direct-known-subclasses" class="anchor" href="#direct-known-subclasses">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Direct Known Subclasses
+  </h2>
+  <ul class="other-types-list">
+    
+      <li class="other-type"><a href="BigDecimal.html">BigDecimal</a></li>
+    
+      <li class="other-type"><a href="BigRational.html">BigRational</a></li>
+    
+      <li class="other-type"><a href="Float.html">Float</a></li>
+    
+      <li class="other-type"><a href="Int.html">Int</a></li>
+    
+  </ul>
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/big/big_float.cr#L516" target="_blank">
+        big/big_float.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/complex.cr#L314" target="_blank">
+        complex.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/humanize.cr#L1" target="_blank">
+        humanize.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/number.cr#L2" target="_blank">
+        number.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri/params/to_www_form.cr#L22" target="_blank">
+        uri/params/to_www_form.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/yaml/to_yaml.cr#L89" target="_blank">
+        yaml/to_yaml.cr
+      </a>
+    
+    <br/>
+  
+
+
+
+  
+    <h2>
+      <a id="constant-summary" class="anchor" href="#constant-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+      Constant Summary
+    </h2>
+  
+  <dl>
+    
+      <dt class="entry-const" id="SI_PREFIXES">
+        <strong>SI_PREFIXES</strong> = <code>{ {<span class="s">&#39;q&#39;</span>, <span class="s">&#39;r&#39;</span>, <span class="s">&#39;y&#39;</span>, <span class="s">&#39;z&#39;</span>, <span class="s">&#39;a&#39;</span>, <span class="s">&#39;f&#39;</span>, <span class="s">&#39;p&#39;</span>, <span class="s">&#39;n&#39;</span>, <span class="s">&#39;µ&#39;</span>, <span class="s">&#39;m&#39;</span>}, {<span class="n">nil</span>, <span class="s">&#39;k&#39;</span>, <span class="s">&#39;M&#39;</span>, <span class="s">&#39;G&#39;</span>, <span class="s">&#39;T&#39;</span>, <span class="s">&#39;P&#39;</span>, <span class="s">&#39;E&#39;</span>, <span class="s">&#39;Z&#39;</span>, <span class="s">&#39;Y&#39;</span>, <span class="s">&#39;R&#39;</span>, <span class="s">&#39;Q&#39;</span>} }</code>
+      </dt>
+      
+      <dd class="entry-const-doc">
+        <p>Default SI prefixes ordered by magnitude.</p>
+      </dd>
+      
+    
+      <dt class="entry-const" id="SI_PREFIXES_PADDED">
+        <strong>SI_PREFIXES_PADDED</strong> = <code><span class="o">-&gt;</span>(magnitude : <span class="t">Int32</span>, _number : <span class="t">Float64</span>) <span class="k">do</span>
+  magnitude <span class="o">=</span> <span class="t">Number</span>.prefix_index(magnitude)
+  {magnitude, (magnitude <span class="o">==</span> <span class="n">0</span> ? <span class="s">&quot; &quot;</span> : si_prefix(magnitude))}
+<span class="k">end</span></code>
+      </dt>
+      
+      <dd class="entry-const-doc">
+        <p>SI prefixes used by <code><a href="Number.html#humanize%28io%3AIO%2Cprecision%3D3%2Cseparator%3D%27.%27%2Cdelimiter%3D%27%2C%27%2C%2A%2Cbase%3D10%2A%2A3%2Csignificant%3Dtrue%2Cunit_separator%3Dnil%2Cprefixes%3AIndexable%3DSI_PREFIXES%29%3ANil-instance-method">#humanize</a></code>. Equal to <code><a href="Number.html#SI_PREFIXES">SI_PREFIXES</a></code> but prepends the
+prefix with a space character.</p>
+      </dd>
+      
+    
+  </dl>
+
+
+
+  
+  <h2>
+    <a id="constructors" class="anchor" href="#constructors">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructors
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#additive_identity%3Aself-class-method" class="signature"><strong>.additive_identity</strong> : <span class="k">self</span></a>
+        
+          <div class="summary"><p>Returns the additive identity of this type.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#multiplicative_identity%3Aself-class-method" class="signature"><strong>.multiplicative_identity</strong> : <span class="k">self</span></a>
+        
+          <div class="summary"><p>Returns the multiplicative identity of this type.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#zero%3Aself-class-method" class="signature"><strong>.zero</strong> : <span class="k">self</span></a>
+        
+          <div class="summary"><p>Returns the value zero in the respective type.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+  
+  <h2>
+    <a id="class-method-summary" class="anchor" href="#class-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Class Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#si_prefix%28magnitude%3AInt%2Cprefixes%3DSI_PREFIXES%29%3AChar%7CNil-class-method" class="signature"><strong>.si_prefix</strong>(magnitude : Int, prefixes = <span class="t">SI_PREFIXES</span>) : Char | Nil</a>
+        
+          <div class="summary"><p>Returns the SI prefix for <em>magnitude</em>.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+  
+  <h2>
+    <a id="macro-summary" class="anchor" href="#macro-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Macro Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#%5B%5D%28%2Anums%29-macro" class="signature"><strong>[]</strong>(*nums)</a>
+        
+          <div class="summary"><p>Creates an <code><a href="Array.html">Array</a></code> of <code>self</code> with the given values, which will be casted to this type with the <code>new</code> method (defined in each <code><a href="Number.html">Number</a></code> type).</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#slice%28%2Anums%2Cread_only%3Dfalse%29-macro" class="signature"><strong>slice</strong>(*nums, read_only = <span class="n">false</span>)</a>
+        
+          <div class="summary"><p>Creates a <code><a href="Slice.html">Slice</a></code> of <code>self</code> with the given values, which will be casted to this type with the <code>new</code> method (defined in each <code><a href="Number.html">Number</a></code> type).</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#static_array%28%2Anums%29-macro" class="signature"><strong>static_array</strong>(*nums)</a>
+        
+          <div class="summary"><p>Creates a <code><a href="StaticArray.html">StaticArray</a></code> of <code>self</code> with the given values, which will be casted to this type with the <code>new</code> method (defined in each <code><a href="Number.html">Number</a></code> type).</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+  
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#%2A%28other%3ABigFloat%29%3ABigFloat-instance-method" class="signature"><strong>#*</strong>(other : BigFloat) : BigFloat</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%2A%28other%3AComplex%29%3AComplex-instance-method" class="signature"><strong>#*</strong>(other : Complex) : Complex</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%2B%28other%3ABigFloat%29-instance-method" class="signature"><strong>#+</strong>(other : BigFloat)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%2B%28other%3AComplex%29%3AComplex-instance-method" class="signature"><strong>#+</strong>(other : Complex) : Complex</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%2B-instance-method" class="signature"><strong>#+</strong></a>
+        
+          <div class="summary"><p>Returns <code>self</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#-%28other%3ABigFloat%29-instance-method" class="signature"><strong>#-</strong>(other : BigFloat)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#-%28other%3AComplex%29%3AComplex-instance-method" class="signature"><strong>#-</strong>(other : Complex) : Complex</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#/%28other%3ABigFloat%29%3ABigFloat-instance-method" class="signature"><strong>#/</strong>(other : BigFloat) : BigFloat</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#/%28other%3AComplex%29%3AComplex-instance-method" class="signature"><strong>#/</strong>(other : Complex) : Complex</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#//%28other%29-instance-method" class="signature"><strong>#//</strong>(other)</a>
+        
+          <div class="summary"><p>Divides <code>self</code> by <em>other</em> using floored division.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%3C%3D%3E%28other%29%3AInt32%7CNil-instance-method" class="signature"><strong>#<=></strong>(other) : Int32 | Nil</a>
+        
+          <div class="summary"><p>The comparison operator.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%3D%3D%28other%3AComplex%29-instance-method" class="signature"><strong>#==</strong>(other : Complex)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#abs%3Aself-instance-method" class="signature"><strong>#abs</strong> : <span class="k">self</span></a>
+        
+          <div class="summary"><p>Returns the absolute value of this number.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#abs2-instance-method" class="signature"><strong>#abs2</strong></a>
+        
+          <div class="summary"><p>Returns the square of <code>self</code> (<code>self * self</code>).</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#cis%3AComplex-instance-method" class="signature"><strong>#cis</strong> : Complex</a>
+        
+          <div class="summary"><p><a href="https://en.wikipedia.org/wiki/Cis_(mathematics)">Cis</a> is a mathematical notation representing <code>cos x + i sin x</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#divmod%28number%29-instance-method" class="signature"><strong>#divmod</strong>(number)</a>
+        
+          <div class="summary"><p>Returns a <code><a href="Tuple.html">Tuple</a></code> of two elements containing the quotient and modulus obtained by dividing <code>self</code> by <em>number</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#format%28io%3AIO%2Cseparator%3D%27.%27%2Cdelimiter%3D%27%2C%27%2Cdecimal_places%3AInt%7CNil%3Dnil%2C%2A%2Cgroup%3AInt%3D3%2Conly_significant%3ABool%3Dfalse%29%3ANil-instance-method" class="signature"><strong>#format</strong>(io : IO, separator = <span class="s">&#39;.&#39;</span>, delimiter = <span class="s">&#39;,&#39;</span>, decimal_places : Int | Nil = <span class="n">nil</span>, *, group : Int = <span class="n">3</span>, only_significant : Bool = <span class="n">false</span>) : Nil</a>
+        
+          <div class="summary"><p>Prints this number as a <code><a href="String.html">String</a></code> using a customizable format.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#format%28separator%3D%27.%27%2Cdelimiter%3D%27%2C%27%2Cdecimal_places%3AInt%7CNil%3Dnil%2C%2A%2Cgroup%3AInt%3D3%2Conly_significant%3ABool%3Dfalse%29%3AString-instance-method" class="signature"><strong>#format</strong>(separator = <span class="s">&#39;.&#39;</span>, delimiter = <span class="s">&#39;,&#39;</span>, decimal_places : Int | Nil = <span class="n">nil</span>, *, group : Int = <span class="n">3</span>, only_significant : Bool = <span class="n">false</span>) : String</a>
+        
+          <div class="summary"><p>Prints this number as a <code><a href="String.html">String</a></code> using a customizable format.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#hash%28hasher%29-instance-method" class="signature"><strong>#hash</strong>(hasher)</a>
+        
+          <div class="summary"><p>See <code><a href="Object.html#hash%28hasher%29-instance-method">Object#hash(hasher)</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#humanize%28io%3AIO%2Cprecision%3D3%2Cseparator%3D%27.%27%2Cdelimiter%3D%27%2C%27%2C%2A%2Cbase%3D10%2A%2A3%2Csignificant%3Dtrue%2Cunit_separator%3Dnil%2Cprefixes%3AIndexable%3DSI_PREFIXES%29%3ANil-instance-method" class="signature"><strong>#humanize</strong>(io : IO, precision = <span class="n">3</span>, separator = <span class="s">&#39;.&#39;</span>, delimiter = <span class="s">&#39;,&#39;</span>, *, base = <span class="n">10</span> <span class="o">**</span> <span class="n">3</span>, significant = <span class="n">true</span>, unit_separator = <span class="n">nil</span>, prefixes : Indexable = <span class="t">SI_PREFIXES</span>) : Nil</a>
+        
+          <div class="summary"><p>Pretty prints this number as a <code><a href="String.html">String</a></code> in a human-readable format.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#humanize%28io%3AIO%2Cprecision%3D3%2Cseparator%3D%27.%27%2Cdelimiter%3D%27%2C%27%2C%2A%2Cbase%3D10%2A%2A3%2Csignificant%3Dtrue%2Cunit_separator%3Dnil%2Cprefixes%3AProc%29%3ANil-instance-method" class="signature"><strong>#humanize</strong>(io : IO, precision = <span class="n">3</span>, separator = <span class="s">&#39;.&#39;</span>, delimiter = <span class="s">&#39;,&#39;</span>, *, base = <span class="n">10</span> <span class="o">**</span> <span class="n">3</span>, significant = <span class="n">true</span>, unit_separator = <span class="n">nil</span>, prefixes : Proc) : Nil</a>
+        
+          <div class="summary"><p>Pretty prints this number as a <code><a href="String.html">String</a></code> in a human-readable format.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#humanize%28precision%3D3%2Cseparator%3D%27.%27%2Cdelimiter%3D%27%2C%27%2C%2A%2Cbase%3D10%2A%2A3%2Csignificant%3Dtrue%2Cunit_separator%3Dnil%2Cprefixes%3DSI_PREFIXES%29%3AString-instance-method" class="signature"><strong>#humanize</strong>(precision = <span class="n">3</span>, separator = <span class="s">&#39;.&#39;</span>, delimiter = <span class="s">&#39;,&#39;</span>, *, base = <span class="n">10</span> <span class="o">**</span> <span class="n">3</span>, significant = <span class="n">true</span>, unit_separator = <span class="n">nil</span>, prefixes = <span class="t">SI_PREFIXES</span>) : String</a>
+        
+          <div class="summary"><p>Pretty prints this number as a <code><a href="String.html">String</a></code> in a human-readable format.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#humanize%28io%3AIO%2Cprecision%3D3%2Cseparator%3D%27.%27%2Cdelimiter%3D%27%2C%27%2C%2A%2Cbase%3D10%2A%2A3%2Csignificant%3Dtrue%2Cunit_separator%3Dnil%2C%26prefixes%3AInt32%2CFloat64-%3ETuple%28Int32%2C_%29%7CTuple%28Int32%2C_%2CBool%29%29%3ANil-instance-method" class="signature"><strong>#humanize</strong>(io : IO, precision = <span class="n">3</span>, separator = <span class="s">&#39;.&#39;</span>, delimiter = <span class="s">&#39;,&#39;</span>, *, base = <span class="n">10</span> <span class="o">**</span> <span class="n">3</span>, significant = <span class="n">true</span>, unit_separator = <span class="n">nil</span>, &prefixes : Int32, Float64 -> Tuple(Int32, _) | Tuple(Int32, _, Bool)) : Nil</a>
+        
+          <div class="summary"><p>Pretty prints this number as a <code><a href="String.html">String</a></code> in a human-readable format.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#humanize%28precision%3D3%2Cseparator%3D%27.%27%2Cdelimiter%3D%27%2C%27%2C%2A%2Cbase%3D10%2A%2A3%2Csignificant%3Dtrue%2Cunit_separator%3Dnil%2C%26%29%3AString-instance-method" class="signature"><strong>#humanize</strong>(precision = <span class="n">3</span>, separator = <span class="s">&#39;.&#39;</span>, delimiter = <span class="s">&#39;,&#39;</span>, *, base = <span class="n">10</span> <span class="o">**</span> <span class="n">3</span>, significant = <span class="n">true</span>, unit_separator = <span class="n">nil</span>, &) : String</a>
+        
+          <div class="summary"><p>Pretty prints this number as a <code><a href="String.html">String</a></code> in a human-readable format.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#humanize%28precision%3D3%2Cseparator%3D%27.%27%2Cdelimiter%3D%27%2C%27%2C%2A%2Cbase%3D10%2A%2A3%2Csignificant%3Dtrue%2Cunit_separator%3Dnil%2Cprefixes%3AProc%29%3AString-instance-method" class="signature"><strong>#humanize</strong>(precision = <span class="n">3</span>, separator = <span class="s">&#39;.&#39;</span>, delimiter = <span class="s">&#39;,&#39;</span>, *, base = <span class="n">10</span> <span class="o">**</span> <span class="n">3</span>, significant = <span class="n">true</span>, unit_separator = <span class="n">nil</span>, prefixes : Proc) : String</a>
+        
+          <div class="summary"><p>Pretty prints this number as a <code><a href="String.html">String</a></code> in a human-readable format.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#i%3AComplex-instance-method" class="signature"><strong>#i</strong> : Complex</a>
+        
+          <div class="summary"><p>Returns a <code><a href="Complex.html">Complex</a></code> object with the value of <code>self</code> as the imaginary part.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#integer%3F%3ABool-instance-method" class="signature"><strong>#integer?</strong> : Bool</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if <code>self</code> is an integer.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#negative%3F%3ABool-instance-method" class="signature"><strong>#negative?</strong> : Bool</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if <code>self</code> is less than zero.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#positive%3F%3ABool-instance-method" class="signature"><strong>#positive?</strong> : Bool</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if <code>self</code> is greater than zero.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#round%28mode%3ARoundingMode%3D%3Aties_even%29%3Aself-instance-method" class="signature"><strong>#round</strong>(mode : RoundingMode = <span class="n">:ties_even</span>) : <span class="k">self</span></a>
+        
+          <div class="summary"><p>Rounds <code>self</code> to an integer value using rounding <em>mode</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#round%28digits%3ANumber%2Cbase%3D10%2C%2A%2Cmode%3ARoundingMode%3D%3Aties_even%29-instance-method" class="signature"><strong>#round</strong>(digits : Number, base = <span class="n">10</span>, *, mode : RoundingMode = <span class="n">:ties_even</span>)</a>
+        
+          <div class="summary"><p>Rounds this number to a given precision.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#sign%3AInt32-instance-method" class="signature"><strong>#sign</strong> : Int32</a>
+        
+          <div class="summary"><p>Returns the sign of this number as an <code><a href="Int32.html">Int32</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#significant%28digits%2Cbase%3D10%29-instance-method" class="signature"><strong>#significant</strong>(digits, base = <span class="n">10</span>)</a>
+        
+          <div class="summary"><p>Keeps <em>digits</em> significant digits of this number in the given <em>base</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#step%28%2A%2Ctolimit%3Dnil%2Cexclusive%3ABool%3Dfalse%2C%26%29%3ANil-instance-method" class="signature"><strong>#step</strong>(*, to limit = <span class="n">nil</span>, exclusive : Bool = <span class="n">false</span>, &) : Nil</a>
+        
+          <div class="summary"><p>Performs a <code><a href="Number.html#step%28%2A%2Ctolimit%3Dnil%2Cexclusive%3ABool%3Dfalse%2C%26%29%3ANil-instance-method">#step</a></code> in the direction of the <em>limit</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#step%28%2A%2Ctolimit%3Dnil%2Cexclusive%3ABool%3Dfalse%29-instance-method" class="signature"><strong>#step</strong>(*, to limit = <span class="n">nil</span>, exclusive : Bool = <span class="n">false</span>)</a>
+        
+          <div class="summary"><p>Performs a <code><a href="Number.html#step%28%2A%2Ctolimit%3Dnil%2Cexclusive%3ABool%3Dfalse%2C%26%29%3ANil-instance-method">#step</a></code> in the direction of the <em>limit</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_big_f%3ABigFloat-instance-method" class="signature"><strong>#to_big_f</strong> : BigFloat</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_c%3AComplex-instance-method" class="signature"><strong>#to_c</strong> : Complex</a>
+        
+          <div class="summary"><p>Returns a <code><a href="Complex.html">Complex</a></code> object with the value of <code>self</code> as the real part.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_yaml%28yaml%3AYAML%3A%3ANodes%3A%3ABuilder%29%3ANil-instance-method" class="signature"><strong>#to_yaml</strong>(yaml : YAML::Nodes::Builder) : Nil</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#zero%3F%3ABool-instance-method" class="signature"><strong>#zero?</strong> : Bool</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if <code>self</code> is equal to zero.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+
+  <div class="methods-inherited">
+    
+      
+
+  <h3>Instance methods inherited from module <code><a href="Comparable.html">Comparable</a>(<a href="BigFloat.html">BigFloat</a>)</code></h3>
+  
+  
+    <a href="Comparable.html#%3C%28other%3AT%29%3ABool-instance-method" class="tooltip">
+      <span><(other : T) : Bool</span>
+    <</a>, 
+    
+  
+    <a href="Comparable.html#%3C%3D%28other%3AT%29-instance-method" class="tooltip">
+      <span><=(other : T)</span>
+    <=</a>, 
+    
+  
+    <a href="Comparable.html#%3C%3D%3E%28other%3AT%29-instance-method" class="tooltip">
+      <span><=>(other : T)</span>
+    <=></a>, 
+    
+  
+    <a href="Comparable.html#%3D%3D%28other%3AT%29-instance-method" class="tooltip">
+      <span>==(other : T)</span>
+    ==</a>, 
+    
+  
+    <a href="Comparable.html#%3E%28other%3AT%29%3ABool-instance-method" class="tooltip">
+      <span>>(other : T) : Bool</span>
+    ></a>, 
+    
+  
+    <a href="Comparable.html#%3E%3D%28other%3AT%29-instance-method" class="tooltip">
+      <span>>=(other : T)</span>
+    >=</a>, 
+    
+  
+    <a href="Comparable.html#clamp%28min%2Cmax%29-instance-method" class="tooltip">
+      <span>clamp(min, max)<br/>clamp(range : Range)</span>
+    clamp</a>
+    
+  
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+      
+
+  <h3>Instance methods inherited from module <code><a href="Steppable.html">Steppable</a></code></h3>
+  
+  
+    <a href="Steppable.html#step%28%2A%2Ctolimit%3Dnil%2Cbystep%2Cexclusive%3ABool%3Dfalse%2C%26%29%3ANil-instance-method" class="tooltip">
+      <span>step(*, to limit = <span class="n">nil</span>, by step, exclusive : Bool = <span class="n">false</span>, &) : Nil<br/>step(*, to limit = <span class="n">nil</span>, by step, exclusive : Bool = <span class="n">false</span>)</span>
+    step</a>
+    
+  
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+      
+
+  <h3>Instance methods inherited from module <code><a href="Comparable.html">Comparable</a>(<a href="Number.html">Number</a>)</code></h3>
+  
+  
+    <a href="Comparable.html#%3C%28other%3AT%29%3ABool-instance-method" class="tooltip">
+      <span><(other : T) : Bool</span>
+    <</a>, 
+    
+  
+    <a href="Comparable.html#%3C%3D%28other%3AT%29-instance-method" class="tooltip">
+      <span><=(other : T)</span>
+    <=</a>, 
+    
+  
+    <a href="Comparable.html#%3C%3D%3E%28other%3AT%29-instance-method" class="tooltip">
+      <span><=>(other : T)</span>
+    <=></a>, 
+    
+  
+    <a href="Comparable.html#%3D%3D%28other%3AT%29-instance-method" class="tooltip">
+      <span>==(other : T)</span>
+    ==</a>, 
+    
+  
+    <a href="Comparable.html#%3E%28other%3AT%29%3ABool-instance-method" class="tooltip">
+      <span>>(other : T) : Bool</span>
+    ></a>, 
+    
+  
+    <a href="Comparable.html#%3E%3D%28other%3AT%29-instance-method" class="tooltip">
+      <span>>=(other : T)</span>
+    >=</a>, 
+    
+  
+    <a href="Comparable.html#clamp%28min%2Cmax%29-instance-method" class="tooltip">
+      <span>clamp(min, max)<br/>clamp(range : Range)</span>
+    clamp</a>
+    
+  
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+      
+
+  <h3>Instance methods inherited from struct <code><a href="Value.html">Value</a></code></h3>
+  
+  
+    <a href="Value.html#%3D%3D%28other%3AJSON%3A%3AAny%29-instance-method" class="tooltip">
+      <span>==(other : JSON::Any)<br/>==(other : YAML::Any)<br/>==(other)</span>
+    ==</a>, 
+    
+  
+    <a href="Value.html#dup-instance-method" class="tooltip">
+      <span>dup</span>
+    dup</a>
+    
+  
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+      
+
+  <h3>Instance methods inherited from class <code><a href="Object.html">Object</a></code></h3>
+  
+  
+    <a href="Object.html#%21%3ABool-instance-method" class="tooltip">
+      <span>! : Bool</span>
+    !</a>, 
+    
+  
+    <a href="Object.html#%21%3D%28other%29-instance-method" class="tooltip">
+      <span>!=(other)</span>
+    !=</a>, 
+    
+  
+    <a href="Object.html#%21~%28other%29-instance-method" class="tooltip">
+      <span>!~(other)</span>
+    !~</a>, 
+    
+  
+    <a href="Object.html#%3D%3D%28other%29-instance-method" class="tooltip">
+      <span>==(other)</span>
+    ==</a>, 
+    
+  
+    <a href="Object.html#%3D%3D%3D%28other%3AJSON%3A%3AAny%29-instance-method" class="tooltip">
+      <span>===(other : JSON::Any)<br/>===(other : YAML::Any)<br/>===(other)</span>
+    ===</a>, 
+    
+  
+    <a href="Object.html#%3D~%28other%29-instance-method" class="tooltip">
+      <span>=~(other)</span>
+    =~</a>, 
+    
+  
+    <a href="Object.html#as%28type%3AClass%29-instance-method" class="tooltip">
+      <span>as(type : Class)</span>
+    as</a>, 
+    
+  
+    <a href="Object.html#as%3F%28type%3AClass%29-instance-method" class="tooltip">
+      <span>as?(type : Class)</span>
+    as?</a>, 
+    
+  
+    <a href="Object.html#class-instance-method" class="tooltip">
+      <span>class</span>
+    class</a>, 
+    
+  
+    <a href="Object.html#dup-instance-method" class="tooltip">
+      <span>dup</span>
+    dup</a>, 
+    
+  
+    <a href="Object.html#hash%28hasher%29-instance-method" class="tooltip">
+      <span>hash(hasher)<br/>hash</span>
+    hash</a>, 
+    
+  
+    <a href="Object.html#in%3F%28collection%3AObject%29%3ABool-instance-method" class="tooltip">
+      <span>in?(collection : Object) : Bool<br/>in?(*values : Object) : Bool</span>
+    in?</a>, 
+    
+  
+    <a href="Object.html#inspect%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>inspect(io : IO) : Nil<br/>inspect : String</span>
+    inspect</a>, 
+    
+  
+    <a href="Object.html#is_a%3F%28type%3AClass%29%3ABool-instance-method" class="tooltip">
+      <span>is_a?(type : Class) : Bool</span>
+    is_a?</a>, 
+    
+  
+    <a href="Object.html#itself-instance-method" class="tooltip">
+      <span>itself</span>
+    itself</a>, 
+    
+  
+    <a href="Object.html#nil%3F%3ABool-instance-method" class="tooltip">
+      <span>nil? : Bool</span>
+    nil?</a>, 
+    
+  
+    <a href="Object.html#not_nil%21%28message%29-instance-method" class="tooltip">
+      <span>not_nil!(message)<br/>not_nil!</span>
+    not_nil!</a>, 
+    
+  
+    <a href="Object.html#pretty_inspect%28width%3D79%2Cnewline%3D%22%5Cn%22%2Cindent%3D0%29%3AString-instance-method" class="tooltip">
+      <span>pretty_inspect(width = <span class="n">79</span>, newline = <span class="s">&quot;\n&quot;</span>, indent = <span class="n">0</span>) : String</span>
+    pretty_inspect</a>, 
+    
+  
+    <a href="Object.html#pretty_print%28pp%3APrettyPrint%29%3ANil-instance-method" class="tooltip">
+      <span>pretty_print(pp : PrettyPrint) : Nil</span>
+    pretty_print</a>, 
+    
+  
+    <a href="Object.html#responds_to%3F%28name%3ASymbol%29%3ABool-instance-method" class="tooltip">
+      <span>responds_to?(name : Symbol) : Bool</span>
+    responds_to?</a>, 
+    
+  
+    <a href="Object.html#tap%28%26%29-instance-method" class="tooltip">
+      <span>tap(&)</span>
+    tap</a>, 
+    
+  
+    <a href="Object.html#to_json%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_json(io : IO) : Nil<br/>to_json : String</span>
+    to_json</a>, 
+    
+  
+    <a href="Object.html#to_pretty_json%28indent%3AString%3D%22%22%29%3AString-instance-method" class="tooltip">
+      <span>to_pretty_json(indent : String = <span class="s">&quot;  &quot;</span>) : String<br/>to_pretty_json(io : IO, indent : String = <span class="s">&quot;  &quot;</span>) : Nil</span>
+    to_pretty_json</a>, 
+    
+  
+    <a href="Object.html#to_s%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_s(io : IO) : Nil<br/>to_s : String</span>
+    to_s</a>, 
+    
+  
+    <a href="Object.html#to_yaml%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_yaml(io : IO) : Nil<br/>to_yaml : String</span>
+    to_yaml</a>, 
+    
+  
+    <a href="Object.html#try%28%26%29-instance-method" class="tooltip">
+      <span>try(&)</span>
+    try</a>, 
+    
+  
+    <a href="Object.html#unsafe_as%28type%3AT.class%29forallT-instance-method" class="tooltip">
+      <span>unsafe_as(type : <span class="t">T</span>.<span class="k">class</span>) forall T</span>
+    unsafe_as</a>
+    
+  
+
+
+      
+
+
+      
+
+  <h3>Class methods inherited from class <code><a href="Object.html">Object</a></code></h3>
+  
+  
+    <a href="Object.html#from_json%28string_or_io%2Croot%3AString%29-class-method" class="tooltip">
+      <span>from_json(string_or_io, root : String)<br/>from_json(string_or_io)</span>
+    from_json</a>, 
+    
+  
+    <a href="Object.html#from_yaml%28string_or_io%3AString%7CIO%29-class-method" class="tooltip">
+      <span>from_yaml(string_or_io : String | IO)</span>
+    from_yaml</a>
+    
+  
+
+
+      
+
+  <h3>Macros inherited from class <code><a href="Object.html">Object</a></code></h3>
+  
+  
+    <a href="Object.html#class_getter%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_getter(*names, &block)</span>
+    class_getter</a>, 
+    
+  
+    <a href="Object.html#class_getter%21%28%2Anames%29-macro" class="tooltip">
+      <span>class_getter!(*names)</span>
+    class_getter!</a>, 
+    
+  
+    <a href="Object.html#class_getter%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_getter?(*names, &block)</span>
+    class_getter?</a>, 
+    
+  
+    <a href="Object.html#class_property%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_property(*names, &block)</span>
+    class_property</a>, 
+    
+  
+    <a href="Object.html#class_property%21%28%2Anames%29-macro" class="tooltip">
+      <span>class_property!(*names)</span>
+    class_property!</a>, 
+    
+  
+    <a href="Object.html#class_property%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_property?(*names, &block)</span>
+    class_property?</a>, 
+    
+  
+    <a href="Object.html#class_setter%28%2Anames%29-macro" class="tooltip">
+      <span>class_setter(*names)</span>
+    class_setter</a>, 
+    
+  
+    <a href="Object.html#def_clone-macro" class="tooltip">
+      <span>def_clone</span>
+    def_clone</a>, 
+    
+  
+    <a href="Object.html#def_equals%28%2Afields%29-macro" class="tooltip">
+      <span>def_equals(*fields)</span>
+    def_equals</a>, 
+    
+  
+    <a href="Object.html#def_equals_and_hash%28%2Afields%29-macro" class="tooltip">
+      <span>def_equals_and_hash(*fields)</span>
+    def_equals_and_hash</a>, 
+    
+  
+    <a href="Object.html#def_hash%28%2Afields%29-macro" class="tooltip">
+      <span>def_hash(*fields)</span>
+    def_hash</a>, 
+    
+  
+    <a href="Object.html#delegate%28%2Amethods%2Ctoobject%29-macro" class="tooltip">
+      <span>delegate(*methods, to object)</span>
+    delegate</a>, 
+    
+  
+    <a href="Object.html#forward_missing_to%28delegate%29-macro" class="tooltip">
+      <span>forward_missing_to(delegate)</span>
+    forward_missing_to</a>, 
+    
+  
+    <a href="Object.html#getter%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>getter(*names, &block)</span>
+    getter</a>, 
+    
+  
+    <a href="Object.html#getter%21%28%2Anames%29-macro" class="tooltip">
+      <span>getter!(*names)</span>
+    getter!</a>, 
+    
+  
+    <a href="Object.html#getter%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>getter?(*names, &block)</span>
+    getter?</a>, 
+    
+  
+    <a href="Object.html#property%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>property(*names, &block)</span>
+    property</a>, 
+    
+  
+    <a href="Object.html#property%21%28%2Anames%29-macro" class="tooltip">
+      <span>property!(*names)</span>
+    property!</a>, 
+    
+  
+    <a href="Object.html#property%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>property?(*names, &block)</span>
+    property?</a>, 
+    
+  
+    <a href="Object.html#setter%28%2Anames%29-macro" class="tooltip">
+      <span>setter(*names)</span>
+    setter</a>
+    
+  
+
+
+    
+  </div>
+
+  
+  <h2>
+    <a id="constructor-detail" class="anchor" href="#constructor-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructor Detail
+  </h2>
+  
+    <div class="entry-detail" id="additive_identity:self-class-method">
+      <div class="signature">
+        
+        def self.<strong>additive_identity</strong> : <span class="k">self</span>
+
+        <a class="method-permalink" href="#additive_identity%3Aself-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the additive identity of this type.</p>
+<p>For numerical types, it is the value <code>0</code> expressed in the respective type.</p>
+<pre><code class="language-crystal"><span class="t">Int32</span>.additive_identity   <span class="c"># =&gt; 0</span>
+<span class="t">Float64</span>.additive_identity <span class="c"># =&gt; 0.0</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/number.cr#L26" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="multiplicative_identity:self-class-method">
+      <div class="signature">
+        
+        def self.<strong>multiplicative_identity</strong> : <span class="k">self</span>
+
+        <a class="method-permalink" href="#multiplicative_identity%3Aself-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the multiplicative identity of this type.</p>
+<p>For numerical types, it is the value <code>1</code> expressed in the respective type.</p>
+<pre><code class="language-crystal"><span class="t">Int32</span>.multiplicative_identity   <span class="c"># =&gt; 1</span>
+<span class="t">Float64</span>.multiplicative_identity <span class="c"># =&gt; 1.0</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/number.cr#L38" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="zero:self-class-method">
+      <div class="signature">
+        
+        def self.<strong>zero</strong> : <span class="k">self</span>
+
+        <a class="method-permalink" href="#zero%3Aself-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the value zero in the respective type.</p>
+<pre><code class="language-crystal"><span class="t">Int32</span>.zero   <span class="c"># =&gt; 0</span>
+<span class="t">Float64</span>.zero <span class="c"># =&gt; 0.0</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/number.cr#L14" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+  
+  <h2>
+    <a id="class-method-detail" class="anchor" href="#class-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Class Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="si_prefix(magnitude:Int,prefixes=SI_PREFIXES):Char|Nil-class-method">
+      <div class="signature">
+        
+        def self.<strong>si_prefix</strong>(magnitude : <a href="Int.html">Int</a>, prefixes = <span class="t">SI_PREFIXES</span>) : <a href="Char.html">Char</a> | <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#si_prefix%28magnitude%3AInt%2Cprefixes%3DSI_PREFIXES%29%3AChar%7CNil-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the SI prefix for <em>magnitude</em>.</p>
+<pre><code class="language-crystal"><span class="t">Number</span>.si_prefix(<span class="n">3</span>) <span class="c"># =&gt; &#39;k&#39;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/humanize.cr#L116" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+  
+  <h2>
+    <a id="macro-detail" class="anchor" href="#macro-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Macro Detail
+  </h2>
+  
+    <div class="entry-detail" id="[](*nums)-macro">
+      <div class="signature">
+        
+        macro <strong>[]</strong>(*nums)
+
+        <a class="method-permalink" href="#%5B%5D%28%2Anums%29-macro">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Creates an <code><a href="Array.html">Array</a></code> of <code>self</code> with the given values, which will be casted
+to this type with the <code>new</code> method (defined in each <code><a href="Number.html">Number</a></code> type).</p>
+<pre><code class="language-crystal">floats <span class="o">=</span> <span class="t">Float64</span>[<span class="n">1</span>, <span class="n">2</span>, <span class="n">3</span>, <span class="n">4</span>]
+floats.<span class="k">class</span> <span class="c"># =&gt; Array(Float64)</span>
+
+ints <span class="o">=</span> <span class="t">Int64</span>[<span class="n">1</span>, <span class="n">2</span>, <span class="n">3</span>]
+ints.<span class="k">class</span> <span class="c"># =&gt; Array(Int64)</span></code></pre>
+<p>This is similar to an array literal of the same item type:</p>
+<pre><code class="language-crystal"><span class="t">Int64</span>[<span class="n">1</span>, <span class="n">2</span>, <span class="n">3</span>, <span class="n">4</span>]     <span class="c"># : Array(Int64)</span>
+[<span class="n">1</span>, <span class="n">2</span>, <span class="n">3</span>, <span class="n">4</span>] <span class="k">of</span> <span class="t">Int64</span> <span class="c"># : Array(Int64)</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/number.cr#L86" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="slice(*nums,read_only=false)-macro">
+      <div class="signature">
+        
+        macro <strong>slice</strong>(*nums, read_only = <span class="n">false</span>)
+
+        <a class="method-permalink" href="#slice%28%2Anums%2Cread_only%3Dfalse%29-macro">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Creates a <code><a href="Slice.html">Slice</a></code> of <code>self</code> with the given values, which will be casted
+to this type with the <code>new</code> method (defined in each <code><a href="Number.html">Number</a></code> type).</p>
+<p>The slice is allocated on the heap.</p>
+<pre><code class="language-crystal">floats <span class="o">=</span> <span class="t">Float64</span>.slice(<span class="n">1</span>, <span class="n">2</span>, <span class="n">3</span>, <span class="n">4</span>)
+floats.<span class="k">class</span> <span class="c"># =&gt; Slice(Float64)</span>
+
+ints <span class="o">=</span> <span class="t">Int64</span>.slice(<span class="n">1</span>, <span class="n">2</span>, <span class="n">3</span>)
+ints.<span class="k">class</span> <span class="c"># =&gt; Slice(Int64)</span></code></pre>
+<p>This is a convenient alternative to <code><a href="Slice.html#%5B%5D%28start%3AInt%2Ccount%3AInt%29%3ASlice%28T%29-instance-method">Slice.[]</a></code> for designating a
+specific item type which also considers autocasting.</p>
+<pre><code class="language-crystal"><span class="t">Int64</span>.slice(<span class="n">1</span>, <span class="n">2</span>, <span class="n">3</span>, <span class="n">4</span>)           <span class="c"># : Slice(Int64)</span>
+<span class="t">Slice</span>[<span class="n">1_i64</span>, <span class="n">2_i64</span>, <span class="n">3_i64</span>, <span class="n">4_i64</span>] <span class="c"># : Slice(Int64)</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/number.cr#L115" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="static_array(*nums)-macro">
+      <div class="signature">
+        
+        macro <strong>static_array</strong>(*nums)
+
+        <a class="method-permalink" href="#static_array%28%2Anums%29-macro">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Creates a <code><a href="StaticArray.html">StaticArray</a></code> of <code>self</code> with the given values, which will be casted
+to this type with the <code>new</code> method (defined in each <code><a href="Number.html">Number</a></code> type).</p>
+<pre><code class="language-crystal">floats <span class="o">=</span> <span class="t">Float64</span>.static_array(<span class="n">1</span>, <span class="n">2</span>, <span class="n">3</span>, <span class="n">4</span>)
+floats.<span class="k">class</span> <span class="c"># =&gt; StaticArray(Float64, 4)</span>
+
+ints <span class="o">=</span> <span class="t">Int64</span>.static_array(<span class="n">1</span>, <span class="n">2</span>, <span class="n">3</span>)
+ints.<span class="k">class</span> <span class="c"># =&gt; StaticArray(Int64, 3)</span></code></pre>
+<p>This is a convenvenient alternative to <code><a href="StaticArray.html#%5B%5D%28%2Aargs%29-macro">StaticArray.[]</a></code> for designating a
+specific item type which also considers autocasting.</p>
+<pre><code class="language-crystal"><span class="t">Int64</span>.static_array(<span class="n">1</span>, <span class="n">2</span>, <span class="n">3</span>, <span class="n">4</span>)          <span class="c"># : StaticArray(Int64)</span>
+<span class="t">StaticArray</span>[<span class="n">1_i64</span>, <span class="n">2_i64</span>, <span class="n">3_i64</span>, <span class="n">4_i64</span>] <span class="c"># : StaticArray(Int64)</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/number.cr#L141" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+  
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="*(other:BigFloat):BigFloat-instance-method">
+      <div class="signature">
+        
+        def <strong>*</strong>(other : <a href="BigFloat.html">BigFloat</a>) : <a href="BigFloat.html">BigFloat</a>
+
+        <a class="method-permalink" href="#%2A%28other%3ABigFloat%29%3ABigFloat-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/big/big_float.cr#L527" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="*(other:Complex):Complex-instance-method">
+      <div class="signature">
+        
+        def <strong>*</strong>(other : <a href="Complex.html">Complex</a>) : <a href="Complex.html">Complex</a>
+
+        <a class="method-permalink" href="#%2A%28other%3AComplex%29%3AComplex-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/complex.cr#L344" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="+(other:BigFloat)-instance-method">
+      <div class="signature">
+        
+        def <strong>+</strong>(other : <a href="BigFloat.html">BigFloat</a>)
+
+        <a class="method-permalink" href="#%2B%28other%3ABigFloat%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/big/big_float.cr#L519" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="+(other:Complex):Complex-instance-method">
+      <div class="signature">
+        
+        def <strong>+</strong>(other : <a href="Complex.html">Complex</a>) : <a href="Complex.html">Complex</a>
+
+        <a class="method-permalink" href="#%2B%28other%3AComplex%29%3AComplex-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/complex.cr#L336" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="+-instance-method">
+      <div class="signature">
+        
+        def <strong>+</strong>
+
+        <a class="method-permalink" href="#%2B-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>self</code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/number.cr#L48" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="-(other:BigFloat)-instance-method">
+      <div class="signature">
+        
+        def <strong>-</strong>(other : <a href="BigFloat.html">BigFloat</a>)
+
+        <a class="method-permalink" href="#-%28other%3ABigFloat%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/big/big_float.cr#L523" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="-(other:Complex):Complex-instance-method">
+      <div class="signature">
+        
+        def <strong>-</strong>(other : <a href="Complex.html">Complex</a>) : <a href="Complex.html">Complex</a>
+
+        <a class="method-permalink" href="#-%28other%3AComplex%29%3AComplex-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/complex.cr#L340" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="/(other:BigFloat):BigFloat-instance-method">
+      <div class="signature">
+        
+        def <strong>/</strong>(other : <a href="BigFloat.html">BigFloat</a>) : <a href="BigFloat.html">BigFloat</a>
+
+        <a class="method-permalink" href="#/%28other%3ABigFloat%29%3ABigFloat-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/big/big_float.cr#L531" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="/(other:Complex):Complex-instance-method">
+      <div class="signature">
+        
+        def <strong>/</strong>(other : <a href="Complex.html">Complex</a>) : <a href="Complex.html">Complex</a>
+
+        <a class="method-permalink" href="#/%28other%3AComplex%29%3AComplex-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/complex.cr#L348" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="//(other)-instance-method">
+      <div class="signature">
+        
+        def <strong>//</strong>(other)
+
+        <a class="method-permalink" href="#//%28other%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Divides <code>self</code> by <em>other</em> using floored division.</p>
+<p>The result will be of the same type as <code>self</code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/number.cr#L55" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="&lt;=&gt;(other):Int32|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong><=></strong>(other) : <a href="Int32.html">Int32</a> | <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#%3C%3D%3E%28other%29%3AInt32%7CNil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>The comparison operator.</p>
+<p>Returns:</p>
+<ul>
+<li><code>-1</code> if <code>self</code> is less than <em>other</em></li>
+<li><code>0</code> if <code>self</code> is equal to <em>other</em></li>
+<li><code>1</code> if <code>self</code> is greater than <em>other</em></li>
+<li><code>nil</code> if <code>self</code> is <code>NaN</code> or <em>other</em> is <code>NaN</code>, because <code>NaN</code> values are not comparable</li>
+</ul>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/number.cr#L228" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="==(other:Complex)-instance-method">
+      <div class="signature">
+        
+        def <strong>==</strong>(other : <a href="Complex.html">Complex</a>)
+
+        <a class="method-permalink" href="#%3D%3D%28other%3AComplex%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/complex.cr#L325" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="abs:self-instance-method">
+      <div class="signature">
+        
+        def <strong>abs</strong> : <span class="k">self</span>
+
+        <a class="method-permalink" href="#abs%3Aself-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the absolute value of this number.</p>
+<pre><code class="language-crystal"><span class="n">123</span>.abs  <span class="c"># =&gt; 123</span>
+<span class="n">-123</span>.abs <span class="c"># =&gt; 123</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/number.cr#L182" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="abs2-instance-method">
+      <div class="signature">
+        
+        def <strong>abs2</strong>
+
+        <a class="method-permalink" href="#abs2-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the square of <code>self</code> (<code>self * self</code>).</p>
+<pre><code class="language-crystal"><span class="n">4</span>.abs2   <span class="c"># =&gt; 16</span>
+<span class="n">1.5</span>.abs2 <span class="c"># =&gt; 2.25</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/number.cr#L192" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="cis:Complex-instance-method">
+      <div class="signature">
+        
+        def <strong>cis</strong> : <a href="Complex.html">Complex</a>
+
+        <a class="method-permalink" href="#cis%3AComplex-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p><a href="https://en.wikipedia.org/wiki/Cis_(mathematics)">Cis</a> is a mathematical notation representing <code>cos x + i sin x</code>.</p>
+<p>Returns a <code><a href="Complex.html">Complex</a></code> object with real part <code><a href="Math.html#cos%28value%3AFloat32%29%3AFloat32-instance-method">Math.cos(self)</a></code> and imaginary part <code><a href="Math.html#sin%28value%3AFloat32%29%3AFloat32-instance-method">Math.sin(self)</a></code>, where <code>self</code> represents the angle in radians.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/complex.cr#L332" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="divmod(number)-instance-method">
+      <div class="signature">
+        
+        def <strong>divmod</strong>(number)
+
+        <a class="method-permalink" href="#divmod%28number%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns a <code><a href="Tuple.html">Tuple</a></code> of two elements containing the quotient
+and modulus obtained by dividing <code>self</code> by <em>number</em>.</p>
+<pre><code class="language-crystal"><span class="n">11</span>.divmod(<span class="n">3</span>)  <span class="c"># =&gt; {3, 2}</span>
+<span class="n">11</span>.divmod(<span class="n">-3</span>) <span class="c"># =&gt; {-4, -1}</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/number.cr#L217" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="format(io:IO,separator=&#39;.&#39;,delimiter=&#39;,&#39;,decimal_places:Int|Nil=nil,*,group:Int=3,only_significant:Bool=false):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>format</strong>(io : <a href="IO.html">IO</a>, separator = <span class="s">&#39;.&#39;</span>, delimiter = <span class="s">&#39;,&#39;</span>, decimal_places : <a href="Int.html">Int</a> | <a href="Nil.html">Nil</a> = <span class="n">nil</span>, *, group : <a href="Int.html">Int</a> = <span class="n">3</span>, only_significant : <a href="Bool.html">Bool</a> = <span class="n">false</span>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#format%28io%3AIO%2Cseparator%3D%27.%27%2Cdelimiter%3D%27%2C%27%2Cdecimal_places%3AInt%7CNil%3Dnil%2C%2A%2Cgroup%3AInt%3D3%2Conly_significant%3ABool%3Dfalse%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Prints this number as a <code><a href="String.html">String</a></code> using a customizable format.</p>
+<p><em>separator</em> is used as decimal separator, <em>delimiter</em> as thousands
+delimiter between batches of <em>group</em> digits.</p>
+<p>If <em>decimal_places</em> is <code>nil</code>, all significant decimal places are printed
+(similar to <code>#to_s</code>). If the argument has a numeric value, the number of
+visible decimal places will be fixed to that amount.</p>
+<p>Trailing zeros are omitted if <em>only_significant</em> is <code>true</code>.</p>
+<pre><code class="language-crystal"><span class="n">123_456.789</span>.format                                            <span class="c"># =&gt; &quot;123,456.789&quot;</span>
+<span class="n">123_456.789</span>.format(<span class="s">&#39;,&#39;</span>, <span class="s">&#39;.&#39;</span>)                                  <span class="c"># =&gt; &quot;123.456,789&quot;</span>
+<span class="n">123_456.789</span>.format(decimal_places: <span class="n">2</span>)                         <span class="c"># =&gt; &quot;123,456.79&quot;</span>
+<span class="n">123_456.789</span>.format(decimal_places: <span class="n">6</span>)                         <span class="c"># =&gt; &quot;123,456.789000&quot;</span>
+<span class="n">123_456.789</span>.format(decimal_places: <span class="n">6</span>, only_significant: <span class="n">true</span>) <span class="c"># =&gt; &quot;123,456.789&quot;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/humanize.cr#L20" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="format(separator=&#39;.&#39;,delimiter=&#39;,&#39;,decimal_places:Int|Nil=nil,*,group:Int=3,only_significant:Bool=false):String-instance-method">
+      <div class="signature">
+        
+        def <strong>format</strong>(separator = <span class="s">&#39;.&#39;</span>, delimiter = <span class="s">&#39;,&#39;</span>, decimal_places : <a href="Int.html">Int</a> | <a href="Nil.html">Nil</a> = <span class="n">nil</span>, *, group : <a href="Int.html">Int</a> = <span class="n">3</span>, only_significant : <a href="Bool.html">Bool</a> = <span class="n">false</span>) : <a href="String.html">String</a>
+
+        <a class="method-permalink" href="#format%28separator%3D%27.%27%2Cdelimiter%3D%27%2C%27%2Cdecimal_places%3AInt%7CNil%3Dnil%2C%2A%2Cgroup%3AInt%3D3%2Conly_significant%3ABool%3Dfalse%29%3AString-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Prints this number as a <code><a href="String.html">String</a></code> using a customizable format.</p>
+<p><em>separator</em> is used as decimal separator, <em>delimiter</em> as thousands
+delimiter between batches of <em>group</em> digits.</p>
+<p>If <em>decimal_places</em> is <code>nil</code>, all significant decimal places are printed
+(similar to <code>#to_s</code>). If the argument has a numeric value, the number of
+visible decimal places will be fixed to that amount.</p>
+<p>Trailing zeros are omitted if <em>only_significant</em> is <code>true</code>.</p>
+<pre><code class="language-crystal"><span class="n">123_456.789</span>.format                                            <span class="c"># =&gt; &quot;123,456.789&quot;</span>
+<span class="n">123_456.789</span>.format(<span class="s">&#39;,&#39;</span>, <span class="s">&#39;.&#39;</span>)                                  <span class="c"># =&gt; &quot;123.456,789&quot;</span>
+<span class="n">123_456.789</span>.format(decimal_places: <span class="n">2</span>)                         <span class="c"># =&gt; &quot;123,456.79&quot;</span>
+<span class="n">123_456.789</span>.format(decimal_places: <span class="n">6</span>)                         <span class="c"># =&gt; &quot;123,456.789000&quot;</span>
+<span class="n">123_456.789</span>.format(decimal_places: <span class="n">6</span>, only_significant: <span class="n">true</span>) <span class="c"># =&gt; &quot;123,456.789&quot;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/humanize.cr#L95" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="hash(hasher)-instance-method">
+      <div class="signature">
+        
+        def <strong>hash</strong>(hasher)
+
+        <a class="method-permalink" href="#hash%28hasher%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>See <code><a href="Object.html#hash%28hasher%29-instance-method">Object#hash(hasher)</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/number.cr#L43" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="humanize(io:IO,precision=3,separator=&#39;.&#39;,delimiter=&#39;,&#39;,*,base=10**3,significant=true,unit_separator=nil,prefixes:Indexable=SI_PREFIXES):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>humanize</strong>(io : <a href="IO.html">IO</a>, precision = <span class="n">3</span>, separator = <span class="s">&#39;.&#39;</span>, delimiter = <span class="s">&#39;,&#39;</span>, *, base = <span class="n">10</span> <span class="o">**</span> <span class="n">3</span>, significant = <span class="n">true</span>, unit_separator = <span class="n">nil</span>, prefixes : <a href="Indexable.html">Indexable</a> = <span class="t">SI_PREFIXES</span>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#humanize%28io%3AIO%2Cprecision%3D3%2Cseparator%3D%27.%27%2Cdelimiter%3D%27%2C%27%2C%2A%2Cbase%3D10%2A%2A3%2Csignificant%3Dtrue%2Cunit_separator%3Dnil%2Cprefixes%3AIndexable%3DSI_PREFIXES%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Pretty prints this number as a <code><a href="String.html">String</a></code> in a human-readable format.</p>
+<p>This is particularly useful if a number can have a wide value range and
+the <em>exact</em> value is less relevant.</p>
+<p>It rounds the number to the nearest thousands magnitude with <em>precision</em>
+number of significant digits. The order of magnitude is expressed with an
+appended quantifier.
+By default, SI prefixes are used (see <code><a href="Number.html#SI_PREFIXES">SI_PREFIXES</a></code>).</p>
+<pre><code class="language-crystal"><span class="n">1_200_000_000</span>.humanize <span class="c"># =&gt; &quot;1.2G&quot;</span>
+<span class="n">0.000_000_012</span>.humanize <span class="c"># =&gt; &quot;12.0n&quot;</span></code></pre>
+<p>If <em>significant</em> is <code>false</code>, the number of <em>precision</em> digits is preserved
+after the decimal separator.</p>
+<pre><code class="language-crystal"><span class="n">1_234.567_890</span>.humanize(precision: <span class="n">2</span>)                     <span class="c"># =&gt; &quot;1.2k&quot;</span>
+<span class="n">1_234.567_890</span>.humanize(precision: <span class="n">2</span>, significant: <span class="n">false</span>) <span class="c"># =&gt; &quot;1.23k&quot;</span></code></pre>
+<p><em>separator</em> describes the decimal separator, <em>delimiter</em> the thousands
+delimiter (see <code><a href="Number.html#format%28io%3AIO%2Cseparator%3D%27.%27%2Cdelimiter%3D%27%2C%27%2Cdecimal_places%3AInt%7CNil%3Dnil%2C%2A%2Cgroup%3AInt%3D3%2Conly_significant%3ABool%3Dfalse%29%3ANil-instance-method">#format</a></code>).</p>
+<p><em>unit_separator</em> is inserted between the value and the unit.
+Users are encouraged to use a non-breaking space ('\u00A0') to prevent output being split across lines.</p>
+<p>See <code><a href="Int.html#humanize_bytes%28io%3AIO%2Cprecision%3AInt%3D3%2Cseparator%3D%27.%27%2C%2A%2Csignificant%3ABool%3Dtrue%2Cunit_separator%3Dnil%2Cformat%3ABinaryPrefixFormat%3D%3AIEC%29%3ANil-instance-method">Int#humanize_bytes</a></code> to format a file size.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/humanize.cr#L158" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="humanize(io:IO,precision=3,separator=&#39;.&#39;,delimiter=&#39;,&#39;,*,base=10**3,significant=true,unit_separator=nil,prefixes:Proc):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>humanize</strong>(io : <a href="IO.html">IO</a>, precision = <span class="n">3</span>, separator = <span class="s">&#39;.&#39;</span>, delimiter = <span class="s">&#39;,&#39;</span>, *, base = <span class="n">10</span> <span class="o">**</span> <span class="n">3</span>, significant = <span class="n">true</span>, unit_separator = <span class="n">nil</span>, prefixes : <a href="Proc.html">Proc</a>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#humanize%28io%3AIO%2Cprecision%3D3%2Cseparator%3D%27.%27%2Cdelimiter%3D%27%2C%27%2C%2A%2Cbase%3D10%2A%2A3%2Csignificant%3Dtrue%2Cunit_separator%3Dnil%2Cprefixes%3AProc%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Pretty prints this number as a <code><a href="String.html">String</a></code> in a human-readable format.</p>
+<p>This is particularly useful if a number can have a wide value range and
+the <em>exact</em> value is less relevant.</p>
+<p>It rounds the number to the nearest thousands magnitude with <em>precision</em>
+number of significant digits. The order of magnitude is expressed with an
+appended quantifier.
+By default, SI prefixes are used (see <code><a href="Number.html#SI_PREFIXES">SI_PREFIXES</a></code>).</p>
+<pre><code class="language-crystal"><span class="n">1_200_000_000</span>.humanize <span class="c"># =&gt; &quot;1.2G&quot;</span>
+<span class="n">0.000_000_012</span>.humanize <span class="c"># =&gt; &quot;12.0n&quot;</span></code></pre>
+<p>If <em>significant</em> is <code>false</code>, the number of <em>precision</em> digits is preserved
+after the decimal separator.</p>
+<pre><code class="language-crystal"><span class="n">1_234.567_890</span>.humanize(precision: <span class="n">2</span>)                     <span class="c"># =&gt; &quot;1.2k&quot;</span>
+<span class="n">1_234.567_890</span>.humanize(precision: <span class="n">2</span>, significant: <span class="n">false</span>) <span class="c"># =&gt; &quot;1.23k&quot;</span></code></pre>
+<p><em>separator</em> describes the decimal separator, <em>delimiter</em> the thousands
+delimiter (see <code><a href="Number.html#format%28io%3AIO%2Cseparator%3D%27.%27%2Cdelimiter%3D%27%2C%27%2Cdecimal_places%3AInt%7CNil%3Dnil%2C%2A%2Cgroup%3AInt%3D3%2Conly_significant%3ABool%3Dfalse%29%3ANil-instance-method">#format</a></code>).</p>
+<p>This methods yields the order of magnitude and <code>self</code> and expects the block
+to return a <code><a href="Tuple.html">Tuple</a>(<a href="Int32.html">Int32</a>, _)</code> containing the (adjusted) magnitude and unit.
+The magnitude is typically adjusted to a multiple of <code>3</code>.</p>
+<pre><code class="language-crystal"><span class="k">def</span> <span class="m">humanize_length</span>(number)
+  number.humanize <span class="k">do</span> <span class="o">|</span>magnitude, number<span class="o">|</span>
+    <span class="k">case</span> magnitude
+    <span class="k">when</span> <span class="n">-2</span>, <span class="n">-1</span> <span class="k">then</span> {<span class="n">-2</span>, <span class="s">&quot; cm&quot;</span>}
+    <span class="k">when</span> .<span class="o">&gt;=</span>(<span class="n">4</span>)
+      {<span class="n">3</span>, <span class="s">&quot; km&quot;</span>}
+    <span class="k">else</span>
+      magnitude <span class="o">=</span> <span class="t">Number</span>.prefix_index(magnitude)
+      {magnitude, <span class="s">&quot; </span><span class="i">#{</span><span class="t">Number</span>.si_prefix(magnitude)<span class="i">}</span><span class="s">m&quot;</span>}
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+humanize_length(<span class="n">1_420</span>) <span class="c"># =&gt; &quot;1.42 km&quot;</span>
+humanize_length(<span class="n">0.23</span>)  <span class="c"># =&gt; &quot;23.0 cm&quot;</span></code></pre>
+<p>See <code><a href="Int.html#humanize_bytes%28io%3AIO%2Cprecision%3AInt%3D3%2Cseparator%3D%27.%27%2C%2A%2Csignificant%3ABool%3Dtrue%2Cunit_separator%3Dnil%2Cformat%3ABinaryPrefixFormat%3D%3AIEC%29%3ANil-instance-method">Int#humanize_bytes</a></code> to format a file size.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/humanize.cr#L279" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="humanize(precision=3,separator=&#39;.&#39;,delimiter=&#39;,&#39;,*,base=10**3,significant=true,unit_separator=nil,prefixes=SI_PREFIXES):String-instance-method">
+      <div class="signature">
+        
+        def <strong>humanize</strong>(precision = <span class="n">3</span>, separator = <span class="s">&#39;.&#39;</span>, delimiter = <span class="s">&#39;,&#39;</span>, *, base = <span class="n">10</span> <span class="o">**</span> <span class="n">3</span>, significant = <span class="n">true</span>, unit_separator = <span class="n">nil</span>, prefixes = <span class="t">SI_PREFIXES</span>) : <a href="String.html">String</a>
+
+        <a class="method-permalink" href="#humanize%28precision%3D3%2Cseparator%3D%27.%27%2Cdelimiter%3D%27%2C%27%2C%2A%2Cbase%3D10%2A%2A3%2Csignificant%3Dtrue%2Cunit_separator%3Dnil%2Cprefixes%3DSI_PREFIXES%29%3AString-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Pretty prints this number as a <code><a href="String.html">String</a></code> in a human-readable format.</p>
+<p>This is particularly useful if a number can have a wide value range and
+the <em>exact</em> value is less relevant.</p>
+<p>It rounds the number to the nearest thousands magnitude with <em>precision</em>
+number of significant digits. The order of magnitude is expressed with an
+appended quantifier.
+By default, SI prefixes are used (see <code><a href="Number.html#SI_PREFIXES">SI_PREFIXES</a></code>).</p>
+<pre><code class="language-crystal"><span class="n">1_200_000_000</span>.humanize <span class="c"># =&gt; &quot;1.2G&quot;</span>
+<span class="n">0.000_000_012</span>.humanize <span class="c"># =&gt; &quot;12.0n&quot;</span></code></pre>
+<p>If <em>significant</em> is <code>false</code>, the number of <em>precision</em> digits is preserved
+after the decimal separator.</p>
+<pre><code class="language-crystal"><span class="n">1_234.567_890</span>.humanize(precision: <span class="n">2</span>)                     <span class="c"># =&gt; &quot;1.2k&quot;</span>
+<span class="n">1_234.567_890</span>.humanize(precision: <span class="n">2</span>, significant: <span class="n">false</span>) <span class="c"># =&gt; &quot;1.23k&quot;</span></code></pre>
+<p><em>separator</em> describes the decimal separator, <em>delimiter</em> the thousands
+delimiter (see <code><a href="Number.html#format%28io%3AIO%2Cseparator%3D%27.%27%2Cdelimiter%3D%27%2C%27%2Cdecimal_places%3AInt%7CNil%3Dnil%2C%2A%2Cgroup%3AInt%3D3%2Conly_significant%3ABool%3Dfalse%29%3ANil-instance-method">#format</a></code>).</p>
+<p><em>unit_separator</em> is inserted between the value and the unit.
+Users are encouraged to use a non-breaking space ('\u00A0') to prevent output being split across lines.</p>
+<p>See <code><a href="Int.html#humanize_bytes%28io%3AIO%2Cprecision%3AInt%3D3%2Cseparator%3D%27.%27%2C%2A%2Csignificant%3ABool%3Dtrue%2Cunit_separator%3Dnil%2Cformat%3ABinaryPrefixFormat%3D%3AIEC%29%3ANil-instance-method">Int#humanize_bytes</a></code> to format a file size.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/humanize.cr#L166" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="humanize(io:IO,precision=3,separator=&#39;.&#39;,delimiter=&#39;,&#39;,*,base=10**3,significant=true,unit_separator=nil,&amp;prefixes:Int32,Float64-&gt;Tuple(Int32,_)|Tuple(Int32,_,Bool)):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>humanize</strong>(io : <a href="IO.html">IO</a>, precision = <span class="n">3</span>, separator = <span class="s">&#39;.&#39;</span>, delimiter = <span class="s">&#39;,&#39;</span>, *, base = <span class="n">10</span> <span class="o">**</span> <span class="n">3</span>, significant = <span class="n">true</span>, unit_separator = <span class="n">nil</span>, &prefixes : <a href="Int32.html">Int32</a>, <a href="Float64.html">Float64</a> -> <a href="Tuple.html">Tuple</a>(<a href="Int32.html">Int32</a>, _) | <a href="Tuple.html">Tuple</a>(<a href="Int32.html">Int32</a>, _, <a href="Bool.html">Bool</a>)) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#humanize%28io%3AIO%2Cprecision%3D3%2Cseparator%3D%27.%27%2Cdelimiter%3D%27%2C%27%2C%2A%2Cbase%3D10%2A%2A3%2Csignificant%3Dtrue%2Cunit_separator%3Dnil%2C%26prefixes%3AInt32%2CFloat64-%3ETuple%28Int32%2C_%29%7CTuple%28Int32%2C_%2CBool%29%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Pretty prints this number as a <code><a href="String.html">String</a></code> in a human-readable format.</p>
+<p>This is particularly useful if a number can have a wide value range and
+the <em>exact</em> value is less relevant.</p>
+<p>It rounds the number to the nearest thousands magnitude with <em>precision</em>
+number of significant digits. The order of magnitude is expressed with an
+appended quantifier.
+By default, SI prefixes are used (see <code><a href="Number.html#SI_PREFIXES">SI_PREFIXES</a></code>).</p>
+<pre><code class="language-crystal"><span class="n">1_200_000_000</span>.humanize <span class="c"># =&gt; &quot;1.2G&quot;</span>
+<span class="n">0.000_000_012</span>.humanize <span class="c"># =&gt; &quot;12.0n&quot;</span></code></pre>
+<p>If <em>significant</em> is <code>false</code>, the number of <em>precision</em> digits is preserved
+after the decimal separator.</p>
+<pre><code class="language-crystal"><span class="n">1_234.567_890</span>.humanize(precision: <span class="n">2</span>)                     <span class="c"># =&gt; &quot;1.2k&quot;</span>
+<span class="n">1_234.567_890</span>.humanize(precision: <span class="n">2</span>, significant: <span class="n">false</span>) <span class="c"># =&gt; &quot;1.23k&quot;</span></code></pre>
+<p><em>separator</em> describes the decimal separator, <em>delimiter</em> the thousands
+delimiter (see <code><a href="Number.html#format%28io%3AIO%2Cseparator%3D%27.%27%2Cdelimiter%3D%27%2C%27%2Cdecimal_places%3AInt%7CNil%3Dnil%2C%2A%2Cgroup%3AInt%3D3%2Conly_significant%3ABool%3Dfalse%29%3ANil-instance-method">#format</a></code>).</p>
+<p>This methods yields the order of magnitude and <code>self</code> and expects the block
+to return a <code><a href="Tuple.html">Tuple</a>(<a href="Int32.html">Int32</a>, _)</code> containing the (adjusted) magnitude and unit.
+The magnitude is typically adjusted to a multiple of <code>3</code>.</p>
+<pre><code class="language-crystal"><span class="k">def</span> <span class="m">humanize_length</span>(number)
+  number.humanize <span class="k">do</span> <span class="o">|</span>magnitude, number<span class="o">|</span>
+    <span class="k">case</span> magnitude
+    <span class="k">when</span> <span class="n">-2</span>, <span class="n">-1</span> <span class="k">then</span> {<span class="n">-2</span>, <span class="s">&quot; cm&quot;</span>}
+    <span class="k">when</span> .<span class="o">&gt;=</span>(<span class="n">4</span>)
+      {<span class="n">3</span>, <span class="s">&quot; km&quot;</span>}
+    <span class="k">else</span>
+      magnitude <span class="o">=</span> <span class="t">Number</span>.prefix_index(magnitude)
+      {magnitude, <span class="s">&quot; </span><span class="i">#{</span><span class="t">Number</span>.si_prefix(magnitude)<span class="i">}</span><span class="s">m&quot;</span>}
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+humanize_length(<span class="n">1_420</span>) <span class="c"># =&gt; &quot;1.42 km&quot;</span>
+humanize_length(<span class="n">0.23</span>)  <span class="c"># =&gt; &quot;23.0 cm&quot;</span></code></pre>
+<p>See <code><a href="Int.html#humanize_bytes%28io%3AIO%2Cprecision%3AInt%3D3%2Cseparator%3D%27.%27%2C%2A%2Csignificant%3ABool%3Dtrue%2Cunit_separator%3Dnil%2Cformat%3ABinaryPrefixFormat%3D%3AIEC%29%3ANil-instance-method">Int#humanize_bytes</a></code> to format a file size.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/humanize.cr#L221" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="humanize(precision=3,separator=&#39;.&#39;,delimiter=&#39;,&#39;,*,base=10**3,significant=true,unit_separator=nil,&amp;):String-instance-method">
+      <div class="signature">
+        
+        def <strong>humanize</strong>(precision = <span class="n">3</span>, separator = <span class="s">&#39;.&#39;</span>, delimiter = <span class="s">&#39;,&#39;</span>, *, base = <span class="n">10</span> <span class="o">**</span> <span class="n">3</span>, significant = <span class="n">true</span>, unit_separator = <span class="n">nil</span>, &) : <a href="String.html">String</a>
+
+        <a class="method-permalink" href="#humanize%28precision%3D3%2Cseparator%3D%27.%27%2Cdelimiter%3D%27%2C%27%2C%2A%2Cbase%3D10%2A%2A3%2Csignificant%3Dtrue%2Cunit_separator%3Dnil%2C%26%29%3AString-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Pretty prints this number as a <code><a href="String.html">String</a></code> in a human-readable format.</p>
+<p>This is particularly useful if a number can have a wide value range and
+the <em>exact</em> value is less relevant.</p>
+<p>It rounds the number to the nearest thousands magnitude with <em>precision</em>
+number of significant digits. The order of magnitude is expressed with an
+appended quantifier.
+By default, SI prefixes are used (see <code><a href="Number.html#SI_PREFIXES">SI_PREFIXES</a></code>).</p>
+<pre><code class="language-crystal"><span class="n">1_200_000_000</span>.humanize <span class="c"># =&gt; &quot;1.2G&quot;</span>
+<span class="n">0.000_000_012</span>.humanize <span class="c"># =&gt; &quot;12.0n&quot;</span></code></pre>
+<p>If <em>significant</em> is <code>false</code>, the number of <em>precision</em> digits is preserved
+after the decimal separator.</p>
+<pre><code class="language-crystal"><span class="n">1_234.567_890</span>.humanize(precision: <span class="n">2</span>)                     <span class="c"># =&gt; &quot;1.2k&quot;</span>
+<span class="n">1_234.567_890</span>.humanize(precision: <span class="n">2</span>, significant: <span class="n">false</span>) <span class="c"># =&gt; &quot;1.23k&quot;</span></code></pre>
+<p><em>separator</em> describes the decimal separator, <em>delimiter</em> the thousands
+delimiter (see <code><a href="Number.html#format%28io%3AIO%2Cseparator%3D%27.%27%2Cdelimiter%3D%27%2C%27%2Cdecimal_places%3AInt%7CNil%3Dnil%2C%2A%2Cgroup%3AInt%3D3%2Conly_significant%3ABool%3Dfalse%29%3ANil-instance-method">#format</a></code>).</p>
+<p>This methods yields the order of magnitude and <code>self</code> and expects the block
+to return a <code><a href="Tuple.html">Tuple</a>(<a href="Int32.html">Int32</a>, _)</code> containing the (adjusted) magnitude and unit.
+The magnitude is typically adjusted to a multiple of <code>3</code>.</p>
+<pre><code class="language-crystal"><span class="k">def</span> <span class="m">humanize_length</span>(number)
+  number.humanize <span class="k">do</span> <span class="o">|</span>magnitude, number<span class="o">|</span>
+    <span class="k">case</span> magnitude
+    <span class="k">when</span> <span class="n">-2</span>, <span class="n">-1</span> <span class="k">then</span> {<span class="n">-2</span>, <span class="s">&quot; cm&quot;</span>}
+    <span class="k">when</span> .<span class="o">&gt;=</span>(<span class="n">4</span>)
+      {<span class="n">3</span>, <span class="s">&quot; km&quot;</span>}
+    <span class="k">else</span>
+      magnitude <span class="o">=</span> <span class="t">Number</span>.prefix_index(magnitude)
+      {magnitude, <span class="s">&quot; </span><span class="i">#{</span><span class="t">Number</span>.si_prefix(magnitude)<span class="i">}</span><span class="s">m&quot;</span>}
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+humanize_length(<span class="n">1_420</span>) <span class="c"># =&gt; &quot;1.42 km&quot;</span>
+humanize_length(<span class="n">0.23</span>)  <span class="c"># =&gt; &quot;23.0 cm&quot;</span></code></pre>
+<p>See <code><a href="Int.html#humanize_bytes%28io%3AIO%2Cprecision%3AInt%3D3%2Cseparator%3D%27.%27%2C%2A%2Csignificant%3ABool%3Dtrue%2Cunit_separator%3Dnil%2Cformat%3ABinaryPrefixFormat%3D%3AIEC%29%3ANil-instance-method">Int#humanize_bytes</a></code> to format a file size.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/humanize.cr#L270" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="humanize(precision=3,separator=&#39;.&#39;,delimiter=&#39;,&#39;,*,base=10**3,significant=true,unit_separator=nil,prefixes:Proc):String-instance-method">
+      <div class="signature">
+        
+        def <strong>humanize</strong>(precision = <span class="n">3</span>, separator = <span class="s">&#39;.&#39;</span>, delimiter = <span class="s">&#39;,&#39;</span>, *, base = <span class="n">10</span> <span class="o">**</span> <span class="n">3</span>, significant = <span class="n">true</span>, unit_separator = <span class="n">nil</span>, prefixes : <a href="Proc.html">Proc</a>) : <a href="String.html">String</a>
+
+        <a class="method-permalink" href="#humanize%28precision%3D3%2Cseparator%3D%27.%27%2Cdelimiter%3D%27%2C%27%2C%2A%2Cbase%3D10%2A%2A3%2Csignificant%3Dtrue%2Cunit_separator%3Dnil%2Cprefixes%3AProc%29%3AString-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Pretty prints this number as a <code><a href="String.html">String</a></code> in a human-readable format.</p>
+<p>This is particularly useful if a number can have a wide value range and
+the <em>exact</em> value is less relevant.</p>
+<p>It rounds the number to the nearest thousands magnitude with <em>precision</em>
+number of significant digits. The order of magnitude is expressed with an
+appended quantifier.
+By default, SI prefixes are used (see <code><a href="Number.html#SI_PREFIXES">SI_PREFIXES</a></code>).</p>
+<pre><code class="language-crystal"><span class="n">1_200_000_000</span>.humanize <span class="c"># =&gt; &quot;1.2G&quot;</span>
+<span class="n">0.000_000_012</span>.humanize <span class="c"># =&gt; &quot;12.0n&quot;</span></code></pre>
+<p>If <em>significant</em> is <code>false</code>, the number of <em>precision</em> digits is preserved
+after the decimal separator.</p>
+<pre><code class="language-crystal"><span class="n">1_234.567_890</span>.humanize(precision: <span class="n">2</span>)                     <span class="c"># =&gt; &quot;1.2k&quot;</span>
+<span class="n">1_234.567_890</span>.humanize(precision: <span class="n">2</span>, significant: <span class="n">false</span>) <span class="c"># =&gt; &quot;1.23k&quot;</span></code></pre>
+<p><em>separator</em> describes the decimal separator, <em>delimiter</em> the thousands
+delimiter (see <code><a href="Number.html#format%28io%3AIO%2Cseparator%3D%27.%27%2Cdelimiter%3D%27%2C%27%2Cdecimal_places%3AInt%7CNil%3Dnil%2C%2A%2Cgroup%3AInt%3D3%2Conly_significant%3ABool%3Dfalse%29%3ANil-instance-method">#format</a></code>).</p>
+<p>This methods yields the order of magnitude and <code>self</code> and expects the block
+to return a <code><a href="Tuple.html">Tuple</a>(<a href="Int32.html">Int32</a>, _)</code> containing the (adjusted) magnitude and unit.
+The magnitude is typically adjusted to a multiple of <code>3</code>.</p>
+<pre><code class="language-crystal"><span class="k">def</span> <span class="m">humanize_length</span>(number)
+  number.humanize <span class="k">do</span> <span class="o">|</span>magnitude, number<span class="o">|</span>
+    <span class="k">case</span> magnitude
+    <span class="k">when</span> <span class="n">-2</span>, <span class="n">-1</span> <span class="k">then</span> {<span class="n">-2</span>, <span class="s">&quot; cm&quot;</span>}
+    <span class="k">when</span> .<span class="o">&gt;=</span>(<span class="n">4</span>)
+      {<span class="n">3</span>, <span class="s">&quot; km&quot;</span>}
+    <span class="k">else</span>
+      magnitude <span class="o">=</span> <span class="t">Number</span>.prefix_index(magnitude)
+      {magnitude, <span class="s">&quot; </span><span class="i">#{</span><span class="t">Number</span>.si_prefix(magnitude)<span class="i">}</span><span class="s">m&quot;</span>}
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+humanize_length(<span class="n">1_420</span>) <span class="c"># =&gt; &quot;1.42 km&quot;</span>
+humanize_length(<span class="n">0.23</span>)  <span class="c"># =&gt; &quot;23.0 cm&quot;</span></code></pre>
+<p>See <code><a href="Int.html#humanize_bytes%28io%3AIO%2Cprecision%3AInt%3D3%2Cseparator%3D%27.%27%2C%2A%2Csignificant%3ABool%3Dtrue%2Cunit_separator%3Dnil%2Cformat%3ABinaryPrefixFormat%3D%3AIEC%29%3ANil-instance-method">Int#humanize_bytes</a></code> to format a file size.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/humanize.cr#L286" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="i:Complex-instance-method">
+      <div class="signature">
+        
+        def <strong>i</strong> : <a href="Complex.html">Complex</a>
+
+        <a class="method-permalink" href="#i%3AComplex-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns a <code><a href="Complex.html">Complex</a></code> object with the value of <code>self</code> as the imaginary part.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/complex.cr#L321" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="integer?:Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>integer?</strong> : <a href="Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#integer%3F%3ABool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if <code>self</code> is an integer.</p>
+<p>Non-integer types may return <code>true</code> as long as <code>self</code> denotes a finite value
+without any fractional parts.</p>
+<pre><code class="language-crystal"><span class="n">1</span>.integer?       <span class="c"># =&gt; true</span>
+<span class="n">1.0</span>.integer?     <span class="c"># =&gt; true</span>
+<span class="n">1.2</span>.integer?     <span class="c"># =&gt; false</span>
+(<span class="n">1</span> <span class="o">/</span> <span class="n">0</span>).integer? <span class="c"># =&gt; false</span>
+(<span class="n">0</span> <span class="o">/</span> <span class="n">0</span>).integer? <span class="c"># =&gt; false</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/number.cr#L363" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="negative?:Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>negative?</strong> : <a href="Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#negative%3F%3ABool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if <code>self</code> is less than zero.</p>
+<pre><code class="language-crystal"><span class="n">-1</span>.negative? <span class="c"># =&gt; true</span>
+<span class="n">0</span>.negative?  <span class="c"># =&gt; false</span>
+<span class="n">1</span>.negative?  <span class="c"># =&gt; false</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/number.cr#L395" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="positive?:Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>positive?</strong> : <a href="Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#positive%3F%3ABool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if <code>self</code> is greater than zero.</p>
+<pre><code class="language-crystal"><span class="n">-1</span>.positive? <span class="c"># =&gt; false</span>
+<span class="n">0</span>.positive?  <span class="c"># =&gt; false</span>
+<span class="n">1</span>.positive?  <span class="c"># =&gt; true</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/number.cr#L384" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="round(mode:RoundingMode=:ties_even):self-instance-method">
+      <div class="signature">
+        
+        def <strong>round</strong>(mode : <a href="Number/RoundingMode.html">RoundingMode</a> = <span class="n">:ties_even</span>) : <span class="k">self</span>
+
+        <a class="method-permalink" href="#round%28mode%3ARoundingMode%3D%3Aties_even%29%3Aself-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Rounds <code>self</code> to an integer value using rounding <em>mode</em>.</p>
+<p>The rounding <em>mode</em> controls the direction of the rounding. The default is
+<code><a href="Number/RoundingMode.html#TIES_EVEN">RoundingMode::TIES_EVEN</a></code> which rounds to the nearest integer, with ties
+(fractional value of <code>0.5</code>) being rounded to the even neighbor (Banker's rounding).</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/number.cr#L336" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="round(digits:Number,base=10,*,mode:RoundingMode=:ties_even)-instance-method">
+      <div class="signature">
+        
+        def <strong>round</strong>(digits : <a href="Number.html">Number</a>, base = <span class="n">10</span>, *, mode : <a href="Number/RoundingMode.html">RoundingMode</a> = <span class="n">:ties_even</span>)
+
+        <a class="method-permalink" href="#round%28digits%3ANumber%2Cbase%3D10%2C%2A%2Cmode%3ARoundingMode%3D%3Aties_even%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Rounds this number to a given precision.</p>
+<p>Rounds to the specified number of <em>digits</em> after the decimal place,
+(or before if negative), in base <em>base</em>.</p>
+<p>The rounding <em>mode</em> controls the direction of the rounding. The default is
+<code><a href="Number/RoundingMode.html#TIES_EVEN">RoundingMode::TIES_EVEN</a></code> which rounds to the nearest integer, with ties
+(fractional value of <code>0.5</code>) being rounded to the even neighbor (Banker's rounding).</p>
+<pre><code class="language-crystal"><span class="n">-1763.116</span>.round(<span class="n">2</span>) <span class="c"># =&gt; -1763.12</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/number.cr#L290" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="sign:Int32-instance-method">
+      <div class="signature">
+        
+        def <strong>sign</strong> : <a href="Int32.html">Int32</a>
+
+        <a class="method-permalink" href="#sign%3AInt32-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the sign of this number as an <code><a href="Int32.html">Int32</a></code>.</p>
+<ul>
+<li><code>-1</code> if this number is negative</li>
+<li><code>0</code> if this number is zero</li>
+<li><code>1</code> if this number is positive</li>
+</ul>
+<pre><code class="language-crystal"><span class="n">123</span>.sign <span class="c"># =&gt; 1</span>
+<span class="n">0</span>.sign   <span class="c"># =&gt; 0</span>
+<span class="n">-42</span>.sign <span class="c"># =&gt; -1</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/number.cr#L206" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="significant(digits,base=10)-instance-method">
+      <div class="signature">
+        
+        def <strong>significant</strong>(digits, base = <span class="n">10</span>)
+
+        <a class="method-permalink" href="#significant%28digits%2Cbase%3D10%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Keeps <em>digits</em> significant digits of this number in the given <em>base</em>.</p>
+<pre><code class="language-crystal"><span class="n">1234.567</span>.significant(<span class="n">1</span>) <span class="c"># =&gt; 1000</span>
+<span class="n">1234.567</span>.significant(<span class="n">2</span>) <span class="c"># =&gt; 1200</span>
+<span class="n">1234.567</span>.significant(<span class="n">3</span>) <span class="c"># =&gt; 1230</span>
+<span class="n">1234.567</span>.significant(<span class="n">4</span>) <span class="c"># =&gt; 1235</span>
+<span class="n">1234.567</span>.significant(<span class="n">5</span>) <span class="c"># =&gt; 1234.6</span>
+<span class="n">1234.567</span>.significant(<span class="n">6</span>) <span class="c"># =&gt; 1234.57</span>
+<span class="n">1234.567</span>.significant(<span class="n">7</span>) <span class="c"># =&gt; 1234.567</span>
+<span class="n">1234.567</span>.significant(<span class="n">8</span>) <span class="c"># =&gt; 1234.567</span>
+
+<span class="n">15.159</span>.significant(<span class="n">1</span>, base <span class="o">=</span> <span class="n">2</span>) <span class="c"># =&gt; 16</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/number.cr#L250" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="step(*,tolimit=nil,exclusive:Bool=false,&amp;):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>step</strong>(*, to limit = <span class="n">nil</span>, exclusive : <a href="Bool.html">Bool</a> = <span class="n">false</span>, &) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#step%28%2A%2Ctolimit%3Dnil%2Cexclusive%3ABool%3Dfalse%2C%26%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Performs a <code><a href="Number.html#step%28%2A%2Ctolimit%3Dnil%2Cexclusive%3ABool%3Dfalse%2C%26%29%3ANil-instance-method">#step</a></code> in the direction of the <em>limit</em>. For instance:</p>
+<pre><code class="language-crystal"><span class="n">10</span>.step(to: <span class="n">5</span>).to_a <span class="c"># =&gt; [10, 9, 8, 7, 6, 5]</span>
+<span class="n">5</span>.step(to: <span class="n">10</span>).to_a <span class="c"># =&gt; [5, 6, 7, 8, 9, 10]</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/number.cr#L155" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="step(*,tolimit=nil,exclusive:Bool=false)-instance-method">
+      <div class="signature">
+        
+        def <strong>step</strong>(*, to limit = <span class="n">nil</span>, exclusive : <a href="Bool.html">Bool</a> = <span class="n">false</span>)
+
+        <a class="method-permalink" href="#step%28%2A%2Ctolimit%3Dnil%2Cexclusive%3ABool%3Dfalse%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Performs a <code><a href="Number.html#step%28%2A%2Ctolimit%3Dnil%2Cexclusive%3ABool%3Dfalse%2C%26%29%3ANil-instance-method">#step</a></code> in the direction of the <em>limit</em>. For instance:</p>
+<pre><code class="language-crystal"><span class="n">10</span>.step(to: <span class="n">5</span>).to_a <span class="c"># =&gt; [10, 9, 8, 7, 6, 5]</span>
+<span class="n">5</span>.step(to: <span class="n">10</span>).to_a <span class="c"># =&gt; [5, 6, 7, 8, 9, 10]</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/number.cr#L167" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_big_f:BigFloat-instance-method">
+      <div class="signature">
+        
+        def <strong>to_big_f</strong> : <a href="BigFloat.html">BigFloat</a>
+
+        <a class="method-permalink" href="#to_big_f%3ABigFloat-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/big/big_float.cr#L535" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_c:Complex-instance-method">
+      <div class="signature">
+        
+        def <strong>to_c</strong> : <a href="Complex.html">Complex</a>
+
+        <a class="method-permalink" href="#to_c%3AComplex-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns a <code><a href="Complex.html">Complex</a></code> object with the value of <code>self</code> as the real part.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/complex.cr#L316" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_yaml(yaml:YAML::Nodes::Builder):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>to_yaml</strong>(yaml : <a href="YAML/Nodes/Builder.html">YAML::Nodes::Builder</a>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#to_yaml%28yaml%3AYAML%3A%3ANodes%3A%3ABuilder%29%3ANil-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/yaml/to_yaml.cr#L90" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="zero?:Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>zero?</strong> : <a href="Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#zero%3F%3ABool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if <code>self</code> is equal to zero.</p>
+<pre><code class="language-crystal"><span class="n">0</span>.zero? <span class="c"># =&gt; true</span>
+<span class="n">5</span>.zero? <span class="c"># =&gt; false</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/number.cr#L373" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+</div>
+
+</body>
+</html>

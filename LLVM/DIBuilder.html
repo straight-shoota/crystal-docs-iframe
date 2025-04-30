@@ -1,0 +1,1335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Crystal Docs 1.16.1">
+<meta name="crystal_docs.project_version" content="1.17.0-dev">
+<meta name="crystal_docs.project_name" content="Crystal">
+
+  <meta name="crystal_docs.json_config_url" content="/api/versions.json">
+
+
+    <link rel="canonical" href="https://crystal-lang.org/api/latest/LLVM/DIBuilder.html">
+
+<link href="../css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../js/doc.js"></script>
+
+  <meta name="repository-name" content="Crystal">
+  <title>LLVM::DIBuilder - Crystal 1.17.0-dev</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "../";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill="currentColor" fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<input type="checkbox" id="sidebar-btn">
+<label for="sidebar-btn" id="sidebar-btn-label">
+  <svg class="open" xmlns="http://www.w3.org/2000/svg" height="2em" width="2em" viewBox="0 0 512 512"><title>Open Sidebar</title><path fill="currentColor" d="M80 96v64h352V96H80zm0 112v64h352v-64H80zm0 112v64h352v-64H80z"></path></svg>
+  <svg class="close" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><title>Close Sidebar</title><path fill="currentColor" d="m118.6 73.4-45.2 45.2L210.7 256 73.4 393.4l45.2 45.2L256 301.3l137.4 137.3 45.2-45.2L301.3 256l137.3-137.4-45.2-45.2L256 210.7Z"></path></svg>
+</label>
+<iframe class="sidebar" src="../sidebar.html"></iframe>
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">
+    struct
+  </span> LLVM::<wbr>DIBuilder
+
+</h1>
+
+
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../LLVM/DIBuilder.html">LLVM::DIBuilder</a></li><li class="superclass"><a href="../Struct.html">Struct</a></li><li class="superclass"><a href="../Value.html">Value</a></li><li class="superclass"><a href="../Object.html">Object</a></li></ul>
+
+
+
+
+  <h2>
+    <a id="overview" class="anchor" href="#overview">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Overview
+  </h2>
+
+  <p><span class="flag lime">EXPERIMENTAL</span>  The C API wrapped by this type is marked as experimental by LLVM.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/di_builder.cr#L4" target="_blank">
+        llvm/di_builder.cr
+      </a>
+    
+    <br/>
+  
+
+
+
+
+
+  
+  <h2>
+    <a id="constructors" class="anchor" href="#constructors">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructors
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#new%28mod%3ALLVM%3A%3AModule%29-class-method" class="signature"><strong>.new</strong>(mod : LLVM::Module)</a>
+        
+      </li>
+    
+  </ul>
+
+
+  
+
+  
+
+  
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#context-instance-method" class="signature"><strong>#context</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#create_array_type%28size_in_bits%2Calign_in_bits%2Ctype%2Csubs%3ALibLLVM%3A%3AMetadataRef%29-instance-method" class="signature"><strong>#create_array_type</strong>(size_in_bits, align_in_bits, type, subs : LibLLVM::MetadataRef)</a>
+        
+          <div class="summary"><p><span class="flag red">DEPRECATED</span>  Pass an array for <code>subs</code> directly</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#create_array_type%28size_in_bits%2Calign_in_bits%2Ctype%2Csubs%29-instance-method" class="signature"><strong>#create_array_type</strong>(size_in_bits, align_in_bits, type, subs)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#create_auto_variable%28scope%2Cname%2Cfile%2Cline%2Ctype%2Calign_in_bits%2Cflags%3DDIFlags%3A%3AZero%29-instance-method" class="signature"><strong>#create_auto_variable</strong>(scope, name, file, line, type, align_in_bits, flags = <span class="t">DIFlags</span><span class="t">::</span><span class="t">Zero</span>)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#create_basic_type%28name%2Csize_in_bits%2Calign_in_bits%2Cencoding%29-instance-method" class="signature"><strong>#create_basic_type</strong>(name, size_in_bits, align_in_bits, encoding)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#create_compile_unit%28lang%3ADwarfSourceLanguage%2Cfile%2Cdir%2Cproducer%2Coptimized%2Cflags%2Cruntime_version%29-instance-method" class="signature"><strong>#create_compile_unit</strong>(lang : DwarfSourceLanguage, file, dir, producer, optimized, flags, runtime_version)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#create_compile_unit%28langcpp_lang_code%2Cfile%2Cdir%2Cproducer%2Coptimized%2Cflags%2Cruntime_version%29-instance-method" class="signature"><strong>#create_compile_unit</strong>(lang cpp_lang_code, file, dir, producer, optimized, flags, runtime_version)</a>
+        
+          <div class="summary"><p><span class="flag red">DEPRECATED</span>  Pass an <code><a href="../LLVM/DwarfSourceLanguage.html">LLVM::DwarfSourceLanguage</a></code> for <code>lang</code> instead</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#create_debug_location%28line%2Ccolumn%2Cscope%2Cinlined_at%3Dnil%29-instance-method" class="signature"><strong>#create_debug_location</strong>(line, column, scope, inlined_at = <span class="n">nil</span>)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#create_enumeration_type%28scope%2Cname%2Cfile%2Cline_number%2Csize_in_bits%2Calign_in_bits%2Celements%3ALibLLVM%3A%3AMetadataRef%2Cunderlying_type%29-instance-method" class="signature"><strong>#create_enumeration_type</strong>(scope, name, file, line_number, size_in_bits, align_in_bits, elements : LibLLVM::MetadataRef, underlying_type)</a>
+        
+          <div class="summary"><p><span class="flag red">DEPRECATED</span>  Pass an array for <code>elements</code> directly</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#create_enumeration_type%28scope%2Cname%2Cfile%2Cline_number%2Csize_in_bits%2Calign_in_bits%2Celements%2Cunderlying_type%29-instance-method" class="signature"><strong>#create_enumeration_type</strong>(scope, name, file, line_number, size_in_bits, align_in_bits, elements, underlying_type)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#create_enumerator%28name%2Cvalue%29-instance-method" class="signature"><strong>#create_enumerator</strong>(name, value)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#create_expression%28addr%2Clength%29-instance-method" class="signature"><strong>#create_expression</strong>(addr, length)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#create_file%28file%2Cdir%29-instance-method" class="signature"><strong>#create_file</strong>(file, dir)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#create_function%28scope%2Cname%2Clinkage_name%2Cfile%2Cline%2Ccomposite_type%2Cis_local_to_unit%2Cis_definition%2Cscope_line%2Cflags%2Cis_optimized%2Cfunc%29-instance-method" class="signature"><strong>#create_function</strong>(scope, name, linkage_name, file, line, composite_type, is_local_to_unit, is_definition, scope_line, flags, is_optimized, func)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#create_lexical_block%28scope%2Cfile_scope%2Cline%2Ccolumn%29-instance-method" class="signature"><strong>#create_lexical_block</strong>(scope, file_scope, line, column)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#create_lexical_block_file%28scope%2Cfile_scope%2Cdiscriminator%3D0%29-instance-method" class="signature"><strong>#create_lexical_block_file</strong>(scope, file_scope, discriminator = <span class="n">0</span>)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#create_member_type%28scope%2Cname%2Cfile%2Cline%2Csize_in_bits%2Calign_in_bits%2Coffset_in_bits%2Cflags%2Cty%29-instance-method" class="signature"><strong>#create_member_type</strong>(scope, name, file, line, size_in_bits, align_in_bits, offset_in_bits, flags, ty)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#create_parameter_variable%28scope%2Cname%2Cargno%2Cfile%2Cline%2Ctype%2Cflags%3DDIFlags%3A%3AZero%29-instance-method" class="signature"><strong>#create_parameter_variable</strong>(scope, name, argno, file, line, type, flags = <span class="t">DIFlags</span><span class="t">::</span><span class="t">Zero</span>)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#create_pointer_type%28pointee%2Csize_in_bits%2Calign_in_bits%2Cname%29-instance-method" class="signature"><strong>#create_pointer_type</strong>(pointee, size_in_bits, align_in_bits, name)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#create_replaceable_composite_type%28scope%2Cname%2Cfile%2Cline%29-instance-method" class="signature"><strong>#create_replaceable_composite_type</strong>(scope, name, file, line)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#create_struct_type%28scope%2Cname%2Cfile%2Cline%2Csize_in_bits%2Calign_in_bits%2Cflags%2Cderived_from%2Celement_types%3ALibLLVM%3A%3AMetadataRef%29-instance-method" class="signature"><strong>#create_struct_type</strong>(scope, name, file, line, size_in_bits, align_in_bits, flags, derived_from, element_types : LibLLVM::MetadataRef)</a>
+        
+          <div class="summary"><p><span class="flag red">DEPRECATED</span>  Pass an array for <code>element_types</code> directly</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#create_struct_type%28scope%2Cname%2Cfile%2Cline%2Csize_in_bits%2Calign_in_bits%2Cflags%2Cderived_from%2Celement_types%29-instance-method" class="signature"><strong>#create_struct_type</strong>(scope, name, file, line, size_in_bits, align_in_bits, flags, derived_from, element_types)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#create_subroutine_type%28file%2Cparameter_types%3ALibLLVM%3A%3AMetadataRef%29-instance-method" class="signature"><strong>#create_subroutine_type</strong>(file, parameter_types : LibLLVM::MetadataRef)</a>
+        
+          <div class="summary"><p><span class="flag red">DEPRECATED</span>  Pass an array for <code>parameter_types</code> directly</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#create_subroutine_type%28file%2Cparameter_types%29-instance-method" class="signature"><strong>#create_subroutine_type</strong>(file, parameter_types)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#create_union_type%28scope%2Cname%2Cfile%2Cline%2Csize_in_bits%2Calign_in_bits%2Cflags%2Celement_types%3ALibLLVM%3A%3AMetadataRef%29-instance-method" class="signature"><strong>#create_union_type</strong>(scope, name, file, line, size_in_bits, align_in_bits, flags, element_types : LibLLVM::MetadataRef)</a>
+        
+          <div class="summary"><p><span class="flag red">DEPRECATED</span>  Pass an array for <code>element_types</code> directly</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#create_union_type%28scope%2Cname%2Cfile%2Cline%2Csize_in_bits%2Calign_in_bits%2Cflags%2Celement_types%29-instance-method" class="signature"><strong>#create_union_type</strong>(scope, name, file, line, size_in_bits, align_in_bits, flags, element_types)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#create_unspecified_type%28name%3AString%29-instance-method" class="signature"><strong>#create_unspecified_type</strong>(name : String)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#dispose-instance-method" class="signature"><strong>#dispose</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#end-instance-method" class="signature"><strong>#end</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#get_or_create_array%28elements%3AArray%28LibLLVM%3A%3AMetadataRef%29%29-instance-method" class="signature"><strong>#get_or_create_array</strong>(elements : Array(LibLLVM::MetadataRef))</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#get_or_create_array_subrange%28lo%2Ccount%29-instance-method" class="signature"><strong>#get_or_create_array_subrange</strong>(lo, count)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#get_or_create_type_array%28types%3AArray%28LibLLVM%3A%3AMetadataRef%29%29-instance-method" class="signature"><strong>#get_or_create_type_array</strong>(types : Array(LibLLVM::MetadataRef))</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#insert_declare_at_end%28storage%2Cvar_info%2Cexpr%2Cdl%3ALibLLVM%3A%3AMetadataRef%2Cblock%29-instance-method" class="signature"><strong>#insert_declare_at_end</strong>(storage, var_info, expr, dl : LibLLVM::MetadataRef, block)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#insert_declare_at_end%28storage%2Cvar_info%2Cexpr%2Cdl%3ALibLLVM%3A%3AValueRef%7CLLVM%3A%3AValue%2Cblock%29-instance-method" class="signature"><strong>#insert_declare_at_end</strong>(storage, var_info, expr, dl : LibLLVM::ValueRef | LLVM::Value, block)</a>
+        
+          <div class="summary"><p><span class="flag red">DEPRECATED</span>  Use a <code>LibLLVM::MetadataRef</code> for <code>dl</code> instead</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#replace_temporary%28from%2Cto%29-instance-method" class="signature"><strong>#replace_temporary</strong>(from, to)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_unsafe%3ALibLLVM%3A%3ADIBuilderRef-instance-method" class="signature"><strong>#to_unsafe</strong> : LibLLVM::DIBuilderRef</a>
+        
+      </li>
+    
+  </ul>
+
+
+
+  <div class="methods-inherited">
+    
+      
+
+  <h3>Instance methods inherited from struct <code><a href="../Struct.html">Struct</a></code></h3>
+  
+  
+    <a href="../Struct.html#%3D%3D%28other%29%3ABool-instance-method" class="tooltip">
+      <span>==(other) : Bool</span>
+    ==</a>, 
+    
+  
+    <a href="../Struct.html#hash%28hasher%29-instance-method" class="tooltip">
+      <span>hash(hasher)</span>
+    hash</a>, 
+    
+  
+    <a href="../Struct.html#inspect%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>inspect(io : IO) : Nil</span>
+    inspect</a>, 
+    
+  
+    <a href="../Struct.html#pretty_print%28pp%29%3ANil-instance-method" class="tooltip">
+      <span>pretty_print(pp) : Nil</span>
+    pretty_print</a>, 
+    
+  
+    <a href="../Struct.html#to_s%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_s(io : IO) : Nil</span>
+    to_s</a>
+    
+  
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+      
+
+  <h3>Instance methods inherited from struct <code><a href="../Value.html">Value</a></code></h3>
+  
+  
+    <a href="../Value.html#%3D%3D%28other%3AJSON%3A%3AAny%29-instance-method" class="tooltip">
+      <span>==(other : JSON::Any)<br/>==(other : YAML::Any)<br/>==(other)</span>
+    ==</a>, 
+    
+  
+    <a href="../Value.html#dup-instance-method" class="tooltip">
+      <span>dup</span>
+    dup</a>
+    
+  
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+      
+
+  <h3>Instance methods inherited from class <code><a href="../Object.html">Object</a></code></h3>
+  
+  
+    <a href="../Object.html#%21%3ABool-instance-method" class="tooltip">
+      <span>! : Bool</span>
+    !</a>, 
+    
+  
+    <a href="../Object.html#%21%3D%28other%29-instance-method" class="tooltip">
+      <span>!=(other)</span>
+    !=</a>, 
+    
+  
+    <a href="../Object.html#%21~%28other%29-instance-method" class="tooltip">
+      <span>!~(other)</span>
+    !~</a>, 
+    
+  
+    <a href="../Object.html#%3D%3D%28other%29-instance-method" class="tooltip">
+      <span>==(other)</span>
+    ==</a>, 
+    
+  
+    <a href="../Object.html#%3D%3D%3D%28other%3AJSON%3A%3AAny%29-instance-method" class="tooltip">
+      <span>===(other : JSON::Any)<br/>===(other : YAML::Any)<br/>===(other)</span>
+    ===</a>, 
+    
+  
+    <a href="../Object.html#%3D~%28other%29-instance-method" class="tooltip">
+      <span>=~(other)</span>
+    =~</a>, 
+    
+  
+    <a href="../Object.html#as%28type%3AClass%29-instance-method" class="tooltip">
+      <span>as(type : Class)</span>
+    as</a>, 
+    
+  
+    <a href="../Object.html#as%3F%28type%3AClass%29-instance-method" class="tooltip">
+      <span>as?(type : Class)</span>
+    as?</a>, 
+    
+  
+    <a href="../Object.html#class-instance-method" class="tooltip">
+      <span>class</span>
+    class</a>, 
+    
+  
+    <a href="../Object.html#dup-instance-method" class="tooltip">
+      <span>dup</span>
+    dup</a>, 
+    
+  
+    <a href="../Object.html#hash%28hasher%29-instance-method" class="tooltip">
+      <span>hash(hasher)<br/>hash</span>
+    hash</a>, 
+    
+  
+    <a href="../Object.html#in%3F%28collection%3AObject%29%3ABool-instance-method" class="tooltip">
+      <span>in?(collection : Object) : Bool<br/>in?(*values : Object) : Bool</span>
+    in?</a>, 
+    
+  
+    <a href="../Object.html#inspect%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>inspect(io : IO) : Nil<br/>inspect : String</span>
+    inspect</a>, 
+    
+  
+    <a href="../Object.html#is_a%3F%28type%3AClass%29%3ABool-instance-method" class="tooltip">
+      <span>is_a?(type : Class) : Bool</span>
+    is_a?</a>, 
+    
+  
+    <a href="../Object.html#itself-instance-method" class="tooltip">
+      <span>itself</span>
+    itself</a>, 
+    
+  
+    <a href="../Object.html#nil%3F%3ABool-instance-method" class="tooltip">
+      <span>nil? : Bool</span>
+    nil?</a>, 
+    
+  
+    <a href="../Object.html#not_nil%21%28message%29-instance-method" class="tooltip">
+      <span>not_nil!(message)<br/>not_nil!</span>
+    not_nil!</a>, 
+    
+  
+    <a href="../Object.html#pretty_inspect%28width%3D79%2Cnewline%3D%22%5Cn%22%2Cindent%3D0%29%3AString-instance-method" class="tooltip">
+      <span>pretty_inspect(width = <span class="n">79</span>, newline = <span class="s">&quot;\n&quot;</span>, indent = <span class="n">0</span>) : String</span>
+    pretty_inspect</a>, 
+    
+  
+    <a href="../Object.html#pretty_print%28pp%3APrettyPrint%29%3ANil-instance-method" class="tooltip">
+      <span>pretty_print(pp : PrettyPrint) : Nil</span>
+    pretty_print</a>, 
+    
+  
+    <a href="../Object.html#responds_to%3F%28name%3ASymbol%29%3ABool-instance-method" class="tooltip">
+      <span>responds_to?(name : Symbol) : Bool</span>
+    responds_to?</a>, 
+    
+  
+    <a href="../Object.html#tap%28%26%29-instance-method" class="tooltip">
+      <span>tap(&)</span>
+    tap</a>, 
+    
+  
+    <a href="../Object.html#to_json%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_json(io : IO) : Nil<br/>to_json : String</span>
+    to_json</a>, 
+    
+  
+    <a href="../Object.html#to_pretty_json%28indent%3AString%3D%22%22%29%3AString-instance-method" class="tooltip">
+      <span>to_pretty_json(indent : String = <span class="s">&quot;  &quot;</span>) : String<br/>to_pretty_json(io : IO, indent : String = <span class="s">&quot;  &quot;</span>) : Nil</span>
+    to_pretty_json</a>, 
+    
+  
+    <a href="../Object.html#to_s%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_s(io : IO) : Nil<br/>to_s : String</span>
+    to_s</a>, 
+    
+  
+    <a href="../Object.html#to_yaml%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_yaml(io : IO) : Nil<br/>to_yaml : String</span>
+    to_yaml</a>, 
+    
+  
+    <a href="../Object.html#try%28%26%29-instance-method" class="tooltip">
+      <span>try(&)</span>
+    try</a>, 
+    
+  
+    <a href="../Object.html#unsafe_as%28type%3AT.class%29forallT-instance-method" class="tooltip">
+      <span>unsafe_as(type : <span class="t">T</span>.<span class="k">class</span>) forall T</span>
+    unsafe_as</a>
+    
+  
+
+
+      
+
+
+      
+
+  <h3>Class methods inherited from class <code><a href="../Object.html">Object</a></code></h3>
+  
+  
+    <a href="../Object.html#from_json%28string_or_io%2Croot%3AString%29-class-method" class="tooltip">
+      <span>from_json(string_or_io, root : String)<br/>from_json(string_or_io)</span>
+    from_json</a>, 
+    
+  
+    <a href="../Object.html#from_yaml%28string_or_io%3AString%7CIO%29-class-method" class="tooltip">
+      <span>from_yaml(string_or_io : String | IO)</span>
+    from_yaml</a>
+    
+  
+
+
+      
+
+  <h3>Macros inherited from class <code><a href="../Object.html">Object</a></code></h3>
+  
+  
+    <a href="../Object.html#class_getter%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_getter(*names, &block)</span>
+    class_getter</a>, 
+    
+  
+    <a href="../Object.html#class_getter%21%28%2Anames%29-macro" class="tooltip">
+      <span>class_getter!(*names)</span>
+    class_getter!</a>, 
+    
+  
+    <a href="../Object.html#class_getter%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_getter?(*names, &block)</span>
+    class_getter?</a>, 
+    
+  
+    <a href="../Object.html#class_property%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_property(*names, &block)</span>
+    class_property</a>, 
+    
+  
+    <a href="../Object.html#class_property%21%28%2Anames%29-macro" class="tooltip">
+      <span>class_property!(*names)</span>
+    class_property!</a>, 
+    
+  
+    <a href="../Object.html#class_property%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_property?(*names, &block)</span>
+    class_property?</a>, 
+    
+  
+    <a href="../Object.html#class_setter%28%2Anames%29-macro" class="tooltip">
+      <span>class_setter(*names)</span>
+    class_setter</a>, 
+    
+  
+    <a href="../Object.html#def_clone-macro" class="tooltip">
+      <span>def_clone</span>
+    def_clone</a>, 
+    
+  
+    <a href="../Object.html#def_equals%28%2Afields%29-macro" class="tooltip">
+      <span>def_equals(*fields)</span>
+    def_equals</a>, 
+    
+  
+    <a href="../Object.html#def_equals_and_hash%28%2Afields%29-macro" class="tooltip">
+      <span>def_equals_and_hash(*fields)</span>
+    def_equals_and_hash</a>, 
+    
+  
+    <a href="../Object.html#def_hash%28%2Afields%29-macro" class="tooltip">
+      <span>def_hash(*fields)</span>
+    def_hash</a>, 
+    
+  
+    <a href="../Object.html#delegate%28%2Amethods%2Ctoobject%29-macro" class="tooltip">
+      <span>delegate(*methods, to object)</span>
+    delegate</a>, 
+    
+  
+    <a href="../Object.html#forward_missing_to%28delegate%29-macro" class="tooltip">
+      <span>forward_missing_to(delegate)</span>
+    forward_missing_to</a>, 
+    
+  
+    <a href="../Object.html#getter%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>getter(*names, &block)</span>
+    getter</a>, 
+    
+  
+    <a href="../Object.html#getter%21%28%2Anames%29-macro" class="tooltip">
+      <span>getter!(*names)</span>
+    getter!</a>, 
+    
+  
+    <a href="../Object.html#getter%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>getter?(*names, &block)</span>
+    getter?</a>, 
+    
+  
+    <a href="../Object.html#property%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>property(*names, &block)</span>
+    property</a>, 
+    
+  
+    <a href="../Object.html#property%21%28%2Anames%29-macro" class="tooltip">
+      <span>property!(*names)</span>
+    property!</a>, 
+    
+  
+    <a href="../Object.html#property%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>property?(*names, &block)</span>
+    property?</a>, 
+    
+  
+    <a href="../Object.html#setter%28%2Anames%29-macro" class="tooltip">
+      <span>setter(*names)</span>
+    setter</a>
+    
+  
+
+
+    
+  </div>
+
+  
+  <h2>
+    <a id="constructor-detail" class="anchor" href="#constructor-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructor Detail
+  </h2>
+  
+    <div class="entry-detail" id="new(mod:LLVM::Module)-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(mod : <a href="../LLVM/Module.html">LLVM::Module</a>)
+
+        <a class="method-permalink" href="#new%28mod%3ALLVM%3A%3AModule%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/di_builder.cr#L10" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+  
+
+  
+
+  
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="context-instance-method">
+      <div class="signature">
+        
+        def <strong>context</strong>
+
+        <a class="method-permalink" href="#context-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/di_builder.cr#L18" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="create_array_type(size_in_bits,align_in_bits,type,subs:LibLLVM::MetadataRef)-instance-method">
+      <div class="signature">
+        
+        def <strong>create_array_type</strong>(size_in_bits, align_in_bits, type, subs : LibLLVM::MetadataRef)
+
+        <a class="method-permalink" href="#create_array_type%28size_in_bits%2Calign_in_bits%2Ctype%2Csubs%3ALibLLVM%3A%3AMetadataRef%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p><span class="flag red">DEPRECATED</span>  Pass an array for <code>subs</code> directly</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/di_builder.cr#L199" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="create_array_type(size_in_bits,align_in_bits,type,subs)-instance-method">
+      <div class="signature">
+        
+        def <strong>create_array_type</strong>(size_in_bits, align_in_bits, type, subs)
+
+        <a class="method-permalink" href="#create_array_type%28size_in_bits%2Calign_in_bits%2Ctype%2Csubs%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/di_builder.cr#L130" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="create_auto_variable(scope,name,file,line,type,align_in_bits,flags=DIFlags::Zero)-instance-method">
+      <div class="signature">
+        
+        def <strong>create_auto_variable</strong>(scope, name, file, line, type, align_in_bits, flags = <span class="t">DIFlags</span><span class="t">::</span><span class="t">Zero</span>)
+
+        <a class="method-permalink" href="#create_auto_variable%28scope%2Cname%2Cfile%2Cline%2Ctype%2Calign_in_bits%2Cflags%3DDIFlags%3A%3AZero%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/di_builder.cr#L86" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="create_basic_type(name,size_in_bits,align_in_bits,encoding)-instance-method">
+      <div class="signature">
+        
+        def <strong>create_basic_type</strong>(name, size_in_bits, align_in_bits, encoding)
+
+        <a class="method-permalink" href="#create_basic_type%28name%2Csize_in_bits%2Calign_in_bits%2Cencoding%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/di_builder.cr#L53" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="create_compile_unit(lang:DwarfSourceLanguage,file,dir,producer,optimized,flags,runtime_version)-instance-method">
+      <div class="signature">
+        
+        def <strong>create_compile_unit</strong>(lang : <a href="../LLVM/DwarfSourceLanguage.html">DwarfSourceLanguage</a>, file, dir, producer, optimized, flags, runtime_version)
+
+        <a class="method-permalink" href="#create_compile_unit%28lang%3ADwarfSourceLanguage%2Cfile%2Cdir%2Cproducer%2Coptimized%2Cflags%2Cruntime_version%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/di_builder.cr#L22" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="create_compile_unit(langcpp_lang_code,file,dir,producer,optimized,flags,runtime_version)-instance-method">
+      <div class="signature">
+        
+        def <strong>create_compile_unit</strong>(lang cpp_lang_code, file, dir, producer, optimized, flags, runtime_version)
+
+        <a class="method-permalink" href="#create_compile_unit%28langcpp_lang_code%2Cfile%2Cdir%2Cproducer%2Coptimized%2Cflags%2Cruntime_version%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p><span class="flag red">DEPRECATED</span>  Pass an <code><a href="../LLVM/DwarfSourceLanguage.html">LLVM::DwarfSourceLanguage</a></code> for <code>lang</code> instead</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/di_builder.cr#L40" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="create_debug_location(line,column,scope,inlined_at=nil)-instance-method">
+      <div class="signature">
+        
+        def <strong>create_debug_location</strong>(line, column, scope, inlined_at = <span class="n">nil</span>)
+
+        <a class="method-permalink" href="#create_debug_location%28line%2Ccolumn%2Cscope%2Cinlined_at%3Dnil%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/di_builder.cr#L160" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="create_enumeration_type(scope,name,file,line_number,size_in_bits,align_in_bits,elements:LibLLVM::MetadataRef,underlying_type)-instance-method">
+      <div class="signature">
+        
+        def <strong>create_enumeration_type</strong>(scope, name, file, line_number, size_in_bits, align_in_bits, elements : LibLLVM::MetadataRef, underlying_type)
+
+        <a class="method-permalink" href="#create_enumeration_type%28scope%2Cname%2Cfile%2Cline_number%2Csize_in_bits%2Calign_in_bits%2Celements%3ALibLLVM%3A%3AMetadataRef%2Cunderlying_type%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p><span class="flag red">DEPRECATED</span>  Pass an array for <code>elements</code> directly</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/di_builder.cr#L184" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="create_enumeration_type(scope,name,file,line_number,size_in_bits,align_in_bits,elements,underlying_type)-instance-method">
+      <div class="signature">
+        
+        def <strong>create_enumeration_type</strong>(scope, name, file, line_number, size_in_bits, align_in_bits, elements, underlying_type)
+
+        <a class="method-permalink" href="#create_enumeration_type%28scope%2Cname%2Cfile%2Cline_number%2Csize_in_bits%2Calign_in_bits%2Celements%2Cunderlying_type%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/di_builder.cr#L115" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="create_enumerator(name,value)-instance-method">
+      <div class="signature">
+        
+        def <strong>create_enumerator</strong>(name, value)
+
+        <a class="method-permalink" href="#create_enumerator%28name%2Cvalue%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/di_builder.cr#L110" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="create_expression(addr,length)-instance-method">
+      <div class="signature">
+        
+        def <strong>create_expression</strong>(addr, length)
+
+        <a class="method-permalink" href="#create_expression%28addr%2Clength%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/di_builder.cr#L94" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="create_file(file,dir)-instance-method">
+      <div class="signature">
+        
+        def <strong>create_file</strong>(file, dir)
+
+        <a class="method-permalink" href="#create_file%28file%2Cdir%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/di_builder.cr#L65" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="create_function(scope,name,linkage_name,file,line,composite_type,is_local_to_unit,is_definition,scope_line,flags,is_optimized,func)-instance-method">
+      <div class="signature">
+        
+        def <strong>create_function</strong>(scope, name, linkage_name, file, line, composite_type, is_local_to_unit, is_definition, scope_line, flags, is_optimized, func)
+
+        <a class="method-permalink" href="#create_function%28scope%2Cname%2Clinkage_name%2Cfile%2Cline%2Ccomposite_type%2Cis_local_to_unit%2Cis_definition%2Cscope_line%2Cflags%2Cis_optimized%2Cfunc%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/di_builder.cr#L77" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="create_lexical_block(scope,file_scope,line,column)-instance-method">
+      <div class="signature">
+        
+        def <strong>create_lexical_block</strong>(scope, file_scope, line, column)
+
+        <a class="method-permalink" href="#create_lexical_block%28scope%2Cfile_scope%2Cline%2Ccolumn%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/di_builder.cr#L69" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="create_lexical_block_file(scope,file_scope,discriminator=0)-instance-method">
+      <div class="signature">
+        
+        def <strong>create_lexical_block_file</strong>(scope, file_scope, discriminator = <span class="n">0</span>)
+
+        <a class="method-permalink" href="#create_lexical_block_file%28scope%2Cfile_scope%2Cdiscriminator%3D0%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/di_builder.cr#L73" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="create_member_type(scope,name,file,line,size_in_bits,align_in_bits,offset_in_bits,flags,ty)-instance-method">
+      <div class="signature">
+        
+        def <strong>create_member_type</strong>(scope, name, file, line, size_in_bits, align_in_bits, offset_in_bits, flags, ty)
+
+        <a class="method-permalink" href="#create_member_type%28scope%2Cname%2Cfile%2Cline%2Csize_in_bits%2Calign_in_bits%2Coffset_in_bits%2Cflags%2Cty%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/di_builder.cr#L134" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="create_parameter_variable(scope,name,argno,file,line,type,flags=DIFlags::Zero)-instance-method">
+      <div class="signature">
+        
+        def <strong>create_parameter_variable</strong>(scope, name, argno, file, line, type, flags = <span class="t">DIFlags</span><span class="t">::</span><span class="t">Zero</span>)
+
+        <a class="method-permalink" href="#create_parameter_variable%28scope%2Cname%2Cargno%2Cfile%2Cline%2Ctype%2Cflags%3DDIFlags%3A%3AZero%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/di_builder.cr#L90" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="create_pointer_type(pointee,size_in_bits,align_in_bits,name)-instance-method">
+      <div class="signature">
+        
+        def <strong>create_pointer_type</strong>(pointee, size_in_bits, align_in_bits, name)
+
+        <a class="method-permalink" href="#create_pointer_type%28pointee%2Csize_in_bits%2Calign_in_bits%2Cname%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/di_builder.cr#L139" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="create_replaceable_composite_type(scope,name,file,line)-instance-method">
+      <div class="signature">
+        
+        def <strong>create_replaceable_composite_type</strong>(scope, name, file, line)
+
+        <a class="method-permalink" href="#create_replaceable_composite_type%28scope%2Cname%2Cfile%2Cline%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/di_builder.cr#L143" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="create_struct_type(scope,name,file,line,size_in_bits,align_in_bits,flags,derived_from,element_types:LibLLVM::MetadataRef)-instance-method">
+      <div class="signature">
+        
+        def <strong>create_struct_type</strong>(scope, name, file, line, size_in_bits, align_in_bits, flags, derived_from, element_types : LibLLVM::MetadataRef)
+
+        <a class="method-permalink" href="#create_struct_type%28scope%2Cname%2Cfile%2Cline%2Csize_in_bits%2Calign_in_bits%2Cflags%2Cderived_from%2Celement_types%3ALibLLVM%3A%3AMetadataRef%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p><span class="flag red">DEPRECATED</span>  Pass an array for <code>element_types</code> directly</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/di_builder.cr#L189" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="create_struct_type(scope,name,file,line,size_in_bits,align_in_bits,flags,derived_from,element_types)-instance-method">
+      <div class="signature">
+        
+        def <strong>create_struct_type</strong>(scope, name, file, line, size_in_bits, align_in_bits, flags, derived_from, element_types)
+
+        <a class="method-permalink" href="#create_struct_type%28scope%2Cname%2Cfile%2Cline%2Csize_in_bits%2Calign_in_bits%2Cflags%2Cderived_from%2Celement_types%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/di_builder.cr#L120" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="create_subroutine_type(file,parameter_types:LibLLVM::MetadataRef)-instance-method">
+      <div class="signature">
+        
+        def <strong>create_subroutine_type</strong>(file, parameter_types : LibLLVM::MetadataRef)
+
+        <a class="method-permalink" href="#create_subroutine_type%28file%2Cparameter_types%3ALibLLVM%3A%3AMetadataRef%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p><span class="flag red">DEPRECATED</span>  Pass an array for <code>parameter_types</code> directly</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/di_builder.cr#L179" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="create_subroutine_type(file,parameter_types)-instance-method">
+      <div class="signature">
+        
+        def <strong>create_subroutine_type</strong>(file, parameter_types)
+
+        <a class="method-permalink" href="#create_subroutine_type%28file%2Cparameter_types%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/di_builder.cr#L61" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="create_union_type(scope,name,file,line,size_in_bits,align_in_bits,flags,element_types:LibLLVM::MetadataRef)-instance-method">
+      <div class="signature">
+        
+        def <strong>create_union_type</strong>(scope, name, file, line, size_in_bits, align_in_bits, flags, element_types : LibLLVM::MetadataRef)
+
+        <a class="method-permalink" href="#create_union_type%28scope%2Cname%2Cfile%2Cline%2Csize_in_bits%2Calign_in_bits%2Cflags%2Celement_types%3ALibLLVM%3A%3AMetadataRef%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p><span class="flag red">DEPRECATED</span>  Pass an array for <code>element_types</code> directly</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/di_builder.cr#L194" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="create_union_type(scope,name,file,line,size_in_bits,align_in_bits,flags,element_types)-instance-method">
+      <div class="signature">
+        
+        def <strong>create_union_type</strong>(scope, name, file, line, size_in_bits, align_in_bits, flags, element_types)
+
+        <a class="method-permalink" href="#create_union_type%28scope%2Cname%2Cfile%2Cline%2Csize_in_bits%2Calign_in_bits%2Cflags%2Celement_types%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/di_builder.cr#L125" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="create_unspecified_type(name:String)-instance-method">
+      <div class="signature">
+        
+        def <strong>create_unspecified_type</strong>(name : <a href="../String.html">String</a>)
+
+        <a class="method-permalink" href="#create_unspecified_type%28name%3AString%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/di_builder.cr#L152" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="dispose-instance-method">
+      <div class="signature">
+        
+        def <strong>dispose</strong>
+
+        <a class="method-permalink" href="#dispose-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/di_builder.cr#L14" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="end-instance-method">
+      <div class="signature">
+        
+        def <strong>end</strong>
+
+        <a class="method-permalink" href="#end-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/di_builder.cr#L164" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="get_or_create_array(elements:Array(LibLLVM::MetadataRef))-instance-method">
+      <div class="signature">
+        
+        def <strong>get_or_create_array</strong>(elements : <a href="../Array.html">Array</a>(LibLLVM::MetadataRef))
+
+        <a class="method-permalink" href="#get_or_create_array%28elements%3AArray%28LibLLVM%3A%3AMetadataRef%29%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/di_builder.cr#L106" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="get_or_create_array_subrange(lo,count)-instance-method">
+      <div class="signature">
+        
+        def <strong>get_or_create_array_subrange</strong>(lo, count)
+
+        <a class="method-permalink" href="#get_or_create_array_subrange%28lo%2Ccount%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/di_builder.cr#L156" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="get_or_create_type_array(types:Array(LibLLVM::MetadataRef))-instance-method">
+      <div class="signature">
+        
+        def <strong>get_or_create_type_array</strong>(types : <a href="../Array.html">Array</a>(LibLLVM::MetadataRef))
+
+        <a class="method-permalink" href="#get_or_create_type_array%28types%3AArray%28LibLLVM%3A%3AMetadataRef%29%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/di_builder.cr#L57" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="insert_declare_at_end(storage,var_info,expr,dl:LibLLVM::MetadataRef,block)-instance-method">
+      <div class="signature">
+        
+        def <strong>insert_declare_at_end</strong>(storage, var_info, expr, dl : LibLLVM::MetadataRef, block)
+
+        <a class="method-permalink" href="#insert_declare_at_end%28storage%2Cvar_info%2Cexpr%2Cdl%3ALibLLVM%3A%3AMetadataRef%2Cblock%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/di_builder.cr#L98" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="insert_declare_at_end(storage,var_info,expr,dl:LibLLVM::ValueRef|LLVM::Value,block)-instance-method">
+      <div class="signature">
+        
+        def <strong>insert_declare_at_end</strong>(storage, var_info, expr, dl : LibLLVM::ValueRef | <a href="../LLVM/Value.html">LLVM::Value</a>, block)
+
+        <a class="method-permalink" href="#insert_declare_at_end%28storage%2Cvar_info%2Cexpr%2Cdl%3ALibLLVM%3A%3AValueRef%7CLLVM%3A%3AValue%2Cblock%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p><span class="flag red">DEPRECATED</span>  Use a <code>LibLLVM::MetadataRef</code> for <code>dl</code> instead</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/di_builder.cr#L173" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="replace_temporary(from,to)-instance-method">
+      <div class="signature">
+        
+        def <strong>replace_temporary</strong>(from, to)
+
+        <a class="method-permalink" href="#replace_temporary%28from%2Cto%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/di_builder.cr#L148" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_unsafe:LibLLVM::DIBuilderRef-instance-method">
+      <div class="signature">
+        
+        def <strong>to_unsafe</strong> : LibLLVM::DIBuilderRef
+
+        <a class="method-permalink" href="#to_unsafe%3ALibLLVM%3A%3ADIBuilderRef-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/di_builder.cr#L168" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+</div>
+
+</body>
+</html>

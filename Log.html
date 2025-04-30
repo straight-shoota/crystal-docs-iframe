@@ -1,0 +1,2431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Crystal Docs 1.16.1">
+<meta name="crystal_docs.project_version" content="1.17.0-dev">
+<meta name="crystal_docs.project_name" content="Crystal">
+
+  <meta name="crystal_docs.json_config_url" content="/api/versions.json">
+
+
+    <link rel="canonical" href="https://crystal-lang.org/api/latest/Log.html">
+
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/doc.js"></script>
+
+  <meta name="repository-name" content="Crystal">
+  <title>Log - Crystal 1.17.0-dev</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill="currentColor" fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<input type="checkbox" id="sidebar-btn">
+<label for="sidebar-btn" id="sidebar-btn-label">
+  <svg class="open" xmlns="http://www.w3.org/2000/svg" height="2em" width="2em" viewBox="0 0 512 512"><title>Open Sidebar</title><path fill="currentColor" d="M80 96v64h352V96H80zm0 112v64h352v-64H80zm0 112v64h352v-64H80z"></path></svg>
+  <svg class="close" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><title>Close Sidebar</title><path fill="currentColor" d="m118.6 73.4-45.2 45.2L210.7 256 73.4 393.4l45.2 45.2L256 301.3l137.4 137.3 45.2-45.2L301.3 256l137.3-137.4-45.2-45.2L256 210.7Z"></path></svg>
+</label>
+<iframe class="sidebar" src="sidebar.html"></iframe>
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">
+    class
+  </span> Log
+
+</h1>
+
+
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="Log.html">Log</a></li><li class="superclass"><a href="Reference.html">Reference</a></li><li class="superclass"><a href="Object.html">Object</a></li></ul>
+
+
+
+
+  <h2>
+    <a id="overview" class="anchor" href="#overview">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Overview
+  </h2>
+
+  <p>The <code><a href="Log.html">Log</a></code> class provides a logging utility that you can use to output messages.</p>
+<p>The messages, or <code><a href="Log/Entry.html">Log::Entry</a></code> have associated levels, such as <code>Info</code> or <code>Error</code>
+that indicate their importance. See <code><a href="Log/Severity.html">Log::Severity</a></code>.</p>
+<p>To log a message use the <code><a href="Log.html#trace%28%2A%2Cexception%3AException%29%3ANil-instance-method">#trace</a></code>, <code><a href="Log.html#debug%28%2A%2Cexception%3AException%29%3ANil-instance-method">#debug</a></code>, <code><a href="Log.html#info%28%2A%2Cexception%3AException%29%3ANil-instance-method">#info</a></code>, <code><a href="Log.html#notice%28%2A%2Cexception%3AException%29%3ANil-instance-method">#notice</a></code>, <code><a href="Log.html#warn%28%2A%2Cexception%3AException%29%3ANil-instance-method">#warn</a></code>,
+<code><a href="Log.html#error%28%2A%2Cexception%3AException%29%3ANil-instance-method">#error</a></code>, and <code><a href="Log.html#fatal%28%2A%2Cexception%3AException%29%3ANil-instance-method">#fatal</a></code> methods. They expect a block that will evaluate to the
+message of the entry:</p>
+<p><span class="flag purple">NOTE</span>  To use <code><a href="Log.html">Log</a></code>, you must explicitly import it with <code>require &quot;log&quot;</code></p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;log&quot;</span>
+
+<span class="t">Log</span>.info { <span class="s">&quot;Program started&quot;</span> }</code></pre>
+<p>Data can be associated with a log entry via the <code><a href="Log/Emitter.html">Log::Emitter</a></code> yielded in the logging methods.</p>
+<pre><code class="language-crystal"><span class="t">Log</span>.info <span class="o">&amp;</span>.emit(<span class="s">&quot;User logged in&quot;</span>, user_id: <span class="n">42</span>)</code></pre>
+<p>If you want to log an exception, you can indicate it in the <code>exception:</code> named argument.</p>
+<pre><code class="language-crystal"><span class="t">Log</span>.warn(exception: e) { <span class="s">&quot;Oh no!&quot;</span> }
+<span class="t">Log</span>.warn exception: e, <span class="o">&amp;</span>.emit(<span class="s">&quot;Oh no!&quot;</span>, user_id: <span class="n">42</span>)</code></pre>
+<p>The block is only evaluated if the current message is to be emitted to some <code><a href="Log/Backend.html">Log::Backend</a></code>.</p>
+<p>To add structured information to the message you can use the <code><a href="Log/Context.html">Log::Context</a></code>.</p>
+<p>When creating log messages they belong to a <em>source</em>. If the top-level <code><a href="Log.html">Log</a></code> is used
+as in the above examples its source is the empty string.</p>
+<p>The source can be used to identify the module or part of the application that is logging.
+You can configure for each source a different level to filter the messages.</p>
+<p>A recommended pattern is to declare a <code><a href="Log.html">Log</a></code> constant in the namespace of your shard or module as follows:</p>
+<pre><code class="language-crystal"><span class="k">module</span> <span class="t">DB</span>
+  <span class="t">Log</span> <span class="o">=</span> <span class="t">::</span><span class="t">Log</span>.<span class="k">for</span>(<span class="s">&quot;db&quot;</span>) <span class="c"># Log for db source</span>
+
+  <span class="k">def</span> <span class="m">do_something</span>
+    <span class="t">Log</span>.info { <span class="s">&quot;this is logged in db source&quot;</span> }
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="t">DB</span><span class="t">::</span><span class="t">Log</span>.info { <span class="s">&quot;this is also logged in db source&quot;</span> }
+<span class="t">Log</span>.<span class="k">for</span>(<span class="s">&quot;db&quot;</span>).info { <span class="s">&quot;this is also logged in db source&quot;</span> }
+<span class="t">Log</span>.info { <span class="s">&quot;this is logged in top-level source&quot;</span> }</code></pre>
+<p>That way, any <code><a href="Log.html#info%28%2A%2Cexception%3AException%29%3ANil-class-method">Log.info</a></code> call within the <code>DB</code> module will use the <code>db</code> source. And not the top-level <code><a href="Log.html#info%28%2A%2Cexception%3AException%29%3ANil-class-method">::Log.info</a></code>.</p>
+<p>Sources can be nested. Continuing the last example, to declare a <code><a href="Log.html">Log</a></code> constant <code>db.pool</code> source you can do as follows:</p>
+<pre><code class="language-crystal"><span class="k">class</span> <span class="t">DB</span><span class="t">::</span><span class="t">Pool</span>
+  <span class="t">Log</span> <span class="o">=</span> <span class="t">DB</span><span class="t">::</span><span class="t">Log</span>.<span class="k">for</span>(<span class="s">&quot;pool&quot;</span>) <span class="c"># Log for db.pool source</span>
+<span class="k">end</span></code></pre>
+<p>A <code><a href="Log.html">Log</a></code> will emit the messages to the <code><a href="Log/Backend.html">Log::Backend</a></code>s attached to it as long as
+the configured severity filter <code><a href="Log.html#level%3ASeverity-instance-method">#level</a></code> permits it.</p>
+<p>Logs can also be created from a type directly. For the type <code>DB::Pool</code> the source <code>db.pool</code> will be used.
+For generic types as <code>Foo::Bar(Baz)</code> the source <code>foo.bar</code> will be used (i.e. without generic arguments).</p>
+<pre><code class="language-crystal"><span class="k">module</span> <span class="t">DB</span>
+  <span class="t">Log</span> <span class="o">=</span> <span class="t">::</span><span class="t">Log</span>.<span class="k">for</span>(<span class="k">self</span>) <span class="c"># Log for db source</span>
+<span class="k">end</span></code></pre>
+<h3><a id="default-logging-configuration" class="anchor" href="#default-logging-configuration">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Default logging configuration</h3>
+<p>By default entries from all sources with <code>Info</code> and above severity will
+be logged to <code><a href="toplevel.html#STDOUT">STDOUT</a></code> using the <code><a href="Log/IOBackend.html">Log::IOBackend</a></code>.</p>
+<p>If you need to change the default level, backend or sources call <code><a href="Log.html#setup%28%2A%2Cbuilder%3ALog%3A%3ABuilder%3DLog.builder%2C%26%29-class-method">Log.setup</a></code> upon startup.</p>
+<p><span class="flag purple">NOTE</span>  Calling <code><a href="Log.html#setup%28%2A%2Cbuilder%3ALog%3A%3ABuilder%3DLog.builder%2C%26%29-class-method">.setup</a></code> will override previous <code><a href="Log.html#setup%28%2A%2Cbuilder%3ALog%3A%3ABuilder%3DLog.builder%2C%26%29-class-method">.setup</a></code> calls.</p>
+<pre><code class="language-crystal"><span class="t">Log</span>.setup(<span class="n">:debug</span>)                     <span class="c"># Log debug and above for all sources to STDOUT</span>
+<span class="t">Log</span>.setup(<span class="s">&quot;myapp.*, http.*&quot;</span>, <span class="n">:notice</span>) <span class="c"># Log notice and above for myapp.* and http.* sources only, and log nothing for any other source.</span>
+backend_with_formatter <span class="o">=</span> <span class="t">Log</span><span class="t">::</span><span class="t">IOBackend</span>.new(formatter: custom_formatter)
+<span class="t">Log</span>.setup(<span class="n">:debug</span>, backend_with_formatter) <span class="c"># Log debug and above for all sources to using a custom backend</span></code></pre>
+<h3><a id="configure-logging-explicitly-in-the-code" class="anchor" href="#configure-logging-explicitly-in-the-code">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Configure logging explicitly in the code</h3>
+<p>Use <code><a href="Log.html#setup%28%2A%2Cbuilder%3ALog%3A%3ABuilder%3DLog.builder%2C%26%29-class-method">Log.setup</a></code> methods to indicate which sources should go to which backends.</p>
+<p>You can indicate actual sources or patterns.</p>
+<ul>
+<li>the empty string matches only the top-level source</li>
+<li><code>*</code> matches all the sources</li>
+<li><code>foo.bar.*</code> matches <code>foo.bar</code> and every nested source</li>
+<li><code>foo.bar</code> matches <code>foo.bar</code>, but not its nested sources</li>
+<li>Any comma separated combination of the above</li>
+</ul>
+<p>The following configuration will setup for all sources to emit
+warnings (or higher) to <code><a href="toplevel.html#STDOUT">STDOUT</a></code>, allow any of the <code>db.*</code> and
+nested source to emit debug (or higher), and to also emit for all
+sources errors (or higher) to an elasticsearch backend.</p>
+<pre><code class="language-crystal"><span class="t">Log</span>.setup <span class="k">do</span> <span class="o">|</span>c<span class="o">|</span>
+  backend <span class="o">=</span> <span class="t">Log</span><span class="t">::</span><span class="t">IOBackend</span>.new
+
+  c.bind <span class="s">&quot;*&quot;</span>, <span class="n">:warn</span>, backend
+  c.bind <span class="s">&quot;db.*&quot;</span>, <span class="n">:debug</span>, backend
+  c.bind <span class="s">&quot;*&quot;</span>, <span class="n">:error</span>, <span class="t">ElasticSearchBackend</span>.new(<span class="s">&quot;http://localhost:9200&quot;</span>)
+<span class="k">end</span></code></pre>
+<h3><a id="configure-logging-from-environment-variables" class="anchor" href="#configure-logging-from-environment-variables">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Configure logging from environment variables</h3>
+<p>Include the following line to allow configuration from environment variables.</p>
+<pre><code class="language-crystal"><span class="t">Log</span>.setup_from_env</code></pre>
+<p>The environment variable <code>LOG_LEVEL</code> is used to indicate which severity level to emit.
+By default entries from all sources with <code>Info</code> and above severity will
+be logged to <code><a href="toplevel.html#STDOUT">STDOUT</a></code> using the <code><a href="Log/IOBackend.html">Log::IOBackend</a></code>.</p>
+<p>To change the level and sources change the environment variable value:</p>
+<pre><code class="language-console">$ LOG_LEVEL=DEBUG ./bin/app</code></pre>
+<p>You can tweak the default values (used when <code>LOG_LEVEL</code> variable is not defined):</p>
+<pre><code class="language-crystal"><span class="t">Log</span>.setup_from_env(default_level: <span class="n">:error</span>)</code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/log.cr#L146" target="_blank">
+        log.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/log/dispatch.cr#L1" target="_blank">
+        log/dispatch.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/log/format.cr#L1" target="_blank">
+        log/format.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/log/log.cr#L1" target="_blank">
+        log/log.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/log/main.cr#L1" target="_blank">
+        log/main.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/log/setup.cr#L1" target="_blank">
+        log/setup.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/log/spec.cr#L3" target="_blank">
+        log/spec.cr
+      </a>
+    
+    <br/>
+  
+
+
+
+
+
+  
+  <h2>
+    <a id="constructors" class="anchor" href="#constructors">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructors
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#for%28source%3AString%2Clevel%3ASeverity%7CNil%3Dnil%29%3ALog-class-method" class="signature"><strong>.for</strong>(source : String, level : Severity | Nil = <span class="n">nil</span>) : Log</a>
+        
+          <div class="summary"><p>Creates a <code><a href="Log.html">Log</a></code> for the given source.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#for%28type%3AClass%2Clevel%3ASeverity%7CNil%3Dnil%29%3ALog-class-method" class="signature"><strong>.for</strong>(type : Class, level : Severity | Nil = <span class="n">nil</span>) : Log</a>
+        
+          <div class="summary"><p>Creates a <code><a href="Log.html">Log</a></code> for the given type.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+  
+  <h2>
+    <a id="class-method-summary" class="anchor" href="#class-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Class Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#builder%3ALog%3A%3ABuilder-class-method" class="signature"><strong>.builder</strong> : Log::Builder</a>
+        
+          <div class="summary"><p>Returns the default <code><a href="Log/Builder.html">Log::Builder</a></code> used for <code><a href="Log.html#for%28source%3AString%2Clevel%3ASeverity%7CNil%3Dnil%29%3ALog-class-method">Log.for</a></code> calls.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#capture%28source%3AString%3D%22%2A%22%2Clevel%3ASeverity%3DLog%3A%3ASeverity%3A%3ATrace%2C%2A%2Cbuilder%3DLog.builder%2C%26%29-class-method" class="signature"><strong>.capture</strong>(source : String = <span class="s">&quot;*&quot;</span>, level : Severity = <span class="t">Log</span><span class="t">::</span><span class="t">Severity</span><span class="t">::</span><span class="t">Trace</span>, *, builder = <span class="t">Log</span>.builder, &)</a>
+        
+          <div class="summary"><p>Returns and yields an <code><a href="Log/EntriesChecker.html">EntriesChecker</a></code> that allows checking specific log entries were emitted.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#capture%28level%3ALog%3A%3ASeverity%3DLog%3A%3ASeverity%3A%3ATrace%2C%2A%2Cbuilder%3ALog%3A%3ABuilder%3DLog.builder%2C%26%29-class-method" class="signature"><strong>.capture</strong>(level : Log::Severity = <span class="t">Log</span><span class="t">::</span><span class="t">Severity</span><span class="t">::</span><span class="t">Trace</span>, *, builder : Log::Builder = <span class="t">Log</span>.builder, &)</a>
+        
+          <div class="summary"><p>Returns and yields an <code><a href="Log/EntriesChecker.html">EntriesChecker</a></code> that allows checking specific log entries were emitted.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#context%3ALog%3A%3AContext-class-method" class="signature"><strong>.context</strong> : Log::Context</a>
+        
+          <div class="summary"><p>Returns the current fiber logging context.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#context%3D%28value%3ALog%3A%3AMetadata%29-class-method" class="signature"><strong>.context=</strong>(value : Log::Metadata)</a>
+        
+          <div class="summary"><p>Sets the current fiber logging context.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#context%3D%28value%3ALog%3A%3AContext%29-class-method" class="signature"><strong>.context=</strong>(value : Log::Context)</a>
+        
+          <div class="summary"><p>Sets the current fiber logging context.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#debug%28%2A%2Cexception%3AException%29%3ANil-class-method" class="signature"><strong>.debug</strong>(*, exception : Exception) : Nil</a>
+        
+          <div class="summary"><p>See <code><a href="Log.html#debug%28%2A%2Cexception%3AException%29%3ANil-instance-method">Log#debug</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#debug%28%2A%2Cexception%3AException%7CNil%3Dnil%2C%26%29-class-method" class="signature"><strong>.debug</strong>(*, exception : Exception | Nil = <span class="n">nil</span>, &)</a>
+        
+          <div class="summary"><p>See <code><a href="Log.html#debug%28%2A%2Cexception%3AException%29%3ANil-instance-method">Log#debug</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#error%28%2A%2Cexception%3AException%29%3ANil-class-method" class="signature"><strong>.error</strong>(*, exception : Exception) : Nil</a>
+        
+          <div class="summary"><p>See <code><a href="Log.html#error%28%2A%2Cexception%3AException%29%3ANil-instance-method">Log#error</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#error%28%2A%2Cexception%3AException%7CNil%3Dnil%2C%26%29-class-method" class="signature"><strong>.error</strong>(*, exception : Exception | Nil = <span class="n">nil</span>, &)</a>
+        
+          <div class="summary"><p>See <code><a href="Log.html#error%28%2A%2Cexception%3AException%29%3ANil-instance-method">Log#error</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#fatal%28%2A%2Cexception%3AException%29%3ANil-class-method" class="signature"><strong>.fatal</strong>(*, exception : Exception) : Nil</a>
+        
+          <div class="summary"><p>See <code><a href="Log.html#fatal%28%2A%2Cexception%3AException%29%3ANil-instance-method">Log#fatal</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#fatal%28%2A%2Cexception%3AException%7CNil%3Dnil%2C%26%29-class-method" class="signature"><strong>.fatal</strong>(*, exception : Exception | Nil = <span class="n">nil</span>, &)</a>
+        
+          <div class="summary"><p>See <code><a href="Log.html#fatal%28%2A%2Cexception%3AException%29%3ANil-instance-method">Log#fatal</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#info%28%2A%2Cexception%3AException%29%3ANil-class-method" class="signature"><strong>.info</strong>(*, exception : Exception) : Nil</a>
+        
+          <div class="summary"><p>See <code><a href="Log.html#info%28%2A%2Cexception%3AException%29%3ANil-instance-method">Log#info</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#info%28%2A%2Cexception%3AException%7CNil%3Dnil%2C%26%29-class-method" class="signature"><strong>.info</strong>(*, exception : Exception | Nil = <span class="n">nil</span>, &)</a>
+        
+          <div class="summary"><p>See <code><a href="Log.html#info%28%2A%2Cexception%3AException%29%3ANil-instance-method">Log#info</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#notice%28%2A%2Cexception%3AException%29%3ANil-class-method" class="signature"><strong>.notice</strong>(*, exception : Exception) : Nil</a>
+        
+          <div class="summary"><p>See <code><a href="Log.html#notice%28%2A%2Cexception%3AException%29%3ANil-instance-method">Log#notice</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#notice%28%2A%2Cexception%3AException%7CNil%3Dnil%2C%26%29-class-method" class="signature"><strong>.notice</strong>(*, exception : Exception | Nil = <span class="n">nil</span>, &)</a>
+        
+          <div class="summary"><p>See <code><a href="Log.html#notice%28%2A%2Cexception%3AException%29%3ANil-instance-method">Log#notice</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#progname-class-method" class="signature"><strong>.progname</strong></a>
+        
+          <div class="summary"><p>The program name used for log entries</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#progname%3D%28progname%3AString%29-class-method" class="signature"><strong>.progname=</strong>(progname : String)</a>
+        
+          <div class="summary"><p>The program name used for log entries</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#setup%28%2A%2Cbuilder%3ALog%3A%3ABuilder%3DLog.builder%2C%26%29-class-method" class="signature"><strong>.setup</strong>(*, builder : Log::Builder = <span class="t">Log</span>.builder, &)</a>
+        
+          <div class="summary"><p>Setups logging bindings discarding all previous configurations.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#setup%28sources%3AString%3D%22%2A%22%2Clevel%3ALog%3A%3ASeverity%3DLog%3A%3ASeverity%3A%3AInfo%2Cbackend%3ALog%3A%3ABackend%3DIOBackend.new%2C%2A%2Cbuilder%3ALog%3A%3ABuilder%3DLog.builder%29-class-method" class="signature"><strong>.setup</strong>(sources : String = <span class="s">&quot;*&quot;</span>, level : Log::Severity = <span class="t">Log</span><span class="t">::</span><span class="t">Severity</span><span class="t">::</span><span class="t">Info</span>, backend : Log::Backend = <span class="t">IOBackend</span>.new, *, builder : Log::Builder = <span class="t">Log</span>.builder)</a>
+        
+          <div class="summary"><p>Setups logging for <em>sources</em> using the specified <em>level</em>, <em>backend</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#setup%28level%3ALog%3A%3ASeverity%3DLog%3A%3ASeverity%3A%3AInfo%2Cbackend%3ALog%3A%3ABackend%3DIOBackend.new%2C%2A%2Cbuilder%3ALog%3A%3ABuilder%3DLog.builder%29-class-method" class="signature"><strong>.setup</strong>(level : Log::Severity = <span class="t">Log</span><span class="t">::</span><span class="t">Severity</span><span class="t">::</span><span class="t">Info</span>, backend : Log::Backend = <span class="t">IOBackend</span>.new, *, builder : Log::Builder = <span class="t">Log</span>.builder)</a>
+        
+          <div class="summary"><p>Setups logging for all sources using the specified <em>level</em>, <em>backend</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#setup_from_env%28%2A%2Cbuilder%3ALog%3A%3ABuilder%3DLog.builder%2Cdefault_level%3ALog%3A%3ASeverity%3DLog%3A%3ASeverity%3A%3AInfo%2Cdefault_sources%3D%22%2A%22%2Clog_level_env%3D%22LOG_LEVEL%22%2Cbackend%3DLog%3A%3AIOBackend.new%29-class-method" class="signature"><strong>.setup_from_env</strong>(*, builder : Log::Builder = <span class="t">Log</span>.builder, default_level : Log::Severity = <span class="t">Log</span><span class="t">::</span><span class="t">Severity</span><span class="t">::</span><span class="t">Info</span>, default_sources = <span class="s">&quot;*&quot;</span>, log_level_env = <span class="s">&quot;LOG_LEVEL&quot;</span>, backend = <span class="t">Log</span><span class="t">::</span><span class="t">IOBackend</span>.new)</a>
+        
+          <div class="summary"><p>Setups logging based on <code>LOG_LEVEL</code> environment variable.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#trace%28%2A%2Cexception%3AException%29%3ANil-class-method" class="signature"><strong>.trace</strong>(*, exception : Exception) : Nil</a>
+        
+          <div class="summary"><p>See <code><a href="Log.html#trace%28%2A%2Cexception%3AException%29%3ANil-instance-method">Log#trace</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#trace%28%2A%2Cexception%3AException%7CNil%3Dnil%2C%26%29-class-method" class="signature"><strong>.trace</strong>(*, exception : Exception | Nil = <span class="n">nil</span>, &)</a>
+        
+          <div class="summary"><p>See <code><a href="Log.html#trace%28%2A%2Cexception%3AException%29%3ANil-instance-method">Log#trace</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#warn%28%2A%2Cexception%3AException%29%3ANil-class-method" class="signature"><strong>.warn</strong>(*, exception : Exception) : Nil</a>
+        
+          <div class="summary"><p>See <code><a href="Log.html#warn%28%2A%2Cexception%3AException%29%3ANil-instance-method">Log#warn</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#warn%28%2A%2Cexception%3AException%7CNil%3Dnil%2C%26%29-class-method" class="signature"><strong>.warn</strong>(*, exception : Exception | Nil = <span class="n">nil</span>, &)</a>
+        
+          <div class="summary"><p>See <code><a href="Log.html#warn%28%2A%2Cexception%3AException%29%3ANil-instance-method">Log#warn</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#with_context%28values%2C%26%29-class-method" class="signature"><strong>.with_context</strong>(values, &)</a>
+        
+          <div class="summary"><p>Method to save and restore the current logging context.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#with_context%28%2A%2Akwargs%2C%26%29-class-method" class="signature"><strong>.with_context</strong>(**kwargs, &)</a>
+        
+          <div class="summary"><p>Method to save and restore the current logging context.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+  
+  <h2>
+    <a id="macro-summary" class="anchor" href="#macro-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Macro Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#define_formatter%28name%2Cpattern%29-macro" class="signature"><strong>define_formatter</strong>(name, pattern)</a>
+        
+          <div class="summary"><p>Generate subclasses of <code><a href="Log/StaticFormatter.html">Log::StaticFormatter</a></code> from a string with interpolations</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+  
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#backend%3ABackend%7CNil-instance-method" class="signature"><strong>#backend</strong> : Backend | Nil</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#context%3ALog%3A%3AContext-instance-method" class="signature"><strong>#context</strong> : Log::Context</a>
+        
+          <div class="summary"><p>Returns the current fiber logging context.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#context%3D%28value%3ALog%3A%3AMetadata%7CLog%3A%3AContext%29-instance-method" class="signature"><strong>#context=</strong>(value : Log::Metadata | Log::Context)</a>
+        
+          <div class="summary"><p>Sets the current fiber logging context.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#debug%28%2A%2Cexception%3AException%29%3ANil-instance-method" class="signature"><strong>#debug</strong>(*, exception : Exception) : Nil</a>
+        
+          <div class="summary"><p>Logs the given <em>exception</em> if the logger's current severity is lower than or equal to <code><a href="Log/Severity.html#Debug">Severity::Debug</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#debug%28%2A%2Cexception%3AException%7CNil%3Dnil%2C%26%29-instance-method" class="signature"><strong>#debug</strong>(*, exception : Exception | Nil = <span class="n">nil</span>, &)</a>
+        
+          <div class="summary"><p>Logs a message if the logger's current severity is lower than or equal to <code><a href="Log/Severity.html#Debug">Severity::Debug</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#error%28%2A%2Cexception%3AException%29%3ANil-instance-method" class="signature"><strong>#error</strong>(*, exception : Exception) : Nil</a>
+        
+          <div class="summary"><p>Logs the given <em>exception</em> if the logger's current severity is lower than or equal to <code><a href="Log/Severity.html#Error">Severity::Error</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#error%28%2A%2Cexception%3AException%7CNil%3Dnil%2C%26%29-instance-method" class="signature"><strong>#error</strong>(*, exception : Exception | Nil = <span class="n">nil</span>, &)</a>
+        
+          <div class="summary"><p>Logs a message if the logger's current severity is lower than or equal to <code><a href="Log/Severity.html#Error">Severity::Error</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#fatal%28%2A%2Cexception%3AException%29%3ANil-instance-method" class="signature"><strong>#fatal</strong>(*, exception : Exception) : Nil</a>
+        
+          <div class="summary"><p>Logs the given <em>exception</em> if the logger's current severity is lower than or equal to <code><a href="Log/Severity.html#Fatal">Severity::Fatal</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#fatal%28%2A%2Cexception%3AException%7CNil%3Dnil%2C%26%29-instance-method" class="signature"><strong>#fatal</strong>(*, exception : Exception | Nil = <span class="n">nil</span>, &)</a>
+        
+          <div class="summary"><p>Logs a message if the logger's current severity is lower than or equal to <code><a href="Log/Severity.html#Fatal">Severity::Fatal</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#finalize%3ANil-instance-method" class="signature"><strong>#finalize</strong> : Nil</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#for%28child_source%3AString%2Clevel%3ASeverity%7CNil%3Dnil%29%3ALog-instance-method" class="signature"><strong>#for</strong>(child_source : String, level : Severity | Nil = <span class="n">nil</span>) : Log</a>
+        
+          <div class="summary"><p>Creates a <code><a href="Log.html">Log</a></code> for the given nested source.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#for%28type%3AClass%2Clevel%3ASeverity%7CNil%3Dnil%29%3ALog-instance-method" class="signature"><strong>#for</strong>(type : Class, level : Severity | Nil = <span class="n">nil</span>) : Log</a>
+        
+          <div class="summary"><p>Creates a <code><a href="Log.html">Log</a></code> for the given type.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#info%28%2A%2Cexception%3AException%29%3ANil-instance-method" class="signature"><strong>#info</strong>(*, exception : Exception) : Nil</a>
+        
+          <div class="summary"><p>Logs the given <em>exception</em> if the logger's current severity is lower than or equal to <code><a href="Log/Severity.html#Info">Severity::Info</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#info%28%2A%2Cexception%3AException%7CNil%3Dnil%2C%26%29-instance-method" class="signature"><strong>#info</strong>(*, exception : Exception | Nil = <span class="n">nil</span>, &)</a>
+        
+          <div class="summary"><p>Logs a message if the logger's current severity is lower than or equal to <code><a href="Log/Severity.html#Info">Severity::Info</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#level%3ASeverity-instance-method" class="signature"><strong>#level</strong> : Severity</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#level%3D%28value%3ASeverity%29-instance-method" class="signature"><strong>#level=</strong>(value : Severity)</a>
+        
+          <div class="summary"><p>Change this log severity level filter.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#notice%28%2A%2Cexception%3AException%29%3ANil-instance-method" class="signature"><strong>#notice</strong>(*, exception : Exception) : Nil</a>
+        
+          <div class="summary"><p>Logs the given <em>exception</em> if the logger's current severity is lower than or equal to <code><a href="Log/Severity.html#Notice">Severity::Notice</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#notice%28%2A%2Cexception%3AException%7CNil%3Dnil%2C%26%29-instance-method" class="signature"><strong>#notice</strong>(*, exception : Exception | Nil = <span class="n">nil</span>, &)</a>
+        
+          <div class="summary"><p>Logs a message if the logger's current severity is lower than or equal to <code><a href="Log/Severity.html#Notice">Severity::Notice</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#source%3AString-instance-method" class="signature"><strong>#source</strong> : String</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#trace%28%2A%2Cexception%3AException%29%3ANil-instance-method" class="signature"><strong>#trace</strong>(*, exception : Exception) : Nil</a>
+        
+          <div class="summary"><p>Logs the given <em>exception</em> if the logger's current severity is lower than or equal to <code><a href="Log/Severity.html#Trace">Severity::Trace</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#trace%28%2A%2Cexception%3AException%7CNil%3Dnil%2C%26%29-instance-method" class="signature"><strong>#trace</strong>(*, exception : Exception | Nil = <span class="n">nil</span>, &)</a>
+        
+          <div class="summary"><p>Logs a message if the logger's current severity is lower than or equal to <code><a href="Log/Severity.html#Trace">Severity::Trace</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#warn%28%2A%2Cexception%3AException%29%3ANil-instance-method" class="signature"><strong>#warn</strong>(*, exception : Exception) : Nil</a>
+        
+          <div class="summary"><p>Logs the given <em>exception</em> if the logger's current severity is lower than or equal to <code><a href="Log/Severity.html#Warn">Severity::Warn</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#warn%28%2A%2Cexception%3AException%7CNil%3Dnil%2C%26%29-instance-method" class="signature"><strong>#warn</strong>(*, exception : Exception | Nil = <span class="n">nil</span>, &)</a>
+        
+          <div class="summary"><p>Logs a message if the logger's current severity is lower than or equal to <code><a href="Log/Severity.html#Warn">Severity::Warn</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#with_context%28values%2C%26%29-instance-method" class="signature"><strong>#with_context</strong>(values, &)</a>
+        
+          <div class="summary"><p>Method to save and restore the current logging context.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#with_context%28%2A%2Akwargs%2C%26%29-instance-method" class="signature"><strong>#with_context</strong>(**kwargs, &)</a>
+        
+          <div class="summary"><p>Method to save and restore the current logging context.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+
+  <div class="methods-inherited">
+    
+      
+
+  <h3>Instance methods inherited from class <code><a href="Reference.html">Reference</a></code></h3>
+  
+  
+    <a href="Reference.html#%3D%3D%28other%3Aself%29-instance-method" class="tooltip">
+      <span>==(other : <span class="k">self</span>)<br/>==(other : JSON::Any)<br/>==(other : YAML::Any)<br/>==(other)</span>
+    ==</a>, 
+    
+  
+    <a href="Reference.html#dup-instance-method" class="tooltip">
+      <span>dup</span>
+    dup</a>, 
+    
+  
+    <a href="Reference.html#hash%28hasher%29-instance-method" class="tooltip">
+      <span>hash(hasher)</span>
+    hash</a>, 
+    
+  
+    <a href="Reference.html#initialize-instance-method" class="tooltip">
+      <span>initialize</span>
+    initialize</a>, 
+    
+  
+    <a href="Reference.html#inspect%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>inspect(io : IO) : Nil</span>
+    inspect</a>, 
+    
+  
+    <a href="Reference.html#object_id%3AUInt64-instance-method" class="tooltip">
+      <span>object_id : UInt64</span>
+    object_id</a>, 
+    
+  
+    <a href="Reference.html#pretty_print%28pp%29%3ANil-instance-method" class="tooltip">
+      <span>pretty_print(pp) : Nil</span>
+    pretty_print</a>, 
+    
+  
+    <a href="Reference.html#same%3F%28other%3AReference%29%3ABool-instance-method" class="tooltip">
+      <span>same?(other : Reference) : Bool<br/>same?(other : Nil)</span>
+    same?</a>, 
+    
+  
+    <a href="Reference.html#to_s%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_s(io : IO) : Nil</span>
+    to_s</a>
+    
+  
+
+
+      
+
+  <h3>Constructor methods inherited from class <code><a href="Reference.html">Reference</a></code></h3>
+  
+  
+    <a href="Reference.html#new-class-method" class="tooltip">
+      <span>new</span>
+    new</a>, 
+    
+  
+    <a href="Reference.html#unsafe_construct%28address%3APointer%2C%2Aargs%2C%2A%2Aopts%29%3Aself-class-method" class="tooltip">
+      <span>unsafe_construct(address : Pointer, *args, **opts) : <span class="k">self</span></span>
+    unsafe_construct</a>
+    
+  
+
+
+      
+
+  <h3>Class methods inherited from class <code><a href="Reference.html">Reference</a></code></h3>
+  
+  
+    <a href="Reference.html#pre_initialize%28address%3APointer%29-class-method" class="tooltip">
+      <span>pre_initialize(address : Pointer)</span>
+    pre_initialize</a>
+    
+  
+
+
+      
+
+
+    
+      
+
+  <h3>Instance methods inherited from class <code><a href="Object.html">Object</a></code></h3>
+  
+  
+    <a href="Object.html#%21%3ABool-instance-method" class="tooltip">
+      <span>! : Bool</span>
+    !</a>, 
+    
+  
+    <a href="Object.html#%21%3D%28other%29-instance-method" class="tooltip">
+      <span>!=(other)</span>
+    !=</a>, 
+    
+  
+    <a href="Object.html#%21~%28other%29-instance-method" class="tooltip">
+      <span>!~(other)</span>
+    !~</a>, 
+    
+  
+    <a href="Object.html#%3D%3D%28other%29-instance-method" class="tooltip">
+      <span>==(other)</span>
+    ==</a>, 
+    
+  
+    <a href="Object.html#%3D%3D%3D%28other%3AJSON%3A%3AAny%29-instance-method" class="tooltip">
+      <span>===(other : JSON::Any)<br/>===(other : YAML::Any)<br/>===(other)</span>
+    ===</a>, 
+    
+  
+    <a href="Object.html#%3D~%28other%29-instance-method" class="tooltip">
+      <span>=~(other)</span>
+    =~</a>, 
+    
+  
+    <a href="Object.html#as%28type%3AClass%29-instance-method" class="tooltip">
+      <span>as(type : Class)</span>
+    as</a>, 
+    
+  
+    <a href="Object.html#as%3F%28type%3AClass%29-instance-method" class="tooltip">
+      <span>as?(type : Class)</span>
+    as?</a>, 
+    
+  
+    <a href="Object.html#class-instance-method" class="tooltip">
+      <span>class</span>
+    class</a>, 
+    
+  
+    <a href="Object.html#dup-instance-method" class="tooltip">
+      <span>dup</span>
+    dup</a>, 
+    
+  
+    <a href="Object.html#hash%28hasher%29-instance-method" class="tooltip">
+      <span>hash(hasher)<br/>hash</span>
+    hash</a>, 
+    
+  
+    <a href="Object.html#in%3F%28collection%3AObject%29%3ABool-instance-method" class="tooltip">
+      <span>in?(collection : Object) : Bool<br/>in?(*values : Object) : Bool</span>
+    in?</a>, 
+    
+  
+    <a href="Object.html#inspect%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>inspect(io : IO) : Nil<br/>inspect : String</span>
+    inspect</a>, 
+    
+  
+    <a href="Object.html#is_a%3F%28type%3AClass%29%3ABool-instance-method" class="tooltip">
+      <span>is_a?(type : Class) : Bool</span>
+    is_a?</a>, 
+    
+  
+    <a href="Object.html#itself-instance-method" class="tooltip">
+      <span>itself</span>
+    itself</a>, 
+    
+  
+    <a href="Object.html#nil%3F%3ABool-instance-method" class="tooltip">
+      <span>nil? : Bool</span>
+    nil?</a>, 
+    
+  
+    <a href="Object.html#not_nil%21%28message%29-instance-method" class="tooltip">
+      <span>not_nil!(message)<br/>not_nil!</span>
+    not_nil!</a>, 
+    
+  
+    <a href="Object.html#pretty_inspect%28width%3D79%2Cnewline%3D%22%5Cn%22%2Cindent%3D0%29%3AString-instance-method" class="tooltip">
+      <span>pretty_inspect(width = <span class="n">79</span>, newline = <span class="s">&quot;\n&quot;</span>, indent = <span class="n">0</span>) : String</span>
+    pretty_inspect</a>, 
+    
+  
+    <a href="Object.html#pretty_print%28pp%3APrettyPrint%29%3ANil-instance-method" class="tooltip">
+      <span>pretty_print(pp : PrettyPrint) : Nil</span>
+    pretty_print</a>, 
+    
+  
+    <a href="Object.html#responds_to%3F%28name%3ASymbol%29%3ABool-instance-method" class="tooltip">
+      <span>responds_to?(name : Symbol) : Bool</span>
+    responds_to?</a>, 
+    
+  
+    <a href="Object.html#tap%28%26%29-instance-method" class="tooltip">
+      <span>tap(&)</span>
+    tap</a>, 
+    
+  
+    <a href="Object.html#to_json%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_json(io : IO) : Nil<br/>to_json : String</span>
+    to_json</a>, 
+    
+  
+    <a href="Object.html#to_pretty_json%28indent%3AString%3D%22%22%29%3AString-instance-method" class="tooltip">
+      <span>to_pretty_json(indent : String = <span class="s">&quot;  &quot;</span>) : String<br/>to_pretty_json(io : IO, indent : String = <span class="s">&quot;  &quot;</span>) : Nil</span>
+    to_pretty_json</a>, 
+    
+  
+    <a href="Object.html#to_s%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_s(io : IO) : Nil<br/>to_s : String</span>
+    to_s</a>, 
+    
+  
+    <a href="Object.html#to_yaml%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_yaml(io : IO) : Nil<br/>to_yaml : String</span>
+    to_yaml</a>, 
+    
+  
+    <a href="Object.html#try%28%26%29-instance-method" class="tooltip">
+      <span>try(&)</span>
+    try</a>, 
+    
+  
+    <a href="Object.html#unsafe_as%28type%3AT.class%29forallT-instance-method" class="tooltip">
+      <span>unsafe_as(type : <span class="t">T</span>.<span class="k">class</span>) forall T</span>
+    unsafe_as</a>
+    
+  
+
+
+      
+
+
+      
+
+  <h3>Class methods inherited from class <code><a href="Object.html">Object</a></code></h3>
+  
+  
+    <a href="Object.html#from_json%28string_or_io%2Croot%3AString%29-class-method" class="tooltip">
+      <span>from_json(string_or_io, root : String)<br/>from_json(string_or_io)</span>
+    from_json</a>, 
+    
+  
+    <a href="Object.html#from_yaml%28string_or_io%3AString%7CIO%29-class-method" class="tooltip">
+      <span>from_yaml(string_or_io : String | IO)</span>
+    from_yaml</a>
+    
+  
+
+
+      
+
+  <h3>Macros inherited from class <code><a href="Object.html">Object</a></code></h3>
+  
+  
+    <a href="Object.html#class_getter%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_getter(*names, &block)</span>
+    class_getter</a>, 
+    
+  
+    <a href="Object.html#class_getter%21%28%2Anames%29-macro" class="tooltip">
+      <span>class_getter!(*names)</span>
+    class_getter!</a>, 
+    
+  
+    <a href="Object.html#class_getter%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_getter?(*names, &block)</span>
+    class_getter?</a>, 
+    
+  
+    <a href="Object.html#class_property%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_property(*names, &block)</span>
+    class_property</a>, 
+    
+  
+    <a href="Object.html#class_property%21%28%2Anames%29-macro" class="tooltip">
+      <span>class_property!(*names)</span>
+    class_property!</a>, 
+    
+  
+    <a href="Object.html#class_property%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_property?(*names, &block)</span>
+    class_property?</a>, 
+    
+  
+    <a href="Object.html#class_setter%28%2Anames%29-macro" class="tooltip">
+      <span>class_setter(*names)</span>
+    class_setter</a>, 
+    
+  
+    <a href="Object.html#def_clone-macro" class="tooltip">
+      <span>def_clone</span>
+    def_clone</a>, 
+    
+  
+    <a href="Object.html#def_equals%28%2Afields%29-macro" class="tooltip">
+      <span>def_equals(*fields)</span>
+    def_equals</a>, 
+    
+  
+    <a href="Object.html#def_equals_and_hash%28%2Afields%29-macro" class="tooltip">
+      <span>def_equals_and_hash(*fields)</span>
+    def_equals_and_hash</a>, 
+    
+  
+    <a href="Object.html#def_hash%28%2Afields%29-macro" class="tooltip">
+      <span>def_hash(*fields)</span>
+    def_hash</a>, 
+    
+  
+    <a href="Object.html#delegate%28%2Amethods%2Ctoobject%29-macro" class="tooltip">
+      <span>delegate(*methods, to object)</span>
+    delegate</a>, 
+    
+  
+    <a href="Object.html#forward_missing_to%28delegate%29-macro" class="tooltip">
+      <span>forward_missing_to(delegate)</span>
+    forward_missing_to</a>, 
+    
+  
+    <a href="Object.html#getter%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>getter(*names, &block)</span>
+    getter</a>, 
+    
+  
+    <a href="Object.html#getter%21%28%2Anames%29-macro" class="tooltip">
+      <span>getter!(*names)</span>
+    getter!</a>, 
+    
+  
+    <a href="Object.html#getter%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>getter?(*names, &block)</span>
+    getter?</a>, 
+    
+  
+    <a href="Object.html#property%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>property(*names, &block)</span>
+    property</a>, 
+    
+  
+    <a href="Object.html#property%21%28%2Anames%29-macro" class="tooltip">
+      <span>property!(*names)</span>
+    property!</a>, 
+    
+  
+    <a href="Object.html#property%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>property?(*names, &block)</span>
+    property?</a>, 
+    
+  
+    <a href="Object.html#setter%28%2Anames%29-macro" class="tooltip">
+      <span>setter(*names)</span>
+    setter</a>
+    
+  
+
+
+    
+  </div>
+
+  
+  <h2>
+    <a id="constructor-detail" class="anchor" href="#constructor-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructor Detail
+  </h2>
+  
+    <div class="entry-detail" id="for(source:String,level:Severity|Nil=nil):Log-class-method">
+      <div class="signature">
+        
+        def self.<strong>for</strong>(source : <a href="String.html">String</a>, level : <a href="Log/Severity.html">Severity</a> | <a href="Nil.html">Nil</a> = <span class="n">nil</span>) : <a href="Log.html">Log</a>
+
+        <a class="method-permalink" href="#for%28source%3AString%2Clevel%3ASeverity%7CNil%3Dnil%29%3ALog-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Creates a <code><a href="Log.html">Log</a></code> for the given source.
+If <em>level</em> is given, it will override the configuration.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/log/main.cr#L4" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="for(type:Class,level:Severity|Nil=nil):Log-class-method">
+      <div class="signature">
+        
+        def self.<strong>for</strong>(type : <a href="Class.html">Class</a>, level : <a href="Log/Severity.html">Severity</a> | <a href="Nil.html">Nil</a> = <span class="n">nil</span>) : <a href="Log.html">Log</a>
+
+        <a class="method-permalink" href="#for%28type%3AClass%2Clevel%3ASeverity%7CNil%3Dnil%29%3ALog-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Creates a <code><a href="Log.html">Log</a></code> for the given type.
+A type <code>Foo::Bar(Baz)</code> corresponds to the source <code>foo.bar</code>.
+If <em>level</em> is given, it will override the configuration.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/log/main.cr#L21" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+  
+  <h2>
+    <a id="class-method-detail" class="anchor" href="#class-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Class Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="builder:Log::Builder-class-method">
+      <div class="signature">
+        
+        def self.<strong>builder</strong> : <a href="Log/Builder.html">Log::Builder</a>
+
+        <a class="method-permalink" href="#builder%3ALog%3A%3ABuilder-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the default <code><a href="Log/Builder.html">Log::Builder</a></code> used for <code><a href="Log.html#for%28source%3AString%2Clevel%3ASeverity%7CNil%3Dnil%29%3ALog-class-method">Log.for</a></code> calls.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/log/main.cr#L57" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="capture(source:String=&quot;*&quot;,level:Severity=Log::Severity::Trace,*,builder=Log.builder,&amp;)-class-method">
+      <div class="signature">
+        
+        def self.<strong>capture</strong>(source : <a href="String.html">String</a> = <span class="s">&quot;*&quot;</span>, level : <a href="Log/Severity.html">Severity</a> = <span class="t">Log</span><span class="t">::</span><span class="t">Severity</span><span class="t">::</span><span class="t">Trace</span>, *, builder = <span class="t">Log</span>.builder, &)
+
+        <a class="method-permalink" href="#capture%28source%3AString%3D%22%2A%22%2Clevel%3ASeverity%3DLog%3A%3ASeverity%3A%3ATrace%2C%2A%2Cbuilder%3DLog.builder%2C%26%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns and yields an <code><a href="Log/EntriesChecker.html">EntriesChecker</a></code> that allows checking specific log entries
+were emitted.</p>
+<p>This capture will even work if there are currently no backends configured, effectively
+adding a temporary backend.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;spec&quot;</span>
+<span class="k">require</span> <span class="s">&quot;log&quot;</span>
+<span class="k">require</span> <span class="s">&quot;log/spec&quot;</span>
+
+<span class="t">Log</span>.setup(<span class="n">:none</span>)
+
+<span class="k">def</span> <span class="m">greet</span>(name)
+  <span class="t">Log</span>.info { <span class="s">&quot;Greeting </span><span class="i">#{</span>name<span class="i">}</span><span class="s">&quot;</span> }
+<span class="k">end</span>
+
+it <span class="s">&quot;greets&quot;</span> <span class="k">do</span>
+  <span class="t">Log</span>.capture <span class="k">do</span> <span class="o">|</span>logs<span class="o">|</span>
+    greet(<span class="s">&quot;Harry&quot;</span>)
+    greet(<span class="s">&quot;Hermione&quot;</span>)
+    greet(<span class="s">&quot;Ron&quot;</span>)
+
+    logs.check(<span class="n">:info</span>, <span class="s">/greeting harry/</span>i)
+    logs.<span class="k">next</span>(<span class="n">:info</span>, <span class="s">/greeting hermione/</span>i)
+  <span class="k">end</span>
+<span class="k">end</span></code></pre>
+<p>By default logs of all sources and severities  will be captured.</p>
+<p>Use <em>level</em> to only capture of the given severity or above.</p>
+<p>Use <em>source</em> to narrow which source are captured. Values that represent single pattern like <code>http.*</code> are allowed.</p>
+<p>The <code><a href="Log/EntriesChecker.html">EntriesChecker</a></code> will hold a list of emitted entries.</p>
+<p><code><a href="Log/EntriesChecker.html#check%28level%3ASeverity%2Cmessage%3AString%2Cfile%3D__FILE__%2Cline%3D__LINE__%29%3Aself-instance-method">EntriesChecker#check</a></code> will find the next entry which matches the level and message.
+<code><a href="Log/EntriesChecker.html#next%28level%3ASeverity%2Cmessage%3AString%2Cfile%3D__FILE__%2Cline%3D__LINE__%29%3Aself-instance-method">EntriesChecker#next</a></code> will validate that the following entry in the list matches the given level and message.
+<code><a href="Log/EntriesChecker.html#clear-instance-method">EntriesChecker#clear</a></code> will clear the emitted and captured entries.</p>
+<p>With these methods it is possible to express expected traces in either a strict or loose way, while checking ordering.</p>
+<p><code><a href="Log/EntriesChecker.html#entry%3AEntry-instance-method">EntriesChecker#entry</a></code> returns the last matched <code><a href="Log/Entry.html">Entry</a></code>. Useful to check additional entry properties other than the message.</p>
+<p><code><a href="Log/EntriesChecker.html#empty%28file%3D__FILE__%2Cline%3D__LINE__%29-instance-method">EntriesChecker#empty</a></code> validates there are no pending entries to match.</p>
+<p>Using the yielded <code><a href="Log/EntriesChecker.html">EntriesChecker</a></code> allows clearing the entries between statements.</p>
+<p>Invocations can be nested in order to capture each source in their own <code><a href="Log/EntriesChecker.html">EntriesChecker</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/log/spec.cr#L55" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="capture(level:Log::Severity=Log::Severity::Trace,*,builder:Log::Builder=Log.builder,&amp;)-class-method">
+      <div class="signature">
+        
+        def self.<strong>capture</strong>(level : <a href="Log/Severity.html">Log::Severity</a> = <span class="t">Log</span><span class="t">::</span><span class="t">Severity</span><span class="t">::</span><span class="t">Trace</span>, *, builder : <a href="Log/Builder.html">Log::Builder</a> = <span class="t">Log</span>.builder, &)
+
+        <a class="method-permalink" href="#capture%28level%3ALog%3A%3ASeverity%3DLog%3A%3ASeverity%3A%3ATrace%2C%2A%2Cbuilder%3ALog%3A%3ABuilder%3DLog.builder%2C%26%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns and yields an <code><a href="Log/EntriesChecker.html">EntriesChecker</a></code> that allows checking specific log entries
+were emitted.</p>
+<p>This capture will even work if there are currently no backends configured, effectively
+adding a temporary backend.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;spec&quot;</span>
+<span class="k">require</span> <span class="s">&quot;log&quot;</span>
+<span class="k">require</span> <span class="s">&quot;log/spec&quot;</span>
+
+<span class="t">Log</span>.setup(<span class="n">:none</span>)
+
+<span class="k">def</span> <span class="m">greet</span>(name)
+  <span class="t">Log</span>.info { <span class="s">&quot;Greeting </span><span class="i">#{</span>name<span class="i">}</span><span class="s">&quot;</span> }
+<span class="k">end</span>
+
+it <span class="s">&quot;greets&quot;</span> <span class="k">do</span>
+  <span class="t">Log</span>.capture <span class="k">do</span> <span class="o">|</span>logs<span class="o">|</span>
+    greet(<span class="s">&quot;Harry&quot;</span>)
+    greet(<span class="s">&quot;Hermione&quot;</span>)
+    greet(<span class="s">&quot;Ron&quot;</span>)
+
+    logs.check(<span class="n">:info</span>, <span class="s">/greeting harry/</span>i)
+    logs.<span class="k">next</span>(<span class="n">:info</span>, <span class="s">/greeting hermione/</span>i)
+  <span class="k">end</span>
+<span class="k">end</span></code></pre>
+<p>By default logs of all sources and severities  will be captured.</p>
+<p>Use <em>level</em> to only capture of the given severity or above.</p>
+<p>Use <em>source</em> to narrow which source are captured. Values that represent single pattern like <code>http.*</code> are allowed.</p>
+<p>The <code><a href="Log/EntriesChecker.html">EntriesChecker</a></code> will hold a list of emitted entries.</p>
+<p><code><a href="Log/EntriesChecker.html#check%28level%3ASeverity%2Cmessage%3AString%2Cfile%3D__FILE__%2Cline%3D__LINE__%29%3Aself-instance-method">EntriesChecker#check</a></code> will find the next entry which matches the level and message.
+<code><a href="Log/EntriesChecker.html#next%28level%3ASeverity%2Cmessage%3AString%2Cfile%3D__FILE__%2Cline%3D__LINE__%29%3Aself-instance-method">EntriesChecker#next</a></code> will validate that the following entry in the list matches the given level and message.
+<code><a href="Log/EntriesChecker.html#clear-instance-method">EntriesChecker#clear</a></code> will clear the emitted and captured entries.</p>
+<p>With these methods it is possible to express expected traces in either a strict or loose way, while checking ordering.</p>
+<p><code><a href="Log/EntriesChecker.html#entry%3AEntry-instance-method">EntriesChecker#entry</a></code> returns the last matched <code><a href="Log/Entry.html">Entry</a></code>. Useful to check additional entry properties other than the message.</p>
+<p><code><a href="Log/EntriesChecker.html#empty%28file%3D__FILE__%2Cline%3D__LINE__%29-instance-method">EntriesChecker#empty</a></code> validates there are no pending entries to match.</p>
+<p>Using the yielded <code><a href="Log/EntriesChecker.html">EntriesChecker</a></code> allows clearing the entries between statements.</p>
+<p>Invocations can be nested in order to capture each source in their own <code><a href="Log/EntriesChecker.html">EntriesChecker</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/log/spec.cr#L68" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="context:Log::Context-class-method">
+      <div class="signature">
+        
+        def self.<strong>context</strong> : <a href="Log/Context.html">Log::Context</a>
+
+        <a class="method-permalink" href="#context%3ALog%3A%3AContext-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the current fiber logging context.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/log/main.cr#L62" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="context=(value:Log::Metadata)-class-method">
+      <div class="signature">
+        
+        def self.<strong>context=</strong>(value : <a href="Log/Metadata.html">Log::Metadata</a>)
+
+        <a class="method-permalink" href="#context%3D%28value%3ALog%3A%3AMetadata%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Sets the current fiber logging context.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/log/main.cr#L67" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="context=(value:Log::Context)-class-method">
+      <div class="signature">
+        
+        def self.<strong>context=</strong>(value : <a href="Log/Context.html">Log::Context</a>)
+
+        <a class="method-permalink" href="#context%3D%28value%3ALog%3A%3AContext%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Sets the current fiber logging context.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/log/main.cr#L72" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="debug(*,exception:Exception):Nil-class-method">
+      <div class="signature">
+        
+        def self.<strong>debug</strong>(*, exception : <a href="Exception.html">Exception</a>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#debug%28%2A%2Cexception%3AException%29%3ANil-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>See <code><a href="Log.html#debug%28%2A%2Cexception%3AException%29%3ANil-instance-method">Log#debug</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/log/main.cr#L38" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="debug(*,exception:Exception|Nil=nil,&amp;)-class-method">
+      <div class="signature">
+        
+        def self.<strong>debug</strong>(*, exception : <a href="Exception.html">Exception</a> | <a href="Nil.html">Nil</a> = <span class="n">nil</span>, &)
+
+        <a class="method-permalink" href="#debug%28%2A%2Cexception%3AException%7CNil%3Dnil%2C%26%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>See <code><a href="Log.html#debug%28%2A%2Cexception%3AException%29%3ANil-instance-method">Log#debug</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/log/main.cr#L38" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="error(*,exception:Exception):Nil-class-method">
+      <div class="signature">
+        
+        def self.<strong>error</strong>(*, exception : <a href="Exception.html">Exception</a>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#error%28%2A%2Cexception%3AException%29%3ANil-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>See <code><a href="Log.html#error%28%2A%2Cexception%3AException%29%3ANil-instance-method">Log#error</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/log/main.cr#L38" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="error(*,exception:Exception|Nil=nil,&amp;)-class-method">
+      <div class="signature">
+        
+        def self.<strong>error</strong>(*, exception : <a href="Exception.html">Exception</a> | <a href="Nil.html">Nil</a> = <span class="n">nil</span>, &)
+
+        <a class="method-permalink" href="#error%28%2A%2Cexception%3AException%7CNil%3Dnil%2C%26%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>See <code><a href="Log.html#error%28%2A%2Cexception%3AException%29%3ANil-instance-method">Log#error</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/log/main.cr#L38" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="fatal(*,exception:Exception):Nil-class-method">
+      <div class="signature">
+        
+        def self.<strong>fatal</strong>(*, exception : <a href="Exception.html">Exception</a>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#fatal%28%2A%2Cexception%3AException%29%3ANil-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>See <code><a href="Log.html#fatal%28%2A%2Cexception%3AException%29%3ANil-instance-method">Log#fatal</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/log/main.cr#L38" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="fatal(*,exception:Exception|Nil=nil,&amp;)-class-method">
+      <div class="signature">
+        
+        def self.<strong>fatal</strong>(*, exception : <a href="Exception.html">Exception</a> | <a href="Nil.html">Nil</a> = <span class="n">nil</span>, &)
+
+        <a class="method-permalink" href="#fatal%28%2A%2Cexception%3AException%7CNil%3Dnil%2C%26%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>See <code><a href="Log.html#fatal%28%2A%2Cexception%3AException%29%3ANil-instance-method">Log#fatal</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/log/main.cr#L38" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="info(*,exception:Exception):Nil-class-method">
+      <div class="signature">
+        
+        def self.<strong>info</strong>(*, exception : <a href="Exception.html">Exception</a>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#info%28%2A%2Cexception%3AException%29%3ANil-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>See <code><a href="Log.html#info%28%2A%2Cexception%3AException%29%3ANil-instance-method">Log#info</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/log/main.cr#L38" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="info(*,exception:Exception|Nil=nil,&amp;)-class-method">
+      <div class="signature">
+        
+        def self.<strong>info</strong>(*, exception : <a href="Exception.html">Exception</a> | <a href="Nil.html">Nil</a> = <span class="n">nil</span>, &)
+
+        <a class="method-permalink" href="#info%28%2A%2Cexception%3AException%7CNil%3Dnil%2C%26%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>See <code><a href="Log.html#info%28%2A%2Cexception%3AException%29%3ANil-instance-method">Log#info</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/log/main.cr#L38" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="notice(*,exception:Exception):Nil-class-method">
+      <div class="signature">
+        
+        def self.<strong>notice</strong>(*, exception : <a href="Exception.html">Exception</a>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#notice%28%2A%2Cexception%3AException%29%3ANil-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>See <code><a href="Log.html#notice%28%2A%2Cexception%3AException%29%3ANil-instance-method">Log#notice</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/log/main.cr#L38" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="notice(*,exception:Exception|Nil=nil,&amp;)-class-method">
+      <div class="signature">
+        
+        def self.<strong>notice</strong>(*, exception : <a href="Exception.html">Exception</a> | <a href="Nil.html">Nil</a> = <span class="n">nil</span>, &)
+
+        <a class="method-permalink" href="#notice%28%2A%2Cexception%3AException%7CNil%3Dnil%2C%26%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>See <code><a href="Log.html#notice%28%2A%2Cexception%3AException%29%3ANil-instance-method">Log#notice</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/log/main.cr#L38" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="progname-class-method">
+      <div class="signature">
+        
+        def self.<strong>progname</strong>
+
+        <a class="method-permalink" href="#progname-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>The program name used for log entries</p>
+<p>Defaults to the executable name</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/log/format.cr#L5" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="progname=(progname:String)-class-method">
+      <div class="signature">
+        
+        def self.<strong>progname=</strong>(progname : <a href="String.html">String</a>)
+
+        <a class="method-permalink" href="#progname%3D%28progname%3AString%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>The program name used for log entries</p>
+<p>Defaults to the executable name</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/log/format.cr#L5" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="setup(*,builder:Log::Builder=Log.builder,&amp;)-class-method">
+      <div class="signature">
+        
+        def self.<strong>setup</strong>(*, builder : <a href="Log/Builder.html">Log::Builder</a> = <span class="t">Log</span>.builder, &)
+
+        <a class="method-permalink" href="#setup%28%2A%2Cbuilder%3ALog%3A%3ABuilder%3DLog.builder%2C%26%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Setups logging bindings discarding all previous configurations.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/log/setup.cr#L3" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="setup(sources:String=&quot;*&quot;,level:Log::Severity=Log::Severity::Info,backend:Log::Backend=IOBackend.new,*,builder:Log::Builder=Log.builder)-class-method">
+      <div class="signature">
+        
+        def self.<strong>setup</strong>(sources : <a href="String.html">String</a> = <span class="s">&quot;*&quot;</span>, level : <a href="Log/Severity.html">Log::Severity</a> = <span class="t">Log</span><span class="t">::</span><span class="t">Severity</span><span class="t">::</span><span class="t">Info</span>, backend : <a href="Log/Backend.html">Log::Backend</a> = <span class="t">IOBackend</span>.new, *, builder : <a href="Log/Builder.html">Log::Builder</a> = <span class="t">Log</span>.builder)
+
+        <a class="method-permalink" href="#setup%28sources%3AString%3D%22%2A%22%2Clevel%3ALog%3A%3ASeverity%3DLog%3A%3ASeverity%3A%3AInfo%2Cbackend%3ALog%3A%3ABackend%3DIOBackend.new%2C%2A%2Cbuilder%3ALog%3A%3ABuilder%3DLog.builder%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Setups logging for <em>sources</em> using the specified <em>level</em>, <em>backend</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/log/setup.cr#L16" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="setup(level:Log::Severity=Log::Severity::Info,backend:Log::Backend=IOBackend.new,*,builder:Log::Builder=Log.builder)-class-method">
+      <div class="signature">
+        
+        def self.<strong>setup</strong>(level : <a href="Log/Severity.html">Log::Severity</a> = <span class="t">Log</span><span class="t">::</span><span class="t">Severity</span><span class="t">::</span><span class="t">Info</span>, backend : <a href="Log/Backend.html">Log::Backend</a> = <span class="t">IOBackend</span>.new, *, builder : <a href="Log/Builder.html">Log::Builder</a> = <span class="t">Log</span>.builder)
+
+        <a class="method-permalink" href="#setup%28level%3ALog%3A%3ASeverity%3DLog%3A%3ASeverity%3A%3AInfo%2Cbackend%3ALog%3A%3ABackend%3DIOBackend.new%2C%2A%2Cbuilder%3ALog%3A%3ABuilder%3DLog.builder%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Setups logging for all sources using the specified <em>level</em>, <em>backend</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/log/setup.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="setup_from_env(*,builder:Log::Builder=Log.builder,default_level:Log::Severity=Log::Severity::Info,default_sources=&quot;*&quot;,log_level_env=&quot;LOG_LEVEL&quot;,backend=Log::IOBackend.new)-class-method">
+      <div class="signature">
+        
+        def self.<strong>setup_from_env</strong>(*, builder : <a href="Log/Builder.html">Log::Builder</a> = <span class="t">Log</span>.builder, default_level : <a href="Log/Severity.html">Log::Severity</a> = <span class="t">Log</span><span class="t">::</span><span class="t">Severity</span><span class="t">::</span><span class="t">Info</span>, default_sources = <span class="s">&quot;*&quot;</span>, log_level_env = <span class="s">&quot;LOG_LEVEL&quot;</span>, backend = <span class="t">Log</span><span class="t">::</span><span class="t">IOBackend</span>.new)
+
+        <a class="method-permalink" href="#setup_from_env%28%2A%2Cbuilder%3ALog%3A%3ABuilder%3DLog.builder%2Cdefault_level%3ALog%3A%3ASeverity%3DLog%3A%3ASeverity%3A%3AInfo%2Cdefault_sources%3D%22%2A%22%2Clog_level_env%3D%22LOG_LEVEL%22%2Cbackend%3DLog%3A%3AIOBackend.new%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Setups logging based on <code>LOG_LEVEL</code> environment variable.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/log/setup.cr#L30" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="trace(*,exception:Exception):Nil-class-method">
+      <div class="signature">
+        
+        def self.<strong>trace</strong>(*, exception : <a href="Exception.html">Exception</a>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#trace%28%2A%2Cexception%3AException%29%3ANil-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>See <code><a href="Log.html#trace%28%2A%2Cexception%3AException%29%3ANil-instance-method">Log#trace</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/log/main.cr#L38" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="trace(*,exception:Exception|Nil=nil,&amp;)-class-method">
+      <div class="signature">
+        
+        def self.<strong>trace</strong>(*, exception : <a href="Exception.html">Exception</a> | <a href="Nil.html">Nil</a> = <span class="n">nil</span>, &)
+
+        <a class="method-permalink" href="#trace%28%2A%2Cexception%3AException%7CNil%3Dnil%2C%26%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>See <code><a href="Log.html#trace%28%2A%2Cexception%3AException%29%3ANil-instance-method">Log#trace</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/log/main.cr#L38" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="warn(*,exception:Exception):Nil-class-method">
+      <div class="signature">
+        
+        def self.<strong>warn</strong>(*, exception : <a href="Exception.html">Exception</a>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#warn%28%2A%2Cexception%3AException%29%3ANil-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>See <code><a href="Log.html#warn%28%2A%2Cexception%3AException%29%3ANil-instance-method">Log#warn</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/log/main.cr#L38" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="warn(*,exception:Exception|Nil=nil,&amp;)-class-method">
+      <div class="signature">
+        
+        def self.<strong>warn</strong>(*, exception : <a href="Exception.html">Exception</a> | <a href="Nil.html">Nil</a> = <span class="n">nil</span>, &)
+
+        <a class="method-permalink" href="#warn%28%2A%2Cexception%3AException%7CNil%3Dnil%2C%26%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>See <code><a href="Log.html#warn%28%2A%2Cexception%3AException%29%3ANil-instance-method">Log#warn</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/log/main.cr#L38" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="with_context(values,&amp;)-class-method">
+      <div class="signature">
+        
+        def self.<strong>with_context</strong>(values, &)
+
+        <a class="method-permalink" href="#with_context%28values%2C%26%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Method to save and restore the current logging context.
+Temporary context for the duration of the block can be set via arguments.</p>
+<pre><code class="language-crystal"><span class="t">Log</span>.context.set a: <span class="n">1</span>
+<span class="t">Log</span>.info { <span class="s">%(message with {&quot;a&quot; =&gt; 1} context)</span> }
+<span class="t">Log</span>.with_context(b: <span class="n">2</span>) <span class="k">do</span>
+  <span class="t">Log</span>.context.set c: <span class="n">3</span>
+  <span class="t">Log</span>.info { <span class="s">%(message with {&quot;a&quot; =&gt; 1, &quot;b&quot; =&gt; 2, &quot;c&quot; =&gt; 3} context)</span> }
+<span class="k">end</span>
+<span class="t">Log</span>.info { <span class="s">%(message with {&quot;a&quot; =&gt; 1} context)</span> }</code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/log/main.cr#L112" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="with_context(**kwargs,&amp;)-class-method">
+      <div class="signature">
+        
+        def self.<strong>with_context</strong>(**kwargs, &)
+
+        <a class="method-permalink" href="#with_context%28%2A%2Akwargs%2C%26%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Method to save and restore the current logging context.
+Temporary context for the duration of the block can be set via arguments.</p>
+<pre><code class="language-crystal"><span class="t">Log</span>.context.set a: <span class="n">1</span>
+<span class="t">Log</span>.info { <span class="s">%(message with {&quot;a&quot; =&gt; 1} context)</span> }
+<span class="t">Log</span>.with_context(b: <span class="n">2</span>) <span class="k">do</span>
+  <span class="t">Log</span>.context.set c: <span class="n">3</span>
+  <span class="t">Log</span>.info { <span class="s">%(message with {&quot;a&quot; =&gt; 1, &quot;b&quot; =&gt; 2, &quot;c&quot; =&gt; 3} context)</span> }
+<span class="k">end</span>
+<span class="t">Log</span>.info { <span class="s">%(message with {&quot;a&quot; =&gt; 1} context)</span> }</code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/log/main.cr#L101" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+  
+  <h2>
+    <a id="macro-detail" class="anchor" href="#macro-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Macro Detail
+  </h2>
+  
+    <div class="entry-detail" id="define_formatter(name,pattern)-macro">
+      <div class="signature">
+        
+        macro <strong>define_formatter</strong>(name, pattern)
+
+        <a class="method-permalink" href="#define_formatter%28name%2Cpattern%29-macro">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Generate subclasses of <code><a href="Log/StaticFormatter.html">Log::StaticFormatter</a></code> from a string with interpolations</p>
+<p>Example:</p>
+<pre><code class="language-crystal"><span class="t">Log</span>.define_formatter <span class="t">MyFormat</span>, <span class="s">&quot;- </span><span class="i">#{</span>severity<span class="i">}</span><span class="s">: </span><span class="i">#{</span>message<span class="i">}</span><span class="s">&quot;</span></code></pre>
+<p>See <code><a href="Log/StaticFormatter.html">Log::StaticFormatter</a></code> for the available methods that can
+be called within the interpolations.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/log/format.cr#L168" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+  
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="backend:Backend|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>backend</strong> : <a href="Log/Backend.html">Backend</a> | <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#backend%3ABackend%7CNil-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/log/log.cr#L3" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="context:Log::Context-instance-method">
+      <div class="signature">
+        
+        def <strong>context</strong> : <a href="Log/Context.html">Log::Context</a>
+
+        <a class="method-permalink" href="#context%3ALog%3A%3AContext-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the current fiber logging context.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/log/main.cr#L80" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="context=(value:Log::Metadata|Log::Context)-instance-method">
+      <div class="signature">
+        
+        def <strong>context=</strong>(value : <a href="Log/Metadata.html">Log::Metadata</a> | <a href="Log/Context.html">Log::Context</a>)
+
+        <a class="method-permalink" href="#context%3D%28value%3ALog%3A%3AMetadata%7CLog%3A%3AContext%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Sets the current fiber logging context.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/log/main.cr#L85" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="debug(*,exception:Exception):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>debug</strong>(*, exception : <a href="Exception.html">Exception</a>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#debug%28%2A%2Cexception%3AException%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Logs the given <em>exception</em> if the logger's current severity is lower than
+or equal to <code><a href="Log/Severity.html#Debug">Severity::Debug</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/log/log.cr#L41" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="debug(*,exception:Exception|Nil=nil,&amp;)-instance-method">
+      <div class="signature">
+        
+        def <strong>debug</strong>(*, exception : <a href="Exception.html">Exception</a> | <a href="Nil.html">Nil</a> = <span class="n">nil</span>, &)
+
+        <a class="method-permalink" href="#debug%28%2A%2Cexception%3AException%7CNil%3Dnil%2C%26%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Logs a message if the logger's current severity is lower than or equal to
+<code><a href="Log/Severity.html#Debug">Severity::Debug</a></code>.</p>
+<p>The block is not called unless the current severity level would emit a
+message.</p>
+<p>Blocks which return <code>nil</code> do not emit anything:</p>
+<pre><code class="language-crystal"><span class="t">Log</span>.debug <span class="k">do</span>
+  <span class="k">if</span> <span class="n">false</span>
+    <span class="s">&quot;Nothing will be logged.&quot;</span>
+  <span class="k">end</span>
+<span class="k">end</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/log/log.cr#L41" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="error(*,exception:Exception):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>error</strong>(*, exception : <a href="Exception.html">Exception</a>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#error%28%2A%2Cexception%3AException%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Logs the given <em>exception</em> if the logger's current severity is lower than
+or equal to <code><a href="Log/Severity.html#Error">Severity::Error</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/log/log.cr#L41" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="error(*,exception:Exception|Nil=nil,&amp;)-instance-method">
+      <div class="signature">
+        
+        def <strong>error</strong>(*, exception : <a href="Exception.html">Exception</a> | <a href="Nil.html">Nil</a> = <span class="n">nil</span>, &)
+
+        <a class="method-permalink" href="#error%28%2A%2Cexception%3AException%7CNil%3Dnil%2C%26%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Logs a message if the logger's current severity is lower than or equal to
+<code><a href="Log/Severity.html#Error">Severity::Error</a></code>.</p>
+<p>The block is not called unless the current severity level would emit a
+message.</p>
+<p>Blocks which return <code>nil</code> do not emit anything:</p>
+<pre><code class="language-crystal"><span class="t">Log</span>.error <span class="k">do</span>
+  <span class="k">if</span> <span class="n">false</span>
+    <span class="s">&quot;Nothing will be logged.&quot;</span>
+  <span class="k">end</span>
+<span class="k">end</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/log/log.cr#L41" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="fatal(*,exception:Exception):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>fatal</strong>(*, exception : <a href="Exception.html">Exception</a>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#fatal%28%2A%2Cexception%3AException%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Logs the given <em>exception</em> if the logger's current severity is lower than
+or equal to <code><a href="Log/Severity.html#Fatal">Severity::Fatal</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/log/log.cr#L41" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="fatal(*,exception:Exception|Nil=nil,&amp;)-instance-method">
+      <div class="signature">
+        
+        def <strong>fatal</strong>(*, exception : <a href="Exception.html">Exception</a> | <a href="Nil.html">Nil</a> = <span class="n">nil</span>, &)
+
+        <a class="method-permalink" href="#fatal%28%2A%2Cexception%3AException%7CNil%3Dnil%2C%26%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Logs a message if the logger's current severity is lower than or equal to
+<code><a href="Log/Severity.html#Fatal">Severity::Fatal</a></code>.</p>
+<p>The block is not called unless the current severity level would emit a
+message.</p>
+<p>Blocks which return <code>nil</code> do not emit anything:</p>
+<pre><code class="language-crystal"><span class="t">Log</span>.fatal <span class="k">do</span>
+  <span class="k">if</span> <span class="n">false</span>
+    <span class="s">&quot;Nothing will be logged.&quot;</span>
+  <span class="k">end</span>
+<span class="k">end</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/log/log.cr#L41" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="finalize:Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>finalize</strong> : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#finalize%3ANil-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/log/log.cr#L13" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="for(child_source:String,level:Severity|Nil=nil):Log-instance-method">
+      <div class="signature">
+        
+        def <strong>for</strong>(child_source : <a href="String.html">String</a>, level : <a href="Log/Severity.html">Severity</a> | <a href="Nil.html">Nil</a> = <span class="n">nil</span>) : <a href="Log.html">Log</a>
+
+        <a class="method-permalink" href="#for%28child_source%3AString%2Clevel%3ASeverity%7CNil%3Dnil%29%3ALog-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Creates a <code><a href="Log.html">Log</a></code> for the given nested source.
+If <em>level</em> is given, it will override the configuration.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/log/main.cr#L12" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="for(type:Class,level:Severity|Nil=nil):Log-instance-method">
+      <div class="signature">
+        
+        def <strong>for</strong>(type : <a href="Class.html">Class</a>, level : <a href="Log/Severity.html">Severity</a> | <a href="Nil.html">Nil</a> = <span class="n">nil</span>) : <a href="Log.html">Log</a>
+
+        <a class="method-permalink" href="#for%28type%3AClass%2Clevel%3ASeverity%7CNil%3Dnil%29%3ALog-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Creates a <code><a href="Log.html">Log</a></code> for the given type.
+A type <code>Foo::Bar(Baz)</code> corresponds to the source <code>foo.bar</code>.
+If <em>level</em> is given, it will override the configuration.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/log/main.cr#L32" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="info(*,exception:Exception):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>info</strong>(*, exception : <a href="Exception.html">Exception</a>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#info%28%2A%2Cexception%3AException%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Logs the given <em>exception</em> if the logger's current severity is lower than
+or equal to <code><a href="Log/Severity.html#Info">Severity::Info</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/log/log.cr#L41" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="info(*,exception:Exception|Nil=nil,&amp;)-instance-method">
+      <div class="signature">
+        
+        def <strong>info</strong>(*, exception : <a href="Exception.html">Exception</a> | <a href="Nil.html">Nil</a> = <span class="n">nil</span>, &)
+
+        <a class="method-permalink" href="#info%28%2A%2Cexception%3AException%7CNil%3Dnil%2C%26%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Logs a message if the logger's current severity is lower than or equal to
+<code><a href="Log/Severity.html#Info">Severity::Info</a></code>.</p>
+<p>The block is not called unless the current severity level would emit a
+message.</p>
+<p>Blocks which return <code>nil</code> do not emit anything:</p>
+<pre><code class="language-crystal"><span class="t">Log</span>.info <span class="k">do</span>
+  <span class="k">if</span> <span class="n">false</span>
+    <span class="s">&quot;Nothing will be logged.&quot;</span>
+  <span class="k">end</span>
+<span class="k">end</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/log/log.cr#L41" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="level:Severity-instance-method">
+      <div class="signature">
+        
+        def <strong>level</strong> : <a href="Log/Severity.html">Severity</a>
+
+        <a class="method-permalink" href="#level%3ASeverity-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/log/log.cr#L23" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="level=(value:Severity)-instance-method">
+      <div class="signature">
+        
+        def <strong>level=</strong>(value : <a href="Log/Severity.html">Severity</a>)
+
+        <a class="method-permalink" href="#level%3D%28value%3ASeverity%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Change this log severity level filter.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/log/log.cr#L28" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="notice(*,exception:Exception):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>notice</strong>(*, exception : <a href="Exception.html">Exception</a>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#notice%28%2A%2Cexception%3AException%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Logs the given <em>exception</em> if the logger's current severity is lower than
+or equal to <code><a href="Log/Severity.html#Notice">Severity::Notice</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/log/log.cr#L41" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="notice(*,exception:Exception|Nil=nil,&amp;)-instance-method">
+      <div class="signature">
+        
+        def <strong>notice</strong>(*, exception : <a href="Exception.html">Exception</a> | <a href="Nil.html">Nil</a> = <span class="n">nil</span>, &)
+
+        <a class="method-permalink" href="#notice%28%2A%2Cexception%3AException%7CNil%3Dnil%2C%26%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Logs a message if the logger's current severity is lower than or equal to
+<code><a href="Log/Severity.html#Notice">Severity::Notice</a></code>.</p>
+<p>The block is not called unless the current severity level would emit a
+message.</p>
+<p>Blocks which return <code>nil</code> do not emit anything:</p>
+<pre><code class="language-crystal"><span class="t">Log</span>.notice <span class="k">do</span>
+  <span class="k">if</span> <span class="n">false</span>
+    <span class="s">&quot;Nothing will be logged.&quot;</span>
+  <span class="k">end</span>
+<span class="k">end</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/log/log.cr#L41" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="source:String-instance-method">
+      <div class="signature">
+        
+        def <strong>source</strong> : <a href="String.html">String</a>
+
+        <a class="method-permalink" href="#source%3AString-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/log/log.cr#L2" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="trace(*,exception:Exception):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>trace</strong>(*, exception : <a href="Exception.html">Exception</a>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#trace%28%2A%2Cexception%3AException%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Logs the given <em>exception</em> if the logger's current severity is lower than
+or equal to <code><a href="Log/Severity.html#Trace">Severity::Trace</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/log/log.cr#L41" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="trace(*,exception:Exception|Nil=nil,&amp;)-instance-method">
+      <div class="signature">
+        
+        def <strong>trace</strong>(*, exception : <a href="Exception.html">Exception</a> | <a href="Nil.html">Nil</a> = <span class="n">nil</span>, &)
+
+        <a class="method-permalink" href="#trace%28%2A%2Cexception%3AException%7CNil%3Dnil%2C%26%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Logs a message if the logger's current severity is lower than or equal to
+<code><a href="Log/Severity.html#Trace">Severity::Trace</a></code>.</p>
+<p>The block is not called unless the current severity level would emit a
+message.</p>
+<p>Blocks which return <code>nil</code> do not emit anything:</p>
+<pre><code class="language-crystal"><span class="t">Log</span>.trace <span class="k">do</span>
+  <span class="k">if</span> <span class="n">false</span>
+    <span class="s">&quot;Nothing will be logged.&quot;</span>
+  <span class="k">end</span>
+<span class="k">end</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/log/log.cr#L41" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="warn(*,exception:Exception):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>warn</strong>(*, exception : <a href="Exception.html">Exception</a>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#warn%28%2A%2Cexception%3AException%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Logs the given <em>exception</em> if the logger's current severity is lower than
+or equal to <code><a href="Log/Severity.html#Warn">Severity::Warn</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/log/log.cr#L41" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="warn(*,exception:Exception|Nil=nil,&amp;)-instance-method">
+      <div class="signature">
+        
+        def <strong>warn</strong>(*, exception : <a href="Exception.html">Exception</a> | <a href="Nil.html">Nil</a> = <span class="n">nil</span>, &)
+
+        <a class="method-permalink" href="#warn%28%2A%2Cexception%3AException%7CNil%3Dnil%2C%26%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Logs a message if the logger's current severity is lower than or equal to
+<code><a href="Log/Severity.html#Warn">Severity::Warn</a></code>.</p>
+<p>The block is not called unless the current severity level would emit a
+message.</p>
+<p>Blocks which return <code>nil</code> do not emit anything:</p>
+<pre><code class="language-crystal"><span class="t">Log</span>.warn <span class="k">do</span>
+  <span class="k">if</span> <span class="n">false</span>
+    <span class="s">&quot;Nothing will be logged.&quot;</span>
+  <span class="k">end</span>
+<span class="k">end</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/log/log.cr#L41" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="with_context(values,&amp;)-instance-method">
+      <div class="signature">
+        
+        def <strong>with_context</strong>(values, &)
+
+        <a class="method-permalink" href="#with_context%28values%2C%26%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Method to save and restore the current logging context.
+Temporary context for the duration of the block can be set via arguments.</p>
+<pre><code class="language-crystal"><span class="t">Log</span>.context.set a: <span class="n">1</span>
+<span class="t">Log</span>.info { <span class="s">%(message with {&quot;a&quot; =&gt; 1} context)</span> }
+<span class="t">Log</span>.with_context(b: <span class="n">2</span>) <span class="k">do</span>
+  <span class="t">Log</span>.context.set c: <span class="n">3</span>
+  <span class="t">Log</span>.info { <span class="s">%(message with {&quot;a&quot; =&gt; 1, &quot;b&quot; =&gt; 2, &quot;c&quot; =&gt; 3} context)</span> }
+<span class="k">end</span>
+<span class="t">Log</span>.info { <span class="s">%(message with {&quot;a&quot; =&gt; 1} context)</span> }</code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/log/main.cr#L130" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="with_context(**kwargs,&amp;)-instance-method">
+      <div class="signature">
+        
+        def <strong>with_context</strong>(**kwargs, &)
+
+        <a class="method-permalink" href="#with_context%28%2A%2Akwargs%2C%26%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Method to save and restore the current logging context.
+Temporary context for the duration of the block can be set via arguments.</p>
+<pre><code class="language-crystal"><span class="t">Log</span>.context.set a: <span class="n">1</span>
+<span class="t">Log</span>.info { <span class="s">%(message with {&quot;a&quot; =&gt; 1} context)</span> }
+<span class="t">Log</span>.with_context(b: <span class="n">2</span>) <span class="k">do</span>
+  <span class="t">Log</span>.context.set c: <span class="n">3</span>
+  <span class="t">Log</span>.info { <span class="s">%(message with {&quot;a&quot; =&gt; 1, &quot;b&quot; =&gt; 2, &quot;c&quot; =&gt; 3} context)</span> }
+<span class="k">end</span>
+<span class="t">Log</span>.info { <span class="s">%(message with {&quot;a&quot; =&gt; 1} context)</span> }</code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/log/main.cr#L123" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+</div>
+
+</body>
+</html>

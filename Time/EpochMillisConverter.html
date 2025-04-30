@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Crystal Docs 1.16.1">
+<meta name="crystal_docs.project_version" content="1.17.0-dev">
+<meta name="crystal_docs.project_name" content="Crystal">
+
+  <meta name="crystal_docs.json_config_url" content="/api/versions.json">
+
+
+    <link rel="canonical" href="https://crystal-lang.org/api/latest/Time/EpochMillisConverter.html">
+
+<link href="../css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../js/doc.js"></script>
+
+  <meta name="repository-name" content="Crystal">
+  <title>Time::EpochMillisConverter - Crystal 1.17.0-dev</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "../";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill="currentColor" fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<input type="checkbox" id="sidebar-btn">
+<label for="sidebar-btn" id="sidebar-btn-label">
+  <svg class="open" xmlns="http://www.w3.org/2000/svg" height="2em" width="2em" viewBox="0 0 512 512"><title>Open Sidebar</title><path fill="currentColor" d="M80 96v64h352V96H80zm0 112v64h352v-64H80zm0 112v64h352v-64H80z"></path></svg>
+  <svg class="close" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><title>Close Sidebar</title><path fill="currentColor" d="m118.6 73.4-45.2 45.2L210.7 256 73.4 393.4l45.2 45.2L256 301.3l137.4 137.3 45.2-45.2L301.3 256l137.3-137.4-45.2-45.2L256 210.7Z"></path></svg>
+</label>
+<iframe class="sidebar" src="../sidebar.html"></iframe>
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">
+    module
+  </span> Time::<wbr>EpochMillisConverter
+
+</h1>
+
+
+
+
+
+  <h2>
+    <a id="overview" class="anchor" href="#overview">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Overview
+  </h2>
+
+  <p>Converter to be used with <code><a href="../JSON/Serializable.html">JSON::Serializable</a></code> and <code><a href="../YAML/Serializable.html">YAML::Serializable</a></code>
+to serialize a <code><a href="../Time.html">Time</a></code> instance as the number of milliseconds
+since the unix epoch. See <code><a href="../Time.html#to_unix_ms%3AInt64-instance-method">Time#to_unix_ms</a></code>.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;json&quot;</span>
+
+<span class="k">class</span> <span class="t">Timestamp</span>
+  <span class="k">include</span> <span class="t">JSON</span><span class="t">::</span><span class="t">Serializable</span>
+
+  @[<span class="t">JSON</span><span class="t">::</span><span class="t">Field</span>(converter: <span class="t">Time</span><span class="t">::</span><span class="t">EpochMillisConverter</span>)]
+  property value : <span class="t">Time</span>
+<span class="k">end</span>
+
+timestamp <span class="o">=</span> <span class="t">Timestamp</span>.from_json(<span class="s">%({&quot;value&quot;: 1459860483856})</span>)
+timestamp.value   <span class="c"># =&gt; 2016-04-05 12:48:03.856 UTC</span>
+timestamp.to_json <span class="c"># =&gt; %({&quot;value&quot;:1459860483856})</span></code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/from_json.cr#L526" target="_blank">
+        json/from_json.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/to_json.cr#L459" target="_blank">
+        json/to_json.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/yaml/from_yaml.cr#L354" target="_blank">
+        yaml/from_yaml.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/yaml/to_yaml.cr#L253" target="_blank">
+        yaml/to_yaml.cr
+      </a>
+    
+    <br/>
+  
+
+
+
+
+
+  
+
+  
+  <h2>
+    <a id="class-method-summary" class="anchor" href="#class-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Class Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#from_json%28value%3AJSON%3A%3APullParser%29%3ATime-class-method" class="signature"><strong>.from_json</strong>(value : JSON::PullParser) : Time</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#from_yaml%28ctx%3AYAML%3A%3AParseContext%2Cnode%3AYAML%3A%3ANodes%3A%3ANode%29%3ATime-class-method" class="signature"><strong>.from_yaml</strong>(ctx : YAML::ParseContext, node : YAML::Nodes::Node) : Time</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_json%28value%3ATime%2Cjson%3AJSON%3A%3ABuilder%29%3ANil-class-method" class="signature"><strong>.to_json</strong>(value : Time, json : JSON::Builder) : Nil</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_yaml%28value%3ATime%2Cyaml%3AYAML%3A%3ANodes%3A%3ABuilder%29%3ANil-class-method" class="signature"><strong>.to_yaml</strong>(value : Time, yaml : YAML::Nodes::Builder) : Nil</a>
+        
+      </li>
+    
+  </ul>
+
+
+  
+
+  
+
+
+  <div class="methods-inherited">
+    
+  </div>
+
+  
+
+  
+  <h2>
+    <a id="class-method-detail" class="anchor" href="#class-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Class Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="from_json(value:JSON::PullParser):Time-class-method">
+      <div class="signature">
+        
+        def self.<strong>from_json</strong>(value : <a href="../JSON/PullParser.html">JSON::PullParser</a>) : <a href="../Time.html">Time</a>
+
+        <a class="method-permalink" href="#from_json%28value%3AJSON%3A%3APullParser%29%3ATime-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/from_json.cr#L527" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="from_yaml(ctx:YAML::ParseContext,node:YAML::Nodes::Node):Time-class-method">
+      <div class="signature">
+        
+        def self.<strong>from_yaml</strong>(ctx : <a href="../YAML/ParseContext.html">YAML::ParseContext</a>, node : <a href="../YAML/Nodes/Node.html">YAML::Nodes::Node</a>) : <a href="../Time.html">Time</a>
+
+        <a class="method-permalink" href="#from_yaml%28ctx%3AYAML%3A%3AParseContext%2Cnode%3AYAML%3A%3ANodes%3A%3ANode%29%3ATime-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/yaml/from_yaml.cr#L355" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_json(value:Time,json:JSON::Builder):Nil-class-method">
+      <div class="signature">
+        
+        def self.<strong>to_json</strong>(value : <a href="../Time.html">Time</a>, json : <a href="../JSON/Builder.html">JSON::Builder</a>) : <a href="../Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#to_json%28value%3ATime%2Cjson%3AJSON%3A%3ABuilder%29%3ANil-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/to_json.cr#L460" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_yaml(value:Time,yaml:YAML::Nodes::Builder):Nil-class-method">
+      <div class="signature">
+        
+        def self.<strong>to_yaml</strong>(value : <a href="../Time.html">Time</a>, yaml : <a href="../YAML/Nodes/Builder.html">YAML::Nodes::Builder</a>) : <a href="../Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#to_yaml%28value%3ATime%2Cyaml%3AYAML%3A%3ANodes%3A%3ABuilder%29%3ANil-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/yaml/to_yaml.cr#L254" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+  
+
+  
+
+
+</div>
+
+</body>
+</html>

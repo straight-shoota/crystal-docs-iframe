@@ -1,0 +1,1556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Crystal Docs 1.16.1">
+<meta name="crystal_docs.project_version" content="1.17.0-dev">
+<meta name="crystal_docs.project_name" content="Crystal">
+
+  <meta name="crystal_docs.json_config_url" content="/api/versions.json">
+
+
+    <link rel="canonical" href="https://crystal-lang.org/api/latest/IO/ByteFormat/BigEndian.html">
+
+<link href="../../css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../../js/doc.js"></script>
+
+  <meta name="repository-name" content="Crystal">
+  <title>IO::ByteFormat::BigEndian - Crystal 1.17.0-dev</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "../../";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill="currentColor" fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<input type="checkbox" id="sidebar-btn">
+<label for="sidebar-btn" id="sidebar-btn-label">
+  <svg class="open" xmlns="http://www.w3.org/2000/svg" height="2em" width="2em" viewBox="0 0 512 512"><title>Open Sidebar</title><path fill="currentColor" d="M80 96v64h352V96H80zm0 112v64h352v-64H80zm0 112v64h352v-64H80z"></path></svg>
+  <svg class="close" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><title>Close Sidebar</title><path fill="currentColor" d="m118.6 73.4-45.2 45.2L210.7 256 73.4 393.4l45.2 45.2L256 301.3l137.4 137.3 45.2-45.2L301.3 256l137.3-137.4-45.2-45.2L256 210.7Z"></path></svg>
+</label>
+<iframe class="sidebar" src="../../sidebar.html"></iframe>
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">
+    module
+  </span> IO::<wbr>ByteFormat::<wbr>BigEndian
+
+</h1>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="extended-modules" class="anchor" href="#extended-modules">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Extended Modules
+  </h2>
+  <ul class="other-types-list">
+    
+      <li class="other-type"><a href="../../IO/ByteFormat.html">IO::ByteFormat</a></li>
+    
+  </ul>
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/byte_format.cr#L116" target="_blank">
+        io/byte_format.cr:116
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/byte_format.cr#L123" target="_blank">
+        io/byte_format.cr:123
+      </a>
+    
+    <br/>
+  
+
+
+
+
+
+  
+
+  
+  <h2>
+    <a id="class-method-summary" class="anchor" href="#class-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Class Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#decode%28int%3AInt8.class%2Cio%3AIO%29-class-method" class="signature"><strong>.decode</strong>(int : <span class="t">Int8</span>.<span class="k">class</span>, io : IO)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#decode%28int%3AInt8.class%2Cbytes%3ABytes%29-class-method" class="signature"><strong>.decode</strong>(int : <span class="t">Int8</span>.<span class="k">class</span>, bytes : Bytes)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#decode%28int%3AUInt8.class%2Cio%3AIO%29-class-method" class="signature"><strong>.decode</strong>(int : <span class="t">UInt8</span>.<span class="k">class</span>, io : IO)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#decode%28int%3AUInt8.class%2Cbytes%3ABytes%29-class-method" class="signature"><strong>.decode</strong>(int : <span class="t">UInt8</span>.<span class="k">class</span>, bytes : Bytes)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#decode%28int%3AInt16.class%2Cio%3AIO%29-class-method" class="signature"><strong>.decode</strong>(int : <span class="t">Int16</span>.<span class="k">class</span>, io : IO)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#decode%28int%3AInt16.class%2Cbytes%3ABytes%29-class-method" class="signature"><strong>.decode</strong>(int : <span class="t">Int16</span>.<span class="k">class</span>, bytes : Bytes)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#decode%28int%3AUInt16.class%2Cio%3AIO%29-class-method" class="signature"><strong>.decode</strong>(int : <span class="t">UInt16</span>.<span class="k">class</span>, io : IO)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#decode%28int%3AUInt16.class%2Cbytes%3ABytes%29-class-method" class="signature"><strong>.decode</strong>(int : <span class="t">UInt16</span>.<span class="k">class</span>, bytes : Bytes)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#decode%28int%3AInt32.class%2Cio%3AIO%29-class-method" class="signature"><strong>.decode</strong>(int : <span class="t">Int32</span>.<span class="k">class</span>, io : IO)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#decode%28int%3AInt32.class%2Cbytes%3ABytes%29-class-method" class="signature"><strong>.decode</strong>(int : <span class="t">Int32</span>.<span class="k">class</span>, bytes : Bytes)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#decode%28int%3AUInt32.class%2Cio%3AIO%29-class-method" class="signature"><strong>.decode</strong>(int : <span class="t">UInt32</span>.<span class="k">class</span>, io : IO)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#decode%28int%3AUInt32.class%2Cbytes%3ABytes%29-class-method" class="signature"><strong>.decode</strong>(int : <span class="t">UInt32</span>.<span class="k">class</span>, bytes : Bytes)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#decode%28int%3AInt64.class%2Cio%3AIO%29-class-method" class="signature"><strong>.decode</strong>(int : <span class="t">Int64</span>.<span class="k">class</span>, io : IO)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#decode%28int%3AInt64.class%2Cbytes%3ABytes%29-class-method" class="signature"><strong>.decode</strong>(int : <span class="t">Int64</span>.<span class="k">class</span>, bytes : Bytes)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#decode%28int%3AUInt64.class%2Cio%3AIO%29-class-method" class="signature"><strong>.decode</strong>(int : <span class="t">UInt64</span>.<span class="k">class</span>, io : IO)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#decode%28int%3AUInt64.class%2Cbytes%3ABytes%29-class-method" class="signature"><strong>.decode</strong>(int : <span class="t">UInt64</span>.<span class="k">class</span>, bytes : Bytes)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#decode%28int%3AInt128.class%2Cio%3AIO%29-class-method" class="signature"><strong>.decode</strong>(int : <span class="t">Int128</span>.<span class="k">class</span>, io : IO)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#decode%28int%3AInt128.class%2Cbytes%3ABytes%29-class-method" class="signature"><strong>.decode</strong>(int : <span class="t">Int128</span>.<span class="k">class</span>, bytes : Bytes)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#decode%28int%3AUInt128.class%2Cio%3AIO%29-class-method" class="signature"><strong>.decode</strong>(int : <span class="t">UInt128</span>.<span class="k">class</span>, io : IO)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#decode%28int%3AUInt128.class%2Cbytes%3ABytes%29-class-method" class="signature"><strong>.decode</strong>(int : <span class="t">UInt128</span>.<span class="k">class</span>, bytes : Bytes)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#decode%28%2A%2Ctype%3AInt8.class%2Cio%3AIO%29-class-method" class="signature"><strong>.decode</strong>(*, type : <span class="t">Int8</span>.<span class="k">class</span>, io : IO)</a>
+        
+          <div class="summary"><p><span class="flag red">DEPRECATED</span>  Use <code><a href="../../IO/ByteFormat/BigEndian.html#decode%28int%3AInt8.class%2Cio%3AIO%29-class-method">.decode(int : Int8.class, io : IO)</a></code> instead</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#decode%28%2A%2Ctype%3AInt8.class%2Cbytes%3ABytes%29-class-method" class="signature"><strong>.decode</strong>(*, type : <span class="t">Int8</span>.<span class="k">class</span>, bytes : Bytes)</a>
+        
+          <div class="summary"><p><span class="flag red">DEPRECATED</span>  Use <code><a href="../../IO/ByteFormat/BigEndian.html#decode%28int%3AInt8.class%2Cio%3AIO%29-class-method">.decode(int : Int8.class, bytes : Bytes)</a></code> instead</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#decode%28%2A%2Ctype%3AUInt8.class%2Cio%3AIO%29-class-method" class="signature"><strong>.decode</strong>(*, type : <span class="t">UInt8</span>.<span class="k">class</span>, io : IO)</a>
+        
+          <div class="summary"><p><span class="flag red">DEPRECATED</span>  Use <code><a href="../../IO/ByteFormat/BigEndian.html#decode%28int%3AInt8.class%2Cio%3AIO%29-class-method">.decode(int : UInt8.class, io : IO)</a></code> instead</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#decode%28%2A%2Ctype%3AUInt8.class%2Cbytes%3ABytes%29-class-method" class="signature"><strong>.decode</strong>(*, type : <span class="t">UInt8</span>.<span class="k">class</span>, bytes : Bytes)</a>
+        
+          <div class="summary"><p><span class="flag red">DEPRECATED</span>  Use <code><a href="../../IO/ByteFormat/BigEndian.html#decode%28int%3AInt8.class%2Cio%3AIO%29-class-method">.decode(int : UInt8.class, bytes : Bytes)</a></code> instead</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#decode%28%2A%2Ctype%3AInt16.class%2Cio%3AIO%29-class-method" class="signature"><strong>.decode</strong>(*, type : <span class="t">Int16</span>.<span class="k">class</span>, io : IO)</a>
+        
+          <div class="summary"><p><span class="flag red">DEPRECATED</span>  Use <code><a href="../../IO/ByteFormat/BigEndian.html#decode%28int%3AInt8.class%2Cio%3AIO%29-class-method">.decode(int : Int16.class, io : IO)</a></code> instead</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#decode%28%2A%2Ctype%3AInt16.class%2Cbytes%3ABytes%29-class-method" class="signature"><strong>.decode</strong>(*, type : <span class="t">Int16</span>.<span class="k">class</span>, bytes : Bytes)</a>
+        
+          <div class="summary"><p><span class="flag red">DEPRECATED</span>  Use <code><a href="../../IO/ByteFormat/BigEndian.html#decode%28int%3AInt8.class%2Cio%3AIO%29-class-method">.decode(int : Int16.class, bytes : Bytes)</a></code> instead</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#decode%28%2A%2Ctype%3AUInt16.class%2Cio%3AIO%29-class-method" class="signature"><strong>.decode</strong>(*, type : <span class="t">UInt16</span>.<span class="k">class</span>, io : IO)</a>
+        
+          <div class="summary"><p><span class="flag red">DEPRECATED</span>  Use <code><a href="../../IO/ByteFormat/BigEndian.html#decode%28int%3AInt8.class%2Cio%3AIO%29-class-method">.decode(int : UInt16.class, io : IO)</a></code> instead</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#decode%28%2A%2Ctype%3AUInt16.class%2Cbytes%3ABytes%29-class-method" class="signature"><strong>.decode</strong>(*, type : <span class="t">UInt16</span>.<span class="k">class</span>, bytes : Bytes)</a>
+        
+          <div class="summary"><p><span class="flag red">DEPRECATED</span>  Use <code><a href="../../IO/ByteFormat/BigEndian.html#decode%28int%3AInt8.class%2Cio%3AIO%29-class-method">.decode(int : UInt16.class, bytes : Bytes)</a></code> instead</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#decode%28%2A%2Ctype%3AInt32.class%2Cio%3AIO%29-class-method" class="signature"><strong>.decode</strong>(*, type : <span class="t">Int32</span>.<span class="k">class</span>, io : IO)</a>
+        
+          <div class="summary"><p><span class="flag red">DEPRECATED</span>  Use <code><a href="../../IO/ByteFormat/BigEndian.html#decode%28int%3AInt8.class%2Cio%3AIO%29-class-method">.decode(int : Int32.class, io : IO)</a></code> instead</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#decode%28%2A%2Ctype%3AInt32.class%2Cbytes%3ABytes%29-class-method" class="signature"><strong>.decode</strong>(*, type : <span class="t">Int32</span>.<span class="k">class</span>, bytes : Bytes)</a>
+        
+          <div class="summary"><p><span class="flag red">DEPRECATED</span>  Use <code><a href="../../IO/ByteFormat/BigEndian.html#decode%28int%3AInt8.class%2Cio%3AIO%29-class-method">.decode(int : Int32.class, bytes : Bytes)</a></code> instead</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#decode%28%2A%2Ctype%3AUInt32.class%2Cio%3AIO%29-class-method" class="signature"><strong>.decode</strong>(*, type : <span class="t">UInt32</span>.<span class="k">class</span>, io : IO)</a>
+        
+          <div class="summary"><p><span class="flag red">DEPRECATED</span>  Use <code><a href="../../IO/ByteFormat/BigEndian.html#decode%28int%3AInt8.class%2Cio%3AIO%29-class-method">.decode(int : UInt32.class, io : IO)</a></code> instead</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#decode%28%2A%2Ctype%3AUInt32.class%2Cbytes%3ABytes%29-class-method" class="signature"><strong>.decode</strong>(*, type : <span class="t">UInt32</span>.<span class="k">class</span>, bytes : Bytes)</a>
+        
+          <div class="summary"><p><span class="flag red">DEPRECATED</span>  Use <code><a href="../../IO/ByteFormat/BigEndian.html#decode%28int%3AInt8.class%2Cio%3AIO%29-class-method">.decode(int : UInt32.class, bytes : Bytes)</a></code> instead</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#decode%28%2A%2Ctype%3AInt64.class%2Cio%3AIO%29-class-method" class="signature"><strong>.decode</strong>(*, type : <span class="t">Int64</span>.<span class="k">class</span>, io : IO)</a>
+        
+          <div class="summary"><p><span class="flag red">DEPRECATED</span>  Use <code><a href="../../IO/ByteFormat/BigEndian.html#decode%28int%3AInt8.class%2Cio%3AIO%29-class-method">.decode(int : Int64.class, io : IO)</a></code> instead</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#decode%28%2A%2Ctype%3AInt64.class%2Cbytes%3ABytes%29-class-method" class="signature"><strong>.decode</strong>(*, type : <span class="t">Int64</span>.<span class="k">class</span>, bytes : Bytes)</a>
+        
+          <div class="summary"><p><span class="flag red">DEPRECATED</span>  Use <code><a href="../../IO/ByteFormat/BigEndian.html#decode%28int%3AInt8.class%2Cio%3AIO%29-class-method">.decode(int : Int64.class, bytes : Bytes)</a></code> instead</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#decode%28%2A%2Ctype%3AUInt64.class%2Cio%3AIO%29-class-method" class="signature"><strong>.decode</strong>(*, type : <span class="t">UInt64</span>.<span class="k">class</span>, io : IO)</a>
+        
+          <div class="summary"><p><span class="flag red">DEPRECATED</span>  Use <code><a href="../../IO/ByteFormat/BigEndian.html#decode%28int%3AInt8.class%2Cio%3AIO%29-class-method">.decode(int : UInt64.class, io : IO)</a></code> instead</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#decode%28%2A%2Ctype%3AUInt64.class%2Cbytes%3ABytes%29-class-method" class="signature"><strong>.decode</strong>(*, type : <span class="t">UInt64</span>.<span class="k">class</span>, bytes : Bytes)</a>
+        
+          <div class="summary"><p><span class="flag red">DEPRECATED</span>  Use <code><a href="../../IO/ByteFormat/BigEndian.html#decode%28int%3AInt8.class%2Cio%3AIO%29-class-method">.decode(int : UInt64.class, bytes : Bytes)</a></code> instead</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#decode%28%2A%2Ctype%3AInt128.class%2Cio%3AIO%29-class-method" class="signature"><strong>.decode</strong>(*, type : <span class="t">Int128</span>.<span class="k">class</span>, io : IO)</a>
+        
+          <div class="summary"><p><span class="flag red">DEPRECATED</span>  Use <code><a href="../../IO/ByteFormat/BigEndian.html#decode%28int%3AInt8.class%2Cio%3AIO%29-class-method">.decode(int : Int128.class, io : IO)</a></code> instead</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#decode%28%2A%2Ctype%3AInt128.class%2Cbytes%3ABytes%29-class-method" class="signature"><strong>.decode</strong>(*, type : <span class="t">Int128</span>.<span class="k">class</span>, bytes : Bytes)</a>
+        
+          <div class="summary"><p><span class="flag red">DEPRECATED</span>  Use <code><a href="../../IO/ByteFormat/BigEndian.html#decode%28int%3AInt8.class%2Cio%3AIO%29-class-method">.decode(int : Int128.class, bytes : Bytes)</a></code> instead</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#decode%28%2A%2Ctype%3AUInt128.class%2Cio%3AIO%29-class-method" class="signature"><strong>.decode</strong>(*, type : <span class="t">UInt128</span>.<span class="k">class</span>, io : IO)</a>
+        
+          <div class="summary"><p><span class="flag red">DEPRECATED</span>  Use <code><a href="../../IO/ByteFormat/BigEndian.html#decode%28int%3AInt8.class%2Cio%3AIO%29-class-method">.decode(int : UInt128.class, io : IO)</a></code> instead</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#decode%28%2A%2Ctype%3AUInt128.class%2Cbytes%3ABytes%29-class-method" class="signature"><strong>.decode</strong>(*, type : <span class="t">UInt128</span>.<span class="k">class</span>, bytes : Bytes)</a>
+        
+          <div class="summary"><p><span class="flag red">DEPRECATED</span>  Use <code><a href="../../IO/ByteFormat/BigEndian.html#decode%28int%3AInt8.class%2Cio%3AIO%29-class-method">.decode(int : UInt128.class, bytes : Bytes)</a></code> instead</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#encode%28int%3AInt8%2Cio%3AIO%29-class-method" class="signature"><strong>.encode</strong>(int : Int8, io : IO)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#encode%28int%3AInt8%2Cbytes%3ABytes%29-class-method" class="signature"><strong>.encode</strong>(int : Int8, bytes : Bytes)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#encode%28int%3AUInt8%2Cio%3AIO%29-class-method" class="signature"><strong>.encode</strong>(int : UInt8, io : IO)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#encode%28int%3AUInt8%2Cbytes%3ABytes%29-class-method" class="signature"><strong>.encode</strong>(int : UInt8, bytes : Bytes)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#encode%28int%3AInt16%2Cio%3AIO%29-class-method" class="signature"><strong>.encode</strong>(int : Int16, io : IO)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#encode%28int%3AInt16%2Cbytes%3ABytes%29-class-method" class="signature"><strong>.encode</strong>(int : Int16, bytes : Bytes)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#encode%28int%3AUInt16%2Cio%3AIO%29-class-method" class="signature"><strong>.encode</strong>(int : UInt16, io : IO)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#encode%28int%3AUInt16%2Cbytes%3ABytes%29-class-method" class="signature"><strong>.encode</strong>(int : UInt16, bytes : Bytes)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#encode%28int%3AInt32%2Cio%3AIO%29-class-method" class="signature"><strong>.encode</strong>(int : Int32, io : IO)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#encode%28int%3AInt32%2Cbytes%3ABytes%29-class-method" class="signature"><strong>.encode</strong>(int : Int32, bytes : Bytes)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#encode%28int%3AUInt32%2Cio%3AIO%29-class-method" class="signature"><strong>.encode</strong>(int : UInt32, io : IO)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#encode%28int%3AUInt32%2Cbytes%3ABytes%29-class-method" class="signature"><strong>.encode</strong>(int : UInt32, bytes : Bytes)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#encode%28int%3AInt64%2Cio%3AIO%29-class-method" class="signature"><strong>.encode</strong>(int : Int64, io : IO)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#encode%28int%3AInt64%2Cbytes%3ABytes%29-class-method" class="signature"><strong>.encode</strong>(int : Int64, bytes : Bytes)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#encode%28int%3AUInt64%2Cio%3AIO%29-class-method" class="signature"><strong>.encode</strong>(int : UInt64, io : IO)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#encode%28int%3AUInt64%2Cbytes%3ABytes%29-class-method" class="signature"><strong>.encode</strong>(int : UInt64, bytes : Bytes)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#encode%28int%3AInt128%2Cio%3AIO%29-class-method" class="signature"><strong>.encode</strong>(int : Int128, io : IO)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#encode%28int%3AInt128%2Cbytes%3ABytes%29-class-method" class="signature"><strong>.encode</strong>(int : Int128, bytes : Bytes)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#encode%28int%3AUInt128%2Cio%3AIO%29-class-method" class="signature"><strong>.encode</strong>(int : UInt128, io : IO)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#encode%28int%3AUInt128%2Cbytes%3ABytes%29-class-method" class="signature"><strong>.encode</strong>(int : UInt128, bytes : Bytes)</a>
+        
+      </li>
+    
+  </ul>
+
+
+  
+
+  
+
+
+  <div class="methods-inherited">
+    
+  </div>
+
+  
+
+  
+  <h2>
+    <a id="class-method-detail" class="anchor" href="#class-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Class Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="decode(int:Int8.class,io:IO)-class-method">
+      <div class="signature">
+        
+        def self.<strong>decode</strong>(int : <span class="t">Int8</span>.<span class="k">class</span>, io : <a href="../../IO.html">IO</a>)
+
+        <a class="method-permalink" href="#decode%28int%3AInt8.class%2Cio%3AIO%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/byte_format.cr#L123" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="decode(int:Int8.class,bytes:Bytes)-class-method">
+      <div class="signature">
+        
+        def self.<strong>decode</strong>(int : <span class="t">Int8</span>.<span class="k">class</span>, bytes : <a href="../../Bytes.html">Bytes</a>)
+
+        <a class="method-permalink" href="#decode%28int%3AInt8.class%2Cbytes%3ABytes%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/byte_format.cr#L123" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="decode(int:UInt8.class,io:IO)-class-method">
+      <div class="signature">
+        
+        def self.<strong>decode</strong>(int : <span class="t">UInt8</span>.<span class="k">class</span>, io : <a href="../../IO.html">IO</a>)
+
+        <a class="method-permalink" href="#decode%28int%3AUInt8.class%2Cio%3AIO%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/byte_format.cr#L123" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="decode(int:UInt8.class,bytes:Bytes)-class-method">
+      <div class="signature">
+        
+        def self.<strong>decode</strong>(int : <span class="t">UInt8</span>.<span class="k">class</span>, bytes : <a href="../../Bytes.html">Bytes</a>)
+
+        <a class="method-permalink" href="#decode%28int%3AUInt8.class%2Cbytes%3ABytes%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/byte_format.cr#L123" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="decode(int:Int16.class,io:IO)-class-method">
+      <div class="signature">
+        
+        def self.<strong>decode</strong>(int : <span class="t">Int16</span>.<span class="k">class</span>, io : <a href="../../IO.html">IO</a>)
+
+        <a class="method-permalink" href="#decode%28int%3AInt16.class%2Cio%3AIO%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/byte_format.cr#L123" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="decode(int:Int16.class,bytes:Bytes)-class-method">
+      <div class="signature">
+        
+        def self.<strong>decode</strong>(int : <span class="t">Int16</span>.<span class="k">class</span>, bytes : <a href="../../Bytes.html">Bytes</a>)
+
+        <a class="method-permalink" href="#decode%28int%3AInt16.class%2Cbytes%3ABytes%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/byte_format.cr#L123" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="decode(int:UInt16.class,io:IO)-class-method">
+      <div class="signature">
+        
+        def self.<strong>decode</strong>(int : <span class="t">UInt16</span>.<span class="k">class</span>, io : <a href="../../IO.html">IO</a>)
+
+        <a class="method-permalink" href="#decode%28int%3AUInt16.class%2Cio%3AIO%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/byte_format.cr#L123" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="decode(int:UInt16.class,bytes:Bytes)-class-method">
+      <div class="signature">
+        
+        def self.<strong>decode</strong>(int : <span class="t">UInt16</span>.<span class="k">class</span>, bytes : <a href="../../Bytes.html">Bytes</a>)
+
+        <a class="method-permalink" href="#decode%28int%3AUInt16.class%2Cbytes%3ABytes%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/byte_format.cr#L123" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="decode(int:Int32.class,io:IO)-class-method">
+      <div class="signature">
+        
+        def self.<strong>decode</strong>(int : <span class="t">Int32</span>.<span class="k">class</span>, io : <a href="../../IO.html">IO</a>)
+
+        <a class="method-permalink" href="#decode%28int%3AInt32.class%2Cio%3AIO%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/byte_format.cr#L123" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="decode(int:Int32.class,bytes:Bytes)-class-method">
+      <div class="signature">
+        
+        def self.<strong>decode</strong>(int : <span class="t">Int32</span>.<span class="k">class</span>, bytes : <a href="../../Bytes.html">Bytes</a>)
+
+        <a class="method-permalink" href="#decode%28int%3AInt32.class%2Cbytes%3ABytes%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/byte_format.cr#L123" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="decode(int:UInt32.class,io:IO)-class-method">
+      <div class="signature">
+        
+        def self.<strong>decode</strong>(int : <span class="t">UInt32</span>.<span class="k">class</span>, io : <a href="../../IO.html">IO</a>)
+
+        <a class="method-permalink" href="#decode%28int%3AUInt32.class%2Cio%3AIO%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/byte_format.cr#L123" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="decode(int:UInt32.class,bytes:Bytes)-class-method">
+      <div class="signature">
+        
+        def self.<strong>decode</strong>(int : <span class="t">UInt32</span>.<span class="k">class</span>, bytes : <a href="../../Bytes.html">Bytes</a>)
+
+        <a class="method-permalink" href="#decode%28int%3AUInt32.class%2Cbytes%3ABytes%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/byte_format.cr#L123" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="decode(int:Int64.class,io:IO)-class-method">
+      <div class="signature">
+        
+        def self.<strong>decode</strong>(int : <span class="t">Int64</span>.<span class="k">class</span>, io : <a href="../../IO.html">IO</a>)
+
+        <a class="method-permalink" href="#decode%28int%3AInt64.class%2Cio%3AIO%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/byte_format.cr#L123" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="decode(int:Int64.class,bytes:Bytes)-class-method">
+      <div class="signature">
+        
+        def self.<strong>decode</strong>(int : <span class="t">Int64</span>.<span class="k">class</span>, bytes : <a href="../../Bytes.html">Bytes</a>)
+
+        <a class="method-permalink" href="#decode%28int%3AInt64.class%2Cbytes%3ABytes%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/byte_format.cr#L123" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="decode(int:UInt64.class,io:IO)-class-method">
+      <div class="signature">
+        
+        def self.<strong>decode</strong>(int : <span class="t">UInt64</span>.<span class="k">class</span>, io : <a href="../../IO.html">IO</a>)
+
+        <a class="method-permalink" href="#decode%28int%3AUInt64.class%2Cio%3AIO%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/byte_format.cr#L123" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="decode(int:UInt64.class,bytes:Bytes)-class-method">
+      <div class="signature">
+        
+        def self.<strong>decode</strong>(int : <span class="t">UInt64</span>.<span class="k">class</span>, bytes : <a href="../../Bytes.html">Bytes</a>)
+
+        <a class="method-permalink" href="#decode%28int%3AUInt64.class%2Cbytes%3ABytes%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/byte_format.cr#L123" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="decode(int:Int128.class,io:IO)-class-method">
+      <div class="signature">
+        
+        def self.<strong>decode</strong>(int : <span class="t">Int128</span>.<span class="k">class</span>, io : <a href="../../IO.html">IO</a>)
+
+        <a class="method-permalink" href="#decode%28int%3AInt128.class%2Cio%3AIO%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/byte_format.cr#L123" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="decode(int:Int128.class,bytes:Bytes)-class-method">
+      <div class="signature">
+        
+        def self.<strong>decode</strong>(int : <span class="t">Int128</span>.<span class="k">class</span>, bytes : <a href="../../Bytes.html">Bytes</a>)
+
+        <a class="method-permalink" href="#decode%28int%3AInt128.class%2Cbytes%3ABytes%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/byte_format.cr#L123" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="decode(int:UInt128.class,io:IO)-class-method">
+      <div class="signature">
+        
+        def self.<strong>decode</strong>(int : <span class="t">UInt128</span>.<span class="k">class</span>, io : <a href="../../IO.html">IO</a>)
+
+        <a class="method-permalink" href="#decode%28int%3AUInt128.class%2Cio%3AIO%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/byte_format.cr#L123" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="decode(int:UInt128.class,bytes:Bytes)-class-method">
+      <div class="signature">
+        
+        def self.<strong>decode</strong>(int : <span class="t">UInt128</span>.<span class="k">class</span>, bytes : <a href="../../Bytes.html">Bytes</a>)
+
+        <a class="method-permalink" href="#decode%28int%3AUInt128.class%2Cbytes%3ABytes%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/byte_format.cr#L123" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="decode(*,type:Int8.class,io:IO)-class-method">
+      <div class="signature">
+        
+        def self.<strong>decode</strong>(*, type : <span class="t">Int8</span>.<span class="k">class</span>, io : <a href="../../IO.html">IO</a>)
+
+        <a class="method-permalink" href="#decode%28%2A%2Ctype%3AInt8.class%2Cio%3AIO%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p><span class="flag red">DEPRECATED</span>  Use <code><a href="../../IO/ByteFormat/BigEndian.html#decode%28int%3AInt8.class%2Cio%3AIO%29-class-method">.decode(int : Int8.class, io : IO)</a></code> instead</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/byte_format.cr#L123" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="decode(*,type:Int8.class,bytes:Bytes)-class-method">
+      <div class="signature">
+        
+        def self.<strong>decode</strong>(*, type : <span class="t">Int8</span>.<span class="k">class</span>, bytes : <a href="../../Bytes.html">Bytes</a>)
+
+        <a class="method-permalink" href="#decode%28%2A%2Ctype%3AInt8.class%2Cbytes%3ABytes%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p><span class="flag red">DEPRECATED</span>  Use <code><a href="../../IO/ByteFormat/BigEndian.html#decode%28int%3AInt8.class%2Cio%3AIO%29-class-method">.decode(int : Int8.class, bytes : Bytes)</a></code> instead</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/byte_format.cr#L123" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="decode(*,type:UInt8.class,io:IO)-class-method">
+      <div class="signature">
+        
+        def self.<strong>decode</strong>(*, type : <span class="t">UInt8</span>.<span class="k">class</span>, io : <a href="../../IO.html">IO</a>)
+
+        <a class="method-permalink" href="#decode%28%2A%2Ctype%3AUInt8.class%2Cio%3AIO%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p><span class="flag red">DEPRECATED</span>  Use <code><a href="../../IO/ByteFormat/BigEndian.html#decode%28int%3AInt8.class%2Cio%3AIO%29-class-method">.decode(int : UInt8.class, io : IO)</a></code> instead</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/byte_format.cr#L123" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="decode(*,type:UInt8.class,bytes:Bytes)-class-method">
+      <div class="signature">
+        
+        def self.<strong>decode</strong>(*, type : <span class="t">UInt8</span>.<span class="k">class</span>, bytes : <a href="../../Bytes.html">Bytes</a>)
+
+        <a class="method-permalink" href="#decode%28%2A%2Ctype%3AUInt8.class%2Cbytes%3ABytes%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p><span class="flag red">DEPRECATED</span>  Use <code><a href="../../IO/ByteFormat/BigEndian.html#decode%28int%3AInt8.class%2Cio%3AIO%29-class-method">.decode(int : UInt8.class, bytes : Bytes)</a></code> instead</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/byte_format.cr#L123" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="decode(*,type:Int16.class,io:IO)-class-method">
+      <div class="signature">
+        
+        def self.<strong>decode</strong>(*, type : <span class="t">Int16</span>.<span class="k">class</span>, io : <a href="../../IO.html">IO</a>)
+
+        <a class="method-permalink" href="#decode%28%2A%2Ctype%3AInt16.class%2Cio%3AIO%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p><span class="flag red">DEPRECATED</span>  Use <code><a href="../../IO/ByteFormat/BigEndian.html#decode%28int%3AInt8.class%2Cio%3AIO%29-class-method">.decode(int : Int16.class, io : IO)</a></code> instead</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/byte_format.cr#L123" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="decode(*,type:Int16.class,bytes:Bytes)-class-method">
+      <div class="signature">
+        
+        def self.<strong>decode</strong>(*, type : <span class="t">Int16</span>.<span class="k">class</span>, bytes : <a href="../../Bytes.html">Bytes</a>)
+
+        <a class="method-permalink" href="#decode%28%2A%2Ctype%3AInt16.class%2Cbytes%3ABytes%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p><span class="flag red">DEPRECATED</span>  Use <code><a href="../../IO/ByteFormat/BigEndian.html#decode%28int%3AInt8.class%2Cio%3AIO%29-class-method">.decode(int : Int16.class, bytes : Bytes)</a></code> instead</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/byte_format.cr#L123" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="decode(*,type:UInt16.class,io:IO)-class-method">
+      <div class="signature">
+        
+        def self.<strong>decode</strong>(*, type : <span class="t">UInt16</span>.<span class="k">class</span>, io : <a href="../../IO.html">IO</a>)
+
+        <a class="method-permalink" href="#decode%28%2A%2Ctype%3AUInt16.class%2Cio%3AIO%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p><span class="flag red">DEPRECATED</span>  Use <code><a href="../../IO/ByteFormat/BigEndian.html#decode%28int%3AInt8.class%2Cio%3AIO%29-class-method">.decode(int : UInt16.class, io : IO)</a></code> instead</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/byte_format.cr#L123" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="decode(*,type:UInt16.class,bytes:Bytes)-class-method">
+      <div class="signature">
+        
+        def self.<strong>decode</strong>(*, type : <span class="t">UInt16</span>.<span class="k">class</span>, bytes : <a href="../../Bytes.html">Bytes</a>)
+
+        <a class="method-permalink" href="#decode%28%2A%2Ctype%3AUInt16.class%2Cbytes%3ABytes%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p><span class="flag red">DEPRECATED</span>  Use <code><a href="../../IO/ByteFormat/BigEndian.html#decode%28int%3AInt8.class%2Cio%3AIO%29-class-method">.decode(int : UInt16.class, bytes : Bytes)</a></code> instead</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/byte_format.cr#L123" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="decode(*,type:Int32.class,io:IO)-class-method">
+      <div class="signature">
+        
+        def self.<strong>decode</strong>(*, type : <span class="t">Int32</span>.<span class="k">class</span>, io : <a href="../../IO.html">IO</a>)
+
+        <a class="method-permalink" href="#decode%28%2A%2Ctype%3AInt32.class%2Cio%3AIO%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p><span class="flag red">DEPRECATED</span>  Use <code><a href="../../IO/ByteFormat/BigEndian.html#decode%28int%3AInt8.class%2Cio%3AIO%29-class-method">.decode(int : Int32.class, io : IO)</a></code> instead</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/byte_format.cr#L123" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="decode(*,type:Int32.class,bytes:Bytes)-class-method">
+      <div class="signature">
+        
+        def self.<strong>decode</strong>(*, type : <span class="t">Int32</span>.<span class="k">class</span>, bytes : <a href="../../Bytes.html">Bytes</a>)
+
+        <a class="method-permalink" href="#decode%28%2A%2Ctype%3AInt32.class%2Cbytes%3ABytes%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p><span class="flag red">DEPRECATED</span>  Use <code><a href="../../IO/ByteFormat/BigEndian.html#decode%28int%3AInt8.class%2Cio%3AIO%29-class-method">.decode(int : Int32.class, bytes : Bytes)</a></code> instead</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/byte_format.cr#L123" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="decode(*,type:UInt32.class,io:IO)-class-method">
+      <div class="signature">
+        
+        def self.<strong>decode</strong>(*, type : <span class="t">UInt32</span>.<span class="k">class</span>, io : <a href="../../IO.html">IO</a>)
+
+        <a class="method-permalink" href="#decode%28%2A%2Ctype%3AUInt32.class%2Cio%3AIO%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p><span class="flag red">DEPRECATED</span>  Use <code><a href="../../IO/ByteFormat/BigEndian.html#decode%28int%3AInt8.class%2Cio%3AIO%29-class-method">.decode(int : UInt32.class, io : IO)</a></code> instead</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/byte_format.cr#L123" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="decode(*,type:UInt32.class,bytes:Bytes)-class-method">
+      <div class="signature">
+        
+        def self.<strong>decode</strong>(*, type : <span class="t">UInt32</span>.<span class="k">class</span>, bytes : <a href="../../Bytes.html">Bytes</a>)
+
+        <a class="method-permalink" href="#decode%28%2A%2Ctype%3AUInt32.class%2Cbytes%3ABytes%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p><span class="flag red">DEPRECATED</span>  Use <code><a href="../../IO/ByteFormat/BigEndian.html#decode%28int%3AInt8.class%2Cio%3AIO%29-class-method">.decode(int : UInt32.class, bytes : Bytes)</a></code> instead</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/byte_format.cr#L123" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="decode(*,type:Int64.class,io:IO)-class-method">
+      <div class="signature">
+        
+        def self.<strong>decode</strong>(*, type : <span class="t">Int64</span>.<span class="k">class</span>, io : <a href="../../IO.html">IO</a>)
+
+        <a class="method-permalink" href="#decode%28%2A%2Ctype%3AInt64.class%2Cio%3AIO%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p><span class="flag red">DEPRECATED</span>  Use <code><a href="../../IO/ByteFormat/BigEndian.html#decode%28int%3AInt8.class%2Cio%3AIO%29-class-method">.decode(int : Int64.class, io : IO)</a></code> instead</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/byte_format.cr#L123" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="decode(*,type:Int64.class,bytes:Bytes)-class-method">
+      <div class="signature">
+        
+        def self.<strong>decode</strong>(*, type : <span class="t">Int64</span>.<span class="k">class</span>, bytes : <a href="../../Bytes.html">Bytes</a>)
+
+        <a class="method-permalink" href="#decode%28%2A%2Ctype%3AInt64.class%2Cbytes%3ABytes%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p><span class="flag red">DEPRECATED</span>  Use <code><a href="../../IO/ByteFormat/BigEndian.html#decode%28int%3AInt8.class%2Cio%3AIO%29-class-method">.decode(int : Int64.class, bytes : Bytes)</a></code> instead</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/byte_format.cr#L123" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="decode(*,type:UInt64.class,io:IO)-class-method">
+      <div class="signature">
+        
+        def self.<strong>decode</strong>(*, type : <span class="t">UInt64</span>.<span class="k">class</span>, io : <a href="../../IO.html">IO</a>)
+
+        <a class="method-permalink" href="#decode%28%2A%2Ctype%3AUInt64.class%2Cio%3AIO%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p><span class="flag red">DEPRECATED</span>  Use <code><a href="../../IO/ByteFormat/BigEndian.html#decode%28int%3AInt8.class%2Cio%3AIO%29-class-method">.decode(int : UInt64.class, io : IO)</a></code> instead</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/byte_format.cr#L123" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="decode(*,type:UInt64.class,bytes:Bytes)-class-method">
+      <div class="signature">
+        
+        def self.<strong>decode</strong>(*, type : <span class="t">UInt64</span>.<span class="k">class</span>, bytes : <a href="../../Bytes.html">Bytes</a>)
+
+        <a class="method-permalink" href="#decode%28%2A%2Ctype%3AUInt64.class%2Cbytes%3ABytes%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p><span class="flag red">DEPRECATED</span>  Use <code><a href="../../IO/ByteFormat/BigEndian.html#decode%28int%3AInt8.class%2Cio%3AIO%29-class-method">.decode(int : UInt64.class, bytes : Bytes)</a></code> instead</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/byte_format.cr#L123" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="decode(*,type:Int128.class,io:IO)-class-method">
+      <div class="signature">
+        
+        def self.<strong>decode</strong>(*, type : <span class="t">Int128</span>.<span class="k">class</span>, io : <a href="../../IO.html">IO</a>)
+
+        <a class="method-permalink" href="#decode%28%2A%2Ctype%3AInt128.class%2Cio%3AIO%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p><span class="flag red">DEPRECATED</span>  Use <code><a href="../../IO/ByteFormat/BigEndian.html#decode%28int%3AInt8.class%2Cio%3AIO%29-class-method">.decode(int : Int128.class, io : IO)</a></code> instead</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/byte_format.cr#L123" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="decode(*,type:Int128.class,bytes:Bytes)-class-method">
+      <div class="signature">
+        
+        def self.<strong>decode</strong>(*, type : <span class="t">Int128</span>.<span class="k">class</span>, bytes : <a href="../../Bytes.html">Bytes</a>)
+
+        <a class="method-permalink" href="#decode%28%2A%2Ctype%3AInt128.class%2Cbytes%3ABytes%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p><span class="flag red">DEPRECATED</span>  Use <code><a href="../../IO/ByteFormat/BigEndian.html#decode%28int%3AInt8.class%2Cio%3AIO%29-class-method">.decode(int : Int128.class, bytes : Bytes)</a></code> instead</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/byte_format.cr#L123" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="decode(*,type:UInt128.class,io:IO)-class-method">
+      <div class="signature">
+        
+        def self.<strong>decode</strong>(*, type : <span class="t">UInt128</span>.<span class="k">class</span>, io : <a href="../../IO.html">IO</a>)
+
+        <a class="method-permalink" href="#decode%28%2A%2Ctype%3AUInt128.class%2Cio%3AIO%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p><span class="flag red">DEPRECATED</span>  Use <code><a href="../../IO/ByteFormat/BigEndian.html#decode%28int%3AInt8.class%2Cio%3AIO%29-class-method">.decode(int : UInt128.class, io : IO)</a></code> instead</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/byte_format.cr#L123" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="decode(*,type:UInt128.class,bytes:Bytes)-class-method">
+      <div class="signature">
+        
+        def self.<strong>decode</strong>(*, type : <span class="t">UInt128</span>.<span class="k">class</span>, bytes : <a href="../../Bytes.html">Bytes</a>)
+
+        <a class="method-permalink" href="#decode%28%2A%2Ctype%3AUInt128.class%2Cbytes%3ABytes%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p><span class="flag red">DEPRECATED</span>  Use <code><a href="../../IO/ByteFormat/BigEndian.html#decode%28int%3AInt8.class%2Cio%3AIO%29-class-method">.decode(int : UInt128.class, bytes : Bytes)</a></code> instead</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/byte_format.cr#L123" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="encode(int:Int8,io:IO)-class-method">
+      <div class="signature">
+        
+        def self.<strong>encode</strong>(int : <a href="../../Int8.html">Int8</a>, io : <a href="../../IO.html">IO</a>)
+
+        <a class="method-permalink" href="#encode%28int%3AInt8%2Cio%3AIO%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/byte_format.cr#L123" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="encode(int:Int8,bytes:Bytes)-class-method">
+      <div class="signature">
+        
+        def self.<strong>encode</strong>(int : <a href="../../Int8.html">Int8</a>, bytes : <a href="../../Bytes.html">Bytes</a>)
+
+        <a class="method-permalink" href="#encode%28int%3AInt8%2Cbytes%3ABytes%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/byte_format.cr#L123" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="encode(int:UInt8,io:IO)-class-method">
+      <div class="signature">
+        
+        def self.<strong>encode</strong>(int : <a href="../../UInt8.html">UInt8</a>, io : <a href="../../IO.html">IO</a>)
+
+        <a class="method-permalink" href="#encode%28int%3AUInt8%2Cio%3AIO%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/byte_format.cr#L123" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="encode(int:UInt8,bytes:Bytes)-class-method">
+      <div class="signature">
+        
+        def self.<strong>encode</strong>(int : <a href="../../UInt8.html">UInt8</a>, bytes : <a href="../../Bytes.html">Bytes</a>)
+
+        <a class="method-permalink" href="#encode%28int%3AUInt8%2Cbytes%3ABytes%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/byte_format.cr#L123" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="encode(int:Int16,io:IO)-class-method">
+      <div class="signature">
+        
+        def self.<strong>encode</strong>(int : <a href="../../Int16.html">Int16</a>, io : <a href="../../IO.html">IO</a>)
+
+        <a class="method-permalink" href="#encode%28int%3AInt16%2Cio%3AIO%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/byte_format.cr#L123" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="encode(int:Int16,bytes:Bytes)-class-method">
+      <div class="signature">
+        
+        def self.<strong>encode</strong>(int : <a href="../../Int16.html">Int16</a>, bytes : <a href="../../Bytes.html">Bytes</a>)
+
+        <a class="method-permalink" href="#encode%28int%3AInt16%2Cbytes%3ABytes%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/byte_format.cr#L123" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="encode(int:UInt16,io:IO)-class-method">
+      <div class="signature">
+        
+        def self.<strong>encode</strong>(int : <a href="../../UInt16.html">UInt16</a>, io : <a href="../../IO.html">IO</a>)
+
+        <a class="method-permalink" href="#encode%28int%3AUInt16%2Cio%3AIO%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/byte_format.cr#L123" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="encode(int:UInt16,bytes:Bytes)-class-method">
+      <div class="signature">
+        
+        def self.<strong>encode</strong>(int : <a href="../../UInt16.html">UInt16</a>, bytes : <a href="../../Bytes.html">Bytes</a>)
+
+        <a class="method-permalink" href="#encode%28int%3AUInt16%2Cbytes%3ABytes%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/byte_format.cr#L123" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="encode(int:Int32,io:IO)-class-method">
+      <div class="signature">
+        
+        def self.<strong>encode</strong>(int : <a href="../../Int32.html">Int32</a>, io : <a href="../../IO.html">IO</a>)
+
+        <a class="method-permalink" href="#encode%28int%3AInt32%2Cio%3AIO%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/byte_format.cr#L123" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="encode(int:Int32,bytes:Bytes)-class-method">
+      <div class="signature">
+        
+        def self.<strong>encode</strong>(int : <a href="../../Int32.html">Int32</a>, bytes : <a href="../../Bytes.html">Bytes</a>)
+
+        <a class="method-permalink" href="#encode%28int%3AInt32%2Cbytes%3ABytes%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/byte_format.cr#L123" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="encode(int:UInt32,io:IO)-class-method">
+      <div class="signature">
+        
+        def self.<strong>encode</strong>(int : <a href="../../UInt32.html">UInt32</a>, io : <a href="../../IO.html">IO</a>)
+
+        <a class="method-permalink" href="#encode%28int%3AUInt32%2Cio%3AIO%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/byte_format.cr#L123" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="encode(int:UInt32,bytes:Bytes)-class-method">
+      <div class="signature">
+        
+        def self.<strong>encode</strong>(int : <a href="../../UInt32.html">UInt32</a>, bytes : <a href="../../Bytes.html">Bytes</a>)
+
+        <a class="method-permalink" href="#encode%28int%3AUInt32%2Cbytes%3ABytes%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/byte_format.cr#L123" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="encode(int:Int64,io:IO)-class-method">
+      <div class="signature">
+        
+        def self.<strong>encode</strong>(int : <a href="../../Int64.html">Int64</a>, io : <a href="../../IO.html">IO</a>)
+
+        <a class="method-permalink" href="#encode%28int%3AInt64%2Cio%3AIO%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/byte_format.cr#L123" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="encode(int:Int64,bytes:Bytes)-class-method">
+      <div class="signature">
+        
+        def self.<strong>encode</strong>(int : <a href="../../Int64.html">Int64</a>, bytes : <a href="../../Bytes.html">Bytes</a>)
+
+        <a class="method-permalink" href="#encode%28int%3AInt64%2Cbytes%3ABytes%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/byte_format.cr#L123" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="encode(int:UInt64,io:IO)-class-method">
+      <div class="signature">
+        
+        def self.<strong>encode</strong>(int : <a href="../../UInt64.html">UInt64</a>, io : <a href="../../IO.html">IO</a>)
+
+        <a class="method-permalink" href="#encode%28int%3AUInt64%2Cio%3AIO%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/byte_format.cr#L123" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="encode(int:UInt64,bytes:Bytes)-class-method">
+      <div class="signature">
+        
+        def self.<strong>encode</strong>(int : <a href="../../UInt64.html">UInt64</a>, bytes : <a href="../../Bytes.html">Bytes</a>)
+
+        <a class="method-permalink" href="#encode%28int%3AUInt64%2Cbytes%3ABytes%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/byte_format.cr#L123" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="encode(int:Int128,io:IO)-class-method">
+      <div class="signature">
+        
+        def self.<strong>encode</strong>(int : <a href="../../Int128.html">Int128</a>, io : <a href="../../IO.html">IO</a>)
+
+        <a class="method-permalink" href="#encode%28int%3AInt128%2Cio%3AIO%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/byte_format.cr#L123" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="encode(int:Int128,bytes:Bytes)-class-method">
+      <div class="signature">
+        
+        def self.<strong>encode</strong>(int : <a href="../../Int128.html">Int128</a>, bytes : <a href="../../Bytes.html">Bytes</a>)
+
+        <a class="method-permalink" href="#encode%28int%3AInt128%2Cbytes%3ABytes%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/byte_format.cr#L123" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="encode(int:UInt128,io:IO)-class-method">
+      <div class="signature">
+        
+        def self.<strong>encode</strong>(int : <a href="../../UInt128.html">UInt128</a>, io : <a href="../../IO.html">IO</a>)
+
+        <a class="method-permalink" href="#encode%28int%3AUInt128%2Cio%3AIO%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/byte_format.cr#L123" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="encode(int:UInt128,bytes:Bytes)-class-method">
+      <div class="signature">
+        
+        def self.<strong>encode</strong>(int : <a href="../../UInt128.html">UInt128</a>, bytes : <a href="../../Bytes.html">Bytes</a>)
+
+        <a class="method-permalink" href="#encode%28int%3AUInt128%2Cbytes%3ABytes%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/io/byte_format.cr#L123" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+  
+
+  
+
+
+</div>
+
+</body>
+</html>

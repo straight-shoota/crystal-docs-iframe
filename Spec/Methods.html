@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Crystal Docs 1.16.1">
+<meta name="crystal_docs.project_version" content="1.17.0-dev">
+<meta name="crystal_docs.project_name" content="Crystal">
+
+  <meta name="crystal_docs.json_config_url" content="/api/versions.json">
+
+
+    <link rel="canonical" href="https://crystal-lang.org/api/latest/Spec/Methods.html">
+
+<link href="../css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../js/doc.js"></script>
+
+  <meta name="repository-name" content="Crystal">
+  <title>Spec::Methods - Crystal 1.17.0-dev</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "../";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill="currentColor" fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<input type="checkbox" id="sidebar-btn">
+<label for="sidebar-btn" id="sidebar-btn-label">
+  <svg class="open" xmlns="http://www.w3.org/2000/svg" height="2em" width="2em" viewBox="0 0 512 512"><title>Open Sidebar</title><path fill="currentColor" d="M80 96v64h352V96H80zm0 112v64h352v-64H80zm0 112v64h352v-64H80z"></path></svg>
+  <svg class="close" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><title>Close Sidebar</title><path fill="currentColor" d="m118.6 73.4-45.2 45.2L210.7 256 73.4 393.4l45.2 45.2L256 301.3l137.4 137.3 45.2-45.2L301.3 256l137.3-137.4-45.2-45.2L256 210.7Z"></path></svg>
+</label>
+<iframe class="sidebar" src="../sidebar.html"></iframe>
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">
+    module
+  </span> Spec::<wbr>Methods
+
+</h1>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/spec/helpers/iterate.cr#L1" target="_blank">
+        spec/helpers/iterate.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/spec/helpers/string.cr#L1" target="_blank">
+        spec/helpers/string.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/spec/methods.cr#L1" target="_blank">
+        spec/methods.cr
+      </a>
+    
+    <br/>
+  
+
+
+
+
+
+  
+
+  
+
+  
+  <h2>
+    <a id="macro-summary" class="anchor" href="#macro-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Macro Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#assert_iterates_iterator%28expected%2Cmethod%2C%2A%2Cinfinite%3Dfalse%29-macro" class="signature"><strong>assert_iterates_iterator</strong>(expected, method, *, infinite = <span class="n">false</span>)</a>
+        
+          <div class="summary"><p>Calls <em>method</em> expecting an iterator and compares iterated values with <em>expected</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#assert_iterates_yielding%28expected%2Cmethod%2C%2A%2Cinfinite%3Dfalse%2Ctuple%3Dfalse%29-macro" class="signature"><strong>assert_iterates_yielding</strong>(expected, method, *, infinite = <span class="n">false</span>, tuple = <span class="n">false</span>)</a>
+        
+          <div class="summary"><p>Calls <em>method</em> with a block and compares yielded values with <em>expected</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#assert_prints%28call%2C%2A%2Cshouldexpectation%2Cfile%3D__FILE__%2Cline%3D__LINE__%29-macro" class="signature"><strong>assert_prints</strong>(call, *, should expectation, file = __FILE__, line = __LINE__)</a>
+        
+          <div class="summary"><p>Asserts that the given <em>call</em> and its <code><a href="../IO.html">IO</a></code>-accepting variant both match the given <em>expectation</em>, used to test string printing.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#assert_prints%28call%2Cstr%2C%2A%2Cfile%3D__FILE__%2Cline%3D__LINE__%29-macro" class="signature"><strong>assert_prints</strong>(call, str, *, file = __FILE__, line = __LINE__)</a>
+        
+          <div class="summary"><p>Asserts that the given <em>call</em> and its <code><a href="../IO.html">IO</a></code>-accepting variant both produce the given string <em>str</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#it_iterates%28description%2Cexpected%2Cmethod%2C%2A%2Cinfinite%3Dfalse%2Ctuple%3Dfalse%2Cfile%3D__FILE__%2Cline%3D__LINE__%29-macro" class="signature"><strong>it_iterates</strong>(description, expected, method, *, infinite = <span class="n">false</span>, tuple = <span class="n">false</span>, file = __FILE__, line = __LINE__)</a>
+        
+          <div class="summary"><p>Spec helper for generic iteration methods which tests both yielding and iterator overloads.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+  
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#after_all%28%26block%29-instance-method" class="signature"><strong>#after_all</strong>(&block)</a>
+        
+          <div class="summary"><p>Executes the given block after the last spec in the current context runs.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#after_each%28%26block%29-instance-method" class="signature"><strong>#after_each</strong>(&block)</a>
+        
+          <div class="summary"><p>Executes the given block after each spec in the current context runs.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#around_all%28%26block%3AExampleGroup%3A%3AProcsy-%3E%29-instance-method" class="signature"><strong>#around_all</strong>(&block : ExampleGroup::Procsy -> )</a>
+        
+          <div class="summary"><p>Executes the given block when the current context runs.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#around_each%28%26block%3AExample%3A%3AProcsy-%3E%29-instance-method" class="signature"><strong>#around_each</strong>(&block : Example::Procsy -> )</a>
+        
+          <div class="summary"><p>Executes the given block when each spec in the current context runs.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#before_all%28%26block%29-instance-method" class="signature"><strong>#before_all</strong>(&block)</a>
+        
+          <div class="summary"><p>Executes the given block before the first spec in the current context runs.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#before_each%28%26block%29-instance-method" class="signature"><strong>#before_each</strong>(&block)</a>
+        
+          <div class="summary"><p>Executes the given block before each spec in the current context runs.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#context%28description%3Dnil%2Cfile%3D__FILE__%2Cline%3D__LINE__%2Cend_line%3D__END_LINE__%2Cfocus%3ABool%3Dfalse%2Ctags%3AString%7CEnumerable%28String%29%7CNil%3Dnil%2C%26block%29-instance-method" class="signature"><strong>#context</strong>(description = <span class="n">nil</span>, file = __FILE__, line = __LINE__, end_line = __END_LINE__, focus : Bool = <span class="n">false</span>, tags : String | Enumerable(String) | Nil = <span class="n">nil</span>, &block)</a>
+        
+          <div class="summary"><p>Defines an example group that establishes a specific context, like <em>empty array</em> versus <em>array with elements</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#describe%28description%3Dnil%2Cfile%3D__FILE__%2Cline%3D__LINE__%2Cend_line%3D__END_LINE__%2Cfocus%3ABool%3Dfalse%2Ctags%3AString%7CEnumerable%28String%29%7CNil%3Dnil%2C%26block%29-instance-method" class="signature"><strong>#describe</strong>(description = <span class="n">nil</span>, file = __FILE__, line = __LINE__, end_line = __END_LINE__, focus : Bool = <span class="n">false</span>, tags : String | Enumerable(String) | Nil = <span class="n">nil</span>, &block)</a>
+        
+          <div class="summary"><p>Defines an example group that describes a unit to be tested.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#fail%28msg%2Cfile%3D__FILE__%2Cline%3D__LINE__%29-instance-method" class="signature"><strong>#fail</strong>(msg, file = __FILE__, line = __LINE__)</a>
+        
+          <div class="summary"><p>Fails an example.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#it%28description%3D%22assert%22%2Cfile%3D__FILE__%2Cline%3D__LINE__%2Cend_line%3D__END_LINE__%2Cfocus%3ABool%3Dfalse%2Ctags%3AString%7CEnumerable%28String%29%7CNil%3Dnil%2C%26block%29-instance-method" class="signature"><strong>#it</strong>(description = <span class="s">&quot;assert&quot;</span>, file = __FILE__, line = __LINE__, end_line = __END_LINE__, focus : Bool = <span class="n">false</span>, tags : String | Enumerable(String) | Nil = <span class="n">nil</span>, &block)</a>
+        
+          <div class="summary"><p>Defines a concrete test case.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#pending%28description%3D%22assert%22%2Cfile%3D__FILE__%2Cline%3D__LINE__%2Cend_line%3D__END_LINE__%2Cfocus%3ABool%3Dfalse%2Ctags%3AString%7CEnumerable%28String%29%7CNil%3Dnil%2C%26%29-instance-method" class="signature"><strong>#pending</strong>(description = <span class="s">&quot;assert&quot;</span>, file = __FILE__, line = __LINE__, end_line = __END_LINE__, focus : Bool = <span class="n">false</span>, tags : String | Enumerable(String) | Nil = <span class="n">nil</span>, &)</a>
+        
+          <div class="summary"><p>Defines a pending test case.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#pending%28description%3D%22assert%22%2Cfile%3D__FILE__%2Cline%3D__LINE__%2Cend_line%3D__END_LINE__%2Cfocus%3ABool%3Dfalse%2Ctags%3AString%7CEnumerable%28String%29%7CNil%3Dnil%29-instance-method" class="signature"><strong>#pending</strong>(description = <span class="s">&quot;assert&quot;</span>, file = __FILE__, line = __LINE__, end_line = __END_LINE__, focus : Bool = <span class="n">false</span>, tags : String | Enumerable(String) | Nil = <span class="n">nil</span>)</a>
+        
+          <div class="summary"><p>Defines a yet-to-be-implemented pending test case</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#pending%21%28msg%3D%22Cannotrunexample%22%2Cfile%3D__FILE__%2Cline%3D__LINE__%29-instance-method" class="signature"><strong>#pending!</strong>(msg = <span class="s">&quot;Cannot run example&quot;</span>, file = __FILE__, line = __LINE__)</a>
+        
+          <div class="summary"><p>Marks the current example pending</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+
+  <div class="methods-inherited">
+    
+  </div>
+
+  
+
+  
+
+  
+  <h2>
+    <a id="macro-detail" class="anchor" href="#macro-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Macro Detail
+  </h2>
+  
+    <div class="entry-detail" id="assert_iterates_iterator(expected,method,*,infinite=false)-macro">
+      <div class="signature">
+        
+        macro <strong>assert_iterates_iterator</strong>(expected, method, *, infinite = <span class="n">false</span>)
+
+        <a class="method-permalink" href="#assert_iterates_iterator%28expected%2Cmethod%2C%2A%2Cinfinite%3Dfalse%29-macro">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calls <em>method</em> expecting an iterator and compares iterated values with <em>expected</em>.</p>
+<p>See <code><a href="../Spec/Methods.html#it_iterates%28description%2Cexpected%2Cmethod%2C%2A%2Cinfinite%3Dfalse%2Ctuple%3Dfalse%2Cfile%3D__FILE__%2Cline%3D__LINE__%29-macro">.it_iterates</a></code> for details.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/spec/helpers/iterate.cr#L75" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="assert_iterates_yielding(expected,method,*,infinite=false,tuple=false)-macro">
+      <div class="signature">
+        
+        macro <strong>assert_iterates_yielding</strong>(expected, method, *, infinite = <span class="n">false</span>, tuple = <span class="n">false</span>)
+
+        <a class="method-permalink" href="#assert_iterates_yielding%28expected%2Cmethod%2C%2A%2Cinfinite%3Dfalse%2Ctuple%3Dfalse%29-macro">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calls <em>method</em> with a block and compares yielded values with <em>expected</em>.</p>
+<p>See <code><a href="../Spec/Methods.html#it_iterates%28description%2Cexpected%2Cmethod%2C%2A%2Cinfinite%3Dfalse%2Ctuple%3Dfalse%2Cfile%3D__FILE__%2Cline%3D__LINE__%29-macro">.it_iterates</a></code> for details.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/spec/helpers/iterate.cr#L48" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="assert_prints(call,*,shouldexpectation,file=__FILE__,line=__LINE__)-macro">
+      <div class="signature">
+        
+        macro <strong>assert_prints</strong>(call, *, should expectation, file = __FILE__, line = __LINE__)
+
+        <a class="method-permalink" href="#assert_prints%28call%2C%2A%2Cshouldexpectation%2Cfile%3D__FILE__%2Cline%3D__LINE__%29-macro">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Asserts that the given <em>call</em> and its <code><a href="../IO.html">IO</a></code>-accepting variant both match the
+given <em>expectation</em>, used to test string printing.</p>
+<p>Given a call of the form <code>foo.bar(*args, **opts)</code>, this tests the following
+cases:</p>
+<ul>
+<li>The call itself. Additionally this call must return a <code><a href="../String.html">String</a></code>.</li>
+<li><code><a href="../String.html#build%28capacity%3D64%2C%26%29%3Aself-class-method">String.build</a> { |io| foo.bar(io, *args, **opts) }</code>, which constructs a
+<code><a href="../String.html">String</a></code> via an <code><a href="../IO.html">IO</a></code> overload.</li>
+<li><code>io = ...; foo.bar(io, *args, **opts); io.to_s</code>, where <code>io</code> is an <code><a href="../IO.html">IO</a></code>
+configured to use the UTF-16 encoding, and contents written to it are
+decoded back into a UTF-8 <code><a href="../String.html">String</a></code>. This case ensures that the <code><a href="../IO.html">IO</a></code>
+overload does not produce malformed UTF-8 byte sequences via a non-default
+encoding. This case is skipped if the <code>without_iconv</code> flag is set.</li>
+</ul>
+<p>The overload that accepts a <em>str</em> argument is usually easier to work with.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/spec/helpers/string.cr#L18" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="assert_prints(call,str,*,file=__FILE__,line=__LINE__)-macro">
+      <div class="signature">
+        
+        macro <strong>assert_prints</strong>(call, str, *, file = __FILE__, line = __LINE__)
+
+        <a class="method-permalink" href="#assert_prints%28call%2Cstr%2C%2A%2Cfile%3D__FILE__%2Cline%3D__LINE__%29-macro">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Asserts that the given <em>call</em> and its <code><a href="../IO.html">IO</a></code>-accepting variant both produce
+the given string <em>str</em>.</p>
+<p>Equivalent to <code>assert_prints call, should: eq(str)</code>. <em>str</em> must be validly
+encoded in UTF-8.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;spec&quot;</span>
+<span class="k">require</span> <span class="s">&quot;spec/helpers/string&quot;</span>
+
+it <span class="s">&quot;prints integers with `Int#to_s`&quot;</span> <span class="k">do</span>
+  assert_prints <span class="n">123</span>.to_s, <span class="s">&quot;123&quot;</span>
+  assert_prints <span class="n">123</span>.to_s(<span class="n">16</span>), <span class="s">&quot;7b&quot;</span>
+<span class="k">end</span></code></pre>
+<p>Methods that do not follow the convention of <code><a href="../IO.html">IO</a></code>-accepting and
+<code><a href="../String.html">String</a></code>-returning overloads can also be tested as long as suitable wrapper
+methods are defined:</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;spec&quot;</span>
+<span class="k">require</span> <span class="s">&quot;spec/helpers/string&quot;</span>
+
+<span class="k">private</span> <span class="k">def</span> <span class="m">fprintf</span>(format, <span class="o">*</span>args)
+  sprintf(format, <span class="o">*</span>args)
+<span class="k">end</span>
+
+<span class="k">private</span> <span class="k">def</span> <span class="m">fprintf</span>(io : <span class="t">IO</span>, format, <span class="o">*</span>args)
+  io.printf(format, <span class="o">*</span>args)
+<span class="k">end</span>
+
+it <span class="s">&quot;prints with `sprintf` and `IO#printf`&quot;</span> <span class="k">do</span>
+  assert_prints fprintf(<span class="s">&quot;%d&quot;</span>, <span class="n">123</span>), <span class="s">&quot;123&quot;</span>
+  assert_prints fprintf(<span class="s">&quot;%x %b&quot;</span>, <span class="n">123</span>, <span class="n">6</span>), <span class="s">&quot;7b 110&quot;</span>
+<span class="k">end</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/spec/helpers/string.cr#L85" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="it_iterates(description,expected,method,*,infinite=false,tuple=false,file=__FILE__,line=__LINE__)-macro">
+      <div class="signature">
+        
+        macro <strong>it_iterates</strong>(description, expected, method, *, infinite = <span class="n">false</span>, tuple = <span class="n">false</span>, file = __FILE__, line = __LINE__)
+
+        <a class="method-permalink" href="#it_iterates%28description%2Cexpected%2Cmethod%2C%2A%2Cinfinite%3Dfalse%2Ctuple%3Dfalse%2Cfile%3D__FILE__%2Cline%3D__LINE__%29-macro">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Spec helper for generic iteration methods which tests both yielding and
+iterator overloads.</p>
+<p>This helper creates two spec examples named <em>description</em> with suffixes
+<code>&quot; yielding&quot;</code> and <code>&quot; iterator&quot;</code>.
+The yielding example calls <em>method</em> with a block and expects the iteration
+elements to be yielded to the block. The iterator example calls <em>method</em>
+without a block and expects it to return an <code><a href="../Iterator.html">Iterator</a></code> which it then consumes.</p>
+<p>The iterated elements are collected in an array and compared to <em>expected</em>,
+ensuring type-equality of the elements.</p>
+<p>By default, both examples make sure that the iteration is finished after
+iterating all elements from <em>expected</em>. If the iteration is infinite,
+passing <code>infinite: true</code> skips that check and allows to test a finite sample
+of an infinite iteration.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;spec/helpers/iterate&quot;</span>
+
+it_iterates <span class="s">&quot;Array#each&quot;</span>, [<span class="n">1</span>, <span class="n">2</span>, <span class="n">3</span>], (<span class="n">1</span>..<span class="n">3</span>).each
+it_iterates <span class="s">&quot;infinite #cycle&quot;</span>, [<span class="n">1</span>, <span class="n">2</span>, <span class="n">3</span>, <span class="n">1</span>, <span class="n">2</span>, <span class="n">3</span>, <span class="n">1</span>], (<span class="n">1</span>..<span class="n">3</span>).cycle, infinite: <span class="n">true</span></code></pre>
+<p>If the iteration elements are tuples (i.e. multiple values), the yielding
+variant by default only catches the first value because of the block argument
+mechanics. Passing <code>tuple: true</code> ensures all yielded arguments are collected
+using a splat.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;spec/helpers/iterate&quot;</span>
+
+it_iterates <span class="s">&quot;Array#each_with_index&quot;</span>, [{<span class="n">1</span>, <span class="n">0</span>}, {<span class="n">2</span>, <span class="n">1</span>}, {<span class="n">3</span>, <span class="n">2</span>}], (<span class="n">1</span>..<span class="n">3</span>).each_with_index, tuple: <span class="n">true</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/spec/helpers/iterate.cr#L36" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+  
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="after_all(&amp;block)-instance-method">
+      <div class="signature">
+        
+        def <strong>after_all</strong>(&block)
+
+        <a class="method-permalink" href="#after_all%28%26block%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Executes the given block after the last spec in the current context runs.</p>
+<p>A context is defined by <code><a href="../Spec/Methods.html#describe%28description%3Dnil%2Cfile%3D__FILE__%2Cline%3D__LINE__%2Cend_line%3D__END_LINE__%2Cfocus%3ABool%3Dfalse%2Ctags%3AString%7CEnumerable%28String%29%7CNil%3Dnil%2C%26block%29-instance-method">#describe</a></code> or <code><a href="../Spec/Methods.html#context%28description%3Dnil%2Cfile%3D__FILE__%2Cline%3D__LINE__%2Cend_line%3D__END_LINE__%2Cfocus%3ABool%3Dfalse%2Ctags%3AString%7CEnumerable%28String%29%7CNil%3Dnil%2C%26block%29-instance-method">#context</a></code> blocks, or outside of them
+it's the root context.
+This is independent of the source location the specs and this hook are
+defined.</p>
+<p>If multiple blocks are registered on the same context, they are executed in
+order of definition.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;spec&quot;</span>
+
+it <span class="s">&quot;sample_a&quot;</span> { }
+
+describe <span class="s">&quot;nested_context&quot;</span> <span class="k">do</span>
+  after_all <span class="k">do</span>
+    puts <span class="s">&quot;runs at end of nested_context&quot;</span>
+  <span class="k">end</span>
+
+  it <span class="s">&quot;sample_b&quot;</span> { }
+<span class="k">end</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/spec/methods.cr#L216" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="after_each(&amp;block)-instance-method">
+      <div class="signature">
+        
+        def <strong>after_each</strong>(&block)
+
+        <a class="method-permalink" href="#after_each%28%26block%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Executes the given block after each spec in the current context runs.</p>
+<p>A context is defined by <code><a href="../Spec/Methods.html#describe%28description%3Dnil%2Cfile%3D__FILE__%2Cline%3D__LINE__%2Cend_line%3D__END_LINE__%2Cfocus%3ABool%3Dfalse%2Ctags%3AString%7CEnumerable%28String%29%7CNil%3Dnil%2C%26block%29-instance-method">#describe</a></code> or <code><a href="../Spec/Methods.html#context%28description%3Dnil%2Cfile%3D__FILE__%2Cline%3D__LINE__%2Cend_line%3D__END_LINE__%2Cfocus%3ABool%3Dfalse%2Ctags%3AString%7CEnumerable%28String%29%7CNil%3Dnil%2C%26block%29-instance-method">#context</a></code> blocks, or outside of them
+it's the root context. Nested contexts inherit the <code>*_each</code> blocks of
+their ancestors.</p>
+<p>If multiple blocks are registered for the same spec, the blocks defined in
+the outermost context go first. Blocks on the same context are executed in
+order of definition.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;spec&quot;</span>
+
+it <span class="s">&quot;sample_a&quot;</span> { }
+
+describe <span class="s">&quot;nested_context&quot;</span> <span class="k">do</span>
+  after_each <span class="k">do</span>
+    puts <span class="s">&quot;runs after sample_b&quot;</span>
+  <span class="k">end</span>
+
+  it <span class="s">&quot;sample_b&quot;</span> { }
+<span class="k">end</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/spec/methods.cr#L156" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="around_all(&amp;block:ExampleGroup::Procsy-&gt;)-instance-method">
+      <div class="signature">
+        
+        def <strong>around_all</strong>(&block : <a href="../Spec/ExampleGroup/Procsy.html">ExampleGroup::Procsy</a> -> )
+
+        <a class="method-permalink" href="#around_all%28%26block%3AExampleGroup%3A%3AProcsy-%3E%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Executes the given block when the current context runs.</p>
+<p>The block must call <code>run</code> on the given <code>Context::Procsy</code>
+object.</p>
+<p>This is essentially a <code><a href="../Spec/Methods.html#before_all%28%26block%29-instance-method">#before_all</a></code> and <code><a href="../Spec/Methods.html#after_all%28%26block%29-instance-method">#after_all</a></code> hook combined into one.
+It is useful for example when setup and teardown steps need shared state.</p>
+<p>A context is defined by <code><a href="../Spec/Methods.html#describe%28description%3Dnil%2Cfile%3D__FILE__%2Cline%3D__LINE__%2Cend_line%3D__END_LINE__%2Cfocus%3ABool%3Dfalse%2Ctags%3AString%7CEnumerable%28String%29%7CNil%3Dnil%2C%26block%29-instance-method">#describe</a></code> or <code><a href="../Spec/Methods.html#context%28description%3Dnil%2Cfile%3D__FILE__%2Cline%3D__LINE__%2Cend_line%3D__END_LINE__%2Cfocus%3ABool%3Dfalse%2Ctags%3AString%7CEnumerable%28String%29%7CNil%3Dnil%2C%26block%29-instance-method">#context</a></code> blocks. This hook does not
+work outside such a block (i.e. in the root context).</p>
+<p>If multiple blocks are registered for the same spec, the blocks defined in
+the outermost context go first. Blocks on the same context are executed in
+order of definition.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;spec&quot;</span>
+
+describe <span class="s">&quot;main_context&quot;</span> <span class="k">do</span>
+  around_each <span class="k">do</span> <span class="o">|</span>example<span class="o">|</span>
+    puts <span class="s">&quot;runs at beginning of main_context&quot;</span>
+    example.run
+    puts <span class="s">&quot;runs at end of main_context&quot;</span>
+  <span class="k">end</span>
+
+  it <span class="s">&quot;sample_a&quot;</span> { }
+
+  describe <span class="s">&quot;nested_context&quot;</span> <span class="k">do</span>
+    around_each <span class="k">do</span> <span class="o">|</span>example<span class="o">|</span>
+      puts <span class="s">&quot;runs at beginning of nested_context&quot;</span>
+      example.run
+      puts <span class="s">&quot;runs at end of nested_context&quot;</span>
+    <span class="k">end</span>
+
+    it <span class="s">&quot;sample_b&quot;</span> { }
+  <span class="k">end</span>
+<span class="k">end</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/spec/methods.cr#L299" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="around_each(&amp;block:Example::Procsy-&gt;)-instance-method">
+      <div class="signature">
+        
+        def <strong>around_each</strong>(&block : <a href="../Spec/Example/Procsy.html">Example::Procsy</a> -> )
+
+        <a class="method-permalink" href="#around_each%28%26block%3AExample%3A%3AProcsy-%3E%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Executes the given block when each spec in the current context runs.</p>
+<p>The block must call <code>run</code> on the given <code><a href="../Spec/Example/Procsy.html">Example::Procsy</a></code>
+object.</p>
+<p>This is essentially a <code><a href="../Spec/Methods.html#before_each%28%26block%29-instance-method">#before_each</a></code> and <code><a href="../Spec/Methods.html#after_each%28%26block%29-instance-method">#after_each</a></code> hook combined into one.
+It is useful for example when setup and teardown steps need shared state.</p>
+<p>A context is defined by <code><a href="../Spec/Methods.html#describe%28description%3Dnil%2Cfile%3D__FILE__%2Cline%3D__LINE__%2Cend_line%3D__END_LINE__%2Cfocus%3ABool%3Dfalse%2Ctags%3AString%7CEnumerable%28String%29%7CNil%3Dnil%2C%26block%29-instance-method">#describe</a></code> or <code><a href="../Spec/Methods.html#context%28description%3Dnil%2Cfile%3D__FILE__%2Cline%3D__LINE__%2Cend_line%3D__END_LINE__%2Cfocus%3ABool%3Dfalse%2Ctags%3AString%7CEnumerable%28String%29%7CNil%3Dnil%2C%26block%29-instance-method">#context</a></code> blocks, or outside of them
+it's the root context. Nested contexts inherit the <code>*_each</code> blocks of
+their ancestors.</p>
+<p>If multiple blocks are registered for the same spec, the blocks defined in
+the outermost context go first. Blocks on the same context are executed in
+order of definition.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;spec&quot;</span>
+
+it <span class="s">&quot;sample_a&quot;</span> { }
+
+describe <span class="s">&quot;nested_context&quot;</span> <span class="k">do</span>
+  around_each <span class="k">do</span> <span class="o">|</span>example<span class="o">|</span>
+    puts <span class="s">&quot;runs before sample_b&quot;</span>
+    example.run
+    puts <span class="s">&quot;runs after sample_b&quot;</span>
+  <span class="k">end</span>
+
+  it <span class="s">&quot;sample_b&quot;</span> { }
+<span class="k">end</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/spec/methods.cr#L254" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="before_all(&amp;block)-instance-method">
+      <div class="signature">
+        
+        def <strong>before_all</strong>(&block)
+
+        <a class="method-permalink" href="#before_all%28%26block%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Executes the given block before the first spec in the current context runs.</p>
+<p>A context is defined by <code><a href="../Spec/Methods.html#describe%28description%3Dnil%2Cfile%3D__FILE__%2Cline%3D__LINE__%2Cend_line%3D__END_LINE__%2Cfocus%3ABool%3Dfalse%2Ctags%3AString%7CEnumerable%28String%29%7CNil%3Dnil%2C%26block%29-instance-method">#describe</a></code> or <code><a href="../Spec/Methods.html#context%28description%3Dnil%2Cfile%3D__FILE__%2Cline%3D__LINE__%2Cend_line%3D__END_LINE__%2Cfocus%3ABool%3Dfalse%2Ctags%3AString%7CEnumerable%28String%29%7CNil%3Dnil%2C%26block%29-instance-method">#context</a></code> blocks, or outside of them
+it's the root context.
+This is independent of the source location the specs and this hook are
+defined.</p>
+<p>If multiple blocks are registered on the same context, they are executed in
+order of definition.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;spec&quot;</span>
+
+it <span class="s">&quot;sample_a&quot;</span> { }
+
+describe <span class="s">&quot;nested_context&quot;</span> <span class="k">do</span>
+  before_all <span class="k">do</span>
+    puts <span class="s">&quot;runs at start of nested_context&quot;</span>
+  <span class="k">end</span>
+
+  it <span class="s">&quot;sample_b&quot;</span> { }
+<span class="k">end</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/spec/methods.cr#L186" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="before_each(&amp;block)-instance-method">
+      <div class="signature">
+        
+        def <strong>before_each</strong>(&block)
+
+        <a class="method-permalink" href="#before_each%28%26block%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Executes the given block before each spec in the current context runs.</p>
+<p>A context is defined by <code><a href="../Spec/Methods.html#describe%28description%3Dnil%2Cfile%3D__FILE__%2Cline%3D__LINE__%2Cend_line%3D__END_LINE__%2Cfocus%3ABool%3Dfalse%2Ctags%3AString%7CEnumerable%28String%29%7CNil%3Dnil%2C%26block%29-instance-method">#describe</a></code> or <code><a href="../Spec/Methods.html#context%28description%3Dnil%2Cfile%3D__FILE__%2Cline%3D__LINE__%2Cend_line%3D__END_LINE__%2Cfocus%3ABool%3Dfalse%2Ctags%3AString%7CEnumerable%28String%29%7CNil%3Dnil%2C%26block%29-instance-method">#context</a></code> blocks, or outside of them
+it's the root context. Nested contexts inherit the <code>*_each</code> blocks of
+their ancestors.</p>
+<p>If multiple blocks are registered for the same spec, the blocks defined in
+the outermost context go first. Blocks on the same context are executed in
+order of definition.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;spec&quot;</span>
+
+it <span class="s">&quot;sample_a&quot;</span> { }
+
+describe <span class="s">&quot;nested_context&quot;</span> <span class="k">do</span>
+  before_each <span class="k">do</span>
+    puts <span class="s">&quot;runs before sample_b&quot;</span>
+  <span class="k">end</span>
+
+  it <span class="s">&quot;sample_b&quot;</span> { }
+<span class="k">end</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/spec/methods.cr#L126" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="context(description=nil,file=__FILE__,line=__LINE__,end_line=__END_LINE__,focus:Bool=false,tags:String|Enumerable(String)|Nil=nil,&amp;block)-instance-method">
+      <div class="signature">
+        
+        def <strong>context</strong>(description = <span class="n">nil</span>, file = __FILE__, line = __LINE__, end_line = __END_LINE__, focus : <a href="../Bool.html">Bool</a> = <span class="n">false</span>, tags : <a href="../String.html">String</a> | <a href="../Enumerable.html">Enumerable</a>(<a href="../String.html">String</a>) | <a href="../Nil.html">Nil</a> = <span class="n">nil</span>, &block)
+
+        <a class="method-permalink" href="#context%28description%3Dnil%2Cfile%3D__FILE__%2Cline%3D__LINE__%2Cend_line%3D__END_LINE__%2Cfocus%3ABool%3Dfalse%2Ctags%3AString%7CEnumerable%28String%29%7CNil%3Dnil%2C%26block%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Defines an example group that establishes a specific context,
+like <em>empty array</em> versus <em>array with elements</em>.
+Inside <em>&amp;block</em> examples are defined by <code><a href="../Spec/Methods.html#it%28description%3D%22assert%22%2Cfile%3D__FILE__%2Cline%3D__LINE__%2Cend_line%3D__END_LINE__%2Cfocus%3ABool%3Dfalse%2Ctags%3AString%7CEnumerable%28String%29%7CNil%3Dnil%2C%26block%29-instance-method">#it</a></code> or <code><a href="../Spec/Methods.html#pending%28description%3D%22assert%22%2Cfile%3D__FILE__%2Cline%3D__LINE__%2Cend_line%3D__END_LINE__%2Cfocus%3ABool%3Dfalse%2Ctags%3AString%7CEnumerable%28String%29%7CNil%3Dnil%2C%26%29-instance-method">#pending</a></code>.</p>
+<p>It is functionally equivalent to <code><a href="../Spec/Methods.html#describe%28description%3Dnil%2Cfile%3D__FILE__%2Cline%3D__LINE__%2Cend_line%3D__END_LINE__%2Cfocus%3ABool%3Dfalse%2Ctags%3AString%7CEnumerable%28String%29%7CNil%3Dnil%2C%26block%29-instance-method">#describe</a></code>.</p>
+<p>If <code>focus</code> is <code>true</code>, only this <code><a href="../Spec/Methods.html#context%28description%3Dnil%2Cfile%3D__FILE__%2Cline%3D__LINE__%2Cend_line%3D__END_LINE__%2Cfocus%3ABool%3Dfalse%2Ctags%3AString%7CEnumerable%28String%29%7CNil%3Dnil%2C%26block%29-instance-method">#context</a></code>, and others marked with <code>focus: true</code>, will run.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/spec/methods.cr#L30" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="describe(description=nil,file=__FILE__,line=__LINE__,end_line=__END_LINE__,focus:Bool=false,tags:String|Enumerable(String)|Nil=nil,&amp;block)-instance-method">
+      <div class="signature">
+        
+        def <strong>describe</strong>(description = <span class="n">nil</span>, file = __FILE__, line = __LINE__, end_line = __END_LINE__, focus : <a href="../Bool.html">Bool</a> = <span class="n">false</span>, tags : <a href="../String.html">String</a> | <a href="../Enumerable.html">Enumerable</a>(<a href="../String.html">String</a>) | <a href="../Nil.html">Nil</a> = <span class="n">nil</span>, &block)
+
+        <a class="method-permalink" href="#describe%28description%3Dnil%2Cfile%3D__FILE__%2Cline%3D__LINE__%2Cend_line%3D__END_LINE__%2Cfocus%3ABool%3Dfalse%2Ctags%3AString%7CEnumerable%28String%29%7CNil%3Dnil%2C%26block%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Defines an example group that describes a unit to be tested.
+Inside <em>&amp;block</em> examples are defined by <code><a href="../Spec/Methods.html#it%28description%3D%22assert%22%2Cfile%3D__FILE__%2Cline%3D__LINE__%2Cend_line%3D__END_LINE__%2Cfocus%3ABool%3Dfalse%2Ctags%3AString%7CEnumerable%28String%29%7CNil%3Dnil%2C%26block%29-instance-method">#it</a></code> or <code><a href="../Spec/Methods.html#pending%28description%3D%22assert%22%2Cfile%3D__FILE__%2Cline%3D__LINE__%2Cend_line%3D__END_LINE__%2Cfocus%3ABool%3Dfalse%2Ctags%3AString%7CEnumerable%28String%29%7CNil%3Dnil%2C%26%29-instance-method">#pending</a></code>.</p>
+<p>Several <code><a href="../Spec/Methods.html#describe%28description%3Dnil%2Cfile%3D__FILE__%2Cline%3D__LINE__%2Cend_line%3D__END_LINE__%2Cfocus%3ABool%3Dfalse%2Ctags%3AString%7CEnumerable%28String%29%7CNil%3Dnil%2C%26block%29-instance-method">#describe</a></code> blocks can be nested.</p>
+<p>Example:</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;spec&quot;</span>
+
+describe <span class="s">&quot;Int32&quot;</span> <span class="k">do</span>
+  describe <span class="s">&quot;+&quot;</span> <span class="k">do</span>
+    it <span class="s">&quot;adds&quot;</span> { (<span class="n">1</span> <span class="o">+</span> <span class="n">1</span>).should eq <span class="n">2</span> }
+  <span class="k">end</span>
+<span class="k">end</span></code></pre>
+<p>If <code>focus</code> is <code>true</code>, only this <code><a href="../Spec/Methods.html#describe%28description%3Dnil%2Cfile%3D__FILE__%2Cline%3D__LINE__%2Cend_line%3D__END_LINE__%2Cfocus%3ABool%3Dfalse%2Ctags%3AString%7CEnumerable%28String%29%7CNil%3Dnil%2C%26block%29-instance-method">#describe</a></code>, and others marked with <code>focus: true</code>, will run.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/spec/methods.cr#L19" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="fail(msg,file=__FILE__,line=__LINE__)-instance-method">
+      <div class="signature">
+        
+        def <strong>fail</strong>(msg, file = __FILE__, line = __LINE__)
+
+        <a class="method-permalink" href="#fail%28msg%2Cfile%3D__FILE__%2Cline%3D__LINE__%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Fails an example.</p>
+<p>This method can be used to manually fail an example defined in an <code><a href="../Spec/Methods.html#it%28description%3D%22assert%22%2Cfile%3D__FILE__%2Cline%3D__LINE__%2Cend_line%3D__END_LINE__%2Cfocus%3ABool%3Dfalse%2Ctags%3AString%7CEnumerable%28String%29%7CNil%3Dnil%2C%26block%29-instance-method">#it</a></code> block.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/spec/methods.cr#L81" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="it(description=&quot;assert&quot;,file=__FILE__,line=__LINE__,end_line=__END_LINE__,focus:Bool=false,tags:String|Enumerable(String)|Nil=nil,&amp;block)-instance-method">
+      <div class="signature">
+        
+        def <strong>it</strong>(description = <span class="s">&quot;assert&quot;</span>, file = __FILE__, line = __LINE__, end_line = __END_LINE__, focus : <a href="../Bool.html">Bool</a> = <span class="n">false</span>, tags : <a href="../String.html">String</a> | <a href="../Enumerable.html">Enumerable</a>(<a href="../String.html">String</a>) | <a href="../Nil.html">Nil</a> = <span class="n">nil</span>, &block)
+
+        <a class="method-permalink" href="#it%28description%3D%22assert%22%2Cfile%3D__FILE__%2Cline%3D__LINE__%2Cend_line%3D__END_LINE__%2Cfocus%3ABool%3Dfalse%2Ctags%3AString%7CEnumerable%28String%29%7CNil%3Dnil%2C%26block%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Defines a concrete test case.</p>
+<p>The test is performed by the block supplied to <em>&amp;block</em>.</p>
+<p>Example:</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;spec&quot;</span>
+
+it <span class="s">&quot;adds&quot;</span> { (<span class="n">1</span> <span class="o">+</span> <span class="n">1</span>).should eq <span class="n">2</span> }</code></pre>
+<p>It is usually used inside a <code><a href="../Spec/Methods.html#describe%28description%3Dnil%2Cfile%3D__FILE__%2Cline%3D__LINE__%2Cend_line%3D__END_LINE__%2Cfocus%3ABool%3Dfalse%2Ctags%3AString%7CEnumerable%28String%29%7CNil%3Dnil%2C%26block%29-instance-method">#describe</a></code> or <code><a href="../Spec/Methods.html#context%28description%3Dnil%2Cfile%3D__FILE__%2Cline%3D__LINE__%2Cend_line%3D__END_LINE__%2Cfocus%3ABool%3Dfalse%2Ctags%3AString%7CEnumerable%28String%29%7CNil%3Dnil%2C%26block%29-instance-method">#context</a></code> section.</p>
+<p>If <code>focus</code> is <code>true</code>, only this test, and others marked with <code>focus: true</code>, will run.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/spec/methods.cr#L48" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="pending(description=&quot;assert&quot;,file=__FILE__,line=__LINE__,end_line=__END_LINE__,focus:Bool=false,tags:String|Enumerable(String)|Nil=nil,&amp;)-instance-method">
+      <div class="signature">
+        
+        def <strong>pending</strong>(description = <span class="s">&quot;assert&quot;</span>, file = __FILE__, line = __LINE__, end_line = __END_LINE__, focus : <a href="../Bool.html">Bool</a> = <span class="n">false</span>, tags : <a href="../String.html">String</a> | <a href="../Enumerable.html">Enumerable</a>(<a href="../String.html">String</a>) | <a href="../Nil.html">Nil</a> = <span class="n">nil</span>, &)
+
+        <a class="method-permalink" href="#pending%28description%3D%22assert%22%2Cfile%3D__FILE__%2Cline%3D__LINE__%2Cend_line%3D__END_LINE__%2Cfocus%3ABool%3Dfalse%2Ctags%3AString%7CEnumerable%28String%29%7CNil%3Dnil%2C%26%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Defines a pending test case.</p>
+<p><em>&amp;block</em> is never evaluated.
+It can be used to describe behaviour that is not yet implemented.</p>
+<p>Example:</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;spec&quot;</span>
+
+pending <span class="s">&quot;check cat&quot;</span> { cat.alive? }</code></pre>
+<p>It is usually used inside a <code><a href="../Spec/Methods.html#describe%28description%3Dnil%2Cfile%3D__FILE__%2Cline%3D__LINE__%2Cend_line%3D__END_LINE__%2Cfocus%3ABool%3Dfalse%2Ctags%3AString%7CEnumerable%28String%29%7CNil%3Dnil%2C%26block%29-instance-method">#describe</a></code> or <code><a href="../Spec/Methods.html#context%28description%3Dnil%2Cfile%3D__FILE__%2Cline%3D__LINE__%2Cend_line%3D__END_LINE__%2Cfocus%3ABool%3Dfalse%2Ctags%3AString%7CEnumerable%28String%29%7CNil%3Dnil%2C%26block%29-instance-method">#context</a></code> section.</p>
+<p>If <code>focus</code> is <code>true</code>, only this test, and others marked with <code>focus: true</code>, will run.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/spec/methods.cr#L67" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="pending(description=&quot;assert&quot;,file=__FILE__,line=__LINE__,end_line=__END_LINE__,focus:Bool=false,tags:String|Enumerable(String)|Nil=nil)-instance-method">
+      <div class="signature">
+        
+        def <strong>pending</strong>(description = <span class="s">&quot;assert&quot;</span>, file = __FILE__, line = __LINE__, end_line = __END_LINE__, focus : <a href="../Bool.html">Bool</a> = <span class="n">false</span>, tags : <a href="../String.html">String</a> | <a href="../Enumerable.html">Enumerable</a>(<a href="../String.html">String</a>) | <a href="../Nil.html">Nil</a> = <span class="n">nil</span>)
+
+        <a class="method-permalink" href="#pending%28description%3D%22assert%22%2Cfile%3D__FILE__%2Cline%3D__LINE__%2Cend_line%3D__END_LINE__%2Cfocus%3ABool%3Dfalse%2Ctags%3AString%7CEnumerable%28String%29%7CNil%3Dnil%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Defines a yet-to-be-implemented pending test case</p>
+<p>If <code>focus</code> is <code>true</code>, only this test, and others marked with <code>focus: true</code>, will run.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/spec/methods.cr#L74" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="pending!(msg=&quot;Cannotrunexample&quot;,file=__FILE__,line=__LINE__)-instance-method">
+      <div class="signature">
+        
+        def <strong>pending!</strong>(msg = <span class="s">&quot;Cannot run example&quot;</span>, file = __FILE__, line = __LINE__)
+
+        <a class="method-permalink" href="#pending%21%28msg%3D%22Cannotrunexample%22%2Cfile%3D__FILE__%2Cline%3D__LINE__%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Marks the current example pending</p>
+<p>In case an example needs to be pending on some condition that requires executing it,
+this allows to mark it as such  rather than letting it fail or never run.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;spec&quot;</span>
+
+it <span class="s">&quot;test git&quot;</span> <span class="k">do</span>
+  cmd <span class="o">=</span> <span class="t">Process</span>.find_executable(<span class="s">&quot;git&quot;</span>)
+  pending!(<span class="s">&quot;git is not available&quot;</span>) <span class="k">unless</span> cmd
+  cmd.should end_with(<span class="s">&quot;git&quot;</span>)
+<span class="k">end</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/spec/methods.cr#L99" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,3607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Crystal Docs 1.16.1">
+<meta name="crystal_docs.project_version" content="1.17.0-dev">
+<meta name="crystal_docs.project_name" content="Crystal">
+
+  <meta name="crystal_docs.json_config_url" content="/api/versions.json">
+
+
+    <link rel="canonical" href="https://crystal-lang.org/api/latest/Errno.html">
+
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/doc.js"></script>
+
+  <meta name="repository-name" content="Crystal">
+  <title>Errno - Crystal 1.17.0-dev</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill="currentColor" fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<input type="checkbox" id="sidebar-btn">
+<label for="sidebar-btn" id="sidebar-btn-label">
+  <svg class="open" xmlns="http://www.w3.org/2000/svg" height="2em" width="2em" viewBox="0 0 512 512"><title>Open Sidebar</title><path fill="currentColor" d="M80 96v64h352V96H80zm0 112v64h352v-64H80zm0 112v64h352v-64H80z"></path></svg>
+  <svg class="close" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><title>Close Sidebar</title><path fill="currentColor" d="m118.6 73.4-45.2 45.2L210.7 256 73.4 393.4l45.2 45.2L256 301.3l137.4 137.3 45.2-45.2L301.3 256l137.3-137.4-45.2-45.2L256 210.7Z"></path></svg>
+</label>
+<iframe class="sidebar" src="sidebar.html"></iframe>
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">
+    enum
+  </span> Errno
+
+</h1>
+
+
+
+
+
+  <h2>
+    <a id="overview" class="anchor" href="#overview">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Overview
+  </h2>
+
+  <p>Errno wraps and gives access to libc's errno. This is mostly useful when
+dealing with C libraries.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/errno.cr#L6" target="_blank">
+        errno.cr
+      </a>
+    
+    <br/>
+  
+
+
+
+  
+    <h2>
+      <a id="enum-members" class="anchor" href="#enum-members">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+      Enum Members
+    </h2>
+  
+  <dl>
+    
+      <dt class="entry-const" id="NONE">
+        <strong>NONE</strong> = <code><span class="n">0</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="E2BIG">
+        <strong>E2BIG</strong> = <code><span class="n">7</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="EPERM">
+        <strong>EPERM</strong> = <code><span class="n">1</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="ENOENT">
+        <strong>ENOENT</strong> = <code><span class="n">2</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="ESRCH">
+        <strong>ESRCH</strong> = <code><span class="n">3</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="EINTR">
+        <strong>EINTR</strong> = <code><span class="n">4</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="EIO">
+        <strong>EIO</strong> = <code><span class="n">5</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="ENXIO">
+        <strong>ENXIO</strong> = <code><span class="n">6</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="ENOEXEC">
+        <strong>ENOEXEC</strong> = <code><span class="n">8</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="EBADF">
+        <strong>EBADF</strong> = <code><span class="n">9</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="ECHILD">
+        <strong>ECHILD</strong> = <code><span class="n">10</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="EDEADLK">
+        <strong>EDEADLK</strong> = <code><span class="n">35</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="ENOMEM">
+        <strong>ENOMEM</strong> = <code><span class="n">12</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="EACCES">
+        <strong>EACCES</strong> = <code><span class="n">13</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="EFAULT">
+        <strong>EFAULT</strong> = <code><span class="n">14</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="EBUSY">
+        <strong>EBUSY</strong> = <code><span class="n">16</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="EEXIST">
+        <strong>EEXIST</strong> = <code><span class="n">17</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="EXDEV">
+        <strong>EXDEV</strong> = <code><span class="n">18</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="ENODEV">
+        <strong>ENODEV</strong> = <code><span class="n">19</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="ENOTDIR">
+        <strong>ENOTDIR</strong> = <code><span class="n">20</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="EISDIR">
+        <strong>EISDIR</strong> = <code><span class="n">21</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="EINVAL">
+        <strong>EINVAL</strong> = <code><span class="n">22</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="ENFILE">
+        <strong>ENFILE</strong> = <code><span class="n">23</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="EMFILE">
+        <strong>EMFILE</strong> = <code><span class="n">24</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="ENOTTY">
+        <strong>ENOTTY</strong> = <code><span class="n">25</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="ETXTBSY">
+        <strong>ETXTBSY</strong> = <code><span class="n">26</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="EFBIG">
+        <strong>EFBIG</strong> = <code><span class="n">27</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="ENOSPC">
+        <strong>ENOSPC</strong> = <code><span class="n">28</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="ESPIPE">
+        <strong>ESPIPE</strong> = <code><span class="n">29</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="EROFS">
+        <strong>EROFS</strong> = <code><span class="n">30</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="EMLINK">
+        <strong>EMLINK</strong> = <code><span class="n">31</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="EPIPE">
+        <strong>EPIPE</strong> = <code><span class="n">32</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="EDOM">
+        <strong>EDOM</strong> = <code><span class="n">33</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="ERANGE">
+        <strong>ERANGE</strong> = <code><span class="n">34</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="EAGAIN">
+        <strong>EAGAIN</strong> = <code><span class="n">11</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="EWOULDBLOCK">
+        <strong>EWOULDBLOCK</strong> = <code><span class="n">11</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="EINPROGRESS">
+        <strong>EINPROGRESS</strong> = <code><span class="n">115</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="EALREADY">
+        <strong>EALREADY</strong> = <code><span class="n">114</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="ENOTSOCK">
+        <strong>ENOTSOCK</strong> = <code><span class="n">88</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="EDESTADDRREQ">
+        <strong>EDESTADDRREQ</strong> = <code><span class="n">89</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="EMSGSIZE">
+        <strong>EMSGSIZE</strong> = <code><span class="n">90</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="EPROTOTYPE">
+        <strong>EPROTOTYPE</strong> = <code><span class="n">91</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="ENOPROTOOPT">
+        <strong>ENOPROTOOPT</strong> = <code><span class="n">92</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="EPROTONOSUPPORT">
+        <strong>EPROTONOSUPPORT</strong> = <code><span class="n">93</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="EAFNOSUPPORT">
+        <strong>EAFNOSUPPORT</strong> = <code><span class="n">97</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="EADDRINUSE">
+        <strong>EADDRINUSE</strong> = <code><span class="n">98</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="EADDRNOTAVAIL">
+        <strong>EADDRNOTAVAIL</strong> = <code><span class="n">99</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="ENETDOWN">
+        <strong>ENETDOWN</strong> = <code><span class="n">100</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="ENETUNREACH">
+        <strong>ENETUNREACH</strong> = <code><span class="n">101</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="ENETRESET">
+        <strong>ENETRESET</strong> = <code><span class="n">102</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="ECONNABORTED">
+        <strong>ECONNABORTED</strong> = <code><span class="n">103</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="ECONNRESET">
+        <strong>ECONNRESET</strong> = <code><span class="n">104</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="ENOBUFS">
+        <strong>ENOBUFS</strong> = <code><span class="n">105</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="EISCONN">
+        <strong>EISCONN</strong> = <code><span class="n">106</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="ENOTCONN">
+        <strong>ENOTCONN</strong> = <code><span class="n">107</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="ETIMEDOUT">
+        <strong>ETIMEDOUT</strong> = <code><span class="n">110</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="ECONNREFUSED">
+        <strong>ECONNREFUSED</strong> = <code><span class="n">111</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="ELOOP">
+        <strong>ELOOP</strong> = <code><span class="n">40</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="ENAMETOOLONG">
+        <strong>ENAMETOOLONG</strong> = <code><span class="n">36</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="EHOSTUNREACH">
+        <strong>EHOSTUNREACH</strong> = <code><span class="n">113</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="ENOTEMPTY">
+        <strong>ENOTEMPTY</strong> = <code><span class="n">39</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="EDQUOT">
+        <strong>EDQUOT</strong> = <code><span class="n">122</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="ESTALE">
+        <strong>ESTALE</strong> = <code><span class="n">116</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="ENOLCK">
+        <strong>ENOLCK</strong> = <code><span class="n">37</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="ENOSYS">
+        <strong>ENOSYS</strong> = <code><span class="n">38</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="EOVERFLOW">
+        <strong>EOVERFLOW</strong> = <code><span class="n">75</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="ECANCELED">
+        <strong>ECANCELED</strong> = <code><span class="n">125</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="EIDRM">
+        <strong>EIDRM</strong> = <code><span class="n">43</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="ENOMSG">
+        <strong>ENOMSG</strong> = <code><span class="n">42</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="EILSEQ">
+        <strong>EILSEQ</strong> = <code><span class="n">84</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="EBADMSG">
+        <strong>EBADMSG</strong> = <code><span class="n">74</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="EMULTIHOP">
+        <strong>EMULTIHOP</strong> = <code><span class="n">72</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="ENODATA">
+        <strong>ENODATA</strong> = <code><span class="n">61</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="ENOLINK">
+        <strong>ENOLINK</strong> = <code><span class="n">67</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="ENOSR">
+        <strong>ENOSR</strong> = <code><span class="n">63</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="ENOSTR">
+        <strong>ENOSTR</strong> = <code><span class="n">60</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="EPROTO">
+        <strong>EPROTO</strong> = <code><span class="n">71</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="ETIME">
+        <strong>ETIME</strong> = <code><span class="n">62</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="EOPNOTSUPP">
+        <strong>EOPNOTSUPP</strong> = <code><span class="n">95</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="ENOTRECOVERABLE">
+        <strong>ENOTRECOVERABLE</strong> = <code><span class="n">131</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="EOWNERDEAD">
+        <strong>EOWNERDEAD</strong> = <code><span class="n">130</span></code>
+      </dt>
+      
+    
+  </dl>
+
+
+
+  
+  <h2>
+    <a id="constructors" class="anchor" href="#constructors">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructors
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#value%3Aself-class-method" class="signature"><strong>.value</strong> : <span class="k">self</span></a>
+        
+          <div class="summary"><p>returns the value of libc's errno.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+  
+  <h2>
+    <a id="class-method-summary" class="anchor" href="#class-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Class Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#value%3D%28errno%3AErrno%29-class-method" class="signature"><strong>.value=</strong>(errno : Errno)</a>
+        
+          <div class="summary"><p>Sets the value of libc's errno.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+  
+
+  
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#e2_big%3F-instance-method" class="signature"><strong>#e2_big?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#E2BIG">E2BIG</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#eacces%3F-instance-method" class="signature"><strong>#eacces?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#EACCES">EACCES</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#eaddrinuse%3F-instance-method" class="signature"><strong>#eaddrinuse?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#EADDRINUSE">EADDRINUSE</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#eaddrnotavail%3F-instance-method" class="signature"><strong>#eaddrnotavail?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#EADDRNOTAVAIL">EADDRNOTAVAIL</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#eafnosupport%3F-instance-method" class="signature"><strong>#eafnosupport?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#EAFNOSUPPORT">EAFNOSUPPORT</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#eagain%3F-instance-method" class="signature"><strong>#eagain?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#EAGAIN">EAGAIN</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#ealready%3F-instance-method" class="signature"><strong>#ealready?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#EALREADY">EALREADY</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#ebadf%3F-instance-method" class="signature"><strong>#ebadf?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#EBADF">EBADF</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#ebadmsg%3F-instance-method" class="signature"><strong>#ebadmsg?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#EBADMSG">EBADMSG</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#ebusy%3F-instance-method" class="signature"><strong>#ebusy?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#EBUSY">EBUSY</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#ecanceled%3F-instance-method" class="signature"><strong>#ecanceled?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#ECANCELED">ECANCELED</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#echild%3F-instance-method" class="signature"><strong>#echild?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#ECHILD">ECHILD</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#econnaborted%3F-instance-method" class="signature"><strong>#econnaborted?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#ECONNABORTED">ECONNABORTED</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#econnrefused%3F-instance-method" class="signature"><strong>#econnrefused?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#ECONNREFUSED">ECONNREFUSED</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#econnreset%3F-instance-method" class="signature"><strong>#econnreset?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#ECONNRESET">ECONNRESET</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#edeadlk%3F-instance-method" class="signature"><strong>#edeadlk?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#EDEADLK">EDEADLK</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#edestaddrreq%3F-instance-method" class="signature"><strong>#edestaddrreq?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#EDESTADDRREQ">EDESTADDRREQ</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#edom%3F-instance-method" class="signature"><strong>#edom?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#EDOM">EDOM</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#edquot%3F-instance-method" class="signature"><strong>#edquot?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#EDQUOT">EDQUOT</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#eexist%3F-instance-method" class="signature"><strong>#eexist?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#EEXIST">EEXIST</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#efault%3F-instance-method" class="signature"><strong>#efault?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#EFAULT">EFAULT</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#efbig%3F-instance-method" class="signature"><strong>#efbig?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#EFBIG">EFBIG</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#ehostunreach%3F-instance-method" class="signature"><strong>#ehostunreach?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#EHOSTUNREACH">EHOSTUNREACH</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#eidrm%3F-instance-method" class="signature"><strong>#eidrm?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#EIDRM">EIDRM</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#eilseq%3F-instance-method" class="signature"><strong>#eilseq?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#EILSEQ">EILSEQ</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#einprogress%3F-instance-method" class="signature"><strong>#einprogress?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#EINPROGRESS">EINPROGRESS</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#eintr%3F-instance-method" class="signature"><strong>#eintr?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#EINTR">EINTR</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#einval%3F-instance-method" class="signature"><strong>#einval?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#EINVAL">EINVAL</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#eio%3F-instance-method" class="signature"><strong>#eio?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#EIO">EIO</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#eisconn%3F-instance-method" class="signature"><strong>#eisconn?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#EISCONN">EISCONN</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#eisdir%3F-instance-method" class="signature"><strong>#eisdir?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#EISDIR">EISDIR</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#eloop%3F-instance-method" class="signature"><strong>#eloop?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#ELOOP">ELOOP</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#emfile%3F-instance-method" class="signature"><strong>#emfile?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#EMFILE">EMFILE</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#emlink%3F-instance-method" class="signature"><strong>#emlink?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#EMLINK">EMLINK</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#emsgsize%3F-instance-method" class="signature"><strong>#emsgsize?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#EMSGSIZE">EMSGSIZE</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#emultihop%3F-instance-method" class="signature"><strong>#emultihop?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#EMULTIHOP">EMULTIHOP</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#enametoolong%3F-instance-method" class="signature"><strong>#enametoolong?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#ENAMETOOLONG">ENAMETOOLONG</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#enetdown%3F-instance-method" class="signature"><strong>#enetdown?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#ENETDOWN">ENETDOWN</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#enetreset%3F-instance-method" class="signature"><strong>#enetreset?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#ENETRESET">ENETRESET</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#enetunreach%3F-instance-method" class="signature"><strong>#enetunreach?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#ENETUNREACH">ENETUNREACH</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#enfile%3F-instance-method" class="signature"><strong>#enfile?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#ENFILE">ENFILE</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#enobufs%3F-instance-method" class="signature"><strong>#enobufs?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#ENOBUFS">ENOBUFS</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#enodata%3F-instance-method" class="signature"><strong>#enodata?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#ENODATA">ENODATA</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#enodev%3F-instance-method" class="signature"><strong>#enodev?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#ENODEV">ENODEV</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#enoent%3F-instance-method" class="signature"><strong>#enoent?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#ENOENT">ENOENT</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#enoexec%3F-instance-method" class="signature"><strong>#enoexec?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#ENOEXEC">ENOEXEC</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#enolck%3F-instance-method" class="signature"><strong>#enolck?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#ENOLCK">ENOLCK</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#enolink%3F-instance-method" class="signature"><strong>#enolink?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#ENOLINK">ENOLINK</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#enomem%3F-instance-method" class="signature"><strong>#enomem?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#ENOMEM">ENOMEM</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#enomsg%3F-instance-method" class="signature"><strong>#enomsg?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#ENOMSG">ENOMSG</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#enoprotoopt%3F-instance-method" class="signature"><strong>#enoprotoopt?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#ENOPROTOOPT">ENOPROTOOPT</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#enospc%3F-instance-method" class="signature"><strong>#enospc?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#ENOSPC">ENOSPC</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#enosr%3F-instance-method" class="signature"><strong>#enosr?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#ENOSR">ENOSR</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#enostr%3F-instance-method" class="signature"><strong>#enostr?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#ENOSTR">ENOSTR</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#enosys%3F-instance-method" class="signature"><strong>#enosys?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#ENOSYS">ENOSYS</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#enotconn%3F-instance-method" class="signature"><strong>#enotconn?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#ENOTCONN">ENOTCONN</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#enotdir%3F-instance-method" class="signature"><strong>#enotdir?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#ENOTDIR">ENOTDIR</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#enotempty%3F-instance-method" class="signature"><strong>#enotempty?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#ENOTEMPTY">ENOTEMPTY</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#enotrecoverable%3F-instance-method" class="signature"><strong>#enotrecoverable?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#ENOTRECOVERABLE">ENOTRECOVERABLE</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#enotsock%3F-instance-method" class="signature"><strong>#enotsock?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#ENOTSOCK">ENOTSOCK</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#enotty%3F-instance-method" class="signature"><strong>#enotty?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#ENOTTY">ENOTTY</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#enxio%3F-instance-method" class="signature"><strong>#enxio?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#ENXIO">ENXIO</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#eopnotsupp%3F-instance-method" class="signature"><strong>#eopnotsupp?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#EOPNOTSUPP">EOPNOTSUPP</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#eoverflow%3F-instance-method" class="signature"><strong>#eoverflow?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#EOVERFLOW">EOVERFLOW</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#eownerdead%3F-instance-method" class="signature"><strong>#eownerdead?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#EOWNERDEAD">EOWNERDEAD</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#eperm%3F-instance-method" class="signature"><strong>#eperm?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#EPERM">EPERM</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#epipe%3F-instance-method" class="signature"><strong>#epipe?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#EPIPE">EPIPE</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#eproto%3F-instance-method" class="signature"><strong>#eproto?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#EPROTO">EPROTO</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#eprotonosupport%3F-instance-method" class="signature"><strong>#eprotonosupport?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#EPROTONOSUPPORT">EPROTONOSUPPORT</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#eprototype%3F-instance-method" class="signature"><strong>#eprototype?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#EPROTOTYPE">EPROTOTYPE</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#erange%3F-instance-method" class="signature"><strong>#erange?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#ERANGE">ERANGE</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#erofs%3F-instance-method" class="signature"><strong>#erofs?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#EROFS">EROFS</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#espipe%3F-instance-method" class="signature"><strong>#espipe?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#ESPIPE">ESPIPE</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#esrch%3F-instance-method" class="signature"><strong>#esrch?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#ESRCH">ESRCH</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#estale%3F-instance-method" class="signature"><strong>#estale?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#ESTALE">ESTALE</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#etime%3F-instance-method" class="signature"><strong>#etime?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#ETIME">ETIME</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#etimedout%3F-instance-method" class="signature"><strong>#etimedout?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#ETIMEDOUT">ETIMEDOUT</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#etxtbsy%3F-instance-method" class="signature"><strong>#etxtbsy?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#ETXTBSY">ETXTBSY</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#ewouldblock%3F-instance-method" class="signature"><strong>#ewouldblock?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#EWOULDBLOCK">EWOULDBLOCK</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#exdev%3F-instance-method" class="signature"><strong>#exdev?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#EXDEV">EXDEV</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#message%3AString-instance-method" class="signature"><strong>#message</strong> : String</a>
+        
+          <div class="summary"><p>Returns the system error message associated with this errno.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#none%3F-instance-method" class="signature"><strong>#none?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#NONE">NONE</a></code></p></div>
+        
+      </li>
+    
+  </ul>
+
+
+
+  <div class="methods-inherited">
+    
+      
+
+  <h3>Instance methods inherited from struct <code><a href="Enum.html">Enum</a></code></h3>
+  
+  
+    <a href="Enum.html#%26%28other%3Aself%29%3Aself-instance-method" class="tooltip">
+      <span>&(other : <span class="k">self</span>) : <span class="k">self</span></span>
+    &</a>, 
+    
+  
+    <a href="Enum.html#%2B%28other%3AInt%29%3Aself-instance-method" class="tooltip">
+      <span>+(other : Int) : <span class="k">self</span></span>
+    +</a>, 
+    
+  
+    <a href="Enum.html#-%28other%3AInt%29%3Aself-instance-method" class="tooltip">
+      <span>-(other : Int) : <span class="k">self</span></span>
+    -</a>, 
+    
+  
+    <a href="Enum.html#%3C%3D%3E%28other%3Aself%29-instance-method" class="tooltip">
+      <span><=>(other : <span class="k">self</span>)</span>
+    <=></a>, 
+    
+  
+    <a href="Enum.html#%3D%3D%28other%3Aself%29-instance-method" class="tooltip">
+      <span>==(other : <span class="k">self</span>)<br/>==(other)</span>
+    ==</a>, 
+    
+  
+    <a href="Enum.html#%5E%28other%3Aself%29%3Aself-instance-method" class="tooltip">
+      <span>^(other : <span class="k">self</span>) : <span class="k">self</span></span>
+    ^</a>, 
+    
+  
+    <a href="Enum.html#%7C%28other%3Aself%29%3Aself-instance-method" class="tooltip">
+      <span>|(other : <span class="k">self</span>) : <span class="k">self</span></span>
+    |</a>, 
+    
+  
+    <a href="Enum.html#~%3Aself-instance-method" class="tooltip">
+      <span>~ : <span class="k">self</span></span>
+    ~</a>, 
+    
+  
+    <a href="Enum.html#clone-instance-method" class="tooltip">
+      <span>clone</span>
+    clone</a>, 
+    
+  
+    <a href="Enum.html#each%28%26%3Aself-%3E%29-instance-method" class="tooltip">
+      <span>each(& : <span class="k">self</span> -> )</span>
+    each</a>, 
+    
+  
+    <a href="Enum.html#hash%28hasher%29-instance-method" class="tooltip">
+      <span>hash(hasher)</span>
+    hash</a>, 
+    
+  
+    <a href="Enum.html#includes%3F%28other%3Aself%29%3ABool-instance-method" class="tooltip">
+      <span>includes?(other : <span class="k">self</span>) : Bool</span>
+    includes?</a>, 
+    
+  
+    <a href="Enum.html#inspect%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>inspect(io : IO) : Nil</span>
+    inspect</a>, 
+    
+  
+    <a href="Enum.html#to_f32%3AFloat32-instance-method" class="tooltip">
+      <span>to_f32 : Float32</span>
+    to_f32</a>, 
+    
+  
+    <a href="Enum.html#to_f32%21%3AFloat32-instance-method" class="tooltip">
+      <span>to_f32! : Float32</span>
+    to_f32!</a>, 
+    
+  
+    <a href="Enum.html#to_f64%3AFloat64-instance-method" class="tooltip">
+      <span>to_f64 : Float64</span>
+    to_f64</a>, 
+    
+  
+    <a href="Enum.html#to_f64%21%3AFloat64-instance-method" class="tooltip">
+      <span>to_f64! : Float64</span>
+    to_f64!</a>, 
+    
+  
+    <a href="Enum.html#to_i%3AInt32-instance-method" class="tooltip">
+      <span>to_i : Int32</span>
+    to_i</a>, 
+    
+  
+    <a href="Enum.html#to_i128%3AInt128-instance-method" class="tooltip">
+      <span>to_i128 : Int128</span>
+    to_i128</a>, 
+    
+  
+    <a href="Enum.html#to_i128%21%3AInt128-instance-method" class="tooltip">
+      <span>to_i128! : Int128</span>
+    to_i128!</a>, 
+    
+  
+    <a href="Enum.html#to_i16%3AInt16-instance-method" class="tooltip">
+      <span>to_i16 : Int16</span>
+    to_i16</a>, 
+    
+  
+    <a href="Enum.html#to_i16%21%3AInt16-instance-method" class="tooltip">
+      <span>to_i16! : Int16</span>
+    to_i16!</a>, 
+    
+  
+    <a href="Enum.html#to_i32%3AInt32-instance-method" class="tooltip">
+      <span>to_i32 : Int32</span>
+    to_i32</a>, 
+    
+  
+    <a href="Enum.html#to_i32%21%3AInt32-instance-method" class="tooltip">
+      <span>to_i32! : Int32</span>
+    to_i32!</a>, 
+    
+  
+    <a href="Enum.html#to_i64%3AInt64-instance-method" class="tooltip">
+      <span>to_i64 : Int64</span>
+    to_i64</a>, 
+    
+  
+    <a href="Enum.html#to_i64%21%3AInt64-instance-method" class="tooltip">
+      <span>to_i64! : Int64</span>
+    to_i64!</a>, 
+    
+  
+    <a href="Enum.html#to_i8%3AInt8-instance-method" class="tooltip">
+      <span>to_i8 : Int8</span>
+    to_i8</a>, 
+    
+  
+    <a href="Enum.html#to_i8%21%3AInt8-instance-method" class="tooltip">
+      <span>to_i8! : Int8</span>
+    to_i8!</a>, 
+    
+  
+    <a href="Enum.html#to_json%28json%3AJSON%3A%3ABuilder%29-instance-method" class="tooltip">
+      <span>to_json(json : JSON::Builder)</span>
+    to_json</a>, 
+    
+  
+    <a href="Enum.html#to_s%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_s(io : IO) : Nil<br/>to_s : String</span>
+    to_s</a>, 
+    
+  
+    <a href="Enum.html#to_u128%3AUInt128-instance-method" class="tooltip">
+      <span>to_u128 : UInt128</span>
+    to_u128</a>, 
+    
+  
+    <a href="Enum.html#to_u128%21%3AUInt128-instance-method" class="tooltip">
+      <span>to_u128! : UInt128</span>
+    to_u128!</a>, 
+    
+  
+    <a href="Enum.html#to_u16%3AUInt16-instance-method" class="tooltip">
+      <span>to_u16 : UInt16</span>
+    to_u16</a>, 
+    
+  
+    <a href="Enum.html#to_u16%21%3AUInt16-instance-method" class="tooltip">
+      <span>to_u16! : UInt16</span>
+    to_u16!</a>, 
+    
+  
+    <a href="Enum.html#to_u32%3AUInt32-instance-method" class="tooltip">
+      <span>to_u32 : UInt32</span>
+    to_u32</a>, 
+    
+  
+    <a href="Enum.html#to_u32%21%3AUInt32-instance-method" class="tooltip">
+      <span>to_u32! : UInt32</span>
+    to_u32!</a>, 
+    
+  
+    <a href="Enum.html#to_u64%3AUInt64-instance-method" class="tooltip">
+      <span>to_u64 : UInt64</span>
+    to_u64</a>, 
+    
+  
+    <a href="Enum.html#to_u64%21%3AUInt64-instance-method" class="tooltip">
+      <span>to_u64! : UInt64</span>
+    to_u64!</a>, 
+    
+  
+    <a href="Enum.html#to_u8%3AUInt8-instance-method" class="tooltip">
+      <span>to_u8 : UInt8</span>
+    to_u8</a>, 
+    
+  
+    <a href="Enum.html#to_u8%21%3AUInt8-instance-method" class="tooltip">
+      <span>to_u8! : UInt8</span>
+    to_u8!</a>, 
+    
+  
+    <a href="Enum.html#to_yaml%28yaml%3AYAML%3A%3ANodes%3A%3ABuilder%29-instance-method" class="tooltip">
+      <span>to_yaml(yaml : YAML::Nodes::Builder)</span>
+    to_yaml</a>, 
+    
+  
+    <a href="Enum.html#value%3AInt-instance-method" class="tooltip">
+      <span>value : Int</span>
+    value</a>
+    
+  
+
+
+      
+
+  <h3>Constructor methods inherited from struct <code><a href="Enum.html">Enum</a></code></h3>
+  
+  
+    <a href="Enum.html#from_value%28value%3AInt%29%3Aself-class-method" class="tooltip">
+      <span>from_value(value : Int) : <span class="k">self</span></span>
+    from_value</a>, 
+    
+  
+    <a href="Enum.html#new%28ctx%3AYAML%3A%3AParseContext%2Cnode%3AYAML%3A%3ANodes%3A%3ANode%29-class-method" class="tooltip">
+      <span>new(ctx : YAML::ParseContext, node : YAML::Nodes::Node)<br/>new(value : <span class="k">self</span>)<br/>new(pull : JSON::PullParser)</span>
+    new</a>, 
+    
+  
+    <a href="Enum.html#parse%28string%3AString%29%3Aself-class-method" class="tooltip">
+      <span>parse(string : String) : <span class="k">self</span></span>
+    parse</a>
+    
+  
+
+
+      
+
+  <h3>Class methods inherited from struct <code><a href="Enum.html">Enum</a></code></h3>
+  
+  
+    <a href="Enum.html#each%28%26%3Aself-%3E%29-class-method" class="tooltip">
+      <span>each(& : <span class="k">self</span> -> )</span>
+    each</a>, 
+    
+  
+    <a href="Enum.html#from_value%3F%28value%3AInt%29%3Aself%7CNil-class-method" class="tooltip">
+      <span>from_value?(value : Int) : <span class="k">self</span> | Nil</span>
+    from_value?</a>, 
+    
+  
+    <a href="Enum.html#names%3AArray%28String%29-class-method" class="tooltip">
+      <span>names : Array(String)</span>
+    names</a>, 
+    
+  
+    <a href="Enum.html#parse%3F%28string%3AString%29%3Aself%7CNil-class-method" class="tooltip">
+      <span>parse?(string : String) : <span class="k">self</span> | Nil</span>
+    parse?</a>, 
+    
+  
+    <a href="Enum.html#valid%3F%28value%3Aself%29%3ABool-class-method" class="tooltip">
+      <span>valid?(value : <span class="k">self</span>) : Bool</span>
+    valid?</a>, 
+    
+  
+    <a href="Enum.html#values%3AArray%28self%29-class-method" class="tooltip">
+      <span>values : Array(<span class="k">self</span>)</span>
+    values</a>
+    
+  
+
+
+      
+
+  <h3>Macros inherited from struct <code><a href="Enum.html">Enum</a></code></h3>
+  
+  
+    <a href="Enum.html#%5B%5D%28%2Avalues%29-macro" class="tooltip">
+      <span>[](*values)</span>
+    []</a>, 
+    
+  
+    <a href="Enum.html#flags%28%2Avalues%29-macro" class="tooltip">
+      <span>flags(*values)</span>
+    flags</a>
+    
+  
+
+
+    
+      
+
+  <h3>Instance methods inherited from module <code><a href="Comparable.html">Comparable</a>(<a href="Enum.html">Enum</a>)</code></h3>
+  
+  
+    <a href="Comparable.html#%3C%28other%3AT%29%3ABool-instance-method" class="tooltip">
+      <span><(other : T) : Bool</span>
+    <</a>, 
+    
+  
+    <a href="Comparable.html#%3C%3D%28other%3AT%29-instance-method" class="tooltip">
+      <span><=(other : T)</span>
+    <=</a>, 
+    
+  
+    <a href="Comparable.html#%3C%3D%3E%28other%3AT%29-instance-method" class="tooltip">
+      <span><=>(other : T)</span>
+    <=></a>, 
+    
+  
+    <a href="Comparable.html#%3D%3D%28other%3AT%29-instance-method" class="tooltip">
+      <span>==(other : T)</span>
+    ==</a>, 
+    
+  
+    <a href="Comparable.html#%3E%28other%3AT%29%3ABool-instance-method" class="tooltip">
+      <span>>(other : T) : Bool</span>
+    ></a>, 
+    
+  
+    <a href="Comparable.html#%3E%3D%28other%3AT%29-instance-method" class="tooltip">
+      <span>>=(other : T)</span>
+    >=</a>, 
+    
+  
+    <a href="Comparable.html#clamp%28min%2Cmax%29-instance-method" class="tooltip">
+      <span>clamp(min, max)<br/>clamp(range : Range)</span>
+    clamp</a>
+    
+  
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+      
+
+  <h3>Instance methods inherited from struct <code><a href="Value.html">Value</a></code></h3>
+  
+  
+    <a href="Value.html#%3D%3D%28other%3AJSON%3A%3AAny%29-instance-method" class="tooltip">
+      <span>==(other : JSON::Any)<br/>==(other : YAML::Any)<br/>==(other)</span>
+    ==</a>, 
+    
+  
+    <a href="Value.html#dup-instance-method" class="tooltip">
+      <span>dup</span>
+    dup</a>
+    
+  
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+      
+
+  <h3>Instance methods inherited from class <code><a href="Object.html">Object</a></code></h3>
+  
+  
+    <a href="Object.html#%21%3ABool-instance-method" class="tooltip">
+      <span>! : Bool</span>
+    !</a>, 
+    
+  
+    <a href="Object.html#%21%3D%28other%29-instance-method" class="tooltip">
+      <span>!=(other)</span>
+    !=</a>, 
+    
+  
+    <a href="Object.html#%21~%28other%29-instance-method" class="tooltip">
+      <span>!~(other)</span>
+    !~</a>, 
+    
+  
+    <a href="Object.html#%3D%3D%28other%29-instance-method" class="tooltip">
+      <span>==(other)</span>
+    ==</a>, 
+    
+  
+    <a href="Object.html#%3D%3D%3D%28other%3AJSON%3A%3AAny%29-instance-method" class="tooltip">
+      <span>===(other : JSON::Any)<br/>===(other : YAML::Any)<br/>===(other)</span>
+    ===</a>, 
+    
+  
+    <a href="Object.html#%3D~%28other%29-instance-method" class="tooltip">
+      <span>=~(other)</span>
+    =~</a>, 
+    
+  
+    <a href="Object.html#as%28type%3AClass%29-instance-method" class="tooltip">
+      <span>as(type : Class)</span>
+    as</a>, 
+    
+  
+    <a href="Object.html#as%3F%28type%3AClass%29-instance-method" class="tooltip">
+      <span>as?(type : Class)</span>
+    as?</a>, 
+    
+  
+    <a href="Object.html#class-instance-method" class="tooltip">
+      <span>class</span>
+    class</a>, 
+    
+  
+    <a href="Object.html#dup-instance-method" class="tooltip">
+      <span>dup</span>
+    dup</a>, 
+    
+  
+    <a href="Object.html#hash%28hasher%29-instance-method" class="tooltip">
+      <span>hash(hasher)<br/>hash</span>
+    hash</a>, 
+    
+  
+    <a href="Object.html#in%3F%28collection%3AObject%29%3ABool-instance-method" class="tooltip">
+      <span>in?(collection : Object) : Bool<br/>in?(*values : Object) : Bool</span>
+    in?</a>, 
+    
+  
+    <a href="Object.html#inspect%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>inspect(io : IO) : Nil<br/>inspect : String</span>
+    inspect</a>, 
+    
+  
+    <a href="Object.html#is_a%3F%28type%3AClass%29%3ABool-instance-method" class="tooltip">
+      <span>is_a?(type : Class) : Bool</span>
+    is_a?</a>, 
+    
+  
+    <a href="Object.html#itself-instance-method" class="tooltip">
+      <span>itself</span>
+    itself</a>, 
+    
+  
+    <a href="Object.html#nil%3F%3ABool-instance-method" class="tooltip">
+      <span>nil? : Bool</span>
+    nil?</a>, 
+    
+  
+    <a href="Object.html#not_nil%21%28message%29-instance-method" class="tooltip">
+      <span>not_nil!(message)<br/>not_nil!</span>
+    not_nil!</a>, 
+    
+  
+    <a href="Object.html#pretty_inspect%28width%3D79%2Cnewline%3D%22%5Cn%22%2Cindent%3D0%29%3AString-instance-method" class="tooltip">
+      <span>pretty_inspect(width = <span class="n">79</span>, newline = <span class="s">&quot;\n&quot;</span>, indent = <span class="n">0</span>) : String</span>
+    pretty_inspect</a>, 
+    
+  
+    <a href="Object.html#pretty_print%28pp%3APrettyPrint%29%3ANil-instance-method" class="tooltip">
+      <span>pretty_print(pp : PrettyPrint) : Nil</span>
+    pretty_print</a>, 
+    
+  
+    <a href="Object.html#responds_to%3F%28name%3ASymbol%29%3ABool-instance-method" class="tooltip">
+      <span>responds_to?(name : Symbol) : Bool</span>
+    responds_to?</a>, 
+    
+  
+    <a href="Object.html#tap%28%26%29-instance-method" class="tooltip">
+      <span>tap(&)</span>
+    tap</a>, 
+    
+  
+    <a href="Object.html#to_json%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_json(io : IO) : Nil<br/>to_json : String</span>
+    to_json</a>, 
+    
+  
+    <a href="Object.html#to_pretty_json%28indent%3AString%3D%22%22%29%3AString-instance-method" class="tooltip">
+      <span>to_pretty_json(indent : String = <span class="s">&quot;  &quot;</span>) : String<br/>to_pretty_json(io : IO, indent : String = <span class="s">&quot;  &quot;</span>) : Nil</span>
+    to_pretty_json</a>, 
+    
+  
+    <a href="Object.html#to_s%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_s(io : IO) : Nil<br/>to_s : String</span>
+    to_s</a>, 
+    
+  
+    <a href="Object.html#to_yaml%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_yaml(io : IO) : Nil<br/>to_yaml : String</span>
+    to_yaml</a>, 
+    
+  
+    <a href="Object.html#try%28%26%29-instance-method" class="tooltip">
+      <span>try(&)</span>
+    try</a>, 
+    
+  
+    <a href="Object.html#unsafe_as%28type%3AT.class%29forallT-instance-method" class="tooltip">
+      <span>unsafe_as(type : <span class="t">T</span>.<span class="k">class</span>) forall T</span>
+    unsafe_as</a>
+    
+  
+
+
+      
+
+
+      
+
+  <h3>Class methods inherited from class <code><a href="Object.html">Object</a></code></h3>
+  
+  
+    <a href="Object.html#from_json%28string_or_io%2Croot%3AString%29-class-method" class="tooltip">
+      <span>from_json(string_or_io, root : String)<br/>from_json(string_or_io)</span>
+    from_json</a>, 
+    
+  
+    <a href="Object.html#from_yaml%28string_or_io%3AString%7CIO%29-class-method" class="tooltip">
+      <span>from_yaml(string_or_io : String | IO)</span>
+    from_yaml</a>
+    
+  
+
+
+      
+
+  <h3>Macros inherited from class <code><a href="Object.html">Object</a></code></h3>
+  
+  
+    <a href="Object.html#class_getter%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_getter(*names, &block)</span>
+    class_getter</a>, 
+    
+  
+    <a href="Object.html#class_getter%21%28%2Anames%29-macro" class="tooltip">
+      <span>class_getter!(*names)</span>
+    class_getter!</a>, 
+    
+  
+    <a href="Object.html#class_getter%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_getter?(*names, &block)</span>
+    class_getter?</a>, 
+    
+  
+    <a href="Object.html#class_property%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_property(*names, &block)</span>
+    class_property</a>, 
+    
+  
+    <a href="Object.html#class_property%21%28%2Anames%29-macro" class="tooltip">
+      <span>class_property!(*names)</span>
+    class_property!</a>, 
+    
+  
+    <a href="Object.html#class_property%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_property?(*names, &block)</span>
+    class_property?</a>, 
+    
+  
+    <a href="Object.html#class_setter%28%2Anames%29-macro" class="tooltip">
+      <span>class_setter(*names)</span>
+    class_setter</a>, 
+    
+  
+    <a href="Object.html#def_clone-macro" class="tooltip">
+      <span>def_clone</span>
+    def_clone</a>, 
+    
+  
+    <a href="Object.html#def_equals%28%2Afields%29-macro" class="tooltip">
+      <span>def_equals(*fields)</span>
+    def_equals</a>, 
+    
+  
+    <a href="Object.html#def_equals_and_hash%28%2Afields%29-macro" class="tooltip">
+      <span>def_equals_and_hash(*fields)</span>
+    def_equals_and_hash</a>, 
+    
+  
+    <a href="Object.html#def_hash%28%2Afields%29-macro" class="tooltip">
+      <span>def_hash(*fields)</span>
+    def_hash</a>, 
+    
+  
+    <a href="Object.html#delegate%28%2Amethods%2Ctoobject%29-macro" class="tooltip">
+      <span>delegate(*methods, to object)</span>
+    delegate</a>, 
+    
+  
+    <a href="Object.html#forward_missing_to%28delegate%29-macro" class="tooltip">
+      <span>forward_missing_to(delegate)</span>
+    forward_missing_to</a>, 
+    
+  
+    <a href="Object.html#getter%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>getter(*names, &block)</span>
+    getter</a>, 
+    
+  
+    <a href="Object.html#getter%21%28%2Anames%29-macro" class="tooltip">
+      <span>getter!(*names)</span>
+    getter!</a>, 
+    
+  
+    <a href="Object.html#getter%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>getter?(*names, &block)</span>
+    getter?</a>, 
+    
+  
+    <a href="Object.html#property%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>property(*names, &block)</span>
+    property</a>, 
+    
+  
+    <a href="Object.html#property%21%28%2Anames%29-macro" class="tooltip">
+      <span>property!(*names)</span>
+    property!</a>, 
+    
+  
+    <a href="Object.html#property%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>property?(*names, &block)</span>
+    property?</a>, 
+    
+  
+    <a href="Object.html#setter%28%2Anames%29-macro" class="tooltip">
+      <span>setter(*names)</span>
+    setter</a>
+    
+  
+
+
+    
+  </div>
+
+  
+  <h2>
+    <a id="constructor-detail" class="anchor" href="#constructor-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructor Detail
+  </h2>
+  
+    <div class="entry-detail" id="value:self-class-method">
+      <div class="signature">
+        
+        def self.<strong>value</strong> : <span class="k">self</span>
+
+        <a class="method-permalink" href="#value%3Aself-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>returns the value of libc's errno.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/errno.cr#L48" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+  
+  <h2>
+    <a id="class-method-detail" class="anchor" href="#class-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Class Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="value=(errno:Errno)-class-method">
+      <div class="signature">
+        
+        def self.<strong>value=</strong>(errno : <a href="Errno.html">Errno</a>)
+
+        <a class="method-permalink" href="#value%3D%28errno%3AErrno%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Sets the value of libc's errno.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/errno.cr#L69" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+  
+
+  
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="e2_big?-instance-method">
+      <div class="signature">
+        
+        def <strong>e2_big?</strong>
+
+        <a class="method-permalink" href="#e2_big%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#E2BIG">E2BIG</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/errno.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="eacces?-instance-method">
+      <div class="signature">
+        
+        def <strong>eacces?</strong>
+
+        <a class="method-permalink" href="#eacces%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#EACCES">EACCES</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/errno.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="eaddrinuse?-instance-method">
+      <div class="signature">
+        
+        def <strong>eaddrinuse?</strong>
+
+        <a class="method-permalink" href="#eaddrinuse%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#EADDRINUSE">EADDRINUSE</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/errno.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="eaddrnotavail?-instance-method">
+      <div class="signature">
+        
+        def <strong>eaddrnotavail?</strong>
+
+        <a class="method-permalink" href="#eaddrnotavail%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#EADDRNOTAVAIL">EADDRNOTAVAIL</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/errno.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="eafnosupport?-instance-method">
+      <div class="signature">
+        
+        def <strong>eafnosupport?</strong>
+
+        <a class="method-permalink" href="#eafnosupport%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#EAFNOSUPPORT">EAFNOSUPPORT</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/errno.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="eagain?-instance-method">
+      <div class="signature">
+        
+        def <strong>eagain?</strong>
+
+        <a class="method-permalink" href="#eagain%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#EAGAIN">EAGAIN</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/errno.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="ealready?-instance-method">
+      <div class="signature">
+        
+        def <strong>ealready?</strong>
+
+        <a class="method-permalink" href="#ealready%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#EALREADY">EALREADY</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/errno.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="ebadf?-instance-method">
+      <div class="signature">
+        
+        def <strong>ebadf?</strong>
+
+        <a class="method-permalink" href="#ebadf%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#EBADF">EBADF</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/errno.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="ebadmsg?-instance-method">
+      <div class="signature">
+        
+        def <strong>ebadmsg?</strong>
+
+        <a class="method-permalink" href="#ebadmsg%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#EBADMSG">EBADMSG</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/errno.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="ebusy?-instance-method">
+      <div class="signature">
+        
+        def <strong>ebusy?</strong>
+
+        <a class="method-permalink" href="#ebusy%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#EBUSY">EBUSY</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/errno.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="ecanceled?-instance-method">
+      <div class="signature">
+        
+        def <strong>ecanceled?</strong>
+
+        <a class="method-permalink" href="#ecanceled%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#ECANCELED">ECANCELED</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/errno.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="echild?-instance-method">
+      <div class="signature">
+        
+        def <strong>echild?</strong>
+
+        <a class="method-permalink" href="#echild%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#ECHILD">ECHILD</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/errno.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="econnaborted?-instance-method">
+      <div class="signature">
+        
+        def <strong>econnaborted?</strong>
+
+        <a class="method-permalink" href="#econnaborted%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#ECONNABORTED">ECONNABORTED</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/errno.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="econnrefused?-instance-method">
+      <div class="signature">
+        
+        def <strong>econnrefused?</strong>
+
+        <a class="method-permalink" href="#econnrefused%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#ECONNREFUSED">ECONNREFUSED</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/errno.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="econnreset?-instance-method">
+      <div class="signature">
+        
+        def <strong>econnreset?</strong>
+
+        <a class="method-permalink" href="#econnreset%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#ECONNRESET">ECONNRESET</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/errno.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="edeadlk?-instance-method">
+      <div class="signature">
+        
+        def <strong>edeadlk?</strong>
+
+        <a class="method-permalink" href="#edeadlk%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#EDEADLK">EDEADLK</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/errno.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="edestaddrreq?-instance-method">
+      <div class="signature">
+        
+        def <strong>edestaddrreq?</strong>
+
+        <a class="method-permalink" href="#edestaddrreq%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#EDESTADDRREQ">EDESTADDRREQ</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/errno.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="edom?-instance-method">
+      <div class="signature">
+        
+        def <strong>edom?</strong>
+
+        <a class="method-permalink" href="#edom%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#EDOM">EDOM</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/errno.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="edquot?-instance-method">
+      <div class="signature">
+        
+        def <strong>edquot?</strong>
+
+        <a class="method-permalink" href="#edquot%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#EDQUOT">EDQUOT</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/errno.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="eexist?-instance-method">
+      <div class="signature">
+        
+        def <strong>eexist?</strong>
+
+        <a class="method-permalink" href="#eexist%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#EEXIST">EEXIST</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/errno.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="efault?-instance-method">
+      <div class="signature">
+        
+        def <strong>efault?</strong>
+
+        <a class="method-permalink" href="#efault%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#EFAULT">EFAULT</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/errno.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="efbig?-instance-method">
+      <div class="signature">
+        
+        def <strong>efbig?</strong>
+
+        <a class="method-permalink" href="#efbig%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#EFBIG">EFBIG</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/errno.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="ehostunreach?-instance-method">
+      <div class="signature">
+        
+        def <strong>ehostunreach?</strong>
+
+        <a class="method-permalink" href="#ehostunreach%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#EHOSTUNREACH">EHOSTUNREACH</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/errno.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="eidrm?-instance-method">
+      <div class="signature">
+        
+        def <strong>eidrm?</strong>
+
+        <a class="method-permalink" href="#eidrm%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#EIDRM">EIDRM</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/errno.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="eilseq?-instance-method">
+      <div class="signature">
+        
+        def <strong>eilseq?</strong>
+
+        <a class="method-permalink" href="#eilseq%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#EILSEQ">EILSEQ</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/errno.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="einprogress?-instance-method">
+      <div class="signature">
+        
+        def <strong>einprogress?</strong>
+
+        <a class="method-permalink" href="#einprogress%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#EINPROGRESS">EINPROGRESS</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/errno.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="eintr?-instance-method">
+      <div class="signature">
+        
+        def <strong>eintr?</strong>
+
+        <a class="method-permalink" href="#eintr%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#EINTR">EINTR</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/errno.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="einval?-instance-method">
+      <div class="signature">
+        
+        def <strong>einval?</strong>
+
+        <a class="method-permalink" href="#einval%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#EINVAL">EINVAL</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/errno.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="eio?-instance-method">
+      <div class="signature">
+        
+        def <strong>eio?</strong>
+
+        <a class="method-permalink" href="#eio%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#EIO">EIO</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/errno.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="eisconn?-instance-method">
+      <div class="signature">
+        
+        def <strong>eisconn?</strong>
+
+        <a class="method-permalink" href="#eisconn%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#EISCONN">EISCONN</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/errno.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="eisdir?-instance-method">
+      <div class="signature">
+        
+        def <strong>eisdir?</strong>
+
+        <a class="method-permalink" href="#eisdir%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#EISDIR">EISDIR</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/errno.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="eloop?-instance-method">
+      <div class="signature">
+        
+        def <strong>eloop?</strong>
+
+        <a class="method-permalink" href="#eloop%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#ELOOP">ELOOP</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/errno.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="emfile?-instance-method">
+      <div class="signature">
+        
+        def <strong>emfile?</strong>
+
+        <a class="method-permalink" href="#emfile%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#EMFILE">EMFILE</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/errno.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="emlink?-instance-method">
+      <div class="signature">
+        
+        def <strong>emlink?</strong>
+
+        <a class="method-permalink" href="#emlink%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#EMLINK">EMLINK</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/errno.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="emsgsize?-instance-method">
+      <div class="signature">
+        
+        def <strong>emsgsize?</strong>
+
+        <a class="method-permalink" href="#emsgsize%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#EMSGSIZE">EMSGSIZE</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/errno.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="emultihop?-instance-method">
+      <div class="signature">
+        
+        def <strong>emultihop?</strong>
+
+        <a class="method-permalink" href="#emultihop%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#EMULTIHOP">EMULTIHOP</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/errno.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="enametoolong?-instance-method">
+      <div class="signature">
+        
+        def <strong>enametoolong?</strong>
+
+        <a class="method-permalink" href="#enametoolong%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#ENAMETOOLONG">ENAMETOOLONG</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/errno.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="enetdown?-instance-method">
+      <div class="signature">
+        
+        def <strong>enetdown?</strong>
+
+        <a class="method-permalink" href="#enetdown%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#ENETDOWN">ENETDOWN</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/errno.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="enetreset?-instance-method">
+      <div class="signature">
+        
+        def <strong>enetreset?</strong>
+
+        <a class="method-permalink" href="#enetreset%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#ENETRESET">ENETRESET</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/errno.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="enetunreach?-instance-method">
+      <div class="signature">
+        
+        def <strong>enetunreach?</strong>
+
+        <a class="method-permalink" href="#enetunreach%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#ENETUNREACH">ENETUNREACH</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/errno.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="enfile?-instance-method">
+      <div class="signature">
+        
+        def <strong>enfile?</strong>
+
+        <a class="method-permalink" href="#enfile%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#ENFILE">ENFILE</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/errno.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="enobufs?-instance-method">
+      <div class="signature">
+        
+        def <strong>enobufs?</strong>
+
+        <a class="method-permalink" href="#enobufs%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#ENOBUFS">ENOBUFS</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/errno.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="enodata?-instance-method">
+      <div class="signature">
+        
+        def <strong>enodata?</strong>
+
+        <a class="method-permalink" href="#enodata%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#ENODATA">ENODATA</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/errno.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="enodev?-instance-method">
+      <div class="signature">
+        
+        def <strong>enodev?</strong>
+
+        <a class="method-permalink" href="#enodev%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#ENODEV">ENODEV</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/errno.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="enoent?-instance-method">
+      <div class="signature">
+        
+        def <strong>enoent?</strong>
+
+        <a class="method-permalink" href="#enoent%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#ENOENT">ENOENT</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/errno.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="enoexec?-instance-method">
+      <div class="signature">
+        
+        def <strong>enoexec?</strong>
+
+        <a class="method-permalink" href="#enoexec%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#ENOEXEC">ENOEXEC</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/errno.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="enolck?-instance-method">
+      <div class="signature">
+        
+        def <strong>enolck?</strong>
+
+        <a class="method-permalink" href="#enolck%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#ENOLCK">ENOLCK</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/errno.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="enolink?-instance-method">
+      <div class="signature">
+        
+        def <strong>enolink?</strong>
+
+        <a class="method-permalink" href="#enolink%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#ENOLINK">ENOLINK</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/errno.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="enomem?-instance-method">
+      <div class="signature">
+        
+        def <strong>enomem?</strong>
+
+        <a class="method-permalink" href="#enomem%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#ENOMEM">ENOMEM</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/errno.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="enomsg?-instance-method">
+      <div class="signature">
+        
+        def <strong>enomsg?</strong>
+
+        <a class="method-permalink" href="#enomsg%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#ENOMSG">ENOMSG</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/errno.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="enoprotoopt?-instance-method">
+      <div class="signature">
+        
+        def <strong>enoprotoopt?</strong>
+
+        <a class="method-permalink" href="#enoprotoopt%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#ENOPROTOOPT">ENOPROTOOPT</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/errno.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="enospc?-instance-method">
+      <div class="signature">
+        
+        def <strong>enospc?</strong>
+
+        <a class="method-permalink" href="#enospc%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#ENOSPC">ENOSPC</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/errno.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="enosr?-instance-method">
+      <div class="signature">
+        
+        def <strong>enosr?</strong>
+
+        <a class="method-permalink" href="#enosr%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#ENOSR">ENOSR</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/errno.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="enostr?-instance-method">
+      <div class="signature">
+        
+        def <strong>enostr?</strong>
+
+        <a class="method-permalink" href="#enostr%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#ENOSTR">ENOSTR</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/errno.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="enosys?-instance-method">
+      <div class="signature">
+        
+        def <strong>enosys?</strong>
+
+        <a class="method-permalink" href="#enosys%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#ENOSYS">ENOSYS</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/errno.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="enotconn?-instance-method">
+      <div class="signature">
+        
+        def <strong>enotconn?</strong>
+
+        <a class="method-permalink" href="#enotconn%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#ENOTCONN">ENOTCONN</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/errno.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="enotdir?-instance-method">
+      <div class="signature">
+        
+        def <strong>enotdir?</strong>
+
+        <a class="method-permalink" href="#enotdir%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#ENOTDIR">ENOTDIR</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/errno.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="enotempty?-instance-method">
+      <div class="signature">
+        
+        def <strong>enotempty?</strong>
+
+        <a class="method-permalink" href="#enotempty%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#ENOTEMPTY">ENOTEMPTY</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/errno.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="enotrecoverable?-instance-method">
+      <div class="signature">
+        
+        def <strong>enotrecoverable?</strong>
+
+        <a class="method-permalink" href="#enotrecoverable%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#ENOTRECOVERABLE">ENOTRECOVERABLE</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/errno.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="enotsock?-instance-method">
+      <div class="signature">
+        
+        def <strong>enotsock?</strong>
+
+        <a class="method-permalink" href="#enotsock%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#ENOTSOCK">ENOTSOCK</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/errno.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="enotty?-instance-method">
+      <div class="signature">
+        
+        def <strong>enotty?</strong>
+
+        <a class="method-permalink" href="#enotty%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#ENOTTY">ENOTTY</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/errno.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="enxio?-instance-method">
+      <div class="signature">
+        
+        def <strong>enxio?</strong>
+
+        <a class="method-permalink" href="#enxio%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#ENXIO">ENXIO</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/errno.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="eopnotsupp?-instance-method">
+      <div class="signature">
+        
+        def <strong>eopnotsupp?</strong>
+
+        <a class="method-permalink" href="#eopnotsupp%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#EOPNOTSUPP">EOPNOTSUPP</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/errno.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="eoverflow?-instance-method">
+      <div class="signature">
+        
+        def <strong>eoverflow?</strong>
+
+        <a class="method-permalink" href="#eoverflow%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#EOVERFLOW">EOVERFLOW</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/errno.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="eownerdead?-instance-method">
+      <div class="signature">
+        
+        def <strong>eownerdead?</strong>
+
+        <a class="method-permalink" href="#eownerdead%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#EOWNERDEAD">EOWNERDEAD</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/errno.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="eperm?-instance-method">
+      <div class="signature">
+        
+        def <strong>eperm?</strong>
+
+        <a class="method-permalink" href="#eperm%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#EPERM">EPERM</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/errno.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="epipe?-instance-method">
+      <div class="signature">
+        
+        def <strong>epipe?</strong>
+
+        <a class="method-permalink" href="#epipe%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#EPIPE">EPIPE</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/errno.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="eproto?-instance-method">
+      <div class="signature">
+        
+        def <strong>eproto?</strong>
+
+        <a class="method-permalink" href="#eproto%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#EPROTO">EPROTO</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/errno.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="eprotonosupport?-instance-method">
+      <div class="signature">
+        
+        def <strong>eprotonosupport?</strong>
+
+        <a class="method-permalink" href="#eprotonosupport%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#EPROTONOSUPPORT">EPROTONOSUPPORT</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/errno.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="eprototype?-instance-method">
+      <div class="signature">
+        
+        def <strong>eprototype?</strong>
+
+        <a class="method-permalink" href="#eprototype%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#EPROTOTYPE">EPROTOTYPE</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/errno.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="erange?-instance-method">
+      <div class="signature">
+        
+        def <strong>erange?</strong>
+
+        <a class="method-permalink" href="#erange%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#ERANGE">ERANGE</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/errno.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="erofs?-instance-method">
+      <div class="signature">
+        
+        def <strong>erofs?</strong>
+
+        <a class="method-permalink" href="#erofs%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#EROFS">EROFS</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/errno.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="espipe?-instance-method">
+      <div class="signature">
+        
+        def <strong>espipe?</strong>
+
+        <a class="method-permalink" href="#espipe%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#ESPIPE">ESPIPE</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/errno.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="esrch?-instance-method">
+      <div class="signature">
+        
+        def <strong>esrch?</strong>
+
+        <a class="method-permalink" href="#esrch%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#ESRCH">ESRCH</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/errno.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="estale?-instance-method">
+      <div class="signature">
+        
+        def <strong>estale?</strong>
+
+        <a class="method-permalink" href="#estale%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#ESTALE">ESTALE</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/errno.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="etime?-instance-method">
+      <div class="signature">
+        
+        def <strong>etime?</strong>
+
+        <a class="method-permalink" href="#etime%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#ETIME">ETIME</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/errno.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="etimedout?-instance-method">
+      <div class="signature">
+        
+        def <strong>etimedout?</strong>
+
+        <a class="method-permalink" href="#etimedout%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#ETIMEDOUT">ETIMEDOUT</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/errno.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="etxtbsy?-instance-method">
+      <div class="signature">
+        
+        def <strong>etxtbsy?</strong>
+
+        <a class="method-permalink" href="#etxtbsy%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#ETXTBSY">ETXTBSY</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/errno.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="ewouldblock?-instance-method">
+      <div class="signature">
+        
+        def <strong>ewouldblock?</strong>
+
+        <a class="method-permalink" href="#ewouldblock%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#EWOULDBLOCK">EWOULDBLOCK</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/errno.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="exdev?-instance-method">
+      <div class="signature">
+        
+        def <strong>exdev?</strong>
+
+        <a class="method-permalink" href="#exdev%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#EXDEV">EXDEV</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/errno.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="message:String-instance-method">
+      <div class="signature">
+        
+        def <strong>message</strong> : <a href="String.html">String</a>
+
+        <a class="method-permalink" href="#message%3AString-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the system error message associated with this errno.</p>
+<p><span class="flag purple">NOTE</span>  The result may depend on the current system locale. Specs and
+comparisons should use <code><a href="Errno.html#value%3Aself-class-method">#value</a></code> instead of this method.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/errno.cr#L28" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="none?-instance-method">
+      <div class="signature">
+        
+        def <strong>none?</strong>
+
+        <a class="method-permalink" href="#none%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="Errno.html#NONE">NONE</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/errno.cr#L7" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+</div>
+
+</body>
+</html>

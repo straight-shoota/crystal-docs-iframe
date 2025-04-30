@@ -1,0 +1,2057 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Crystal Docs 1.16.1">
+<meta name="crystal_docs.project_version" content="1.17.0-dev">
+<meta name="crystal_docs.project_name" content="Crystal">
+
+  <meta name="crystal_docs.json_config_url" content="/api/versions.json">
+
+
+    <link rel="canonical" href="https://crystal-lang.org/api/latest/JSON/PullParser.html">
+
+<link href="../css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../js/doc.js"></script>
+
+  <meta name="repository-name" content="Crystal">
+  <title>JSON::PullParser - Crystal 1.17.0-dev</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "../";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill="currentColor" fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<input type="checkbox" id="sidebar-btn">
+<label for="sidebar-btn" id="sidebar-btn-label">
+  <svg class="open" xmlns="http://www.w3.org/2000/svg" height="2em" width="2em" viewBox="0 0 512 512"><title>Open Sidebar</title><path fill="currentColor" d="M80 96v64h352V96H80zm0 112v64h352v-64H80zm0 112v64h352v-64H80z"></path></svg>
+  <svg class="close" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><title>Close Sidebar</title><path fill="currentColor" d="m118.6 73.4-45.2 45.2L210.7 256 73.4 393.4l45.2 45.2L256 301.3l137.4 137.3 45.2-45.2L301.3 256l137.3-137.4-45.2-45.2L256 210.7Z"></path></svg>
+</label>
+<iframe class="sidebar" src="../sidebar.html"></iframe>
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">
+    class
+  </span> JSON::<wbr>PullParser
+
+</h1>
+
+
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../JSON/PullParser.html">JSON::PullParser</a></li><li class="superclass"><a href="../Reference.html">Reference</a></li><li class="superclass"><a href="../Object.html">Object</a></li></ul>
+
+
+
+
+  <h2>
+    <a id="overview" class="anchor" href="#overview">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Overview
+  </h2>
+
+  <p>This class allows you to consume JSON on demand, token by token.</p>
+<p>Each <em>read_</em>* method consumes the next token.
+Sometimes it consumes only one token (like <code><a href="../JSON/PullParser.html#read_begin_array-instance-method">#read_begin_array</a></code>), sometimes it consumes a full valid value (like <code><a href="../JSON/PullParser.html#read_array%28%26%29-instance-method">#read_array</a></code>).</p>
+<p>You must be careful when calling those methods, as they move forward into the JSON input you are pulling.
+Calling <code><a href="../JSON/PullParser.html#read_string%3AString-instance-method">#read_string</a></code> twice will return the next two strings (if possible), not twice the same.</p>
+<p>If you try to read a token which is not the one currently under the cursor location, an exception <code><a href="../JSON/ParseException.html">ParseException</a></code> will be raised.</p>
+<p>Example:</p>
+<pre><code class="language-crystal">input <span class="o">=</span> <span class="s">%(
+  {
+    &quot;type&quot;: &quot;event&quot;,
+    &quot;values&quot;: [1, 4, &quot;three&quot;, 10]
+  }
+)</span>
+pull <span class="o">=</span> <span class="t">JSON</span><span class="t">::</span><span class="t">PullParser</span>.new(input)
+pull.read_begin_object
+pull.read_object_key <span class="c"># =&gt; &quot;type&quot;</span>
+pull.read_string     <span class="c"># =&gt; &quot;event&quot;</span>
+<span class="c"># Actually you can also use `read_string` to read a key</span>
+pull.read_string <span class="c"># =&gt; &quot;values&quot;</span>
+pull.read_begin_array
+pull.read_int    <span class="c"># =&gt; 1</span>
+pull.read_int    <span class="c"># =&gt; 4</span>
+pull.read_string <span class="c"># =&gt; &quot;three&quot;</span>
+pull.read_int    <span class="c"># =&gt; 10</span>
+pull.read_end_array
+pull.read_end_object</code></pre>
+<p>Another example reading the same object:</p>
+<pre><code class="language-crystal">pull <span class="o">=</span> <span class="t">JSON</span><span class="t">::</span><span class="t">PullParser</span>.new(input)
+pull.read_object <span class="k">do</span> <span class="o">|</span>key<span class="o">|</span>
+  <span class="k">case</span> key
+  <span class="k">when</span> <span class="s">&quot;type&quot;</span>
+    pull.read_string <span class="c"># =&gt; &quot;event&quot;</span>
+  <span class="k">when</span> <span class="s">&quot;values&quot;</span>
+    pull.read_array <span class="k">do</span>
+      <span class="k">if</span> v <span class="o">=</span> pull.read?(<span class="t">Int8</span>)
+        v
+      <span class="k">else</span>
+        pull.read_string
+      <span class="k">end</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span></code></pre>
+<p>This example fails:</p>
+<pre><code class="language-crystal">pull <span class="o">=</span> <span class="t">JSON</span><span class="t">::</span><span class="t">PullParser</span>.new(input)
+pull.read_begin_object
+pull.read_object_key <span class="c"># =&gt; &quot;type&quot;</span>
+pull.read_string     <span class="c"># =&gt; &quot;event&quot;</span>
+pull.read_end_object <span class="c"># =&gt; raise an exception. The current token is a string (&quot;values&quot;), not the end of an object.</span></code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/pull_parser.cr#L61" target="_blank">
+        json/pull_parser.cr
+      </a>
+    
+    <br/>
+  
+
+
+
+
+
+  
+  <h2>
+    <a id="constructors" class="anchor" href="#constructors">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructors
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#new%28input%29-class-method" class="signature"><strong>.new</strong>(input)</a>
+        
+          <div class="summary"><p>Creates a PullParser which will consume the JSON <em>input</em>.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+  
+
+  
+
+  
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#bool_value%3ABool-instance-method" class="signature"><strong>#bool_value</strong> : Bool</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#column_number-instance-method" class="signature"><strong>#column_number</strong></a>
+        
+          <div class="summary"><p>Returns the current column number.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#float_value%3AFloat64-instance-method" class="signature"><strong>#float_value</strong> : Float64</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#int_value%3AInt64-instance-method" class="signature"><strong>#int_value</strong> : Int64</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#kind%3AKind-instance-method" class="signature"><strong>#kind</strong> : Kind</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#line_number-instance-method" class="signature"><strong>#line_number</strong></a>
+        
+          <div class="summary"><p>Returns the current line number.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#location%3ATuple%28Int32%2CInt32%29-instance-method" class="signature"><strong>#location</strong> : Tuple(Int32, Int32)</a>
+        
+          <div class="summary"><p>Returns the current location.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#max_nesting%3AInt32-instance-method" class="signature"><strong>#max_nesting</strong> : Int32</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#max_nesting%3D%28max_nesting%3AInt32%29-instance-method" class="signature"><strong>#max_nesting=</strong>(max_nesting : Int32)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#on_key%28key%2C%26%3Aself-%3E_%29-instance-method" class="signature"><strong>#on_key</strong>(key, & : <span class="k">self</span> -> _)</a>
+        
+          <div class="summary"><p>Reads an object keys and yield when <em>key</em> is found.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#on_key%21%28key%2C%26%3Aself-%3E_%29-instance-method" class="signature"><strong>#on_key!</strong>(key, & : <span class="k">self</span> -> _)</a>
+        
+          <div class="summary"><p>Reads an object keys and yield when <em>key</em> is found.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#raise%28message%3AString%29%3ANoReturn-instance-method" class="signature"><strong>#raise</strong>(message : String) : NoReturn</a>
+        
+          <div class="summary"><p>Raises <code><a href="../JSON/ParseException.html">ParseException</a></code> with <em>message</em> at current location.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#raw_value%3AString-instance-method" class="signature"><strong>#raw_value</strong> : String</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#read%3F%28klass%3ABool.class%29%3ABool%7CNil-instance-method" class="signature"><strong>#read?</strong>(klass : <span class="t">Bool</span>.<span class="k">class</span>) : Bool | Nil</a>
+        
+          <div class="summary"><p>Reads a <code><a href="../Bool.html">Bool</a></code> value and returns it.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#read%3F%28klass%3AInt128.class%29%3AInt128%7CNil-instance-method" class="signature"><strong>#read?</strong>(klass : <span class="t">Int128</span>.<span class="k">class</span>) : Int128 | Nil</a>
+        
+          <div class="summary"><p>Reads an <code><a href="../Int128.html">Int128</a></code> value and returns it.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#read%3F%28klass%3AInt16.class%29%3AInt16%7CNil-instance-method" class="signature"><strong>#read?</strong>(klass : <span class="t">Int16</span>.<span class="k">class</span>) : Int16 | Nil</a>
+        
+          <div class="summary"><p>Reads an <code><a href="../Int16.html">Int16</a></code> value and returns it.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#read%3F%28klass%3AInt32.class%29%3AInt32%7CNil-instance-method" class="signature"><strong>#read?</strong>(klass : <span class="t">Int32</span>.<span class="k">class</span>) : Int32 | Nil</a>
+        
+          <div class="summary"><p>Reads an <code><a href="../Int32.html">Int32</a></code> value and returns it.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#read%3F%28klass%3AInt64.class%29%3AInt64%7CNil-instance-method" class="signature"><strong>#read?</strong>(klass : <span class="t">Int64</span>.<span class="k">class</span>) : Int64 | Nil</a>
+        
+          <div class="summary"><p>Reads an <code><a href="../Int64.html">Int64</a></code> value and returns it.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#read%3F%28klass%3AInt8.class%29%3AInt8%7CNil-instance-method" class="signature"><strong>#read?</strong>(klass : <span class="t">Int8</span>.<span class="k">class</span>) : Int8 | Nil</a>
+        
+          <div class="summary"><p>Reads an <code><a href="../Int8.html">Int8</a></code> value and returns it.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#read%3F%28klass%3AUInt128.class%29%3AUInt128%7CNil-instance-method" class="signature"><strong>#read?</strong>(klass : <span class="t">UInt128</span>.<span class="k">class</span>) : UInt128 | Nil</a>
+        
+          <div class="summary"><p>Reads an <code><a href="../UInt128.html">UInt128</a></code> value and returns it.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#read%3F%28klass%3AUInt16.class%29%3AUInt16%7CNil-instance-method" class="signature"><strong>#read?</strong>(klass : <span class="t">UInt16</span>.<span class="k">class</span>) : UInt16 | Nil</a>
+        
+          <div class="summary"><p>Reads an <code><a href="../UInt16.html">UInt16</a></code> value and returns it.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#read%3F%28klass%3AUInt32.class%29%3AUInt32%7CNil-instance-method" class="signature"><strong>#read?</strong>(klass : <span class="t">UInt32</span>.<span class="k">class</span>) : UInt32 | Nil</a>
+        
+          <div class="summary"><p>Reads an <code><a href="../UInt32.html">UInt32</a></code> value and returns it.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#read%3F%28klass%3AUInt64.class%29%3AUInt64%7CNil-instance-method" class="signature"><strong>#read?</strong>(klass : <span class="t">UInt64</span>.<span class="k">class</span>) : UInt64 | Nil</a>
+        
+          <div class="summary"><p>Reads an <code><a href="../UInt64.html">UInt64</a></code> value and returns it.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#read%3F%28klass%3AUInt8.class%29%3AUInt8%7CNil-instance-method" class="signature"><strong>#read?</strong>(klass : <span class="t">UInt8</span>.<span class="k">class</span>) : UInt8 | Nil</a>
+        
+          <div class="summary"><p>Reads an <code><a href="../UInt8.html">UInt8</a></code> value and returns it.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#read%3F%28klass%3AFloat32.class%29%3AFloat32%7CNil-instance-method" class="signature"><strong>#read?</strong>(klass : <span class="t">Float32</span>.<span class="k">class</span>) : Float32 | Nil</a>
+        
+          <div class="summary"><p>Reads an <code><a href="../Float32.html">Float32</a></code> value and returns it.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#read%3F%28klass%3AFloat64.class%29%3AFloat64%7CNil-instance-method" class="signature"><strong>#read?</strong>(klass : <span class="t">Float64</span>.<span class="k">class</span>) : Float64 | Nil</a>
+        
+          <div class="summary"><p>Reads an <code><a href="../Float64.html">Float64</a></code> value and returns it.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#read%3F%28klass%3AString.class%29%3AString%7CNil-instance-method" class="signature"><strong>#read?</strong>(klass : <span class="t">String</span>.<span class="k">class</span>) : String | Nil</a>
+        
+          <div class="summary"><p>Reads a <code><a href="../String.html">String</a></code> value and returns it.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#read_array%28%26%29-instance-method" class="signature"><strong>#read_array</strong>(&)</a>
+        
+          <div class="summary"><p>Reads a whole array.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#read_array_or_null%28%26%29-instance-method" class="signature"><strong>#read_array_or_null</strong>(&)</a>
+        
+          <div class="summary"><p>Reads an array or a null value, and returns it.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#read_begin_array-instance-method" class="signature"><strong>#read_begin_array</strong></a>
+        
+          <div class="summary"><p>Reads the beginning of an array.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#read_begin_object-instance-method" class="signature"><strong>#read_begin_object</strong></a>
+        
+          <div class="summary"><p>Reads the beginning of an object.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#read_bool%3ABool-instance-method" class="signature"><strong>#read_bool</strong> : Bool</a>
+        
+          <div class="summary"><p>Reads a <code><a href="../Bool.html">Bool</a></code> value.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#read_bool_or_null%3ABool%7CNil-instance-method" class="signature"><strong>#read_bool_or_null</strong> : Bool | Nil</a>
+        
+          <div class="summary"><p>Reads a <code><a href="../Bool.html">Bool</a></code> or a null value, and returns it.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#read_end_array-instance-method" class="signature"><strong>#read_end_array</strong></a>
+        
+          <div class="summary"><p>Reads the end of an array.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#read_end_object-instance-method" class="signature"><strong>#read_end_object</strong></a>
+        
+          <div class="summary"><p>Reads the end of an object.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#read_float%3AFloat64-instance-method" class="signature"><strong>#read_float</strong> : Float64</a>
+        
+          <div class="summary"><p>Reads a float value.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#read_float_or_null%3AFloat64%7CNil-instance-method" class="signature"><strong>#read_float_or_null</strong> : Float64 | Nil</a>
+        
+          <div class="summary"><p>Reads a float or a null value, and returns it.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#read_int%3AInt64-instance-method" class="signature"><strong>#read_int</strong> : Int64</a>
+        
+          <div class="summary"><p>Reads an integer value.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#read_int_or_null%3AInt64%7CNil-instance-method" class="signature"><strong>#read_int_or_null</strong> : Int64 | Nil</a>
+        
+          <div class="summary"><p>Reads an integer or a null value, and returns it.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#read_next%3AKind-instance-method" class="signature"><strong>#read_next</strong> : Kind</a>
+        
+          <div class="summary"><p>Reads the next lexer's token.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#read_null%3ANil-instance-method" class="signature"><strong>#read_null</strong> : Nil</a>
+        
+          <div class="summary"><p>Reads a null value and returns it.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#read_null%3F%3ABool-instance-method" class="signature"><strong>#read_null?</strong> : Bool</a>
+        
+          <div class="summary"><p>Reads the current token if its value is null.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#read_null_or%28%26%29-instance-method" class="signature"><strong>#read_null_or</strong>(&)</a>
+        
+          <div class="summary"><p>Reads a null value and returns it, or executes the given block if the value is not null.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#read_object%28%26%29-instance-method" class="signature"><strong>#read_object</strong>(&)</a>
+        
+          <div class="summary"><p>Reads a whole object.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#read_object_key%3AString-instance-method" class="signature"><strong>#read_object_key</strong> : String</a>
+        
+          <div class="summary"><p>Reads an object's key and returns it.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#read_object_or_null%28%26%29-instance-method" class="signature"><strong>#read_object_or_null</strong>(&)</a>
+        
+          <div class="summary"><p>Reads an object or a null value, and returns it.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#read_raw%28json%29%3ANil-instance-method" class="signature"><strong>#read_raw</strong>(json) : Nil</a>
+        
+          <div class="summary"><p>Reads the new value and fill the a JSON builder with it.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#read_raw%3AString-instance-method" class="signature"><strong>#read_raw</strong> : String</a>
+        
+          <div class="summary"><p>Read the next value and returns it.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#read_string%3AString-instance-method" class="signature"><strong>#read_string</strong> : String</a>
+        
+          <div class="summary"><p>Reads a string and returns it.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#read_string_or_null%3AString%7CNil-instance-method" class="signature"><strong>#read_string_or_null</strong> : String | Nil</a>
+        
+          <div class="summary"><p>Reads a string or a null value, and returns it.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#skip%3ANil-instance-method" class="signature"><strong>#skip</strong> : Nil</a>
+        
+          <div class="summary"><p>Skips the next value.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#string_value%3AString-instance-method" class="signature"><strong>#string_value</strong> : String</a>
+        
+      </li>
+    
+  </ul>
+
+
+
+  <div class="methods-inherited">
+    
+      
+
+  <h3>Instance methods inherited from class <code><a href="../Reference.html">Reference</a></code></h3>
+  
+  
+    <a href="../Reference.html#%3D%3D%28other%3Aself%29-instance-method" class="tooltip">
+      <span>==(other : <span class="k">self</span>)<br/>==(other : JSON::Any)<br/>==(other : YAML::Any)<br/>==(other)</span>
+    ==</a>, 
+    
+  
+    <a href="../Reference.html#dup-instance-method" class="tooltip">
+      <span>dup</span>
+    dup</a>, 
+    
+  
+    <a href="../Reference.html#hash%28hasher%29-instance-method" class="tooltip">
+      <span>hash(hasher)</span>
+    hash</a>, 
+    
+  
+    <a href="../Reference.html#initialize-instance-method" class="tooltip">
+      <span>initialize</span>
+    initialize</a>, 
+    
+  
+    <a href="../Reference.html#inspect%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>inspect(io : IO) : Nil</span>
+    inspect</a>, 
+    
+  
+    <a href="../Reference.html#object_id%3AUInt64-instance-method" class="tooltip">
+      <span>object_id : UInt64</span>
+    object_id</a>, 
+    
+  
+    <a href="../Reference.html#pretty_print%28pp%29%3ANil-instance-method" class="tooltip">
+      <span>pretty_print(pp) : Nil</span>
+    pretty_print</a>, 
+    
+  
+    <a href="../Reference.html#same%3F%28other%3AReference%29%3ABool-instance-method" class="tooltip">
+      <span>same?(other : Reference) : Bool<br/>same?(other : Nil)</span>
+    same?</a>, 
+    
+  
+    <a href="../Reference.html#to_s%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_s(io : IO) : Nil</span>
+    to_s</a>
+    
+  
+
+
+      
+
+  <h3>Constructor methods inherited from class <code><a href="../Reference.html">Reference</a></code></h3>
+  
+  
+    <a href="../Reference.html#new-class-method" class="tooltip">
+      <span>new</span>
+    new</a>, 
+    
+  
+    <a href="../Reference.html#unsafe_construct%28address%3APointer%2C%2Aargs%2C%2A%2Aopts%29%3Aself-class-method" class="tooltip">
+      <span>unsafe_construct(address : Pointer, *args, **opts) : <span class="k">self</span></span>
+    unsafe_construct</a>
+    
+  
+
+
+      
+
+  <h3>Class methods inherited from class <code><a href="../Reference.html">Reference</a></code></h3>
+  
+  
+    <a href="../Reference.html#pre_initialize%28address%3APointer%29-class-method" class="tooltip">
+      <span>pre_initialize(address : Pointer)</span>
+    pre_initialize</a>
+    
+  
+
+
+      
+
+
+    
+      
+
+  <h3>Instance methods inherited from class <code><a href="../Object.html">Object</a></code></h3>
+  
+  
+    <a href="../Object.html#%21%3ABool-instance-method" class="tooltip">
+      <span>! : Bool</span>
+    !</a>, 
+    
+  
+    <a href="../Object.html#%21%3D%28other%29-instance-method" class="tooltip">
+      <span>!=(other)</span>
+    !=</a>, 
+    
+  
+    <a href="../Object.html#%21~%28other%29-instance-method" class="tooltip">
+      <span>!~(other)</span>
+    !~</a>, 
+    
+  
+    <a href="../Object.html#%3D%3D%28other%29-instance-method" class="tooltip">
+      <span>==(other)</span>
+    ==</a>, 
+    
+  
+    <a href="../Object.html#%3D%3D%3D%28other%3AJSON%3A%3AAny%29-instance-method" class="tooltip">
+      <span>===(other : JSON::Any)<br/>===(other : YAML::Any)<br/>===(other)</span>
+    ===</a>, 
+    
+  
+    <a href="../Object.html#%3D~%28other%29-instance-method" class="tooltip">
+      <span>=~(other)</span>
+    =~</a>, 
+    
+  
+    <a href="../Object.html#as%28type%3AClass%29-instance-method" class="tooltip">
+      <span>as(type : Class)</span>
+    as</a>, 
+    
+  
+    <a href="../Object.html#as%3F%28type%3AClass%29-instance-method" class="tooltip">
+      <span>as?(type : Class)</span>
+    as?</a>, 
+    
+  
+    <a href="../Object.html#class-instance-method" class="tooltip">
+      <span>class</span>
+    class</a>, 
+    
+  
+    <a href="../Object.html#dup-instance-method" class="tooltip">
+      <span>dup</span>
+    dup</a>, 
+    
+  
+    <a href="../Object.html#hash%28hasher%29-instance-method" class="tooltip">
+      <span>hash(hasher)<br/>hash</span>
+    hash</a>, 
+    
+  
+    <a href="../Object.html#in%3F%28collection%3AObject%29%3ABool-instance-method" class="tooltip">
+      <span>in?(collection : Object) : Bool<br/>in?(*values : Object) : Bool</span>
+    in?</a>, 
+    
+  
+    <a href="../Object.html#inspect%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>inspect(io : IO) : Nil<br/>inspect : String</span>
+    inspect</a>, 
+    
+  
+    <a href="../Object.html#is_a%3F%28type%3AClass%29%3ABool-instance-method" class="tooltip">
+      <span>is_a?(type : Class) : Bool</span>
+    is_a?</a>, 
+    
+  
+    <a href="../Object.html#itself-instance-method" class="tooltip">
+      <span>itself</span>
+    itself</a>, 
+    
+  
+    <a href="../Object.html#nil%3F%3ABool-instance-method" class="tooltip">
+      <span>nil? : Bool</span>
+    nil?</a>, 
+    
+  
+    <a href="../Object.html#not_nil%21%28message%29-instance-method" class="tooltip">
+      <span>not_nil!(message)<br/>not_nil!</span>
+    not_nil!</a>, 
+    
+  
+    <a href="../Object.html#pretty_inspect%28width%3D79%2Cnewline%3D%22%5Cn%22%2Cindent%3D0%29%3AString-instance-method" class="tooltip">
+      <span>pretty_inspect(width = <span class="n">79</span>, newline = <span class="s">&quot;\n&quot;</span>, indent = <span class="n">0</span>) : String</span>
+    pretty_inspect</a>, 
+    
+  
+    <a href="../Object.html#pretty_print%28pp%3APrettyPrint%29%3ANil-instance-method" class="tooltip">
+      <span>pretty_print(pp : PrettyPrint) : Nil</span>
+    pretty_print</a>, 
+    
+  
+    <a href="../Object.html#responds_to%3F%28name%3ASymbol%29%3ABool-instance-method" class="tooltip">
+      <span>responds_to?(name : Symbol) : Bool</span>
+    responds_to?</a>, 
+    
+  
+    <a href="../Object.html#tap%28%26%29-instance-method" class="tooltip">
+      <span>tap(&)</span>
+    tap</a>, 
+    
+  
+    <a href="../Object.html#to_json%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_json(io : IO) : Nil<br/>to_json : String</span>
+    to_json</a>, 
+    
+  
+    <a href="../Object.html#to_pretty_json%28indent%3AString%3D%22%22%29%3AString-instance-method" class="tooltip">
+      <span>to_pretty_json(indent : String = <span class="s">&quot;  &quot;</span>) : String<br/>to_pretty_json(io : IO, indent : String = <span class="s">&quot;  &quot;</span>) : Nil</span>
+    to_pretty_json</a>, 
+    
+  
+    <a href="../Object.html#to_s%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_s(io : IO) : Nil<br/>to_s : String</span>
+    to_s</a>, 
+    
+  
+    <a href="../Object.html#to_yaml%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_yaml(io : IO) : Nil<br/>to_yaml : String</span>
+    to_yaml</a>, 
+    
+  
+    <a href="../Object.html#try%28%26%29-instance-method" class="tooltip">
+      <span>try(&)</span>
+    try</a>, 
+    
+  
+    <a href="../Object.html#unsafe_as%28type%3AT.class%29forallT-instance-method" class="tooltip">
+      <span>unsafe_as(type : <span class="t">T</span>.<span class="k">class</span>) forall T</span>
+    unsafe_as</a>
+    
+  
+
+
+      
+
+
+      
+
+  <h3>Class methods inherited from class <code><a href="../Object.html">Object</a></code></h3>
+  
+  
+    <a href="../Object.html#from_json%28string_or_io%2Croot%3AString%29-class-method" class="tooltip">
+      <span>from_json(string_or_io, root : String)<br/>from_json(string_or_io)</span>
+    from_json</a>, 
+    
+  
+    <a href="../Object.html#from_yaml%28string_or_io%3AString%7CIO%29-class-method" class="tooltip">
+      <span>from_yaml(string_or_io : String | IO)</span>
+    from_yaml</a>
+    
+  
+
+
+      
+
+  <h3>Macros inherited from class <code><a href="../Object.html">Object</a></code></h3>
+  
+  
+    <a href="../Object.html#class_getter%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_getter(*names, &block)</span>
+    class_getter</a>, 
+    
+  
+    <a href="../Object.html#class_getter%21%28%2Anames%29-macro" class="tooltip">
+      <span>class_getter!(*names)</span>
+    class_getter!</a>, 
+    
+  
+    <a href="../Object.html#class_getter%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_getter?(*names, &block)</span>
+    class_getter?</a>, 
+    
+  
+    <a href="../Object.html#class_property%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_property(*names, &block)</span>
+    class_property</a>, 
+    
+  
+    <a href="../Object.html#class_property%21%28%2Anames%29-macro" class="tooltip">
+      <span>class_property!(*names)</span>
+    class_property!</a>, 
+    
+  
+    <a href="../Object.html#class_property%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_property?(*names, &block)</span>
+    class_property?</a>, 
+    
+  
+    <a href="../Object.html#class_setter%28%2Anames%29-macro" class="tooltip">
+      <span>class_setter(*names)</span>
+    class_setter</a>, 
+    
+  
+    <a href="../Object.html#def_clone-macro" class="tooltip">
+      <span>def_clone</span>
+    def_clone</a>, 
+    
+  
+    <a href="../Object.html#def_equals%28%2Afields%29-macro" class="tooltip">
+      <span>def_equals(*fields)</span>
+    def_equals</a>, 
+    
+  
+    <a href="../Object.html#def_equals_and_hash%28%2Afields%29-macro" class="tooltip">
+      <span>def_equals_and_hash(*fields)</span>
+    def_equals_and_hash</a>, 
+    
+  
+    <a href="../Object.html#def_hash%28%2Afields%29-macro" class="tooltip">
+      <span>def_hash(*fields)</span>
+    def_hash</a>, 
+    
+  
+    <a href="../Object.html#delegate%28%2Amethods%2Ctoobject%29-macro" class="tooltip">
+      <span>delegate(*methods, to object)</span>
+    delegate</a>, 
+    
+  
+    <a href="../Object.html#forward_missing_to%28delegate%29-macro" class="tooltip">
+      <span>forward_missing_to(delegate)</span>
+    forward_missing_to</a>, 
+    
+  
+    <a href="../Object.html#getter%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>getter(*names, &block)</span>
+    getter</a>, 
+    
+  
+    <a href="../Object.html#getter%21%28%2Anames%29-macro" class="tooltip">
+      <span>getter!(*names)</span>
+    getter!</a>, 
+    
+  
+    <a href="../Object.html#getter%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>getter?(*names, &block)</span>
+    getter?</a>, 
+    
+  
+    <a href="../Object.html#property%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>property(*names, &block)</span>
+    property</a>, 
+    
+  
+    <a href="../Object.html#property%21%28%2Anames%29-macro" class="tooltip">
+      <span>property!(*names)</span>
+    property!</a>, 
+    
+  
+    <a href="../Object.html#property%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>property?(*names, &block)</span>
+    property?</a>, 
+    
+  
+    <a href="../Object.html#setter%28%2Anames%29-macro" class="tooltip">
+      <span>setter(*names)</span>
+    setter</a>
+    
+  
+
+
+    
+  </div>
+
+  
+  <h2>
+    <a id="constructor-detail" class="anchor" href="#constructor-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructor Detail
+  </h2>
+  
+    <div class="entry-detail" id="new(input)-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(input)
+
+        <a class="method-permalink" href="#new%28input%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Creates a PullParser which will consume the JSON <em>input</em>.</p>
+<p><em>input</em> must be a <code><a href="../String.html">String</a></code> or an <code><a href="../IO.html">IO</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/pull_parser.cr#L99" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+  
+
+  
+
+  
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="bool_value:Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>bool_value</strong> : <a href="../Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#bool_value%3ABool-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/pull_parser.cr#L81" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="column_number-instance-method">
+      <div class="signature">
+        
+        def <strong>column_number</strong>
+
+        <a class="method-permalink" href="#column_number-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the current column number.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/pull_parser.cr#L585" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="float_value:Float64-instance-method">
+      <div class="signature">
+        
+        def <strong>float_value</strong> : <a href="../Float64.html">Float64</a>
+
+        <a class="method-permalink" href="#float_value%3AFloat64-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/pull_parser.cr#L87" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="int_value:Int64-instance-method">
+      <div class="signature">
+        
+        def <strong>int_value</strong> : <a href="../Int64.html">Int64</a>
+
+        <a class="method-permalink" href="#int_value%3AInt64-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/pull_parser.cr#L83" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="kind:Kind-instance-method">
+      <div class="signature">
+        
+        def <strong>kind</strong> : <a href="../JSON/PullParser/Kind.html">Kind</a>
+
+        <a class="method-permalink" href="#kind%3AKind-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/pull_parser.cr#L80" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="line_number-instance-method">
+      <div class="signature">
+        
+        def <strong>line_number</strong>
+
+        <a class="method-permalink" href="#line_number-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the current line number.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/pull_parser.cr#L580" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="location:Tuple(Int32,Int32)-instance-method">
+      <div class="signature">
+        
+        def <strong>location</strong> : <a href="../Tuple.html">Tuple</a>(<a href="../Int32.html">Int32</a>, <a href="../Int32.html">Int32</a>)
+
+        <a class="method-permalink" href="#location%3ATuple%28Int32%2CInt32%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the current location.</p>
+<p>The location is a tuple <code>{line number, column number}</code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/pull_parser.cr#L592" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="max_nesting:Int32-instance-method">
+      <div class="signature">
+        
+        def <strong>max_nesting</strong> : <a href="../Int32.html">Int32</a>
+
+        <a class="method-permalink" href="#max_nesting%3AInt32-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/pull_parser.cr#L94" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="max_nesting=(max_nesting:Int32)-instance-method">
+      <div class="signature">
+        
+        def <strong>max_nesting=</strong>(max_nesting : <a href="../Int32.html">Int32</a>)
+
+        <a class="method-permalink" href="#max_nesting%3D%28max_nesting%3AInt32%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/pull_parser.cr#L94" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="on_key(key,&amp;:self-&gt;_)-instance-method">
+      <div class="signature">
+        
+        def <strong>on_key</strong>(key, & : <span class="k">self</span> -> _)
+
+        <a class="method-permalink" href="#on_key%28key%2C%26%3Aself-%3E_%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Reads an object keys and yield when <em>key</em> is found.</p>
+<p>All the other object keys are skipped.</p>
+<p>Returns the return value of the block or <code><a href="../Nil.html">Nil</a></code> if the key was not read.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/pull_parser.cr#L368" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="on_key!(key,&amp;:self-&gt;_)-instance-method">
+      <div class="signature">
+        
+        def <strong>on_key!</strong>(key, & : <span class="k">self</span> -> _)
+
+        <a class="method-permalink" href="#on_key%21%28key%2C%26%3Aself-%3E_%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Reads an object keys and yield when <em>key</em> is found. If not found, raise an <code><a href="../Exception.html">Exception</a></code>.</p>
+<p>All the other object keys are skipped.</p>
+<p>Returns the return value of the block.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/pull_parser.cr#L385" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="raise(message:String):NoReturn-instance-method">
+      <div class="signature">
+        
+        def <strong>raise</strong>(message : <a href="../String.html">String</a>) : NoReturn
+
+        <a class="method-permalink" href="#raise%28message%3AString%29%3ANoReturn-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Raises <code><a href="../JSON/ParseException.html">ParseException</a></code> with <em>message</em> at current location.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/pull_parser.cr#L704" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="raw_value:String-instance-method">
+      <div class="signature">
+        
+        def <strong>raw_value</strong> : <a href="../String.html">String</a>
+
+        <a class="method-permalink" href="#raw_value%3AString-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/pull_parser.cr#L92" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="read?(klass:Bool.class):Bool|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>read?</strong>(klass : <span class="t">Bool</span>.<span class="k">class</span>) : <a href="../Bool.html">Bool</a> | <a href="../Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#read%3F%28klass%3ABool.class%29%3ABool%7CNil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Reads a <code><a href="../Bool.html">Bool</a></code> value and returns it.</p>
+<p>If the value is not a <code><a href="../Bool.html">Bool</a></code>, returns <code>nil</code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/pull_parser.cr#L417" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="read?(klass:Int128.class):Int128|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>read?</strong>(klass : <span class="t">Int128</span>.<span class="k">class</span>) : <a href="../Int128.html">Int128</a> | <a href="../Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#read%3F%28klass%3AInt128.class%29%3AInt128%7CNil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Reads an <code><a href="../Int128.html">Int128</a></code> value and returns it.</p>
+<p>If the value is not an integer or does not fit in an <code><a href="../Int128.html">Int128</a></code>, it
+returns <code>nil</code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/pull_parser.cr#L421" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="read?(klass:Int16.class):Int16|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>read?</strong>(klass : <span class="t">Int16</span>.<span class="k">class</span>) : <a href="../Int16.html">Int16</a> | <a href="../Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#read%3F%28klass%3AInt16.class%29%3AInt16%7CNil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Reads an <code><a href="../Int16.html">Int16</a></code> value and returns it.</p>
+<p>If the value is not an integer or does not fit in an <code><a href="../Int16.html">Int16</a></code>, it
+returns <code>nil</code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/pull_parser.cr#L421" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="read?(klass:Int32.class):Int32|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>read?</strong>(klass : <span class="t">Int32</span>.<span class="k">class</span>) : <a href="../Int32.html">Int32</a> | <a href="../Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#read%3F%28klass%3AInt32.class%29%3AInt32%7CNil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Reads an <code><a href="../Int32.html">Int32</a></code> value and returns it.</p>
+<p>If the value is not an integer or does not fit in an <code><a href="../Int32.html">Int32</a></code>, it
+returns <code>nil</code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/pull_parser.cr#L421" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="read?(klass:Int64.class):Int64|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>read?</strong>(klass : <span class="t">Int64</span>.<span class="k">class</span>) : <a href="../Int64.html">Int64</a> | <a href="../Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#read%3F%28klass%3AInt64.class%29%3AInt64%7CNil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Reads an <code><a href="../Int64.html">Int64</a></code> value and returns it.</p>
+<p>If the value is not an integer or does not fit in an <code><a href="../Int64.html">Int64</a></code>, it
+returns <code>nil</code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/pull_parser.cr#L421" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="read?(klass:Int8.class):Int8|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>read?</strong>(klass : <span class="t">Int8</span>.<span class="k">class</span>) : <a href="../Int8.html">Int8</a> | <a href="../Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#read%3F%28klass%3AInt8.class%29%3AInt8%7CNil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Reads an <code><a href="../Int8.html">Int8</a></code> value and returns it.</p>
+<p>If the value is not an integer or does not fit in an <code><a href="../Int8.html">Int8</a></code>, it
+returns <code>nil</code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/pull_parser.cr#L421" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="read?(klass:UInt128.class):UInt128|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>read?</strong>(klass : <span class="t">UInt128</span>.<span class="k">class</span>) : <a href="../UInt128.html">UInt128</a> | <a href="../Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#read%3F%28klass%3AUInt128.class%29%3AUInt128%7CNil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Reads an <code><a href="../UInt128.html">UInt128</a></code> value and returns it.</p>
+<p>If the value is not an integer or does not fit in an <code><a href="../UInt128.html">UInt128</a></code>, it
+returns <code>nil</code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/pull_parser.cr#L421" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="read?(klass:UInt16.class):UInt16|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>read?</strong>(klass : <span class="t">UInt16</span>.<span class="k">class</span>) : <a href="../UInt16.html">UInt16</a> | <a href="../Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#read%3F%28klass%3AUInt16.class%29%3AUInt16%7CNil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Reads an <code><a href="../UInt16.html">UInt16</a></code> value and returns it.</p>
+<p>If the value is not an integer or does not fit in an <code><a href="../UInt16.html">UInt16</a></code>, it
+returns <code>nil</code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/pull_parser.cr#L421" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="read?(klass:UInt32.class):UInt32|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>read?</strong>(klass : <span class="t">UInt32</span>.<span class="k">class</span>) : <a href="../UInt32.html">UInt32</a> | <a href="../Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#read%3F%28klass%3AUInt32.class%29%3AUInt32%7CNil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Reads an <code><a href="../UInt32.html">UInt32</a></code> value and returns it.</p>
+<p>If the value is not an integer or does not fit in an <code><a href="../UInt32.html">UInt32</a></code>, it
+returns <code>nil</code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/pull_parser.cr#L421" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="read?(klass:UInt64.class):UInt64|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>read?</strong>(klass : <span class="t">UInt64</span>.<span class="k">class</span>) : <a href="../UInt64.html">UInt64</a> | <a href="../Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#read%3F%28klass%3AUInt64.class%29%3AUInt64%7CNil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Reads an <code><a href="../UInt64.html">UInt64</a></code> value and returns it.</p>
+<p>If the value is not an integer or does not fit in an <code><a href="../UInt64.html">UInt64</a></code>, it
+returns <code>nil</code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/pull_parser.cr#L421" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="read?(klass:UInt8.class):UInt8|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>read?</strong>(klass : <span class="t">UInt8</span>.<span class="k">class</span>) : <a href="../UInt8.html">UInt8</a> | <a href="../Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#read%3F%28klass%3AUInt8.class%29%3AUInt8%7CNil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Reads an <code><a href="../UInt8.html">UInt8</a></code> value and returns it.</p>
+<p>If the value is not an integer or does not fit in an <code><a href="../UInt8.html">UInt8</a></code>, it
+returns <code>nil</code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/pull_parser.cr#L421" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="read?(klass:Float32.class):Float32|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>read?</strong>(klass : <span class="t">Float32</span>.<span class="k">class</span>) : <a href="../Float32.html">Float32</a> | <a href="../Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#read%3F%28klass%3AFloat32.class%29%3AFloat32%7CNil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Reads an <code><a href="../Float32.html">Float32</a></code> value and returns it.</p>
+<p>If the value is not an integer or does not fit in an <code><a href="../Float32.html">Float32</a></code>, it returns <code>nil</code>.
+If the value was actually an integer, it is converted to a float.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/pull_parser.cr#L446" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="read?(klass:Float64.class):Float64|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>read?</strong>(klass : <span class="t">Float64</span>.<span class="k">class</span>) : <a href="../Float64.html">Float64</a> | <a href="../Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#read%3F%28klass%3AFloat64.class%29%3AFloat64%7CNil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Reads an <code><a href="../Float64.html">Float64</a></code> value and returns it.</p>
+<p>If the value is not an integer or does not fit in a <code><a href="../Float64.html">Float64</a></code> variable, it returns <code>nil</code>.
+If the value was actually an integer, it is converted to a float.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/pull_parser.cr#L457" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="read?(klass:String.class):String|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>read?</strong>(klass : <span class="t">String</span>.<span class="k">class</span>) : <a href="../String.html">String</a> | <a href="../Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#read%3F%28klass%3AString.class%29%3AString%7CNil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Reads a <code><a href="../String.html">String</a></code> value and returns it.</p>
+<p>If the value is not a <code><a href="../String.html">String</a></code>, returns <code>nil</code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/pull_parser.cr#L467" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="read_array(&amp;)-instance-method">
+      <div class="signature">
+        
+        def <strong>read_array</strong>(&)
+
+        <a class="method-permalink" href="#read_array%28%26%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Reads a whole array.</p>
+<p>It reads the beginning of the array, yield each value of the array, and reads the end of the array.
+You have to consumes the values, if any, so the pull parser does not fail when reading the end of the array.</p>
+<p>If the array is empty, it does not yield.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/pull_parser.cr#L157" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="read_array_or_null(&amp;)-instance-method">
+      <div class="signature">
+        
+        def <strong>read_array_or_null</strong>(&)
+
+        <a class="method-permalink" href="#read_array_or_null%28%26%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Reads an array or a null value, and returns it.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/pull_parser.cr#L335" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="read_begin_array-instance-method">
+      <div class="signature">
+        
+        def <strong>read_begin_array</strong>
+
+        <a class="method-permalink" href="#read_begin_array-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Reads the beginning of an array.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/pull_parser.cr#L140" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="read_begin_object-instance-method">
+      <div class="signature">
+        
+        def <strong>read_begin_object</strong>
+
+        <a class="method-permalink" href="#read_begin_object-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Reads the beginning of an object.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/pull_parser.cr#L166" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="read_bool:Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>read_bool</strong> : <a href="../Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#read_bool%3ABool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Reads a <code><a href="../Bool.html">Bool</a></code> value.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/pull_parser.cr#L206" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="read_bool_or_null:Bool|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>read_bool_or_null</strong> : <a href="../Bool.html">Bool</a> | <a href="../Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#read_bool_or_null%3ABool%7CNil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Reads a <code><a href="../Bool.html">Bool</a></code> or a null value, and returns it.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/pull_parser.cr#L315" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="read_end_array-instance-method">
+      <div class="signature">
+        
+        def <strong>read_end_array</strong>
+
+        <a class="method-permalink" href="#read_end_array-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Reads the end of an array.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/pull_parser.cr#L146" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="read_end_object-instance-method">
+      <div class="signature">
+        
+        def <strong>read_end_object</strong>
+
+        <a class="method-permalink" href="#read_end_object-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Reads the end of an object.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/pull_parser.cr#L172" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="read_float:Float64-instance-method">
+      <div class="signature">
+        
+        def <strong>read_float</strong> : <a href="../Float64.html">Float64</a>
+
+        <a class="method-permalink" href="#read_float%3AFloat64-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Reads a float value.</p>
+<p>If the value is actually an integer, it is converted to float.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/pull_parser.cr#L220" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="read_float_or_null:Float64|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>read_float_or_null</strong> : <a href="../Float64.html">Float64</a> | <a href="../Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#read_float_or_null%3AFloat64%7CNil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Reads a float or a null value, and returns it.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/pull_parser.cr#L325" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="read_int:Int64-instance-method">
+      <div class="signature">
+        
+        def <strong>read_int</strong> : <a href="../Int64.html">Int64</a>
+
+        <a class="method-permalink" href="#read_int%3AInt64-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Reads an integer value.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/pull_parser.cr#L212" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="read_int_or_null:Int64|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>read_int_or_null</strong> : <a href="../Int64.html">Int64</a> | <a href="../Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#read_int_or_null%3AInt64%7CNil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Reads an integer or a null value, and returns it.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/pull_parser.cr#L320" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="read_next:Kind-instance-method">
+      <div class="signature">
+        
+        def <strong>read_next</strong> : <a href="../JSON/PullParser/Kind.html">Kind</a>
+
+        <a class="method-permalink" href="#read_next%3AKind-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Reads the next lexer's token.</p>
+<p>Contrary to <code><a href="../JSON/PullParser.html#read_raw%3AString-instance-method">#read_raw</a></code>, it does not read a full value.
+For example if the next token is the beginning of an array, it will stop there, while <code><a href="../JSON/PullParser.html#read_raw%3AString-instance-method">#read_raw</a></code> would have read the whole array.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/pull_parser.cr#L409" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="read_null:Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>read_null</strong> : <a href="../Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#read_null%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Reads a null value and returns it.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/pull_parser.cr#L199" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="read_null?:Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>read_null?</strong> : <a href="../Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#read_null%3F%3ABool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Reads the current token if its value is null.</p>
+<p>Returns <code>true</code> if the token was read.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/pull_parser.cr#L354" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="read_null_or(&amp;)-instance-method">
+      <div class="signature">
+        
+        def <strong>read_null_or</strong>(&)
+
+        <a class="method-permalink" href="#read_null_or%28%26%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Reads a null value and returns it, or executes the given block if the value is not null.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/pull_parser.cr#L345" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="read_object(&amp;)-instance-method">
+      <div class="signature">
+        
+        def <strong>read_object</strong>(&)
+
+        <a class="method-permalink" href="#read_object%28%26%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Reads a whole object.</p>
+<p>It reads the beginning of the object, yield each key and key location, and reads the end of the object.
+You have to consumes the values, if any, so the pull parser does not fail when reading the end of the object.</p>
+<p>If the object is empty, it does not yield.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/pull_parser.cr#L188" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="read_object_key:String-instance-method">
+      <div class="signature">
+        
+        def <strong>read_object_key</strong> : <a href="../String.html">String</a>
+
+        <a class="method-permalink" href="#read_object_key%3AString-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Reads an object's key and returns it.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/pull_parser.cr#L178" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="read_object_or_null(&amp;)-instance-method">
+      <div class="signature">
+        
+        def <strong>read_object_or_null</strong>(&)
+
+        <a class="method-permalink" href="#read_object_or_null%28%26%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Reads an object or a null value, and returns it.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/pull_parser.cr#L340" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="read_raw(json):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>read_raw</strong>(json) : <a href="../Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#read_raw%28json%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Reads the new value and fill the a JSON builder with it.</p>
+<p>Use this method with a <code><a href="../JSON/Builder.html">JSON::Builder</a></code> to read a JSON while building another one.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/pull_parser.cr#L271" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="read_raw:String-instance-method">
+      <div class="signature">
+        
+        def <strong>read_raw</strong> : <a href="../String.html">String</a>
+
+        <a class="method-permalink" href="#read_raw%3AString-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Read the next value and returns it.</p>
+<p>The value is returned as a json string.
+If the value is an array or an object, it returns a string representing the full value.
+If the value in unknown, it raises a <code><a href="../JSON/ParseException.html">ParseException</a></code>.</p>
+<pre><code class="language-crystal">pull <span class="o">=</span> <span class="t">JSON</span><span class="t">::</span><span class="t">PullParser</span>.new <span class="s">%([null, true, 1, &quot;foo&quot;, [1, &quot;two&quot;], {&quot;foo&quot;: &quot;bar&quot;}])</span>
+pull.read_begin_array
+pull.read_raw <span class="c"># =&gt; &quot;null&quot;</span>
+pull.read_raw <span class="c"># =&gt; &quot;true&quot;</span>
+pull.read_raw <span class="c"># =&gt; &quot;1&quot;</span>
+pull.read_raw <span class="c"># =&gt; &quot;\&quot;foo\&quot;&quot;</span>
+pull.read_raw <span class="c"># =&gt; &quot;[1,\&quot;two\&quot;]&quot;</span>
+pull.read_raw <span class="c"># =&gt; &quot;{\&quot;foo\&quot;:\&quot;bar\&quot;}&quot;</span>
+pull.read_end_array</code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/pull_parser.cr#L248" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="read_string:String-instance-method">
+      <div class="signature">
+        
+        def <strong>read_string</strong> : <a href="../String.html">String</a>
+
+        <a class="method-permalink" href="#read_string%3AString-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Reads a string and returns it.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/pull_parser.cr#L309" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="read_string_or_null:String|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>read_string_or_null</strong> : <a href="../String.html">String</a> | <a href="../Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#read_string_or_null%3AString%7CNil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Reads a string or a null value, and returns it.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/pull_parser.cr#L330" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="skip:Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>skip</strong> : <a href="../Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#skip%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Skips the next value.</p>
+<p>It skips the whole value, not only the next lexer's token.
+For example if the next value is an array, the whole array will be skipped.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/pull_parser.cr#L573" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="string_value:String-instance-method">
+      <div class="signature">
+        
+        def <strong>string_value</strong> : <a href="../String.html">String</a>
+
+        <a class="method-permalink" href="#string_value%3AString-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/pull_parser.cr#L91" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+</div>
+
+</body>
+</html>

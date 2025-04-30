@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Crystal Docs 1.16.1">
+<meta name="crystal_docs.project_version" content="1.17.0-dev">
+<meta name="crystal_docs.project_name" content="Crystal">
+
+  <meta name="crystal_docs.json_config_url" content="/api/versions.json">
+
+
+    <link rel="canonical" href="https://crystal-lang.org/api/latest/Intrinsics.html">
+
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/doc.js"></script>
+
+  <meta name="repository-name" content="Crystal">
+  <title>Intrinsics - Crystal 1.17.0-dev</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill="currentColor" fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<input type="checkbox" id="sidebar-btn">
+<label for="sidebar-btn" id="sidebar-btn-label">
+  <svg class="open" xmlns="http://www.w3.org/2000/svg" height="2em" width="2em" viewBox="0 0 512 512"><title>Open Sidebar</title><path fill="currentColor" d="M80 96v64h352V96H80zm0 112v64h352v-64H80zm0 112v64h352v-64H80z"></path></svg>
+  <svg class="close" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><title>Close Sidebar</title><path fill="currentColor" d="m118.6 73.4-45.2 45.2L210.7 256 73.4 393.4l45.2 45.2L256 301.3l137.4 137.3 45.2-45.2L301.3 256l137.3-137.4-45.2-45.2L256 210.7Z"></path></svg>
+</label>
+<iframe class="sidebar" src="sidebar.html"></iframe>
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">
+    module
+  </span> Intrinsics
+
+</h1>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/intrinsics.cr#L185" target="_blank">
+        intrinsics.cr
+      </a>
+    
+    <br/>
+  
+
+
+
+
+
+  
+
+  
+  <h2>
+    <a id="class-method-summary" class="anchor" href="#class-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Class Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#bitreverse128%28id%29%3AUInt128-class-method" class="signature"><strong>.bitreverse128</strong>(id) : UInt128</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#bitreverse16%28id%29%3AUInt16-class-method" class="signature"><strong>.bitreverse16</strong>(id) : UInt16</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#bitreverse32%28id%29%3AUInt32-class-method" class="signature"><strong>.bitreverse32</strong>(id) : UInt32</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#bitreverse64%28id%29%3AUInt64-class-method" class="signature"><strong>.bitreverse64</strong>(id) : UInt64</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#bitreverse8%28id%29%3AUInt8-class-method" class="signature"><strong>.bitreverse8</strong>(id) : UInt8</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#bswap128%28id%29%3AUInt128-class-method" class="signature"><strong>.bswap128</strong>(id) : UInt128</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#bswap16%28id%29%3AUInt16-class-method" class="signature"><strong>.bswap16</strong>(id) : UInt16</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#bswap32%28id%29%3AUInt32-class-method" class="signature"><strong>.bswap32</strong>(id) : UInt32</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#bswap64%28id%29%3AUInt64-class-method" class="signature"><strong>.bswap64</strong>(id) : UInt64</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#fshl128%28a%2Cb%2Ccount%29%3AUInt128-class-method" class="signature"><strong>.fshl128</strong>(a, b, count) : UInt128</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#fshl16%28a%2Cb%2Ccount%29%3AUInt16-class-method" class="signature"><strong>.fshl16</strong>(a, b, count) : UInt16</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#fshl32%28a%2Cb%2Ccount%29%3AUInt32-class-method" class="signature"><strong>.fshl32</strong>(a, b, count) : UInt32</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#fshl64%28a%2Cb%2Ccount%29%3AUInt64-class-method" class="signature"><strong>.fshl64</strong>(a, b, count) : UInt64</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#fshl8%28a%2Cb%2Ccount%29%3AUInt8-class-method" class="signature"><strong>.fshl8</strong>(a, b, count) : UInt8</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#fshr128%28a%2Cb%2Ccount%29%3AUInt128-class-method" class="signature"><strong>.fshr128</strong>(a, b, count) : UInt128</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#fshr16%28a%2Cb%2Ccount%29%3AUInt16-class-method" class="signature"><strong>.fshr16</strong>(a, b, count) : UInt16</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#fshr32%28a%2Cb%2Ccount%29%3AUInt32-class-method" class="signature"><strong>.fshr32</strong>(a, b, count) : UInt32</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#fshr64%28a%2Cb%2Ccount%29%3AUInt64-class-method" class="signature"><strong>.fshr64</strong>(a, b, count) : UInt64</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#fshr8%28a%2Cb%2Ccount%29%3AUInt8-class-method" class="signature"><strong>.fshr8</strong>(a, b, count) : UInt8</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#pause-class-method" class="signature"><strong>.pause</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#popcount128%28src%29-class-method" class="signature"><strong>.popcount128</strong>(src)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#popcount16%28src%29%3AInt16-class-method" class="signature"><strong>.popcount16</strong>(src) : Int16</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#popcount32%28src%29%3AInt32-class-method" class="signature"><strong>.popcount32</strong>(src) : Int32</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#popcount64%28src%29%3AInt64-class-method" class="signature"><strong>.popcount64</strong>(src) : Int64</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#popcount8%28src%29%3AInt8-class-method" class="signature"><strong>.popcount8</strong>(src) : Int8</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#read_cycle_counter-class-method" class="signature"><strong>.read_cycle_counter</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#unreachable%3ANoReturn-class-method" class="signature"><strong>.unreachable</strong> : NoReturn</a>
+        
+          <div class="summary"><p>Should codegen to the following LLVM IR (before being inlined): <code>define internal void @&quot;*<a href="Intrinsics.html">Intrinsics</a>::unreachable:NoReturn&quot;() #12 { entry:   unreachable }</code></p></div>
+        
+      </li>
+    
+  </ul>
+
+
+  
+  <h2>
+    <a id="macro-summary" class="anchor" href="#macro-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Macro Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#countleading128%28src%2Czero_is_undef%29-macro" class="signature"><strong>countleading128</strong>(src, zero_is_undef)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#countleading16%28src%2Czero_is_undef%29-macro" class="signature"><strong>countleading16</strong>(src, zero_is_undef)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#countleading32%28src%2Czero_is_undef%29-macro" class="signature"><strong>countleading32</strong>(src, zero_is_undef)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#countleading64%28src%2Czero_is_undef%29-macro" class="signature"><strong>countleading64</strong>(src, zero_is_undef)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#countleading8%28src%2Czero_is_undef%29-macro" class="signature"><strong>countleading8</strong>(src, zero_is_undef)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#counttrailing128%28src%2Czero_is_undef%29-macro" class="signature"><strong>counttrailing128</strong>(src, zero_is_undef)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#counttrailing16%28src%2Czero_is_undef%29-macro" class="signature"><strong>counttrailing16</strong>(src, zero_is_undef)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#counttrailing32%28src%2Czero_is_undef%29-macro" class="signature"><strong>counttrailing32</strong>(src, zero_is_undef)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#counttrailing64%28src%2Czero_is_undef%29-macro" class="signature"><strong>counttrailing64</strong>(src, zero_is_undef)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#counttrailing8%28src%2Czero_is_undef%29-macro" class="signature"><strong>counttrailing8</strong>(src, zero_is_undef)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#debugtrap-macro" class="signature"><strong>debugtrap</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#memcpy%28dest%2Csrc%2Clen%2Cis_volatile%29-macro" class="signature"><strong>memcpy</strong>(dest, src, len, is_volatile)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#memmove%28dest%2Csrc%2Clen%2Cis_volatile%29-macro" class="signature"><strong>memmove</strong>(dest, src, len, is_volatile)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#memset%28dest%2Cval%2Clen%2Cis_volatile%29-macro" class="signature"><strong>memset</strong>(dest, val, len, is_volatile)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#va_end%28ap%29-macro" class="signature"><strong>va_end</strong>(ap)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#va_start%28ap%29-macro" class="signature"><strong>va_start</strong>(ap)</a>
+        
+      </li>
+    
+  </ul>
+
+
+  
+
+
+  <div class="methods-inherited">
+    
+  </div>
+
+  
+
+  
+  <h2>
+    <a id="class-method-detail" class="anchor" href="#class-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Class Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="bitreverse128(id):UInt128-class-method">
+      <div class="signature">
+        
+        def self.<strong>bitreverse128</strong>(id) : <a href="UInt128.html">UInt128</a>
+
+        <a class="method-permalink" href="#bitreverse128%28id%29%3AUInt128-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/intrinsics.cr#L230" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="bitreverse16(id):UInt16-class-method">
+      <div class="signature">
+        
+        def self.<strong>bitreverse16</strong>(id) : <a href="UInt16.html">UInt16</a>
+
+        <a class="method-permalink" href="#bitreverse16%28id%29%3AUInt16-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/intrinsics.cr#L218" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="bitreverse32(id):UInt32-class-method">
+      <div class="signature">
+        
+        def self.<strong>bitreverse32</strong>(id) : <a href="UInt32.html">UInt32</a>
+
+        <a class="method-permalink" href="#bitreverse32%28id%29%3AUInt32-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/intrinsics.cr#L222" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="bitreverse64(id):UInt64-class-method">
+      <div class="signature">
+        
+        def self.<strong>bitreverse64</strong>(id) : <a href="UInt64.html">UInt64</a>
+
+        <a class="method-permalink" href="#bitreverse64%28id%29%3AUInt64-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/intrinsics.cr#L226" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="bitreverse8(id):UInt8-class-method">
+      <div class="signature">
+        
+        def self.<strong>bitreverse8</strong>(id) : <a href="UInt8.html">UInt8</a>
+
+        <a class="method-permalink" href="#bitreverse8%28id%29%3AUInt8-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/intrinsics.cr#L214" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="bswap128(id):UInt128-class-method">
+      <div class="signature">
+        
+        def self.<strong>bswap128</strong>(id) : <a href="UInt128.html">UInt128</a>
+
+        <a class="method-permalink" href="#bswap128%28id%29%3AUInt128-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/intrinsics.cr#L246" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="bswap16(id):UInt16-class-method">
+      <div class="signature">
+        
+        def self.<strong>bswap16</strong>(id) : <a href="UInt16.html">UInt16</a>
+
+        <a class="method-permalink" href="#bswap16%28id%29%3AUInt16-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/intrinsics.cr#L234" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="bswap32(id):UInt32-class-method">
+      <div class="signature">
+        
+        def self.<strong>bswap32</strong>(id) : <a href="UInt32.html">UInt32</a>
+
+        <a class="method-permalink" href="#bswap32%28id%29%3AUInt32-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/intrinsics.cr#L238" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="bswap64(id):UInt64-class-method">
+      <div class="signature">
+        
+        def self.<strong>bswap64</strong>(id) : <a href="UInt64.html">UInt64</a>
+
+        <a class="method-permalink" href="#bswap64%28id%29%3AUInt64-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/intrinsics.cr#L242" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="fshl128(a,b,count):UInt128-class-method">
+      <div class="signature">
+        
+        def self.<strong>fshl128</strong>(a, b, count) : <a href="UInt128.html">UInt128</a>
+
+        <a class="method-permalink" href="#fshl128%28a%2Cb%2Ccount%29%3AUInt128-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/intrinsics.cr#L326" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="fshl16(a,b,count):UInt16-class-method">
+      <div class="signature">
+        
+        def self.<strong>fshl16</strong>(a, b, count) : <a href="UInt16.html">UInt16</a>
+
+        <a class="method-permalink" href="#fshl16%28a%2Cb%2Ccount%29%3AUInt16-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/intrinsics.cr#L314" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="fshl32(a,b,count):UInt32-class-method">
+      <div class="signature">
+        
+        def self.<strong>fshl32</strong>(a, b, count) : <a href="UInt32.html">UInt32</a>
+
+        <a class="method-permalink" href="#fshl32%28a%2Cb%2Ccount%29%3AUInt32-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/intrinsics.cr#L318" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="fshl64(a,b,count):UInt64-class-method">
+      <div class="signature">
+        
+        def self.<strong>fshl64</strong>(a, b, count) : <a href="UInt64.html">UInt64</a>
+
+        <a class="method-permalink" href="#fshl64%28a%2Cb%2Ccount%29%3AUInt64-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/intrinsics.cr#L322" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="fshl8(a,b,count):UInt8-class-method">
+      <div class="signature">
+        
+        def self.<strong>fshl8</strong>(a, b, count) : <a href="UInt8.html">UInt8</a>
+
+        <a class="method-permalink" href="#fshl8%28a%2Cb%2Ccount%29%3AUInt8-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/intrinsics.cr#L310" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="fshr128(a,b,count):UInt128-class-method">
+      <div class="signature">
+        
+        def self.<strong>fshr128</strong>(a, b, count) : <a href="UInt128.html">UInt128</a>
+
+        <a class="method-permalink" href="#fshr128%28a%2Cb%2Ccount%29%3AUInt128-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/intrinsics.cr#L346" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="fshr16(a,b,count):UInt16-class-method">
+      <div class="signature">
+        
+        def self.<strong>fshr16</strong>(a, b, count) : <a href="UInt16.html">UInt16</a>
+
+        <a class="method-permalink" href="#fshr16%28a%2Cb%2Ccount%29%3AUInt16-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/intrinsics.cr#L334" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="fshr32(a,b,count):UInt32-class-method">
+      <div class="signature">
+        
+        def self.<strong>fshr32</strong>(a, b, count) : <a href="UInt32.html">UInt32</a>
+
+        <a class="method-permalink" href="#fshr32%28a%2Cb%2Ccount%29%3AUInt32-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/intrinsics.cr#L338" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="fshr64(a,b,count):UInt64-class-method">
+      <div class="signature">
+        
+        def self.<strong>fshr64</strong>(a, b, count) : <a href="UInt64.html">UInt64</a>
+
+        <a class="method-permalink" href="#fshr64%28a%2Cb%2Ccount%29%3AUInt64-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/intrinsics.cr#L342" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="fshr8(a,b,count):UInt8-class-method">
+      <div class="signature">
+        
+        def self.<strong>fshr8</strong>(a, b, count) : <a href="UInt8.html">UInt8</a>
+
+        <a class="method-permalink" href="#fshr8%28a%2Cb%2Ccount%29%3AUInt8-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/intrinsics.cr#L330" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="pause-class-method">
+      <div class="signature">
+        
+        def self.<strong>pause</strong>
+
+        <a class="method-permalink" href="#pause-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/intrinsics.cr#L190" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="popcount128(src)-class-method">
+      <div class="signature">
+        
+        def self.<strong>popcount128</strong>(src)
+
+        <a class="method-permalink" href="#popcount128%28src%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/intrinsics.cr#L266" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="popcount16(src):Int16-class-method">
+      <div class="signature">
+        
+        def self.<strong>popcount16</strong>(src) : <a href="Int16.html">Int16</a>
+
+        <a class="method-permalink" href="#popcount16%28src%29%3AInt16-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/intrinsics.cr#L254" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="popcount32(src):Int32-class-method">
+      <div class="signature">
+        
+        def self.<strong>popcount32</strong>(src) : <a href="Int32.html">Int32</a>
+
+        <a class="method-permalink" href="#popcount32%28src%29%3AInt32-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/intrinsics.cr#L258" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="popcount64(src):Int64-class-method">
+      <div class="signature">
+        
+        def self.<strong>popcount64</strong>(src) : <a href="Int64.html">Int64</a>
+
+        <a class="method-permalink" href="#popcount64%28src%29%3AInt64-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/intrinsics.cr#L262" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="popcount8(src):Int8-class-method">
+      <div class="signature">
+        
+        def self.<strong>popcount8</strong>(src) : <a href="Int8.html">Int8</a>
+
+        <a class="method-permalink" href="#popcount8%28src%29%3AInt8-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/intrinsics.cr#L250" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="read_cycle_counter-class-method">
+      <div class="signature">
+        
+        def self.<strong>read_cycle_counter</strong>
+
+        <a class="method-permalink" href="#read_cycle_counter-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/intrinsics.cr#L210" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="unreachable:NoReturn-class-method">
+      <div class="signature">
+        
+        def self.<strong>unreachable</strong> : NoReturn
+
+        <a class="method-permalink" href="#unreachable%3ANoReturn-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Should codegen to the following LLVM IR (before being inlined):</p>
+<pre><code class="language-crystal">define internal void @&quot;*Intrinsics::unreachable:NoReturn&quot;() #12 {
+entry:
+  unreachable
+}</code></pre>
+<p>Can be used like <code>@llvm.assume(i1 cond)</code> as <code>unreachable unless (assumption)</code>.</p>
+<p><span class="flag yellow">WARNING</span>  the behaviour of the program is undefined if the assumption is broken!</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/intrinsics.cr#L370" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+  
+  <h2>
+    <a id="macro-detail" class="anchor" href="#macro-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Macro Detail
+  </h2>
+  
+    <div class="entry-detail" id="countleading128(src,zero_is_undef)-macro">
+      <div class="signature">
+        
+        macro <strong>countleading128</strong>(src, zero_is_undef)
+
+        <a class="method-permalink" href="#countleading128%28src%2Czero_is_undef%29-macro">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/intrinsics.cr#L286" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="countleading16(src,zero_is_undef)-macro">
+      <div class="signature">
+        
+        macro <strong>countleading16</strong>(src, zero_is_undef)
+
+        <a class="method-permalink" href="#countleading16%28src%2Czero_is_undef%29-macro">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/intrinsics.cr#L274" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="countleading32(src,zero_is_undef)-macro">
+      <div class="signature">
+        
+        macro <strong>countleading32</strong>(src, zero_is_undef)
+
+        <a class="method-permalink" href="#countleading32%28src%2Czero_is_undef%29-macro">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/intrinsics.cr#L278" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="countleading64(src,zero_is_undef)-macro">
+      <div class="signature">
+        
+        macro <strong>countleading64</strong>(src, zero_is_undef)
+
+        <a class="method-permalink" href="#countleading64%28src%2Czero_is_undef%29-macro">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/intrinsics.cr#L282" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="countleading8(src,zero_is_undef)-macro">
+      <div class="signature">
+        
+        macro <strong>countleading8</strong>(src, zero_is_undef)
+
+        <a class="method-permalink" href="#countleading8%28src%2Czero_is_undef%29-macro">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/intrinsics.cr#L270" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="counttrailing128(src,zero_is_undef)-macro">
+      <div class="signature">
+        
+        macro <strong>counttrailing128</strong>(src, zero_is_undef)
+
+        <a class="method-permalink" href="#counttrailing128%28src%2Czero_is_undef%29-macro">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/intrinsics.cr#L306" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="counttrailing16(src,zero_is_undef)-macro">
+      <div class="signature">
+        
+        macro <strong>counttrailing16</strong>(src, zero_is_undef)
+
+        <a class="method-permalink" href="#counttrailing16%28src%2Czero_is_undef%29-macro">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/intrinsics.cr#L294" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="counttrailing32(src,zero_is_undef)-macro">
+      <div class="signature">
+        
+        macro <strong>counttrailing32</strong>(src, zero_is_undef)
+
+        <a class="method-permalink" href="#counttrailing32%28src%2Czero_is_undef%29-macro">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/intrinsics.cr#L298" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="counttrailing64(src,zero_is_undef)-macro">
+      <div class="signature">
+        
+        macro <strong>counttrailing64</strong>(src, zero_is_undef)
+
+        <a class="method-permalink" href="#counttrailing64%28src%2Czero_is_undef%29-macro">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/intrinsics.cr#L302" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="counttrailing8(src,zero_is_undef)-macro">
+      <div class="signature">
+        
+        macro <strong>counttrailing8</strong>(src, zero_is_undef)
+
+        <a class="method-permalink" href="#counttrailing8%28src%2Czero_is_undef%29-macro">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/intrinsics.cr#L290" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="debugtrap-macro">
+      <div class="signature">
+        
+        macro <strong>debugtrap</strong>
+
+        <a class="method-permalink" href="#debugtrap-macro">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/intrinsics.cr#L186" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="memcpy(dest,src,len,is_volatile)-macro">
+      <div class="signature">
+        
+        macro <strong>memcpy</strong>(dest, src, len, is_volatile)
+
+        <a class="method-permalink" href="#memcpy%28dest%2Csrc%2Clen%2Cis_volatile%29-macro">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/intrinsics.cr#L198" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="memmove(dest,src,len,is_volatile)-macro">
+      <div class="signature">
+        
+        macro <strong>memmove</strong>(dest, src, len, is_volatile)
+
+        <a class="method-permalink" href="#memmove%28dest%2Csrc%2Clen%2Cis_volatile%29-macro">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/intrinsics.cr#L202" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="memset(dest,val,len,is_volatile)-macro">
+      <div class="signature">
+        
+        macro <strong>memset</strong>(dest, val, len, is_volatile)
+
+        <a class="method-permalink" href="#memset%28dest%2Cval%2Clen%2Cis_volatile%29-macro">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/intrinsics.cr#L206" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="va_end(ap)-macro">
+      <div class="signature">
+        
+        macro <strong>va_end</strong>(ap)
+
+        <a class="method-permalink" href="#va_end%28ap%29-macro">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/intrinsics.cr#L354" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="va_start(ap)-macro">
+      <div class="signature">
+        
+        macro <strong>va_start</strong>(ap)
+
+        <a class="method-permalink" href="#va_start%28ap%29-macro">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/intrinsics.cr#L350" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+  
+
+
+</div>
+
+</body>
+</html>

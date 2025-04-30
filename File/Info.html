@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Crystal Docs 1.16.1">
+<meta name="crystal_docs.project_version" content="1.17.0-dev">
+<meta name="crystal_docs.project_name" content="Crystal">
+
+  <meta name="crystal_docs.json_config_url" content="/api/versions.json">
+
+
+    <link rel="canonical" href="https://crystal-lang.org/api/latest/File/Info.html">
+
+<link href="../css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../js/doc.js"></script>
+
+  <meta name="repository-name" content="Crystal">
+  <title>File::Info - Crystal 1.17.0-dev</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "../";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill="currentColor" fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<input type="checkbox" id="sidebar-btn">
+<label for="sidebar-btn" id="sidebar-btn-label">
+  <svg class="open" xmlns="http://www.w3.org/2000/svg" height="2em" width="2em" viewBox="0 0 512 512"><title>Open Sidebar</title><path fill="currentColor" d="M80 96v64h352V96H80zm0 112v64h352v-64H80zm0 112v64h352v-64H80z"></path></svg>
+  <svg class="close" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><title>Close Sidebar</title><path fill="currentColor" d="m118.6 73.4-45.2 45.2L210.7 256 73.4 393.4l45.2 45.2L256 301.3l137.4 137.3 45.2-45.2L301.3 256l137.3-137.4-45.2-45.2L256 210.7Z"></path></svg>
+</label>
+<iframe class="sidebar" src="../sidebar.html"></iframe>
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">
+    struct
+  </span> File::<wbr>Info
+
+</h1>
+
+
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../File/Info.html">File::Info</a></li><li class="superclass"><a href="../Struct.html">Struct</a></li><li class="superclass"><a href="../Value.html">Value</a></li><li class="superclass"><a href="../Object.html">Object</a></li></ul>
+
+
+
+
+  <h2>
+    <a id="overview" class="anchor" href="#overview">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Overview
+  </h2>
+
+  <p>A <code><a href="../File/Info.html">File::Info</a></code> contains metadata regarding a file.
+It is returned by <code><a href="../File.html#info%28path%3APath%7CString%2Cfollow_symlinks%3Dtrue%29%3AInfo-class-method">File.info</a></code>, <code><a href="../File.html#info%28path%3APath%7CString%2Cfollow_symlinks%3Dtrue%29%3AInfo-class-method">File#info</a></code> and <code><a href="../File.html#info%3F%28path%3APath%7CString%2Cfollow_symlinks%3Dtrue%29%3AInfo%7CNil-class-method">File.info?</a></code>.</p>
+
+
+
+
+
+
+
+  <h2>
+    <a id="included-modules" class="anchor" href="#included-modules">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Included Modules
+  </h2>
+  <ul class="other-types-list">
+    
+      <li class="other-type">Crystal::System::FileInfo</li>
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file/info.cr#L82" target="_blank">
+        file/info.cr
+      </a>
+    
+    <br/>
+  
+
+
+
+
+
+  
+
+  
+  <h2>
+    <a id="class-method-summary" class="anchor" href="#class-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Class Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#executable%3F%28path%3APath%7CString%29%3ABool-class-method" class="signature"><strong>.executable?</strong>(path : Path | String) : Bool</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if <em>path</em> is executable by the real user id of this process else returns <code>false</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#readable%3F%28path%3APath%7CString%29%3ABool-class-method" class="signature"><strong>.readable?</strong>(path : Path | String) : Bool</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if <em>path</em> is readable by the real user id of this process else returns <code>false</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#writable%3F%28path%3APath%7CString%29%3ABool-class-method" class="signature"><strong>.writable?</strong>(path : Path | String) : Bool</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if <em>path</em> is writable by the real user id of this process else returns <code>false</code>.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+  
+
+  
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#directory%3F-instance-method" class="signature"><strong>#directory?</strong></a>
+        
+          <div class="summary"><p>Returns true if this <code><a href="../File/Info.html">Info</a></code> represents a directory.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#file%3F-instance-method" class="signature"><strong>#file?</strong></a>
+        
+          <div class="summary"><p>Returns true if this <code><a href="../File/Info.html">Info</a></code> represents a standard file.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#flags%3AFlags-instance-method" class="signature"><strong>#flags</strong> : Flags</a>
+        
+          <div class="summary"><p>The special flags this file has set.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#group_id%3AString-instance-method" class="signature"><strong>#group_id</strong> : String</a>
+        
+          <div class="summary"><p>The group ID that the file belongs to.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#modification_time%3ATime-instance-method" class="signature"><strong>#modification_time</strong> : Time</a>
+        
+          <div class="summary"><p>The last time this file was modified.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#owner_id%3AString-instance-method" class="signature"><strong>#owner_id</strong> : String</a>
+        
+          <div class="summary"><p>The user ID that the file belongs to.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#permissions%3APermissions-instance-method" class="signature"><strong>#permissions</strong> : Permissions</a>
+        
+          <div class="summary"><p>The permissions of the file.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#same_file%3F%28other%3Aself%29%3ABool-instance-method" class="signature"><strong>#same_file?</strong>(other : <span class="k">self</span>) : Bool</a>
+        
+          <div class="summary"><p>Returns true if this <code><a href="../File/Info.html">Info</a></code> and <em>other</em> are of the same file.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#size%3AInt64-instance-method" class="signature"><strong>#size</strong> : Int64</a>
+        
+          <div class="summary"><p>Size of the file, in bytes.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#symlink%3F-instance-method" class="signature"><strong>#symlink?</strong></a>
+        
+          <div class="summary"><p>Returns true if this <code><a href="../File/Info.html">Info</a></code> represents a symbolic link to another file.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#type%3AType-instance-method" class="signature"><strong>#type</strong> : Type</a>
+        
+          <div class="summary"><p>The type of the file.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+
+  <div class="methods-inherited">
+    
+      
+
+  <h3>Instance methods inherited from module <code>Crystal::System::FileInfo</code></h3>
+  
+  
+    <a href="../Crystal/System/FileInfo.html#system_flags%3A%3A%3AFile%3A%3AFlags-instance-method" class="tooltip">
+      <span>system_flags : ::File::Flags</span>
+    system_flags</a>, 
+    
+  
+    <a href="../Crystal/System/FileInfo.html#system_group_id%3AString-instance-method" class="tooltip">
+      <span>system_group_id : String</span>
+    system_group_id</a>, 
+    
+  
+    <a href="../Crystal/System/FileInfo.html#system_modification_time%3A%3A%3ATime-instance-method" class="tooltip">
+      <span>system_modification_time : ::Time</span>
+    system_modification_time</a>, 
+    
+  
+    <a href="../Crystal/System/FileInfo.html#system_owner_id%3AString-instance-method" class="tooltip">
+      <span>system_owner_id : String</span>
+    system_owner_id</a>, 
+    
+  
+    <a href="../Crystal/System/FileInfo.html#system_permissions%3A%3A%3AFile%3A%3APermissions-instance-method" class="tooltip">
+      <span>system_permissions : ::File::Permissions</span>
+    system_permissions</a>, 
+    
+  
+    <a href="../Crystal/System/FileInfo.html#system_same_file%3F%28other%3Aself%29%3ABool-instance-method" class="tooltip">
+      <span>system_same_file?(other : <span class="k">self</span>) : Bool</span>
+    system_same_file?</a>, 
+    
+  
+    <a href="../Crystal/System/FileInfo.html#system_size%3AInt64-instance-method" class="tooltip">
+      <span>system_size : Int64</span>
+    system_size</a>, 
+    
+  
+    <a href="../Crystal/System/FileInfo.html#system_type%3A%3A%3AFile%3A%3AType-instance-method" class="tooltip">
+      <span>system_type : ::File::Type</span>
+    system_type</a>
+    
+  
+
+
+      
+
+  <h3>Constructor methods inherited from module <code>Crystal::System::FileInfo</code></h3>
+  
+  
+    <a href="../Crystal/System/FileInfo.html#new%28stat%3ALibC%3A%3AStat%29-class-method" class="tooltip">
+      <span>new(stat : LibC::Stat)</span>
+    new</a>
+    
+  
+
+
+      
+
+
+      
+
+
+    
+      
+
+  <h3>Instance methods inherited from struct <code><a href="../Struct.html">Struct</a></code></h3>
+  
+  
+    <a href="../Struct.html#%3D%3D%28other%29%3ABool-instance-method" class="tooltip">
+      <span>==(other) : Bool</span>
+    ==</a>, 
+    
+  
+    <a href="../Struct.html#hash%28hasher%29-instance-method" class="tooltip">
+      <span>hash(hasher)</span>
+    hash</a>, 
+    
+  
+    <a href="../Struct.html#inspect%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>inspect(io : IO) : Nil</span>
+    inspect</a>, 
+    
+  
+    <a href="../Struct.html#pretty_print%28pp%29%3ANil-instance-method" class="tooltip">
+      <span>pretty_print(pp) : Nil</span>
+    pretty_print</a>, 
+    
+  
+    <a href="../Struct.html#to_s%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_s(io : IO) : Nil</span>
+    to_s</a>
+    
+  
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+      
+
+  <h3>Instance methods inherited from struct <code><a href="../Value.html">Value</a></code></h3>
+  
+  
+    <a href="../Value.html#%3D%3D%28other%3AJSON%3A%3AAny%29-instance-method" class="tooltip">
+      <span>==(other : JSON::Any)<br/>==(other : YAML::Any)<br/>==(other)</span>
+    ==</a>, 
+    
+  
+    <a href="../Value.html#dup-instance-method" class="tooltip">
+      <span>dup</span>
+    dup</a>
+    
+  
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+      
+
+  <h3>Instance methods inherited from class <code><a href="../Object.html">Object</a></code></h3>
+  
+  
+    <a href="../Object.html#%21%3ABool-instance-method" class="tooltip">
+      <span>! : Bool</span>
+    !</a>, 
+    
+  
+    <a href="../Object.html#%21%3D%28other%29-instance-method" class="tooltip">
+      <span>!=(other)</span>
+    !=</a>, 
+    
+  
+    <a href="../Object.html#%21~%28other%29-instance-method" class="tooltip">
+      <span>!~(other)</span>
+    !~</a>, 
+    
+  
+    <a href="../Object.html#%3D%3D%28other%29-instance-method" class="tooltip">
+      <span>==(other)</span>
+    ==</a>, 
+    
+  
+    <a href="../Object.html#%3D%3D%3D%28other%3AJSON%3A%3AAny%29-instance-method" class="tooltip">
+      <span>===(other : JSON::Any)<br/>===(other : YAML::Any)<br/>===(other)</span>
+    ===</a>, 
+    
+  
+    <a href="../Object.html#%3D~%28other%29-instance-method" class="tooltip">
+      <span>=~(other)</span>
+    =~</a>, 
+    
+  
+    <a href="../Object.html#as%28type%3AClass%29-instance-method" class="tooltip">
+      <span>as(type : Class)</span>
+    as</a>, 
+    
+  
+    <a href="../Object.html#as%3F%28type%3AClass%29-instance-method" class="tooltip">
+      <span>as?(type : Class)</span>
+    as?</a>, 
+    
+  
+    <a href="../Object.html#class-instance-method" class="tooltip">
+      <span>class</span>
+    class</a>, 
+    
+  
+    <a href="../Object.html#dup-instance-method" class="tooltip">
+      <span>dup</span>
+    dup</a>, 
+    
+  
+    <a href="../Object.html#hash%28hasher%29-instance-method" class="tooltip">
+      <span>hash(hasher)<br/>hash</span>
+    hash</a>, 
+    
+  
+    <a href="../Object.html#in%3F%28collection%3AObject%29%3ABool-instance-method" class="tooltip">
+      <span>in?(collection : Object) : Bool<br/>in?(*values : Object) : Bool</span>
+    in?</a>, 
+    
+  
+    <a href="../Object.html#inspect%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>inspect(io : IO) : Nil<br/>inspect : String</span>
+    inspect</a>, 
+    
+  
+    <a href="../Object.html#is_a%3F%28type%3AClass%29%3ABool-instance-method" class="tooltip">
+      <span>is_a?(type : Class) : Bool</span>
+    is_a?</a>, 
+    
+  
+    <a href="../Object.html#itself-instance-method" class="tooltip">
+      <span>itself</span>
+    itself</a>, 
+    
+  
+    <a href="../Object.html#nil%3F%3ABool-instance-method" class="tooltip">
+      <span>nil? : Bool</span>
+    nil?</a>, 
+    
+  
+    <a href="../Object.html#not_nil%21%28message%29-instance-method" class="tooltip">
+      <span>not_nil!(message)<br/>not_nil!</span>
+    not_nil!</a>, 
+    
+  
+    <a href="../Object.html#pretty_inspect%28width%3D79%2Cnewline%3D%22%5Cn%22%2Cindent%3D0%29%3AString-instance-method" class="tooltip">
+      <span>pretty_inspect(width = <span class="n">79</span>, newline = <span class="s">&quot;\n&quot;</span>, indent = <span class="n">0</span>) : String</span>
+    pretty_inspect</a>, 
+    
+  
+    <a href="../Object.html#pretty_print%28pp%3APrettyPrint%29%3ANil-instance-method" class="tooltip">
+      <span>pretty_print(pp : PrettyPrint) : Nil</span>
+    pretty_print</a>, 
+    
+  
+    <a href="../Object.html#responds_to%3F%28name%3ASymbol%29%3ABool-instance-method" class="tooltip">
+      <span>responds_to?(name : Symbol) : Bool</span>
+    responds_to?</a>, 
+    
+  
+    <a href="../Object.html#tap%28%26%29-instance-method" class="tooltip">
+      <span>tap(&)</span>
+    tap</a>, 
+    
+  
+    <a href="../Object.html#to_json%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_json(io : IO) : Nil<br/>to_json : String</span>
+    to_json</a>, 
+    
+  
+    <a href="../Object.html#to_pretty_json%28indent%3AString%3D%22%22%29%3AString-instance-method" class="tooltip">
+      <span>to_pretty_json(indent : String = <span class="s">&quot;  &quot;</span>) : String<br/>to_pretty_json(io : IO, indent : String = <span class="s">&quot;  &quot;</span>) : Nil</span>
+    to_pretty_json</a>, 
+    
+  
+    <a href="../Object.html#to_s%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_s(io : IO) : Nil<br/>to_s : String</span>
+    to_s</a>, 
+    
+  
+    <a href="../Object.html#to_yaml%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_yaml(io : IO) : Nil<br/>to_yaml : String</span>
+    to_yaml</a>, 
+    
+  
+    <a href="../Object.html#try%28%26%29-instance-method" class="tooltip">
+      <span>try(&)</span>
+    try</a>, 
+    
+  
+    <a href="../Object.html#unsafe_as%28type%3AT.class%29forallT-instance-method" class="tooltip">
+      <span>unsafe_as(type : <span class="t">T</span>.<span class="k">class</span>) forall T</span>
+    unsafe_as</a>
+    
+  
+
+
+      
+
+
+      
+
+  <h3>Class methods inherited from class <code><a href="../Object.html">Object</a></code></h3>
+  
+  
+    <a href="../Object.html#from_json%28string_or_io%2Croot%3AString%29-class-method" class="tooltip">
+      <span>from_json(string_or_io, root : String)<br/>from_json(string_or_io)</span>
+    from_json</a>, 
+    
+  
+    <a href="../Object.html#from_yaml%28string_or_io%3AString%7CIO%29-class-method" class="tooltip">
+      <span>from_yaml(string_or_io : String | IO)</span>
+    from_yaml</a>
+    
+  
+
+
+      
+
+  <h3>Macros inherited from class <code><a href="../Object.html">Object</a></code></h3>
+  
+  
+    <a href="../Object.html#class_getter%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_getter(*names, &block)</span>
+    class_getter</a>, 
+    
+  
+    <a href="../Object.html#class_getter%21%28%2Anames%29-macro" class="tooltip">
+      <span>class_getter!(*names)</span>
+    class_getter!</a>, 
+    
+  
+    <a href="../Object.html#class_getter%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_getter?(*names, &block)</span>
+    class_getter?</a>, 
+    
+  
+    <a href="../Object.html#class_property%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_property(*names, &block)</span>
+    class_property</a>, 
+    
+  
+    <a href="../Object.html#class_property%21%28%2Anames%29-macro" class="tooltip">
+      <span>class_property!(*names)</span>
+    class_property!</a>, 
+    
+  
+    <a href="../Object.html#class_property%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_property?(*names, &block)</span>
+    class_property?</a>, 
+    
+  
+    <a href="../Object.html#class_setter%28%2Anames%29-macro" class="tooltip">
+      <span>class_setter(*names)</span>
+    class_setter</a>, 
+    
+  
+    <a href="../Object.html#def_clone-macro" class="tooltip">
+      <span>def_clone</span>
+    def_clone</a>, 
+    
+  
+    <a href="../Object.html#def_equals%28%2Afields%29-macro" class="tooltip">
+      <span>def_equals(*fields)</span>
+    def_equals</a>, 
+    
+  
+    <a href="../Object.html#def_equals_and_hash%28%2Afields%29-macro" class="tooltip">
+      <span>def_equals_and_hash(*fields)</span>
+    def_equals_and_hash</a>, 
+    
+  
+    <a href="../Object.html#def_hash%28%2Afields%29-macro" class="tooltip">
+      <span>def_hash(*fields)</span>
+    def_hash</a>, 
+    
+  
+    <a href="../Object.html#delegate%28%2Amethods%2Ctoobject%29-macro" class="tooltip">
+      <span>delegate(*methods, to object)</span>
+    delegate</a>, 
+    
+  
+    <a href="../Object.html#forward_missing_to%28delegate%29-macro" class="tooltip">
+      <span>forward_missing_to(delegate)</span>
+    forward_missing_to</a>, 
+    
+  
+    <a href="../Object.html#getter%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>getter(*names, &block)</span>
+    getter</a>, 
+    
+  
+    <a href="../Object.html#getter%21%28%2Anames%29-macro" class="tooltip">
+      <span>getter!(*names)</span>
+    getter!</a>, 
+    
+  
+    <a href="../Object.html#getter%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>getter?(*names, &block)</span>
+    getter?</a>, 
+    
+  
+    <a href="../Object.html#property%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>property(*names, &block)</span>
+    property</a>, 
+    
+  
+    <a href="../Object.html#property%21%28%2Anames%29-macro" class="tooltip">
+      <span>property!(*names)</span>
+    property!</a>, 
+    
+  
+    <a href="../Object.html#property%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>property?(*names, &block)</span>
+    property?</a>, 
+    
+  
+    <a href="../Object.html#setter%28%2Anames%29-macro" class="tooltip">
+      <span>setter(*names)</span>
+    setter</a>
+    
+  
+
+
+    
+  </div>
+
+  
+
+  
+  <h2>
+    <a id="class-method-detail" class="anchor" href="#class-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Class Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="executable?(path:Path|String):Bool-class-method">
+      <div class="signature">
+        
+        def self.<strong>executable?</strong>(path : <a href="../Path.html">Path</a> | <a href="../String.html">String</a>) : <a href="../Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#executable%3F%28path%3APath%7CString%29%3ABool-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if <em>path</em> is executable by the real user id of this process else returns <code>false</code>.</p>
+<pre><code class="language-crystal"><span class="t">File</span>.write(<span class="s">&quot;foo&quot;</span>, <span class="s">&quot;foo&quot;</span>)
+<span class="t">File</span><span class="t">::</span><span class="t">Info</span>.executable?(<span class="s">&quot;foo&quot;</span>) <span class="c"># =&gt; false</span></code></pre>
+<p>This method returns the readable property as reported by the file system
+which provides no indication of whether <code>Process.execute</code> would be a valid
+operation because it applies to all file types, including directories
+(which typically <em>are</em> executable to signal it's allowed to list their
+contents).</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file/info.cr#L186" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="readable?(path:Path|String):Bool-class-method">
+      <div class="signature">
+        
+        def self.<strong>readable?</strong>(path : <a href="../Path.html">Path</a> | <a href="../String.html">String</a>) : <a href="../Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#readable%3F%28path%3APath%7CString%29%3ABool-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if <em>path</em> is readable by the real user id of this process else returns <code>false</code>.</p>
+<pre><code class="language-crystal"><span class="t">File</span>.write(<span class="s">&quot;foo&quot;</span>, <span class="s">&quot;foo&quot;</span>)
+<span class="t">File</span><span class="t">::</span><span class="t">Info</span>.readable?(<span class="s">&quot;foo&quot;</span>) <span class="c"># =&gt; true</span></code></pre>
+<p>This method returns the readable property as reported by the file system
+which provides no indication of whether <code><a href="../File.html#read%28filename%3APath%7CString%2Cencoding%3Dnil%2Cinvalid%3Dnil%2Cblocking%3Dtrue%29%3AString-class-method">File.read</a></code> would be a valid
+operation because it applies to all file types, including directories.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file/info.cr#L156" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="writable?(path:Path|String):Bool-class-method">
+      <div class="signature">
+        
+        def self.<strong>writable?</strong>(path : <a href="../Path.html">Path</a> | <a href="../String.html">String</a>) : <a href="../Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#writable%3F%28path%3APath%7CString%29%3ABool-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if <em>path</em> is writable by the real user id of this process else returns <code>false</code>.</p>
+<pre><code class="language-crystal"><span class="t">File</span>.write(<span class="s">&quot;foo&quot;</span>, <span class="s">&quot;foo&quot;</span>)
+<span class="t">File</span><span class="t">::</span><span class="t">Info</span>.writable?(<span class="s">&quot;foo&quot;</span>) <span class="c"># =&gt; true</span></code></pre>
+<p>This method returns the readable property as reported by the file system
+which provides no indication of whether <code><a href="../File.html#write%28filename%3APath%7CString%2Ccontent%2Cperm%3DDEFAULT_CREATE_PERMISSIONS%2Cencoding%3Dnil%2Cinvalid%3Dnil%2Cmode%3D%22w%22%2Cblocking%3Dtrue%29-class-method">File.write</a></code> would be a valid
+operation because it applies to all file types, including directories.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file/info.cr#L170" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+  
+
+  
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="directory?-instance-method">
+      <div class="signature">
+        
+        def <strong>directory?</strong>
+
+        <a class="method-permalink" href="#directory%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns true if this <code><a href="../File/Info.html">Info</a></code> represents a directory. Shortcut for
+<code>type.directory?</code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file/info.cr#L136" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="file?-instance-method">
+      <div class="signature">
+        
+        def <strong>file?</strong>
+
+        <a class="method-permalink" href="#file%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns true if this <code><a href="../File/Info.html">Info</a></code> represents a standard file. Shortcut for
+<code>type.file?</code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file/info.cr#L130" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="flags:Flags-instance-method">
+      <div class="signature">
+        
+        def <strong>flags</strong> : <a href="../File/Flags.html">Flags</a>
+
+        <a class="method-permalink" href="#flags%3AFlags-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>The special flags this file has set.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file/info.cr#L101" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="group_id:String-instance-method">
+      <div class="signature">
+        
+        def <strong>group_id</strong> : <a href="../String.html">String</a>
+
+        <a class="method-permalink" href="#group_id%3AString-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>The group ID that the file belongs to.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file/info.cr#L116" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="modification_time:Time-instance-method">
+      <div class="signature">
+        
+        def <strong>modification_time</strong> : <a href="../Time.html">Time</a>
+
+        <a class="method-permalink" href="#modification_time%3ATime-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>The last time this file was modified.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file/info.cr#L106" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="owner_id:String-instance-method">
+      <div class="signature">
+        
+        def <strong>owner_id</strong> : <a href="../String.html">String</a>
+
+        <a class="method-permalink" href="#owner_id%3AString-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>The user ID that the file belongs to.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file/info.cr#L111" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="permissions:Permissions-instance-method">
+      <div class="signature">
+        
+        def <strong>permissions</strong> : <a href="../File/Permissions.html">Permissions</a>
+
+        <a class="method-permalink" href="#permissions%3APermissions-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>The permissions of the file.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file/info.cr#L91" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="same_file?(other:self):Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>same_file?</strong>(other : <span class="k">self</span>) : <a href="../Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#same_file%3F%28other%3Aself%29%3ABool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns true if this <code><a href="../File/Info.html">Info</a></code> and <em>other</em> are of the same file.</p>
+<p>On Unix-like systems, this compares device and inode fields, and will
+compare equal for hard linked files.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file/info.cr#L124" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="size:Int64-instance-method">
+      <div class="signature">
+        
+        def <strong>size</strong> : <a href="../Int64.html">Int64</a>
+
+        <a class="method-permalink" href="#size%3AInt64-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Size of the file, in bytes.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file/info.cr#L86" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="symlink?-instance-method">
+      <div class="signature">
+        
+        def <strong>symlink?</strong>
+
+        <a class="method-permalink" href="#symlink%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns true if this <code><a href="../File/Info.html">Info</a></code> represents a symbolic link to another file.
+Shortcut for <code>type.symlink?</code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file/info.cr#L142" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="type:Type-instance-method">
+      <div class="signature">
+        
+        def <strong>type</strong> : <a href="../File/Type.html">Type</a>
+
+        <a class="method-permalink" href="#type%3AType-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>The type of the file.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file/info.cr#L96" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+</div>
+
+</body>
+</html>

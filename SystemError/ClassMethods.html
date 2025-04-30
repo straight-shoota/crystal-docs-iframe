@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Crystal Docs 1.16.1">
+<meta name="crystal_docs.project_version" content="1.17.0-dev">
+<meta name="crystal_docs.project_name" content="Crystal">
+
+  <meta name="crystal_docs.json_config_url" content="/api/versions.json">
+
+
+    <link rel="canonical" href="https://crystal-lang.org/api/latest/SystemError/ClassMethods.html">
+
+<link href="../css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../js/doc.js"></script>
+
+  <meta name="repository-name" content="Crystal">
+  <title>SystemError::ClassMethods - Crystal 1.17.0-dev</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "../";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill="currentColor" fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<input type="checkbox" id="sidebar-btn">
+<label for="sidebar-btn" id="sidebar-btn-label">
+  <svg class="open" xmlns="http://www.w3.org/2000/svg" height="2em" width="2em" viewBox="0 0 512 512"><title>Open Sidebar</title><path fill="currentColor" d="M80 96v64h352V96H80zm0 112v64h352v-64H80zm0 112v64h352v-64H80z"></path></svg>
+  <svg class="close" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><title>Close Sidebar</title><path fill="currentColor" d="m118.6 73.4-45.2 45.2L210.7 256 73.4 393.4l45.2 45.2L256 301.3l137.4 137.3 45.2-45.2L301.3 256l137.3-137.4-45.2-45.2L256 210.7Z"></path></svg>
+</label>
+<iframe class="sidebar" src="../sidebar.html"></iframe>
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">
+    module
+  </span> SystemError::<wbr>ClassMethods
+
+</h1>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/system_error.cr#L52" target="_blank">
+        system_error.cr
+      </a>
+    
+    <br/>
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#from_errno%28message%3AString%2C%2A%2Aopts%29-instance-method" class="signature"><strong>#from_errno</strong>(message : String, **opts)</a>
+        
+          <div class="summary"><p>Builds an instance of the exception from the current system error value (<code><a href="../Errno.html#value%3Aself-class-method">Errno.value</a></code>).</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#from_errno%28message%3AString%7CNil%3Dnil%2Cerrno%3AErrno%7CNil%3Dnil%2C%2A%2Aopts%29-instance-method" class="signature"><strong>#from_errno</strong>(message : String | Nil = <span class="n">nil</span>, errno : Errno | Nil = <span class="n">nil</span>, **opts)</a>
+        
+          <div class="summary"><p><span class="flag red">DEPRECATED</span>  Use <code><a href="../SystemError/ClassMethods.html#from_os_error%28message%3AString%7CNil%2Cos_error%3AErrno%7CWinError%7CWasiError%7CNil%2C%2A%2Aopts%29-instance-method">.from_os_error</a></code> instead</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#from_os_error%28message%3AString%7CNil%2Cos_error%3AErrno%7CWinError%7CWasiError%7CNil%2C%2A%2Aopts%29-instance-method" class="signature"><strong>#from_os_error</strong>(message : String | Nil, os_error : Errno | WinError | WasiError | Nil, **opts)</a>
+        
+          <div class="summary"><p>Builds an instance of the exception from an <em>os_error</em> value.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#from_winerror%28message%3AString%7CNil%2C%2A%2Aopts%29-instance-method" class="signature"><strong>#from_winerror</strong>(message : String | Nil, **opts)</a>
+        
+          <div class="summary"><p>Builds an instance of the exception from the current windows error value (<code><a href="../WinError.html#value%3Aself-class-method">WinError.value</a></code>).</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#from_wsa_error%28message%3AString%7CNil%3Dnil%2C%2A%2Aopts%29-instance-method" class="signature"><strong>#from_wsa_error</strong>(message : String | Nil = <span class="n">nil</span>, **opts)</a>
+        
+          <div class="summary"><p>Builds an instance of the exception from the current Windows Socket API error value (<code><a href="../WinError.html#wsa_value-class-method">WinError.wsa_value</a></code>).</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+
+  <div class="methods-inherited">
+    
+  </div>
+
+  
+
+  
+
+  
+
+  
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="from_errno(message:String,**opts)-instance-method">
+      <div class="signature">
+        
+        def <strong>from_errno</strong>(message : <a href="../String.html">String</a>, **opts)
+
+        <a class="method-permalink" href="#from_errno%28message%3AString%2C%2A%2Aopts%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Builds an instance of the exception from the current system error value (<code><a href="../Errno.html#value%3Aself-class-method">Errno.value</a></code>).</p>
+<p>The system message corresponding to the OS error value amends the <em>message</em>.
+Additional keyword arguments are forwarded to the exception initializer <code>.new_from_os_error</code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/system_error.cr#L75" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="from_errno(message:String|Nil=nil,errno:Errno|Nil=nil,**opts)-instance-method">
+      <div class="signature">
+        
+        def <strong>from_errno</strong>(message : <a href="../String.html">String</a> | <a href="../Nil.html">Nil</a> = <span class="n">nil</span>, errno : <a href="../Errno.html">Errno</a> | <a href="../Nil.html">Nil</a> = <span class="n">nil</span>, **opts)
+
+        <a class="method-permalink" href="#from_errno%28message%3AString%7CNil%3Dnil%2Cerrno%3AErrno%7CNil%3Dnil%2C%2A%2Aopts%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p><span class="flag red">DEPRECATED</span>  Use <code><a href="../SystemError/ClassMethods.html#from_os_error%28message%3AString%7CNil%2Cos_error%3AErrno%7CWinError%7CWasiError%7CNil%2C%2A%2Aopts%29-instance-method">.from_os_error</a></code> instead</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/system_error.cr#L80" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="from_os_error(message:String|Nil,os_error:Errno|WinError|WasiError|Nil,**opts)-instance-method">
+      <div class="signature">
+        
+        def <strong>from_os_error</strong>(message : <a href="../String.html">String</a> | <a href="../Nil.html">Nil</a>, os_error : <a href="../Errno.html">Errno</a> | <a href="../WinError.html">WinError</a> | <a href="../WasiError.html">WasiError</a> | <a href="../Nil.html">Nil</a>, **opts)
+
+        <a class="method-permalink" href="#from_os_error%28message%3AString%7CNil%2Cos_error%3AErrno%7CWinError%7CWasiError%7CNil%2C%2A%2Aopts%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Builds an instance of the exception from an <em>os_error</em> value.</p>
+<p>The system message corresponding to the OS error value amends the <em>message</em>.
+Additional keyword arguments are forwarded to the exception initializer <code>.new_from_os_error</code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/system_error.cr#L57" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="from_winerror(message:String|Nil,**opts)-instance-method">
+      <div class="signature">
+        
+        def <strong>from_winerror</strong>(message : <a href="../String.html">String</a> | <a href="../Nil.html">Nil</a>, **opts)
+
+        <a class="method-permalink" href="#from_winerror%28message%3AString%7CNil%2C%2A%2Aopts%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Builds an instance of the exception from the current windows error value (<code><a href="../WinError.html#value%3Aself-class-method">WinError.value</a></code>).</p>
+<p>The system message corresponding to the OS error value amends the <em>message</em>.
+Additional keyword arguments are forwarded to the exception initializer <code>.new_from_os_error</code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/system_error.cr#L114" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="from_wsa_error(message:String|Nil=nil,**opts)-instance-method">
+      <div class="signature">
+        
+        def <strong>from_wsa_error</strong>(message : <a href="../String.html">String</a> | <a href="../Nil.html">Nil</a> = <span class="n">nil</span>, **opts)
+
+        <a class="method-permalink" href="#from_wsa_error%28message%3AString%7CNil%3Dnil%2C%2A%2Aopts%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Builds an instance of the exception from the current Windows Socket API error value (<code><a href="../WinError.html#wsa_value-class-method">WinError.wsa_value</a></code>).</p>
+<p>The system message corresponding to the OS error value amends the <em>message</em>.
+Additional keyword arguments are forwarded to the exception initializer.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/system_error.cr#L122" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+</div>
+
+</body>
+</html>

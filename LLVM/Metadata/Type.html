@@ -1,0 +1,1716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Crystal Docs 1.16.1">
+<meta name="crystal_docs.project_version" content="1.17.0-dev">
+<meta name="crystal_docs.project_name" content="Crystal">
+
+  <meta name="crystal_docs.json_config_url" content="/api/versions.json">
+
+
+    <link rel="canonical" href="https://crystal-lang.org/api/latest/LLVM/Metadata/Type.html">
+
+<link href="../../css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../../js/doc.js"></script>
+
+  <meta name="repository-name" content="Crystal">
+  <title>LLVM::Metadata::Type - Crystal 1.17.0-dev</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "../../";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill="currentColor" fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<input type="checkbox" id="sidebar-btn">
+<label for="sidebar-btn" id="sidebar-btn-label">
+  <svg class="open" xmlns="http://www.w3.org/2000/svg" height="2em" width="2em" viewBox="0 0 512 512"><title>Open Sidebar</title><path fill="currentColor" d="M80 96v64h352V96H80zm0 112v64h352v-64H80zm0 112v64h352v-64H80z"></path></svg>
+  <svg class="close" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><title>Close Sidebar</title><path fill="currentColor" d="m118.6 73.4-45.2 45.2L210.7 256 73.4 393.4l45.2 45.2L256 301.3l137.4 137.3 45.2-45.2L301.3 256l137.3-137.4-45.2-45.2L256 210.7Z"></path></svg>
+</label>
+<iframe class="sidebar" src="../../sidebar.html"></iframe>
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">
+    enum
+  </span> LLVM::<wbr>Metadata::<wbr>Type
+
+</h1>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/enums.cr#L501" target="_blank">
+        llvm/enums.cr
+      </a>
+    
+    <br/>
+  
+
+
+
+  
+    <h2>
+      <a id="enum-members" class="anchor" href="#enum-members">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+      Enum Members
+    </h2>
+  
+  <dl>
+    
+      <dt class="entry-const" id="Dbg">
+        <strong>Dbg</strong> = <code><span class="n">0_u32</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="Tbaa">
+        <strong>Tbaa</strong> = <code><span class="n">1_u32</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="Prof">
+        <strong>Prof</strong> = <code><span class="n">2_u32</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="Fpmath">
+        <strong>Fpmath</strong> = <code><span class="n">3_u32</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="Range">
+        <strong>Range</strong> = <code><span class="n">4_u32</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="TbaaStruct">
+        <strong>TbaaStruct</strong> = <code><span class="n">5_u32</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="InvariantLoad">
+        <strong>InvariantLoad</strong> = <code><span class="n">6_u32</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="AliasScope">
+        <strong>AliasScope</strong> = <code><span class="n">7_u32</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="Noalias">
+        <strong>Noalias</strong> = <code><span class="n">8_u32</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="Nontemporal">
+        <strong>Nontemporal</strong> = <code><span class="n">9_u32</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="MemParallelLoopAccess">
+        <strong>MemParallelLoopAccess</strong> = <code><span class="n">10_u32</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="Nonnull">
+        <strong>Nonnull</strong> = <code><span class="n">11_u32</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="Dereferenceable">
+        <strong>Dereferenceable</strong> = <code><span class="n">12_u32</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="DereferenceableOrNull">
+        <strong>DereferenceableOrNull</strong> = <code><span class="n">13_u32</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="MakeImplicit">
+        <strong>MakeImplicit</strong> = <code><span class="n">14_u32</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="Unpredictable">
+        <strong>Unpredictable</strong> = <code><span class="n">15_u32</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="InvariantGroup">
+        <strong>InvariantGroup</strong> = <code><span class="n">16_u32</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="Align">
+        <strong>Align</strong> = <code><span class="n">17_u32</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="Loop">
+        <strong>Loop</strong> = <code><span class="n">18_u32</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="Type">
+        <strong>Type</strong> = <code><span class="n">19_u32</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="SectionPrefix">
+        <strong>SectionPrefix</strong> = <code><span class="n">20_u32</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="AbsoluteSymbol">
+        <strong>AbsoluteSymbol</strong> = <code><span class="n">21_u32</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="Associated">
+        <strong>Associated</strong> = <code><span class="n">22_u32</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="Callees">
+        <strong>Callees</strong> = <code><span class="n">23_u32</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="IrrLoop">
+        <strong>IrrLoop</strong> = <code><span class="n">24_u32</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="AccessGroup">
+        <strong>AccessGroup</strong> = <code><span class="n">25_u32</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="Callback">
+        <strong>Callback</strong> = <code><span class="n">26_u32</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="PreserveAccessIndex">
+        <strong>PreserveAccessIndex</strong> = <code><span class="n">27_u32</span></code>
+      </dt>
+      
+    
+  </dl>
+
+
+
+  
+
+  
+
+  
+
+  
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#absolute_symbol%3F-instance-method" class="signature"><strong>#absolute_symbol?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="../../LLVM/Metadata/Type.html#AbsoluteSymbol">AbsoluteSymbol</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#access_group%3F-instance-method" class="signature"><strong>#access_group?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="../../LLVM/Metadata/Type.html#AccessGroup">AccessGroup</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#alias_scope%3F-instance-method" class="signature"><strong>#alias_scope?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="../../LLVM/Metadata/Type.html#AliasScope">AliasScope</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#align%3F-instance-method" class="signature"><strong>#align?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="../../LLVM/Metadata/Type.html#Align">Align</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#associated%3F-instance-method" class="signature"><strong>#associated?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="../../LLVM/Metadata/Type.html#Associated">Associated</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#callback%3F-instance-method" class="signature"><strong>#callback?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="../../LLVM/Metadata/Type.html#Callback">Callback</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#callees%3F-instance-method" class="signature"><strong>#callees?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="../../LLVM/Metadata/Type.html#Callees">Callees</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#dbg%3F-instance-method" class="signature"><strong>#dbg?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="../../LLVM/Metadata/Type.html#Dbg">Dbg</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#dereferenceable%3F-instance-method" class="signature"><strong>#dereferenceable?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="../../LLVM/Metadata/Type.html#Dereferenceable">Dereferenceable</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#dereferenceable_or_null%3F-instance-method" class="signature"><strong>#dereferenceable_or_null?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="../../LLVM/Metadata/Type.html#DereferenceableOrNull">DereferenceableOrNull</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#fpmath%3F-instance-method" class="signature"><strong>#fpmath?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="../../LLVM/Metadata/Type.html#Fpmath">Fpmath</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#invariant_group%3F-instance-method" class="signature"><strong>#invariant_group?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="../../LLVM/Metadata/Type.html#InvariantGroup">InvariantGroup</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#invariant_load%3F-instance-method" class="signature"><strong>#invariant_load?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="../../LLVM/Metadata/Type.html#InvariantLoad">InvariantLoad</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#irr_loop%3F-instance-method" class="signature"><strong>#irr_loop?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="../../LLVM/Metadata/Type.html#IrrLoop">IrrLoop</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#loop%3F-instance-method" class="signature"><strong>#loop?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="../../LLVM/Metadata/Type.html#Loop">Loop</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#make_implicit%3F-instance-method" class="signature"><strong>#make_implicit?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="../../LLVM/Metadata/Type.html#MakeImplicit">MakeImplicit</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#mem_parallel_loop_access%3F-instance-method" class="signature"><strong>#mem_parallel_loop_access?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="../../LLVM/Metadata/Type.html#MemParallelLoopAccess">MemParallelLoopAccess</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#noalias%3F-instance-method" class="signature"><strong>#noalias?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="../../LLVM/Metadata/Type.html#Noalias">Noalias</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#nonnull%3F-instance-method" class="signature"><strong>#nonnull?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="../../LLVM/Metadata/Type.html#Nonnull">Nonnull</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#nontemporal%3F-instance-method" class="signature"><strong>#nontemporal?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="../../LLVM/Metadata/Type.html#Nontemporal">Nontemporal</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#preserve_access_index%3F-instance-method" class="signature"><strong>#preserve_access_index?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="../../LLVM/Metadata/Type.html#PreserveAccessIndex">PreserveAccessIndex</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#prof%3F-instance-method" class="signature"><strong>#prof?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="../../LLVM/Metadata/Type.html#Prof">Prof</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#range%3F-instance-method" class="signature"><strong>#range?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="../../LLVM/Metadata/Type.html#Range">Range</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#section_prefix%3F-instance-method" class="signature"><strong>#section_prefix?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="../../LLVM/Metadata/Type.html#SectionPrefix">SectionPrefix</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#tbaa%3F-instance-method" class="signature"><strong>#tbaa?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="../../LLVM/Metadata/Type.html#Tbaa">Tbaa</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#tbaa_struct%3F-instance-method" class="signature"><strong>#tbaa_struct?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="../../LLVM/Metadata/Type.html#TbaaStruct">TbaaStruct</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#type%3F-instance-method" class="signature"><strong>#type?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="../../LLVM/Metadata/Type.html#Type">Type</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#unpredictable%3F-instance-method" class="signature"><strong>#unpredictable?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="../../LLVM/Metadata/Type.html#Unpredictable">Unpredictable</a></code></p></div>
+        
+      </li>
+    
+  </ul>
+
+
+
+  <div class="methods-inherited">
+    
+      
+
+  <h3>Instance methods inherited from struct <code><a href="../../Enum.html">Enum</a></code></h3>
+  
+  
+    <a href="../../Enum.html#%26%28other%3Aself%29%3Aself-instance-method" class="tooltip">
+      <span>&(other : <span class="k">self</span>) : <span class="k">self</span></span>
+    &</a>, 
+    
+  
+    <a href="../../Enum.html#%2B%28other%3AInt%29%3Aself-instance-method" class="tooltip">
+      <span>+(other : Int) : <span class="k">self</span></span>
+    +</a>, 
+    
+  
+    <a href="../../Enum.html#-%28other%3AInt%29%3Aself-instance-method" class="tooltip">
+      <span>-(other : Int) : <span class="k">self</span></span>
+    -</a>, 
+    
+  
+    <a href="../../Enum.html#%3C%3D%3E%28other%3Aself%29-instance-method" class="tooltip">
+      <span><=>(other : <span class="k">self</span>)</span>
+    <=></a>, 
+    
+  
+    <a href="../../Enum.html#%3D%3D%28other%3Aself%29-instance-method" class="tooltip">
+      <span>==(other : <span class="k">self</span>)<br/>==(other)</span>
+    ==</a>, 
+    
+  
+    <a href="../../Enum.html#%5E%28other%3Aself%29%3Aself-instance-method" class="tooltip">
+      <span>^(other : <span class="k">self</span>) : <span class="k">self</span></span>
+    ^</a>, 
+    
+  
+    <a href="../../Enum.html#%7C%28other%3Aself%29%3Aself-instance-method" class="tooltip">
+      <span>|(other : <span class="k">self</span>) : <span class="k">self</span></span>
+    |</a>, 
+    
+  
+    <a href="../../Enum.html#~%3Aself-instance-method" class="tooltip">
+      <span>~ : <span class="k">self</span></span>
+    ~</a>, 
+    
+  
+    <a href="../../Enum.html#clone-instance-method" class="tooltip">
+      <span>clone</span>
+    clone</a>, 
+    
+  
+    <a href="../../Enum.html#each%28%26%3Aself-%3E%29-instance-method" class="tooltip">
+      <span>each(& : <span class="k">self</span> -> )</span>
+    each</a>, 
+    
+  
+    <a href="../../Enum.html#hash%28hasher%29-instance-method" class="tooltip">
+      <span>hash(hasher)</span>
+    hash</a>, 
+    
+  
+    <a href="../../Enum.html#includes%3F%28other%3Aself%29%3ABool-instance-method" class="tooltip">
+      <span>includes?(other : <span class="k">self</span>) : Bool</span>
+    includes?</a>, 
+    
+  
+    <a href="../../Enum.html#inspect%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>inspect(io : IO) : Nil</span>
+    inspect</a>, 
+    
+  
+    <a href="../../Enum.html#to_f32%3AFloat32-instance-method" class="tooltip">
+      <span>to_f32 : Float32</span>
+    to_f32</a>, 
+    
+  
+    <a href="../../Enum.html#to_f32%21%3AFloat32-instance-method" class="tooltip">
+      <span>to_f32! : Float32</span>
+    to_f32!</a>, 
+    
+  
+    <a href="../../Enum.html#to_f64%3AFloat64-instance-method" class="tooltip">
+      <span>to_f64 : Float64</span>
+    to_f64</a>, 
+    
+  
+    <a href="../../Enum.html#to_f64%21%3AFloat64-instance-method" class="tooltip">
+      <span>to_f64! : Float64</span>
+    to_f64!</a>, 
+    
+  
+    <a href="../../Enum.html#to_i%3AInt32-instance-method" class="tooltip">
+      <span>to_i : Int32</span>
+    to_i</a>, 
+    
+  
+    <a href="../../Enum.html#to_i128%3AInt128-instance-method" class="tooltip">
+      <span>to_i128 : Int128</span>
+    to_i128</a>, 
+    
+  
+    <a href="../../Enum.html#to_i128%21%3AInt128-instance-method" class="tooltip">
+      <span>to_i128! : Int128</span>
+    to_i128!</a>, 
+    
+  
+    <a href="../../Enum.html#to_i16%3AInt16-instance-method" class="tooltip">
+      <span>to_i16 : Int16</span>
+    to_i16</a>, 
+    
+  
+    <a href="../../Enum.html#to_i16%21%3AInt16-instance-method" class="tooltip">
+      <span>to_i16! : Int16</span>
+    to_i16!</a>, 
+    
+  
+    <a href="../../Enum.html#to_i32%3AInt32-instance-method" class="tooltip">
+      <span>to_i32 : Int32</span>
+    to_i32</a>, 
+    
+  
+    <a href="../../Enum.html#to_i32%21%3AInt32-instance-method" class="tooltip">
+      <span>to_i32! : Int32</span>
+    to_i32!</a>, 
+    
+  
+    <a href="../../Enum.html#to_i64%3AInt64-instance-method" class="tooltip">
+      <span>to_i64 : Int64</span>
+    to_i64</a>, 
+    
+  
+    <a href="../../Enum.html#to_i64%21%3AInt64-instance-method" class="tooltip">
+      <span>to_i64! : Int64</span>
+    to_i64!</a>, 
+    
+  
+    <a href="../../Enum.html#to_i8%3AInt8-instance-method" class="tooltip">
+      <span>to_i8 : Int8</span>
+    to_i8</a>, 
+    
+  
+    <a href="../../Enum.html#to_i8%21%3AInt8-instance-method" class="tooltip">
+      <span>to_i8! : Int8</span>
+    to_i8!</a>, 
+    
+  
+    <a href="../../Enum.html#to_json%28json%3AJSON%3A%3ABuilder%29-instance-method" class="tooltip">
+      <span>to_json(json : JSON::Builder)</span>
+    to_json</a>, 
+    
+  
+    <a href="../../Enum.html#to_s%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_s(io : IO) : Nil<br/>to_s : String</span>
+    to_s</a>, 
+    
+  
+    <a href="../../Enum.html#to_u128%3AUInt128-instance-method" class="tooltip">
+      <span>to_u128 : UInt128</span>
+    to_u128</a>, 
+    
+  
+    <a href="../../Enum.html#to_u128%21%3AUInt128-instance-method" class="tooltip">
+      <span>to_u128! : UInt128</span>
+    to_u128!</a>, 
+    
+  
+    <a href="../../Enum.html#to_u16%3AUInt16-instance-method" class="tooltip">
+      <span>to_u16 : UInt16</span>
+    to_u16</a>, 
+    
+  
+    <a href="../../Enum.html#to_u16%21%3AUInt16-instance-method" class="tooltip">
+      <span>to_u16! : UInt16</span>
+    to_u16!</a>, 
+    
+  
+    <a href="../../Enum.html#to_u32%3AUInt32-instance-method" class="tooltip">
+      <span>to_u32 : UInt32</span>
+    to_u32</a>, 
+    
+  
+    <a href="../../Enum.html#to_u32%21%3AUInt32-instance-method" class="tooltip">
+      <span>to_u32! : UInt32</span>
+    to_u32!</a>, 
+    
+  
+    <a href="../../Enum.html#to_u64%3AUInt64-instance-method" class="tooltip">
+      <span>to_u64 : UInt64</span>
+    to_u64</a>, 
+    
+  
+    <a href="../../Enum.html#to_u64%21%3AUInt64-instance-method" class="tooltip">
+      <span>to_u64! : UInt64</span>
+    to_u64!</a>, 
+    
+  
+    <a href="../../Enum.html#to_u8%3AUInt8-instance-method" class="tooltip">
+      <span>to_u8 : UInt8</span>
+    to_u8</a>, 
+    
+  
+    <a href="../../Enum.html#to_u8%21%3AUInt8-instance-method" class="tooltip">
+      <span>to_u8! : UInt8</span>
+    to_u8!</a>, 
+    
+  
+    <a href="../../Enum.html#to_yaml%28yaml%3AYAML%3A%3ANodes%3A%3ABuilder%29-instance-method" class="tooltip">
+      <span>to_yaml(yaml : YAML::Nodes::Builder)</span>
+    to_yaml</a>, 
+    
+  
+    <a href="../../Enum.html#value%3AInt-instance-method" class="tooltip">
+      <span>value : Int</span>
+    value</a>
+    
+  
+
+
+      
+
+  <h3>Constructor methods inherited from struct <code><a href="../../Enum.html">Enum</a></code></h3>
+  
+  
+    <a href="../../Enum.html#from_value%28value%3AInt%29%3Aself-class-method" class="tooltip">
+      <span>from_value(value : Int) : <span class="k">self</span></span>
+    from_value</a>, 
+    
+  
+    <a href="../../Enum.html#new%28ctx%3AYAML%3A%3AParseContext%2Cnode%3AYAML%3A%3ANodes%3A%3ANode%29-class-method" class="tooltip">
+      <span>new(ctx : YAML::ParseContext, node : YAML::Nodes::Node)<br/>new(value : <span class="k">self</span>)<br/>new(pull : JSON::PullParser)</span>
+    new</a>, 
+    
+  
+    <a href="../../Enum.html#parse%28string%3AString%29%3Aself-class-method" class="tooltip">
+      <span>parse(string : String) : <span class="k">self</span></span>
+    parse</a>
+    
+  
+
+
+      
+
+  <h3>Class methods inherited from struct <code><a href="../../Enum.html">Enum</a></code></h3>
+  
+  
+    <a href="../../Enum.html#each%28%26%3Aself-%3E%29-class-method" class="tooltip">
+      <span>each(& : <span class="k">self</span> -> )</span>
+    each</a>, 
+    
+  
+    <a href="../../Enum.html#from_value%3F%28value%3AInt%29%3Aself%7CNil-class-method" class="tooltip">
+      <span>from_value?(value : Int) : <span class="k">self</span> | Nil</span>
+    from_value?</a>, 
+    
+  
+    <a href="../../Enum.html#names%3AArray%28String%29-class-method" class="tooltip">
+      <span>names : Array(String)</span>
+    names</a>, 
+    
+  
+    <a href="../../Enum.html#parse%3F%28string%3AString%29%3Aself%7CNil-class-method" class="tooltip">
+      <span>parse?(string : String) : <span class="k">self</span> | Nil</span>
+    parse?</a>, 
+    
+  
+    <a href="../../Enum.html#valid%3F%28value%3Aself%29%3ABool-class-method" class="tooltip">
+      <span>valid?(value : <span class="k">self</span>) : Bool</span>
+    valid?</a>, 
+    
+  
+    <a href="../../Enum.html#values%3AArray%28self%29-class-method" class="tooltip">
+      <span>values : Array(<span class="k">self</span>)</span>
+    values</a>
+    
+  
+
+
+      
+
+  <h3>Macros inherited from struct <code><a href="../../Enum.html">Enum</a></code></h3>
+  
+  
+    <a href="../../Enum.html#%5B%5D%28%2Avalues%29-macro" class="tooltip">
+      <span>[](*values)</span>
+    []</a>, 
+    
+  
+    <a href="../../Enum.html#flags%28%2Avalues%29-macro" class="tooltip">
+      <span>flags(*values)</span>
+    flags</a>
+    
+  
+
+
+    
+      
+
+  <h3>Instance methods inherited from module <code><a href="../../Comparable.html">Comparable</a>(<a href="../../Enum.html">Enum</a>)</code></h3>
+  
+  
+    <a href="../../Comparable.html#%3C%28other%3AT%29%3ABool-instance-method" class="tooltip">
+      <span><(other : T) : Bool</span>
+    <</a>, 
+    
+  
+    <a href="../../Comparable.html#%3C%3D%28other%3AT%29-instance-method" class="tooltip">
+      <span><=(other : T)</span>
+    <=</a>, 
+    
+  
+    <a href="../../Comparable.html#%3C%3D%3E%28other%3AT%29-instance-method" class="tooltip">
+      <span><=>(other : T)</span>
+    <=></a>, 
+    
+  
+    <a href="../../Comparable.html#%3D%3D%28other%3AT%29-instance-method" class="tooltip">
+      <span>==(other : T)</span>
+    ==</a>, 
+    
+  
+    <a href="../../Comparable.html#%3E%28other%3AT%29%3ABool-instance-method" class="tooltip">
+      <span>>(other : T) : Bool</span>
+    ></a>, 
+    
+  
+    <a href="../../Comparable.html#%3E%3D%28other%3AT%29-instance-method" class="tooltip">
+      <span>>=(other : T)</span>
+    >=</a>, 
+    
+  
+    <a href="../../Comparable.html#clamp%28min%2Cmax%29-instance-method" class="tooltip">
+      <span>clamp(min, max)<br/>clamp(range : Range)</span>
+    clamp</a>
+    
+  
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+      
+
+  <h3>Instance methods inherited from struct <code><a href="../../Value.html">Value</a></code></h3>
+  
+  
+    <a href="../../Value.html#%3D%3D%28other%3AJSON%3A%3AAny%29-instance-method" class="tooltip">
+      <span>==(other : JSON::Any)<br/>==(other : YAML::Any)<br/>==(other)</span>
+    ==</a>, 
+    
+  
+    <a href="../../Value.html#dup-instance-method" class="tooltip">
+      <span>dup</span>
+    dup</a>
+    
+  
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+      
+
+  <h3>Instance methods inherited from class <code><a href="../../Object.html">Object</a></code></h3>
+  
+  
+    <a href="../../Object.html#%21%3ABool-instance-method" class="tooltip">
+      <span>! : Bool</span>
+    !</a>, 
+    
+  
+    <a href="../../Object.html#%21%3D%28other%29-instance-method" class="tooltip">
+      <span>!=(other)</span>
+    !=</a>, 
+    
+  
+    <a href="../../Object.html#%21~%28other%29-instance-method" class="tooltip">
+      <span>!~(other)</span>
+    !~</a>, 
+    
+  
+    <a href="../../Object.html#%3D%3D%28other%29-instance-method" class="tooltip">
+      <span>==(other)</span>
+    ==</a>, 
+    
+  
+    <a href="../../Object.html#%3D%3D%3D%28other%3AJSON%3A%3AAny%29-instance-method" class="tooltip">
+      <span>===(other : JSON::Any)<br/>===(other : YAML::Any)<br/>===(other)</span>
+    ===</a>, 
+    
+  
+    <a href="../../Object.html#%3D~%28other%29-instance-method" class="tooltip">
+      <span>=~(other)</span>
+    =~</a>, 
+    
+  
+    <a href="../../Object.html#as%28type%3AClass%29-instance-method" class="tooltip">
+      <span>as(type : Class)</span>
+    as</a>, 
+    
+  
+    <a href="../../Object.html#as%3F%28type%3AClass%29-instance-method" class="tooltip">
+      <span>as?(type : Class)</span>
+    as?</a>, 
+    
+  
+    <a href="../../Object.html#class-instance-method" class="tooltip">
+      <span>class</span>
+    class</a>, 
+    
+  
+    <a href="../../Object.html#dup-instance-method" class="tooltip">
+      <span>dup</span>
+    dup</a>, 
+    
+  
+    <a href="../../Object.html#hash%28hasher%29-instance-method" class="tooltip">
+      <span>hash(hasher)<br/>hash</span>
+    hash</a>, 
+    
+  
+    <a href="../../Object.html#in%3F%28collection%3AObject%29%3ABool-instance-method" class="tooltip">
+      <span>in?(collection : Object) : Bool<br/>in?(*values : Object) : Bool</span>
+    in?</a>, 
+    
+  
+    <a href="../../Object.html#inspect%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>inspect(io : IO) : Nil<br/>inspect : String</span>
+    inspect</a>, 
+    
+  
+    <a href="../../Object.html#is_a%3F%28type%3AClass%29%3ABool-instance-method" class="tooltip">
+      <span>is_a?(type : Class) : Bool</span>
+    is_a?</a>, 
+    
+  
+    <a href="../../Object.html#itself-instance-method" class="tooltip">
+      <span>itself</span>
+    itself</a>, 
+    
+  
+    <a href="../../Object.html#nil%3F%3ABool-instance-method" class="tooltip">
+      <span>nil? : Bool</span>
+    nil?</a>, 
+    
+  
+    <a href="../../Object.html#not_nil%21%28message%29-instance-method" class="tooltip">
+      <span>not_nil!(message)<br/>not_nil!</span>
+    not_nil!</a>, 
+    
+  
+    <a href="../../Object.html#pretty_inspect%28width%3D79%2Cnewline%3D%22%5Cn%22%2Cindent%3D0%29%3AString-instance-method" class="tooltip">
+      <span>pretty_inspect(width = <span class="n">79</span>, newline = <span class="s">&quot;\n&quot;</span>, indent = <span class="n">0</span>) : String</span>
+    pretty_inspect</a>, 
+    
+  
+    <a href="../../Object.html#pretty_print%28pp%3APrettyPrint%29%3ANil-instance-method" class="tooltip">
+      <span>pretty_print(pp : PrettyPrint) : Nil</span>
+    pretty_print</a>, 
+    
+  
+    <a href="../../Object.html#responds_to%3F%28name%3ASymbol%29%3ABool-instance-method" class="tooltip">
+      <span>responds_to?(name : Symbol) : Bool</span>
+    responds_to?</a>, 
+    
+  
+    <a href="../../Object.html#tap%28%26%29-instance-method" class="tooltip">
+      <span>tap(&)</span>
+    tap</a>, 
+    
+  
+    <a href="../../Object.html#to_json%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_json(io : IO) : Nil<br/>to_json : String</span>
+    to_json</a>, 
+    
+  
+    <a href="../../Object.html#to_pretty_json%28indent%3AString%3D%22%22%29%3AString-instance-method" class="tooltip">
+      <span>to_pretty_json(indent : String = <span class="s">&quot;  &quot;</span>) : String<br/>to_pretty_json(io : IO, indent : String = <span class="s">&quot;  &quot;</span>) : Nil</span>
+    to_pretty_json</a>, 
+    
+  
+    <a href="../../Object.html#to_s%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_s(io : IO) : Nil<br/>to_s : String</span>
+    to_s</a>, 
+    
+  
+    <a href="../../Object.html#to_yaml%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_yaml(io : IO) : Nil<br/>to_yaml : String</span>
+    to_yaml</a>, 
+    
+  
+    <a href="../../Object.html#try%28%26%29-instance-method" class="tooltip">
+      <span>try(&)</span>
+    try</a>, 
+    
+  
+    <a href="../../Object.html#unsafe_as%28type%3AT.class%29forallT-instance-method" class="tooltip">
+      <span>unsafe_as(type : <span class="t">T</span>.<span class="k">class</span>) forall T</span>
+    unsafe_as</a>
+    
+  
+
+
+      
+
+
+      
+
+  <h3>Class methods inherited from class <code><a href="../../Object.html">Object</a></code></h3>
+  
+  
+    <a href="../../Object.html#from_json%28string_or_io%2Croot%3AString%29-class-method" class="tooltip">
+      <span>from_json(string_or_io, root : String)<br/>from_json(string_or_io)</span>
+    from_json</a>, 
+    
+  
+    <a href="../../Object.html#from_yaml%28string_or_io%3AString%7CIO%29-class-method" class="tooltip">
+      <span>from_yaml(string_or_io : String | IO)</span>
+    from_yaml</a>
+    
+  
+
+
+      
+
+  <h3>Macros inherited from class <code><a href="../../Object.html">Object</a></code></h3>
+  
+  
+    <a href="../../Object.html#class_getter%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_getter(*names, &block)</span>
+    class_getter</a>, 
+    
+  
+    <a href="../../Object.html#class_getter%21%28%2Anames%29-macro" class="tooltip">
+      <span>class_getter!(*names)</span>
+    class_getter!</a>, 
+    
+  
+    <a href="../../Object.html#class_getter%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_getter?(*names, &block)</span>
+    class_getter?</a>, 
+    
+  
+    <a href="../../Object.html#class_property%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_property(*names, &block)</span>
+    class_property</a>, 
+    
+  
+    <a href="../../Object.html#class_property%21%28%2Anames%29-macro" class="tooltip">
+      <span>class_property!(*names)</span>
+    class_property!</a>, 
+    
+  
+    <a href="../../Object.html#class_property%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_property?(*names, &block)</span>
+    class_property?</a>, 
+    
+  
+    <a href="../../Object.html#class_setter%28%2Anames%29-macro" class="tooltip">
+      <span>class_setter(*names)</span>
+    class_setter</a>, 
+    
+  
+    <a href="../../Object.html#def_clone-macro" class="tooltip">
+      <span>def_clone</span>
+    def_clone</a>, 
+    
+  
+    <a href="../../Object.html#def_equals%28%2Afields%29-macro" class="tooltip">
+      <span>def_equals(*fields)</span>
+    def_equals</a>, 
+    
+  
+    <a href="../../Object.html#def_equals_and_hash%28%2Afields%29-macro" class="tooltip">
+      <span>def_equals_and_hash(*fields)</span>
+    def_equals_and_hash</a>, 
+    
+  
+    <a href="../../Object.html#def_hash%28%2Afields%29-macro" class="tooltip">
+      <span>def_hash(*fields)</span>
+    def_hash</a>, 
+    
+  
+    <a href="../../Object.html#delegate%28%2Amethods%2Ctoobject%29-macro" class="tooltip">
+      <span>delegate(*methods, to object)</span>
+    delegate</a>, 
+    
+  
+    <a href="../../Object.html#forward_missing_to%28delegate%29-macro" class="tooltip">
+      <span>forward_missing_to(delegate)</span>
+    forward_missing_to</a>, 
+    
+  
+    <a href="../../Object.html#getter%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>getter(*names, &block)</span>
+    getter</a>, 
+    
+  
+    <a href="../../Object.html#getter%21%28%2Anames%29-macro" class="tooltip">
+      <span>getter!(*names)</span>
+    getter!</a>, 
+    
+  
+    <a href="../../Object.html#getter%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>getter?(*names, &block)</span>
+    getter?</a>, 
+    
+  
+    <a href="../../Object.html#property%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>property(*names, &block)</span>
+    property</a>, 
+    
+  
+    <a href="../../Object.html#property%21%28%2Anames%29-macro" class="tooltip">
+      <span>property!(*names)</span>
+    property!</a>, 
+    
+  
+    <a href="../../Object.html#property%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>property?(*names, &block)</span>
+    property?</a>, 
+    
+  
+    <a href="../../Object.html#setter%28%2Anames%29-macro" class="tooltip">
+      <span>setter(*names)</span>
+    setter</a>
+    
+  
+
+
+    
+  </div>
+
+  
+
+  
+
+  
+
+  
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="absolute_symbol?-instance-method">
+      <div class="signature">
+        
+        def <strong>absolute_symbol?</strong>
+
+        <a class="method-permalink" href="#absolute_symbol%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="../../LLVM/Metadata/Type.html#AbsoluteSymbol">AbsoluteSymbol</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/enums.cr#L523" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="access_group?-instance-method">
+      <div class="signature">
+        
+        def <strong>access_group?</strong>
+
+        <a class="method-permalink" href="#access_group%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="../../LLVM/Metadata/Type.html#AccessGroup">AccessGroup</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/enums.cr#L527" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="alias_scope?-instance-method">
+      <div class="signature">
+        
+        def <strong>alias_scope?</strong>
+
+        <a class="method-permalink" href="#alias_scope%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="../../LLVM/Metadata/Type.html#AliasScope">AliasScope</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/enums.cr#L509" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="align?-instance-method">
+      <div class="signature">
+        
+        def <strong>align?</strong>
+
+        <a class="method-permalink" href="#align%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="../../LLVM/Metadata/Type.html#Align">Align</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/enums.cr#L519" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="associated?-instance-method">
+      <div class="signature">
+        
+        def <strong>associated?</strong>
+
+        <a class="method-permalink" href="#associated%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="../../LLVM/Metadata/Type.html#Associated">Associated</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/enums.cr#L524" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="callback?-instance-method">
+      <div class="signature">
+        
+        def <strong>callback?</strong>
+
+        <a class="method-permalink" href="#callback%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="../../LLVM/Metadata/Type.html#Callback">Callback</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/enums.cr#L528" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="callees?-instance-method">
+      <div class="signature">
+        
+        def <strong>callees?</strong>
+
+        <a class="method-permalink" href="#callees%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="../../LLVM/Metadata/Type.html#Callees">Callees</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/enums.cr#L525" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="dbg?-instance-method">
+      <div class="signature">
+        
+        def <strong>dbg?</strong>
+
+        <a class="method-permalink" href="#dbg%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="../../LLVM/Metadata/Type.html#Dbg">Dbg</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/enums.cr#L502" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="dereferenceable?-instance-method">
+      <div class="signature">
+        
+        def <strong>dereferenceable?</strong>
+
+        <a class="method-permalink" href="#dereferenceable%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="../../LLVM/Metadata/Type.html#Dereferenceable">Dereferenceable</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/enums.cr#L514" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="dereferenceable_or_null?-instance-method">
+      <div class="signature">
+        
+        def <strong>dereferenceable_or_null?</strong>
+
+        <a class="method-permalink" href="#dereferenceable_or_null%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="../../LLVM/Metadata/Type.html#DereferenceableOrNull">DereferenceableOrNull</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/enums.cr#L515" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="fpmath?-instance-method">
+      <div class="signature">
+        
+        def <strong>fpmath?</strong>
+
+        <a class="method-permalink" href="#fpmath%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="../../LLVM/Metadata/Type.html#Fpmath">Fpmath</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/enums.cr#L505" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="invariant_group?-instance-method">
+      <div class="signature">
+        
+        def <strong>invariant_group?</strong>
+
+        <a class="method-permalink" href="#invariant_group%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="../../LLVM/Metadata/Type.html#InvariantGroup">InvariantGroup</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/enums.cr#L518" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="invariant_load?-instance-method">
+      <div class="signature">
+        
+        def <strong>invariant_load?</strong>
+
+        <a class="method-permalink" href="#invariant_load%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="../../LLVM/Metadata/Type.html#InvariantLoad">InvariantLoad</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/enums.cr#L508" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="irr_loop?-instance-method">
+      <div class="signature">
+        
+        def <strong>irr_loop?</strong>
+
+        <a class="method-permalink" href="#irr_loop%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="../../LLVM/Metadata/Type.html#IrrLoop">IrrLoop</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/enums.cr#L526" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="loop?-instance-method">
+      <div class="signature">
+        
+        def <strong>loop?</strong>
+
+        <a class="method-permalink" href="#loop%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="../../LLVM/Metadata/Type.html#Loop">Loop</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/enums.cr#L520" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="make_implicit?-instance-method">
+      <div class="signature">
+        
+        def <strong>make_implicit?</strong>
+
+        <a class="method-permalink" href="#make_implicit%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="../../LLVM/Metadata/Type.html#MakeImplicit">MakeImplicit</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/enums.cr#L516" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="mem_parallel_loop_access?-instance-method">
+      <div class="signature">
+        
+        def <strong>mem_parallel_loop_access?</strong>
+
+        <a class="method-permalink" href="#mem_parallel_loop_access%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="../../LLVM/Metadata/Type.html#MemParallelLoopAccess">MemParallelLoopAccess</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/enums.cr#L512" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="noalias?-instance-method">
+      <div class="signature">
+        
+        def <strong>noalias?</strong>
+
+        <a class="method-permalink" href="#noalias%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="../../LLVM/Metadata/Type.html#Noalias">Noalias</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/enums.cr#L510" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="nonnull?-instance-method">
+      <div class="signature">
+        
+        def <strong>nonnull?</strong>
+
+        <a class="method-permalink" href="#nonnull%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="../../LLVM/Metadata/Type.html#Nonnull">Nonnull</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/enums.cr#L513" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="nontemporal?-instance-method">
+      <div class="signature">
+        
+        def <strong>nontemporal?</strong>
+
+        <a class="method-permalink" href="#nontemporal%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="../../LLVM/Metadata/Type.html#Nontemporal">Nontemporal</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/enums.cr#L511" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="preserve_access_index?-instance-method">
+      <div class="signature">
+        
+        def <strong>preserve_access_index?</strong>
+
+        <a class="method-permalink" href="#preserve_access_index%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="../../LLVM/Metadata/Type.html#PreserveAccessIndex">PreserveAccessIndex</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/enums.cr#L529" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="prof?-instance-method">
+      <div class="signature">
+        
+        def <strong>prof?</strong>
+
+        <a class="method-permalink" href="#prof%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="../../LLVM/Metadata/Type.html#Prof">Prof</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/enums.cr#L504" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="range?-instance-method">
+      <div class="signature">
+        
+        def <strong>range?</strong>
+
+        <a class="method-permalink" href="#range%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="../../LLVM/Metadata/Type.html#Range">Range</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/enums.cr#L506" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="section_prefix?-instance-method">
+      <div class="signature">
+        
+        def <strong>section_prefix?</strong>
+
+        <a class="method-permalink" href="#section_prefix%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="../../LLVM/Metadata/Type.html#SectionPrefix">SectionPrefix</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/enums.cr#L522" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="tbaa?-instance-method">
+      <div class="signature">
+        
+        def <strong>tbaa?</strong>
+
+        <a class="method-permalink" href="#tbaa%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="../../LLVM/Metadata/Type.html#Tbaa">Tbaa</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/enums.cr#L503" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="tbaa_struct?-instance-method">
+      <div class="signature">
+        
+        def <strong>tbaa_struct?</strong>
+
+        <a class="method-permalink" href="#tbaa_struct%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="../../LLVM/Metadata/Type.html#TbaaStruct">TbaaStruct</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/enums.cr#L507" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="type?-instance-method">
+      <div class="signature">
+        
+        def <strong>type?</strong>
+
+        <a class="method-permalink" href="#type%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="../../LLVM/Metadata/Type.html#Type">Type</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/enums.cr#L521" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="unpredictable?-instance-method">
+      <div class="signature">
+        
+        def <strong>unpredictable?</strong>
+
+        <a class="method-permalink" href="#unpredictable%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="../../LLVM/Metadata/Type.html#Unpredictable">Unpredictable</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/enums.cr#L517" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+</div>
+
+</body>
+</html>

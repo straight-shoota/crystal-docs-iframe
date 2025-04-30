@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Crystal Docs 1.16.1">
+<meta name="crystal_docs.project_version" content="1.17.0-dev">
+<meta name="crystal_docs.project_name" content="Crystal">
+
+  <meta name="crystal_docs.json_config_url" content="/api/versions.json">
+
+
+    <link rel="canonical" href="https://crystal-lang.org/api/latest/FileUtils.html">
+
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/doc.js"></script>
+
+  <meta name="repository-name" content="Crystal">
+  <title>FileUtils - Crystal 1.17.0-dev</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill="currentColor" fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<input type="checkbox" id="sidebar-btn">
+<label for="sidebar-btn" id="sidebar-btn-label">
+  <svg class="open" xmlns="http://www.w3.org/2000/svg" height="2em" width="2em" viewBox="0 0 512 512"><title>Open Sidebar</title><path fill="currentColor" d="M80 96v64h352V96H80zm0 112v64h352v-64H80zm0 112v64h352v-64H80z"></path></svg>
+  <svg class="close" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><title>Close Sidebar</title><path fill="currentColor" d="m118.6 73.4-45.2 45.2L210.7 256 73.4 393.4l45.2 45.2L256 301.3l137.4 137.3 45.2-45.2L301.3 256l137.3-137.4-45.2-45.2L256 210.7Z"></path></svg>
+</label>
+<iframe class="sidebar" src="sidebar.html"></iframe>
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">
+    module
+  </span> FileUtils
+
+</h1>
+
+
+
+
+
+  <h2>
+    <a id="overview" class="anchor" href="#overview">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Overview
+  </h2>
+
+  <p><span class="flag purple">NOTE</span>  To use <code><a href="FileUtils.html">FileUtils</a></code>, you must explicitly import it with <code>require &quot;file_utils&quot;</code></p>
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="extended-modules" class="anchor" href="#extended-modules">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Extended Modules
+  </h2>
+  <ul class="other-types-list">
+    
+      <li class="other-type"><a href="FileUtils.html">FileUtils</a></li>
+    
+  </ul>
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file_utils.cr#L2" target="_blank">
+        file_utils.cr
+      </a>
+    
+    <br/>
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#cd%28path%3APath%7CString%29%3ANil-instance-method" class="signature"><strong>#cd</strong>(path : Path | String) : Nil</a>
+        
+          <div class="summary"><p>Changes the current working directory of the process to the given string <em>path</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#cd%28path%3APath%7CString%2C%26%29-instance-method" class="signature"><strong>#cd</strong>(path : Path | String, &)</a>
+        
+          <div class="summary"><p>Changes the current working directory of the process to the given string <em>path</em> and invoked the block, restoring the original working directory when the block exits.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#cmp%28filename1%3APath%7CString%2Cfilename2%3APath%7CString%29%3ABool-instance-method" class="signature"><strong>#cmp</strong>(filename1 : Path | String, filename2 : Path | String) : Bool</a>
+        
+          <div class="summary"><p>Compares two files <em>filename1</em> to <em>filename2</em> to determine if they are identical.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#cp%28src_path%3APath%7CString%2Cdest%3APath%7CString%29%3ANil-instance-method" class="signature"><strong>#cp</strong>(src_path : Path | String, dest : Path | String) : Nil</a>
+        
+          <div class="summary"><p>Copies the file <em>src_path</em> to the file or directory <em>dest</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#cp%28srcs%3AEnumerable%28Path%7CString%29%2Cdest%3APath%7CString%29%3ANil-instance-method" class="signature"><strong>#cp</strong>(srcs : Enumerable(Path | String), dest : Path | String) : Nil</a>
+        
+          <div class="summary"><p>Copies a list of files <em>src</em> to <em>dest</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#cp_r%28src_path%3APath%7CString%2Cdest_path%3APath%7CString%29%3ANil-instance-method" class="signature"><strong>#cp_r</strong>(src_path : Path | String, dest_path : Path | String) : Nil</a>
+        
+          <div class="summary"><p>Copies a file or directory <em>src_path</em> to <em>dest_path</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#ln%28src_path%3APath%7CString%2Cdest_path%3APath%7CString%29%3ANil-instance-method" class="signature"><strong>#ln</strong>(src_path : Path | String, dest_path : Path | String) : Nil</a>
+        
+          <div class="summary"><p>Creates a hard link <em>dest_path</em> which points to <em>src_path</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#ln%28src_paths%3AEnumerable%28Path%7CString%29%2Cdest_dir%3APath%7CString%29%3ANil-instance-method" class="signature"><strong>#ln</strong>(src_paths : Enumerable(Path | String), dest_dir : Path | String) : Nil</a>
+        
+          <div class="summary"><p>Creates a hard link to each path in <em>src_paths</em> inside the <em>dest_dir</em> directory.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#ln_s%28src_path%3APath%7CString%2Cdest_path%3APath%7CString%29%3ANil-instance-method" class="signature"><strong>#ln_s</strong>(src_path : Path | String, dest_path : Path | String) : Nil</a>
+        
+          <div class="summary"><p>Creates a symbolic link <em>dest_path</em> which points to <em>src_path</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#ln_s%28src_paths%3AEnumerable%28Path%7CString%29%2Cdest_dir%3APath%7CString%29%3ANil-instance-method" class="signature"><strong>#ln_s</strong>(src_paths : Enumerable(Path | String), dest_dir : Path | String) : Nil</a>
+        
+          <div class="summary"><p>Creates a symbolic link to each path in <em>src_paths</em> inside the <em>dest_dir</em> directory.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#ln_sf%28src_path%3APath%7CString%2Cdest_path%3APath%7CString%29%3ANil-instance-method" class="signature"><strong>#ln_sf</strong>(src_path : Path | String, dest_path : Path | String) : Nil</a>
+        
+          <div class="summary"><p>Like <code><a href="FileUtils.html#ln_s%28src_path%3APath%7CString%2Cdest_path%3APath%7CString%29%3ANil-instance-method">#ln_s(Path | String, Path | String)</a></code>, but overwrites <code>dest_path</code> if it exists and is not a directory or if <code>dest_path/src_path</code> exists.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#ln_sf%28src_paths%3AEnumerable%28Path%7CString%29%2Cdest_dir%3APath%7CString%29%3ANil-instance-method" class="signature"><strong>#ln_sf</strong>(src_paths : Enumerable(Path | String), dest_dir : Path | String) : Nil</a>
+        
+          <div class="summary"><p>Creates a symbolic link to each path in <em>src_paths</em> inside the <em>dest_dir</em> directory, ignoring any overwritten paths.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#mkdir%28path%3APath%7CString%2Cmode%3D511%29%3ANil-instance-method" class="signature"><strong>#mkdir</strong>(path : Path | String, mode = <span class="n">511</span>) : Nil</a>
+        
+          <div class="summary"><p>Creates a new directory at the given <em>path</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#mkdir%28paths%3AEnumerable%28Path%7CString%29%2Cmode%3D511%29%3ANil-instance-method" class="signature"><strong>#mkdir</strong>(paths : Enumerable(Path | String), mode = <span class="n">511</span>) : Nil</a>
+        
+          <div class="summary"><p>Creates a new directory at the given <em>paths</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#mkdir_p%28path%3APath%7CString%2Cmode%3D511%29%3ANil-instance-method" class="signature"><strong>#mkdir_p</strong>(path : Path | String, mode = <span class="n">511</span>) : Nil</a>
+        
+          <div class="summary"><p>Creates a new directory at the given <em>path</em>, including any non-existing intermediate directories.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#mkdir_p%28paths%3AEnumerable%28Path%7CString%29%2Cmode%3D511%29%3ANil-instance-method" class="signature"><strong>#mkdir_p</strong>(paths : Enumerable(Path | String), mode = <span class="n">511</span>) : Nil</a>
+        
+          <div class="summary"><p>Creates a new directory at the given <em>paths</em>, including any non-existing intermediate directories.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#mv%28src_path%3APath%7CString%2Cdest_path%3APath%7CString%29%3ANil-instance-method" class="signature"><strong>#mv</strong>(src_path : Path | String, dest_path : Path | String) : Nil</a>
+        
+          <div class="summary"><p>Moves <em>src_path</em> to <em>dest_path</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#mv%28srcs%3AEnumerable%28Path%7CString%29%2Cdest%3APath%7CString%29%3ANil-instance-method" class="signature"><strong>#mv</strong>(srcs : Enumerable(Path | String), dest : Path | String) : Nil</a>
+        
+          <div class="summary"><p>Moves every <em>srcs</em> to <em>dest</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#pwd%3AString-instance-method" class="signature"><strong>#pwd</strong> : String</a>
+        
+          <div class="summary"><p>Returns the current working directory.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#rm%28path%3APath%7CString%29%3ANil-instance-method" class="signature"><strong>#rm</strong>(path : Path | String) : Nil</a>
+        
+          <div class="summary"><p>Deletes the <em>path</em> file given.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#rm%28paths%3AEnumerable%28Path%7CString%29%29%3ANil-instance-method" class="signature"><strong>#rm</strong>(paths : Enumerable(Path | String)) : Nil</a>
+        
+          <div class="summary"><p>Deletes all <em>paths</em> file given.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#rm_r%28path%3APath%7CString%29%3ANil-instance-method" class="signature"><strong>#rm_r</strong>(path : Path | String) : Nil</a>
+        
+          <div class="summary"><p>Deletes a file or directory <em>path</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#rm_r%28paths%3AEnumerable%28Path%7CString%29%29%3ANil-instance-method" class="signature"><strong>#rm_r</strong>(paths : Enumerable(Path | String)) : Nil</a>
+        
+          <div class="summary"><p>Deletes a list of files or directories <em>paths</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#rm_rf%28path%3APath%7CString%29%3ANil-instance-method" class="signature"><strong>#rm_rf</strong>(path : Path | String) : Nil</a>
+        
+          <div class="summary"><p>Deletes a file or directory <em>path</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#rm_rf%28paths%3AEnumerable%28Path%7CString%29%29%3ANil-instance-method" class="signature"><strong>#rm_rf</strong>(paths : Enumerable(Path | String)) : Nil</a>
+        
+          <div class="summary"><p>Deletes a list of files or directories <em>paths</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#rmdir%28path%3APath%7CString%29%3ANil-instance-method" class="signature"><strong>#rmdir</strong>(path : Path | String) : Nil</a>
+        
+          <div class="summary"><p>Removes the directory at the given <em>path</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#rmdir%28paths%3AEnumerable%28Path%7CString%29%29%3ANil-instance-method" class="signature"><strong>#rmdir</strong>(paths : Enumerable(Path | String)) : Nil</a>
+        
+          <div class="summary"><p>Removes all directories at the given <em>paths</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#touch%28path%3APath%7CString%2Ctime%3ATime%3DTime.utc%29%3ANil-instance-method" class="signature"><strong>#touch</strong>(path : Path | String, time : Time = <span class="t">Time</span>.utc) : Nil</a>
+        
+          <div class="summary"><p>Attempts to set the access and modification times of the file named in the <em>path</em> parameter to the value given in <em>time</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#touch%28paths%3AEnumerable%28Path%7CString%29%2Ctime%3ATime%3DTime.utc%29%3ANil-instance-method" class="signature"><strong>#touch</strong>(paths : Enumerable(Path | String), time : Time = <span class="t">Time</span>.utc) : Nil</a>
+        
+          <div class="summary"><p>Attempts to set the access and modification times of each file given in the <em>paths</em> parameter to the value given in <em>time</em>.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+
+  <div class="methods-inherited">
+    
+  </div>
+
+  
+
+  
+
+  
+
+  
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="cd(path:Path|String):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>cd</strong>(path : <a href="Path.html">Path</a> | <a href="String.html">String</a>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#cd%28path%3APath%7CString%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Changes the current working directory of the process to the given string <em>path</em>.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;file_utils&quot;</span>
+
+<span class="t">FileUtils</span>.cd(<span class="s">&quot;/tmp&quot;</span>)</code></pre>
+<p><span class="flag purple">NOTE</span>  Alias of <code><a href="Dir.html#cd%28path%3APath%7CString%29%3AString-class-method">Dir.cd</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file_utils.cr#L14" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="cd(path:Path|String,&amp;)-instance-method">
+      <div class="signature">
+        
+        def <strong>cd</strong>(path : <a href="Path.html">Path</a> | <a href="String.html">String</a>, &)
+
+        <a class="method-permalink" href="#cd%28path%3APath%7CString%2C%26%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Changes the current working directory of the process to the given string <em>path</em>
+and invoked the block, restoring the original working directory when the block exits.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;file_utils&quot;</span>
+
+<span class="t">FileUtils</span>.cd(<span class="s">&quot;/tmp&quot;</span>) { <span class="t">Dir</span>.current } <span class="c"># =&gt; &quot;/tmp&quot;</span></code></pre>
+<p><span class="flag purple">NOTE</span>  Alias of <code><a href="Dir.html#cd%28path%3APath%7CString%29%3AString-class-method">Dir.cd</a></code> with block</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file_utils.cr#L28" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="cmp(filename1:Path|String,filename2:Path|String):Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>cmp</strong>(filename1 : <a href="Path.html">Path</a> | <a href="String.html">String</a>, filename2 : <a href="Path.html">Path</a> | <a href="String.html">String</a>) : <a href="Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#cmp%28filename1%3APath%7CString%2Cfilename2%3APath%7CString%29%3ABool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Compares two files <em>filename1</em> to <em>filename2</em> to determine if they are identical.
+Returns <code>true</code> if content are the same, <code>false</code> otherwise.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;file_utils&quot;</span>
+
+<span class="t">File</span>.write(<span class="s">&quot;file.cr&quot;</span>, <span class="s">&quot;1&quot;</span>)
+<span class="t">File</span>.write(<span class="s">&quot;bar.cr&quot;</span>, <span class="s">&quot;1&quot;</span>)
+<span class="t">FileUtils</span>.cmp(<span class="s">&quot;file.cr&quot;</span>, <span class="s">&quot;bar.cr&quot;</span>) <span class="c"># =&gt; true</span></code></pre>
+<p><span class="flag purple">NOTE</span>  Alias of <code><a href="File.html#same_content%3F%28path1%3APath%7CString%2Cpath2%3APath%7CString%29%3ABool-class-method">File.same_content?</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file_utils.cr#L44" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="cp(src_path:Path|String,dest:Path|String):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>cp</strong>(src_path : <a href="Path.html">Path</a> | <a href="String.html">String</a>, dest : <a href="Path.html">Path</a> | <a href="String.html">String</a>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#cp%28src_path%3APath%7CString%2Cdest%3APath%7CString%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Copies the file <em>src_path</em> to the file or directory <em>dest</em>.
+If <em>dest</em> is a directory, a file with the same basename as <em>src_path</em> is created in <em>dest</em>
+Permission bits are copied too.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;file_utils&quot;</span>
+
+<span class="t">File</span>.touch(<span class="s">&quot;afile&quot;</span>)
+<span class="t">File</span>.chmod(<span class="s">&quot;afile&quot;</span>, <span class="n">0o600</span>)
+<span class="t">FileUtils</span>.cp(<span class="s">&quot;afile&quot;</span>, <span class="s">&quot;afile_copy&quot;</span>)
+<span class="t">File</span>.info(<span class="s">&quot;afile_copy&quot;</span>).permissions.value <span class="c"># =&gt; 0o600</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file_utils.cr#L92" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="cp(srcs:Enumerable(Path|String),dest:Path|String):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>cp</strong>(srcs : <a href="Enumerable.html">Enumerable</a>(<a href="Path.html">Path</a> | <a href="String.html">String</a>), dest : <a href="Path.html">Path</a> | <a href="String.html">String</a>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#cp%28srcs%3AEnumerable%28Path%7CString%29%2Cdest%3APath%7CString%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Copies a list of files <em>src</em> to <em>dest</em>.
+<em>dest</em> must be an existing directory.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;file_utils&quot;</span>
+
+<span class="t">Dir</span>.mkdir(<span class="s">&quot;files&quot;</span>)
+<span class="t">FileUtils</span>.cp({<span class="s">&quot;bar.cr&quot;</span>, <span class="s">&quot;afile&quot;</span>}, <span class="s">&quot;files&quot;</span>)</code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file_utils.cr#L106" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="cp_r(src_path:Path|String,dest_path:Path|String):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>cp_r</strong>(src_path : <a href="Path.html">Path</a> | <a href="String.html">String</a>, dest_path : <a href="Path.html">Path</a> | <a href="String.html">String</a>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#cp_r%28src_path%3APath%7CString%2Cdest_path%3APath%7CString%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Copies a file or directory <em>src_path</em> to <em>dest_path</em>.
+If <em>src_path</em> is a directory, this method copies all its contents recursively.
+If <em>dest</em> is a directory, copies src to dest/src.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;file_utils&quot;</span>
+
+<span class="t">FileUtils</span>.cp_r(<span class="s">&quot;files&quot;</span>, <span class="s">&quot;dir&quot;</span>)</code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file_utils.cr#L122" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="ln(src_path:Path|String,dest_path:Path|String):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>ln</strong>(src_path : <a href="Path.html">Path</a> | <a href="String.html">String</a>, dest_path : <a href="Path.html">Path</a> | <a href="String.html">String</a>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#ln%28src_path%3APath%7CString%2Cdest_path%3APath%7CString%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Creates a hard link <em>dest_path</em> which points to <em>src_path</em>.
+If <em>dest_path</em> already exists and is a directory, creates a link <em>dest_path/src_path</em>.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;file_utils&quot;</span>
+
+<span class="c"># Create a hard link, pointing from /usr/bin/emacs to /usr/bin/vim</span>
+<span class="t">FileUtils</span>.ln(<span class="s">&quot;/usr/bin/vim&quot;</span>, <span class="s">&quot;/usr/bin/emacs&quot;</span>)
+<span class="c"># Create a hard link, pointing from /tmp/foo.c to foo.c</span>
+<span class="t">FileUtils</span>.ln(<span class="s">&quot;foo.c&quot;</span>, <span class="s">&quot;/tmp&quot;</span>)</code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file_utils.cr#L151" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="ln(src_paths:Enumerable(Path|String),dest_dir:Path|String):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>ln</strong>(src_paths : <a href="Enumerable.html">Enumerable</a>(<a href="Path.html">Path</a> | <a href="String.html">String</a>), dest_dir : <a href="Path.html">Path</a> | <a href="String.html">String</a>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#ln%28src_paths%3AEnumerable%28Path%7CString%29%2Cdest_dir%3APath%7CString%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Creates a hard link to each path in <em>src_paths</em> inside the <em>dest_dir</em> directory.
+If <em>dest_dir</em> is not a directory, raises an <code><a href="ArgumentError.html">ArgumentError</a></code>.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;file_utils&quot;</span>
+
+<span class="c"># Create /usr/bin/vim, /usr/bin/emacs, and /usr/bin/nano as hard links</span>
+<span class="t">FileUtils</span>.ln([<span class="s">&quot;vim&quot;</span>, <span class="s">&quot;emacs&quot;</span>, <span class="s">&quot;nano&quot;</span>], <span class="s">&quot;/usr/bin&quot;</span>)</code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file_utils.cr#L168" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="ln_s(src_path:Path|String,dest_path:Path|String):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>ln_s</strong>(src_path : <a href="Path.html">Path</a> | <a href="String.html">String</a>, dest_path : <a href="Path.html">Path</a> | <a href="String.html">String</a>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#ln_s%28src_path%3APath%7CString%2Cdest_path%3APath%7CString%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Creates a symbolic link <em>dest_path</em> which points to <em>src_path</em>.
+If <em>dest_path</em> already exists and is a directory, creates a link <em>dest_path/src_path</em>.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;file_utils&quot;</span>
+
+<span class="c"># Create a symbolic link pointing from logs to /var/log</span>
+<span class="t">FileUtils</span>.ln_s(<span class="s">&quot;/var/log&quot;</span>, <span class="s">&quot;logs&quot;</span>)
+<span class="c"># Create a symbolic link pointing from /tmp/src to src</span>
+<span class="t">FileUtils</span>.ln_s(<span class="s">&quot;src&quot;</span>, <span class="s">&quot;/tmp&quot;</span>)</code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file_utils.cr#L187" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="ln_s(src_paths:Enumerable(Path|String),dest_dir:Path|String):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>ln_s</strong>(src_paths : <a href="Enumerable.html">Enumerable</a>(<a href="Path.html">Path</a> | <a href="String.html">String</a>), dest_dir : <a href="Path.html">Path</a> | <a href="String.html">String</a>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#ln_s%28src_paths%3AEnumerable%28Path%7CString%29%2Cdest_dir%3APath%7CString%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Creates a symbolic link to each path in <em>src_paths</em> inside the <em>dest_dir</em> directory.
+If <em>dest_dir</em> is not a directory, raises an <code><a href="ArgumentError.html">ArgumentError</a></code>.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;file_utils&quot;</span>
+
+<span class="c"># Create symbolic links in src/ pointing to every .c file in the current directory</span>
+<span class="t">FileUtils</span>.ln_s(<span class="t">Dir</span>[<span class="s">&quot;*.c&quot;</span>], <span class="s">&quot;src&quot;</span>)</code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file_utils.cr#L204" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="ln_sf(src_path:Path|String,dest_path:Path|String):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>ln_sf</strong>(src_path : <a href="Path.html">Path</a> | <a href="String.html">String</a>, dest_path : <a href="Path.html">Path</a> | <a href="String.html">String</a>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#ln_sf%28src_path%3APath%7CString%2Cdest_path%3APath%7CString%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Like <code><a href="FileUtils.html#ln_s%28src_path%3APath%7CString%2Cdest_path%3APath%7CString%29%3ANil-instance-method">#ln_s(Path | String, Path | String)</a></code>, but overwrites <code>dest_path</code> if it exists and is not a directory
+or if <code>dest_path/src_path</code> exists.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;file_utils&quot;</span>
+
+<span class="c"># Create a symbolic link pointing from bar.c to foo.c, even if bar.c already exists</span>
+<span class="t">FileUtils</span>.ln_sf(<span class="s">&quot;foo.c&quot;</span>, <span class="s">&quot;bar.c&quot;</span>)</code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file_utils.cr#L221" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="ln_sf(src_paths:Enumerable(Path|String),dest_dir:Path|String):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>ln_sf</strong>(src_paths : <a href="Enumerable.html">Enumerable</a>(<a href="Path.html">Path</a> | <a href="String.html">String</a>), dest_dir : <a href="Path.html">Path</a> | <a href="String.html">String</a>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#ln_sf%28src_paths%3AEnumerable%28Path%7CString%29%2Cdest_dir%3APath%7CString%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Creates a symbolic link to each path in <em>src_paths</em> inside the <em>dest_dir</em> directory,
+ignoring any overwritten paths.</p>
+<p>If <em>dest_dir</em> is not a directory, raises an <code><a href="ArgumentError.html">ArgumentError</a></code>.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;file_utils&quot;</span>
+
+<span class="c"># Create symbolic links in src/ pointing to every .c file in the current directory,</span>
+<span class="c"># even if it means overwriting files in src/</span>
+<span class="t">FileUtils</span>.ln_sf(<span class="t">Dir</span>[<span class="s">&quot;*.c&quot;</span>], <span class="s">&quot;src&quot;</span>)</code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file_utils.cr#L242" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="mkdir(path:Path|String,mode=511):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>mkdir</strong>(path : <a href="Path.html">Path</a> | <a href="String.html">String</a>, mode = <span class="n">511</span>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#mkdir%28path%3APath%7CString%2Cmode%3D511%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Creates a new directory at the given <em>path</em>. The linux-style permission <em>mode</em>
+can be specified, with a default of 777 (0o777).</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;file_utils&quot;</span>
+
+<span class="t">FileUtils</span>.mkdir(<span class="s">&quot;src&quot;</span>)</code></pre>
+<p><span class="flag purple">NOTE</span>  Alias of <code><a href="Dir.html#mkdir%28path%3APath%7CString%2Cmode%3D511%29%3ANil-class-method">Dir.mkdir</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file_utils.cr#L260" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="mkdir(paths:Enumerable(Path|String),mode=511):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>mkdir</strong>(paths : <a href="Enumerable.html">Enumerable</a>(<a href="Path.html">Path</a> | <a href="String.html">String</a>), mode = <span class="n">511</span>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#mkdir%28paths%3AEnumerable%28Path%7CString%29%2Cmode%3D511%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Creates a new directory at the given <em>paths</em>. The linux-style permission <em>mode</em>
+can be specified, with a default of 777 (0o777).</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;file_utils&quot;</span>
+
+<span class="t">FileUtils</span>.mkdir([<span class="s">&quot;foo&quot;</span>, <span class="s">&quot;bar&quot;</span>])</code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file_utils.cr#L272" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="mkdir_p(path:Path|String,mode=511):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>mkdir_p</strong>(path : <a href="Path.html">Path</a> | <a href="String.html">String</a>, mode = <span class="n">511</span>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#mkdir_p%28path%3APath%7CString%2Cmode%3D511%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Creates a new directory at the given <em>path</em>, including any non-existing
+intermediate directories. The linux-style permission <em>mode</em> can be specified,
+with a default of 777 (0o777).</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;file_utils&quot;</span>
+
+<span class="t">FileUtils</span>.mkdir_p(<span class="s">&quot;foo&quot;</span>)</code></pre>
+<p><span class="flag purple">NOTE</span>  Alias of <code><a href="Dir.html#mkdir_p%28path%3APath%7CString%2Cmode%3D511%29%3ANil-class-method">Dir.mkdir_p</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file_utils.cr#L289" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="mkdir_p(paths:Enumerable(Path|String),mode=511):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>mkdir_p</strong>(paths : <a href="Enumerable.html">Enumerable</a>(<a href="Path.html">Path</a> | <a href="String.html">String</a>), mode = <span class="n">511</span>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#mkdir_p%28paths%3AEnumerable%28Path%7CString%29%2Cmode%3D511%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Creates a new directory at the given <em>paths</em>, including any non-existing
+intermediate directories. The linux-style permission <em>mode</em> can be specified,
+with a default of 777 (0o777).</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;file_utils&quot;</span>
+
+<span class="t">FileUtils</span>.mkdir_p([<span class="s">&quot;foo&quot;</span>, <span class="s">&quot;bar&quot;</span>, <span class="s">&quot;baz&quot;</span>, <span class="s">&quot;dir1&quot;</span>, <span class="s">&quot;dir2&quot;</span>, <span class="s">&quot;dir3&quot;</span>])</code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file_utils.cr#L302" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="mv(src_path:Path|String,dest_path:Path|String):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>mv</strong>(src_path : <a href="Path.html">Path</a> | <a href="String.html">String</a>, dest_path : <a href="Path.html">Path</a> | <a href="String.html">String</a>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#mv%28src_path%3APath%7CString%2Cdest_path%3APath%7CString%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Moves <em>src_path</em> to <em>dest_path</em>.</p>
+<p><span class="flag purple">NOTE</span>  If <em>src_path</em> and <em>dest_path</em> exist on different mounted filesystems,
+the file at <em>src_path</em> is copied to <em>dest_path</em> and then removed.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;file_utils&quot;</span>
+
+<span class="t">FileUtils</span>.mv(<span class="s">&quot;afile&quot;</span>, <span class="s">&quot;afile.cr&quot;</span>)</code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file_utils.cr#L318" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="mv(srcs:Enumerable(Path|String),dest:Path|String):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>mv</strong>(srcs : <a href="Enumerable.html">Enumerable</a>(<a href="Path.html">Path</a> | <a href="String.html">String</a>), dest : <a href="Path.html">Path</a> | <a href="String.html">String</a>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#mv%28srcs%3AEnumerable%28Path%7CString%29%2Cdest%3APath%7CString%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Moves every <em>srcs</em> to <em>dest</em>.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;file_utils&quot;</span>
+
+<span class="t">FileUtils</span>.mv([<span class="s">&quot;foo&quot;</span>, <span class="s">&quot;bar&quot;</span>], <span class="s">&quot;src&quot;</span>)</code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file_utils.cr#L333" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="pwd:String-instance-method">
+      <div class="signature">
+        
+        def <strong>pwd</strong> : <a href="String.html">String</a>
+
+        <a class="method-permalink" href="#pwd%3AString-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the current working directory.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;file_utils&quot;</span>
+
+<span class="t">FileUtils</span>.pwd</code></pre>
+<p><span class="flag purple">NOTE</span>  Alias of <code><a href="Dir.html#current%3AString-class-method">Dir.current</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file_utils.cr#L352" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="rm(path:Path|String):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>rm</strong>(path : <a href="Path.html">Path</a> | <a href="String.html">String</a>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#rm%28path%3APath%7CString%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Deletes the <em>path</em> file given.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;file_utils&quot;</span>
+
+<span class="t">FileUtils</span>.rm(<span class="s">&quot;afile.cr&quot;</span>)</code></pre>
+<p><span class="flag purple">NOTE</span>  Alias of <code><a href="File.html#delete%28path%3APath%7CString%29%3ANil-class-method">File.delete</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file_utils.cr#L365" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="rm(paths:Enumerable(Path|String)):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>rm</strong>(paths : <a href="Enumerable.html">Enumerable</a>(<a href="Path.html">Path</a> | <a href="String.html">String</a>)) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#rm%28paths%3AEnumerable%28Path%7CString%29%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Deletes all <em>paths</em> file given.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;file_utils&quot;</span>
+
+<span class="t">FileUtils</span>.rm([<span class="s">&quot;dir/afile&quot;</span>, <span class="s">&quot;afile_copy&quot;</span>])</code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file_utils.cr#L376" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="rm_r(path:Path|String):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>rm_r</strong>(path : <a href="Path.html">Path</a> | <a href="String.html">String</a>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#rm_r%28path%3APath%7CString%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Deletes a file or directory <em>path</em>.
+If <em>path</em> is a directory, this method removes all its contents recursively.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;file_utils&quot;</span>
+
+<span class="t">FileUtils</span>.rm_r(<span class="s">&quot;dir&quot;</span>)
+<span class="t">FileUtils</span>.rm_r(<span class="s">&quot;file.cr&quot;</span>)</code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file_utils.cr#L391" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="rm_r(paths:Enumerable(Path|String)):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>rm_r</strong>(paths : <a href="Enumerable.html">Enumerable</a>(<a href="Path.html">Path</a> | <a href="String.html">String</a>)) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#rm_r%28paths%3AEnumerable%28Path%7CString%29%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Deletes a list of files or directories <em>paths</em>.
+If one path is a directory, this method removes all its contents recursively.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;file_utils&quot;</span>
+
+<span class="t">FileUtils</span>.rm_r([<span class="s">&quot;files&quot;</span>, <span class="s">&quot;bar.cr&quot;</span>])</code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file_utils.cr#L411" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="rm_rf(path:Path|String):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>rm_rf</strong>(path : <a href="Path.html">Path</a> | <a href="String.html">String</a>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#rm_rf%28path%3APath%7CString%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Deletes a file or directory <em>path</em>.
+If <em>path</em> is a directory, this method removes all its contents recursively.
+Ignores all errors.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;file_utils&quot;</span>
+
+<span class="t">FileUtils</span>.rm_rf(<span class="s">&quot;dir&quot;</span>)
+<span class="t">FileUtils</span>.rm_rf(<span class="s">&quot;file.cr&quot;</span>)
+<span class="t">FileUtils</span>.rm_rf(<span class="s">&quot;non_existent_file&quot;</span>)</code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file_utils.cr#L428" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="rm_rf(paths:Enumerable(Path|String)):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>rm_rf</strong>(paths : <a href="Enumerable.html">Enumerable</a>(<a href="Path.html">Path</a> | <a href="String.html">String</a>)) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#rm_rf%28paths%3AEnumerable%28Path%7CString%29%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Deletes a list of files or directories <em>paths</em>.
+If one path is a directory, this method removes all its contents recursively.
+Ignores all errors.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;file_utils&quot;</span>
+
+<span class="t">FileUtils</span>.rm_rf([<span class="s">&quot;dir&quot;</span>, <span class="s">&quot;file.cr&quot;</span>, <span class="s">&quot;non_existent_file&quot;</span>])</code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file_utils.cr#L442" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="rmdir(path:Path|String):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>rmdir</strong>(path : <a href="Path.html">Path</a> | <a href="String.html">String</a>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#rmdir%28path%3APath%7CString%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Removes the directory at the given <em>path</em>.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;file_utils&quot;</span>
+
+<span class="t">FileUtils</span>.rmdir(<span class="s">&quot;baz&quot;</span>)</code></pre>
+<p><span class="flag purple">NOTE</span>  Alias of <code>Dir.rmdir</code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file_utils.cr#L460" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="rmdir(paths:Enumerable(Path|String)):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>rmdir</strong>(paths : <a href="Enumerable.html">Enumerable</a>(<a href="Path.html">Path</a> | <a href="String.html">String</a>)) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#rmdir%28paths%3AEnumerable%28Path%7CString%29%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Removes all directories at the given <em>paths</em>.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;file_utils&quot;</span>
+
+<span class="t">FileUtils</span>.rmdir([<span class="s">&quot;dir1&quot;</span>, <span class="s">&quot;dir2&quot;</span>, <span class="s">&quot;dir3&quot;</span>])</code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file_utils.cr#L471" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="touch(path:Path|String,time:Time=Time.utc):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>touch</strong>(path : <a href="Path.html">Path</a> | <a href="String.html">String</a>, time : <a href="Time.html">Time</a> = <span class="t">Time</span>.utc) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#touch%28path%3APath%7CString%2Ctime%3ATime%3DTime.utc%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Attempts to set the access and modification times of the file named
+in the <em>path</em> parameter to the value given in <em>time</em>.</p>
+<p>If the file does not exist, it will be created.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;file_utils&quot;</span>
+
+<span class="t">FileUtils</span>.touch(<span class="s">&quot;afile.cr&quot;</span>)</code></pre>
+<p><span class="flag purple">NOTE</span>  Alias of <code><a href="File.html#touch%28filename%3APath%7CString%2Ctime%3ATime%3DTime.utc%29%3ANil-class-method">File.touch</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file_utils.cr#L60" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="touch(paths:Enumerable(Path|String),time:Time=Time.utc):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>touch</strong>(paths : <a href="Enumerable.html">Enumerable</a>(<a href="Path.html">Path</a> | <a href="String.html">String</a>), time : <a href="Time.html">Time</a> = <span class="t">Time</span>.utc) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#touch%28paths%3AEnumerable%28Path%7CString%29%2Ctime%3ATime%3DTime.utc%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Attempts to set the access and modification times of each file given
+in the <em>paths</em> parameter to the value given in <em>time</em>.</p>
+<p>If the file does not exist, it will be created.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;file_utils&quot;</span>
+
+<span class="t">FileUtils</span>.touch([<span class="s">&quot;foo&quot;</span>, <span class="s">&quot;bar&quot;</span>])</code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file_utils.cr#L74" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+</div>
+
+</body>
+</html>

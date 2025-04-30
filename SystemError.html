@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Crystal Docs 1.16.1">
+<meta name="crystal_docs.project_version" content="1.17.0-dev">
+<meta name="crystal_docs.project_name" content="Crystal">
+
+  <meta name="crystal_docs.json_config_url" content="/api/versions.json">
+
+
+    <link rel="canonical" href="https://crystal-lang.org/api/latest/SystemError.html">
+
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/doc.js"></script>
+
+  <meta name="repository-name" content="Crystal">
+  <title>SystemError - Crystal 1.17.0-dev</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill="currentColor" fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<input type="checkbox" id="sidebar-btn">
+<label for="sidebar-btn" id="sidebar-btn-label">
+  <svg class="open" xmlns="http://www.w3.org/2000/svg" height="2em" width="2em" viewBox="0 0 512 512"><title>Open Sidebar</title><path fill="currentColor" d="M80 96v64h352V96H80zm0 112v64h352v-64H80zm0 112v64h352v-64H80z"></path></svg>
+  <svg class="close" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><title>Close Sidebar</title><path fill="currentColor" d="m118.6 73.4-45.2 45.2L210.7 256 73.4 393.4l45.2 45.2L256 301.3l137.4 137.3 45.2-45.2L301.3 256l137.3-137.4-45.2-45.2L256 210.7Z"></path></svg>
+</label>
+<iframe class="sidebar" src="sidebar.html"></iframe>
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">
+    module
+  </span> SystemError
+
+</h1>
+
+
+
+
+
+  <h2>
+    <a id="overview" class="anchor" href="#overview">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Overview
+  </h2>
+
+  <p>This module can be included in any <code><a href="Exception.html">Exception</a></code> subclass that is
+used to wrap some system error (<code><a href="Errno.html">Errno</a></code> or <code><a href="WinError.html">WinError</a></code>).</p>
+<p>It adds an <code><a href="SystemError.html#os_error%3AErrno%7CWinError%7CWasiError%7CNil-instance-method">#os_error</a></code> property that contains the original system error.
+It provides several constructor methods that set the <code><a href="SystemError.html#os_error%3AErrno%7CWinError%7CWasiError%7CNil-instance-method">#os_error</a></code> value:</p>
+<ul>
+<li><code>.from_os_error</code> receives an OS error value and creates an instance with that.</li>
+<li><code>.from_errno</code> constructs an instance with the current LibC errno value (<code><a href="Errno.html#value%3Aself-class-method">Errno.value</a></code>).</li>
+<li><code>.from_winerror</code> constructs an instance with the current LibC winerror value (<code><a href="WinError.html#value%3Aself-class-method">WinError.value</a></code>).</li>
+</ul>
+<p>An error message is automatically constructed based on the system error message.</p>
+<p>For example:</p>
+<pre><code class="language-crystal"><span class="k">class</span> <span class="t">MyError</span> <span class="o">&lt;</span> <span class="t">Exception</span>
+  <span class="k">include</span> <span class="t">SystemError</span>
+<span class="k">end</span>
+
+<span class="t">MyError</span>.from_errno(<span class="s">&quot;Something happened&quot;</span>)</code></pre>
+<h2><a id="customization" class="anchor" href="#customization">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Customization</h2>
+<p>Including classes my override several protected methods to customize the
+instance creation based on OS errors:</p>
+<ul>
+<li><code>protected def build_message(message, **opts)</code>
+Prepares the message that goes before the system error description.
+By default it returns the original message unchanged. But that could be
+customized based on the keyword arguments passed to <code>from_errno</code> or <code>from_winerror</code>.</li>
+<li><code>protected def new_from_os_error(message : <a href="String.html">String</a>?, os_error, **opts)</code>
+Creates an instance of the exception that wraps a system error.
+This is a factory method and by default it creates an instance
+of the current class. It can be overridden to generate different
+classes based on the <code><a href="SystemError.html#os_error%3AErrno%7CWinError%7CWasiError%7CNil-instance-method">#os_error</a></code> value or keyword arguments.</li>
+<li><code>protected def os_error_message(os_error : <a href="Errno.html">Errno</a> | <a href="WinError.html">WinError</a> | <a href="Nil.html">Nil</a>, **opts) : <a href="String.html">String</a>?</code>
+Returns the respective error message for <em>os_error</em>.
+By default it returns the result of <code><a href="Errno.html#message%3AString-instance-method">Errno#message</a></code> or <code><a href="WinError.html#message%3AString-instance-method">WinError#message</a></code>.
+This method can be overridden for customization of the error message based
+on <em>os_error</em> and <em>opts</em>.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="direct-including-types" class="anchor" href="#direct-including-types">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Direct including types
+  </h2>
+  <ul class="other-types-list">
+    
+      <li class="other-type"><a href="IO/Error.html">IO::Error</a></li>
+    
+      <li class="other-type"><a href="RuntimeError.html">RuntimeError</a></li>
+    
+  </ul>
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/system_error.cr#L40" target="_blank">
+        system_error.cr
+      </a>
+    
+    <br/>
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#os_error%3AErrno%7CWinError%7CWasiError%7CNil-instance-method" class="signature"><strong>#os_error</strong> : Errno | WinError | WasiError | Nil</a>
+        
+          <div class="summary"><p>The original system error wrapped by this exception</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+
+  <div class="methods-inherited">
+    
+  </div>
+
+  
+
+  
+
+  
+
+  
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="os_error:Errno|WinError|WasiError|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>os_error</strong> : <a href="Errno.html">Errno</a> | <a href="WinError.html">WinError</a> | <a href="WasiError.html">WasiError</a> | <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#os_error%3AErrno%7CWinError%7CWasiError%7CNil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>The original system error wrapped by this exception</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/system_error.cr#L46" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+</div>
+
+</body>
+</html>

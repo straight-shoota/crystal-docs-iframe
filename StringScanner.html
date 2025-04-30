@@ -1,0 +1,1610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Crystal Docs 1.16.1">
+<meta name="crystal_docs.project_version" content="1.17.0-dev">
+<meta name="crystal_docs.project_name" content="Crystal">
+
+  <meta name="crystal_docs.json_config_url" content="/api/versions.json">
+
+
+    <link rel="canonical" href="https://crystal-lang.org/api/latest/StringScanner.html">
+
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/doc.js"></script>
+
+  <meta name="repository-name" content="Crystal">
+  <title>StringScanner - Crystal 1.17.0-dev</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill="currentColor" fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<input type="checkbox" id="sidebar-btn">
+<label for="sidebar-btn" id="sidebar-btn-label">
+  <svg class="open" xmlns="http://www.w3.org/2000/svg" height="2em" width="2em" viewBox="0 0 512 512"><title>Open Sidebar</title><path fill="currentColor" d="M80 96v64h352V96H80zm0 112v64h352v-64H80zm0 112v64h352v-64H80z"></path></svg>
+  <svg class="close" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><title>Close Sidebar</title><path fill="currentColor" d="m118.6 73.4-45.2 45.2L210.7 256 73.4 393.4l45.2 45.2L256 301.3l137.4 137.3 45.2-45.2L301.3 256l137.3-137.4-45.2-45.2L256 210.7Z"></path></svg>
+</label>
+<iframe class="sidebar" src="sidebar.html"></iframe>
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">
+    class
+  </span> StringScanner
+
+</h1>
+
+
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="StringScanner.html">StringScanner</a></li><li class="superclass"><a href="Reference.html">Reference</a></li><li class="superclass"><a href="Object.html">Object</a></li></ul>
+
+
+
+
+  <h2>
+    <a id="overview" class="anchor" href="#overview">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Overview
+  </h2>
+
+  <p><code><a href="StringScanner.html">StringScanner</a></code> provides for lexical scanning operations on a <code><a href="String.html">String</a></code>.</p>
+<p><span class="flag purple">NOTE</span>  To use <code><a href="StringScanner.html">StringScanner</a></code>, you must explicitly import it with <code>require &quot;string_scanner&quot;</code></p>
+<h3><a id="example" class="anchor" href="#example">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Example</h3>
+<pre><code class="language-crystal">require &quot;string_scanner&quot;
+
+s = StringScanner.new(&quot;This is an example string&quot;)
+s.eos? # =&gt; false
+
+s.scan(/\w+/) # =&gt; &quot;This&quot;
+s.scan(/\w+/) # =&gt; nil
+s.scan(/\s+/) # =&gt; &quot; &quot;
+s.scan(/\s+/) # =&gt; nil
+s.scan(/\w+/) # =&gt; &quot;is&quot;
+s.eos?        # =&gt; false
+
+s.scan(/\s+/) # =&gt; &quot; &quot;
+s.scan(/\w+/) # =&gt; &quot;an&quot;
+s.scan(/\s+/) # =&gt; &quot; &quot;
+s.scan(/\w+/) # =&gt; &quot;example&quot;
+s.scan(/\s+/) # =&gt; &quot; &quot;
+s.scan(/\w+/) # =&gt; &quot;string&quot;
+s.eos?        # =&gt; true
+
+s.scan(/\s+/) # =&gt; nil
+s.scan(/\w+/) # =&gt; nil</code></pre>
+<p>Scanning a string means remembering the position of a <em>scan offset</em>, which is
+just an index. Scanning moves the offset forward, and matches are sought
+after the offset; usually immediately after it.</p>
+<h3><a id="method-categories" class="anchor" href="#method-categories">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Method Categories</h3>
+<p>Methods that advance the scan offset:</p>
+<ul>
+<li><code><a href="StringScanner.html#scan%28pattern%3AString%29%3AString%7CNil-instance-method">#scan</a></code></li>
+<li><code><a href="StringScanner.html#scan_until%28pattern%3AString%29%3AString%7CNil-instance-method">#scan_until</a></code></li>
+<li><code><a href="StringScanner.html#skip%28pattern%3AString%29%3AInt32%7CNil-instance-method">#skip</a></code></li>
+<li><code><a href="StringScanner.html#skip_until%28pattern%3AString%29%3AInt32%7CNil-instance-method">#skip_until</a></code></li>
+</ul>
+<p>Methods that look ahead:</p>
+<ul>
+<li><code><a href="StringScanner.html#peek%28len%29%3AString-instance-method">#peek</a></code></li>
+<li><code><a href="StringScanner.html#check%28pattern%3AString%29%3AString%7CNil-instance-method">#check</a></code></li>
+<li><code><a href="StringScanner.html#check_until%28pattern%3AString%29%3AString%7CNil-instance-method">#check_until</a></code></li>
+</ul>
+<p>Methods that deal with the position of the offset:</p>
+<ul>
+<li><code><a href="StringScanner.html#offset%3AInt32-instance-method">#offset</a></code></li>
+<li><code><a href="StringScanner.html#offset%3D%28position%3AInt%29-instance-method">#offset=</a></code></li>
+<li><code><a href="StringScanner.html#eos%3F%3ABool-instance-method">#eos?</a></code></li>
+<li><code><a href="StringScanner.html#reset-instance-method">#reset</a></code></li>
+<li><code><a href="StringScanner.html#terminate-instance-method">#terminate</a></code></li>
+</ul>
+<p>Methods that deal with the last match:</p>
+<ul>
+<li><code><a href="StringScanner.html#%5B%5D%28n%29%3AString-instance-method">#[]</a></code></li>
+<li><code><a href="StringScanner.html#%5B%5D%3F%28n%29%3AString%7CNil-instance-method">#[]?</a></code></li>
+</ul>
+<p>Miscellaneous methods:</p>
+<ul>
+<li><code><a href="StringScanner.html#inspect%28io%3AIO%29%3ANil-instance-method">#inspect</a></code></li>
+<li><code><a href="StringScanner.html#string%3AString-instance-method">#string</a></code></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/string_scanner.cr#L63" target="_blank">
+        string_scanner.cr
+      </a>
+    
+    <br/>
+  
+
+
+
+
+
+  
+  <h2>
+    <a id="constructors" class="anchor" href="#constructors">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructors
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#new%28str%3AString%29-class-method" class="signature"><strong>.new</strong>(str : String)</a>
+        
+      </li>
+    
+  </ul>
+
+
+  
+
+  
+
+  
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#%5B%5D%28n%29%3AString-instance-method" class="signature"><strong>#[]</strong>(n) : String</a>
+        
+          <div class="summary"><p>Returns the <em>n</em>-th subgroup in the most recent match.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%5B%5D%3F%28n%29%3AString%7CNil-instance-method" class="signature"><strong>#[]?</strong>(n) : String | Nil</a>
+        
+          <div class="summary"><p>Returns the nilable <em>n</em>-th subgroup in the most recent match.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#check%28pattern%3AString%29%3AString%7CNil-instance-method" class="signature"><strong>#check</strong>(pattern : String) : String | Nil</a>
+        
+          <div class="summary"><p>Returns the value that <code><a href="StringScanner.html#scan%28pattern%3AString%29%3AString%7CNil-instance-method">#scan</a></code> would return, without advancing the scan offset.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#check%28pattern%3AChar%29%3AString%7CNil-instance-method" class="signature"><strong>#check</strong>(pattern : Char) : String | Nil</a>
+        
+          <div class="summary"><p>Returns the value that <code><a href="StringScanner.html#scan%28pattern%3AString%29%3AString%7CNil-instance-method">#scan</a></code> would return, without advancing the scan offset.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#check%28pattern%3ARegex%2C%2A%2Coptions%3ARegex%3A%3AMatchOptions%3DRegex%3A%3AMatchOptions%3A%3ANone%29%3AString%7CNil-instance-method" class="signature"><strong>#check</strong>(pattern : Regex, *, options : Regex::MatchOptions = <span class="t">Regex</span><span class="t">::</span><span class="t">MatchOptions</span><span class="t">::</span><span class="t">None</span>) : String | Nil</a>
+        
+          <div class="summary"><p>Returns the value that <code><a href="StringScanner.html#scan%28pattern%3AString%29%3AString%7CNil-instance-method">#scan</a></code> would return, without advancing the scan offset.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#check_until%28pattern%3AString%29%3AString%7CNil-instance-method" class="signature"><strong>#check_until</strong>(pattern : String) : String | Nil</a>
+        
+          <div class="summary"><p>Returns the value that <code><a href="StringScanner.html#scan_until%28pattern%3AString%29%3AString%7CNil-instance-method">#scan_until</a></code> would return, without advancing the scan offset.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#check_until%28pattern%3AChar%29%3AString%7CNil-instance-method" class="signature"><strong>#check_until</strong>(pattern : Char) : String | Nil</a>
+        
+          <div class="summary"><p>Returns the value that <code><a href="StringScanner.html#scan_until%28pattern%3AString%29%3AString%7CNil-instance-method">#scan_until</a></code> would return, without advancing the scan offset.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#check_until%28pattern%3ARegex%2C%2A%2Coptions%3ARegex%3A%3AMatchOptions%3DRegex%3A%3AMatchOptions%3A%3ANone%29%3AString%7CNil-instance-method" class="signature"><strong>#check_until</strong>(pattern : Regex, *, options : Regex::MatchOptions = <span class="t">Regex</span><span class="t">::</span><span class="t">MatchOptions</span><span class="t">::</span><span class="t">None</span>) : String | Nil</a>
+        
+          <div class="summary"><p>Returns the value that <code><a href="StringScanner.html#scan_until%28pattern%3AString%29%3AString%7CNil-instance-method">#scan_until</a></code> would return, without advancing the scan offset.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#eos%3F%3ABool-instance-method" class="signature"><strong>#eos?</strong> : Bool</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if the scan offset is at the end of the string.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#inspect%28io%3AIO%29%3ANil-instance-method" class="signature"><strong>#inspect</strong>(io : IO) : Nil</a>
+        
+          <div class="summary"><p>Writes a representation of the scanner.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#offset%3AInt32-instance-method" class="signature"><strong>#offset</strong> : Int32</a>
+        
+          <div class="summary"><p>Returns the current position of the scan offset.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#offset%3D%28position%3AInt%29-instance-method" class="signature"><strong>#offset=</strong>(position : Int)</a>
+        
+          <div class="summary"><p>Sets the <em>position</em> of the scan offset.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#peek%28len%29%3AString-instance-method" class="signature"><strong>#peek</strong>(len) : String</a>
+        
+          <div class="summary"><p>Extracts a string corresponding to string[offset,<em>len</em>], without advancing the scan offset.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#reset-instance-method" class="signature"><strong>#reset</strong></a>
+        
+          <div class="summary"><p>Resets the scan offset to the beginning and clears the last match.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#rest%3AString-instance-method" class="signature"><strong>#rest</strong> : String</a>
+        
+          <div class="summary"><p>Returns the remainder of the string after the scan offset.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#scan%28pattern%3AString%29%3AString%7CNil-instance-method" class="signature"><strong>#scan</strong>(pattern : String) : String | Nil</a>
+        
+          <div class="summary"><p>Tries to match with <em>pattern</em> at the current position.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#scan%28pattern%3AChar%29%3AString%7CNil-instance-method" class="signature"><strong>#scan</strong>(pattern : Char) : String | Nil</a>
+        
+          <div class="summary"><p>Tries to match with <em>pattern</em> at the current position.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#scan%28pattern%3ARegex%2C%2A%2Coptions%3ARegex%3A%3AMatchOptions%3DRegex%3A%3AMatchOptions%3A%3ANone%29%3AString%7CNil-instance-method" class="signature"><strong>#scan</strong>(pattern : Regex, *, options : Regex::MatchOptions = <span class="t">Regex</span><span class="t">::</span><span class="t">MatchOptions</span><span class="t">::</span><span class="t">None</span>) : String | Nil</a>
+        
+          <div class="summary"><p>Tries to match with <em>pattern</em> at the current position.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#scan_until%28pattern%3AString%29%3AString%7CNil-instance-method" class="signature"><strong>#scan_until</strong>(pattern : String) : String | Nil</a>
+        
+          <div class="summary"><p>Scans the string <em>until</em> the <em>pattern</em> is matched.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#scan_until%28pattern%3AChar%29%3AString%7CNil-instance-method" class="signature"><strong>#scan_until</strong>(pattern : Char) : String | Nil</a>
+        
+          <div class="summary"><p>Scans the string <em>until</em> the <em>pattern</em> is matched.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#scan_until%28pattern%3ARegex%2C%2A%2Coptions%3ARegex%3A%3AMatchOptions%3DRegex%3A%3AMatchOptions%3A%3ANone%29%3AString%7CNil-instance-method" class="signature"><strong>#scan_until</strong>(pattern : Regex, *, options : Regex::MatchOptions = <span class="t">Regex</span><span class="t">::</span><span class="t">MatchOptions</span><span class="t">::</span><span class="t">None</span>) : String | Nil</a>
+        
+          <div class="summary"><p>Scans the string <em>until</em> the <em>pattern</em> is matched.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#skip%28pattern%3AString%29%3AInt32%7CNil-instance-method" class="signature"><strong>#skip</strong>(pattern : String) : Int32 | Nil</a>
+        
+          <div class="summary"><p>Attempts to skip over the given <em>pattern</em> beginning with the scan offset.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#skip%28pattern%3AChar%29%3AInt32%7CNil-instance-method" class="signature"><strong>#skip</strong>(pattern : Char) : Int32 | Nil</a>
+        
+          <div class="summary"><p>Attempts to skip over the given <em>pattern</em> beginning with the scan offset.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#skip%28pattern%3ARegex%2C%2A%2Coptions%3ARegex%3A%3AMatchOptions%3DRegex%3A%3AMatchOptions%3A%3ANone%29%3AInt32%7CNil-instance-method" class="signature"><strong>#skip</strong>(pattern : Regex, *, options : Regex::MatchOptions = <span class="t">Regex</span><span class="t">::</span><span class="t">MatchOptions</span><span class="t">::</span><span class="t">None</span>) : Int32 | Nil</a>
+        
+          <div class="summary"><p>Attempts to skip over the given <em>pattern</em> beginning with the scan offset.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#skip_until%28pattern%3AString%29%3AInt32%7CNil-instance-method" class="signature"><strong>#skip_until</strong>(pattern : String) : Int32 | Nil</a>
+        
+          <div class="summary"><p>Attempts to skip <em>until</em> the given <em>pattern</em> is found after the scan offset.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#skip_until%28pattern%3AChar%29%3AInt32%7CNil-instance-method" class="signature"><strong>#skip_until</strong>(pattern : Char) : Int32 | Nil</a>
+        
+          <div class="summary"><p>Attempts to skip <em>until</em> the given <em>pattern</em> is found after the scan offset.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#skip_until%28pattern%3ARegex%2C%2A%2Coptions%3ARegex%3A%3AMatchOptions%3DRegex%3A%3AMatchOptions%3A%3ANone%29%3AInt32%7CNil-instance-method" class="signature"><strong>#skip_until</strong>(pattern : Regex, *, options : Regex::MatchOptions = <span class="t">Regex</span><span class="t">::</span><span class="t">MatchOptions</span><span class="t">::</span><span class="t">None</span>) : Int32 | Nil</a>
+        
+          <div class="summary"><p>Attempts to skip <em>until</em> the given <em>pattern</em> is found after the scan offset.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#string%3AString-instance-method" class="signature"><strong>#string</strong> : String</a>
+        
+          <div class="summary"><p>Returns the string being scanned.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#terminate-instance-method" class="signature"><strong>#terminate</strong></a>
+        
+          <div class="summary"><p>Moves the scan offset to the end of the string and clears the last match.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+
+  <div class="methods-inherited">
+    
+      
+
+  <h3>Instance methods inherited from class <code><a href="Reference.html">Reference</a></code></h3>
+  
+  
+    <a href="Reference.html#%3D%3D%28other%3Aself%29-instance-method" class="tooltip">
+      <span>==(other : <span class="k">self</span>)<br/>==(other : JSON::Any)<br/>==(other : YAML::Any)<br/>==(other)</span>
+    ==</a>, 
+    
+  
+    <a href="Reference.html#dup-instance-method" class="tooltip">
+      <span>dup</span>
+    dup</a>, 
+    
+  
+    <a href="Reference.html#hash%28hasher%29-instance-method" class="tooltip">
+      <span>hash(hasher)</span>
+    hash</a>, 
+    
+  
+    <a href="Reference.html#initialize-instance-method" class="tooltip">
+      <span>initialize</span>
+    initialize</a>, 
+    
+  
+    <a href="Reference.html#inspect%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>inspect(io : IO) : Nil</span>
+    inspect</a>, 
+    
+  
+    <a href="Reference.html#object_id%3AUInt64-instance-method" class="tooltip">
+      <span>object_id : UInt64</span>
+    object_id</a>, 
+    
+  
+    <a href="Reference.html#pretty_print%28pp%29%3ANil-instance-method" class="tooltip">
+      <span>pretty_print(pp) : Nil</span>
+    pretty_print</a>, 
+    
+  
+    <a href="Reference.html#same%3F%28other%3AReference%29%3ABool-instance-method" class="tooltip">
+      <span>same?(other : Reference) : Bool<br/>same?(other : Nil)</span>
+    same?</a>, 
+    
+  
+    <a href="Reference.html#to_s%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_s(io : IO) : Nil</span>
+    to_s</a>
+    
+  
+
+
+      
+
+  <h3>Constructor methods inherited from class <code><a href="Reference.html">Reference</a></code></h3>
+  
+  
+    <a href="Reference.html#new-class-method" class="tooltip">
+      <span>new</span>
+    new</a>, 
+    
+  
+    <a href="Reference.html#unsafe_construct%28address%3APointer%2C%2Aargs%2C%2A%2Aopts%29%3Aself-class-method" class="tooltip">
+      <span>unsafe_construct(address : Pointer, *args, **opts) : <span class="k">self</span></span>
+    unsafe_construct</a>
+    
+  
+
+
+      
+
+  <h3>Class methods inherited from class <code><a href="Reference.html">Reference</a></code></h3>
+  
+  
+    <a href="Reference.html#pre_initialize%28address%3APointer%29-class-method" class="tooltip">
+      <span>pre_initialize(address : Pointer)</span>
+    pre_initialize</a>
+    
+  
+
+
+      
+
+
+    
+      
+
+  <h3>Instance methods inherited from class <code><a href="Object.html">Object</a></code></h3>
+  
+  
+    <a href="Object.html#%21%3ABool-instance-method" class="tooltip">
+      <span>! : Bool</span>
+    !</a>, 
+    
+  
+    <a href="Object.html#%21%3D%28other%29-instance-method" class="tooltip">
+      <span>!=(other)</span>
+    !=</a>, 
+    
+  
+    <a href="Object.html#%21~%28other%29-instance-method" class="tooltip">
+      <span>!~(other)</span>
+    !~</a>, 
+    
+  
+    <a href="Object.html#%3D%3D%28other%29-instance-method" class="tooltip">
+      <span>==(other)</span>
+    ==</a>, 
+    
+  
+    <a href="Object.html#%3D%3D%3D%28other%3AJSON%3A%3AAny%29-instance-method" class="tooltip">
+      <span>===(other : JSON::Any)<br/>===(other : YAML::Any)<br/>===(other)</span>
+    ===</a>, 
+    
+  
+    <a href="Object.html#%3D~%28other%29-instance-method" class="tooltip">
+      <span>=~(other)</span>
+    =~</a>, 
+    
+  
+    <a href="Object.html#as%28type%3AClass%29-instance-method" class="tooltip">
+      <span>as(type : Class)</span>
+    as</a>, 
+    
+  
+    <a href="Object.html#as%3F%28type%3AClass%29-instance-method" class="tooltip">
+      <span>as?(type : Class)</span>
+    as?</a>, 
+    
+  
+    <a href="Object.html#class-instance-method" class="tooltip">
+      <span>class</span>
+    class</a>, 
+    
+  
+    <a href="Object.html#dup-instance-method" class="tooltip">
+      <span>dup</span>
+    dup</a>, 
+    
+  
+    <a href="Object.html#hash%28hasher%29-instance-method" class="tooltip">
+      <span>hash(hasher)<br/>hash</span>
+    hash</a>, 
+    
+  
+    <a href="Object.html#in%3F%28collection%3AObject%29%3ABool-instance-method" class="tooltip">
+      <span>in?(collection : Object) : Bool<br/>in?(*values : Object) : Bool</span>
+    in?</a>, 
+    
+  
+    <a href="Object.html#inspect%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>inspect(io : IO) : Nil<br/>inspect : String</span>
+    inspect</a>, 
+    
+  
+    <a href="Object.html#is_a%3F%28type%3AClass%29%3ABool-instance-method" class="tooltip">
+      <span>is_a?(type : Class) : Bool</span>
+    is_a?</a>, 
+    
+  
+    <a href="Object.html#itself-instance-method" class="tooltip">
+      <span>itself</span>
+    itself</a>, 
+    
+  
+    <a href="Object.html#nil%3F%3ABool-instance-method" class="tooltip">
+      <span>nil? : Bool</span>
+    nil?</a>, 
+    
+  
+    <a href="Object.html#not_nil%21%28message%29-instance-method" class="tooltip">
+      <span>not_nil!(message)<br/>not_nil!</span>
+    not_nil!</a>, 
+    
+  
+    <a href="Object.html#pretty_inspect%28width%3D79%2Cnewline%3D%22%5Cn%22%2Cindent%3D0%29%3AString-instance-method" class="tooltip">
+      <span>pretty_inspect(width = <span class="n">79</span>, newline = <span class="s">&quot;\n&quot;</span>, indent = <span class="n">0</span>) : String</span>
+    pretty_inspect</a>, 
+    
+  
+    <a href="Object.html#pretty_print%28pp%3APrettyPrint%29%3ANil-instance-method" class="tooltip">
+      <span>pretty_print(pp : PrettyPrint) : Nil</span>
+    pretty_print</a>, 
+    
+  
+    <a href="Object.html#responds_to%3F%28name%3ASymbol%29%3ABool-instance-method" class="tooltip">
+      <span>responds_to?(name : Symbol) : Bool</span>
+    responds_to?</a>, 
+    
+  
+    <a href="Object.html#tap%28%26%29-instance-method" class="tooltip">
+      <span>tap(&)</span>
+    tap</a>, 
+    
+  
+    <a href="Object.html#to_json%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_json(io : IO) : Nil<br/>to_json : String</span>
+    to_json</a>, 
+    
+  
+    <a href="Object.html#to_pretty_json%28indent%3AString%3D%22%22%29%3AString-instance-method" class="tooltip">
+      <span>to_pretty_json(indent : String = <span class="s">&quot;  &quot;</span>) : String<br/>to_pretty_json(io : IO, indent : String = <span class="s">&quot;  &quot;</span>) : Nil</span>
+    to_pretty_json</a>, 
+    
+  
+    <a href="Object.html#to_s%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_s(io : IO) : Nil<br/>to_s : String</span>
+    to_s</a>, 
+    
+  
+    <a href="Object.html#to_yaml%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_yaml(io : IO) : Nil<br/>to_yaml : String</span>
+    to_yaml</a>, 
+    
+  
+    <a href="Object.html#try%28%26%29-instance-method" class="tooltip">
+      <span>try(&)</span>
+    try</a>, 
+    
+  
+    <a href="Object.html#unsafe_as%28type%3AT.class%29forallT-instance-method" class="tooltip">
+      <span>unsafe_as(type : <span class="t">T</span>.<span class="k">class</span>) forall T</span>
+    unsafe_as</a>
+    
+  
+
+
+      
+
+
+      
+
+  <h3>Class methods inherited from class <code><a href="Object.html">Object</a></code></h3>
+  
+  
+    <a href="Object.html#from_json%28string_or_io%2Croot%3AString%29-class-method" class="tooltip">
+      <span>from_json(string_or_io, root : String)<br/>from_json(string_or_io)</span>
+    from_json</a>, 
+    
+  
+    <a href="Object.html#from_yaml%28string_or_io%3AString%7CIO%29-class-method" class="tooltip">
+      <span>from_yaml(string_or_io : String | IO)</span>
+    from_yaml</a>
+    
+  
+
+
+      
+
+  <h3>Macros inherited from class <code><a href="Object.html">Object</a></code></h3>
+  
+  
+    <a href="Object.html#class_getter%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_getter(*names, &block)</span>
+    class_getter</a>, 
+    
+  
+    <a href="Object.html#class_getter%21%28%2Anames%29-macro" class="tooltip">
+      <span>class_getter!(*names)</span>
+    class_getter!</a>, 
+    
+  
+    <a href="Object.html#class_getter%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_getter?(*names, &block)</span>
+    class_getter?</a>, 
+    
+  
+    <a href="Object.html#class_property%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_property(*names, &block)</span>
+    class_property</a>, 
+    
+  
+    <a href="Object.html#class_property%21%28%2Anames%29-macro" class="tooltip">
+      <span>class_property!(*names)</span>
+    class_property!</a>, 
+    
+  
+    <a href="Object.html#class_property%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_property?(*names, &block)</span>
+    class_property?</a>, 
+    
+  
+    <a href="Object.html#class_setter%28%2Anames%29-macro" class="tooltip">
+      <span>class_setter(*names)</span>
+    class_setter</a>, 
+    
+  
+    <a href="Object.html#def_clone-macro" class="tooltip">
+      <span>def_clone</span>
+    def_clone</a>, 
+    
+  
+    <a href="Object.html#def_equals%28%2Afields%29-macro" class="tooltip">
+      <span>def_equals(*fields)</span>
+    def_equals</a>, 
+    
+  
+    <a href="Object.html#def_equals_and_hash%28%2Afields%29-macro" class="tooltip">
+      <span>def_equals_and_hash(*fields)</span>
+    def_equals_and_hash</a>, 
+    
+  
+    <a href="Object.html#def_hash%28%2Afields%29-macro" class="tooltip">
+      <span>def_hash(*fields)</span>
+    def_hash</a>, 
+    
+  
+    <a href="Object.html#delegate%28%2Amethods%2Ctoobject%29-macro" class="tooltip">
+      <span>delegate(*methods, to object)</span>
+    delegate</a>, 
+    
+  
+    <a href="Object.html#forward_missing_to%28delegate%29-macro" class="tooltip">
+      <span>forward_missing_to(delegate)</span>
+    forward_missing_to</a>, 
+    
+  
+    <a href="Object.html#getter%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>getter(*names, &block)</span>
+    getter</a>, 
+    
+  
+    <a href="Object.html#getter%21%28%2Anames%29-macro" class="tooltip">
+      <span>getter!(*names)</span>
+    getter!</a>, 
+    
+  
+    <a href="Object.html#getter%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>getter?(*names, &block)</span>
+    getter?</a>, 
+    
+  
+    <a href="Object.html#property%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>property(*names, &block)</span>
+    property</a>, 
+    
+  
+    <a href="Object.html#property%21%28%2Anames%29-macro" class="tooltip">
+      <span>property!(*names)</span>
+    property!</a>, 
+    
+  
+    <a href="Object.html#property%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>property?(*names, &block)</span>
+    property?</a>, 
+    
+  
+    <a href="Object.html#setter%28%2Anames%29-macro" class="tooltip">
+      <span>setter(*names)</span>
+    setter</a>
+    
+  
+
+
+    
+  </div>
+
+  
+  <h2>
+    <a id="constructor-detail" class="anchor" href="#constructor-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructor Detail
+  </h2>
+  
+    <div class="entry-detail" id="new(str:String)-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(str : <a href="String.html">String</a>)
+
+        <a class="method-permalink" href="#new%28str%3AString%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/string_scanner.cr#L66" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+  
+
+  
+
+  
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="[](n):String-instance-method">
+      <div class="signature">
+        
+        def <strong>[]</strong>(n) : <a href="String.html">String</a>
+
+        <a class="method-permalink" href="#%5B%5D%28n%29%3AString-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the <em>n</em>-th subgroup in the most recent match.</p>
+<p>Raises an exception if there was no last match or if there is no subgroup.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;string_scanner&quot;</span>
+
+s <span class="o">=</span> <span class="t">StringScanner</span>.new(<span class="s">&quot;Fri Dec 12 1975 14:39&quot;</span>)
+regex <span class="o">=</span> <span class="s">/(?&lt;wday&gt;\w+) (?&lt;month&gt;\w+) (?&lt;day&gt;\d+)/</span>
+s.scan(regex) <span class="c"># =&gt; &quot;Fri Dec 12&quot;</span>
+s[<span class="n">0</span>]          <span class="c"># =&gt; &quot;Fri Dec 12&quot;</span>
+s[<span class="n">1</span>]          <span class="c"># =&gt; &quot;Fri&quot;</span>
+s[<span class="n">2</span>]          <span class="c"># =&gt; &quot;Dec&quot;</span>
+s[<span class="n">3</span>]          <span class="c"># =&gt; &quot;12&quot;</span>
+s[<span class="s">&quot;wday&quot;</span>]     <span class="c"># =&gt; &quot;Fri&quot;</span>
+s[<span class="s">&quot;month&quot;</span>]    <span class="c"># =&gt; &quot;Dec&quot;</span>
+s[<span class="s">&quot;day&quot;</span>]      <span class="c"># =&gt; &quot;12&quot;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/string_scanner.cr#L298" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="[]?(n):String|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>[]?</strong>(n) : <a href="String.html">String</a> | <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#%5B%5D%3F%28n%29%3AString%7CNil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the nilable <em>n</em>-th subgroup in the most recent match.</p>
+<p>Returns <code>nil</code> if there was no last match or if there is no subgroup.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;string_scanner&quot;</span>
+
+s <span class="o">=</span> <span class="t">StringScanner</span>.new(<span class="s">&quot;Fri Dec 12 1975 14:39&quot;</span>)
+regex <span class="o">=</span> <span class="s">/(?&lt;wday&gt;\w+) (?&lt;month&gt;\w+) (?&lt;day&gt;\d+)/</span>
+s.scan(regex)  <span class="c"># =&gt; &quot;Fri Dec 12&quot;</span>
+s[<span class="n">0</span>]?          <span class="c"># =&gt; &quot;Fri Dec 12&quot;</span>
+s[<span class="n">1</span>]?          <span class="c"># =&gt; &quot;Fri&quot;</span>
+s[<span class="n">2</span>]?          <span class="c"># =&gt; &quot;Dec&quot;</span>
+s[<span class="n">3</span>]?          <span class="c"># =&gt; &quot;12&quot;</span>
+s[<span class="n">4</span>]?          <span class="c"># =&gt; nil</span>
+s[<span class="s">&quot;wday&quot;</span>]?     <span class="c"># =&gt; &quot;Fri&quot;</span>
+s[<span class="s">&quot;month&quot;</span>]?    <span class="c"># =&gt; &quot;Dec&quot;</span>
+s[<span class="s">&quot;day&quot;</span>]?      <span class="c"># =&gt; &quot;12&quot;</span>
+s[<span class="s">&quot;year&quot;</span>]?     <span class="c"># =&gt; nil</span>
+s.scan(<span class="o">/</span>more<span class="o">/</span>) <span class="c"># =&gt; nil</span>
+s[<span class="n">0</span>]?          <span class="c"># =&gt; nil</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/string_scanner.cr#L324" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="check(pattern:String):String|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>check</strong>(pattern : <a href="String.html">String</a>) : <a href="String.html">String</a> | <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#check%28pattern%3AString%29%3AString%7CNil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the value that <code><a href="StringScanner.html#scan%28pattern%3AString%29%3AString%7CNil-instance-method">#scan</a></code> would return, without advancing the scan
+offset. The last match is still saved, however.</p>
+<pre><code class="language-crystal">require &quot;string_scanner&quot;
+
+s = StringScanner.new(&quot;this is a string&quot;)
+s.offset = 5
+s.check(/\w+/) # =&gt; &quot;is&quot;
+s.check(/\w+/) # =&gt; &quot;is&quot;</code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/string_scanner.cr#L247" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="check(pattern:Char):String|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>check</strong>(pattern : <a href="Char.html">Char</a>) : <a href="String.html">String</a> | <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#check%28pattern%3AChar%29%3AString%7CNil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the value that <code><a href="StringScanner.html#scan%28pattern%3AString%29%3AString%7CNil-instance-method">#scan</a></code> would return, without advancing the scan
+offset. The last match is still saved, however.</p>
+<pre><code class="language-crystal">require &quot;string_scanner&quot;
+
+s = StringScanner.new(&quot;this is a string&quot;)
+s.offset = 5
+s.check(/\w+/) # =&gt; &quot;is&quot;
+s.check(/\w+/) # =&gt; &quot;is&quot;</code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/string_scanner.cr#L252" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="check(pattern:Regex,*,options:Regex::MatchOptions=Regex::MatchOptions::None):String|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>check</strong>(pattern : <a href="Regex.html">Regex</a>, *, options : <a href="Regex/MatchOptions.html">Regex::MatchOptions</a> = <span class="t">Regex</span><span class="t">::</span><span class="t">MatchOptions</span><span class="t">::</span><span class="t">None</span>) : <a href="String.html">String</a> | <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#check%28pattern%3ARegex%2C%2A%2Coptions%3ARegex%3A%3AMatchOptions%3DRegex%3A%3AMatchOptions%3A%3ANone%29%3AString%7CNil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the value that <code><a href="StringScanner.html#scan%28pattern%3AString%29%3AString%7CNil-instance-method">#scan</a></code> would return, without advancing the scan
+offset. The last match is still saved, however.</p>
+<pre><code class="language-crystal">require &quot;string_scanner&quot;
+
+s = StringScanner.new(&quot;this is a string&quot;)
+s.offset = 5
+s.check(/\w+/) # =&gt; &quot;is&quot;
+s.check(/\w+/) # =&gt; &quot;is&quot;</code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/string_scanner.cr#L242" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="check_until(pattern:String):String|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>check_until</strong>(pattern : <a href="String.html">String</a>) : <a href="String.html">String</a> | <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#check_until%28pattern%3AString%29%3AString%7CNil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the value that <code><a href="StringScanner.html#scan_until%28pattern%3AString%29%3AString%7CNil-instance-method">#scan_until</a></code> would return, without advancing the
+scan offset. The last match is still saved, however.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;string_scanner&quot;</span>
+
+s <span class="o">=</span> <span class="t">StringScanner</span>.new(<span class="s">&quot;test string&quot;</span>)
+s.check_until(<span class="o">/</span>tr<span class="o">/</span>) <span class="c"># =&gt; &quot;test str&quot;</span>
+s.check_until(<span class="o">/</span>g<span class="o">/</span>)  <span class="c"># =&gt; &quot;test string&quot;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/string_scanner.cr#L271" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="check_until(pattern:Char):String|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>check_until</strong>(pattern : <a href="Char.html">Char</a>) : <a href="String.html">String</a> | <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#check_until%28pattern%3AChar%29%3AString%7CNil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the value that <code><a href="StringScanner.html#scan_until%28pattern%3AString%29%3AString%7CNil-instance-method">#scan_until</a></code> would return, without advancing the
+scan offset. The last match is still saved, however.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;string_scanner&quot;</span>
+
+s <span class="o">=</span> <span class="t">StringScanner</span>.new(<span class="s">&quot;test string&quot;</span>)
+s.check_until(<span class="o">/</span>tr<span class="o">/</span>) <span class="c"># =&gt; &quot;test str&quot;</span>
+s.check_until(<span class="o">/</span>g<span class="o">/</span>)  <span class="c"># =&gt; &quot;test string&quot;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/string_scanner.cr#L276" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="check_until(pattern:Regex,*,options:Regex::MatchOptions=Regex::MatchOptions::None):String|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>check_until</strong>(pattern : <a href="Regex.html">Regex</a>, *, options : <a href="Regex/MatchOptions.html">Regex::MatchOptions</a> = <span class="t">Regex</span><span class="t">::</span><span class="t">MatchOptions</span><span class="t">::</span><span class="t">None</span>) : <a href="String.html">String</a> | <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#check_until%28pattern%3ARegex%2C%2A%2Coptions%3ARegex%3A%3AMatchOptions%3DRegex%3A%3AMatchOptions%3A%3ANone%29%3AString%7CNil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the value that <code><a href="StringScanner.html#scan_until%28pattern%3AString%29%3AString%7CNil-instance-method">#scan_until</a></code> would return, without advancing the
+scan offset. The last match is still saved, however.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;string_scanner&quot;</span>
+
+s <span class="o">=</span> <span class="t">StringScanner</span>.new(<span class="s">&quot;test string&quot;</span>)
+s.check_until(<span class="o">/</span>tr<span class="o">/</span>) <span class="c"># =&gt; &quot;test str&quot;</span>
+s.check_until(<span class="o">/</span>g<span class="o">/</span>)  <span class="c"># =&gt; &quot;test string&quot;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/string_scanner.cr#L266" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="eos?:Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>eos?</strong> : <a href="Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#eos%3F%3ABool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if the scan offset is at the end of the string.</p>
+<pre><code class="language-crystal">require &quot;string_scanner&quot;
+
+s = StringScanner.new(&quot;this is a string&quot;)
+s.eos?                # =&gt; false
+s.scan(/(\w+\s?){4}/) # =&gt; &quot;this is a string&quot;
+s.eos?                # =&gt; true</code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/string_scanner.cr#L338" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="inspect(io:IO):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>inspect</strong>(io : <a href="IO.html">IO</a>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#inspect%28io%3AIO%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Writes a representation of the scanner.</p>
+<p>Includes the current position of the offset, the total size of the string,
+and five characters near the current position.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/string_scanner.cr#L382" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="offset:Int32-instance-method">
+      <div class="signature">
+        
+        def <strong>offset</strong> : <a href="Int32.html">Int32</a>
+
+        <a class="method-permalink" href="#offset%3AInt32-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the current position of the scan offset.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/string_scanner.cr#L77" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="offset=(position:Int)-instance-method">
+      <div class="signature">
+        
+        def <strong>offset=</strong>(position : <a href="Int.html">Int</a>)
+
+        <a class="method-permalink" href="#offset%3D%28position%3AInt%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Sets the <em>position</em> of the scan offset.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/string_scanner.cr#L71" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="peek(len):String-instance-method">
+      <div class="signature">
+        
+        def <strong>peek</strong>(len) : <a href="String.html">String</a>
+
+        <a class="method-permalink" href="#peek%28len%29%3AString-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Extracts a string corresponding to string[offset,<em>len</em>], without advancing
+the scan offset.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/string_scanner.cr#L361" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="reset-instance-method">
+      <div class="signature">
+        
+        def <strong>reset</strong>
+
+        <a class="method-permalink" href="#reset-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Resets the scan offset to the beginning and clears the last match.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/string_scanner.cr#L343" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="rest:String-instance-method">
+      <div class="signature">
+        
+        def <strong>rest</strong> : <a href="String.html">String</a>
+
+        <a class="method-permalink" href="#rest%3AString-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the remainder of the string after the scan offset.</p>
+<pre><code class="language-crystal">require &quot;string_scanner&quot;
+
+s = StringScanner.new(&quot;this is a string&quot;)
+s.scan(/(\w+\s?){2}/) # =&gt; &quot;this is &quot;
+s.rest                # =&gt; &quot;a string&quot;</code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/string_scanner.cr#L374" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="scan(pattern:String):String|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>scan</strong>(pattern : <a href="String.html">String</a>) : <a href="String.html">String</a> | <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#scan%28pattern%3AString%29%3AString%7CNil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Tries to match with <em>pattern</em> at the current position. If there's a match,
+the scanner advances the scan offset, the last match is saved, and it
+returns the matched string. Otherwise, the scanner returns <code>nil</code>.</p>
+<pre><code class="language-crystal">require &quot;string_scanner&quot;
+
+s = StringScanner.new(&quot;test string&quot;)
+s.scan(/\w+/)  # =&gt; &quot;test&quot;
+s.scan(/\w+/)  # =&gt; nil
+s.scan(/\s\w/) # =&gt; &quot; s&quot;
+s.scan(&#39;t&#39;)    # =&gt; &quot;t&quot;
+s.scan(&quot;ring&quot;) # =&gt; &quot;ring&quot;
+s.scan(/.*/)   # =&gt; &quot;&quot;</code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/string_scanner.cr#L101" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="scan(pattern:Char):String|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>scan</strong>(pattern : <a href="Char.html">Char</a>) : <a href="String.html">String</a> | <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#scan%28pattern%3AChar%29%3AString%7CNil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Tries to match with <em>pattern</em> at the current position. If there's a match,
+the scanner advances the scan offset, the last match is saved, and it
+returns the matched string. Otherwise, the scanner returns <code>nil</code>.</p>
+<pre><code class="language-crystal">require &quot;string_scanner&quot;
+
+s = StringScanner.new(&quot;test string&quot;)
+s.scan(/\w+/)  # =&gt; &quot;test&quot;
+s.scan(/\w+/)  # =&gt; nil
+s.scan(/\s\w/) # =&gt; &quot; s&quot;
+s.scan(&#39;t&#39;)    # =&gt; &quot;t&quot;
+s.scan(&quot;ring&quot;) # =&gt; &quot;ring&quot;
+s.scan(/.*/)   # =&gt; &quot;&quot;</code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/string_scanner.cr#L106" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="scan(pattern:Regex,*,options:Regex::MatchOptions=Regex::MatchOptions::None):String|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>scan</strong>(pattern : <a href="Regex.html">Regex</a>, *, options : <a href="Regex/MatchOptions.html">Regex::MatchOptions</a> = <span class="t">Regex</span><span class="t">::</span><span class="t">MatchOptions</span><span class="t">::</span><span class="t">None</span>) : <a href="String.html">String</a> | <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#scan%28pattern%3ARegex%2C%2A%2Coptions%3ARegex%3A%3AMatchOptions%3DRegex%3A%3AMatchOptions%3A%3ANone%29%3AString%7CNil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Tries to match with <em>pattern</em> at the current position. If there's a match,
+the scanner advances the scan offset, the last match is saved, and it
+returns the matched string. Otherwise, the scanner returns <code>nil</code>.</p>
+<pre><code class="language-crystal">require &quot;string_scanner&quot;
+
+s = StringScanner.new(&quot;test string&quot;)
+s.scan(/\w+/)  # =&gt; &quot;test&quot;
+s.scan(/\w+/)  # =&gt; nil
+s.scan(/\s\w/) # =&gt; &quot; s&quot;
+s.scan(&#39;t&#39;)    # =&gt; &quot;t&quot;
+s.scan(&quot;ring&quot;) # =&gt; &quot;ring&quot;
+s.scan(/.*/)   # =&gt; &quot;&quot;</code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/string_scanner.cr#L96" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="scan_until(pattern:String):String|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>scan_until</strong>(pattern : <a href="String.html">String</a>) : <a href="String.html">String</a> | <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#scan_until%28pattern%3AString%29%3AString%7CNil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Scans the string <em>until</em> the <em>pattern</em> is matched. Returns the substring up
+to and including the end of the match, the last match is saved, and
+advances the scan offset. Returns <code>nil</code> if no match.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;string_scanner&quot;</span>
+
+s <span class="o">=</span> <span class="t">StringScanner</span>.new(<span class="s">&quot;test string&quot;</span>)
+s.scan_until(<span class="o">/</span> s<span class="o">/</span>) <span class="c"># =&gt; &quot;test s&quot;</span>
+s.scan_until(<span class="o">/</span> s<span class="o">/</span>) <span class="c"># =&gt; nil</span>
+s.scan_until(<span class="s">&#39;r&#39;</span>)  <span class="c"># =&gt; &quot;tr&quot;</span>
+s.scan_until(<span class="s">&quot;ng&quot;</span>) <span class="c"># =&gt; &quot;ing&quot;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/string_scanner.cr#L128" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="scan_until(pattern:Char):String|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>scan_until</strong>(pattern : <a href="Char.html">Char</a>) : <a href="String.html">String</a> | <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#scan_until%28pattern%3AChar%29%3AString%7CNil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Scans the string <em>until</em> the <em>pattern</em> is matched. Returns the substring up
+to and including the end of the match, the last match is saved, and
+advances the scan offset. Returns <code>nil</code> if no match.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;string_scanner&quot;</span>
+
+s <span class="o">=</span> <span class="t">StringScanner</span>.new(<span class="s">&quot;test string&quot;</span>)
+s.scan_until(<span class="o">/</span> s<span class="o">/</span>) <span class="c"># =&gt; &quot;test s&quot;</span>
+s.scan_until(<span class="o">/</span> s<span class="o">/</span>) <span class="c"># =&gt; nil</span>
+s.scan_until(<span class="s">&#39;r&#39;</span>)  <span class="c"># =&gt; &quot;tr&quot;</span>
+s.scan_until(<span class="s">&quot;ng&quot;</span>) <span class="c"># =&gt; &quot;ing&quot;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/string_scanner.cr#L133" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="scan_until(pattern:Regex,*,options:Regex::MatchOptions=Regex::MatchOptions::None):String|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>scan_until</strong>(pattern : <a href="Regex.html">Regex</a>, *, options : <a href="Regex/MatchOptions.html">Regex::MatchOptions</a> = <span class="t">Regex</span><span class="t">::</span><span class="t">MatchOptions</span><span class="t">::</span><span class="t">None</span>) : <a href="String.html">String</a> | <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#scan_until%28pattern%3ARegex%2C%2A%2Coptions%3ARegex%3A%3AMatchOptions%3DRegex%3A%3AMatchOptions%3A%3ANone%29%3AString%7CNil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Scans the string <em>until</em> the <em>pattern</em> is matched. Returns the substring up
+to and including the end of the match, the last match is saved, and
+advances the scan offset. Returns <code>nil</code> if no match.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;string_scanner&quot;</span>
+
+s <span class="o">=</span> <span class="t">StringScanner</span>.new(<span class="s">&quot;test string&quot;</span>)
+s.scan_until(<span class="o">/</span> s<span class="o">/</span>) <span class="c"># =&gt; &quot;test s&quot;</span>
+s.scan_until(<span class="o">/</span> s<span class="o">/</span>) <span class="c"># =&gt; nil</span>
+s.scan_until(<span class="s">&#39;r&#39;</span>)  <span class="c"># =&gt; &quot;tr&quot;</span>
+s.scan_until(<span class="s">&quot;ng&quot;</span>) <span class="c"># =&gt; &quot;ing&quot;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/string_scanner.cr#L123" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="skip(pattern:String):Int32|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>skip</strong>(pattern : <a href="String.html">String</a>) : <a href="Int32.html">Int32</a> | <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#skip%28pattern%3AString%29%3AInt32%7CNil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Attempts to skip over the given <em>pattern</em> beginning with the scan offset.
+In other words, the pattern is not anchored to the current scan offset.</p>
+<p>If there's a match, the scanner advances the scan offset, the last match is
+saved, and it returns the size of the skipped match. Otherwise it returns
+<code>nil</code> and does not advance the offset.</p>
+<p>This method is the same as <code><a href="StringScanner.html#scan%28pattern%3AString%29%3AString%7CNil-instance-method">#scan</a></code>, but without returning the matched
+string.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/string_scanner.cr#L192" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="skip(pattern:Char):Int32|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>skip</strong>(pattern : <a href="Char.html">Char</a>) : <a href="Int32.html">Int32</a> | <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#skip%28pattern%3AChar%29%3AInt32%7CNil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Attempts to skip over the given <em>pattern</em> beginning with the scan offset.
+In other words, the pattern is not anchored to the current scan offset.</p>
+<p>If there's a match, the scanner advances the scan offset, the last match is
+saved, and it returns the size of the skipped match. Otherwise it returns
+<code>nil</code> and does not advance the offset.</p>
+<p>This method is the same as <code><a href="StringScanner.html#scan%28pattern%3AString%29%3AString%7CNil-instance-method">#scan</a></code>, but without returning the matched
+string.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/string_scanner.cr#L198" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="skip(pattern:Regex,*,options:Regex::MatchOptions=Regex::MatchOptions::None):Int32|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>skip</strong>(pattern : <a href="Regex.html">Regex</a>, *, options : <a href="Regex/MatchOptions.html">Regex::MatchOptions</a> = <span class="t">Regex</span><span class="t">::</span><span class="t">MatchOptions</span><span class="t">::</span><span class="t">None</span>) : <a href="Int32.html">Int32</a> | <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#skip%28pattern%3ARegex%2C%2A%2Coptions%3ARegex%3A%3AMatchOptions%3DRegex%3A%3AMatchOptions%3A%3ANone%29%3AInt32%7CNil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Attempts to skip over the given <em>pattern</em> beginning with the scan offset.
+In other words, the pattern is not anchored to the current scan offset.</p>
+<p>If there's a match, the scanner advances the scan offset, the last match is
+saved, and it returns the size of the skipped match. Otherwise it returns
+<code>nil</code> and does not advance the offset.</p>
+<p>This method is the same as <code><a href="StringScanner.html#scan%28pattern%3AString%29%3AString%7CNil-instance-method">#scan</a></code>, but without returning the matched
+string.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/string_scanner.cr#L186" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="skip_until(pattern:String):Int32|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>skip_until</strong>(pattern : <a href="String.html">String</a>) : <a href="Int32.html">Int32</a> | <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#skip_until%28pattern%3AString%29%3AInt32%7CNil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Attempts to skip <em>until</em> the given <em>pattern</em> is found after the scan
+offset. In other words, the pattern is not anchored to the current scan
+offset.</p>
+<p>If there's a match, the scanner advances the scan offset, the last match is
+saved, and it returns the size of the skip. Otherwise it returns <code>nil</code>
+and does not advance the
+offset.</p>
+<p>This method is the same as <code><a href="StringScanner.html#scan_until%28pattern%3AString%29%3AString%7CNil-instance-method">#scan_until</a></code>, but without returning the matched
+string.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/string_scanner.cr#L220" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="skip_until(pattern:Char):Int32|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>skip_until</strong>(pattern : <a href="Char.html">Char</a>) : <a href="Int32.html">Int32</a> | <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#skip_until%28pattern%3AChar%29%3AInt32%7CNil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Attempts to skip <em>until</em> the given <em>pattern</em> is found after the scan
+offset. In other words, the pattern is not anchored to the current scan
+offset.</p>
+<p>If there's a match, the scanner advances the scan offset, the last match is
+saved, and it returns the size of the skip. Otherwise it returns <code>nil</code>
+and does not advance the
+offset.</p>
+<p>This method is the same as <code><a href="StringScanner.html#scan_until%28pattern%3AString%29%3AString%7CNil-instance-method">#scan_until</a></code>, but without returning the matched
+string.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/string_scanner.cr#L226" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="skip_until(pattern:Regex,*,options:Regex::MatchOptions=Regex::MatchOptions::None):Int32|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>skip_until</strong>(pattern : <a href="Regex.html">Regex</a>, *, options : <a href="Regex/MatchOptions.html">Regex::MatchOptions</a> = <span class="t">Regex</span><span class="t">::</span><span class="t">MatchOptions</span><span class="t">::</span><span class="t">None</span>) : <a href="Int32.html">Int32</a> | <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#skip_until%28pattern%3ARegex%2C%2A%2Coptions%3ARegex%3A%3AMatchOptions%3DRegex%3A%3AMatchOptions%3A%3ANone%29%3AInt32%7CNil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Attempts to skip <em>until</em> the given <em>pattern</em> is found after the scan
+offset. In other words, the pattern is not anchored to the current scan
+offset.</p>
+<p>If there's a match, the scanner advances the scan offset, the last match is
+saved, and it returns the size of the skip. Otherwise it returns <code>nil</code>
+and does not advance the
+offset.</p>
+<p>This method is the same as <code><a href="StringScanner.html#scan_until%28pattern%3AString%29%3AString%7CNil-instance-method">#scan_until</a></code>, but without returning the matched
+string.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/string_scanner.cr#L214" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="string:String-instance-method">
+      <div class="signature">
+        
+        def <strong>string</strong> : <a href="String.html">String</a>
+
+        <a class="method-permalink" href="#string%3AString-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the string being scanned.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/string_scanner.cr#L355" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="terminate-instance-method">
+      <div class="signature">
+        
+        def <strong>terminate</strong>
+
+        <a class="method-permalink" href="#terminate-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Moves the scan offset to the end of the string and clears the last match.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/string_scanner.cr#L349" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+</div>
+
+</body>
+</html>

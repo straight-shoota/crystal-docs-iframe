@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Crystal Docs 1.16.1">
+<meta name="crystal_docs.project_version" content="1.17.0-dev">
+<meta name="crystal_docs.project_name" content="Crystal">
+
+  <meta name="crystal_docs.json_config_url" content="/api/versions.json">
+
+
+    <link rel="canonical" href="https://crystal-lang.org/api/latest/MIME/Multipart.html">
+
+<link href="../css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../js/doc.js"></script>
+
+  <meta name="repository-name" content="Crystal">
+  <title>MIME::Multipart - Crystal 1.17.0-dev</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "../";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill="currentColor" fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<input type="checkbox" id="sidebar-btn">
+<label for="sidebar-btn" id="sidebar-btn-label">
+  <svg class="open" xmlns="http://www.w3.org/2000/svg" height="2em" width="2em" viewBox="0 0 512 512"><title>Open Sidebar</title><path fill="currentColor" d="M80 96v64h352V96H80zm0 112v64h352v-64H80zm0 112v64h352v-64H80z"></path></svg>
+  <svg class="close" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><title>Close Sidebar</title><path fill="currentColor" d="m118.6 73.4-45.2 45.2L210.7 256 73.4 393.4l45.2 45.2L256 301.3l137.4 137.3 45.2-45.2L301.3 256l137.3-137.4-45.2-45.2L256 210.7Z"></path></svg>
+</label>
+<iframe class="sidebar" src="../sidebar.html"></iframe>
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">
+    module
+  </span> MIME::<wbr>Multipart
+
+</h1>
+
+
+
+
+
+  <h2>
+    <a id="overview" class="anchor" href="#overview">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Overview
+  </h2>
+
+  <p>The <code><a href="../MIME/Multipart.html">MIME::Multipart</a></code> module contains utilities for parsing MIME multipart
+messages, which contain multiple body parts, each containing a header section
+and binary body. The <code>multipart/form-data</code> content-type has a separate set of
+utilities in the <code><a href="../HTTP/FormData.html">HTTP::FormData</a></code> module.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/mime/multipart.cr#L9" target="_blank">
+        mime/multipart.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/mime/multipart/builder.cr#L1" target="_blank">
+        mime/multipart/builder.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/mime/multipart/parser.cr#L1" target="_blank">
+        mime/multipart/parser.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/mime/multipart/state.cr#L1" target="_blank">
+        mime/multipart/state.cr
+      </a>
+    
+    <br/>
+  
+
+
+
+
+
+  
+
+  
+  <h2>
+    <a id="class-method-summary" class="anchor" href="#class-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Class Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#build%28io%3AIO%2Cboundary%3AString%3DMultipart.generate_boundary%2C%26%29-class-method" class="signature"><strong>.build</strong>(io : IO, boundary : String = <span class="t">Multipart</span>.generate_boundary, &)</a>
+        
+          <div class="summary"><p>Yields a <code><a href="../MIME/Multipart/Builder.html">Multipart::Builder</a></code> to the given block, writing to <em>io</em> and using <em>boundary</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#build%28boundary%3AString%3DMultipart.generate_boundary%2C%26%29-class-method" class="signature"><strong>.build</strong>(boundary : String = <span class="t">Multipart</span>.generate_boundary, &)</a>
+        
+          <div class="summary"><p>Yields a <code><a href="../MIME/Multipart/Builder.html">Multipart::Builder</a></code> to the given block, returning the generated message as a <code><a href="../String.html">String</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#generate_boundary%3AString-class-method" class="signature"><strong>.generate_boundary</strong> : String</a>
+        
+          <div class="summary"><p>Returns a unique string suitable for use as a multipart boundary.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#parse%28io%2Cboundary%2C%26%29-class-method" class="signature"><strong>.parse</strong>(io, boundary, &)</a>
+        
+          <div class="summary"><p>Parses a MIME multipart message, yielding <code><a href="../HTTP/Headers.html">HTTP::Headers</a></code> and an <code><a href="../IO.html">IO</a></code> for each body part.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#parse%28request%3AHTTP%3A%3ARequest%2C%26%29-class-method" class="signature"><strong>.parse</strong>(request : HTTP::Request, &)</a>
+        
+          <div class="summary"><p>Parses a MIME multipart message, yielding <code><a href="../HTTP/Headers.html">HTTP::Headers</a></code> and an <code><a href="../IO.html">IO</a></code> for each body part.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#parse%28response%3AHTTP%3A%3AClient%3A%3AResponse%2C%26%29-class-method" class="signature"><strong>.parse</strong>(response : HTTP::Client::Response, &)</a>
+        
+          <div class="summary"><p>Parses a MIME multipart message, yielding <code><a href="../HTTP/Headers.html">HTTP::Headers</a></code> and an <code><a href="../IO.html">IO</a></code> for each body part.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#parse_boundary%28content_type%29%3AString%7CNil-class-method" class="signature"><strong>.parse_boundary</strong>(content_type) : String | Nil</a>
+        
+          <div class="summary"><p>Extracts the multipart boundary from the Content-Type header.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+  
+
+  
+
+
+  <div class="methods-inherited">
+    
+  </div>
+
+  
+
+  
+  <h2>
+    <a id="class-method-detail" class="anchor" href="#class-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Class Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="build(io:IO,boundary:String=Multipart.generate_boundary,&amp;)-class-method">
+      <div class="signature">
+        
+        def self.<strong>build</strong>(io : <a href="../IO.html">IO</a>, boundary : <a href="../String.html">String</a> = <span class="t">Multipart</span>.generate_boundary, &)
+
+        <a class="method-permalink" href="#build%28io%3AIO%2Cboundary%3AString%3DMultipart.generate_boundary%2C%26%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Yields a <code><a href="../MIME/Multipart/Builder.html">Multipart::Builder</a></code> to the given block, writing to <em>io</em> and
+using <em>boundary</em>. <code>#finish</code> is automatically called on the builder.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/mime/multipart.cr#L125" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="build(boundary:String=Multipart.generate_boundary,&amp;)-class-method">
+      <div class="signature">
+        
+        def self.<strong>build</strong>(boundary : <a href="../String.html">String</a> = <span class="t">Multipart</span>.generate_boundary, &)
+
+        <a class="method-permalink" href="#build%28boundary%3AString%3DMultipart.generate_boundary%2C%26%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Yields a <code><a href="../MIME/Multipart/Builder.html">Multipart::Builder</a></code> to the given block, returning the generated
+message as a <code><a href="../String.html">String</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/mime/multipart.cr#L133" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="generate_boundary:String-class-method">
+      <div class="signature">
+        
+        def self.<strong>generate_boundary</strong> : <a href="../String.html">String</a>
+
+        <a class="method-permalink" href="#generate_boundary%3AString-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns a unique string suitable for use as a multipart boundary.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;mime/multipart&quot;</span>
+
+<span class="t">MIME</span><span class="t">::</span><span class="t">Multipart</span>.generate_boundary <span class="c"># =&gt; &quot;---------------------------dQu6bXHYb4m5zrRC3xPTGwV&quot;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/mime/multipart.cr#L146" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="parse(io,boundary,&amp;)-class-method">
+      <div class="signature">
+        
+        def self.<strong>parse</strong>(io, boundary, &)
+
+        <a class="method-permalink" href="#parse%28io%2Cboundary%2C%26%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Parses a MIME multipart message, yielding <code><a href="../HTTP/Headers.html">HTTP::Headers</a></code> and an <code><a href="../IO.html">IO</a></code> for
+each body part.</p>
+<p>Please note that the IO object yielded to the block is only valid while the
+block is executing. The IO is closed as soon as the supplied block returns.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;mime/multipart&quot;</span>
+
+multipart <span class="o">=</span> <span class="s">&quot;--aA40\r\nContent-Type: text/plain\r\n\r\nbody\r\n--aA40--&quot;</span>
+<span class="t">MIME</span><span class="t">::</span><span class="t">Multipart</span>.parse(<span class="t">IO</span><span class="t">::</span><span class="t">Memory</span>.new(multipart), <span class="s">&quot;aA40&quot;</span>) <span class="k">do</span> <span class="o">|</span>headers, io<span class="o">|</span>
+  headers[<span class="s">&quot;Content-Type&quot;</span>] <span class="c"># =&gt; &quot;text/plain&quot;</span>
+  io.gets_to_end          <span class="c"># =&gt; &quot;body&quot;</span>
+<span class="k">end</span></code></pre>
+<p>See: <code><a href="../MIME/Multipart/Parser.html">Multipart::Parser</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/mime/multipart.cr#L27" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="parse(request:HTTP::Request,&amp;)-class-method">
+      <div class="signature">
+        
+        def self.<strong>parse</strong>(request : <a href="../HTTP/Request.html">HTTP::Request</a>, &)
+
+        <a class="method-permalink" href="#parse%28request%3AHTTP%3A%3ARequest%2C%26%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Parses a MIME multipart message, yielding <code><a href="../HTTP/Headers.html">HTTP::Headers</a></code> and an <code><a href="../IO.html">IO</a></code> for
+each body part.</p>
+<p>Please note that the IO object yielded to the block is only valid while the
+block is executing. The IO is closed as soon as the supplied block returns.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;http&quot;</span>
+<span class="k">require</span> <span class="s">&quot;mime/multipart&quot;</span>
+
+headers <span class="o">=</span> <span class="t">HTTP</span><span class="t">::</span><span class="t">Headers</span>{<span class="s">&quot;Content-Type&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;multipart/mixed; boundary=aA40&quot;</span>}
+body <span class="o">=</span> <span class="s">&quot;--aA40\r\nContent-Type: text/plain\r\n\r\nbody\r\n--aA40--&quot;</span>
+request <span class="o">=</span> <span class="t">HTTP</span><span class="t">::</span><span class="t">Request</span>.new(<span class="s">&quot;POST&quot;</span>, <span class="s">&quot;/&quot;</span>, headers, body)
+
+<span class="t">MIME</span><span class="t">::</span><span class="t">Multipart</span>.parse(request) <span class="k">do</span> <span class="o">|</span>headers, io<span class="o">|</span>
+  headers[<span class="s">&quot;Content-Type&quot;</span>] <span class="c"># =&gt; &quot;text/plain&quot;</span>
+  io.gets_to_end          <span class="c"># =&gt; &quot;body&quot;</span>
+<span class="k">end</span></code></pre>
+<p>See: <code><a href="../MIME/Multipart/Parser.html">Multipart::Parser</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/mime/multipart.cr#L71" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="parse(response:HTTP::Client::Response,&amp;)-class-method">
+      <div class="signature">
+        
+        def self.<strong>parse</strong>(response : <a href="../HTTP/Client/Response.html">HTTP::Client::Response</a>, &)
+
+        <a class="method-permalink" href="#parse%28response%3AHTTP%3A%3AClient%3A%3AResponse%2C%26%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Parses a MIME multipart message, yielding <code><a href="../HTTP/Headers.html">HTTP::Headers</a></code> and an <code><a href="../IO.html">IO</a></code> for
+each body part.</p>
+<p>Please note that the IO object yielded to the block is only valid while the
+block is executing. The IO is closed as soon as the supplied block returns.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;http&quot;</span>
+<span class="k">require</span> <span class="s">&quot;mime/multipart&quot;</span>
+
+headers <span class="o">=</span> <span class="t">HTTP</span><span class="t">::</span><span class="t">Headers</span>{<span class="s">&quot;Content-Type&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;multipart/byteranges; boundary=aA40&quot;</span>}
+body <span class="o">=</span> <span class="s">&quot;--aA40\r\nContent-Type: text/plain\r\n\r\nbody\r\n--aA40--&quot;</span>
+response <span class="o">=</span> <span class="t">HTTP</span><span class="t">::</span><span class="t">Client</span><span class="t">::</span><span class="t">Response</span>.new(
+  status: <span class="n">:ok</span>,
+  headers: headers,
+  body: body,
+)
+
+<span class="t">MIME</span><span class="t">::</span><span class="t">Multipart</span>.parse(response) <span class="k">do</span> <span class="o">|</span>headers, io<span class="o">|</span>
+  headers[<span class="s">&quot;Content-Type&quot;</span>] <span class="c"># =&gt; &quot;text/plain&quot;</span>
+  io.gets_to_end          <span class="c"># =&gt; &quot;body&quot;</span>
+<span class="k">end</span></code></pre>
+<p>See: <code><a href="../MIME/Multipart/Parser.html">Multipart::Parser</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/mime/multipart.cr#L107" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="parse_boundary(content_type):String|Nil-class-method">
+      <div class="signature">
+        
+        def self.<strong>parse_boundary</strong>(content_type) : <a href="../String.html">String</a> | <a href="../Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#parse_boundary%28content_type%29%3AString%7CNil-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Extracts the multipart boundary from the Content-Type header. May return
+<code>nil</code> is the boundary was not found.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;mime/multipart&quot;</span>
+
+<span class="t">MIME</span><span class="t">::</span><span class="t">Multipart</span>.parse_boundary(<span class="s">&quot;multipart/mixed; boundary=\&quot;abcde\&quot;&quot;</span>) <span class="c"># =&gt; &quot;abcde&quot;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/mime/multipart.cr#L42" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+  
+
+  
+
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Crystal Docs 1.16.1">
+<meta name="crystal_docs.project_version" content="1.17.0-dev">
+<meta name="crystal_docs.project_name" content="Crystal">
+
+  <meta name="crystal_docs.json_config_url" content="/api/versions.json">
+
+
+    <link rel="canonical" href="https://crystal-lang.org/api/latest/Spec/Expectations.html">
+
+<link href="../css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../js/doc.js"></script>
+
+  <meta name="repository-name" content="Crystal">
+  <title>Spec::Expectations - Crystal 1.17.0-dev</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "../";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill="currentColor" fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<input type="checkbox" id="sidebar-btn">
+<label for="sidebar-btn" id="sidebar-btn-label">
+  <svg class="open" xmlns="http://www.w3.org/2000/svg" height="2em" width="2em" viewBox="0 0 512 512"><title>Open Sidebar</title><path fill="currentColor" d="M80 96v64h352V96H80zm0 112v64h352v-64H80zm0 112v64h352v-64H80z"></path></svg>
+  <svg class="close" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><title>Close Sidebar</title><path fill="currentColor" d="m118.6 73.4-45.2 45.2L210.7 256 73.4 393.4l45.2 45.2L256 301.3l137.4 137.3 45.2-45.2L301.3 256l137.3-137.4-45.2-45.2L256 210.7Z"></path></svg>
+</label>
+<iframe class="sidebar" src="../sidebar.html"></iframe>
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">
+    module
+  </span> Spec::<wbr>Expectations
+
+</h1>
+
+
+
+
+
+  <h2>
+    <a id="overview" class="anchor" href="#overview">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Overview
+  </h2>
+
+  <p>This module defines a number of methods to create expectations, which are
+automatically included into the top level namespace.</p>
+<p>Expectations are used by <code><a href="../Spec/ObjectExtensions.html#should%28expectation%3ABeAExpectation%28T%29%2Cfailure_message%3AString%7CNil%3Dnil%2C%2A%2Cfile%3D__FILE__%2Cline%3D__LINE__%29%3ATforallT-instance-method">Spec::ObjectExtensions#should</a></code> and <code><a href="../Spec/ObjectExtensions.html#should_not%28expectation%3ABeAExpectation%28T%29%2Cfailure_message%3AString%7CNil%3Dnil%2C%2A%2Cfile%3D__FILE__%2Cline%3D__LINE__%29forallT-instance-method">Spec::ObjectExtensions#should_not</a></code>.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/spec/expectations.cr#L305" target="_blank">
+        spec/expectations.cr
+      </a>
+    
+    <br/>
+  
+
+
+
+
+
+  
+
+  
+
+  
+  <h2>
+    <a id="macro-summary" class="anchor" href="#macro-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Macro Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#be_a%28type%29-macro" class="signature"><strong>be_a</strong>(type)</a>
+        
+          <div class="summary"><p>Creates an <code>Expectation</code> that passes if actual is of type <em>type</em> (<code>is_a?</code>).</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+  
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#be%28value%29-instance-method" class="signature"><strong>#be</strong>(value)</a>
+        
+          <div class="summary"><p>Creates an <code>Expectation</code> that passes if actual and <em>value</em> are identical (<code>.same?</code>).</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#be-instance-method" class="signature"><strong>#be</strong></a>
+        
+          <div class="summary"><p>Returns a factory to create a comparison <code>Expectation</code> that:</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#be_close%28expected%2Cdelta%29-instance-method" class="signature"><strong>#be_close</strong>(expected, delta)</a>
+        
+          <div class="summary"><p>Creates an <code>Expectation</code> that passes if actual is within <em>delta</em> of <em>expected</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#be_empty-instance-method" class="signature"><strong>#be_empty</strong></a>
+        
+          <div class="summary"><p>Creates an <code>Expectation</code> that passes if actual is empty (<code>.empty?</code>).</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#be_false-instance-method" class="signature"><strong>#be_false</strong></a>
+        
+          <div class="summary"><p>Creates an <code>Expectation</code> that passes if actual is false (<code>== false</code>).</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#be_falsey-instance-method" class="signature"><strong>#be_falsey</strong></a>
+        
+          <div class="summary"><p>Creates an <code>Expectation</code> that passes if actual is falsy (<code>nil</code> or <code>false</code>).</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#be_nil-instance-method" class="signature"><strong>#be_nil</strong></a>
+        
+          <div class="summary"><p>Creates an <code>Expectation</code> that passes if actual is nil (<code>== nil</code>).</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#be_true-instance-method" class="signature"><strong>#be_true</strong></a>
+        
+          <div class="summary"><p>Creates an <code>Expectation</code> that passes if actual is true (<code>== true</code>).</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#be_truthy-instance-method" class="signature"><strong>#be_truthy</strong></a>
+        
+          <div class="summary"><p>Creates an <code>Expectation</code> that passes if actual is truthy (neither <code>nil</code> nor <code>false</code>).</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#contain%28expected%29-instance-method" class="signature"><strong>#contain</strong>(expected)</a>
+        
+          <div class="summary"><p>Creates an <code>Expectation</code> that passes if actual includes <em>expected</em> (<code>.includes?</code>).</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#end_with%28expected%29-instance-method" class="signature"><strong>#end_with</strong>(expected)</a>
+        
+          <div class="summary"><p>Creates an <code>Expectation</code> that passes if actual ends with <em>expected</em> (<code>.ends_with?</code>).</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#eq%28value%29-instance-method" class="signature"><strong>#eq</strong>(value)</a>
+        
+          <div class="summary"><p>Creates an <code>Expectation</code> that passes if actual equals <em>value</em> (<code>==</code>).</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#expect_raises%28klass%3AT.class%2Cmessage%3AString%7CRegex%7CNil%3Dnil%2Cfile%3D__FILE__%2Cline%3D__LINE__%2C%26%29forallT-instance-method" class="signature"><strong>#expect_raises</strong>(klass : <span class="t">T</span>.<span class="k">class</span>, message : String | Regex | Nil = <span class="n">nil</span>, file = __FILE__, line = __LINE__, &) forall T</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#match%28value%29-instance-method" class="signature"><strong>#match</strong>(value)</a>
+        
+          <div class="summary"><p>Creates an <code>Expectation</code> that passes if actual matches <em>value</em> (<code>=~</code>).</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#start_with%28expected%29-instance-method" class="signature"><strong>#start_with</strong>(expected)</a>
+        
+          <div class="summary"><p>Creates an <code>Expectation</code> that passes if actual starts with <em>expected</em> (<code>.starts_with?</code>).</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+
+  <div class="methods-inherited">
+    
+  </div>
+
+  
+
+  
+
+  
+  <h2>
+    <a id="macro-detail" class="anchor" href="#macro-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Macro Detail
+  </h2>
+  
+    <div class="entry-detail" id="be_a(type)-macro">
+      <div class="signature">
+        
+        macro <strong>be_a</strong>(type)
+
+        <a class="method-permalink" href="#be_a%28type%29-macro">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Creates an <code>Expectation</code> that passes if actual is of type <em>type</em> (<code>is_a?</code>).</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/spec/expectations.cr#L385" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+  
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="be(value)-instance-method">
+      <div class="signature">
+        
+        def <strong>be</strong>(value)
+
+        <a class="method-permalink" href="#be%28value%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Creates an <code>Expectation</code> that passes if actual and <em>value</em> are identical (<code>.same?</code>).</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/spec/expectations.cr#L312" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="be-instance-method">
+      <div class="signature">
+        
+        def <strong>be</strong>
+
+        <a class="method-permalink" href="#be-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns a factory to create a comparison <code>Expectation</code> that:</p>
+<ul>
+<li>passes if actual is lesser than <em>value</em>: <code>be &lt; value</code></li>
+<li>passes if actual is lesser than or equal <em>value</em>: <code>be &lt;= value</code></li>
+<li>passes if actual is greater than <em>value</em>: <code>be &gt; value</code></li>
+<li>passes if actual is greater than or equal <em>value</em>: <code>be &gt;= value</code></li>
+</ul>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/spec/expectations.cr#L352" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="be_close(expected,delta)-instance-method">
+      <div class="signature">
+        
+        def <strong>be_close</strong>(expected, delta)
+
+        <a class="method-permalink" href="#be_close%28expected%2Cdelta%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Creates an <code>Expectation</code> that passes if actual is within <em>delta</em> of <em>expected</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/spec/expectations.cr#L342" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="be_empty-instance-method">
+      <div class="signature">
+        
+        def <strong>be_empty</strong>
+
+        <a class="method-permalink" href="#be_empty-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Creates an <code>Expectation</code> that passes if actual is empty (<code>.empty?</code>).</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/spec/expectations.cr#L380" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="be_false-instance-method">
+      <div class="signature">
+        
+        def <strong>be_false</strong>
+
+        <a class="method-permalink" href="#be_false-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Creates an <code>Expectation</code> that passes if actual is false (<code>== false</code>).</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/spec/expectations.cr#L322" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="be_falsey-instance-method">
+      <div class="signature">
+        
+        def <strong>be_falsey</strong>
+
+        <a class="method-permalink" href="#be_falsey-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Creates an <code>Expectation</code> that passes if actual is falsy (<code>nil</code> or <code>false</code>).</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/spec/expectations.cr#L332" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="be_nil-instance-method">
+      <div class="signature">
+        
+        def <strong>be_nil</strong>
+
+        <a class="method-permalink" href="#be_nil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Creates an <code>Expectation</code> that passes if actual is nil (<code>== nil</code>).</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/spec/expectations.cr#L337" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="be_true-instance-method">
+      <div class="signature">
+        
+        def <strong>be_true</strong>
+
+        <a class="method-permalink" href="#be_true-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Creates an <code>Expectation</code> that passes if actual is true (<code>== true</code>).</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/spec/expectations.cr#L317" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="be_truthy-instance-method">
+      <div class="signature">
+        
+        def <strong>be_truthy</strong>
+
+        <a class="method-permalink" href="#be_truthy-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Creates an <code>Expectation</code> that passes if actual is truthy (neither <code>nil</code> nor <code>false</code>).</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/spec/expectations.cr#L327" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="contain(expected)-instance-method">
+      <div class="signature">
+        
+        def <strong>contain</strong>(expected)
+
+        <a class="method-permalink" href="#contain%28expected%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Creates an <code>Expectation</code> that passes if actual includes <em>expected</em> (<code>.includes?</code>).
+Works on collections and <code><a href="../String.html">String</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/spec/expectations.cr#L363" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="end_with(expected)-instance-method">
+      <div class="signature">
+        
+        def <strong>end_with</strong>(expected)
+
+        <a class="method-permalink" href="#end_with%28expected%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Creates an <code>Expectation</code> that passes if actual ends with <em>expected</em> (<code>.ends_with?</code>).
+Works on <code><a href="../String.html">String</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/spec/expectations.cr#L375" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="eq(value)-instance-method">
+      <div class="signature">
+        
+        def <strong>eq</strong>(value)
+
+        <a class="method-permalink" href="#eq%28value%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Creates an <code>Expectation</code> that passes if actual equals <em>value</em> (<code>==</code>).</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/spec/expectations.cr#L307" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="expect_raises(klass:T.class,message:String|Regex|Nil=nil,file=__FILE__,line=__LINE__,&amp;)forallT-instance-method">
+      <div class="signature">
+        
+        def <strong>expect_raises</strong>(klass : <span class="t">T</span>.<span class="k">class</span>, message : <a href="../String.html">String</a> | <a href="../Regex.html">Regex</a> | <a href="../Nil.html">Nil</a> = <span class="n">nil</span>, file = __FILE__, line = __LINE__, &) forall T
+
+        <a class="method-permalink" href="#expect_raises%28klass%3AT.class%2Cmessage%3AString%7CRegex%7CNil%3Dnil%2Cfile%3D__FILE__%2Cline%3D__LINE__%2C%26%29forallT-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/spec/expectations.cr#L395" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="match(value)-instance-method">
+      <div class="signature">
+        
+        def <strong>match</strong>(value)
+
+        <a class="method-permalink" href="#match%28value%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Creates an <code>Expectation</code> that passes if actual matches <em>value</em> (<code>=~</code>).</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/spec/expectations.cr#L357" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="start_with(expected)-instance-method">
+      <div class="signature">
+        
+        def <strong>start_with</strong>(expected)
+
+        <a class="method-permalink" href="#start_with%28expected%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Creates an <code>Expectation</code> that passes if actual starts with <em>expected</em> (<code>.starts_with?</code>).
+Works on <code><a href="../String.html">String</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/spec/expectations.cr#L369" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+</div>
+
+</body>
+</html>

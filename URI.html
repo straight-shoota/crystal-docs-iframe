@@ -1,0 +1,2642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Crystal Docs 1.16.1">
+<meta name="crystal_docs.project_version" content="1.17.0-dev">
+<meta name="crystal_docs.project_name" content="Crystal">
+
+  <meta name="crystal_docs.json_config_url" content="/api/versions.json">
+
+
+    <link rel="canonical" href="https://crystal-lang.org/api/latest/URI.html">
+
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/doc.js"></script>
+
+  <meta name="repository-name" content="Crystal">
+  <title>URI - Crystal 1.17.0-dev</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill="currentColor" fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<input type="checkbox" id="sidebar-btn">
+<label for="sidebar-btn" id="sidebar-btn-label">
+  <svg class="open" xmlns="http://www.w3.org/2000/svg" height="2em" width="2em" viewBox="0 0 512 512"><title>Open Sidebar</title><path fill="currentColor" d="M80 96v64h352V96H80zm0 112v64h352v-64H80zm0 112v64h352v-64H80z"></path></svg>
+  <svg class="close" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><title>Close Sidebar</title><path fill="currentColor" d="m118.6 73.4-45.2 45.2L210.7 256 73.4 393.4l45.2 45.2L256 301.3l137.4 137.3 45.2-45.2L301.3 256l137.3-137.4-45.2-45.2L256 210.7Z"></path></svg>
+</label>
+<iframe class="sidebar" src="sidebar.html"></iframe>
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">
+    class
+  </span> URI
+
+</h1>
+
+
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="URI.html">URI</a></li><li class="superclass"><a href="Reference.html">Reference</a></li><li class="superclass"><a href="Object.html">Object</a></li></ul>
+
+
+
+
+  <h2>
+    <a id="overview" class="anchor" href="#overview">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Overview
+  </h2>
+
+  <p>This class represents a URI reference as defined by <a href="https://www.ietf.org/rfc/rfc3986.txt">RFC 3986: Uniform Resource Identifier
+(URI): Generic Syntax</a>.</p>
+<p>This class provides constructors for creating URI instances from
+their components or by parsing their string forms and methods for accessing the various
+components of an instance.</p>
+<p><span class="flag purple">NOTE</span>  To use <code><a href="URI.html">URI</a></code>, you must explicitly import it with <code>require &quot;uri&quot;</code></p>
+<p>Basic example:</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;uri&quot;</span>
+
+uri <span class="o">=</span> <span class="t">URI</span>.parse <span class="s">&quot;http://foo.com/posts?id=30&amp;limit=5#time=1305298413&quot;</span>
+<span class="c"># =&gt; #&lt;URI:0x1003f1e40 @scheme=&quot;http&quot;, @host=&quot;foo.com&quot;, @port=nil, @path=&quot;/posts&quot;, @query=&quot;id=30&amp;limit=5&quot;, ... &gt;</span>
+uri.scheme <span class="c"># =&gt; &quot;http&quot;</span>
+uri.host   <span class="c"># =&gt; &quot;foo.com&quot;</span>
+uri.query  <span class="c"># =&gt; &quot;id=30&amp;limit=5&quot;</span>
+uri.to_s   <span class="c"># =&gt; &quot;http://foo.com/posts?id=30&amp;limit=5#time=1305298413&quot;</span></code></pre>
+<h2><a id="resolution-and-relativization" class="anchor" href="#resolution-and-relativization">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Resolution and Relativization</h2>
+<p><em>Resolution</em> is the process of resolving one URI against another, <em>base</em> URI.
+The resulting URI is constructed from components of both URIs in the manner specified by
+<a href="https://tools.ietf.org/html/rfc3986#section-5.2.2">RFC 3986 section 5.2</a>, taking components
+from the base URI for those not specified in the original.
+For hierarchical URIs, the path of the original is resolved against the path of the base
+and then normalized. See <code><a href="URI.html#resolve%28uri%3AURI%7CString%29%3AURI-instance-method">#resolve</a></code> for examples.</p>
+<p><em>Relativization</em> is the inverse of resolution as that it procures an URI that
+resolves to the original when resolved against the base.</p>
+<p>For normalized URIs, the following is true:</p>
+<pre><code class="language-crystal">a.relativize(a.resolve(b)) <span class="c"># =&gt; b</span>
+a.resolve(a.relativize(b)) <span class="c"># =&gt; b</span></code></pre>
+<p>This operation is often useful when constructing a document containing URIs that must
+be made relative to the base URI of the document wherever possible.</p>
+<h1><a id="url-encoding" class="anchor" href="#url-encoding">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>URL Encoding</h1>
+<p>This class provides a number of methods for encoding and decoding strings using
+URL Encoding (also known as Percent Encoding) as defined in <a href="https://www.ietf.org/rfc/rfc3986.txt">RFC 3986</a>
+as well as <a href="https://url.spec.whatwg.org/#urlencoded-serializing"><code>x-www-form-urlencoded</code></a>.</p>
+<p>Each method has two variants, one returns a string, the other writes directly
+to an IO.</p>
+<ul>
+<li><code><a href="URI.html#decode%28string%3AString%2C%2A%2Cplus_to_space%3ABool%3Dfalse%29%3AString-class-method">.decode(string : String, *, plus_to_space : Bool = false)</a> : <a href="String.html">String</a></code>: Decodes a URL-encoded string.</li>
+<li><code><a href="URI.html#decode%28string%3AString%2Cio%3AIO%2C%2A%2Cplus_to_space%3ABool%3Dfalse%29%3ANil-class-method">.decode(string : String, io : IO, *, plus_to_space : Bool = false)</a> : <a href="Nil.html">Nil</a></code>: Decodes a URL-encoded string to an IO.</li>
+<li><code><a href="URI.html#encode_path%28string%3AString%29%3AString-class-method">.encode_path(string : String)</a> : <a href="String.html">String</a></code>: URL-encodes a string.</li>
+<li><code><a href="URI.html#encode_path%28io%3AIO%2Cstring%3AString%29%3ANil-class-method">.encode_path(string : String, io : IO)</a> : <a href="Nil.html">Nil</a></code>: URL-encodes a string to an IO.</li>
+<li><code><a href="URI.html#encode_path_segment%28string%3AString%29%3AString-class-method">.encode_path_segment(string : String)</a> : <a href="String.html">String</a></code>: URL-encodes a string, escaping <code>/</code>.</li>
+<li><code><a href="URI.html#encode_path_segment%28io%3AIO%2Cstring%3AString%29%3ANil-class-method">.encode_path_segment(string : String, io : IO)</a> : <a href="Nil.html">Nil</a></code>: URL-encodes a string to an IO, escaping <code>/</code>.</li>
+<li><code><a href="URI.html#decode_www_form%28string%3AString%2C%2A%2Cplus_to_space%3ABool%3Dtrue%29%3AString-class-method">.decode_www_form(string : String, *, plus_to_space : Bool = true)</a> : <a href="String.html">String</a></code>: Decodes an <code>x-www-form-urlencoded</code> string component.</li>
+<li><code><a href="URI.html#decode_www_form%28string%3AString%2Cio%3AIO%2C%2A%2Cplus_to_space%3ABool%3Dtrue%29%3ANil-class-method">.decode_www_form(string : String, io : IO, *, plus_to_space : Bool = true)</a> : <a href="Nil.html">Nil</a></code>: Decodes an <code>x-www-form-urlencoded</code> string component to an IO.</li>
+<li><code><a href="URI.html#encode_www_form%28string%3AString%2C%2A%2Cspace_to_plus%3ABool%3Dtrue%29%3AString-class-method">.encode_www_form(string : String, *, space_to_plus : Bool = true)</a> : <a href="String.html">String</a></code>: Encodes a string as a <code>x-www-form-urlencoded</code> component.</li>
+<li><code><a href="URI.html#encode_www_form%28string%3AString%2Cio%3AIO%2C%2A%2Cspace_to_plus%3ABool%3Dtrue%29%3ANil-class-method">.encode_www_form(string : String, io : IO, *, space_to_plus : Bool = true)</a> : <a href="Nil.html">Nil</a></code>: Encodes a string as a <code>x-www-form-urlencoded</code> component to an IO.</li>
+</ul>
+<p><code><a href="URI.html#encode_www_form%28string%3AString%2Cio%3AIO%2C%2A%2Cspace_to_plus%3ABool%3Dtrue%29%3ANil-class-method">.encode_www_form</a></code> encodes white space (<code> </code>) as <code>+</code>, while <code><a href="URI.html#encode_path%28io%3AIO%2Cstring%3AString%29%3ANil-class-method">.encode_path</a></code>
+and <code><a href="URI.html#encode_path_segment%28io%3AIO%2Cstring%3AString%29%3ANil-class-method">.encode_path_segment</a></code> encode it as <code>%20</code>. The decode methods differ regarding
+the handling of <code>+</code> characters, respectively.</p>
+<p><span class="flag purple">NOTE</span>  <code><a href="URI/Params.html">URI::Params</a></code> provides a higher-level API for handling <code>x-www-form-urlencoded</code>
+serialized data.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri.cr#L75" target="_blank">
+        uri.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri/encoding.cr#L1" target="_blank">
+        uri/encoding.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri/json.cr#L4" target="_blank">
+        uri/json.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri/params.cr#L3" target="_blank">
+        uri/params.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri/punycode.cr#L1" target="_blank">
+        uri/punycode.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri/uri_parser.cr#L1" target="_blank">
+        uri/uri_parser.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri/yaml.cr#L4" target="_blank">
+        uri/yaml.cr
+      </a>
+    
+    <br/>
+  
+
+
+
+
+
+  
+  <h2>
+    <a id="constructors" class="anchor" href="#constructors">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructors
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#new%28ctx%3AYAML%3A%3AParseContext%2Cnode%3AYAML%3A%3ANodes%3A%3ANode%29-class-method" class="signature"><strong>.new</strong>(ctx : YAML::ParseContext, node : YAML::Nodes::Node)</a>
+        
+          <div class="summary"><p>Deserializes a URI from YAML, represented as a string.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#new%28parser%3AJSON%3A%3APullParser%29-class-method" class="signature"><strong>.new</strong>(parser : JSON::PullParser)</a>
+        
+          <div class="summary"><p>Deserializes a URI from JSON, represented as a string.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#new%28scheme%3ANil%7CString%3Dnil%2Chost%3ANil%7CString%3Dnil%2Cport%3AInt32%7CNil%3Dnil%2Cpath%3AString%3D%22%22%2Cquery%3AString%7CParams%7CNil%3Dnil%2Cuser%3ANil%7CString%3Dnil%2Cpassword%3ANil%7CString%3Dnil%2Cfragment%3ANil%7CString%3Dnil%29-class-method" class="signature"><strong>.new</strong>(scheme : Nil | String = <span class="n">nil</span>, host : Nil | String = <span class="n">nil</span>, port : Int32 | Nil = <span class="n">nil</span>, path : String = <span class="s">&quot;&quot;</span>, query : String | Params | Nil = <span class="n">nil</span>, user : Nil | String = <span class="n">nil</span>, password : Nil | String = <span class="n">nil</span>, fragment : Nil | String = <span class="n">nil</span>)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#parse%28raw_url%3AString%29%3AURI-class-method" class="signature"><strong>.parse</strong>(raw_url : String) : URI</a>
+        
+          <div class="summary"><p>Parses the given <em>raw_url</em> into an URI.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+  
+  <h2>
+    <a id="class-method-summary" class="anchor" href="#class-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Class Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#decode%28string%3AString%2Cio%3AIO%2C%2A%2Cplus_to_space%3ABool%3Dfalse%29%3ANil-class-method" class="signature"><strong>.decode</strong>(string : String, io : IO, *, plus_to_space : Bool = <span class="n">false</span>) : Nil</a>
+        
+          <div class="summary"><p>URL-decodes a string and writes the result to <em>io</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#decode%28string%3AString%2C%2A%2Cplus_to_space%3ABool%3Dfalse%29%3AString-class-method" class="signature"><strong>.decode</strong>(string : String, *, plus_to_space : Bool = <span class="n">false</span>) : String</a>
+        
+          <div class="summary"><p>URL-decodes <em>string</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#decode%28string%3AString%2Cio%3AIO%2C%2A%2Cplus_to_space%3ABool%3Dfalse%2C%26%29%3ANil-class-method" class="signature"><strong>.decode</strong>(string : String, io : IO, *, plus_to_space : Bool = <span class="n">false</span>, &) : Nil</a>
+        
+          <div class="summary"><p>URL-decodes <em>string</em> and writes the result to <em>io</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#decode_www_form%28string%3AString%2Cio%3AIO%2C%2A%2Cplus_to_space%3ABool%3Dtrue%29%3ANil-class-method" class="signature"><strong>.decode_www_form</strong>(string : String, io : IO, *, plus_to_space : Bool = <span class="n">true</span>) : Nil</a>
+        
+          <div class="summary"><p>URL-decodes <em>string</em> as <a href="https://url.spec.whatwg.org/#urlencoded-serializing"><code>x-www-form-urlencoded</code></a> and writes the result to <em>io</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#decode_www_form%28string%3AString%2C%2A%2Cplus_to_space%3ABool%3Dtrue%29%3AString-class-method" class="signature"><strong>.decode_www_form</strong>(string : String, *, plus_to_space : Bool = <span class="n">true</span>) : String</a>
+        
+          <div class="summary"><p>URL-decodes <em>string</em> as <a href="https://url.spec.whatwg.org/#urlencoded-serializing"><code>x-www-form-urlencoded</code></a>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#default_port%28scheme%3AString%29%3AInt32%7CNil-class-method" class="signature"><strong>.default_port</strong>(scheme : String) : Int32 | Nil</a>
+        
+          <div class="summary"><p>Returns the default port for the given <em>scheme</em> if known, otherwise returns <code>nil</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#encode%28string%3AString%2Cio%3AIO%2C%2A%2Cspace_to_plus%3ABool%3Dfalse%29%3ANil-class-method" class="signature"><strong>.encode</strong>(string : String, io : IO, *, space_to_plus : Bool = <span class="n">false</span>) : Nil</a>
+        
+          <div class="summary"><p>URL-encodes <em>string</em> and writes the result to <em>io</em>.</p>
+<p><span class="flag red">DEPRECATED</span>  Use <code><a href="URI.html#encode_path%28io%3AIO%2Cstring%3AString%29%3ANil-class-method">.encode_path</a></code> instead.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#encode%28string%3AString%2C%2A%2Cspace_to_plus%3ABool%3Dfalse%29%3AString-class-method" class="signature"><strong>.encode</strong>(string : String, *, space_to_plus : Bool = <span class="n">false</span>) : String</a>
+        
+          <div class="summary"><p>URL-encodes <em>string</em>.</p>
+<p><span class="flag red">DEPRECATED</span>  Use <code><a href="URI.html#encode_path%28io%3AIO%2Cstring%3AString%29%3ANil-class-method">.encode_path</a></code> instead.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#encode%28string%3AString%2Cio%3AIO%2Cspace_to_plus%3ABool%3Dfalse%2C%26%29%3ANil-class-method" class="signature"><strong>.encode</strong>(string : String, io : IO, space_to_plus : Bool = <span class="n">false</span>, &) : Nil</a>
+        
+          <div class="summary"><p>URL-encodes <em>string</em> and writes the result to an <code><a href="IO.html">IO</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#encode_path%28io%3AIO%2Cstring%3AString%29%3ANil-class-method" class="signature"><strong>.encode_path</strong>(io : IO, string : String) : Nil</a>
+        
+          <div class="summary"><p>Encodes <em>string</em> so it can be safely placed as a potentially multi-segmented URI path, replacing special characters with URI escape sequences as needed.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#encode_path%28string%3AString%29%3AString-class-method" class="signature"><strong>.encode_path</strong>(string : String) : String</a>
+        
+          <div class="summary"><p>Encodes <em>string</em> so it can be safely placed as a potentially multi-segmented URI path, replacing special characters with URI escape sequences as needed.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#encode_path_segment%28io%3AIO%2Cstring%3AString%29%3ANil-class-method" class="signature"><strong>.encode_path_segment</strong>(io : IO, string : String) : Nil</a>
+        
+          <div class="summary"><p>Encodes <em>string</em> so it can be safely placed inside a URI path segment, replacing special characters (including <code>/</code>) with URI escape sequences as needed.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#encode_path_segment%28string%3AString%29%3AString-class-method" class="signature"><strong>.encode_path_segment</strong>(string : String) : String</a>
+        
+          <div class="summary"><p>Encodes <em>string</em> so it can be safely placed inside a URI path segment, replacing special characters (including <code>/</code>) with URI escape sequences as needed.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#encode_www_form%28string%3AString%2Cio%3AIO%2C%2A%2Cspace_to_plus%3ABool%3Dtrue%29%3ANil-class-method" class="signature"><strong>.encode_www_form</strong>(string : String, io : IO, *, space_to_plus : Bool = <span class="n">true</span>) : Nil</a>
+        
+          <div class="summary"><p>URL-encodes <em>string</em> as <a href="https://url.spec.whatwg.org/#urlencoded-serializing"><code>x-www-form-urlencoded</code></a> and writes the result to <em>io</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#encode_www_form%28string%3AString%2C%2A%2Cspace_to_plus%3ABool%3Dtrue%29%3AString-class-method" class="signature"><strong>.encode_www_form</strong>(string : String, *, space_to_plus : Bool = <span class="n">true</span>) : String</a>
+        
+          <div class="summary"><p>URL-encodes <em>string</em> as <a href="https://url.spec.whatwg.org/#urlencoded-serializing"><code>x-www-form-urlencoded</code></a>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#from_json_object_key%3F%28key%3AString%29%3AURI%7CNil-class-method" class="signature"><strong>.from_json_object_key?</strong>(key : String) : URI | Nil</a>
+        
+          <div class="summary"><p>Deserializes the given JSON <em>key</em> into a <code><a href="URI.html">URI</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#reserved%3F%28byte%29%3ABool-class-method" class="signature"><strong>.reserved?</strong>(byte) : Bool</a>
+        
+          <div class="summary"><p>Returns whether given byte is reserved character defined in <a href="https://datatracker.ietf.org/doc/html/rfc3986#section-2.2">RFC 3986 §2.2</a>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#set_default_port%28scheme%3AString%2Cport%3AInt32%7CNil%29%3ANil-class-method" class="signature"><strong>.set_default_port</strong>(scheme : String, port : Int32 | Nil) : Nil</a>
+        
+          <div class="summary"><p>Registers the default port for the given <em>scheme</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#unreserved%3F%28byte%29%3ABool-class-method" class="signature"><strong>.unreserved?</strong>(byte) : Bool</a>
+        
+          <div class="summary"><p>Returns whether given byte is unreserved character defined in <a href="https://datatracker.ietf.org/doc/html/rfc3986#section-2.3">RFC 3986 §2.3</a>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#unwrap_ipv6%28host%29%3AString-class-method" class="signature"><strong>.unwrap_ipv6</strong>(host) : String</a>
+        
+          <div class="summary"><p>Unwraps IPv6 address wrapped in square brackets.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+  
+
+  
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#%3D%3D%28other%3Aself%29-instance-method" class="signature"><strong>#==</strong>(other : <span class="k">self</span>)</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this reference is the same as <em>other</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#absolute%3F%3ABool-instance-method" class="signature"><strong>#absolute?</strong> : Bool</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if URI has a <em>scheme</em> specified.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#authority%28io%3AIO%29%3ANil-instance-method" class="signature"><strong>#authority</strong>(io : IO) : Nil</a>
+        
+          <div class="summary"><p>Returns the authority component of this URI.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#authority%3AString%7CNil-instance-method" class="signature"><strong>#authority</strong> : String | Nil</a>
+        
+          <div class="summary"><p>Returns the authority component of this URI.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#fragment%3AString%7CNil-instance-method" class="signature"><strong>#fragment</strong> : String | Nil</a>
+        
+          <div class="summary"><p>Returns the fragment component of the URI.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#fragment%3D%28fragment%3AString%7CNil%29-instance-method" class="signature"><strong>#fragment=</strong>(fragment : String | Nil)</a>
+        
+          <div class="summary"><p>Sets the fragment component of the URI.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#hash%28hasher%29-instance-method" class="signature"><strong>#hash</strong>(hasher)</a>
+        
+          <div class="summary"><p>See <code><a href="Object.html#hash%28hasher%29-instance-method">Object#hash(hasher)</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#host%3AString%7CNil-instance-method" class="signature"><strong>#host</strong> : String | Nil</a>
+        
+          <div class="summary"><p>Returns the host component of the URI.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#host%3D%28host%3AString%7CNil%29-instance-method" class="signature"><strong>#host=</strong>(host : String | Nil)</a>
+        
+          <div class="summary"><p>Sets the host component of the URI.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#hostname%3AString%7CNil-instance-method" class="signature"><strong>#hostname</strong> : String | Nil</a>
+        
+          <div class="summary"><p>Returns the host part of the URI and unwrap brackets for IPv6 addresses.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#normalize%3AURI-instance-method" class="signature"><strong>#normalize</strong> : URI</a>
+        
+          <div class="summary"><p>Returns a normalized copy of this URI.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#normalize%21%3AURI-instance-method" class="signature"><strong>#normalize!</strong> : URI</a>
+        
+          <div class="summary"><p>Normalizes this URI instance.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#opaque%3F%3ABool-instance-method" class="signature"><strong>#opaque?</strong> : Bool</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this URI is opaque.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#password%3AString%7CNil-instance-method" class="signature"><strong>#password</strong> : String | Nil</a>
+        
+          <div class="summary"><p>Returns the password component of the URI.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#password%3D%28password%3AString%7CNil%29-instance-method" class="signature"><strong>#password=</strong>(password : String | Nil)</a>
+        
+          <div class="summary"><p>Sets the password component of the URI.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#path%3AString-instance-method" class="signature"><strong>#path</strong> : String</a>
+        
+          <div class="summary"><p>Returns the path component of the URI.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#path%3D%28path%3AString%29-instance-method" class="signature"><strong>#path=</strong>(path : String)</a>
+        
+          <div class="summary"><p>Sets the path component of the URI.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#port%3AInt32%7CNil-instance-method" class="signature"><strong>#port</strong> : Int32 | Nil</a>
+        
+          <div class="summary"><p>Returns the port component of the URI.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#port%3D%28port%3AInt32%7CNil%29-instance-method" class="signature"><strong>#port=</strong>(port : Int32 | Nil)</a>
+        
+          <div class="summary"><p>Sets the port component of the URI.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#query%3AString%7CNil-instance-method" class="signature"><strong>#query</strong> : String | Nil</a>
+        
+          <div class="summary"><p>Returns the query component of the URI.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#query%3D%28query%3AString%7CNil%29-instance-method" class="signature"><strong>#query=</strong>(query : String | Nil)</a>
+        
+          <div class="summary"><p>Sets the query component of the URI.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#query_params%3AURI%3A%3AParams-instance-method" class="signature"><strong>#query_params</strong> : URI::Params</a>
+        
+          <div class="summary"><p>Returns a <code><a href="URI/Params.html">URI::Params</a></code> of the URI#query.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#query_params%3D%28params%3AURI%3A%3AParams%29-instance-method" class="signature"><strong>#query_params=</strong>(params : URI::Params)</a>
+        
+          <div class="summary"><p>Sets <code><a href="URI.html#query%3AString%7CNil-instance-method">#query</a></code> to stringified <em>params</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#relative%3F%3ABool-instance-method" class="signature"><strong>#relative?</strong> : Bool</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if URI does not have a <em>scheme</em> specified.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#relativize%28uri%3AURI%7CString%29%3AURI-instance-method" class="signature"><strong>#relativize</strong>(uri : URI | String) : URI</a>
+        
+          <div class="summary"><p>Relativizes <em>uri</em> against this URI.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#request_target%3AString-instance-method" class="signature"><strong>#request_target</strong> : String</a>
+        
+          <div class="summary"><p>Returns the concatenation of <code><a href="URI.html#path%3AString-instance-method">#path</a></code> and <code><a href="URI.html#query%3AString%7CNil-instance-method">#query</a></code> as it would be used as a request target in an HTTP request.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#resolve%28uri%3AURI%7CString%29%3AURI-instance-method" class="signature"><strong>#resolve</strong>(uri : URI | String) : URI</a>
+        
+          <div class="summary"><p>Resolves <em>uri</em> against this URI.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#scheme%3AString%7CNil-instance-method" class="signature"><strong>#scheme</strong> : String | Nil</a>
+        
+          <div class="summary"><p>Returns the scheme component of the URI.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#scheme%3D%28scheme%3AString%7CNil%29-instance-method" class="signature"><strong>#scheme=</strong>(scheme : String | Nil)</a>
+        
+          <div class="summary"><p>Sets the scheme component of the URI.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_json%28builder%3AJSON%3A%3ABuilder%29-instance-method" class="signature"><strong>#to_json</strong>(builder : JSON::Builder)</a>
+        
+          <div class="summary"><p>Serializes this URI to JSON, represented as a string.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_s%28io%3AIO%29%3ANil-instance-method" class="signature"><strong>#to_s</strong>(io : IO) : Nil</a>
+        
+          <div class="summary"><p>Appends a short String representation of this object which includes its class name and its object address.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_yaml%28yaml%3AYAML%3A%3ANodes%3A%3ABuilder%29-instance-method" class="signature"><strong>#to_yaml</strong>(yaml : YAML::Nodes::Builder)</a>
+        
+          <div class="summary"><p>Serializes this URI to YAML, represented as a string.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#update_query_params%28%26%3AURI%3A%3AParams-%3E_%29%3AURI-instance-method" class="signature"><strong>#update_query_params</strong>(& : URI::Params -> _) : URI</a>
+        
+          <div class="summary"><p>Yields the value of <code><a href="URI.html#query_params%3AURI%3A%3AParams-instance-method">#query_params</a></code> commits any modifications of the <code><a href="URI/Params.html">URI::Params</a></code> instance to self.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#user%3AString%7CNil-instance-method" class="signature"><strong>#user</strong> : String | Nil</a>
+        
+          <div class="summary"><p>Returns the user component of the URI.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#user%3D%28user%3AString%7CNil%29-instance-method" class="signature"><strong>#user=</strong>(user : String | Nil)</a>
+        
+          <div class="summary"><p>Sets the user component of the URI.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#userinfo%3AString%7CNil-instance-method" class="signature"><strong>#userinfo</strong> : String | Nil</a>
+        
+          <div class="summary"><p>Returns the user-information component containing the provided username and password.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+
+  <div class="methods-inherited">
+    
+      
+
+  <h3>Instance methods inherited from class <code><a href="Reference.html">Reference</a></code></h3>
+  
+  
+    <a href="Reference.html#%3D%3D%28other%3Aself%29-instance-method" class="tooltip">
+      <span>==(other : <span class="k">self</span>)<br/>==(other : JSON::Any)<br/>==(other : YAML::Any)<br/>==(other)</span>
+    ==</a>, 
+    
+  
+    <a href="Reference.html#dup-instance-method" class="tooltip">
+      <span>dup</span>
+    dup</a>, 
+    
+  
+    <a href="Reference.html#hash%28hasher%29-instance-method" class="tooltip">
+      <span>hash(hasher)</span>
+    hash</a>, 
+    
+  
+    <a href="Reference.html#initialize-instance-method" class="tooltip">
+      <span>initialize</span>
+    initialize</a>, 
+    
+  
+    <a href="Reference.html#inspect%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>inspect(io : IO) : Nil</span>
+    inspect</a>, 
+    
+  
+    <a href="Reference.html#object_id%3AUInt64-instance-method" class="tooltip">
+      <span>object_id : UInt64</span>
+    object_id</a>, 
+    
+  
+    <a href="Reference.html#pretty_print%28pp%29%3ANil-instance-method" class="tooltip">
+      <span>pretty_print(pp) : Nil</span>
+    pretty_print</a>, 
+    
+  
+    <a href="Reference.html#same%3F%28other%3AReference%29%3ABool-instance-method" class="tooltip">
+      <span>same?(other : Reference) : Bool<br/>same?(other : Nil)</span>
+    same?</a>, 
+    
+  
+    <a href="Reference.html#to_s%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_s(io : IO) : Nil</span>
+    to_s</a>
+    
+  
+
+
+      
+
+  <h3>Constructor methods inherited from class <code><a href="Reference.html">Reference</a></code></h3>
+  
+  
+    <a href="Reference.html#new-class-method" class="tooltip">
+      <span>new</span>
+    new</a>, 
+    
+  
+    <a href="Reference.html#unsafe_construct%28address%3APointer%2C%2Aargs%2C%2A%2Aopts%29%3Aself-class-method" class="tooltip">
+      <span>unsafe_construct(address : Pointer, *args, **opts) : <span class="k">self</span></span>
+    unsafe_construct</a>
+    
+  
+
+
+      
+
+  <h3>Class methods inherited from class <code><a href="Reference.html">Reference</a></code></h3>
+  
+  
+    <a href="Reference.html#pre_initialize%28address%3APointer%29-class-method" class="tooltip">
+      <span>pre_initialize(address : Pointer)</span>
+    pre_initialize</a>
+    
+  
+
+
+      
+
+
+    
+      
+
+  <h3>Instance methods inherited from class <code><a href="Object.html">Object</a></code></h3>
+  
+  
+    <a href="Object.html#%21%3ABool-instance-method" class="tooltip">
+      <span>! : Bool</span>
+    !</a>, 
+    
+  
+    <a href="Object.html#%21%3D%28other%29-instance-method" class="tooltip">
+      <span>!=(other)</span>
+    !=</a>, 
+    
+  
+    <a href="Object.html#%21~%28other%29-instance-method" class="tooltip">
+      <span>!~(other)</span>
+    !~</a>, 
+    
+  
+    <a href="Object.html#%3D%3D%28other%29-instance-method" class="tooltip">
+      <span>==(other)</span>
+    ==</a>, 
+    
+  
+    <a href="Object.html#%3D%3D%3D%28other%3AJSON%3A%3AAny%29-instance-method" class="tooltip">
+      <span>===(other : JSON::Any)<br/>===(other : YAML::Any)<br/>===(other)</span>
+    ===</a>, 
+    
+  
+    <a href="Object.html#%3D~%28other%29-instance-method" class="tooltip">
+      <span>=~(other)</span>
+    =~</a>, 
+    
+  
+    <a href="Object.html#as%28type%3AClass%29-instance-method" class="tooltip">
+      <span>as(type : Class)</span>
+    as</a>, 
+    
+  
+    <a href="Object.html#as%3F%28type%3AClass%29-instance-method" class="tooltip">
+      <span>as?(type : Class)</span>
+    as?</a>, 
+    
+  
+    <a href="Object.html#class-instance-method" class="tooltip">
+      <span>class</span>
+    class</a>, 
+    
+  
+    <a href="Object.html#dup-instance-method" class="tooltip">
+      <span>dup</span>
+    dup</a>, 
+    
+  
+    <a href="Object.html#hash%28hasher%29-instance-method" class="tooltip">
+      <span>hash(hasher)<br/>hash</span>
+    hash</a>, 
+    
+  
+    <a href="Object.html#in%3F%28collection%3AObject%29%3ABool-instance-method" class="tooltip">
+      <span>in?(collection : Object) : Bool<br/>in?(*values : Object) : Bool</span>
+    in?</a>, 
+    
+  
+    <a href="Object.html#inspect%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>inspect(io : IO) : Nil<br/>inspect : String</span>
+    inspect</a>, 
+    
+  
+    <a href="Object.html#is_a%3F%28type%3AClass%29%3ABool-instance-method" class="tooltip">
+      <span>is_a?(type : Class) : Bool</span>
+    is_a?</a>, 
+    
+  
+    <a href="Object.html#itself-instance-method" class="tooltip">
+      <span>itself</span>
+    itself</a>, 
+    
+  
+    <a href="Object.html#nil%3F%3ABool-instance-method" class="tooltip">
+      <span>nil? : Bool</span>
+    nil?</a>, 
+    
+  
+    <a href="Object.html#not_nil%21%28message%29-instance-method" class="tooltip">
+      <span>not_nil!(message)<br/>not_nil!</span>
+    not_nil!</a>, 
+    
+  
+    <a href="Object.html#pretty_inspect%28width%3D79%2Cnewline%3D%22%5Cn%22%2Cindent%3D0%29%3AString-instance-method" class="tooltip">
+      <span>pretty_inspect(width = <span class="n">79</span>, newline = <span class="s">&quot;\n&quot;</span>, indent = <span class="n">0</span>) : String</span>
+    pretty_inspect</a>, 
+    
+  
+    <a href="Object.html#pretty_print%28pp%3APrettyPrint%29%3ANil-instance-method" class="tooltip">
+      <span>pretty_print(pp : PrettyPrint) : Nil</span>
+    pretty_print</a>, 
+    
+  
+    <a href="Object.html#responds_to%3F%28name%3ASymbol%29%3ABool-instance-method" class="tooltip">
+      <span>responds_to?(name : Symbol) : Bool</span>
+    responds_to?</a>, 
+    
+  
+    <a href="Object.html#tap%28%26%29-instance-method" class="tooltip">
+      <span>tap(&)</span>
+    tap</a>, 
+    
+  
+    <a href="Object.html#to_json%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_json(io : IO) : Nil<br/>to_json : String</span>
+    to_json</a>, 
+    
+  
+    <a href="Object.html#to_pretty_json%28indent%3AString%3D%22%22%29%3AString-instance-method" class="tooltip">
+      <span>to_pretty_json(indent : String = <span class="s">&quot;  &quot;</span>) : String<br/>to_pretty_json(io : IO, indent : String = <span class="s">&quot;  &quot;</span>) : Nil</span>
+    to_pretty_json</a>, 
+    
+  
+    <a href="Object.html#to_s%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_s(io : IO) : Nil<br/>to_s : String</span>
+    to_s</a>, 
+    
+  
+    <a href="Object.html#to_yaml%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_yaml(io : IO) : Nil<br/>to_yaml : String</span>
+    to_yaml</a>, 
+    
+  
+    <a href="Object.html#try%28%26%29-instance-method" class="tooltip">
+      <span>try(&)</span>
+    try</a>, 
+    
+  
+    <a href="Object.html#unsafe_as%28type%3AT.class%29forallT-instance-method" class="tooltip">
+      <span>unsafe_as(type : <span class="t">T</span>.<span class="k">class</span>) forall T</span>
+    unsafe_as</a>
+    
+  
+
+
+      
+
+
+      
+
+  <h3>Class methods inherited from class <code><a href="Object.html">Object</a></code></h3>
+  
+  
+    <a href="Object.html#from_json%28string_or_io%2Croot%3AString%29-class-method" class="tooltip">
+      <span>from_json(string_or_io, root : String)<br/>from_json(string_or_io)</span>
+    from_json</a>, 
+    
+  
+    <a href="Object.html#from_yaml%28string_or_io%3AString%7CIO%29-class-method" class="tooltip">
+      <span>from_yaml(string_or_io : String | IO)</span>
+    from_yaml</a>
+    
+  
+
+
+      
+
+  <h3>Macros inherited from class <code><a href="Object.html">Object</a></code></h3>
+  
+  
+    <a href="Object.html#class_getter%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_getter(*names, &block)</span>
+    class_getter</a>, 
+    
+  
+    <a href="Object.html#class_getter%21%28%2Anames%29-macro" class="tooltip">
+      <span>class_getter!(*names)</span>
+    class_getter!</a>, 
+    
+  
+    <a href="Object.html#class_getter%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_getter?(*names, &block)</span>
+    class_getter?</a>, 
+    
+  
+    <a href="Object.html#class_property%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_property(*names, &block)</span>
+    class_property</a>, 
+    
+  
+    <a href="Object.html#class_property%21%28%2Anames%29-macro" class="tooltip">
+      <span>class_property!(*names)</span>
+    class_property!</a>, 
+    
+  
+    <a href="Object.html#class_property%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_property?(*names, &block)</span>
+    class_property?</a>, 
+    
+  
+    <a href="Object.html#class_setter%28%2Anames%29-macro" class="tooltip">
+      <span>class_setter(*names)</span>
+    class_setter</a>, 
+    
+  
+    <a href="Object.html#def_clone-macro" class="tooltip">
+      <span>def_clone</span>
+    def_clone</a>, 
+    
+  
+    <a href="Object.html#def_equals%28%2Afields%29-macro" class="tooltip">
+      <span>def_equals(*fields)</span>
+    def_equals</a>, 
+    
+  
+    <a href="Object.html#def_equals_and_hash%28%2Afields%29-macro" class="tooltip">
+      <span>def_equals_and_hash(*fields)</span>
+    def_equals_and_hash</a>, 
+    
+  
+    <a href="Object.html#def_hash%28%2Afields%29-macro" class="tooltip">
+      <span>def_hash(*fields)</span>
+    def_hash</a>, 
+    
+  
+    <a href="Object.html#delegate%28%2Amethods%2Ctoobject%29-macro" class="tooltip">
+      <span>delegate(*methods, to object)</span>
+    delegate</a>, 
+    
+  
+    <a href="Object.html#forward_missing_to%28delegate%29-macro" class="tooltip">
+      <span>forward_missing_to(delegate)</span>
+    forward_missing_to</a>, 
+    
+  
+    <a href="Object.html#getter%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>getter(*names, &block)</span>
+    getter</a>, 
+    
+  
+    <a href="Object.html#getter%21%28%2Anames%29-macro" class="tooltip">
+      <span>getter!(*names)</span>
+    getter!</a>, 
+    
+  
+    <a href="Object.html#getter%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>getter?(*names, &block)</span>
+    getter?</a>, 
+    
+  
+    <a href="Object.html#property%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>property(*names, &block)</span>
+    property</a>, 
+    
+  
+    <a href="Object.html#property%21%28%2Anames%29-macro" class="tooltip">
+      <span>property!(*names)</span>
+    property!</a>, 
+    
+  
+    <a href="Object.html#property%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>property?(*names, &block)</span>
+    property?</a>, 
+    
+  
+    <a href="Object.html#setter%28%2Anames%29-macro" class="tooltip">
+      <span>setter(*names)</span>
+    setter</a>
+    
+  
+
+
+    
+  </div>
+
+  
+  <h2>
+    <a id="constructor-detail" class="anchor" href="#constructor-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructor Detail
+  </h2>
+  
+    <div class="entry-detail" id="new(ctx:YAML::ParseContext,node:YAML::Nodes::Node)-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(ctx : <a href="YAML/ParseContext.html">YAML::ParseContext</a>, node : <a href="YAML/Nodes/Node.html">YAML::Nodes::Node</a>)
+
+        <a class="method-permalink" href="#new%28ctx%3AYAML%3A%3AParseContext%2Cnode%3AYAML%3A%3ANodes%3A%3ANode%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Deserializes a URI from YAML, represented as a string.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;uri/yaml&quot;</span>
+
+uri <span class="o">=</span> <span class="t">URI</span>.from_yaml(<span class="s">%(&quot;http://crystal-lang.org&quot;)</span>) <span class="c"># =&gt; #&lt;URI:0x1068a7e40 @scheme=&quot;http&quot;, @host=&quot;crystal-lang.org&quot;, ... &gt;</span>
+uri.scheme                                        <span class="c"># =&gt; &quot;http&quot;</span>
+uri.host                                          <span class="c"># =&gt; &quot;crystal-lang.org&quot;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri/yaml.cr#L14" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="new(parser:JSON::PullParser)-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(parser : <a href="JSON/PullParser.html">JSON::PullParser</a>)
+
+        <a class="method-permalink" href="#new%28parser%3AJSON%3A%3APullParser%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Deserializes a URI from JSON, represented as a string.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;uri/json&quot;</span>
+
+uri <span class="o">=</span> <span class="t">URI</span>.from_json(<span class="s">%(&quot;http://crystal-lang.org&quot;)</span>) <span class="c"># =&gt; #&lt;URI:0x1068a7e40 @scheme=&quot;http&quot;, @host=&quot;crystal-lang.org&quot;, ... &gt;</span>
+uri.scheme                                        <span class="c"># =&gt; &quot;http&quot;</span>
+uri.host                                          <span class="c"># =&gt; &quot;crystal-lang.org&quot;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri/json.cr#L14" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="new(scheme:Nil|String=nil,host:Nil|String=nil,port:Int32|Nil=nil,path:String=&quot;&quot;,query:String|Params|Nil=nil,user:Nil|String=nil,password:Nil|String=nil,fragment:Nil|String=nil)-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(scheme : <a href="Nil.html">Nil</a> | <a href="String.html">String</a> = <span class="n">nil</span>, host : <a href="Nil.html">Nil</a> | <a href="String.html">String</a> = <span class="n">nil</span>, port : <a href="Int32.html">Int32</a> | <a href="Nil.html">Nil</a> = <span class="n">nil</span>, path : <a href="String.html">String</a> = <span class="s">&quot;&quot;</span>, query : <a href="String.html">String</a> | <a href="URI/Params.html">Params</a> | <a href="Nil.html">Nil</a> = <span class="n">nil</span>, user : <a href="Nil.html">Nil</a> | <a href="String.html">String</a> = <span class="n">nil</span>, password : <a href="Nil.html">Nil</a> | <a href="String.html">String</a> = <span class="n">nil</span>, fragment : <a href="Nil.html">Nil</a> | <a href="String.html">String</a> = <span class="n">nil</span>)
+
+        <a class="method-permalink" href="#new%28scheme%3ANil%7CString%3Dnil%2Chost%3ANil%7CString%3Dnil%2Cport%3AInt32%7CNil%3Dnil%2Cpath%3AString%3D%22%22%2Cquery%3AString%7CParams%7CNil%3Dnil%2Cuser%3ANil%7CString%3Dnil%2Cpassword%3ANil%7CString%3Dnil%2Cfragment%3ANil%7CString%3Dnil%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri.cr#L178" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="parse(raw_url:String):URI-class-method">
+      <div class="signature">
+        
+        def self.<strong>parse</strong>(raw_url : <a href="String.html">String</a>) : <a href="URI.html">URI</a>
+
+        <a class="method-permalink" href="#parse%28raw_url%3AString%29%3AURI-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Parses the given <em>raw_url</em> into an URI. The <em>raw_url</em> may be relative or absolute.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;uri&quot;</span>
+
+uri <span class="o">=</span> <span class="t">URI</span>.parse(<span class="s">&quot;http://crystal-lang.org&quot;</span>) <span class="c"># =&gt; #&lt;URI:0x1068a7e40 @scheme=&quot;http&quot;, @host=&quot;crystal-lang.org&quot;, ... &gt;</span>
+uri.scheme                                 <span class="c"># =&gt; &quot;http&quot;</span>
+uri.host                                   <span class="c"># =&gt; &quot;crystal-lang.org&quot;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri.cr#L574" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+  
+  <h2>
+    <a id="class-method-detail" class="anchor" href="#class-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Class Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="decode(string:String,io:IO,*,plus_to_space:Bool=false):Nil-class-method">
+      <div class="signature">
+        
+        def self.<strong>decode</strong>(string : <a href="String.html">String</a>, io : <a href="IO.html">IO</a>, *, plus_to_space : <a href="Bool.html">Bool</a> = <span class="n">false</span>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#decode%28string%3AString%2Cio%3AIO%2C%2A%2Cplus_to_space%3ABool%3Dfalse%29%3ANil-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>URL-decodes a string and writes the result to <em>io</em>.</p>
+<p>See <code><a href="URI.html#decode%28string%3AString%2C%2A%2Cplus_to_space%3ABool%3Dfalse%29%3AString-class-method">.decode(string : String, *, plus_to_space : Bool = false)</a> : <a href="String.html">String</a></code> for details.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri/encoding.cr#L90" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="decode(string:String,*,plus_to_space:Bool=false):String-class-method">
+      <div class="signature">
+        
+        def self.<strong>decode</strong>(string : <a href="String.html">String</a>, *, plus_to_space : <a href="Bool.html">Bool</a> = <span class="n">false</span>) : <a href="String.html">String</a>
+
+        <a class="method-permalink" href="#decode%28string%3AString%2C%2A%2Cplus_to_space%3ABool%3Dfalse%29%3AString-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>URL-decodes <em>string</em>.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;uri&quot;</span>
+
+<span class="t">URI</span>.decode(<span class="s">&quot;hello%20world!&quot;</span>)                                 <span class="c"># =&gt; &quot;hello world!&quot;</span>
+<span class="t">URI</span>.decode(<span class="s">&quot;put:%20it+%D0%B9&quot;</span>)                               <span class="c"># =&gt; &quot;put: it+й&quot;</span>
+<span class="t">URI</span>.decode(<span class="s">&quot;http://example.com/Crystal%20is%20awesome%20=)&quot;</span>) <span class="c"># =&gt; &quot;http://example.com/Crystal is awesome =)&quot;</span></code></pre>
+<p>By default, <code>+</code> is decoded literally. If <em>plus_to_space</em> is <code>true</code>, <code>+</code> is
+decoded as space character (<code>0x20</code>). Percent-encoded values such as <code>%20</code>
+and <code>%2B</code> are always decoded as characters with the respective codepoint.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;uri&quot;</span>
+
+<span class="t">URI</span>.decode(<span class="s">&quot;peter+%2B+paul&quot;</span>)                      <span class="c"># =&gt; &quot;peter+++paul&quot;</span>
+<span class="t">URI</span>.decode(<span class="s">&quot;peter+%2B+paul&quot;</span>, plus_to_space: <span class="n">true</span>) <span class="c"># =&gt; &quot;peter + paul&quot;</span></code></pre>
+<ul>
+<li><code><a href="URI.html#encode%28string%3AString%2Cio%3AIO%2C%2A%2Cspace_to_plus%3ABool%3Dfalse%29%3ANil-class-method">.encode</a></code> is the reverse operation.</li>
+<li><code><a href="URI.html#decode_www_form%28string%3AString%2Cio%3AIO%2C%2A%2Cplus_to_space%3ABool%3Dtrue%29%3ANil-class-method">.decode_www_form</a></code> encodes plus to space by default.</li>
+</ul>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri/encoding.cr#L79" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="decode(string:String,io:IO,*,plus_to_space:Bool=false,&amp;):Nil-class-method">
+      <div class="signature">
+        
+        def self.<strong>decode</strong>(string : <a href="String.html">String</a>, io : <a href="IO.html">IO</a>, *, plus_to_space : <a href="Bool.html">Bool</a> = <span class="n">false</span>, &) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#decode%28string%3AString%2Cio%3AIO%2C%2A%2Cplus_to_space%3ABool%3Dfalse%2C%26%29%3ANil-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>URL-decodes <em>string</em> and writes the result to <em>io</em>.</p>
+<p>The block is called for each percent-encoded ASCII character and determines
+whether the value is to be decoded. When the return value is falsey,
+the character is decoded. Non-ASCII characters are always decoded.</p>
+<p>By default, <code>+</code> is decoded literally. If <em>plus_to_space</em> is <code>true</code>, <code>+</code> is
+decoded as space character (<code>0x20</code>).</p>
+<p>This method enables some customization, but typical use cases can be implemented
+by either <code><a href="URI.html#decode%28string%3AString%2C%2A%2Cplus_to_space%3ABool%3Dfalse%29%3AString-class-method">.decode(string : String, *, plus_to_space : Bool = false)</a> : <a href="String.html">String</a></code> or
+<code><a href="URI.html#decode_www_form%28string%3AString%2C%2A%2Cplus_to_space%3ABool%3Dtrue%29%3AString-class-method">.decode_www_form(string : String, *, plus_to_space : Bool = true)</a> : <a href="String.html">String</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri/encoding.cr#L263" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="decode_www_form(string:String,io:IO,*,plus_to_space:Bool=true):Nil-class-method">
+      <div class="signature">
+        
+        def self.<strong>decode_www_form</strong>(string : <a href="String.html">String</a>, io : <a href="IO.html">IO</a>, *, plus_to_space : <a href="Bool.html">Bool</a> = <span class="n">true</span>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#decode_www_form%28string%3AString%2Cio%3AIO%2C%2A%2Cplus_to_space%3ABool%3Dtrue%29%3ANil-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>URL-decodes <em>string</em> as <a href="https://url.spec.whatwg.org/#urlencoded-serializing"><code>x-www-form-urlencoded</code></a>
+and writes the result to <em>io</em>.</p>
+<p>See <code>self<a href="URI.html#decode_www_form%28string%3AString%2C%2A%2Cplus_to_space%3ABool%3Dtrue%29%3AString-class-method">.decode_www_form(string : String, *, plus_to_space : Bool = true)</a> : <a href="String.html">String</a></code>
+for details.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri/encoding.cr#L166" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="decode_www_form(string:String,*,plus_to_space:Bool=true):String-class-method">
+      <div class="signature">
+        
+        def self.<strong>decode_www_form</strong>(string : <a href="String.html">String</a>, *, plus_to_space : <a href="Bool.html">Bool</a> = <span class="n">true</span>) : <a href="String.html">String</a>
+
+        <a class="method-permalink" href="#decode_www_form%28string%3AString%2C%2A%2Cplus_to_space%3ABool%3Dtrue%29%3AString-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>URL-decodes <em>string</em> as <a href="https://url.spec.whatwg.org/#urlencoded-serializing"><code>x-www-form-urlencoded</code></a>.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;uri&quot;</span>
+
+<span class="t">URI</span>.decode_www_form(<span class="s">&quot;hello%20world!&quot;</span>)                           <span class="c"># =&gt; &quot;hello world!&quot;</span>
+<span class="t">URI</span>.decode_www_form(<span class="s">&quot;put:%20it+%D0%B9&quot;</span>)                         <span class="c"># =&gt; &quot;put: it й&quot;</span>
+<span class="t">URI</span>.decode_www_form(<span class="s">&quot;http://example.com/Crystal+is+awesome+=)&quot;</span>) <span class="c"># =&gt; &quot;http://example.com/Crystal is awesome =)&quot;</span></code></pre>
+<p>By default, <code>+</code> is decoded as space character (<code>0x20</code>). If <em>plus_to_space</em>
+is <code>false</code>, <code>+</code> is decoded literally as <code>+</code>. Percent-encoded values such as
+<code>%20</code> and <code>%2B</code> are always decoded as characters with the respective codepoint.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;uri&quot;</span>
+
+<span class="t">URI</span>.decode_www_form(<span class="s">&quot;peter+%2B+paul&quot;</span>)                       <span class="c"># =&gt; &quot;peter + paul&quot;</span>
+<span class="t">URI</span>.decode_www_form(<span class="s">&quot;peter+%2B+paul&quot;</span>, plus_to_space: <span class="n">false</span>) <span class="c"># =&gt; &quot;peter+++paul&quot;</span></code></pre>
+<ul>
+<li><code><a href="URI.html#encode_www_form%28string%3AString%2Cio%3AIO%2C%2A%2Cspace_to_plus%3ABool%3Dtrue%29%3ANil-class-method">.encode_www_form</a></code> is the reverse operation.</li>
+<li><code><a href="URI.html#decode%28string%3AString%2Cio%3AIO%2C%2A%2Cplus_to_space%3ABool%3Dfalse%29%3ANil-class-method">.decode</a></code> encodes plus literally by default.</li>
+</ul>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri/encoding.cr#L157" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="default_port(scheme:String):Int32|Nil-class-method">
+      <div class="signature">
+        
+        def self.<strong>default_port</strong>(scheme : <a href="String.html">String</a>) : <a href="Int32.html">Int32</a> | <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#default_port%28scheme%3AString%29%3AInt32%7CNil-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the default port for the given <em>scheme</em> if known,
+otherwise returns <code>nil</code>.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;uri&quot;</span>
+
+<span class="t">URI</span>.default_port <span class="s">&quot;http&quot;</span>  <span class="c"># =&gt; 80</span>
+<span class="t">URI</span>.default_port <span class="s">&quot;ponzi&quot;</span> <span class="c"># =&gt; nil</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri.cr#L718" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="encode(string:String,io:IO,*,space_to_plus:Bool=false):Nil-class-method">
+      <div class="signature">
+        
+        def self.<strong>encode</strong>(string : <a href="String.html">String</a>, io : <a href="IO.html">IO</a>, *, space_to_plus : <a href="Bool.html">Bool</a> = <span class="n">false</span>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#encode%28string%3AString%2Cio%3AIO%2C%2A%2Cspace_to_plus%3ABool%3Dfalse%29%3ANil-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>URL-encodes <em>string</em> and writes the result to <em>io</em>.</p>
+<p>See <code><a href="URI.html#encode%28string%3AString%2C%2A%2Cspace_to_plus%3ABool%3Dfalse%29%3AString-class-method">.encode(string : String, *, space_to_plus : Bool = false)</a> : <a href="String.html">String</a></code> for details.</p>
+<p><span class="flag red">DEPRECATED</span>  Use <code><a href="URI.html#encode_path%28io%3AIO%2Cstring%3AString%29%3ANil-class-method">.encode_path</a></code> instead.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri/encoding.cr#L130" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="encode(string:String,*,space_to_plus:Bool=false):String-class-method">
+      <div class="signature">
+        
+        def self.<strong>encode</strong>(string : <a href="String.html">String</a>, *, space_to_plus : <a href="Bool.html">Bool</a> = <span class="n">false</span>) : <a href="String.html">String</a>
+
+        <a class="method-permalink" href="#encode%28string%3AString%2C%2A%2Cspace_to_plus%3ABool%3Dfalse%29%3AString-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>URL-encodes <em>string</em>.</p>
+<p>Reserved and unreserved characters are not escaped, so this only modifies some
+special characters as well as non-ASCII characters. <code><a href="URI.html#reserved%3F%28byte%29%3ABool-class-method">.reserved?</a></code> and <code><a href="URI.html#unreserved%3F%28byte%29%3ABool-class-method">.unreserved?</a></code>
+provide more details on these character classes.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;uri&quot;</span>
+
+<span class="t">URI</span>.encode(<span class="s">&quot;hello world!&quot;</span>)                             <span class="c"># =&gt; &quot;hello%20world!&quot;</span>
+<span class="t">URI</span>.encode(<span class="s">&quot;put: it+й&quot;</span>)                                <span class="c"># =&gt; &quot;put:%20it+%D0%B9&quot;</span>
+<span class="t">URI</span>.encode(<span class="s">&quot;http://example.com/Crystal is awesome =)&quot;</span>) <span class="c"># =&gt; &quot;http://example.com/Crystal%20is%20awesome%20=)&quot;</span></code></pre>
+<p>By default, the space character (<code>0x20</code>) is encoded as <code>%20</code> and <code>+</code> is
+encoded literally. If <em>space_to_plus</em> is <code>true</code>, space character is encoded
+as <code>+</code> and <code>+</code> is encoded as <code>%2B</code>:</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;uri&quot;</span>
+
+<span class="t">URI</span>.encode(<span class="s">&quot;peter + paul&quot;</span>)                      <span class="c"># =&gt; &quot;peter%20+%20paul&quot;</span>
+<span class="t">URI</span>.encode(<span class="s">&quot;peter + paul&quot;</span>, space_to_plus: <span class="n">true</span>) <span class="c"># =&gt; &quot;peter+%2B+paul&quot;</span></code></pre>
+<ul>
+<li><code><a href="URI.html#decode%28string%3AString%2Cio%3AIO%2C%2A%2Cplus_to_space%3ABool%3Dfalse%29%3ANil-class-method">.decode</a></code> is the reverse operation.</li>
+<li><code><a href="URI.html#encode_www_form%28string%3AString%2Cio%3AIO%2C%2A%2Cspace_to_plus%3ABool%3Dtrue%29%3ANil-class-method">.encode_www_form</a></code> also escapes reserved characters.</li>
+</ul>
+<p><span class="flag red">DEPRECATED</span>  Use <code><a href="URI.html#encode_path%28io%3AIO%2Cstring%3AString%29%3ANil-class-method">.encode_path</a></code> instead.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri/encoding.cr#L122" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="encode(string:String,io:IO,space_to_plus:Bool=false,&amp;):Nil-class-method">
+      <div class="signature">
+        
+        def self.<strong>encode</strong>(string : <a href="String.html">String</a>, io : <a href="IO.html">IO</a>, space_to_plus : <a href="Bool.html">Bool</a> = <span class="n">false</span>, &) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#encode%28string%3AString%2Cio%3AIO%2Cspace_to_plus%3ABool%3Dfalse%2C%26%29%3ANil-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>URL-encodes <em>string</em> and writes the result to an <code><a href="IO.html">IO</a></code>.</p>
+<p>The block is called for each ascii character (codepoint less than <code>0x80</code>) and
+determines whether the value is to be encoded. When the return value is falsey,
+the character is encoded. Non-ASCII characters are always encoded.</p>
+<p>By default, the space character (<code>0x20</code>) is encoded as <code>%20</code> and <code>+</code> is
+encoded literally. If <em>space_to_plus</em> is <code>true</code>, space character is encoded
+as <code>+</code> and <code>+</code> is encoded as <code>%2B</code>.</p>
+<p>This method enables some customization, but typical use cases can be implemented
+by either <code><a href="URI.html#encode_path%28string%3AString%29%3AString-class-method">.encode_path(string : String)</a> : <a href="String.html">String</a></code>, <code><a href="URI.html#encode_path_segment%28string%3AString%29%3AString-class-method">.encode_path_segment(string : String)</a> : <a href="String.html">String</a></code> or
+<code><a href="URI.html#encode_www_form%28string%3AString%2C%2A%2Cspace_to_plus%3ABool%3Dtrue%29%3AString-class-method">.encode_www_form(string : String, *, space_to_plus : Bool = true)</a> : <a href="String.html">String</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri/encoding.cr#L310" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="encode_path(io:IO,string:String):Nil-class-method">
+      <div class="signature">
+        
+        def self.<strong>encode_path</strong>(io : <a href="IO.html">IO</a>, string : <a href="String.html">String</a>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#encode_path%28io%3AIO%2Cstring%3AString%29%3ANil-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Encodes <em>string</em> so it can be safely placed as a potentially multi-segmented
+URI path, replacing special characters with URI escape sequences as needed.</p>
+<p>Unreserved characters such as ASCII letters, digits, and the characters
+<code>_.-~</code> are not encoded, as well as the character <code>/</code> which represent a
+segment separator in hierarchical paths (<a href="https://datatracker.ietf.org/doc/html/rfc3986#section-3.3">RFC 3986 §3.3</a>).</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;uri&quot;</span>
+
+<span class="t">URI</span>.encode_path(<span class="s">&quot;foo/bar/baz&quot;</span>)  <span class="c"># =&gt; &quot;foo/bar/baz&quot;</span>
+<span class="t">URI</span>.encode_path(<span class="s">&quot;hello world!&quot;</span>) <span class="c"># =&gt; &quot;hello%20world%21&quot;</span>
+<span class="t">URI</span>.encode_path(<span class="s">&quot;put: it+й&quot;</span>)    <span class="c"># =&gt; &quot;put%3A%20it%2B%D0%B9&quot;</span></code></pre>
+<ul>
+<li><code><a href="URI.html#decode%28string%3AString%2Cio%3AIO%2C%2A%2Cplus_to_space%3ABool%3Dfalse%29%3ANil-class-method">.decode</a></code> is the reverse operation.</li>
+<li><code><a href="URI.html#encode_path_segment%28io%3AIO%2Cstring%3AString%29%3ANil-class-method">.encode_path_segment</a></code> encodes a single path segment, escaping <code>/</code>.</li>
+</ul>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri/encoding.cr#L24" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="encode_path(string:String):String-class-method">
+      <div class="signature">
+        
+        def self.<strong>encode_path</strong>(string : <a href="String.html">String</a>) : <a href="String.html">String</a>
+
+        <a class="method-permalink" href="#encode_path%28string%3AString%29%3AString-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Encodes <em>string</em> so it can be safely placed as a potentially multi-segmented
+URI path, replacing special characters with URI escape sequences as needed.</p>
+<p>Unreserved characters such as ASCII letters, digits, and the characters
+<code>_.-~</code> are not encoded, as well as the character <code>/</code> which represent a
+segment separator in hierarchical paths (<a href="https://datatracker.ietf.org/doc/html/rfc3986#section-3.3">RFC 3986 §3.3</a>).</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;uri&quot;</span>
+
+<span class="t">URI</span>.encode_path(<span class="s">&quot;foo/bar/baz&quot;</span>)  <span class="c"># =&gt; &quot;foo/bar/baz&quot;</span>
+<span class="t">URI</span>.encode_path(<span class="s">&quot;hello world!&quot;</span>) <span class="c"># =&gt; &quot;hello%20world%21&quot;</span>
+<span class="t">URI</span>.encode_path(<span class="s">&quot;put: it+й&quot;</span>)    <span class="c"># =&gt; &quot;put%3A%20it%2B%D0%B9&quot;</span></code></pre>
+<ul>
+<li><code><a href="URI.html#decode%28string%3AString%2Cio%3AIO%2C%2A%2Cplus_to_space%3ABool%3Dfalse%29%3ANil-class-method">.decode</a></code> is the reverse operation.</li>
+<li><code><a href="URI.html#encode_path_segment%28io%3AIO%2Cstring%3AString%29%3ANil-class-method">.encode_path_segment</a></code> encodes a single path segment, escaping <code>/</code>.</li>
+</ul>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri/encoding.cr#L19" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="encode_path_segment(io:IO,string:String):Nil-class-method">
+      <div class="signature">
+        
+        def self.<strong>encode_path_segment</strong>(io : <a href="IO.html">IO</a>, string : <a href="String.html">String</a>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#encode_path_segment%28io%3AIO%2Cstring%3AString%29%3ANil-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Encodes <em>string</em> so it can be safely placed inside a URI path segment,
+replacing special characters (including <code>/</code>) with URI escape sequences as needed.</p>
+<p>Unreserved characters such as ASCII letters, digits, and the characters
+<code>_.-~</code> are not encoded (see <code><a href="URI.html#unreserved%3F%28byte%29%3ABool-class-method">.unreserved?</a></code>).</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;uri&quot;</span>
+
+<span class="t">URI</span>.encode_path_segment(<span class="s">&quot;foo;bar;baz&quot;</span>)  <span class="c"># =&gt; &quot;foo%3Bbar%3Bbaz&quot;</span>
+<span class="t">URI</span>.encode_path_segment(<span class="s">&quot;foo/bar/baz&quot;</span>)  <span class="c"># =&gt; &quot;foo%2Fbar%2Fbaz&quot;</span>
+<span class="t">URI</span>.encode_path_segment(<span class="s">&quot;foo,bar,baz&quot;</span>)  <span class="c"># =&gt; &quot;foo%2Cbar%2Cbaz&quot;</span>
+<span class="t">URI</span>.encode_path_segment(<span class="s">&quot;hello world!&quot;</span>) <span class="c"># =&gt; &quot;hello%20world%21&quot;</span>
+<span class="t">URI</span>.encode_path_segment(<span class="s">&quot;put: it+й&quot;</span>)    <span class="c"># =&gt; &quot;put%3A%20it%2B%D0%B9&quot;</span></code></pre>
+<ul>
+<li><code><a href="URI.html#decode%28string%3AString%2Cio%3AIO%2C%2A%2Cplus_to_space%3ABool%3Dfalse%29%3ANil-class-method">.decode</a></code> is the reverse operation.</li>
+<li><code><a href="URI.html#encode_path%28io%3AIO%2Cstring%3AString%29%3ANil-class-method">.encode_path</a></code> encodes a path consisting of multiple segments, not escaping <code>/</code>.</li>
+<li><code><a href="URI.html#encode_www_form%28string%3AString%2Cio%3AIO%2C%2A%2Cspace_to_plus%3ABool%3Dtrue%29%3ANil-class-method">.encode_www_form</a></code> escapes space character as <code>+</code>.</li>
+</ul>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri/encoding.cr#L52" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="encode_path_segment(string:String):String-class-method">
+      <div class="signature">
+        
+        def self.<strong>encode_path_segment</strong>(string : <a href="String.html">String</a>) : <a href="String.html">String</a>
+
+        <a class="method-permalink" href="#encode_path_segment%28string%3AString%29%3AString-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Encodes <em>string</em> so it can be safely placed inside a URI path segment,
+replacing special characters (including <code>/</code>) with URI escape sequences as needed.</p>
+<p>Unreserved characters such as ASCII letters, digits, and the characters
+<code>_.-~</code> are not encoded (see <code><a href="URI.html#unreserved%3F%28byte%29%3ABool-class-method">.unreserved?</a></code>).</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;uri&quot;</span>
+
+<span class="t">URI</span>.encode_path_segment(<span class="s">&quot;foo;bar;baz&quot;</span>)  <span class="c"># =&gt; &quot;foo%3Bbar%3Bbaz&quot;</span>
+<span class="t">URI</span>.encode_path_segment(<span class="s">&quot;foo/bar/baz&quot;</span>)  <span class="c"># =&gt; &quot;foo%2Fbar%2Fbaz&quot;</span>
+<span class="t">URI</span>.encode_path_segment(<span class="s">&quot;foo,bar,baz&quot;</span>)  <span class="c"># =&gt; &quot;foo%2Cbar%2Cbaz&quot;</span>
+<span class="t">URI</span>.encode_path_segment(<span class="s">&quot;hello world!&quot;</span>) <span class="c"># =&gt; &quot;hello%20world%21&quot;</span>
+<span class="t">URI</span>.encode_path_segment(<span class="s">&quot;put: it+й&quot;</span>)    <span class="c"># =&gt; &quot;put%3A%20it%2B%D0%B9&quot;</span></code></pre>
+<ul>
+<li><code><a href="URI.html#decode%28string%3AString%2Cio%3AIO%2C%2A%2Cplus_to_space%3ABool%3Dfalse%29%3ANil-class-method">.decode</a></code> is the reverse operation.</li>
+<li><code><a href="URI.html#encode_path%28io%3AIO%2Cstring%3AString%29%3ANil-class-method">.encode_path</a></code> encodes a path consisting of multiple segments, not escaping <code>/</code>.</li>
+<li><code><a href="URI.html#encode_www_form%28string%3AString%2Cio%3AIO%2C%2A%2Cspace_to_plus%3ABool%3Dtrue%29%3ANil-class-method">.encode_www_form</a></code> escapes space character as <code>+</code>.</li>
+</ul>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri/encoding.cr#L47" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="encode_www_form(string:String,io:IO,*,space_to_plus:Bool=true):Nil-class-method">
+      <div class="signature">
+        
+        def self.<strong>encode_www_form</strong>(string : <a href="String.html">String</a>, io : <a href="IO.html">IO</a>, *, space_to_plus : <a href="Bool.html">Bool</a> = <span class="n">true</span>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#encode_www_form%28string%3AString%2Cio%3AIO%2C%2A%2Cspace_to_plus%3ABool%3Dtrue%29%3ANil-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>URL-encodes <em>string</em> as <a href="https://url.spec.whatwg.org/#urlencoded-serializing"><code>x-www-form-urlencoded</code></a>
+and writes the result to <em>io</em>.</p>
+<p>See <code><a href="URI.html#encode_www_form%28string%3AString%2C%2A%2Cspace_to_plus%3ABool%3Dtrue%29%3AString-class-method">.encode_www_form(string : String, *, space_to_plus : Bool = true)</a></code> for
+details.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri/encoding.cr#L212" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="encode_www_form(string:String,*,space_to_plus:Bool=true):String-class-method">
+      <div class="signature">
+        
+        def self.<strong>encode_www_form</strong>(string : <a href="String.html">String</a>, *, space_to_plus : <a href="Bool.html">Bool</a> = <span class="n">true</span>) : <a href="String.html">String</a>
+
+        <a class="method-permalink" href="#encode_www_form%28string%3AString%2C%2A%2Cspace_to_plus%3ABool%3Dtrue%29%3AString-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>URL-encodes <em>string</em> as <a href="https://url.spec.whatwg.org/#urlencoded-serializing"><code>x-www-form-urlencoded</code></a>.</p>
+<p>Reserved characters are escaped, unreserved characters are not.
+<code><a href="URI.html#reserved%3F%28byte%29%3ABool-class-method">.reserved?</a></code> and <code><a href="URI.html#unreserved%3F%28byte%29%3ABool-class-method">.unreserved?</a></code> provide more details on these character
+classes.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;uri&quot;</span>
+
+<span class="t">URI</span>.encode_www_form(<span class="s">&quot;hello world!&quot;</span>)                             <span class="c"># =&gt; &quot;hello+world%21&quot;</span>
+<span class="t">URI</span>.encode_www_form(<span class="s">&quot;put: it+й&quot;</span>)                                <span class="c"># =&gt; &quot;put%3A+it%2B%D0%B9&quot;</span>
+<span class="t">URI</span>.encode_www_form(<span class="s">&quot;http://example.com/Crystal is awesome =)&quot;</span>) <span class="c"># =&gt; &quot;http%3A%2F%2Fexample.com%2FCrystal+is+awesome+%3D%29&quot;</span></code></pre>
+<p>The encoded string returned from this method can be used as name or value
+components for a <code>application/x-www-form-urlencoded</code> format serialization.
+<code><a href="URI/Params.html">URI::Params</a></code> provides a higher-level API for this use case.</p>
+<p>By default, the space character (<code>0x20</code>) is encoded as <code>+</code> and <code>+</code> is encoded
+as <code>%2B</code>. If <em>space_to_plus</em> is <code>false</code>, space character is encoded as <code>%20</code>
+and <code>'+'</code> is encoded literally.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;uri&quot;</span>
+
+<span class="t">URI</span>.encode_www_form(<span class="s">&quot;peter + paul&quot;</span>)                       <span class="c"># =&gt; &quot;peter+%2B+paul&quot;</span>
+<span class="t">URI</span>.encode_www_form(<span class="s">&quot;peter + paul&quot;</span>, space_to_plus: <span class="n">false</span>) <span class="c"># =&gt; &quot;peter%20%2B%20paul&quot;</span></code></pre>
+<ul>
+<li><code><a href="URI.html#decode_www_form%28string%3AString%2Cio%3AIO%2C%2A%2Cplus_to_space%3ABool%3Dtrue%29%3ANil-class-method">.decode_www_form</a></code> is the reverse operation.</li>
+<li><code><a href="URI.html#encode_path%28io%3AIO%2Cstring%3AString%29%3ANil-class-method">.encode_path</a></code> escapes space character as <code>%20</code>.</li>
+</ul>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri/encoding.cr#L201" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="from_json_object_key?(key:String):URI|Nil-class-method">
+      <div class="signature">
+        
+        def self.<strong>from_json_object_key?</strong>(key : <a href="String.html">String</a>) : <a href="URI.html">URI</a> | <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#from_json_object_key%3F%28key%3AString%29%3AURI%7CNil-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Deserializes the given JSON <em>key</em> into a <code><a href="URI.html">URI</a></code></p>
+<p><span class="flag purple">NOTE</span>  <code>require &quot;uri/json&quot;</code> is required to opt-in to this feature.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri/json.cr#L32" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="reserved?(byte):Bool-class-method">
+      <div class="signature">
+        
+        def self.<strong>reserved?</strong>(byte) : <a href="Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#reserved%3F%28byte%29%3ABool-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns whether given byte is reserved character defined in
+<a href="https://datatracker.ietf.org/doc/html/rfc3986#section-2.2">RFC 3986 §2.2</a>.</p>
+<p>Reserved characters are ':', '/', '?', '#', '[', ']', '@', '!',
+'$', '&amp;', &quot;'&quot;, '(', ')', '*', '+', ',', ';' and '='.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri/encoding.cr#L223" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="set_default_port(scheme:String,port:Int32|Nil):Nil-class-method">
+      <div class="signature">
+        
+        def self.<strong>set_default_port</strong>(scheme : <a href="String.html">String</a>, port : <a href="Int32.html">Int32</a> | <a href="Nil.html">Nil</a>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#set_default_port%28scheme%3AString%2Cport%3AInt32%7CNil%29%3ANil-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Registers the default port for the given <em>scheme</em>.</p>
+<p>If <em>port</em> is <code>nil</code>, the existing default port for the
+<em>scheme</em>, if any, will be unregistered.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;uri&quot;</span>
+
+<span class="t">URI</span>.set_default_port <span class="s">&quot;ponzi&quot;</span>, <span class="n">9999</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri.cr#L732" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="unreserved?(byte):Bool-class-method">
+      <div class="signature">
+        
+        def self.<strong>unreserved?</strong>(byte) : <a href="Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#unreserved%3F%28byte%29%3ABool-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns whether given byte is unreserved character defined in
+<a href="https://datatracker.ietf.org/doc/html/rfc3986#section-2.3">RFC 3986 §2.3</a>.</p>
+<p>Unreserved characters are ASCII letters, ASCII digits, <code>_</code>, <code>.</code>, <code>-</code> and <code>~</code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri/encoding.cr#L245" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="unwrap_ipv6(host):String-class-method">
+      <div class="signature">
+        
+        def self.<strong>unwrap_ipv6</strong>(host) : <a href="String.html">String</a>
+
+        <a class="method-permalink" href="#unwrap_ipv6%28host%29%3AString-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Unwraps IPv6 address wrapped in square brackets.</p>
+<p>Everything that is not wrapped in square brackets is returned unchanged.</p>
+<pre><code class="language-crystal"><span class="t">URI</span>.unwrap_ipv6(<span class="s">&quot;[::1]&quot;</span>)       <span class="c"># =&gt; &quot;::1&quot;</span>
+<span class="t">URI</span>.unwrap_ipv6(<span class="s">&quot;127.0.0.1&quot;</span>)   <span class="c"># =&gt; &quot;127.0.0.1&quot;</span>
+<span class="t">URI</span>.unwrap_ipv6(<span class="s">&quot;example.com&quot;</span>) <span class="c"># =&gt; &quot;example.com&quot;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri.cr#L203" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+  
+
+  
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="==(other:self)-instance-method">
+      <div class="signature">
+        
+        def <strong>==</strong>(other : <span class="k">self</span>)
+
+        <a class="method-permalink" href="#%3D%3D%28other%3Aself%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+            <div class="doc-inherited">
+              Description copied from class <a href="Reference.html">Reference</a>
+            </div>
+          
+          <p>Returns <code>true</code> if this reference is the same as <em>other</em>. Invokes <code>same?</code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="absolute?:Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>absolute?</strong> : <a href="Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#absolute%3F%3ABool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if URI has a <em>scheme</em> specified.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri.cr#L247" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="authority(io:IO):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>authority</strong>(io : <a href="IO.html">IO</a>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#authority%28io%3AIO%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the authority component of this URI.
+It is formatted as <code>user:pass@host:port</code> with missing parts being omitted.</p>
+<p>If the URI does not have any authority information, the result is <code>nil</code>.</p>
+<pre><code class="language-crystal">uri <span class="o">=</span> <span class="t">URI</span>.parse <span class="s">&quot;http://user:pass@example.com:80/path?query&quot;</span>
+uri.authority <span class="c"># =&gt; &quot;user:pass@example.com:80&quot;</span>
+
+uri <span class="o">=</span> <span class="t">URI</span>.parse(<span class="s">&quot;/relative&quot;</span>)
+uri.authority <span class="c"># =&gt; nil</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri.cr#L330" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="authority:String|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>authority</strong> : <a href="String.html">String</a> | <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#authority%3AString%7CNil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the authority component of this URI.
+It is formatted as <code>user:pass@host:port</code> with missing parts being omitted.</p>
+<p>If the URI does not have any authority information, the result is <code>nil</code>.</p>
+<pre><code class="language-crystal">uri <span class="o">=</span> <span class="t">URI</span>.parse <span class="s">&quot;http://user:pass@example.com:80/path?query&quot;</span>
+uri.authority <span class="c"># =&gt; &quot;user:pass@example.com:80&quot;</span>
+
+uri <span class="o">=</span> <span class="t">URI</span>.parse(<span class="s">&quot;/relative&quot;</span>)
+uri.authority <span class="c"># =&gt; nil</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri.cr#L321" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="fragment:String|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>fragment</strong> : <a href="String.html">String</a> | <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#fragment%3AString%7CNil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the fragment component of the URI.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;uri&quot;</span>
+
+<span class="t">URI</span>.parse(<span class="s">&quot;http://foo.com/bar#section1&quot;</span>).fragment <span class="c"># =&gt; &quot;section1&quot;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri.cr#L171" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="fragment=(fragment:String|Nil)-instance-method">
+      <div class="signature">
+        
+        def <strong>fragment=</strong>(fragment : <a href="String.html">String</a> | <a href="Nil.html">Nil</a>)
+
+        <a class="method-permalink" href="#fragment%3D%28fragment%3AString%7CNil%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Sets the fragment component of the URI.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri.cr#L174" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="hash(hasher)-instance-method">
+      <div class="signature">
+        
+        def <strong>hash</strong>(hasher)
+
+        <a class="method-permalink" href="#hash%28hasher%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+            <div class="doc-inherited">
+              Description copied from class <a href="Reference.html">Reference</a>
+            </div>
+          
+          <p>See <code><a href="Object.html#hash%28hasher%29-instance-method">Object#hash(hasher)</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="host:String|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>host</strong> : <a href="String.html">String</a> | <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#host%3AString%7CNil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the host component of the URI.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;uri&quot;</span>
+
+<span class="t">URI</span>.parse(<span class="s">&quot;http://foo.com&quot;</span>).host <span class="c"># =&gt; &quot;foo.com&quot;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri.cr#L99" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="host=(host:String|Nil)-instance-method">
+      <div class="signature">
+        
+        def <strong>host=</strong>(host : <a href="String.html">String</a> | <a href="Nil.html">Nil</a>)
+
+        <a class="method-permalink" href="#host%3D%28host%3AString%7CNil%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Sets the host component of the URI.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri.cr#L102" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="hostname:String|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>hostname</strong> : <a href="String.html">String</a> | <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#hostname%3AString%7CNil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the host part of the URI and unwrap brackets for IPv6 addresses.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;uri&quot;</span>
+
+<span class="t">URI</span>.parse(<span class="s">&quot;http://[::1]/bar&quot;</span>).hostname <span class="c"># =&gt; &quot;::1&quot;</span>
+<span class="t">URI</span>.parse(<span class="s">&quot;http://[::1]/bar&quot;</span>).host     <span class="c"># =&gt; &quot;[::1]&quot;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri.cr#L190" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="normalize:URI-instance-method">
+      <div class="signature">
+        
+        def <strong>normalize</strong> : <a href="URI.html">URI</a>
+
+        <a class="method-permalink" href="#normalize%3AURI-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns a normalized copy of this URI.</p>
+<p>See <code><a href="URI.html#normalize%21%3AURI-instance-method">#normalize!</a></code> for details.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri.cr#L382" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="normalize!:URI-instance-method">
+      <div class="signature">
+        
+        def <strong>normalize!</strong> : <a href="URI.html">URI</a>
+
+        <a class="method-permalink" href="#normalize%21%3AURI-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Normalizes this URI instance.</p>
+<p>The following normalizations are applied to the individual components (if available):</p>
+<ul>
+<li><code><a href="URI.html#scheme%3AString%7CNil-instance-method">#scheme</a></code> is lowercased.</li>
+<li><code><a href="URI.html#host%3AString%7CNil-instance-method">#host</a></code> is lowercased.</li>
+<li><code><a href="URI.html#port%3AInt32%7CNil-instance-method">#port</a></code> is removed if it is the <code>.default_port?</code> of the scheme.</li>
+<li><code><a href="URI.html#path%3AString-instance-method">#path</a></code> is resolved to a minimal, semantic equivalent representation removing
+dot segments <code>/.</code> and <code>/..</code>.</li>
+</ul>
+<pre><code class="language-crystal">uri <span class="o">=</span> <span class="t">URI</span>.parse(<span class="s">&quot;HTTP://example.COM:80/./foo/../bar/&quot;</span>)
+uri.normalize!
+uri <span class="c"># =&gt; &quot;http://example.com/bar/&quot;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri.cr#L401" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="opaque?:Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>opaque?</strong> : <a href="Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#opaque%3F%3ABool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this URI is opaque.</p>
+<p>A URI is considered opaque if it has a <code><a href="URI.html#scheme%3AString%7CNil-instance-method">#scheme</a></code> but no hierarchical part,
+i.e. no <code><a href="URI.html#host%3AString%7CNil-instance-method">#host</a></code> and the first character of <code><a href="URI.html#path%3AString-instance-method">#path</a></code> is not a slash (<code>/</code>).</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri.cr#L260" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="password:String|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>password</strong> : <a href="String.html">String</a> | <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#password%3AString%7CNil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the password component of the URI.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;uri&quot;</span>
+
+<span class="t">URI</span>.parse(<span class="s">&quot;http://admin:password@foo.com&quot;</span>).password <span class="c"># =&gt; &quot;password&quot;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri.cr#L159" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="password=(password:String|Nil)-instance-method">
+      <div class="signature">
+        
+        def <strong>password=</strong>(password : <a href="String.html">String</a> | <a href="Nil.html">Nil</a>)
+
+        <a class="method-permalink" href="#password%3D%28password%3AString%7CNil%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Sets the password component of the URI.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri.cr#L162" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="path:String-instance-method">
+      <div class="signature">
+        
+        def <strong>path</strong> : <a href="String.html">String</a>
+
+        <a class="method-permalink" href="#path%3AString-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the path component of the URI.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;uri&quot;</span>
+
+<span class="t">URI</span>.parse(<span class="s">&quot;http://foo.com/bar&quot;</span>).path <span class="c"># =&gt; &quot;/bar&quot;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri.cr#L123" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="path=(path:String)-instance-method">
+      <div class="signature">
+        
+        def <strong>path=</strong>(path : <a href="String.html">String</a>)
+
+        <a class="method-permalink" href="#path%3D%28path%3AString%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Sets the path component of the URI.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri.cr#L126" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="port:Int32|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>port</strong> : <a href="Int32.html">Int32</a> | <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#port%3AInt32%7CNil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the port component of the URI.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;uri&quot;</span>
+
+<span class="t">URI</span>.parse(<span class="s">&quot;http://foo.com:5432&quot;</span>).port <span class="c"># =&gt; 5432</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri.cr#L111" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="port=(port:Int32|Nil)-instance-method">
+      <div class="signature">
+        
+        def <strong>port=</strong>(port : <a href="Int32.html">Int32</a> | <a href="Nil.html">Nil</a>)
+
+        <a class="method-permalink" href="#port%3D%28port%3AInt32%7CNil%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Sets the port component of the URI.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri.cr#L114" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="query:String|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>query</strong> : <a href="String.html">String</a> | <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#query%3AString%7CNil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the query component of the URI.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;uri&quot;</span>
+
+<span class="t">URI</span>.parse(<span class="s">&quot;http://foo.com/bar?q=1&quot;</span>).query <span class="c"># =&gt; &quot;q=1&quot;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri.cr#L135" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="query=(query:String|Nil)-instance-method">
+      <div class="signature">
+        
+        def <strong>query=</strong>(query : <a href="String.html">String</a> | <a href="Nil.html">Nil</a>)
+
+        <a class="method-permalink" href="#query%3D%28query%3AString%7CNil%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Sets the query component of the URI.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri.cr#L138" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="query_params:URI::Params-instance-method">
+      <div class="signature">
+        
+        def <strong>query_params</strong> : <a href="URI/Params.html">URI::Params</a>
+
+        <a class="method-permalink" href="#query_params%3AURI%3A%3AParams-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns a <code><a href="URI/Params.html">URI::Params</a></code> of the URI#query.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;uri&quot;</span>
+
+uri <span class="o">=</span> <span class="t">URI</span>.parse <span class="s">&quot;http://foo.com?id=30&amp;limit=5#time=1305298413&quot;</span>
+uri.query_params <span class="c"># =&gt; URI::Params{&quot;id&quot; =&gt; [&quot;30&quot;], &quot;limit&quot; =&gt; [&quot;5&quot;]}</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri.cr#L272" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="query_params=(params:URI::Params)-instance-method">
+      <div class="signature">
+        
+        def <strong>query_params=</strong>(params : <a href="URI/Params.html">URI::Params</a>)
+
+        <a class="method-permalink" href="#query_params%3D%28params%3AURI%3A%3AParams%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Sets <code><a href="URI.html#query%3AString%7CNil-instance-method">#query</a></code> to stringified <em>params</em>.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;uri&quot;</span>
+
+uri <span class="o">=</span> <span class="t">URI</span>.new
+uri.query_params <span class="o">=</span> <span class="t">URI</span><span class="t">::</span><span class="t">Params</span>.parse(<span class="s">&quot;foo=bar&amp;foo=baz&quot;</span>)
+uri.to_s <span class="c"># =&gt; &quot;?foo=bar&amp;foo=baz&quot;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri.cr#L285" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="relative?:Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>relative?</strong> : <a href="Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#relative%3F%3ABool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if URI does not have a <em>scheme</em> specified.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri.cr#L252" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="relativize(uri:URI|String):URI-instance-method">
+      <div class="signature">
+        
+        def <strong>relativize</strong>(uri : <a href="URI.html">URI</a> | <a href="String.html">String</a>) : <a href="URI.html">URI</a>
+
+        <a class="method-permalink" href="#relativize%28uri%3AURI%7CString%29%3AURI-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Relativizes <em>uri</em> against this URI.</p>
+<p>An exact copy of <em>uri</em> is returned if</p>
+<ul>
+<li>this URI or <em>uri</em> are <code><a href="URI.html#opaque%3F%3ABool-instance-method">#opaque?</a></code>, or</li>
+<li>the scheme and authority (<code><a href="URI.html#host%3AString%7CNil-instance-method">#host</a></code>, <code><a href="URI.html#port%3AInt32%7CNil-instance-method">#port</a></code>, <code><a href="URI.html#user%3AString%7CNil-instance-method">#user</a></code>, <code><a href="URI.html#password%3AString%7CNil-instance-method">#password</a></code>) components are not identical.</li>
+</ul>
+<p>Otherwise a new relative hierarchical URI is constructed with <code><a href="URI.html#query%3AString%7CNil-instance-method">#query</a></code> and <code><a href="URI.html#fragment%3AString%7CNil-instance-method">#fragment</a></code> components
+from <em>uri</em> and with a path component that describes a minimum-difference relative
+path from <code><a href="URI.html#path%3AString-instance-method">#path</a></code> to <em>uri</em>'s path.</p>
+<pre><code class="language-crystal"><span class="t">URI</span>.parse(<span class="s">&quot;http://foo.com/bar/baz&quot;</span>).relativize(<span class="s">&quot;http://foo.com/quux&quot;</span>)         <span class="c"># =&gt; &quot;../quux&quot;</span>
+<span class="t">URI</span>.parse(<span class="s">&quot;http://foo.com/bar/baz&quot;</span>).relativize(<span class="s">&quot;http://foo.com/bar/quux&quot;</span>)     <span class="c"># =&gt; &quot;quux&quot;</span>
+<span class="t">URI</span>.parse(<span class="s">&quot;http://foo.com/bar/baz&quot;</span>).relativize(<span class="s">&quot;http://quux.com&quot;</span>)             <span class="c"># =&gt; &quot;http://quux.com&quot;</span>
+<span class="t">URI</span>.parse(<span class="s">&quot;http://foo.com/bar/baz&quot;</span>).relativize(<span class="s">&quot;http://foo.com/bar/baz#quux&quot;</span>) <span class="c"># =&gt; &quot;#quux&quot;</span></code></pre>
+<p>This method is the inverse operation to <code><a href="URI.html#resolve%28uri%3AURI%7CString%29%3AURI-instance-method">#resolve</a></code> (see [Resolution and Relativization](#Resolution and Relativization)).</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri.cr#L487" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="request_target:String-instance-method">
+      <div class="signature">
+        
+        def <strong>request_target</strong> : <a href="String.html">String</a>
+
+        <a class="method-permalink" href="#request_target%3AString-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the concatenation of <code><a href="URI.html#path%3AString-instance-method">#path</a></code> and <code><a href="URI.html#query%3AString%7CNil-instance-method">#query</a></code> as it would be used as a
+request target in an HTTP request.</p>
+<p>If <code><a href="URI.html#path%3AString-instance-method">#path</a></code> is empty in an hierarchical URI, <code>&quot;/&quot;</code> is used.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;uri&quot;</span>
+
+uri <span class="o">=</span> <span class="t">URI</span>.parse <span class="s">&quot;http://example.com/posts?id=30&amp;limit=5#time=1305298413&quot;</span>
+uri.request_target <span class="c"># =&gt; &quot;/posts?id=30&amp;limit=5&quot;</span>
+
+uri <span class="o">=</span> <span class="t">URI</span>.new(path: <span class="s">&quot;&quot;</span>, query: <span class="s">&quot;foo=bar&quot;</span>)
+uri.request_target <span class="c"># =&gt; &quot;/?foo=bar&quot;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri.cr#L225" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="resolve(uri:URI|String):URI-instance-method">
+      <div class="signature">
+        
+        def <strong>resolve</strong>(uri : <a href="URI.html">URI</a> | <a href="String.html">String</a>) : <a href="URI.html">URI</a>
+
+        <a class="method-permalink" href="#resolve%28uri%3AURI%7CString%29%3AURI-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Resolves <em>uri</em> against this URI.</p>
+<p>If <em>uri</em> is <code><a href="URI.html#absolute%3F%3ABool-instance-method">#absolute?</a></code>, or if this URI is <code><a href="URI.html#opaque%3F%3ABool-instance-method">#opaque?</a></code>, then an exact copy of <em>uri</em> is returned.</p>
+<p>Otherwise the URI is resolved according to the specifications in <a href="https://tools.ietf.org/html/rfc3986#section-5.2.2">RFC 3986 section 5.2</a>.</p>
+<pre><code class="language-crystal"><span class="t">URI</span>.parse(<span class="s">&quot;http://foo.com/bar/baz&quot;</span>).resolve(<span class="s">&quot;../quux&quot;</span>)         <span class="c"># =&gt; &quot;http://foo.com/quux&quot;</span>
+<span class="t">URI</span>.parse(<span class="s">&quot;http://foo.com/bar/baz&quot;</span>).resolve(<span class="s">&quot;/quux&quot;</span>)           <span class="c"># =&gt; &quot;http://foo.com/quux&quot;</span>
+<span class="t">URI</span>.parse(<span class="s">&quot;http://foo.com/bar/baz&quot;</span>).resolve(<span class="s">&quot;http://quux.com&quot;</span>) <span class="c"># =&gt; &quot;http://quux.com&quot;</span>
+<span class="t">URI</span>.parse(<span class="s">&quot;http://foo.com/bar/baz&quot;</span>).resolve(<span class="s">&quot;#quux&quot;</span>)           <span class="c"># =&gt; &quot;http://foo.com/bar/baz#quux&quot;</span></code></pre>
+<p>This method is the inverse operation to <code><a href="URI.html#relativize%28uri%3AURI%7CString%29%3AURI-instance-method">#relativize</a></code> (see [Resolution and Relativization](#Resolution and Relativization)).</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri.cr#L424" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="scheme:String|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>scheme</strong> : <a href="String.html">String</a> | <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#scheme%3AString%7CNil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the scheme component of the URI.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;uri&quot;</span>
+
+<span class="t">URI</span>.parse(<span class="s">&quot;http://foo.com&quot;</span>).scheme           <span class="c"># =&gt; &quot;http&quot;</span>
+<span class="t">URI</span>.parse(<span class="s">&quot;mailto:alice@example.com&quot;</span>).scheme <span class="c"># =&gt; &quot;mailto&quot;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri.cr#L87" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="scheme=(scheme:String|Nil)-instance-method">
+      <div class="signature">
+        
+        def <strong>scheme=</strong>(scheme : <a href="String.html">String</a> | <a href="Nil.html">Nil</a>)
+
+        <a class="method-permalink" href="#scheme%3D%28scheme%3AString%7CNil%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Sets the scheme component of the URI.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri.cr#L90" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_json(builder:JSON::Builder)-instance-method">
+      <div class="signature">
+        
+        def <strong>to_json</strong>(builder : <a href="JSON/Builder.html">JSON::Builder</a>)
+
+        <a class="method-permalink" href="#to_json%28builder%3AJSON%3A%3ABuilder%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Serializes this URI to JSON, represented as a string.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;uri/json&quot;</span>
+
+<span class="t">URI</span>.parse(<span class="s">&quot;http://example.com&quot;</span>).to_json <span class="c"># =&gt; %(&quot;http://example.com&quot;)</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri/json.cr#L25" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_s(io:IO):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>to_s</strong>(io : <a href="IO.html">IO</a>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#to_s%28io%3AIO%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+            <div class="doc-inherited">
+              Description copied from class <a href="Reference.html">Reference</a>
+            </div>
+          
+          <p>Appends a short String representation of this object
+which includes its class name and its object address.</p>
+<pre><code class="language-crystal"><span class="k">class</span> <span class="t">Person</span>
+  <span class="k">def</span> <span class="m">initialize</span>(@name : <span class="t">String</span>, @age : <span class="t">Int32</span>)
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="t">Person</span>.new(<span class="s">&quot;John&quot;</span>, <span class="n">32</span>).to_s <span class="c"># =&gt; #&lt;Person:0x10a199f20&gt;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri.cr#L350" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_yaml(yaml:YAML::Nodes::Builder)-instance-method">
+      <div class="signature">
+        
+        def <strong>to_yaml</strong>(yaml : <a href="YAML/Nodes/Builder.html">YAML::Nodes::Builder</a>)
+
+        <a class="method-permalink" href="#to_yaml%28yaml%3AYAML%3A%3ANodes%3A%3ABuilder%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Serializes this URI to YAML, represented as a string.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;uri/yaml&quot;</span>
+
+<span class="t">URI</span>.parse(<span class="s">&quot;http://example.com&quot;</span>).to_yaml <span class="c"># =&gt; &quot;--- http://example.com\n&quot;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri/yaml.cr#L25" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="update_query_params(&amp;:URI::Params-&gt;_):URI-instance-method">
+      <div class="signature">
+        
+        def <strong>update_query_params</strong>(& : <a href="URI/Params.html">URI::Params</a> -> _) : <a href="URI.html">URI</a>
+
+        <a class="method-permalink" href="#update_query_params%28%26%3AURI%3A%3AParams-%3E_%29%3AURI-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Yields the value of <code><a href="URI.html#query_params%3AURI%3A%3AParams-instance-method">#query_params</a></code> commits any modifications of the <code><a href="URI/Params.html">URI::Params</a></code> instance to self.
+Returns the modified <code><a href="URI/Params.html">URI::Params</a></code></p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;uri&quot;</span>
+uri <span class="o">=</span> <span class="t">URI</span>.parse(<span class="s">&quot;http://foo.com?id=30&amp;limit=5#time=1305298413&quot;</span>)
+uri.update_query_params { <span class="o">|</span>params<span class="o">|</span> params.delete_all(<span class="s">&quot;limit&quot;</span>) } <span class="c"># =&gt; URI::Params{&quot;id&quot; =&gt; [&quot;30&quot;]}</span>
+
+puts uri.to_s <span class="c"># =&gt; &quot;http://foo.com?id=30#time=1305298413&quot;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri.cr#L299" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="user:String|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>user</strong> : <a href="String.html">String</a> | <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#user%3AString%7CNil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the user component of the URI.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;uri&quot;</span>
+
+<span class="t">URI</span>.parse(<span class="s">&quot;http://admin:password@foo.com&quot;</span>).user <span class="c"># =&gt; &quot;admin&quot;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri.cr#L147" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="user=(user:String|Nil)-instance-method">
+      <div class="signature">
+        
+        def <strong>user=</strong>(user : <a href="String.html">String</a> | <a href="Nil.html">Nil</a>)
+
+        <a class="method-permalink" href="#user%3D%28user%3AString%7CNil%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Sets the user component of the URI.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri.cr#L150" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="userinfo:String|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>userinfo</strong> : <a href="String.html">String</a> | <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#userinfo%3AString%7CNil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the user-information component containing
+the provided username and password.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;uri&quot;</span>
+
+uri <span class="o">=</span> <span class="t">URI</span>.parse <span class="s">&quot;http://admin:password@foo.com&quot;</span>
+uri.userinfo <span class="c"># =&gt; &quot;admin:password&quot;</span></code></pre>
+<p>The return value is URL encoded (see <code><a href="URI.html#encode_www_form%28string%3AString%2Cio%3AIO%2C%2A%2Cspace_to_plus%3ABool%3Dtrue%29%3ANil-class-method">#encode_www_form</a></code>).</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri.cr#L589" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+</div>
+
+</body>
+</html>

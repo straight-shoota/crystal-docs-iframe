@@ -1,0 +1,1598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Crystal Docs 1.16.1">
+<meta name="crystal_docs.project_version" content="1.17.0-dev">
+<meta name="crystal_docs.project_name" content="Crystal">
+
+  <meta name="crystal_docs.json_config_url" content="/api/versions.json">
+
+
+    <link rel="canonical" href="https://crystal-lang.org/api/latest/Indexable/Mutable.html">
+
+<link href="../css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../js/doc.js"></script>
+
+  <meta name="repository-name" content="Crystal">
+  <title>Indexable::Mutable(T) - Crystal 1.17.0-dev</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "../";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill="currentColor" fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<input type="checkbox" id="sidebar-btn">
+<label for="sidebar-btn" id="sidebar-btn-label">
+  <svg class="open" xmlns="http://www.w3.org/2000/svg" height="2em" width="2em" viewBox="0 0 512 512"><title>Open Sidebar</title><path fill="currentColor" d="M80 96v64h352V96H80zm0 112v64h352v-64H80zm0 112v64h352v-64H80z"></path></svg>
+  <svg class="close" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><title>Close Sidebar</title><path fill="currentColor" d="m118.6 73.4-45.2 45.2L210.7 256 73.4 393.4l45.2 45.2L256 301.3l137.4 137.3 45.2-45.2L301.3 256l137.3-137.4-45.2-45.2L256 210.7Z"></path></svg>
+</label>
+<iframe class="sidebar" src="../sidebar.html"></iframe>
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">
+    module
+  </span> Indexable::<wbr>Mutable(T)
+
+</h1>
+
+
+
+
+
+  <h2>
+    <a id="overview" class="anchor" href="#overview">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Overview
+  </h2>
+
+  <p>An <code><a href="../Indexable.html">Indexable</a></code> container that is additionally mutable.</p>
+<p>Including types may write values to numeric indices, apart from reading them.
+This module does not cover cases where the container is resized.</p>
+
+
+
+
+
+
+
+  <h2>
+    <a id="included-modules" class="anchor" href="#included-modules">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Included Modules
+  </h2>
+  <ul class="other-types-list">
+    
+      <li class="other-type"><a href="../Indexable.html">Indexable(T)</a></li>
+    
+  </ul>
+
+
+
+
+
+
+
+  <h2>
+    <a id="direct-including-types" class="anchor" href="#direct-including-types">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Direct including types
+  </h2>
+  <ul class="other-types-list">
+    
+      <li class="other-type"><a href="../Array.html">Array(T)</a></li>
+    
+      <li class="other-type"><a href="../BitArray.html">BitArray</a></li>
+    
+      <li class="other-type"><a href="../Deque.html">Deque(T)</a></li>
+    
+      <li class="other-type"><a href="../Slice.html">Slice(T)</a></li>
+    
+      <li class="other-type"><a href="../StaticArray.html">StaticArray(T, N)</a></li>
+    
+  </ul>
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/indexable/mutable.cr#L5" target="_blank">
+        indexable/mutable.cr
+      </a>
+    
+    <br/>
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#%5B%5D%3D%28index%3AInt%2Cvalue%3AT%29%3AT-instance-method" class="signature"><strong>#[]=</strong>(index : Int, value : T) : T</a>
+        
+          <div class="summary"><p>Sets the given <em>value</em> at the given <em>index</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#fill%28value%3AT%2Cstart%3AInt%2Ccount%3AInt%29%3Aself-instance-method" class="signature"><strong>#fill</strong>(value : T, start : Int, count : Int) : <span class="k">self</span></a>
+        
+          <div class="summary"><p>Replaces <em>count</em> or less (if there aren't enough) elements starting at the given <em>start</em> index with <em>value</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#fill%28value%3AT%2Crange%3ARange%29%3Aself-instance-method" class="signature"><strong>#fill</strong>(value : T, range : Range) : <span class="k">self</span></a>
+        
+          <div class="summary"><p>Replaces the elements within the given <em>range</em> with <em>value</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#fill%28value%3AT%29%3Aself-instance-method" class="signature"><strong>#fill</strong>(value : T) : <span class="k">self</span></a>
+        
+          <div class="summary"><p>Replaces every element in <code>self</code> with the given <em>value</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#fill%28start%3AInt%2Ccount%3AInt%2C%26%3AInt32-%3ET%29%3Aself-instance-method" class="signature"><strong>#fill</strong>(start : Int, count : Int, & : Int32 -> T) : <span class="k">self</span></a>
+        
+          <div class="summary"><p>Yields each index of <code>self</code>, starting at <em>start</em> and for <em>count</em> times (or less if there aren't enough elements), to the given block and then assigns the block's value in that position.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#fill%28range%3ARange%2C%26%3AInt32-%3ET%29%3Aself-instance-method" class="signature"><strong>#fill</strong>(range : Range, & : Int32 -> T) : <span class="k">self</span></a>
+        
+          <div class="summary"><p>Yields each index of <code>self</code>, in the given <em>range</em>, to the given block and then assigns the block's value in that position.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#fill%28%2A%2Coffset%3AInt%3D0%2C%26%3AInt32-%3ET%29%3Aself-instance-method" class="signature"><strong>#fill</strong>(*, offset : Int = <span class="n">0</span>, & : Int32 -> T) : <span class="k">self</span></a>
+        
+          <div class="summary"><p>Yields each index of <code>self</code> to the given block and then assigns the block's value in that position.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#map%21%28%26%3AT-%3E_%29%3Aself-instance-method" class="signature"><strong>#map!</strong>(& : T -> _) : <span class="k">self</span></a>
+        
+          <div class="summary"><p>Invokes the given block for each element of <code>self</code>, replacing the element with the value returned by the block.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#map_with_index%21%28offset%3D0%2C%26%3AT%2CInt32-%3E_%29%3Aself-instance-method" class="signature"><strong>#map_with_index!</strong>(offset = <span class="n">0</span>, & : T, Int32 -> _) : <span class="k">self</span></a>
+        
+          <div class="summary"><p>Like <code><a href="../Indexable/Mutable.html#map%21%28%26%3AT-%3E_%29%3Aself-instance-method">#map!</a></code>, but the block gets passed both the element and its index.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#reverse%21%3Aself-instance-method" class="signature"><strong>#reverse!</strong> : <span class="k">self</span></a>
+        
+          <div class="summary"><p>Reverses in-place all the elements of <code>self</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#rotate%21%28n%3AInt%3D1%29%3Aself-instance-method" class="signature"><strong>#rotate!</strong>(n : Int = <span class="n">1</span>) : <span class="k">self</span></a>
+        
+          <div class="summary"><p>Shifts all elements of <code>self</code> to the left <em>n</em> times.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#shuffle%21%28random%3ARandom%3DRandom%3A%3ADEFAULT%29%3Aself-instance-method" class="signature"><strong>#shuffle!</strong>(random : Random = <span class="t">Random</span><span class="t">::</span><span class="t">DEFAULT</span>) : <span class="k">self</span></a>
+        
+          <div class="summary"><p>Modifies <code>self</code> by randomizing the order of elements in the collection using the given <em>random</em> number generator.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#sort%21%3Aself-instance-method" class="signature"><strong>#sort!</strong> : <span class="k">self</span></a>
+        
+          <div class="summary"><p>Sorts all elements in <code>self</code> based on the return value of the comparison method <code>T#&lt;=&gt;</code> (see <code>Comparable#&lt;=&gt;</code>), using a stable sort algorithm.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#sort%21%28%26block%3AT%2CT-%3EU%29%3AselfforallU-instance-method" class="signature"><strong>#sort!</strong>(&block : T, T -> U) : <span class="k">self</span> forall U</a>
+        
+          <div class="summary"><p>Sorts all elements in <code>self</code> based on the comparator in the given block, using a stable sort algorithm.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#sort_by%21%28%26block%3AT-%3E_%29%3Aself-instance-method" class="signature"><strong>#sort_by!</strong>(&block : T -> _) : <span class="k">self</span></a>
+        
+          <div class="summary"><p>Sorts all elements in <code>self</code> by the output value of the block.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#swap%28index0%3AInt%2Cindex1%3AInt%29%3Aself-instance-method" class="signature"><strong>#swap</strong>(index0 : Int, index1 : Int) : <span class="k">self</span></a>
+        
+          <div class="summary"><p>Swaps the elements at <em>index0</em> and <em>index1</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#unsafe_put%28index%3AInt%2Cvalue%3AT%29-instance-method" class="signature"><strong>#unsafe_put</strong>(index : Int, value : T)</a>
+        
+          <div class="summary"><p>Sets the element at the given <em>index</em> to <em>value</em>, without doing any bounds check.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#unstable_sort%21%3Aself-instance-method" class="signature"><strong>#unstable_sort!</strong> : <span class="k">self</span></a>
+        
+          <div class="summary"><p>Sorts all elements in <code>self</code> based on the return value of the comparison method <code>T#&lt;=&gt;</code> (see <code>Comparable#&lt;=&gt;</code>), using an unstable sort algorithm.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#unstable_sort%21%28%26block%3AT%2CT-%3EU%29%3AselfforallU-instance-method" class="signature"><strong>#unstable_sort!</strong>(&block : T, T -> U) : <span class="k">self</span> forall U</a>
+        
+          <div class="summary"><p>Sorts all elements in <code>self</code> based on the comparator in the given block, using an unstable sort algorithm.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#unstable_sort_by%21%28%26block%3AT-%3E_%29%3Aself-instance-method" class="signature"><strong>#unstable_sort_by!</strong>(&block : T -> _) : <span class="k">self</span></a>
+        
+          <div class="summary"><p>Sorts all elements in <code>self</code> by the output value of the block.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#update%28index%3AInt%2C%26%3AT-%3E_%29%3AT-instance-method" class="signature"><strong>#update</strong>(index : Int, & : T -> _) : T</a>
+        
+          <div class="summary"><p>Yields the current element at the given <em>index</em> and updates the value at that <em>index</em> with the block's value.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+
+  <div class="methods-inherited">
+    
+      
+
+  <h3>Instance methods inherited from module <code><a href="../Indexable.html">Indexable(T)</a></code></h3>
+  
+  
+    <a href="../Indexable.html#%5B%5D%28index%3AInt%29-instance-method" class="tooltip">
+      <span>[](index : Int)</span>
+    []</a>, 
+    
+  
+    <a href="../Indexable.html#%5B%5D%3F%28index%3AInt%29-instance-method" class="tooltip">
+      <span>[]?(index : Int)</span>
+    []?</a>, 
+    
+  
+    <a href="../Indexable.html#bsearch%28%26%3AT-%3E_%29-instance-method" class="tooltip">
+      <span>bsearch(& : T -> _)</span>
+    bsearch</a>, 
+    
+  
+    <a href="../Indexable.html#bsearch_index%28%26%3AT%2CInt32-%3E_%29-instance-method" class="tooltip">
+      <span>bsearch_index(& : T, Int32 -> _)</span>
+    bsearch_index</a>, 
+    
+  
+    <a href="../Indexable.html#cartesian_product%28%2Aothers%3AIndexable%29-instance-method" class="tooltip">
+      <span>cartesian_product(*others : Indexable)</span>
+    cartesian_product</a>, 
+    
+  
+    <a href="../Indexable.html#combinations%28size%3AInt%3Dself.size%29-instance-method" class="tooltip">
+      <span>combinations(size : Int = <span class="k">self</span>.size)</span>
+    combinations</a>, 
+    
+  
+    <a href="../Indexable.html#dig%28index%3AInt%2C%2Asubindexes%29-instance-method" class="tooltip">
+      <span>dig(index : Int, *subindexes)</span>
+    dig</a>, 
+    
+  
+    <a href="../Indexable.html#dig%3F%28index%3AInt%2C%2Asubindexes%29-instance-method" class="tooltip">
+      <span>dig?(index : Int, *subindexes)</span>
+    dig?</a>, 
+    
+  
+    <a href="../Indexable.html#each%28%26%3AT-%3E%29-instance-method" class="tooltip">
+      <span>each(& : T -> )<br/>each<br/>each(*, start : Int, count : Int, & : T -> )<br/>each(*, within range : Range, & : T -> )</span>
+    each</a>, 
+    
+  
+    <a href="../Indexable.html#each_cartesian%28%2Aothers%3AIndexable%2C%26%29-instance-method" class="tooltip">
+      <span>each_cartesian(*others : Indexable, &)<br/>each_cartesian(*others : Indexable)</span>
+    each_cartesian</a>, 
+    
+  
+    <a href="../Indexable.html#each_combination%28size%3AInt%3Dself.size%2Creuse%3Dfalse%2C%26%29%3ANil-instance-method" class="tooltip">
+      <span>each_combination(size : Int = <span class="k">self</span>.size, reuse = <span class="n">false</span>, &) : Nil<br/>each_combination(size : Int = <span class="k">self</span>.size, reuse = <span class="n">false</span>)</span>
+    each_combination</a>, 
+    
+  
+    <a href="../Indexable.html#each_index%28%26%3AInt32-%3E%29%3ANil-instance-method" class="tooltip">
+      <span>each_index(& : Int32 -> ) : Nil<br/>each_index<br/>each_index(*, start : Int, count : Int, &)</span>
+    each_index</a>, 
+    
+  
+    <a href="../Indexable.html#each_permutation%28size%3AInt%3Dself.size%2Creuse%3Dfalse%2C%26%29%3ANil-instance-method" class="tooltip">
+      <span>each_permutation(size : Int = <span class="k">self</span>.size, reuse = <span class="n">false</span>, &) : Nil<br/>each_permutation(size : Int = <span class="k">self</span>.size, reuse = <span class="n">false</span>)</span>
+    each_permutation</a>, 
+    
+  
+    <a href="../Indexable.html#each_repeated_combination%28size%3AInt%3Dself.size%2Creuse%3Dfalse%2C%26%29%3ANil-instance-method" class="tooltip">
+      <span>each_repeated_combination(size : Int = <span class="k">self</span>.size, reuse = <span class="n">false</span>, &) : Nil<br/>each_repeated_combination(size : Int = <span class="k">self</span>.size, reuse = <span class="n">false</span>)</span>
+    each_repeated_combination</a>, 
+    
+  
+    <a href="../Indexable.html#empty%3F%3ABool-instance-method" class="tooltip">
+      <span>empty? : Bool</span>
+    empty?</a>, 
+    
+  
+    <a href="../Indexable.html#equals%3F%28other%3AIndexable%2C%26%29%3ABool-instance-method" class="tooltip">
+      <span>equals?(other : Indexable, &) : Bool<br/>equals?(other, &)</span>
+    equals?</a>, 
+    
+  
+    <a href="../Indexable.html#fetch%28index%3AInt%2C%26%29-instance-method" class="tooltip">
+      <span>fetch(index : Int, &)<br/>fetch(index, default)</span>
+    fetch</a>, 
+    
+  
+    <a href="../Indexable.html#find%28if_none%2C_offsetoffset%3AInt%2C%26%3AT-%3E%29-instance-method" class="tooltip">
+      <span>find(if_none, _offset offset : Int, & : T -> )<br/>find(if_none = <span class="n">nil</span>, *, offset : Int, & : T -> )</span>
+    find</a>, 
+    
+  
+    <a href="../Indexable.html#find%21%28offset%3AInt%3D0%2C%26%3AT-%3E%29-instance-method" class="tooltip">
+      <span>find!(offset : Int = <span class="n">0</span>, & : T -> )</span>
+    find!</a>, 
+    
+  
+    <a href="../Indexable.html#first%28%26%29-instance-method" class="tooltip">
+      <span>first(&)</span>
+    first</a>, 
+    
+  
+    <a href="../Indexable.html#hash%28hasher%29-instance-method" class="tooltip">
+      <span>hash(hasher)</span>
+    hash</a>, 
+    
+  
+    <a href="../Indexable.html#index%28object%2Coffset%3AInt%3D0%29-instance-method" class="tooltip">
+      <span>index(object, offset : Int = <span class="n">0</span>)<br/>index(offset : Int = <span class="n">0</span>, & : T -> )</span>
+    index</a>, 
+    
+  
+    <a href="../Indexable.html#index%21%28obj%2Coffset%3AInt%3D0%29-instance-method" class="tooltip">
+      <span>index!(obj, offset : Int = <span class="n">0</span>)<br/>index!(offset : Int = <span class="n">0</span>, & : T -> )</span>
+    index!</a>, 
+    
+  
+    <a href="../Indexable.html#join%28separator%3AString%7CChar%7CNumber%3D%22%22%29%3AString-instance-method" class="tooltip">
+      <span>join(separator : String | Char | Number = <span class="s">&quot;&quot;</span>) : String</span>
+    join</a>, 
+    
+  
+    <a href="../Indexable.html#last%3AT-instance-method" class="tooltip">
+      <span>last : T<br/>last(&)</span>
+    last</a>, 
+    
+  
+    <a href="../Indexable.html#last%3F%3AT%7CNil-instance-method" class="tooltip">
+      <span>last? : T | Nil</span>
+    last?</a>, 
+    
+  
+    <a href="../Indexable.html#permutations%28size%3AInt%3Dself.size%29%3AArray%28Array%28T%29%29-instance-method" class="tooltip">
+      <span>permutations(size : Int = <span class="k">self</span>.size) : Array(Array(T))</span>
+    permutations</a>, 
+    
+  
+    <a href="../Indexable.html#repeated_combinations%28size%3AInt%3Dself.size%29%3AArray%28Array%28T%29%29-instance-method" class="tooltip">
+      <span>repeated_combinations(size : Int = <span class="k">self</span>.size) : Array(Array(T))</span>
+    repeated_combinations</a>, 
+    
+  
+    <a href="../Indexable.html#reverse_each%28%26%3AT-%3E%29%3ANil-instance-method" class="tooltip">
+      <span>reverse_each(& : T -> ) : Nil<br/>reverse_each</span>
+    reverse_each</a>, 
+    
+  
+    <a href="../Indexable.html#rindex%28value%2Coffset%3Dsize-1%29-instance-method" class="tooltip">
+      <span>rindex(value, offset = size <span class="o">-</span> <span class="n">1</span>)<br/>rindex(offset = size <span class="o">-</span> <span class="n">1</span>, & : T -> )</span>
+    rindex</a>, 
+    
+  
+    <a href="../Indexable.html#rindex%21%28value%2Coffset%3Dsize-1%29-instance-method" class="tooltip">
+      <span>rindex!(value, offset = size <span class="o">-</span> <span class="n">1</span>)<br/>rindex!(offset = size <span class="o">-</span> <span class="n">1</span>, & : T -> )</span>
+    rindex!</a>, 
+    
+  
+    <a href="../Indexable.html#sample%28n%3AInt%2Crandom%3ARandom%3DRandom%3A%3ADEFAULT%29%3AArray%28T%29-instance-method" class="tooltip">
+      <span>sample(n : Int, random : Random = <span class="t">Random</span><span class="t">::</span><span class="t">DEFAULT</span>) : Array(T)<br/>sample(random : Random = <span class="t">Random</span><span class="t">::</span><span class="t">DEFAULT</span>)</span>
+    sample</a>, 
+    
+  
+    <a href="../Indexable.html#size-instance-method" class="tooltip">
+      <span>size</span>
+    size</a>, 
+    
+  
+    <a href="../Indexable.html#to_a%28%26%3AT-%3EU%29%3AArray%28U%29forallU-instance-method" class="tooltip">
+      <span>to_a(& : T -> U) : Array(U) forall U</span>
+    to_a</a>, 
+    
+  
+    <a href="../Indexable.html#unsafe_fetch%28index%3AInt%29-instance-method" class="tooltip">
+      <span>unsafe_fetch(index : Int)</span>
+    unsafe_fetch</a>, 
+    
+  
+    <a href="../Indexable.html#values_at%28%2Aindexes%3AInt%29-instance-method" class="tooltip">
+      <span>values_at(*indexes : Int)</span>
+    values_at</a>
+    
+  
+
+
+      
+
+
+      
+
+  <h3>Class methods inherited from module <code><a href="../Indexable.html">Indexable(T)</a></code></h3>
+  
+  
+    <a href="../Indexable.html#cartesian_product%28indexables%3AIndexable%28Indexable%29%29-class-method" class="tooltip">
+      <span>cartesian_product(indexables : Indexable(Indexable))</span>
+    cartesian_product</a>, 
+    
+  
+    <a href="../Indexable.html#each_cartesian%28indexables%3AIndexable%28Indexable%29%2Creuse%3Dfalse%2C%26%29-class-method" class="tooltip">
+      <span>each_cartesian(indexables : Indexable(Indexable), reuse = <span class="n">false</span>, &)<br/>each_cartesian(indexables : Indexable(Indexable), reuse = <span class="n">false</span>)</span>
+    each_cartesian</a>
+    
+  
+
+
+      
+
+
+    
+      
+
+  <h3>Instance methods inherited from module <code><a href="../Enumerable.html">Enumerable(T)</a></code></h3>
+  
+  
+    <a href="../Enumerable.html#accumulate%28initial%3AU%29%3AArray%28U%29forallU-instance-method" class="tooltip">
+      <span>accumulate(initial : U) : Array(U) forall U<br/>accumulate : Array(T)<br/>accumulate(initial : U, &block : U, T -> U) : Array(U) forall U<br/>accumulate(&block : T, T -> T) : Array(T)</span>
+    accumulate</a>, 
+    
+  
+    <a href="../Enumerable.html#all%3F%28%26%3AT-%3E%29%3ABool-instance-method" class="tooltip">
+      <span>all?(& : T -> ) : Bool<br/>all?(pattern) : Bool<br/>all? : Bool</span>
+    all?</a>, 
+    
+  
+    <a href="../Enumerable.html#any%3F%28%26%3AT-%3E%29%3ABool-instance-method" class="tooltip">
+      <span>any?(& : T -> ) : Bool<br/>any?(pattern) : Bool<br/>any? : Bool</span>
+    any?</a>, 
+    
+  
+    <a href="../Enumerable.html#chunks%28%26block%3AT-%3EU%29forallU-instance-method" class="tooltip">
+      <span>chunks(&block : T -> U) forall U</span>
+    chunks</a>, 
+    
+  
+    <a href="../Enumerable.html#compact_map%28%26%3AT-%3E_%29-instance-method" class="tooltip">
+      <span>compact_map(& : T -> _)</span>
+    compact_map</a>, 
+    
+  
+    <a href="../Enumerable.html#count%28%26%3AT-%3E%29%3AInt32-instance-method" class="tooltip">
+      <span>count(& : T -> ) : Int32<br/>count(item) : Int32</span>
+    count</a>, 
+    
+  
+    <a href="../Enumerable.html#cycle%28n%2C%26%3AT-%3E%29%3ANil-instance-method" class="tooltip">
+      <span>cycle(n, & : T -> ) : Nil<br/>cycle(& : T -> ) : Nil</span>
+    cycle</a>, 
+    
+  
+    <a href="../Enumerable.html#each%28%26%3AT-%3E%29-instance-method" class="tooltip">
+      <span>each(& : T -> )</span>
+    each</a>, 
+    
+  
+    <a href="../Enumerable.html#each_cons%28count%3AInt%2Creuse%3Dfalse%2C%26%29-instance-method" class="tooltip">
+      <span>each_cons(count : Int, reuse = <span class="n">false</span>, &)</span>
+    each_cons</a>, 
+    
+  
+    <a href="../Enumerable.html#each_cons_pair%28%26%3AT%2CT-%3E%29%3ANil-instance-method" class="tooltip">
+      <span>each_cons_pair(& : T, T -> ) : Nil</span>
+    each_cons_pair</a>, 
+    
+  
+    <a href="../Enumerable.html#each_slice%28count%3AInt%2Creuse%3Dfalse%2C%26%29-instance-method" class="tooltip">
+      <span>each_slice(count : Int, reuse = <span class="n">false</span>, &)</span>
+    each_slice</a>, 
+    
+  
+    <a href="../Enumerable.html#each_step%28n%3AInt%2C%2A%2Coffset%3AInt%3D0%2C%26%3AT-%3E%29%3ANil-instance-method" class="tooltip">
+      <span>each_step(n : Int, *, offset : Int = <span class="n">0</span>, & : T -> ) : Nil</span>
+    each_step</a>, 
+    
+  
+    <a href="../Enumerable.html#each_with_index%28offset%3D0%2C%26%29-instance-method" class="tooltip">
+      <span>each_with_index(offset = <span class="n">0</span>, &)</span>
+    each_with_index</a>, 
+    
+  
+    <a href="../Enumerable.html#each_with_object%28obj%3AU%2C%26%3AT%2CU-%3E%29%3AUforallU-instance-method" class="tooltip">
+      <span>each_with_object(obj : U, & : T, U -> ) : U forall U</span>
+    each_with_object</a>, 
+    
+  
+    <a href="../Enumerable.html#empty%3F%3ABool-instance-method" class="tooltip">
+      <span>empty? : Bool</span>
+    empty?</a>, 
+    
+  
+    <a href="../Enumerable.html#find%28if_none%3Dnil%2C%26%3AT-%3E%29-instance-method" class="tooltip">
+      <span>find(if_none = <span class="n">nil</span>, & : T -> )</span>
+    find</a>, 
+    
+  
+    <a href="../Enumerable.html#find%21%28%26%3AT-%3E%29%3AT-instance-method" class="tooltip">
+      <span>find!(& : T -> ) : T</span>
+    find!</a>, 
+    
+  
+    <a href="../Enumerable.html#find_value%28if_none%3Dnil%2C%26%3AT-%3E%29-instance-method" class="tooltip">
+      <span>find_value(if_none = <span class="n">nil</span>, & : T -> )</span>
+    find_value</a>, 
+    
+  
+    <a href="../Enumerable.html#first%28%26%29-instance-method" class="tooltip">
+      <span>first(&)<br/>first(count : Int) : Array(T)<br/>first : T</span>
+    first</a>, 
+    
+  
+    <a href="../Enumerable.html#first%3F%3AT%7CNil-instance-method" class="tooltip">
+      <span>first? : T | Nil</span>
+    first?</a>, 
+    
+  
+    <a href="../Enumerable.html#flat_map%28%26%3AT-%3E_%29-instance-method" class="tooltip">
+      <span>flat_map(& : T -> _)</span>
+    flat_map</a>, 
+    
+  
+    <a href="../Enumerable.html#group_by%28%26%3AT-%3EU%29forallU-instance-method" class="tooltip">
+      <span>group_by(& : T -> U) forall U</span>
+    group_by</a>, 
+    
+  
+    <a href="../Enumerable.html#in_groups_of%28size%3AInt%2Cfilled_up_with%3AU%3Dnil%29forallU-instance-method" class="tooltip">
+      <span>in_groups_of(size : Int, filled_up_with : U = <span class="n">nil</span>) forall U<br/>in_groups_of(size : Int, filled_up_with : U = <span class="n">nil</span>, reuse = <span class="n">false</span>, &) forall U</span>
+    in_groups_of</a>, 
+    
+  
+    <a href="../Enumerable.html#in_slices_of%28size%3AInt%29%3AArray%28Array%28T%29%29-instance-method" class="tooltip">
+      <span>in_slices_of(size : Int) : Array(Array(T))</span>
+    in_slices_of</a>, 
+    
+  
+    <a href="../Enumerable.html#includes%3F%28obj%29%3ABool-instance-method" class="tooltip">
+      <span>includes?(obj) : Bool</span>
+    includes?</a>, 
+    
+  
+    <a href="../Enumerable.html#index%28%26%3AT-%3E%29%3AInt32%7CNil-instance-method" class="tooltip">
+      <span>index(& : T -> ) : Int32 | Nil<br/>index(obj) : Int32 | Nil</span>
+    index</a>, 
+    
+  
+    <a href="../Enumerable.html#index%21%28%26%3AT-%3E%29%3AInt32-instance-method" class="tooltip">
+      <span>index!(& : T -> ) : Int32<br/>index!(obj) : Int32</span>
+    index!</a>, 
+    
+  
+    <a href="../Enumerable.html#index_by%28%26%3AT-%3EU%29%3AHash%28U%2CT%29forallU-instance-method" class="tooltip">
+      <span>index_by(& : T -> U) : Hash(U, T) forall U</span>
+    index_by</a>, 
+    
+  
+    <a href="../Enumerable.html#join%28io%3AIO%2Cseparator%3D%22%22%29%3ANil-instance-method" class="tooltip">
+      <span>join(io : IO, separator = <span class="s">&quot;&quot;</span>) : Nil<br/>join(separator, io : IO) : Nil<br/>join(separator = <span class="s">&quot;&quot;</span>) : String<br/>join(io : IO, separator = <span class="s">&quot;&quot;</span>, & : T, IO -> )<br/>join(separator, io : IO, &)<br/>join(separator = <span class="s">&quot;&quot;</span>, & : T -> )</span>
+    join</a>, 
+    
+  
+    <a href="../Enumerable.html#map%28%26%3AT-%3EU%29%3AArray%28U%29forallU-instance-method" class="tooltip">
+      <span>map(& : T -> U) : Array(U) forall U</span>
+    map</a>, 
+    
+  
+    <a href="../Enumerable.html#map_with_index%28offset%3D0%2C%26%3AT%2CInt32-%3EU%29%3AArray%28U%29forallU-instance-method" class="tooltip">
+      <span>map_with_index(offset = <span class="n">0</span>, & : T, Int32 -> U) : Array(U) forall U</span>
+    map_with_index</a>, 
+    
+  
+    <a href="../Enumerable.html#max%28count%3AInt%29%3AArray%28T%29-instance-method" class="tooltip">
+      <span>max(count : Int) : Array(T)<br/>max : T</span>
+    max</a>, 
+    
+  
+    <a href="../Enumerable.html#max%3F%3AT%7CNil-instance-method" class="tooltip">
+      <span>max? : T | Nil</span>
+    max?</a>, 
+    
+  
+    <a href="../Enumerable.html#max_by%28%26%3AT-%3EU%29%3ATforallU-instance-method" class="tooltip">
+      <span>max_by(& : T -> U) : T forall U</span>
+    max_by</a>, 
+    
+  
+    <a href="../Enumerable.html#max_by%3F%28%26%3AT-%3EU%29%3AT%7CNilforallU-instance-method" class="tooltip">
+      <span>max_by?(& : T -> U) : T | Nil forall U</span>
+    max_by?</a>, 
+    
+  
+    <a href="../Enumerable.html#max_of%28%26%3AT-%3EU%29%3AUforallU-instance-method" class="tooltip">
+      <span>max_of(& : T -> U) : U forall U</span>
+    max_of</a>, 
+    
+  
+    <a href="../Enumerable.html#max_of%3F%28%26%3AT-%3EU%29%3AU%7CNilforallU-instance-method" class="tooltip">
+      <span>max_of?(& : T -> U) : U | Nil forall U</span>
+    max_of?</a>, 
+    
+  
+    <a href="../Enumerable.html#min%28count%3AInt%29%3AArray%28T%29-instance-method" class="tooltip">
+      <span>min(count : Int) : Array(T)<br/>min : T</span>
+    min</a>, 
+    
+  
+    <a href="../Enumerable.html#min%3F%3AT%7CNil-instance-method" class="tooltip">
+      <span>min? : T | Nil</span>
+    min?</a>, 
+    
+  
+    <a href="../Enumerable.html#min_by%28%26%3AT-%3EU%29%3ATforallU-instance-method" class="tooltip">
+      <span>min_by(& : T -> U) : T forall U</span>
+    min_by</a>, 
+    
+  
+    <a href="../Enumerable.html#min_by%3F%28%26%3AT-%3EU%29%3AT%7CNilforallU-instance-method" class="tooltip">
+      <span>min_by?(& : T -> U) : T | Nil forall U</span>
+    min_by?</a>, 
+    
+  
+    <a href="../Enumerable.html#min_of%28%26%3AT-%3EU%29%3AUforallU-instance-method" class="tooltip">
+      <span>min_of(& : T -> U) : U forall U</span>
+    min_of</a>, 
+    
+  
+    <a href="../Enumerable.html#min_of%3F%28%26%3AT-%3EU%29%3AU%7CNilforallU-instance-method" class="tooltip">
+      <span>min_of?(& : T -> U) : U | Nil forall U</span>
+    min_of?</a>, 
+    
+  
+    <a href="../Enumerable.html#minmax%3ATuple%28T%2CT%29-instance-method" class="tooltip">
+      <span>minmax : Tuple(T, T)</span>
+    minmax</a>, 
+    
+  
+    <a href="../Enumerable.html#minmax%3F%3ATuple%28T%7CNil%2CT%7CNil%29-instance-method" class="tooltip">
+      <span>minmax? : Tuple(T | Nil, T | Nil)</span>
+    minmax?</a>, 
+    
+  
+    <a href="../Enumerable.html#minmax_by%28%26%3AT-%3EU%29%3ATuple%28T%2CT%29forallU-instance-method" class="tooltip">
+      <span>minmax_by(& : T -> U) : Tuple(T, T) forall U</span>
+    minmax_by</a>, 
+    
+  
+    <a href="../Enumerable.html#minmax_by%3F%28%26%3AT-%3EU%29%3ATuple%28T%2CT%29%7CTuple%28Nil%2CNil%29forallU-instance-method" class="tooltip">
+      <span>minmax_by?(& : T -> U) : Tuple(T, T) | Tuple(Nil, Nil) forall U</span>
+    minmax_by?</a>, 
+    
+  
+    <a href="../Enumerable.html#minmax_of%28%26%3AT-%3EU%29%3ATuple%28U%2CU%29forallU-instance-method" class="tooltip">
+      <span>minmax_of(& : T -> U) : Tuple(U, U) forall U</span>
+    minmax_of</a>, 
+    
+  
+    <a href="../Enumerable.html#minmax_of%3F%28%26%3AT-%3EU%29%3ATuple%28U%2CU%29%7CTuple%28Nil%2CNil%29forallU-instance-method" class="tooltip">
+      <span>minmax_of?(& : T -> U) : Tuple(U, U) | Tuple(Nil, Nil) forall U</span>
+    minmax_of?</a>, 
+    
+  
+    <a href="../Enumerable.html#none%3F%28%26%3AT-%3E%29%3ABool-instance-method" class="tooltip">
+      <span>none?(& : T -> ) : Bool<br/>none?(pattern) : Bool<br/>none? : Bool</span>
+    none?</a>, 
+    
+  
+    <a href="../Enumerable.html#one%3F%28%26%3AT-%3E%29%3ABool-instance-method" class="tooltip">
+      <span>one?(& : T -> ) : Bool<br/>one?(pattern) : Bool<br/>one? : Bool</span>
+    one?</a>, 
+    
+  
+    <a href="../Enumerable.html#partition%28%26%3AT-%3E%29%3ATuple%28Array%28T%29%2CArray%28T%29%29-instance-method" class="tooltip">
+      <span>partition(& : T -> ) : Tuple(Array(T), Array(T))<br/>partition(type : <span class="t">U</span>.<span class="k">class</span>) forall U</span>
+    partition</a>, 
+    
+  
+    <a href="../Enumerable.html#present%3F%3ABool-instance-method" class="tooltip">
+      <span>present? : Bool</span>
+    present?</a>, 
+    
+  
+    <a href="../Enumerable.html#product%28initial%3ANumber%29-instance-method" class="tooltip">
+      <span>product(initial : Number)<br/>product<br/>product(initial : Number, & : T -> )<br/>product(& : T -> _)</span>
+    product</a>, 
+    
+  
+    <a href="../Enumerable.html#reduce%28memo%2C%26%29-instance-method" class="tooltip">
+      <span>reduce(memo, &)<br/>reduce(&)</span>
+    reduce</a>, 
+    
+  
+    <a href="../Enumerable.html#reduce%3F%28%26%29-instance-method" class="tooltip">
+      <span>reduce?(&)</span>
+    reduce?</a>, 
+    
+  
+    <a href="../Enumerable.html#reject%28%26%3AT-%3E%29-instance-method" class="tooltip">
+      <span>reject(& : T -> )<br/>reject(type : <span class="t">U</span>.<span class="k">class</span>) forall U<br/>reject(pattern) : Array(T)</span>
+    reject</a>, 
+    
+  
+    <a href="../Enumerable.html#sample%28n%3AInt%2Crandom%3ARandom%3DRandom%3A%3ADEFAULT%29%3AArray%28T%29-instance-method" class="tooltip">
+      <span>sample(n : Int, random : Random = <span class="t">Random</span><span class="t">::</span><span class="t">DEFAULT</span>) : Array(T)<br/>sample(random : Random = <span class="t">Random</span><span class="t">::</span><span class="t">DEFAULT</span>) : T</span>
+    sample</a>, 
+    
+  
+    <a href="../Enumerable.html#select%28%26%3AT-%3E%29-instance-method" class="tooltip">
+      <span>select(& : T -> )<br/>select(type : <span class="t">U</span>.<span class="k">class</span>) : Array(U) forall U<br/>select(pattern) : Array(T)</span>
+    select</a>, 
+    
+  
+    <a href="../Enumerable.html#size%3AInt32-instance-method" class="tooltip">
+      <span>size : Int32</span>
+    size</a>, 
+    
+  
+    <a href="../Enumerable.html#skip%28count%3AInt%29-instance-method" class="tooltip">
+      <span>skip(count : Int)</span>
+    skip</a>, 
+    
+  
+    <a href="../Enumerable.html#skip_while%28%26%3AT-%3E%29%3AArray%28T%29-instance-method" class="tooltip">
+      <span>skip_while(& : T -> ) : Array(T)</span>
+    skip_while</a>, 
+    
+  
+    <a href="../Enumerable.html#sum%28initial%29-instance-method" class="tooltip">
+      <span>sum(initial)<br/>sum<br/>sum(initial, & : T -> )<br/>sum(& : T -> )</span>
+    sum</a>, 
+    
+  
+    <a href="../Enumerable.html#take_while%28%26%3AT-%3E%29%3AArray%28T%29-instance-method" class="tooltip">
+      <span>take_while(& : T -> ) : Array(T)</span>
+    take_while</a>, 
+    
+  
+    <a href="../Enumerable.html#tally%28hash%29-instance-method" class="tooltip">
+      <span>tally(hash)<br/>tally : Hash(T, Int32)</span>
+    tally</a>, 
+    
+  
+    <a href="../Enumerable.html#tally_by%28hash%2C%26%29-instance-method" class="tooltip">
+      <span>tally_by(hash, &)<br/>tally_by(&block : T -> U) : Hash(U, Int32) forall U</span>
+    tally_by</a>, 
+    
+  
+    <a href="../Enumerable.html#to_a%3AArray%28T%29-instance-method" class="tooltip">
+      <span>to_a : Array(T)<br/>to_a(& : T -> U) : Array(U) forall U</span>
+    to_a</a>, 
+    
+  
+    <a href="../Enumerable.html#to_h-instance-method" class="tooltip">
+      <span>to_h<br/>to_h(& : T -> Tuple(K, V)) forall K, V</span>
+    to_h</a>, 
+    
+  
+    <a href="../Enumerable.html#to_set%3ASet%28T%29-instance-method" class="tooltip">
+      <span>to_set : Set(T)<br/>to_set(&block : T -> U) : Set(U) forall U</span>
+    to_set</a>, 
+    
+  
+    <a href="../Enumerable.html#zip%28%2Aothers%3AIndexable%7CIterable%7CIterator%2C%26%29-instance-method" class="tooltip">
+      <span>zip(*others : Indexable | Iterable | Iterator, &)<br/>zip(*others : Indexable | Iterable | Iterator)</span>
+    zip</a>, 
+    
+  
+    <a href="../Enumerable.html#zip%3F%28%2Aothers%3AIndexable%7CIterable%7CIterator%2C%26%29-instance-method" class="tooltip">
+      <span>zip?(*others : Indexable | Iterable | Iterator, &)<br/>zip?(*others : Indexable | Iterable | Iterator)</span>
+    zip?</a>
+    
+  
+
+
+      
+
+
+      
+
+  <h3>Class methods inherited from module <code><a href="../Enumerable.html">Enumerable(T)</a></code></h3>
+  
+  
+    <a href="../Enumerable.html#element_type%28x%29-class-method" class="tooltip">
+      <span>element_type(x)</span>
+    element_type</a>
+    
+  
+
+
+      
+
+
+    
+      
+
+  <h3>Instance methods inherited from module <code><a href="../Iterable.html">Iterable(T)</a></code></h3>
+  
+  
+    <a href="../Iterable.html#chunk%28reuse%3Dfalse%2C%26block%3AT-%3EU%29forallU-instance-method" class="tooltip">
+      <span>chunk(reuse = <span class="n">false</span>, &block : T -> U) forall U</span>
+    chunk</a>, 
+    
+  
+    <a href="../Iterable.html#chunk_while%28reuse%3ABool%7CArray%28T%29%3Dfalse%2C%26block%3AT%2CT-%3EB%29forallB-instance-method" class="tooltip">
+      <span>chunk_while(reuse : Bool | Array(T) = <span class="n">false</span>, &block : T, T -> B) forall B</span>
+    chunk_while</a>, 
+    
+  
+    <a href="../Iterable.html#cycle%28n%29-instance-method" class="tooltip">
+      <span>cycle(n)<br/>cycle</span>
+    cycle</a>, 
+    
+  
+    <a href="../Iterable.html#each-instance-method" class="tooltip">
+      <span>each</span>
+    each</a>, 
+    
+  
+    <a href="../Iterable.html#each_cons%28count%3AInt%2Creuse%3Dfalse%29-instance-method" class="tooltip">
+      <span>each_cons(count : Int, reuse = <span class="n">false</span>)</span>
+    each_cons</a>, 
+    
+  
+    <a href="../Iterable.html#each_cons_pair-instance-method" class="tooltip">
+      <span>each_cons_pair</span>
+    each_cons_pair</a>, 
+    
+  
+    <a href="../Iterable.html#each_slice%28count%3AInt%2Creuse%3Dfalse%29-instance-method" class="tooltip">
+      <span>each_slice(count : Int, reuse = <span class="n">false</span>)</span>
+    each_slice</a>, 
+    
+  
+    <a href="../Iterable.html#each_step%28n%3AInt%29-instance-method" class="tooltip">
+      <span>each_step(n : Int)<br/>each_step(n : Int, *, offset : Int)</span>
+    each_step</a>, 
+    
+  
+    <a href="../Iterable.html#each_with_index%28offset%3D0%29-instance-method" class="tooltip">
+      <span>each_with_index(offset = <span class="n">0</span>)</span>
+    each_with_index</a>, 
+    
+  
+    <a href="../Iterable.html#each_with_object%28obj%29-instance-method" class="tooltip">
+      <span>each_with_object(obj)</span>
+    each_with_object</a>, 
+    
+  
+    <a href="../Iterable.html#slice_after%28reuse%3ABool%7CArray%28T%29%3Dfalse%2C%26block%3AT-%3EB%29forallB-instance-method" class="tooltip">
+      <span>slice_after(reuse : Bool | Array(T) = <span class="n">false</span>, &block : T -> B) forall B<br/>slice_after(pattern, reuse : Bool | Array(T) = <span class="n">false</span>)</span>
+    slice_after</a>, 
+    
+  
+    <a href="../Iterable.html#slice_before%28reuse%3ABool%7CArray%28T%29%3Dfalse%2C%26block%3AT-%3EB%29forallB-instance-method" class="tooltip">
+      <span>slice_before(reuse : Bool | Array(T) = <span class="n">false</span>, &block : T -> B) forall B<br/>slice_before(pattern, reuse : Bool | Array(T) = <span class="n">false</span>)</span>
+    slice_before</a>, 
+    
+  
+    <a href="../Iterable.html#slice_when%28reuse%3ABool%7CArray%28T%29%3Dfalse%2C%26block%3AT%2CT-%3EB%29forallB-instance-method" class="tooltip">
+      <span>slice_when(reuse : Bool | Array(T) = <span class="n">false</span>, &block : T, T -> B) forall B</span>
+    slice_when</a>
+    
+  
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+  </div>
+
+  
+
+  
+
+  
+
+  
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="[]=(index:Int,value:T):T-instance-method">
+      <div class="signature">
+        
+        def <strong>[]=</strong>(index : <a href="../Int.html">Int</a>, value : T) : T
+
+        <a class="method-permalink" href="#%5B%5D%3D%28index%3AInt%2Cvalue%3AT%29%3AT-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Sets the given <em>value</em> at the given <em>index</em>. Returns <em>value</em>.</p>
+<p>Negative indices can be used to start counting from the end of the
+container. Raises <code><a href="../IndexError.html">IndexError</a></code> if trying to set an element outside the
+container's range.</p>
+<pre><code class="language-crystal">ary <span class="o">=</span> [<span class="n">1</span>, <span class="n">2</span>, <span class="n">3</span>]
+ary[<span class="n">0</span>] <span class="o">=</span> <span class="n">5</span>
+ary <span class="c"># =&gt; [5, 2, 3]</span>
+
+ary[<span class="n">3</span>] <span class="o">=</span> <span class="n">5</span> <span class="c"># raises IndexError</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/indexable/mutable.cr#L37" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="fill(value:T,start:Int,count:Int):self-instance-method">
+      <div class="signature">
+        
+        def <strong>fill</strong>(value : T, start : <a href="../Int.html">Int</a>, count : <a href="../Int.html">Int</a>) : <span class="k">self</span>
+
+        <a class="method-permalink" href="#fill%28value%3AT%2Cstart%3AInt%2Ccount%3AInt%29%3Aself-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Replaces <em>count</em> or less (if there aren't enough) elements starting at the
+given <em>start</em> index with <em>value</em>. Returns <code>self</code>.</p>
+<p>Negative values of <em>start</em> count from the end of the container.</p>
+<p>Raises <code><a href="../IndexError.html">IndexError</a></code> if the <em>start</em> index is out of range.</p>
+<p>Raises <code><a href="../ArgumentError.html">ArgumentError</a></code> if <em>count</em> is negative.</p>
+<pre><code class="language-crystal">array <span class="o">=</span> [<span class="n">1</span>, <span class="n">2</span>, <span class="n">3</span>, <span class="n">4</span>, <span class="n">5</span>]
+array.fill(<span class="n">9</span>, <span class="n">2</span>, <span class="n">2</span>) <span class="c"># =&gt; [1, 2, 9, 9, 5]</span>
+array               <span class="c"># =&gt; [1, 2, 9, 9, 5]</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/indexable/mutable.cr#L132" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="fill(value:T,range:Range):self-instance-method">
+      <div class="signature">
+        
+        def <strong>fill</strong>(value : T, range : <a href="../Range.html">Range</a>) : <span class="k">self</span>
+
+        <a class="method-permalink" href="#fill%28value%3AT%2Crange%3ARange%29%3Aself-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Replaces the elements within the given <em>range</em> with <em>value</em>. Returns <code>self</code>.</p>
+<p>Negative indices count backward from the end of the container.</p>
+<p>Raises <code><a href="../IndexError.html">IndexError</a></code> if the starting index is out of range.</p>
+<pre><code class="language-crystal">array <span class="o">=</span> [<span class="n">1</span>, <span class="n">2</span>, <span class="n">3</span>, <span class="n">4</span>, <span class="n">5</span>]
+array.fill(<span class="n">9</span>, <span class="n">2</span>..<span class="n">3</span>) <span class="c"># =&gt; [1, 2, 9, 9, 5]</span>
+array               <span class="c"># =&gt; [1, 2, 9, 9, 5]</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/indexable/mutable.cr#L152" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="fill(value:T):self-instance-method">
+      <div class="signature">
+        
+        def <strong>fill</strong>(value : T) : <span class="k">self</span>
+
+        <a class="method-permalink" href="#fill%28value%3AT%29%3Aself-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Replaces every element in <code>self</code> with the given <em>value</em>. Returns <code>self</code>.</p>
+<pre><code class="language-crystal">array <span class="o">=</span> [<span class="n">1</span>, <span class="n">2</span>, <span class="n">3</span>, <span class="n">4</span>]
+array.fill(<span class="n">2</span>) <span class="c"># =&gt; [2, 2, 2, 2]</span>
+array         <span class="c"># =&gt; [2, 2, 2, 2]</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/indexable/mutable.cr#L111" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="fill(start:Int,count:Int,&amp;:Int32-&gt;T):self-instance-method">
+      <div class="signature">
+        
+        def <strong>fill</strong>(start : <a href="../Int.html">Int</a>, count : <a href="../Int.html">Int</a>, & : <a href="../Int32.html">Int32</a> -> T) : <span class="k">self</span>
+
+        <a class="method-permalink" href="#fill%28start%3AInt%2Ccount%3AInt%2C%26%3AInt32-%3ET%29%3Aself-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Yields each index of <code>self</code>, starting at <em>start</em> and for <em>count</em> times (or
+less if there aren't enough elements), to the given block and then assigns
+the block's value in that position. Returns <code>self</code>.</p>
+<p>Negative values of <em>start</em> count from the end of the container.</p>
+<p>Has no effect if <em>count</em> is zero or negative.</p>
+<p>Raises <code><a href="../IndexError.html">IndexError</a></code> if <em>start</em> is outside the array range.</p>
+<pre><code class="language-crystal">a <span class="o">=</span> [<span class="n">1</span>, <span class="n">2</span>, <span class="n">3</span>, <span class="n">4</span>, <span class="n">5</span>, <span class="n">6</span>]
+a.fill(<span class="n">2</span>, <span class="n">3</span>) { <span class="o">|</span>i<span class="o">|</span> i <span class="o">*</span> i <span class="o">*</span> i } <span class="c"># =&gt; [1, 2, 8, 27, 64, 6]</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/indexable/mutable.cr#L190" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="fill(range:Range,&amp;:Int32-&gt;T):self-instance-method">
+      <div class="signature">
+        
+        def <strong>fill</strong>(range : <a href="../Range.html">Range</a>, & : <a href="../Int32.html">Int32</a> -> T) : <span class="k">self</span>
+
+        <a class="method-permalink" href="#fill%28range%3ARange%2C%26%3AInt32-%3ET%29%3Aself-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Yields each index of <code>self</code>, in the given <em>range</em>, to the given block and
+then assigns the block's value in that position. Returns <code>self</code>.</p>
+<p>Negative indices count backward from the end of the container.</p>
+<p>Raises <code><a href="../IndexError.html">IndexError</a></code> if the starting index is out of range.</p>
+<pre><code class="language-crystal">a <span class="o">=</span> [<span class="n">1</span>, <span class="n">2</span>, <span class="n">3</span>, <span class="n">4</span>, <span class="n">5</span>, <span class="n">6</span>]
+a.fill(<span class="n">2</span>..<span class="n">4</span>) { <span class="o">|</span>i<span class="o">|</span> i <span class="o">*</span> i <span class="o">*</span> i } <span class="c"># =&gt; [1, 2, 8, 27, 64, 6]</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/indexable/mutable.cr#L210" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="fill(*,offset:Int=0,&amp;:Int32-&gt;T):self-instance-method">
+      <div class="signature">
+        
+        def <strong>fill</strong>(*, offset : <a href="../Int.html">Int</a> = <span class="n">0</span>, & : <a href="../Int32.html">Int32</a> -> T) : <span class="k">self</span>
+
+        <a class="method-permalink" href="#fill%28%2A%2Coffset%3AInt%3D0%2C%26%3AInt32-%3ET%29%3Aself-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Yields each index of <code>self</code> to the given block and then assigns
+the block's value in that position. Returns <code>self</code>.</p>
+<p>Accepts an optional <em>offset</em> parameter, which tells the block to start
+counting from there.</p>
+<pre><code class="language-crystal">array <span class="o">=</span> [<span class="n">2</span>, <span class="n">1</span>, <span class="n">1</span>, <span class="n">1</span>]
+array.fill { <span class="o">|</span>i<span class="o">|</span> i <span class="o">*</span> i }            <span class="c"># =&gt; [0, 1, 4, 9]</span>
+array                               <span class="c"># =&gt; [0, 1, 4, 9]</span>
+array.fill(offset: <span class="n">3</span>) { <span class="o">|</span>i<span class="o">|</span> i <span class="o">*</span> i } <span class="c"># =&gt; [9, 16, 25, 36]</span>
+array                               <span class="c"># =&gt; [9, 16, 25, 36]</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/indexable/mutable.cr#L169" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="map!(&amp;:T-&gt;_):self-instance-method">
+      <div class="signature">
+        
+        def <strong>map!</strong>(& : T -> _) : <span class="k">self</span>
+
+        <a class="method-permalink" href="#map%21%28%26%3AT-%3E_%29%3Aself-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Invokes the given block for each element of <code>self</code>, replacing the element
+with the value returned by the block. Returns <code>self</code>.</p>
+<pre><code class="language-crystal">a <span class="o">=</span> [<span class="n">1</span>, <span class="n">2</span>, <span class="n">3</span>]
+a.map! { <span class="o">|</span>x<span class="o">|</span> x <span class="o">*</span> x }
+a <span class="c"># =&gt; [1, 4, 9]</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/indexable/mutable.cr#L216" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="map_with_index!(offset=0,&amp;:T,Int32-&gt;_):self-instance-method">
+      <div class="signature">
+        
+        def <strong>map_with_index!</strong>(offset = <span class="n">0</span>, & : T, <a href="../Int32.html">Int32</a> -> _) : <span class="k">self</span>
+
+        <a class="method-permalink" href="#map_with_index%21%28offset%3D0%2C%26%3AT%2CInt32-%3E_%29%3Aself-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Like <code><a href="../Indexable/Mutable.html#map%21%28%26%3AT-%3E_%29%3Aself-instance-method">#map!</a></code>, but the block gets passed both the element and its index.</p>
+<p>Accepts an optional <em>offset</em> parameter, which tells it to start counting
+from there.</p>
+<pre><code class="language-crystal">gems <span class="o">=</span> [<span class="s">&quot;crystal&quot;</span>, <span class="s">&quot;pearl&quot;</span>, <span class="s">&quot;diamond&quot;</span>]
+gems.map_with_index! { <span class="o">|</span>gem, i<span class="o">|</span> <span class="s">&quot;</span><span class="i">#{</span>i<span class="i">}</span><span class="s">: </span><span class="i">#{</span>gem<span class="i">}</span><span class="s">&quot;</span> }
+gems <span class="c"># =&gt; [&quot;0: crystal&quot;, &quot;1: pearl&quot;, &quot;2: diamond&quot;]</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/indexable/mutable.cr#L247" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="reverse!:self-instance-method">
+      <div class="signature">
+        
+        def <strong>reverse!</strong> : <span class="k">self</span>
+
+        <a class="method-permalink" href="#reverse%21%3Aself-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Reverses in-place all the elements of <code>self</code>. Returns <code>self</code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/indexable/mutable.cr#L89" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="rotate!(n:Int=1):self-instance-method">
+      <div class="signature">
+        
+        def <strong>rotate!</strong>(n : <a href="../Int.html">Int</a> = <span class="n">1</span>) : <span class="k">self</span>
+
+        <a class="method-permalink" href="#rotate%21%28n%3AInt%3D1%29%3Aself-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Shifts all elements of <code>self</code> to the left <em>n</em> times. Returns <code>self</code>.</p>
+<pre><code class="language-crystal">a1 <span class="o">=</span> [<span class="n">0</span>, <span class="n">1</span>, <span class="n">2</span>, <span class="n">3</span>, <span class="n">4</span>, <span class="n">5</span>, <span class="n">6</span>, <span class="n">7</span>, <span class="n">8</span>, <span class="n">9</span>]
+a2 <span class="o">=</span> [<span class="n">0</span>, <span class="n">1</span>, <span class="n">2</span>, <span class="n">3</span>, <span class="n">4</span>, <span class="n">5</span>, <span class="n">6</span>, <span class="n">7</span>, <span class="n">8</span>, <span class="n">9</span>]
+a3 <span class="o">=</span> [<span class="n">0</span>, <span class="n">1</span>, <span class="n">2</span>, <span class="n">3</span>, <span class="n">4</span>, <span class="n">5</span>, <span class="n">6</span>, <span class="n">7</span>, <span class="n">8</span>, <span class="n">9</span>]
+
+a1.rotate!
+a2.rotate!(<span class="n">1</span>)
+a3.rotate!(<span class="n">3</span>)
+
+a1 <span class="c"># =&gt; [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]</span>
+a2 <span class="c"># =&gt; [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]</span>
+a3 <span class="c"># =&gt; [3, 4, 5, 6, 7, 8, 9, 0, 1, 2]</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/indexable/mutable.cr#L285" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="shuffle!(random:Random=Random::DEFAULT):self-instance-method">
+      <div class="signature">
+        
+        def <strong>shuffle!</strong>(random : <a href="../Random.html">Random</a> = <span class="t">Random</span><span class="t">::</span><span class="t">DEFAULT</span>) : <span class="k">self</span>
+
+        <a class="method-permalink" href="#shuffle%21%28random%3ARandom%3DRandom%3A%3ADEFAULT%29%3Aself-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Modifies <code>self</code> by randomizing the order of elements in the collection
+using the given <em>random</em> number generator. Returns <code>self</code>.</p>
+<pre><code class="language-crystal">a <span class="o">=</span> [<span class="n">1</span>, <span class="n">2</span>, <span class="n">3</span>, <span class="n">4</span>, <span class="n">5</span>]
+a.shuffle!(<span class="t">Random</span>.new(<span class="n">42</span>)) <span class="c"># =&gt; [3, 2, 4, 5, 1]</span>
+a                          <span class="c"># =&gt; [3, 2, 4, 5, 1]</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/indexable/mutable.cr#L262" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="sort!:self-instance-method">
+      <div class="signature">
+        
+        def <strong>sort!</strong> : <span class="k">self</span>
+
+        <a class="method-permalink" href="#sort%21%3Aself-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Sorts all elements in <code>self</code> based on the return value of the comparison
+method <code>T#&lt;=&gt;</code> (see <code>Comparable#&lt;=&gt;</code>), using a stable sort algorithm.</p>
+<pre><code class="language-crystal">a <span class="o">=</span> [<span class="n">3</span>, <span class="n">1</span>, <span class="n">2</span>]
+a.sort!
+a <span class="c"># =&gt; [1, 2, 3]</span></code></pre>
+<p>This sort operation modifies <code>self</code>. See <code>#sort</code> for a non-modifying option
+that allocates a new instance.</p>
+<p>See <code><a href="../Slice.html#sort%21%3Aself-instance-method">Slice#sort!</a></code> for details on the implementation.</p>
+<p>Raises <code><a href="../ArgumentError.html">ArgumentError</a></code> if the comparison between any two elements returns <code>nil</code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/indexable/mutable.cr#L324" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="sort!(&amp;block:T,T-&gt;U):selfforallU-instance-method">
+      <div class="signature">
+        
+        def <strong>sort!</strong>(&block : T, T -> U) : <span class="k">self</span> forall U
+
+        <a class="method-permalink" href="#sort%21%28%26block%3AT%2CT-%3EU%29%3AselfforallU-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Sorts all elements in <code>self</code> based on the comparator in the given block, using
+a stable sort algorithm.</p>
+<p>The block must implement a comparison between two elements <em>a</em> and <em>b</em>,
+where <code>a &lt; b</code> returns <code>-1</code>, <code>a == b</code> returns <code>0</code>, and <code>a &gt; b</code> returns <code>1</code>.
+The comparison operator <code>&lt;=&gt;</code> can be used for this.</p>
+<pre><code class="language-crystal">a <span class="o">=</span> [<span class="n">3</span>, <span class="n">1</span>, <span class="n">2</span>]
+<span class="c"># This is a reverse sort (forward sort would be `a &lt;=&gt; b`)</span>
+a.sort! { <span class="o">|</span>a, b<span class="o">|</span> b <span class="o">&lt;=&gt;</span> a }
+a <span class="c"># =&gt; [3, 2, 1]</span></code></pre>
+<p>This sort operation modifies <code>self</code>. See <code>#sort(&amp;block : T, T -&gt; U)</code> for a
+non-modifying option that allocates a new instance.</p>
+<p>See <code>Slice#sort!(&amp;block : T, T -&gt; U)</code> for details on the implementation.</p>
+<p>Raises <code><a href="../ArgumentError.html">ArgumentError</a></code> if for any two elements the block returns <code>nil</code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/indexable/mutable.cr#L375" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="sort_by!(&amp;block:T-&gt;_):self-instance-method">
+      <div class="signature">
+        
+        def <strong>sort_by!</strong>(&block : T -> _) : <span class="k">self</span>
+
+        <a class="method-permalink" href="#sort_by%21%28%26block%3AT-%3E_%29%3Aself-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Sorts all elements in <code>self</code> by the output value of the
+block. The output values are compared via the comparison method <code>#&lt;=&gt;</code>
+(see <code>Comparable#&lt;=&gt;</code>), using a stable sort algorithm.</p>
+<pre><code class="language-crystal">a <span class="o">=</span> <span class="s">%w(apple pear fig)</span>
+a.sort_by! { <span class="o">|</span>word<span class="o">|</span> word.size }
+a <span class="c"># =&gt; [&quot;fig&quot;, &quot;pear&quot;, &quot;apple&quot;]</span></code></pre>
+<p>This sort operation modifies <code>self</code>. See <code>#sort_by(&amp;block : T -&gt; _)</code> for a
+non-modifying option that allocates a new instance.</p>
+<p>If stability is expendable, <code>#unstable_sort_by!(&amp;block : T -&gt; _)</code> provides a
+performance advantage over stable sort.</p>
+<p>See <code>#sort!(&amp;block : T -&gt; _)</code> for details on the sorting mechanism.</p>
+<p>Raises <code><a href="../ArgumentError.html">ArgumentError</a></code> if the comparison between any two comparison values returns <code>nil</code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/indexable/mutable.cr#L438" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="swap(index0:Int,index1:Int):self-instance-method">
+      <div class="signature">
+        
+        def <strong>swap</strong>(index0 : <a href="../Int.html">Int</a>, index1 : <a href="../Int.html">Int</a>) : <span class="k">self</span>
+
+        <a class="method-permalink" href="#swap%28index0%3AInt%2Cindex1%3AInt%29%3Aself-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Swaps the elements at <em>index0</em> and <em>index1</em>. Returns <code>self</code>.</p>
+<p>Negative indices can be used to start counting from the end of the
+container. Raises <code><a href="../IndexError.html">IndexError</a></code> if either index is out of bounds.</p>
+<pre><code class="language-crystal">a <span class="o">=</span> [<span class="s">&quot;first&quot;</span>, <span class="s">&quot;second&quot;</span>, <span class="s">&quot;third&quot;</span>]
+a.swap(<span class="n">1</span>, <span class="n">2</span>)  <span class="c"># =&gt; [&quot;first&quot;, &quot;third&quot;, &quot;second&quot;]</span>
+a             <span class="c"># =&gt; [&quot;first&quot;, &quot;third&quot;, &quot;second&quot;]</span>
+a.swap(<span class="n">0</span>, <span class="n">-1</span>) <span class="c"># =&gt; [&quot;second&quot;, &quot;third&quot;, &quot;first&quot;]</span>
+a             <span class="c"># =&gt; [&quot;second&quot;, &quot;third&quot;, &quot;first&quot;]</span>
+a.swap(<span class="n">2</span>, <span class="n">3</span>)  <span class="c"># raises IndexError</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/indexable/mutable.cr#L75" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="unsafe_put(index:Int,value:T)-instance-method">
+      <div class="signature">
+        abstract 
+        def <strong>unsafe_put</strong>(index : <a href="../Int.html">Int</a>, value : T)
+
+        <a class="method-permalink" href="#unsafe_put%28index%3AInt%2Cvalue%3AT%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Sets the element at the given <em>index</em> to <em>value</em>, without doing any bounds
+check.</p>
+<p><code><a href="../Indexable/Mutable.html">Indexable::Mutable</a></code> makes sure to invoke this method with <em>index</em> in
+<code>0...size</code>, so converting negative indices to positive ones is not needed
+here.</p>
+<p>Clients never invoke this method directly. Instead, they modify elements
+with <code><a href="../Indexable/Mutable.html#%5B%5D%3D%28index%3AInt%2Cvalue%3AT%29%3AT-instance-method">#[]=(index, value)</a></code>.</p>
+<p>This method should only be directly invoked if you are absolutely
+sure the index is in bounds, to avoid a bounds check for a small boost
+of performance.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/indexable/mutable.cr#L21" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="unstable_sort!:self-instance-method">
+      <div class="signature">
+        
+        def <strong>unstable_sort!</strong> : <span class="k">self</span>
+
+        <a class="method-permalink" href="#unstable_sort%21%3Aself-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Sorts all elements in <code>self</code> based on the return value of the comparison
+method <code>T#&lt;=&gt;</code> (see <code>Comparable#&lt;=&gt;</code>), using an unstable sort algorithm.</p>
+<pre><code class="language-crystal">a <span class="o">=</span> [<span class="n">3</span>, <span class="n">1</span>, <span class="n">2</span>]
+a.unstable_sort!
+a <span class="c"># =&gt; [1, 2, 3]</span></code></pre>
+<p>This sort operation modifies <code>self</code>. See <code>#unstable_sort</code> for a non-modifying
+option that allocates a new instance.</p>
+<p>See <code><a href="../Slice.html#unstable_sort%21%3Aself-instance-method">Slice#unstable_sort!</a></code> for details on the implementation.</p>
+<p>Raises <code><a href="../ArgumentError.html">ArgumentError</a></code> if the comparison between any two elements returns <code>nil</code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/indexable/mutable.cr#L347" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="unstable_sort!(&amp;block:T,T-&gt;U):selfforallU-instance-method">
+      <div class="signature">
+        
+        def <strong>unstable_sort!</strong>(&block : T, T -> U) : <span class="k">self</span> forall U
+
+        <a class="method-permalink" href="#unstable_sort%21%28%26block%3AT%2CT-%3EU%29%3AselfforallU-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Sorts all elements in <code>self</code> based on the comparator in the given block,
+using an unstable sort algorithm.</p>
+<p>The block must implement a comparison between two elements <em>a</em> and <em>b</em>,
+where <code>a &lt; b</code> returns <code>-1</code>, <code>a == b</code> returns <code>0</code>, and <code>a &gt; b</code> returns <code>1</code>.
+The comparison operator <code>&lt;=&gt;</code> can be used for this.</p>
+<pre><code class="language-crystal">a <span class="o">=</span> [<span class="n">3</span>, <span class="n">1</span>, <span class="n">2</span>]
+<span class="c"># This is a reverse sort (forward sort would be `a &lt;=&gt; b`)</span>
+a.unstable_sort! { <span class="o">|</span>a, b<span class="o">|</span> b <span class="o">&lt;=&gt;</span> a }
+a <span class="c"># =&gt; [3, 2, 1]</span></code></pre>
+<p>This sort operation modifies <code>self</code>. See <code>#unstable_sort(&amp;block : T, T -&gt; U)</code>
+for a non-modifying option that allocates a new instance.</p>
+<p>See <code>Slice#unstable_sort!(&amp;block : T, T -&gt; U)</code> for details on the implementation.</p>
+<p>Raises <code><a href="../ArgumentError.html">ArgumentError</a></code> if for any two elements the block returns <code>nil</code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/indexable/mutable.cr#L407" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="unstable_sort_by!(&amp;block:T-&gt;_):self-instance-method">
+      <div class="signature">
+        
+        def <strong>unstable_sort_by!</strong>(&block : T -> _) : <span class="k">self</span>
+
+        <a class="method-permalink" href="#unstable_sort_by%21%28%26block%3AT-%3E_%29%3Aself-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Sorts all elements in <code>self</code> by the output value of the
+block. The output values are compared via the comparison method <code>#&lt;=&gt;</code>
+(see <code>Comparable#&lt;=&gt;</code>), using an unstable sort algorithm.</p>
+<pre><code class="language-crystal">a <span class="o">=</span> <span class="s">%w(apple pear fig)</span>
+a.unstable_sort_by! { <span class="o">|</span>word<span class="o">|</span> word.size }
+a <span class="c"># =&gt; [&quot;fig&quot;, &quot;pear&quot;, &quot;apple&quot;]</span></code></pre>
+<p>This sort operation modifies <code>self</code>. See <code>#unstable_sort_by(&amp;block : T -&gt; _)</code>
+for a non-modifying option that allocates a new instance.</p>
+<p>If stability is necessary, use  <code>#sort_by!(&amp;block : T -&gt; _)</code> instead.</p>
+<p>See <code>#unstable_sort!(&amp;block : T -&gt; _)</code> for details on the sorting mechanism.</p>
+<p>Raises <code><a href="../ArgumentError.html">ArgumentError</a></code> if the comparison between any two comparison values returns <code>nil</code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/indexable/mutable.cr#L468" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="update(index:Int,&amp;:T-&gt;_):T-instance-method">
+      <div class="signature">
+        
+        def <strong>update</strong>(index : <a href="../Int.html">Int</a>, & : T -> _) : T
+
+        <a class="method-permalink" href="#update%28index%3AInt%2C%26%3AT-%3E_%29%3AT-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Yields the current element at the given <em>index</em> and updates the value
+at that <em>index</em> with the block's value. Returns the new value.</p>
+<p>Raises <code><a href="../IndexError.html">IndexError</a></code> if trying to set an element outside the container's
+range.</p>
+<pre><code class="language-crystal">array <span class="o">=</span> [<span class="n">1</span>, <span class="n">2</span>, <span class="n">3</span>]
+array.update(<span class="n">1</span>) { <span class="o">|</span>x<span class="o">|</span> x <span class="o">*</span> <span class="n">2</span> } <span class="c"># =&gt; 4</span>
+array                         <span class="c"># =&gt; [1, 4, 3]</span>
+array.update(<span class="n">5</span>) { <span class="o">|</span>x<span class="o">|</span> x <span class="o">*</span> <span class="n">2</span> } <span class="c"># raises IndexError</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/indexable/mutable.cr#L55" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+</div>
+
+</body>
+</html>

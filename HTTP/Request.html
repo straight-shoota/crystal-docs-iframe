@@ -1,0 +1,1445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Crystal Docs 1.16.1">
+<meta name="crystal_docs.project_version" content="1.17.0-dev">
+<meta name="crystal_docs.project_name" content="Crystal">
+
+  <meta name="crystal_docs.json_config_url" content="/api/versions.json">
+
+
+    <link rel="canonical" href="https://crystal-lang.org/api/latest/HTTP/Request.html">
+
+<link href="../css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../js/doc.js"></script>
+
+  <meta name="repository-name" content="Crystal">
+  <title>HTTP::Request - Crystal 1.17.0-dev</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "../";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill="currentColor" fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<input type="checkbox" id="sidebar-btn">
+<label for="sidebar-btn" id="sidebar-btn-label">
+  <svg class="open" xmlns="http://www.w3.org/2000/svg" height="2em" width="2em" viewBox="0 0 512 512"><title>Open Sidebar</title><path fill="currentColor" d="M80 96v64h352V96H80zm0 112v64h352v-64H80zm0 112v64h352v-64H80z"></path></svg>
+  <svg class="close" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><title>Close Sidebar</title><path fill="currentColor" d="m118.6 73.4-45.2 45.2L210.7 256 73.4 393.4l45.2 45.2L256 301.3l137.4 137.3 45.2-45.2L301.3 256l137.3-137.4-45.2-45.2L256 210.7Z"></path></svg>
+</label>
+<iframe class="sidebar" src="../sidebar.html"></iframe>
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">
+    class
+  </span> HTTP::<wbr>Request
+
+</h1>
+
+
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../HTTP/Request.html">HTTP::Request</a></li><li class="superclass"><a href="../Reference.html">Reference</a></li><li class="superclass"><a href="../Object.html">Object</a></li></ul>
+
+
+
+
+  <h2>
+    <a id="overview" class="anchor" href="#overview">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Overview
+  </h2>
+
+  <p>An HTTP request.</p>
+<p>It serves both to perform requests by an <code><a href="../HTTP/Client.html">HTTP::Client</a></code> and to
+represent requests received by an <code><a href="../HTTP/Server.html">HTTP::Server</a></code>.</p>
+<p>A request always holds an <code><a href="../IO.html">IO</a></code> as a body.
+When creating a request with a <code><a href="../String.html">String</a></code> or <code><a href="../Bytes.html">Bytes</a></code> its body
+will be a <code><a href="../IO/Memory.html">IO::Memory</a></code> wrapping these, and the <code>Content-Length</code>
+header will be set appropriately.</p>
+<p><span class="flag purple">NOTE</span>  To use <code><a href="../HTTP/Request.html">Request</a></code>, you must explicitly import it with <code>require &quot;http/request&quot;</code></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/http/request.cr#L17" target="_blank">
+        http/request.cr
+      </a>
+    
+    <br/>
+  
+
+
+
+
+
+  
+  <h2>
+    <a id="constructors" class="anchor" href="#constructors">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructors
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#new%28method%3AString%2Cresource%3AString%2Cheaders%3AHeaders%7CNil%3Dnil%2Cbody%3AString%7CBytes%7CIO%7CNil%3Dnil%2Cversion%3D%22HTTP/1.1%22%29-class-method" class="signature"><strong>.new</strong>(method : String, resource : String, headers : Headers | Nil = <span class="n">nil</span>, body : String | Bytes | IO | Nil = <span class="n">nil</span>, version = <span class="s">&quot;HTTP/1.1&quot;</span>)</a>
+        
+      </li>
+    
+  </ul>
+
+
+  
+  <h2>
+    <a id="class-method-summary" class="anchor" href="#class-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Class Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#from_io%28io%2C%2A%2Cmax_request_line_size%3AInt32%3DHTTP%3A%3AMAX_REQUEST_LINE_SIZE%2Cmax_headers_size%3AInt32%3DHTTP%3A%3AMAX_HEADERS_SIZE%29%3AHTTP%3A%3ARequest%7CHTTP%3A%3AStatus%7CNil-class-method" class="signature"><strong>.from_io</strong>(io, *, max_request_line_size : Int32 = <span class="t">HTTP</span><span class="t">::</span><span class="t">MAX_REQUEST_LINE_SIZE</span>, max_headers_size : Int32 = <span class="t">HTTP</span><span class="t">::</span><span class="t">MAX_HEADERS_SIZE</span>) : HTTP::Request | HTTP::Status | Nil</a>
+        
+          <div class="summary"><p>Returns a <code><a href="../HTTP/Request.html">HTTP::Request</a></code> instance if successfully parsed, <code>nil</code> on EOF or <code><a href="../HTTP/Status.html">HTTP::Status</a></code> otherwise.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+  
+
+  
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#body%3AIO%7CNil-instance-method" class="signature"><strong>#body</strong> : IO | Nil</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#body%3D%28body%3AString%29-instance-method" class="signature"><strong>#body=</strong>(body : String)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#body%3D%28body%3ABytes%29-instance-method" class="signature"><strong>#body=</strong>(body : Bytes)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#body%3D%28body%3AIO%29-instance-method" class="signature"><strong>#body=</strong>(body : IO)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#body%3D%28body%3ANil%29-instance-method" class="signature"><strong>#body=</strong>(body : Nil)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#content_length-instance-method" class="signature"><strong>#content_length</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#content_length%3D%28length%3AInt%29-instance-method" class="signature"><strong>#content_length=</strong>(length : Int)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#cookies%3AHTTP%3A%3ACookies-instance-method" class="signature"><strong>#cookies</strong> : HTTP::Cookies</a>
+        
+          <div class="summary"><p>Returns a convenience wrapper around querying and setting cookie related headers, see <code><a href="../HTTP/Cookies.html">HTTP::Cookies</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#form_params%3AHTTP%3A%3AParams-instance-method" class="signature"><strong>#form_params</strong> : HTTP::Params</a>
+        
+          <div class="summary"><p>Returns a convenience wrapper to parse form params, see <code><a href="../URI/Params.html">URI::Params</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#form_params%3F%3AHTTP%3A%3AParams%7CNil-instance-method" class="signature"><strong>#form_params?</strong> : HTTP::Params | Nil</a>
+        
+          <div class="summary"><p>Returns a convenience wrapper to parse form params, see <code><a href="../URI/Params.html">URI::Params</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#headers%3AHeaders-instance-method" class="signature"><strong>#headers</strong> : Headers</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#headers%3D%28headers%3AHeaders%29-instance-method" class="signature"><strong>#headers=</strong>(headers : Headers)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#host_with_port%3AString%7CNil-instance-method" class="signature"><strong>#host_with_port</strong> : String | Nil</a>
+        
+          <div class="summary"><p>Returns request host with port from headers.</p>
+<p><span class="flag red">DEPRECATED</span>  Use <code>headers[&quot;Host&quot;]?</code> instead.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#hostname%3AString%7CNil-instance-method" class="signature"><strong>#hostname</strong> : String | Nil</a>
+        
+          <div class="summary"><p>Extracts the hostname from <code>Host</code> header.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#if_match%3AArray%28String%29%7CNil-instance-method" class="signature"><strong>#if_match</strong> : Array(String) | Nil</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#if_none_match%3AArray%28String%29%7CNil-instance-method" class="signature"><strong>#if_none_match</strong> : Array(String) | Nil</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#ignore_body%3F%3ABool-instance-method" class="signature"><strong>#ignore_body?</strong> : Bool</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#keep_alive%3F%3ABool-instance-method" class="signature"><strong>#keep_alive?</strong> : Bool</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#local_address%3ASocket%3A%3AAddress%7CNil-instance-method" class="signature"><strong>#local_address</strong> : Socket::Address | Nil</a>
+        
+          <div class="summary"><p>The network address of the HTTP server.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#local_address%3D%28local_address%3ASocket%3A%3AAddress%7CNil%29-instance-method" class="signature"><strong>#local_address=</strong>(local_address : Socket::Address | Nil)</a>
+        
+          <div class="summary"><p>The network address of the HTTP server.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#method%3AString-instance-method" class="signature"><strong>#method</strong> : String</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#method%3D%28method%3AString%29-instance-method" class="signature"><strong>#method=</strong>(method : String)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#path%3AString-instance-method" class="signature"><strong>#path</strong> : String</a>
+        
+          <div class="summary"><p>Returns the request's path component.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#path%3D%28path%29-instance-method" class="signature"><strong>#path=</strong>(path)</a>
+        
+          <div class="summary"><p>Sets request's path component.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#query%3AString%7CNil-instance-method" class="signature"><strong>#query</strong> : String | Nil</a>
+        
+          <div class="summary"><p>Lazily parses and returns the request's query component.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#query%3D%28value%29-instance-method" class="signature"><strong>#query=</strong>(value)</a>
+        
+          <div class="summary"><p>Sets request's query component.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#query_params%3AURI%3A%3AParams-instance-method" class="signature"><strong>#query_params</strong> : URI::Params</a>
+        
+          <div class="summary"><p>Returns a convenience wrapper around querying and setting query params, see <code><a href="../URI/Params.html">URI::Params</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#remote_address%3ASocket%3A%3AAddress%7CNil-instance-method" class="signature"><strong>#remote_address</strong> : Socket::Address | Nil</a>
+        
+          <div class="summary"><p>The network address that sent the request to an HTTP server.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#remote_address%3D%28remote_address%3ASocket%3A%3AAddress%7CNil%29-instance-method" class="signature"><strong>#remote_address=</strong>(remote_address : Socket::Address | Nil)</a>
+        
+          <div class="summary"><p>The network address that sent the request to an HTTP server.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#resource%3AString-instance-method" class="signature"><strong>#resource</strong> : String</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_io%28io%29-instance-method" class="signature"><strong>#to_io</strong>(io)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#version%3AString-instance-method" class="signature"><strong>#version</strong> : String</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#version%3D%28version%3AString%29-instance-method" class="signature"><strong>#version=</strong>(version : String)</a>
+        
+      </li>
+    
+  </ul>
+
+
+
+  <div class="methods-inherited">
+    
+      
+
+  <h3>Instance methods inherited from class <code><a href="../Reference.html">Reference</a></code></h3>
+  
+  
+    <a href="../Reference.html#%3D%3D%28other%3Aself%29-instance-method" class="tooltip">
+      <span>==(other : <span class="k">self</span>)<br/>==(other : JSON::Any)<br/>==(other : YAML::Any)<br/>==(other)</span>
+    ==</a>, 
+    
+  
+    <a href="../Reference.html#dup-instance-method" class="tooltip">
+      <span>dup</span>
+    dup</a>, 
+    
+  
+    <a href="../Reference.html#hash%28hasher%29-instance-method" class="tooltip">
+      <span>hash(hasher)</span>
+    hash</a>, 
+    
+  
+    <a href="../Reference.html#initialize-instance-method" class="tooltip">
+      <span>initialize</span>
+    initialize</a>, 
+    
+  
+    <a href="../Reference.html#inspect%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>inspect(io : IO) : Nil</span>
+    inspect</a>, 
+    
+  
+    <a href="../Reference.html#object_id%3AUInt64-instance-method" class="tooltip">
+      <span>object_id : UInt64</span>
+    object_id</a>, 
+    
+  
+    <a href="../Reference.html#pretty_print%28pp%29%3ANil-instance-method" class="tooltip">
+      <span>pretty_print(pp) : Nil</span>
+    pretty_print</a>, 
+    
+  
+    <a href="../Reference.html#same%3F%28other%3AReference%29%3ABool-instance-method" class="tooltip">
+      <span>same?(other : Reference) : Bool<br/>same?(other : Nil)</span>
+    same?</a>, 
+    
+  
+    <a href="../Reference.html#to_s%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_s(io : IO) : Nil</span>
+    to_s</a>
+    
+  
+
+
+      
+
+  <h3>Constructor methods inherited from class <code><a href="../Reference.html">Reference</a></code></h3>
+  
+  
+    <a href="../Reference.html#new-class-method" class="tooltip">
+      <span>new</span>
+    new</a>, 
+    
+  
+    <a href="../Reference.html#unsafe_construct%28address%3APointer%2C%2Aargs%2C%2A%2Aopts%29%3Aself-class-method" class="tooltip">
+      <span>unsafe_construct(address : Pointer, *args, **opts) : <span class="k">self</span></span>
+    unsafe_construct</a>
+    
+  
+
+
+      
+
+  <h3>Class methods inherited from class <code><a href="../Reference.html">Reference</a></code></h3>
+  
+  
+    <a href="../Reference.html#pre_initialize%28address%3APointer%29-class-method" class="tooltip">
+      <span>pre_initialize(address : Pointer)</span>
+    pre_initialize</a>
+    
+  
+
+
+      
+
+
+    
+      
+
+  <h3>Instance methods inherited from class <code><a href="../Object.html">Object</a></code></h3>
+  
+  
+    <a href="../Object.html#%21%3ABool-instance-method" class="tooltip">
+      <span>! : Bool</span>
+    !</a>, 
+    
+  
+    <a href="../Object.html#%21%3D%28other%29-instance-method" class="tooltip">
+      <span>!=(other)</span>
+    !=</a>, 
+    
+  
+    <a href="../Object.html#%21~%28other%29-instance-method" class="tooltip">
+      <span>!~(other)</span>
+    !~</a>, 
+    
+  
+    <a href="../Object.html#%3D%3D%28other%29-instance-method" class="tooltip">
+      <span>==(other)</span>
+    ==</a>, 
+    
+  
+    <a href="../Object.html#%3D%3D%3D%28other%3AJSON%3A%3AAny%29-instance-method" class="tooltip">
+      <span>===(other : JSON::Any)<br/>===(other : YAML::Any)<br/>===(other)</span>
+    ===</a>, 
+    
+  
+    <a href="../Object.html#%3D~%28other%29-instance-method" class="tooltip">
+      <span>=~(other)</span>
+    =~</a>, 
+    
+  
+    <a href="../Object.html#as%28type%3AClass%29-instance-method" class="tooltip">
+      <span>as(type : Class)</span>
+    as</a>, 
+    
+  
+    <a href="../Object.html#as%3F%28type%3AClass%29-instance-method" class="tooltip">
+      <span>as?(type : Class)</span>
+    as?</a>, 
+    
+  
+    <a href="../Object.html#class-instance-method" class="tooltip">
+      <span>class</span>
+    class</a>, 
+    
+  
+    <a href="../Object.html#dup-instance-method" class="tooltip">
+      <span>dup</span>
+    dup</a>, 
+    
+  
+    <a href="../Object.html#hash%28hasher%29-instance-method" class="tooltip">
+      <span>hash(hasher)<br/>hash</span>
+    hash</a>, 
+    
+  
+    <a href="../Object.html#in%3F%28collection%3AObject%29%3ABool-instance-method" class="tooltip">
+      <span>in?(collection : Object) : Bool<br/>in?(*values : Object) : Bool</span>
+    in?</a>, 
+    
+  
+    <a href="../Object.html#inspect%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>inspect(io : IO) : Nil<br/>inspect : String</span>
+    inspect</a>, 
+    
+  
+    <a href="../Object.html#is_a%3F%28type%3AClass%29%3ABool-instance-method" class="tooltip">
+      <span>is_a?(type : Class) : Bool</span>
+    is_a?</a>, 
+    
+  
+    <a href="../Object.html#itself-instance-method" class="tooltip">
+      <span>itself</span>
+    itself</a>, 
+    
+  
+    <a href="../Object.html#nil%3F%3ABool-instance-method" class="tooltip">
+      <span>nil? : Bool</span>
+    nil?</a>, 
+    
+  
+    <a href="../Object.html#not_nil%21%28message%29-instance-method" class="tooltip">
+      <span>not_nil!(message)<br/>not_nil!</span>
+    not_nil!</a>, 
+    
+  
+    <a href="../Object.html#pretty_inspect%28width%3D79%2Cnewline%3D%22%5Cn%22%2Cindent%3D0%29%3AString-instance-method" class="tooltip">
+      <span>pretty_inspect(width = <span class="n">79</span>, newline = <span class="s">&quot;\n&quot;</span>, indent = <span class="n">0</span>) : String</span>
+    pretty_inspect</a>, 
+    
+  
+    <a href="../Object.html#pretty_print%28pp%3APrettyPrint%29%3ANil-instance-method" class="tooltip">
+      <span>pretty_print(pp : PrettyPrint) : Nil</span>
+    pretty_print</a>, 
+    
+  
+    <a href="../Object.html#responds_to%3F%28name%3ASymbol%29%3ABool-instance-method" class="tooltip">
+      <span>responds_to?(name : Symbol) : Bool</span>
+    responds_to?</a>, 
+    
+  
+    <a href="../Object.html#tap%28%26%29-instance-method" class="tooltip">
+      <span>tap(&)</span>
+    tap</a>, 
+    
+  
+    <a href="../Object.html#to_json%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_json(io : IO) : Nil<br/>to_json : String</span>
+    to_json</a>, 
+    
+  
+    <a href="../Object.html#to_pretty_json%28indent%3AString%3D%22%22%29%3AString-instance-method" class="tooltip">
+      <span>to_pretty_json(indent : String = <span class="s">&quot;  &quot;</span>) : String<br/>to_pretty_json(io : IO, indent : String = <span class="s">&quot;  &quot;</span>) : Nil</span>
+    to_pretty_json</a>, 
+    
+  
+    <a href="../Object.html#to_s%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_s(io : IO) : Nil<br/>to_s : String</span>
+    to_s</a>, 
+    
+  
+    <a href="../Object.html#to_yaml%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_yaml(io : IO) : Nil<br/>to_yaml : String</span>
+    to_yaml</a>, 
+    
+  
+    <a href="../Object.html#try%28%26%29-instance-method" class="tooltip">
+      <span>try(&)</span>
+    try</a>, 
+    
+  
+    <a href="../Object.html#unsafe_as%28type%3AT.class%29forallT-instance-method" class="tooltip">
+      <span>unsafe_as(type : <span class="t">T</span>.<span class="k">class</span>) forall T</span>
+    unsafe_as</a>
+    
+  
+
+
+      
+
+
+      
+
+  <h3>Class methods inherited from class <code><a href="../Object.html">Object</a></code></h3>
+  
+  
+    <a href="../Object.html#from_json%28string_or_io%2Croot%3AString%29-class-method" class="tooltip">
+      <span>from_json(string_or_io, root : String)<br/>from_json(string_or_io)</span>
+    from_json</a>, 
+    
+  
+    <a href="../Object.html#from_yaml%28string_or_io%3AString%7CIO%29-class-method" class="tooltip">
+      <span>from_yaml(string_or_io : String | IO)</span>
+    from_yaml</a>
+    
+  
+
+
+      
+
+  <h3>Macros inherited from class <code><a href="../Object.html">Object</a></code></h3>
+  
+  
+    <a href="../Object.html#class_getter%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_getter(*names, &block)</span>
+    class_getter</a>, 
+    
+  
+    <a href="../Object.html#class_getter%21%28%2Anames%29-macro" class="tooltip">
+      <span>class_getter!(*names)</span>
+    class_getter!</a>, 
+    
+  
+    <a href="../Object.html#class_getter%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_getter?(*names, &block)</span>
+    class_getter?</a>, 
+    
+  
+    <a href="../Object.html#class_property%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_property(*names, &block)</span>
+    class_property</a>, 
+    
+  
+    <a href="../Object.html#class_property%21%28%2Anames%29-macro" class="tooltip">
+      <span>class_property!(*names)</span>
+    class_property!</a>, 
+    
+  
+    <a href="../Object.html#class_property%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_property?(*names, &block)</span>
+    class_property?</a>, 
+    
+  
+    <a href="../Object.html#class_setter%28%2Anames%29-macro" class="tooltip">
+      <span>class_setter(*names)</span>
+    class_setter</a>, 
+    
+  
+    <a href="../Object.html#def_clone-macro" class="tooltip">
+      <span>def_clone</span>
+    def_clone</a>, 
+    
+  
+    <a href="../Object.html#def_equals%28%2Afields%29-macro" class="tooltip">
+      <span>def_equals(*fields)</span>
+    def_equals</a>, 
+    
+  
+    <a href="../Object.html#def_equals_and_hash%28%2Afields%29-macro" class="tooltip">
+      <span>def_equals_and_hash(*fields)</span>
+    def_equals_and_hash</a>, 
+    
+  
+    <a href="../Object.html#def_hash%28%2Afields%29-macro" class="tooltip">
+      <span>def_hash(*fields)</span>
+    def_hash</a>, 
+    
+  
+    <a href="../Object.html#delegate%28%2Amethods%2Ctoobject%29-macro" class="tooltip">
+      <span>delegate(*methods, to object)</span>
+    delegate</a>, 
+    
+  
+    <a href="../Object.html#forward_missing_to%28delegate%29-macro" class="tooltip">
+      <span>forward_missing_to(delegate)</span>
+    forward_missing_to</a>, 
+    
+  
+    <a href="../Object.html#getter%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>getter(*names, &block)</span>
+    getter</a>, 
+    
+  
+    <a href="../Object.html#getter%21%28%2Anames%29-macro" class="tooltip">
+      <span>getter!(*names)</span>
+    getter!</a>, 
+    
+  
+    <a href="../Object.html#getter%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>getter?(*names, &block)</span>
+    getter?</a>, 
+    
+  
+    <a href="../Object.html#property%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>property(*names, &block)</span>
+    property</a>, 
+    
+  
+    <a href="../Object.html#property%21%28%2Anames%29-macro" class="tooltip">
+      <span>property!(*names)</span>
+    property!</a>, 
+    
+  
+    <a href="../Object.html#property%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>property?(*names, &block)</span>
+    property?</a>, 
+    
+  
+    <a href="../Object.html#setter%28%2Anames%29-macro" class="tooltip">
+      <span>setter(*names)</span>
+    setter</a>
+    
+  
+
+
+    
+  </div>
+
+  
+  <h2>
+    <a id="constructor-detail" class="anchor" href="#constructor-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructor Detail
+  </h2>
+  
+    <div class="entry-detail" id="new(method:String,resource:String,headers:Headers|Nil=nil,body:String|Bytes|IO|Nil=nil,version=&quot;HTTP/1.1&quot;)-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(method : <a href="../String.html">String</a>, resource : <a href="../String.html">String</a>, headers : <a href="../HTTP/Headers.html">Headers</a> | <a href="../Nil.html">Nil</a> = <span class="n">nil</span>, body : <a href="../String.html">String</a> | <a href="../Bytes.html">Bytes</a> | <a href="../IO.html">IO</a> | <a href="../Nil.html">Nil</a> = <span class="n">nil</span>, version = <span class="s">&quot;HTTP/1.1&quot;</span>)
+
+        <a class="method-permalink" href="#new%28method%3AString%2Cresource%3AString%2Cheaders%3AHeaders%7CNil%3Dnil%2Cbody%3AString%7CBytes%7CIO%7CNil%3Dnil%2Cversion%3D%22HTTP/1.1%22%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/http/request.cr#L62" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+  
+  <h2>
+    <a id="class-method-detail" class="anchor" href="#class-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Class Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="from_io(io,*,max_request_line_size:Int32=HTTP::MAX_REQUEST_LINE_SIZE,max_headers_size:Int32=HTTP::MAX_HEADERS_SIZE):HTTP::Request|HTTP::Status|Nil-class-method">
+      <div class="signature">
+        
+        def self.<strong>from_io</strong>(io, *, max_request_line_size : <a href="../Int32.html">Int32</a> = <span class="t">HTTP</span><span class="t">::</span><span class="t">MAX_REQUEST_LINE_SIZE</span>, max_headers_size : <a href="../Int32.html">Int32</a> = <span class="t">HTTP</span><span class="t">::</span><span class="t">MAX_HEADERS_SIZE</span>) : <a href="../HTTP/Request.html">HTTP::Request</a> | <a href="../HTTP/Status.html">HTTP::Status</a> | <a href="../Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#from_io%28io%2C%2A%2Cmax_request_line_size%3AInt32%3DHTTP%3A%3AMAX_REQUEST_LINE_SIZE%2Cmax_headers_size%3AInt32%3DHTTP%3A%3AMAX_HEADERS_SIZE%29%3AHTTP%3A%3ARequest%7CHTTP%3A%3AStatus%7CNil-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns a <code><a href="../HTTP/Request.html">HTTP::Request</a></code> instance if successfully parsed,
+<code>nil</code> on EOF or <code><a href="../HTTP/Status.html">HTTP::Status</a></code> otherwise.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/http/request.cr#L152" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+  
+
+  
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="body:IO|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>body</strong> : <a href="../IO.html">IO</a> | <a href="../Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#body%3AIO%7CNil-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/http/request.cr#L20" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="body=(body:String)-instance-method">
+      <div class="signature">
+        
+        def <strong>body=</strong>(body : <a href="../String.html">String</a>)
+
+        <a class="method-permalink" href="#body%3D%28body%3AString%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/http/request.cr#L123" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="body=(body:Bytes)-instance-method">
+      <div class="signature">
+        
+        def <strong>body=</strong>(body : <a href="../Bytes.html">Bytes</a>)
+
+        <a class="method-permalink" href="#body%3D%28body%3ABytes%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/http/request.cr#L128" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="body=(body:IO)-instance-method">
+      <div class="signature">
+        
+        def <strong>body=</strong>(body : <a href="../IO.html">IO</a>)
+
+        <a class="method-permalink" href="#body%3D%28body%3AIO%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/http/request.cr#L133" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="body=(body:Nil)-instance-method">
+      <div class="signature">
+        
+        def <strong>body=</strong>(body : <a href="../Nil.html">Nil</a>)
+
+        <a class="method-permalink" href="#body%3D%28body%3ANil%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/http/request.cr#L136" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="content_length-instance-method">
+      <div class="signature">
+        
+        def <strong>content_length</strong>
+
+        <a class="method-permalink" href="#content_length-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/http/request.cr#L119" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="content_length=(length:Int)-instance-method">
+      <div class="signature">
+        
+        def <strong>content_length=</strong>(length : <a href="../Int.html">Int</a>)
+
+        <a class="method-permalink" href="#content_length%3D%28length%3AInt%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/http/request.cr#L115" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="cookies:HTTP::Cookies-instance-method">
+      <div class="signature">
+        
+        def <strong>cookies</strong> : <a href="../HTTP/Cookies.html">HTTP::Cookies</a>
+
+        <a class="method-permalink" href="#cookies%3AHTTP%3A%3ACookies-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns a convenience wrapper around querying and setting cookie related
+headers, see <code><a href="../HTTP/Cookies.html">HTTP::Cookies</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/http/request.cr#L74" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="form_params:HTTP::Params-instance-method">
+      <div class="signature">
+        
+        def <strong>form_params</strong> : <a href="../HTTP/Params.html">HTTP::Params</a>
+
+        <a class="method-permalink" href="#form_params%3AHTTP%3A%3AParams-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns a convenience wrapper to parse form params, see <code><a href="../URI/Params.html">URI::Params</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/http/request.cr#L98" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="form_params?:HTTP::Params|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>form_params?</strong> : <a href="../HTTP/Params.html">HTTP::Params</a> | <a href="../Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#form_params%3F%3AHTTP%3A%3AParams%7CNil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns a convenience wrapper to parse form params, see <code><a href="../URI/Params.html">URI::Params</a></code>.
+Returns <code>nil</code> in case the content type <code>&quot;application/x-www-form-urlencoded&quot;</code>
+is not present or the body is <code>nil</code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/http/request.cr#L87" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="headers:Headers-instance-method">
+      <div class="signature">
+        
+        def <strong>headers</strong> : <a href="../HTTP/Headers.html">Headers</a>
+
+        <a class="method-permalink" href="#headers%3AHeaders-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/http/request.cr#L19" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="headers=(headers:Headers)-instance-method">
+      <div class="signature">
+        
+        def <strong>headers=</strong>(headers : <a href="../HTTP/Headers.html">Headers</a>)
+
+        <a class="method-permalink" href="#headers%3D%28headers%3AHeaders%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/http/request.cr#L19" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="host_with_port:String|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>host_with_port</strong> : <a href="../String.html">String</a> | <a href="../Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#host_with_port%3AString%7CNil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns request host with port from headers.</p>
+<p><span class="flag red">DEPRECATED</span>  Use <code>headers[&quot;Host&quot;]?</code> instead.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/http/request.cr#L320" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="hostname:String|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>hostname</strong> : <a href="../String.html">String</a> | <a href="../Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#hostname%3AString%7CNil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Extracts the hostname from <code>Host</code> header.</p>
+<p>Returns <code>nil</code> if the <code>Host</code> header is missing.</p>
+<p>If the <code>Host</code> header contains a port number, it is stripped off.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/http/request.cr#L299" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="if_match:Array(String)|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>if_match</strong> : <a href="../Array.html">Array</a>(<a href="../String.html">String</a>) | <a href="../Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#if_match%3AArray%28String%29%7CNil-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/http/request.cr#L338" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="if_none_match:Array(String)|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>if_none_match</strong> : <a href="../Array.html">Array</a>(<a href="../String.html">String</a>) | <a href="../Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#if_none_match%3AArray%28String%29%7CNil-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/http/request.cr#L342" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="ignore_body?:Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>ignore_body?</strong> : <a href="../Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#ignore_body%3F%3ABool-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/http/request.cr#L111" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="keep_alive?:Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>keep_alive?</strong> : <a href="../Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#keep_alive%3F%3ABool-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/http/request.cr#L107" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="local_address:Socket::Address|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>local_address</strong> : <a href="../Socket/Address.html">Socket::Address</a> | <a href="../Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#local_address%3ASocket%3A%3AAddress%7CNil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>The network address of the HTTP server.</p>
+<p><code><a href="../HTTP/Server.html">HTTP::Server</a></code> will try to fill this property, and its value
+will have a format like &quot;IP:port&quot;, but this format is not guaranteed.
+Middlewares can overwrite this value.</p>
+<p>This property is not used by <code><a href="../HTTP/Client.html">HTTP::Client</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/http/request.cr#L60" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="local_address=(local_address:Socket::Address|Nil)-instance-method">
+      <div class="signature">
+        
+        def <strong>local_address=</strong>(local_address : <a href="../Socket/Address.html">Socket::Address</a> | <a href="../Nil.html">Nil</a>)
+
+        <a class="method-permalink" href="#local_address%3D%28local_address%3ASocket%3A%3AAddress%7CNil%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>The network address of the HTTP server.</p>
+<p><code><a href="../HTTP/Server.html">HTTP::Server</a></code> will try to fill this property, and its value
+will have a format like &quot;IP:port&quot;, but this format is not guaranteed.
+Middlewares can overwrite this value.</p>
+<p>This property is not used by <code><a href="../HTTP/Client.html">HTTP::Client</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/http/request.cr#L60" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="method:String-instance-method">
+      <div class="signature">
+        
+        def <strong>method</strong> : <a href="../String.html">String</a>
+
+        <a class="method-permalink" href="#method%3AString-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/http/request.cr#L18" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="method=(method:String)-instance-method">
+      <div class="signature">
+        
+        def <strong>method=</strong>(method : <a href="../String.html">String</a>)
+
+        <a class="method-permalink" href="#method%3D%28method%3AString%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/http/request.cr#L18" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="path:String-instance-method">
+      <div class="signature">
+        
+        def <strong>path</strong> : <a href="../String.html">String</a>
+
+        <a class="method-permalink" href="#path%3AString-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the request's path component.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/http/request.cr#L272" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="path=(path)-instance-method">
+      <div class="signature">
+        
+        def <strong>path=</strong>(path)
+
+        <a class="method-permalink" href="#path%3D%28path%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Sets request's path component.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/http/request.cr#L277" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="query:String|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>query</strong> : <a href="../String.html">String</a> | <a href="../Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#query%3AString%7CNil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Lazily parses and returns the request's query component.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/http/request.cr#L282" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="query=(value)-instance-method">
+      <div class="signature">
+        
+        def <strong>query=</strong>(value)
+
+        <a class="method-permalink" href="#query%3D%28value%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Sets request's query component.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/http/request.cr#L288" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="query_params:URI::Params-instance-method">
+      <div class="signature">
+        
+        def <strong>query_params</strong> : <a href="../URI/Params.html">URI::Params</a>
+
+        <a class="method-permalink" href="#query_params%3AURI%3A%3AParams-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns a convenience wrapper around querying and setting query params,
+see <code><a href="../URI/Params.html">URI::Params</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/http/request.cr#L80" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="remote_address:Socket::Address|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>remote_address</strong> : <a href="../Socket/Address.html">Socket::Address</a> | <a href="../Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#remote_address%3ASocket%3A%3AAddress%7CNil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>The network address that sent the request to an HTTP server.</p>
+<p><code><a href="../HTTP/Server.html">HTTP::Server</a></code> will try to fill this property, and its value
+will have a format like &quot;IP:port&quot;, but this format is not guaranteed.
+Middlewares can overwrite this value.</p>
+<p>Example:</p>
+<pre><code class="language-crystal"><span class="k">class</span> <span class="t">ForwarderHandler</span>
+  <span class="k">include</span> <span class="t">HTTP</span><span class="t">::</span><span class="t">Handler</span>
+
+  <span class="k">def</span> <span class="m">call</span>(context)
+    <span class="k">if</span> ip <span class="o">=</span> context.request.headers[<span class="s">&quot;X-Real-IP&quot;</span>]? <span class="c"># When using a reverse proxy that guarantees this field.</span>
+      context.request.remote_address <span class="o">=</span> <span class="t">Socket</span><span class="t">::</span><span class="t">IPAddress</span>.new(ip, <span class="n">0</span>)
+    <span class="k">end</span>
+    call_next(context)
+  <span class="k">end</span>
+<span class="k">end</span>
+
+server <span class="o">=</span> <span class="t">HTTP</span><span class="t">::</span><span class="t">Server</span>.new([<span class="t">ForwarderHandler</span>.new, <span class="t">HTTP</span><span class="t">::</span><span class="t">LogHandler</span>.new])</code></pre>
+<p>This property is not used by <code><a href="../HTTP/Client.html">HTTP::Client</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/http/request.cr#L51" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="remote_address=(remote_address:Socket::Address|Nil)-instance-method">
+      <div class="signature">
+        
+        def <strong>remote_address=</strong>(remote_address : <a href="../Socket/Address.html">Socket::Address</a> | <a href="../Nil.html">Nil</a>)
+
+        <a class="method-permalink" href="#remote_address%3D%28remote_address%3ASocket%3A%3AAddress%7CNil%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>The network address that sent the request to an HTTP server.</p>
+<p><code><a href="../HTTP/Server.html">HTTP::Server</a></code> will try to fill this property, and its value
+will have a format like &quot;IP:port&quot;, but this format is not guaranteed.
+Middlewares can overwrite this value.</p>
+<p>Example:</p>
+<pre><code class="language-crystal"><span class="k">class</span> <span class="t">ForwarderHandler</span>
+  <span class="k">include</span> <span class="t">HTTP</span><span class="t">::</span><span class="t">Handler</span>
+
+  <span class="k">def</span> <span class="m">call</span>(context)
+    <span class="k">if</span> ip <span class="o">=</span> context.request.headers[<span class="s">&quot;X-Real-IP&quot;</span>]? <span class="c"># When using a reverse proxy that guarantees this field.</span>
+      context.request.remote_address <span class="o">=</span> <span class="t">Socket</span><span class="t">::</span><span class="t">IPAddress</span>.new(ip, <span class="n">0</span>)
+    <span class="k">end</span>
+    call_next(context)
+  <span class="k">end</span>
+<span class="k">end</span>
+
+server <span class="o">=</span> <span class="t">HTTP</span><span class="t">::</span><span class="t">Server</span>.new([<span class="t">ForwarderHandler</span>.new, <span class="t">HTTP</span><span class="t">::</span><span class="t">LogHandler</span>.new])</code></pre>
+<p>This property is not used by <code><a href="../HTTP/Client.html">HTTP::Client</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/http/request.cr#L51" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="resource:String-instance-method">
+      <div class="signature">
+        
+        def <strong>resource</strong> : <a href="../String.html">String</a>
+
+        <a class="method-permalink" href="#resource%3AString-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/http/request.cr#L102" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_io(io)-instance-method">
+      <div class="signature">
+        
+        def <strong>to_io</strong>(io)
+
+        <a class="method-permalink" href="#to_io%28io%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/http/request.cr#L140" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="version:String-instance-method">
+      <div class="signature">
+        
+        def <strong>version</strong> : <a href="../String.html">String</a>
+
+        <a class="method-permalink" href="#version%3AString-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/http/request.cr#L21" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="version=(version:String)-instance-method">
+      <div class="signature">
+        
+        def <strong>version=</strong>(version : <a href="../String.html">String</a>)
+
+        <a class="method-permalink" href="#version%3D%28version%3AString%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/http/request.cr#L21" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+</div>
+
+</body>
+</html>

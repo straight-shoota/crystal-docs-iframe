@@ -1,0 +1,2614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Crystal Docs 1.16.1">
+<meta name="crystal_docs.project_version" content="1.17.0-dev">
+<meta name="crystal_docs.project_name" content="Crystal">
+
+  <meta name="crystal_docs.json_config_url" content="/api/versions.json">
+
+
+    <link rel="canonical" href="https://crystal-lang.org/api/latest/LLVM/Builder.html">
+
+<link href="../css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../js/doc.js"></script>
+
+  <meta name="repository-name" content="Crystal">
+  <title>LLVM::Builder - Crystal 1.17.0-dev</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "../";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill="currentColor" fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<input type="checkbox" id="sidebar-btn">
+<label for="sidebar-btn" id="sidebar-btn-label">
+  <svg class="open" xmlns="http://www.w3.org/2000/svg" height="2em" width="2em" viewBox="0 0 512 512"><title>Open Sidebar</title><path fill="currentColor" d="M80 96v64h352V96H80zm0 112v64h352v-64H80zm0 112v64h352v-64H80z"></path></svg>
+  <svg class="close" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><title>Close Sidebar</title><path fill="currentColor" d="m118.6 73.4-45.2 45.2L210.7 256 73.4 393.4l45.2 45.2L256 301.3l137.4 137.3 45.2-45.2L301.3 256l137.3-137.4-45.2-45.2L256 210.7Z"></path></svg>
+</label>
+<iframe class="sidebar" src="../sidebar.html"></iframe>
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">
+    class
+  </span> LLVM::<wbr>Builder
+
+</h1>
+
+
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../LLVM/Builder.html">LLVM::Builder</a></li><li class="superclass"><a href="../Reference.html">Reference</a></li><li class="superclass"><a href="../Object.html">Object</a></li></ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/builder.cr#L1" target="_blank">
+        llvm/builder.cr
+      </a>
+    
+    <br/>
+  
+
+
+
+
+
+  
+  <h2>
+    <a id="constructors" class="anchor" href="#constructors">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructors
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#new%28unwrap%3ALibLLVM%3A%3ABuilderRef%29-class-method" class="signature"><strong>.new</strong>(unwrap : LibLLVM::BuilderRef)</a>
+        
+      </li>
+    
+  </ul>
+
+
+  
+
+  
+
+  
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#add%28lhs%2Crhs%2Cname%3D%22%22%29-instance-method" class="signature"><strong>#add</strong>(lhs, rhs, name = <span class="s">&quot;&quot;</span>)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#add_handler%28catch_switch_ref%2Chandler%29-instance-method" class="signature"><strong>#add_handler</strong>(catch_switch_ref, handler)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#alloca%28type%2Cname%3D%22%22%29-instance-method" class="signature"><strong>#alloca</strong>(type, name = <span class="s">&quot;&quot;</span>)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#and%28lhs%2Crhs%2Cname%3D%22%22%29-instance-method" class="signature"><strong>#and</strong>(lhs, rhs, name = <span class="s">&quot;&quot;</span>)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#ashr%28lhs%2Crhs%2Cname%3D%22%22%29-instance-method" class="signature"><strong>#ashr</strong>(lhs, rhs, name = <span class="s">&quot;&quot;</span>)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#atomicrmw%28op%2Cptr%2Cval%2Cordering%2Csinglethread%29-instance-method" class="signature"><strong>#atomicrmw</strong>(op, ptr, val, ordering, singlethread)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#bit_cast%28value%2Ctype%2Cname%3D%22%22%29-instance-method" class="signature"><strong>#bit_cast</strong>(value, type, name = <span class="s">&quot;&quot;</span>)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#br%28block%29-instance-method" class="signature"><strong>#br</strong>(block)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#build_catch_ret%28pad%2Cbasic_block%29-instance-method" class="signature"><strong>#build_catch_ret</strong>(pad, basic_block)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#build_operand_bundle_def%28name%2Cvalues%3AArray%28LLVM%3A%3AValue%29%29-instance-method" class="signature"><strong>#build_operand_bundle_def</strong>(name, values : Array(LLVM::Value))</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#call%28type%3ALLVM%3A%3AType%2Cfunc%3ALLVM%3A%3AFunction%2Cargs%3AArray%28LLVM%3A%3AValue%29%2Cname%3AString%2Cbundle%3ALLVM%3A%3AOperandBundleDef%29-instance-method" class="signature"><strong>#call</strong>(type : LLVM::Type, func : LLVM::Function, args : Array(LLVM::Value), name : String, bundle : LLVM::OperandBundleDef)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#call%28type%3ALLVM%3A%3AType%2Cfunc%3ALLVM%3A%3AFunction%2Cargs%3AArray%28LLVM%3A%3AValue%29%2Cname%3AString%3D%22%22%29-instance-method" class="signature"><strong>#call</strong>(type : LLVM::Type, func : LLVM::Function, args : Array(LLVM::Value), name : String = <span class="s">&quot;&quot;</span>)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#call%28type%3ALLVM%3A%3AType%2Cfunc%3ALLVM%3A%3AFunction%2Carg%3ALLVM%3A%3AValue%2Cname%3AString%3D%22%22%29-instance-method" class="signature"><strong>#call</strong>(type : LLVM::Type, func : LLVM::Function, arg : LLVM::Value, name : String = <span class="s">&quot;&quot;</span>)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#call%28func%3ALLVM%3A%3AFunction%2Cargs%3AArray%28LLVM%3A%3AValue%29%2Cname%3AString%3D%22%22%2Cbundle%3ALLVM%3A%3AOperandBundleDef%3DLLVM%3A%3AOperandBundleDef.null%29-instance-method" class="signature"><strong>#call</strong>(func : LLVM::Function, args : Array(LLVM::Value), name : String = <span class="s">&quot;&quot;</span>, bundle : LLVM::OperandBundleDef = <span class="t">LLVM</span><span class="t">::</span><span class="t">OperandBundleDef</span>.null)</a>
+        
+          <div class="summary"><p><span class="flag red">DEPRECATED</span>  Pass the function type of <code>func</code> as well (equal to <code>func.function_type</code>) in order to support LLVM 15+</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#call%28type%3ALLVM%3A%3AType%2Cfunc%3ALLVM%3A%3AFunction%2Cargs%3AArray%28LLVM%3A%3AValue%29%2Cbundle%3ALLVM%3A%3AOperandBundleDef%29-instance-method" class="signature"><strong>#call</strong>(type : LLVM::Type, func : LLVM::Function, args : Array(LLVM::Value), bundle : LLVM::OperandBundleDef)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#call%28func%3ALLVM%3A%3AFunction%2Cname%3AString%3D%22%22%29-instance-method" class="signature"><strong>#call</strong>(func : LLVM::Function, name : String = <span class="s">&quot;&quot;</span>)</a>
+        
+          <div class="summary"><p><span class="flag red">DEPRECATED</span>  Pass the function type of <code>func</code> as well (equal to <code>func.function_type</code>) in order to support LLVM 15+</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#call%28type%3ALLVM%3A%3AType%2Cfunc%3ALLVM%3A%3AFunction%2Cname%3AString%3D%22%22%29-instance-method" class="signature"><strong>#call</strong>(type : LLVM::Type, func : LLVM::Function, name : String = <span class="s">&quot;&quot;</span>)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#call%28func%3ALLVM%3A%3AFunction%2Carg%3ALLVM%3A%3AValue%2Cname%3AString%3D%22%22%29-instance-method" class="signature"><strong>#call</strong>(func : LLVM::Function, arg : LLVM::Value, name : String = <span class="s">&quot;&quot;</span>)</a>
+        
+          <div class="summary"><p><span class="flag red">DEPRECATED</span>  Pass the function type of <code>func</code> as well (equal to <code>func.function_type</code>) in order to support LLVM 15+</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#catch_pad%28parent_pad%2Cargs%3AArray%28LLVM%3A%3AValue%29%2Cname%3D%22%22%29-instance-method" class="signature"><strong>#catch_pad</strong>(parent_pad, args : Array(LLVM::Value), name = <span class="s">&quot;&quot;</span>)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#catch_switch%28parent_pad%2Cbasic_block%2Cnum_handlers%2Cname%3D%22%22%29-instance-method" class="signature"><strong>#catch_switch</strong>(parent_pad, basic_block, num_handlers, name = <span class="s">&quot;&quot;</span>)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#clear_current_debug_location-instance-method" class="signature"><strong>#clear_current_debug_location</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#cmpxchg%28pointer%2Ccmp%2Cnew%2Csuccess_ordering%2Cfailure_ordering%2Csinglethread%3ABool%3Dfalse%29-instance-method" class="signature"><strong>#cmpxchg</strong>(pointer, cmp, new, success_ordering, failure_ordering, singlethread : Bool = <span class="n">false</span>)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#cond%28cond%2Cthen_block%2Celse_block%29-instance-method" class="signature"><strong>#cond</strong>(cond, then_block, else_block)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#current_debug_location-instance-method" class="signature"><strong>#current_debug_location</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#exact_sdiv%28lhs%2Crhs%2Cname%3D%22%22%29-instance-method" class="signature"><strong>#exact_sdiv</strong>(lhs, rhs, name = <span class="s">&quot;&quot;</span>)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#extract_value%28value%2Cindex%2Cname%3D%22%22%29-instance-method" class="signature"><strong>#extract_value</strong>(value, index, name = <span class="s">&quot;&quot;</span>)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#fadd%28lhs%2Crhs%2Cname%3D%22%22%29-instance-method" class="signature"><strong>#fadd</strong>(lhs, rhs, name = <span class="s">&quot;&quot;</span>)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#fcmp%28op%2Clhs%2Crhs%2Cname%3D%22%22%29-instance-method" class="signature"><strong>#fcmp</strong>(op, lhs, rhs, name = <span class="s">&quot;&quot;</span>)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#fdiv%28lhs%2Crhs%2Cname%3D%22%22%29-instance-method" class="signature"><strong>#fdiv</strong>(lhs, rhs, name = <span class="s">&quot;&quot;</span>)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#fence%28ordering%2Csinglethread%2Cname%3D%22%22%29-instance-method" class="signature"><strong>#fence</strong>(ordering, singlethread, name = <span class="s">&quot;&quot;</span>)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#finalize-instance-method" class="signature"><strong>#finalize</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#fmul%28lhs%2Crhs%2Cname%3D%22%22%29-instance-method" class="signature"><strong>#fmul</strong>(lhs, rhs, name = <span class="s">&quot;&quot;</span>)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#fneg%28value%2Cname%3D%22%22%29-instance-method" class="signature"><strong>#fneg</strong>(value, name = <span class="s">&quot;&quot;</span>)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#fp2si%28value%2Ctype%2Cname%3D%22%22%29-instance-method" class="signature"><strong>#fp2si</strong>(value, type, name = <span class="s">&quot;&quot;</span>)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#fp2ui%28value%2Ctype%2Cname%3D%22%22%29-instance-method" class="signature"><strong>#fp2ui</strong>(value, type, name = <span class="s">&quot;&quot;</span>)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#fpext%28value%2Ctype%2Cname%3D%22%22%29-instance-method" class="signature"><strong>#fpext</strong>(value, type, name = <span class="s">&quot;&quot;</span>)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#fptrunc%28value%2Ctype%2Cname%3D%22%22%29-instance-method" class="signature"><strong>#fptrunc</strong>(value, type, name = <span class="s">&quot;&quot;</span>)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#fsub%28lhs%2Crhs%2Cname%3D%22%22%29-instance-method" class="signature"><strong>#fsub</strong>(lhs, rhs, name = <span class="s">&quot;&quot;</span>)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#gep%28type%3ALLVM%3A%3AType%2Cvalue%3ALLVM%3A%3AValue%2Cindex1%3ALLVM%3A%3AValue%2Cindex2%3ALLVM%3A%3AValue%2Cname%3D%22%22%29-instance-method" class="signature"><strong>#gep</strong>(type : LLVM::Type, value : LLVM::Value, index1 : LLVM::Value, index2 : LLVM::Value, name = <span class="s">&quot;&quot;</span>)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#gep%28value%3ALLVM%3A%3AValue%2Cindices%3AArray%28LLVM%3A%3AValueRef%29%2Cname%3D%22%22%29-instance-method" class="signature"><strong>#gep</strong>(value : LLVM::Value, indices : Array(LLVM::ValueRef), name = <span class="s">&quot;&quot;</span>)</a>
+        
+          <div class="summary"><p><span class="flag red">DEPRECATED</span>  Pass the type of <code>value</code> as well (equal to <code>value.type</code>) in order to support LLVM 15+</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#gep%28type%3ALLVM%3A%3AType%2Cvalue%3ALLVM%3A%3AValue%2Cindices%3AArray%28LLVM%3A%3AValueRef%29%2Cname%3D%22%22%29-instance-method" class="signature"><strong>#gep</strong>(type : LLVM::Type, value : LLVM::Value, indices : Array(LLVM::ValueRef), name = <span class="s">&quot;&quot;</span>)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#gep%28value%3ALLVM%3A%3AValue%2Cindex1%3ALLVM%3A%3AValue%2Cindex2%3ALLVM%3A%3AValue%2Cname%3D%22%22%29-instance-method" class="signature"><strong>#gep</strong>(value : LLVM::Value, index1 : LLVM::Value, index2 : LLVM::Value, name = <span class="s">&quot;&quot;</span>)</a>
+        
+          <div class="summary"><p><span class="flag red">DEPRECATED</span>  Pass the type of <code>value</code> as well (equal to <code>value.type</code>) in order to support LLVM 15+</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#gep%28value%3ALLVM%3A%3AValue%2Cindex%3ALLVM%3A%3AValue%2Cname%3D%22%22%29-instance-method" class="signature"><strong>#gep</strong>(value : LLVM::Value, index : LLVM::Value, name = <span class="s">&quot;&quot;</span>)</a>
+        
+          <div class="summary"><p><span class="flag red">DEPRECATED</span>  Pass the type of <code>value</code> as well (equal to <code>value.type</code>) in order to support LLVM 15+</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#gep%28type%3ALLVM%3A%3AType%2Cvalue%3ALLVM%3A%3AValue%2Cindex%3ALLVM%3A%3AValue%2Cname%3D%22%22%29-instance-method" class="signature"><strong>#gep</strong>(type : LLVM::Type, value : LLVM::Value, index : LLVM::Value, name = <span class="s">&quot;&quot;</span>)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#global_string_pointer%28string%2Cname%3D%22%22%29-instance-method" class="signature"><strong>#global_string_pointer</strong>(string, name = <span class="s">&quot;&quot;</span>)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#icmp%28op%2Clhs%2Crhs%2Cname%3D%22%22%29-instance-method" class="signature"><strong>#icmp</strong>(op, lhs, rhs, name = <span class="s">&quot;&quot;</span>)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#inbounds_gep%28type%3ALLVM%3A%3AType%2Cvalue%3ALLVM%3A%3AValue%2Cindex1%3ALLVM%3A%3AValue%2Cindex2%3ALLVM%3A%3AValue%2Cname%3D%22%22%29-instance-method" class="signature"><strong>#inbounds_gep</strong>(type : LLVM::Type, value : LLVM::Value, index1 : LLVM::Value, index2 : LLVM::Value, name = <span class="s">&quot;&quot;</span>)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#inbounds_gep%28value%3ALLVM%3A%3AValue%2Cindices%3AArray%28LLVM%3A%3AValueRef%29%2Cname%3D%22%22%29-instance-method" class="signature"><strong>#inbounds_gep</strong>(value : LLVM::Value, indices : Array(LLVM::ValueRef), name = <span class="s">&quot;&quot;</span>)</a>
+        
+          <div class="summary"><p><span class="flag red">DEPRECATED</span>  Pass the type of <code>value</code> as well (equal to <code>value.type</code>) in order to support LLVM 15+</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#inbounds_gep%28type%3ALLVM%3A%3AType%2Cvalue%3ALLVM%3A%3AValue%2Cindices%3AArray%28LLVM%3A%3AValueRef%29%2Cname%3D%22%22%29-instance-method" class="signature"><strong>#inbounds_gep</strong>(type : LLVM::Type, value : LLVM::Value, indices : Array(LLVM::ValueRef), name = <span class="s">&quot;&quot;</span>)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#inbounds_gep%28value%3ALLVM%3A%3AValue%2Cindex1%3ALLVM%3A%3AValue%2Cindex2%3ALLVM%3A%3AValue%2Cname%3D%22%22%29-instance-method" class="signature"><strong>#inbounds_gep</strong>(value : LLVM::Value, index1 : LLVM::Value, index2 : LLVM::Value, name = <span class="s">&quot;&quot;</span>)</a>
+        
+          <div class="summary"><p><span class="flag red">DEPRECATED</span>  Pass the type of <code>value</code> as well (equal to <code>value.type</code>) in order to support LLVM 15+</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#inbounds_gep%28value%3ALLVM%3A%3AValue%2Cindex%3ALLVM%3A%3AValue%2Cname%3D%22%22%29-instance-method" class="signature"><strong>#inbounds_gep</strong>(value : LLVM::Value, index : LLVM::Value, name = <span class="s">&quot;&quot;</span>)</a>
+        
+          <div class="summary"><p><span class="flag red">DEPRECATED</span>  Pass the type of <code>value</code> as well (equal to <code>value.type</code>) in order to support LLVM 15+</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#inbounds_gep%28type%3ALLVM%3A%3AType%2Cvalue%3ALLVM%3A%3AValue%2Cindex%3ALLVM%3A%3AValue%2Cname%3D%22%22%29-instance-method" class="signature"><strong>#inbounds_gep</strong>(type : LLVM::Type, value : LLVM::Value, index : LLVM::Value, name = <span class="s">&quot;&quot;</span>)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#insert_block-instance-method" class="signature"><strong>#insert_block</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#int2ptr%28value%2Ctype%2Cname%3D%22%22%29-instance-method" class="signature"><strong>#int2ptr</strong>(value, type, name = <span class="s">&quot;&quot;</span>)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#invoke%28fn%3ALLVM%3A%3AFunction%2Cargs%3AArray%28LLVM%3A%3AValue%29%2Ca_then%2Ca_catch%2Cbundle%3ALLVM%3A%3AOperandBundleDef%3DLLVM%3A%3AOperandBundleDef.null%2Cname%3D%22%22%29-instance-method" class="signature"><strong>#invoke</strong>(fn : LLVM::Function, args : Array(LLVM::Value), a_then, a_catch, bundle : LLVM::OperandBundleDef = <span class="t">LLVM</span><span class="t">::</span><span class="t">OperandBundleDef</span>.null, name = <span class="s">&quot;&quot;</span>)</a>
+        
+          <div class="summary"><p><span class="flag red">DEPRECATED</span>  Pass the function type of <code>fn</code> as well (equal to <code>fn.function_type</code>) in order to support LLVM 15+</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#invoke%28type%3ALLVM%3A%3AType%2Cfn%3ALLVM%3A%3AFunction%2Cargs%3AArray%28LLVM%3A%3AValue%29%2Ca_then%2Ca_catch%2Cbundle%3ALLVM%3A%3AOperandBundleDef%2Cname%3D%22%22%29-instance-method" class="signature"><strong>#invoke</strong>(type : LLVM::Type, fn : LLVM::Function, args : Array(LLVM::Value), a_then, a_catch, bundle : LLVM::OperandBundleDef, name = <span class="s">&quot;&quot;</span>)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#invoke%28type%3ALLVM%3A%3AType%2Cfn%3ALLVM%3A%3AFunction%2Cargs%3AArray%28LLVM%3A%3AValue%29%2Ca_then%2Ca_catch%2C%2A%2Cname%3D%22%22%29-instance-method" class="signature"><strong>#invoke</strong>(type : LLVM::Type, fn : LLVM::Function, args : Array(LLVM::Value), a_then, a_catch, *, name = <span class="s">&quot;&quot;</span>)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#landing_pad%28type%2Cpersonality%2Cclauses%2Cname%3D%22%22%29-instance-method" class="signature"><strong>#landing_pad</strong>(type, personality, clauses, name = <span class="s">&quot;&quot;</span>)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#load%28ptr%3ALLVM%3A%3AValue%2Cname%3D%22%22%29-instance-method" class="signature"><strong>#load</strong>(ptr : LLVM::Value, name = <span class="s">&quot;&quot;</span>)</a>
+        
+          <div class="summary"><p><span class="flag red">DEPRECATED</span>  Pass the pointee of <code>ptr</code> as well (equal to <code>ptr.type.element_type</code>) in order to support LLVM 15+</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#load%28type%3ALLVM%3A%3AType%2Cptr%3ALLVM%3A%3AValue%2Cname%3D%22%22%29-instance-method" class="signature"><strong>#load</strong>(type : LLVM::Type, ptr : LLVM::Value, name = <span class="s">&quot;&quot;</span>)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#load_volatile%28ptr%3ALLVM%3A%3AValue%2Cname%3D%22%22%29-instance-method" class="signature"><strong>#load_volatile</strong>(ptr : LLVM::Value, name = <span class="s">&quot;&quot;</span>)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#load_volatile%28type%3ALLVM%3A%3AType%2Cptr%3ALLVM%3A%3AValue%2Cname%3D%22%22%29-instance-method" class="signature"><strong>#load_volatile</strong>(type : LLVM::Type, ptr : LLVM::Value, name = <span class="s">&quot;&quot;</span>)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#lshr%28lhs%2Crhs%2Cname%3D%22%22%29-instance-method" class="signature"><strong>#lshr</strong>(lhs, rhs, name = <span class="s">&quot;&quot;</span>)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#mul%28lhs%2Crhs%2Cname%3D%22%22%29-instance-method" class="signature"><strong>#mul</strong>(lhs, rhs, name = <span class="s">&quot;&quot;</span>)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#neg%28value%2Cname%3D%22%22%29-instance-method" class="signature"><strong>#neg</strong>(value, name = <span class="s">&quot;&quot;</span>)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#not%28value%2Cname%3D%22%22%29-instance-method" class="signature"><strong>#not</strong>(value, name = <span class="s">&quot;&quot;</span>)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#or%28lhs%2Crhs%2Cname%3D%22%22%29-instance-method" class="signature"><strong>#or</strong>(lhs, rhs, name = <span class="s">&quot;&quot;</span>)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#phi%28type%2Cincoming_blocks%3AArray%28LLVM%3A%3ABasicBlock%29%2Cincoming_values%3AArray%28LLVM%3A%3AValue%29%2Cname%3D%22%22%29-instance-method" class="signature"><strong>#phi</strong>(type, incoming_blocks : Array(LLVM::BasicBlock), incoming_values : Array(LLVM::Value), name = <span class="s">&quot;&quot;</span>)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#phi%28type%2Ctable%3ALLVM%3A%3APhiTable%2Cname%3D%22%22%29-instance-method" class="signature"><strong>#phi</strong>(type, table : LLVM::PhiTable, name = <span class="s">&quot;&quot;</span>)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#position_at_end%28block%29-instance-method" class="signature"><strong>#position_at_end</strong>(block)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#ptr2int%28value%2Ctype%2Cname%3D%22%22%29-instance-method" class="signature"><strong>#ptr2int</strong>(value, type, name = <span class="s">&quot;&quot;</span>)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#ret%28value%29-instance-method" class="signature"><strong>#ret</strong>(value)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#ret-instance-method" class="signature"><strong>#ret</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#sdiv%28lhs%2Crhs%2Cname%3D%22%22%29-instance-method" class="signature"><strong>#sdiv</strong>(lhs, rhs, name = <span class="s">&quot;&quot;</span>)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#select%28cond%2Ca_then%2Ca_else%2Cname%3D%22%22%29-instance-method" class="signature"><strong>#select</strong>(cond, a_then, a_else, name = <span class="s">&quot;&quot;</span>)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#set_current_debug_location%28line%2Ccolumn%2Cscope%2Cinlined_at%3Dnil%29-instance-method" class="signature"><strong>#set_current_debug_location</strong>(line, column, scope, inlined_at = <span class="n">nil</span>)</a>
+        
+          <div class="summary"><p><span class="flag red">DEPRECATED</span>  Call <code><a href="../LLVM/Builder.html#set_current_debug_location%28metadata%2Ccontext%3ALLVM%3A%3AContext%29-instance-method">#set_current_debug_location(metadata, context)</a></code> or <code><a href="../LLVM/Builder.html#clear_current_debug_location-instance-method">#clear_current_debug_location</a></code> instead</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#set_current_debug_location%28metadata%2Ccontext%3ALLVM%3A%3AContext%29-instance-method" class="signature"><strong>#set_current_debug_location</strong>(metadata, context : LLVM::Context)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#set_metadata%28value%2Ckind%2Cnode%29-instance-method" class="signature"><strong>#set_metadata</strong>(value, kind, node)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#sext%28value%2Ctype%2Cname%3D%22%22%29-instance-method" class="signature"><strong>#sext</strong>(value, type, name = <span class="s">&quot;&quot;</span>)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#shl%28lhs%2Crhs%2Cname%3D%22%22%29-instance-method" class="signature"><strong>#shl</strong>(lhs, rhs, name = <span class="s">&quot;&quot;</span>)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#si2fp%28value%2Ctype%2Cname%3D%22%22%29-instance-method" class="signature"><strong>#si2fp</strong>(value, type, name = <span class="s">&quot;&quot;</span>)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#srem%28lhs%2Crhs%2Cname%3D%22%22%29-instance-method" class="signature"><strong>#srem</strong>(lhs, rhs, name = <span class="s">&quot;&quot;</span>)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#store%28value%2Cptr%29-instance-method" class="signature"><strong>#store</strong>(value, ptr)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#store_volatile%28value%2Cptr%29-instance-method" class="signature"><strong>#store_volatile</strong>(value, ptr)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#sub%28lhs%2Crhs%2Cname%3D%22%22%29-instance-method" class="signature"><strong>#sub</strong>(lhs, rhs, name = <span class="s">&quot;&quot;</span>)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#switch%28value%2Cotherwise%2Ccases%29-instance-method" class="signature"><strong>#switch</strong>(value, otherwise, cases)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_unsafe%3ALibLLVM%3A%3ABuilderRef-instance-method" class="signature"><strong>#to_unsafe</strong> : LibLLVM::BuilderRef</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#trunc%28value%2Ctype%2Cname%3D%22%22%29-instance-method" class="signature"><strong>#trunc</strong>(value, type, name = <span class="s">&quot;&quot;</span>)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#udiv%28lhs%2Crhs%2Cname%3D%22%22%29-instance-method" class="signature"><strong>#udiv</strong>(lhs, rhs, name = <span class="s">&quot;&quot;</span>)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#ui2fp%28value%2Ctype%2Cname%3D%22%22%29-instance-method" class="signature"><strong>#ui2fp</strong>(value, type, name = <span class="s">&quot;&quot;</span>)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#unreachable-instance-method" class="signature"><strong>#unreachable</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#urem%28lhs%2Crhs%2Cname%3D%22%22%29-instance-method" class="signature"><strong>#urem</strong>(lhs, rhs, name = <span class="s">&quot;&quot;</span>)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#va_arg%28list%2Ctype%2Cname%3D%22%22%29-instance-method" class="signature"><strong>#va_arg</strong>(list, type, name = <span class="s">&quot;&quot;</span>)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#xor%28lhs%2Crhs%2Cname%3D%22%22%29-instance-method" class="signature"><strong>#xor</strong>(lhs, rhs, name = <span class="s">&quot;&quot;</span>)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#zext%28value%2Ctype%2Cname%3D%22%22%29-instance-method" class="signature"><strong>#zext</strong>(value, type, name = <span class="s">&quot;&quot;</span>)</a>
+        
+      </li>
+    
+  </ul>
+
+
+
+  <div class="methods-inherited">
+    
+      
+
+  <h3>Instance methods inherited from class <code><a href="../Reference.html">Reference</a></code></h3>
+  
+  
+    <a href="../Reference.html#%3D%3D%28other%3Aself%29-instance-method" class="tooltip">
+      <span>==(other : <span class="k">self</span>)<br/>==(other : JSON::Any)<br/>==(other : YAML::Any)<br/>==(other)</span>
+    ==</a>, 
+    
+  
+    <a href="../Reference.html#dup-instance-method" class="tooltip">
+      <span>dup</span>
+    dup</a>, 
+    
+  
+    <a href="../Reference.html#hash%28hasher%29-instance-method" class="tooltip">
+      <span>hash(hasher)</span>
+    hash</a>, 
+    
+  
+    <a href="../Reference.html#initialize-instance-method" class="tooltip">
+      <span>initialize</span>
+    initialize</a>, 
+    
+  
+    <a href="../Reference.html#inspect%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>inspect(io : IO) : Nil</span>
+    inspect</a>, 
+    
+  
+    <a href="../Reference.html#object_id%3AUInt64-instance-method" class="tooltip">
+      <span>object_id : UInt64</span>
+    object_id</a>, 
+    
+  
+    <a href="../Reference.html#pretty_print%28pp%29%3ANil-instance-method" class="tooltip">
+      <span>pretty_print(pp) : Nil</span>
+    pretty_print</a>, 
+    
+  
+    <a href="../Reference.html#same%3F%28other%3AReference%29%3ABool-instance-method" class="tooltip">
+      <span>same?(other : Reference) : Bool<br/>same?(other : Nil)</span>
+    same?</a>, 
+    
+  
+    <a href="../Reference.html#to_s%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_s(io : IO) : Nil</span>
+    to_s</a>
+    
+  
+
+
+      
+
+  <h3>Constructor methods inherited from class <code><a href="../Reference.html">Reference</a></code></h3>
+  
+  
+    <a href="../Reference.html#new-class-method" class="tooltip">
+      <span>new</span>
+    new</a>, 
+    
+  
+    <a href="../Reference.html#unsafe_construct%28address%3APointer%2C%2Aargs%2C%2A%2Aopts%29%3Aself-class-method" class="tooltip">
+      <span>unsafe_construct(address : Pointer, *args, **opts) : <span class="k">self</span></span>
+    unsafe_construct</a>
+    
+  
+
+
+      
+
+  <h3>Class methods inherited from class <code><a href="../Reference.html">Reference</a></code></h3>
+  
+  
+    <a href="../Reference.html#pre_initialize%28address%3APointer%29-class-method" class="tooltip">
+      <span>pre_initialize(address : Pointer)</span>
+    pre_initialize</a>
+    
+  
+
+
+      
+
+
+    
+      
+
+  <h3>Instance methods inherited from class <code><a href="../Object.html">Object</a></code></h3>
+  
+  
+    <a href="../Object.html#%21%3ABool-instance-method" class="tooltip">
+      <span>! : Bool</span>
+    !</a>, 
+    
+  
+    <a href="../Object.html#%21%3D%28other%29-instance-method" class="tooltip">
+      <span>!=(other)</span>
+    !=</a>, 
+    
+  
+    <a href="../Object.html#%21~%28other%29-instance-method" class="tooltip">
+      <span>!~(other)</span>
+    !~</a>, 
+    
+  
+    <a href="../Object.html#%3D%3D%28other%29-instance-method" class="tooltip">
+      <span>==(other)</span>
+    ==</a>, 
+    
+  
+    <a href="../Object.html#%3D%3D%3D%28other%3AJSON%3A%3AAny%29-instance-method" class="tooltip">
+      <span>===(other : JSON::Any)<br/>===(other : YAML::Any)<br/>===(other)</span>
+    ===</a>, 
+    
+  
+    <a href="../Object.html#%3D~%28other%29-instance-method" class="tooltip">
+      <span>=~(other)</span>
+    =~</a>, 
+    
+  
+    <a href="../Object.html#as%28type%3AClass%29-instance-method" class="tooltip">
+      <span>as(type : Class)</span>
+    as</a>, 
+    
+  
+    <a href="../Object.html#as%3F%28type%3AClass%29-instance-method" class="tooltip">
+      <span>as?(type : Class)</span>
+    as?</a>, 
+    
+  
+    <a href="../Object.html#class-instance-method" class="tooltip">
+      <span>class</span>
+    class</a>, 
+    
+  
+    <a href="../Object.html#dup-instance-method" class="tooltip">
+      <span>dup</span>
+    dup</a>, 
+    
+  
+    <a href="../Object.html#hash%28hasher%29-instance-method" class="tooltip">
+      <span>hash(hasher)<br/>hash</span>
+    hash</a>, 
+    
+  
+    <a href="../Object.html#in%3F%28collection%3AObject%29%3ABool-instance-method" class="tooltip">
+      <span>in?(collection : Object) : Bool<br/>in?(*values : Object) : Bool</span>
+    in?</a>, 
+    
+  
+    <a href="../Object.html#inspect%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>inspect(io : IO) : Nil<br/>inspect : String</span>
+    inspect</a>, 
+    
+  
+    <a href="../Object.html#is_a%3F%28type%3AClass%29%3ABool-instance-method" class="tooltip">
+      <span>is_a?(type : Class) : Bool</span>
+    is_a?</a>, 
+    
+  
+    <a href="../Object.html#itself-instance-method" class="tooltip">
+      <span>itself</span>
+    itself</a>, 
+    
+  
+    <a href="../Object.html#nil%3F%3ABool-instance-method" class="tooltip">
+      <span>nil? : Bool</span>
+    nil?</a>, 
+    
+  
+    <a href="../Object.html#not_nil%21%28message%29-instance-method" class="tooltip">
+      <span>not_nil!(message)<br/>not_nil!</span>
+    not_nil!</a>, 
+    
+  
+    <a href="../Object.html#pretty_inspect%28width%3D79%2Cnewline%3D%22%5Cn%22%2Cindent%3D0%29%3AString-instance-method" class="tooltip">
+      <span>pretty_inspect(width = <span class="n">79</span>, newline = <span class="s">&quot;\n&quot;</span>, indent = <span class="n">0</span>) : String</span>
+    pretty_inspect</a>, 
+    
+  
+    <a href="../Object.html#pretty_print%28pp%3APrettyPrint%29%3ANil-instance-method" class="tooltip">
+      <span>pretty_print(pp : PrettyPrint) : Nil</span>
+    pretty_print</a>, 
+    
+  
+    <a href="../Object.html#responds_to%3F%28name%3ASymbol%29%3ABool-instance-method" class="tooltip">
+      <span>responds_to?(name : Symbol) : Bool</span>
+    responds_to?</a>, 
+    
+  
+    <a href="../Object.html#tap%28%26%29-instance-method" class="tooltip">
+      <span>tap(&)</span>
+    tap</a>, 
+    
+  
+    <a href="../Object.html#to_json%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_json(io : IO) : Nil<br/>to_json : String</span>
+    to_json</a>, 
+    
+  
+    <a href="../Object.html#to_pretty_json%28indent%3AString%3D%22%22%29%3AString-instance-method" class="tooltip">
+      <span>to_pretty_json(indent : String = <span class="s">&quot;  &quot;</span>) : String<br/>to_pretty_json(io : IO, indent : String = <span class="s">&quot;  &quot;</span>) : Nil</span>
+    to_pretty_json</a>, 
+    
+  
+    <a href="../Object.html#to_s%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_s(io : IO) : Nil<br/>to_s : String</span>
+    to_s</a>, 
+    
+  
+    <a href="../Object.html#to_yaml%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_yaml(io : IO) : Nil<br/>to_yaml : String</span>
+    to_yaml</a>, 
+    
+  
+    <a href="../Object.html#try%28%26%29-instance-method" class="tooltip">
+      <span>try(&)</span>
+    try</a>, 
+    
+  
+    <a href="../Object.html#unsafe_as%28type%3AT.class%29forallT-instance-method" class="tooltip">
+      <span>unsafe_as(type : <span class="t">T</span>.<span class="k">class</span>) forall T</span>
+    unsafe_as</a>
+    
+  
+
+
+      
+
+
+      
+
+  <h3>Class methods inherited from class <code><a href="../Object.html">Object</a></code></h3>
+  
+  
+    <a href="../Object.html#from_json%28string_or_io%2Croot%3AString%29-class-method" class="tooltip">
+      <span>from_json(string_or_io, root : String)<br/>from_json(string_or_io)</span>
+    from_json</a>, 
+    
+  
+    <a href="../Object.html#from_yaml%28string_or_io%3AString%7CIO%29-class-method" class="tooltip">
+      <span>from_yaml(string_or_io : String | IO)</span>
+    from_yaml</a>
+    
+  
+
+
+      
+
+  <h3>Macros inherited from class <code><a href="../Object.html">Object</a></code></h3>
+  
+  
+    <a href="../Object.html#class_getter%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_getter(*names, &block)</span>
+    class_getter</a>, 
+    
+  
+    <a href="../Object.html#class_getter%21%28%2Anames%29-macro" class="tooltip">
+      <span>class_getter!(*names)</span>
+    class_getter!</a>, 
+    
+  
+    <a href="../Object.html#class_getter%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_getter?(*names, &block)</span>
+    class_getter?</a>, 
+    
+  
+    <a href="../Object.html#class_property%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_property(*names, &block)</span>
+    class_property</a>, 
+    
+  
+    <a href="../Object.html#class_property%21%28%2Anames%29-macro" class="tooltip">
+      <span>class_property!(*names)</span>
+    class_property!</a>, 
+    
+  
+    <a href="../Object.html#class_property%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_property?(*names, &block)</span>
+    class_property?</a>, 
+    
+  
+    <a href="../Object.html#class_setter%28%2Anames%29-macro" class="tooltip">
+      <span>class_setter(*names)</span>
+    class_setter</a>, 
+    
+  
+    <a href="../Object.html#def_clone-macro" class="tooltip">
+      <span>def_clone</span>
+    def_clone</a>, 
+    
+  
+    <a href="../Object.html#def_equals%28%2Afields%29-macro" class="tooltip">
+      <span>def_equals(*fields)</span>
+    def_equals</a>, 
+    
+  
+    <a href="../Object.html#def_equals_and_hash%28%2Afields%29-macro" class="tooltip">
+      <span>def_equals_and_hash(*fields)</span>
+    def_equals_and_hash</a>, 
+    
+  
+    <a href="../Object.html#def_hash%28%2Afields%29-macro" class="tooltip">
+      <span>def_hash(*fields)</span>
+    def_hash</a>, 
+    
+  
+    <a href="../Object.html#delegate%28%2Amethods%2Ctoobject%29-macro" class="tooltip">
+      <span>delegate(*methods, to object)</span>
+    delegate</a>, 
+    
+  
+    <a href="../Object.html#forward_missing_to%28delegate%29-macro" class="tooltip">
+      <span>forward_missing_to(delegate)</span>
+    forward_missing_to</a>, 
+    
+  
+    <a href="../Object.html#getter%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>getter(*names, &block)</span>
+    getter</a>, 
+    
+  
+    <a href="../Object.html#getter%21%28%2Anames%29-macro" class="tooltip">
+      <span>getter!(*names)</span>
+    getter!</a>, 
+    
+  
+    <a href="../Object.html#getter%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>getter?(*names, &block)</span>
+    getter?</a>, 
+    
+  
+    <a href="../Object.html#property%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>property(*names, &block)</span>
+    property</a>, 
+    
+  
+    <a href="../Object.html#property%21%28%2Anames%29-macro" class="tooltip">
+      <span>property!(*names)</span>
+    property!</a>, 
+    
+  
+    <a href="../Object.html#property%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>property?(*names, &block)</span>
+    property?</a>, 
+    
+  
+    <a href="../Object.html#setter%28%2Anames%29-macro" class="tooltip">
+      <span>setter(*names)</span>
+    setter</a>
+    
+  
+
+
+    
+  </div>
+
+  
+  <h2>
+    <a id="constructor-detail" class="anchor" href="#constructor-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructor Detail
+  </h2>
+  
+    <div class="entry-detail" id="new(unwrap:LibLLVM::BuilderRef)-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(unwrap : LibLLVM::BuilderRef)
+
+        <a class="method-permalink" href="#new%28unwrap%3ALibLLVM%3A%3ABuilderRef%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/builder.cr#L4" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+  
+
+  
+
+  
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="add(lhs,rhs,name=&quot;&quot;)-instance-method">
+      <div class="signature">
+        
+        def <strong>add</strong>(lhs, rhs, name = <span class="s">&quot;&quot;</span>)
+
+        <a class="method-permalink" href="#add%28lhs%2Crhs%2Cname%3D%22%22%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/builder.cr#L224" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="add_handler(catch_switch_ref,handler)-instance-method">
+      <div class="signature">
+        
+        def <strong>add_handler</strong>(catch_switch_ref, handler)
+
+        <a class="method-permalink" href="#add_handler%28catch_switch_ref%2Chandler%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/builder.cr#L285" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="alloca(type,name=&quot;&quot;)-instance-method">
+      <div class="signature">
+        
+        def <strong>alloca</strong>(type, name = <span class="s">&quot;&quot;</span>)
+
+        <a class="method-permalink" href="#alloca%28type%2Cname%3D%22%22%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/builder.cr#L118" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="and(lhs,rhs,name=&quot;&quot;)-instance-method">
+      <div class="signature">
+        
+        def <strong>and</strong>(lhs, rhs, name = <span class="s">&quot;&quot;</span>)
+
+        <a class="method-permalink" href="#and%28lhs%2Crhs%2Cname%3D%22%22%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/builder.cr#L224" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="ashr(lhs,rhs,name=&quot;&quot;)-instance-method">
+      <div class="signature">
+        
+        def <strong>ashr</strong>(lhs, rhs, name = <span class="s">&quot;&quot;</span>)
+
+        <a class="method-permalink" href="#ashr%28lhs%2Crhs%2Cname%3D%22%22%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/builder.cr#L224" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="atomicrmw(op,ptr,val,ordering,singlethread)-instance-method">
+      <div class="signature">
+        
+        def <strong>atomicrmw</strong>(op, ptr, val, ordering, singlethread)
+
+        <a class="method-permalink" href="#atomicrmw%28op%2Cptr%2Cval%2Cordering%2Csinglethread%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/builder.cr#L334" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="bit_cast(value,type,name=&quot;&quot;)-instance-method">
+      <div class="signature">
+        
+        def <strong>bit_cast</strong>(value, type, name = <span class="s">&quot;&quot;</span>)
+
+        <a class="method-permalink" href="#bit_cast%28value%2Ctype%2Cname%3D%22%22%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/builder.cr#L215" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="br(block)-instance-method">
+      <div class="signature">
+        
+        def <strong>br</strong>(block)
+
+        <a class="method-permalink" href="#br%28block%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/builder.cr#L25" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="build_catch_ret(pad,basic_block)-instance-method">
+      <div class="signature">
+        
+        def <strong>build_catch_ret</strong>(pad, basic_block)
+
+        <a class="method-permalink" href="#build_catch_ret%28pad%2Cbasic_block%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/builder.cr#L293" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="build_operand_bundle_def(name,values:Array(LLVM::Value))-instance-method">
+      <div class="signature">
+        
+        def <strong>build_operand_bundle_def</strong>(name, values : <a href="../Array.html">Array</a>(<a href="../LLVM/Value.html">LLVM::Value</a>))
+
+        <a class="method-permalink" href="#build_operand_bundle_def%28name%2Cvalues%3AArray%28LLVM%3A%3AValue%29%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/builder.cr#L289" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="call(type:LLVM::Type,func:LLVM::Function,args:Array(LLVM::Value),name:String,bundle:LLVM::OperandBundleDef)-instance-method">
+      <div class="signature">
+        
+        def <strong>call</strong>(type : <a href="../LLVM/Type.html">LLVM::Type</a>, func : <a href="../LLVM/Function.html">LLVM::Function</a>, args : <a href="../Array.html">Array</a>(<a href="../LLVM/Value.html">LLVM::Value</a>), name : <a href="../String.html">String</a>, bundle : <a href="../LLVM/OperandBundleDef.html">LLVM::OperandBundleDef</a>)
+
+        <a class="method-permalink" href="#call%28type%3ALLVM%3A%3AType%2Cfunc%3ALLVM%3A%3AFunction%2Cargs%3AArray%28LLVM%3A%3AValue%29%2Cname%3AString%2Cbundle%3ALLVM%3A%3AOperandBundleDef%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/builder.cr#L103" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="call(type:LLVM::Type,func:LLVM::Function,args:Array(LLVM::Value),name:String=&quot;&quot;)-instance-method">
+      <div class="signature">
+        
+        def <strong>call</strong>(type : <a href="../LLVM/Type.html">LLVM::Type</a>, func : <a href="../LLVM/Function.html">LLVM::Function</a>, args : <a href="../Array.html">Array</a>(<a href="../LLVM/Value.html">LLVM::Value</a>), name : <a href="../String.html">String</a> = <span class="s">&quot;&quot;</span>)
+
+        <a class="method-permalink" href="#call%28type%3ALLVM%3A%3AType%2Cfunc%3ALLVM%3A%3AFunction%2Cargs%3AArray%28LLVM%3A%3AValue%29%2Cname%3AString%3D%22%22%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/builder.cr#L95" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="call(type:LLVM::Type,func:LLVM::Function,arg:LLVM::Value,name:String=&quot;&quot;)-instance-method">
+      <div class="signature">
+        
+        def <strong>call</strong>(type : <a href="../LLVM/Type.html">LLVM::Type</a>, func : <a href="../LLVM/Function.html">LLVM::Function</a>, arg : <a href="../LLVM/Value.html">LLVM::Value</a>, name : <a href="../String.html">String</a> = <span class="s">&quot;&quot;</span>)
+
+        <a class="method-permalink" href="#call%28type%3ALLVM%3A%3AType%2Cfunc%3ALLVM%3A%3AFunction%2Carg%3ALLVM%3A%3AValue%2Cname%3AString%3D%22%22%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/builder.cr#L75" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="call(func:LLVM::Function,args:Array(LLVM::Value),name:String=&quot;&quot;,bundle:LLVM::OperandBundleDef=LLVM::OperandBundleDef.null)-instance-method">
+      <div class="signature">
+        
+        def <strong>call</strong>(func : <a href="../LLVM/Function.html">LLVM::Function</a>, args : <a href="../Array.html">Array</a>(<a href="../LLVM/Value.html">LLVM::Value</a>), name : <a href="../String.html">String</a> = <span class="s">&quot;&quot;</span>, bundle : <a href="../LLVM/OperandBundleDef.html">LLVM::OperandBundleDef</a> = <span class="t">LLVM</span><span class="t">::</span><span class="t">OperandBundleDef</span>.null)
+
+        <a class="method-permalink" href="#call%28func%3ALLVM%3A%3AFunction%2Cargs%3AArray%28LLVM%3A%3AValue%29%2Cname%3AString%3D%22%22%2Cbundle%3ALLVM%3A%3AOperandBundleDef%3DLLVM%3A%3AOperandBundleDef.null%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p><span class="flag red">DEPRECATED</span>  Pass the function type of <code>func</code> as well (equal to <code>func.function_type</code>) in order to support LLVM 15+</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/builder.cr#L85" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="call(type:LLVM::Type,func:LLVM::Function,args:Array(LLVM::Value),bundle:LLVM::OperandBundleDef)-instance-method">
+      <div class="signature">
+        
+        def <strong>call</strong>(type : <a href="../LLVM/Type.html">LLVM::Type</a>, func : <a href="../LLVM/Function.html">LLVM::Function</a>, args : <a href="../Array.html">Array</a>(<a href="../LLVM/Value.html">LLVM::Value</a>), bundle : <a href="../LLVM/OperandBundleDef.html">LLVM::OperandBundleDef</a>)
+
+        <a class="method-permalink" href="#call%28type%3ALLVM%3A%3AType%2Cfunc%3ALLVM%3A%3AFunction%2Cargs%3AArray%28LLVM%3A%3AValue%29%2Cbundle%3ALLVM%3A%3AOperandBundleDef%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/builder.cr#L114" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="call(func:LLVM::Function,name:String=&quot;&quot;)-instance-method">
+      <div class="signature">
+        
+        def <strong>call</strong>(func : <a href="../LLVM/Function.html">LLVM::Function</a>, name : <a href="../String.html">String</a> = <span class="s">&quot;&quot;</span>)
+
+        <a class="method-permalink" href="#call%28func%3ALLVM%3A%3AFunction%2Cname%3AString%3D%22%22%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p><span class="flag red">DEPRECATED</span>  Pass the function type of <code>func</code> as well (equal to <code>func.function_type</code>) in order to support LLVM 15+</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/builder.cr#L53" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="call(type:LLVM::Type,func:LLVM::Function,name:String=&quot;&quot;)-instance-method">
+      <div class="signature">
+        
+        def <strong>call</strong>(type : <a href="../LLVM/Type.html">LLVM::Type</a>, func : <a href="../LLVM/Function.html">LLVM::Function</a>, name : <a href="../String.html">String</a> = <span class="s">&quot;&quot;</span>)
+
+        <a class="method-permalink" href="#call%28type%3ALLVM%3A%3AType%2Cfunc%3ALLVM%3A%3AFunction%2Cname%3AString%3D%22%22%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/builder.cr#L59" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="call(func:LLVM::Function,arg:LLVM::Value,name:String=&quot;&quot;)-instance-method">
+      <div class="signature">
+        
+        def <strong>call</strong>(func : <a href="../LLVM/Function.html">LLVM::Function</a>, arg : <a href="../LLVM/Value.html">LLVM::Value</a>, name : <a href="../String.html">String</a> = <span class="s">&quot;&quot;</span>)
+
+        <a class="method-permalink" href="#call%28func%3ALLVM%3A%3AFunction%2Carg%3ALLVM%3A%3AValue%2Cname%3AString%3D%22%22%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p><span class="flag red">DEPRECATED</span>  Pass the function type of <code>func</code> as well (equal to <code>func.function_type</code>) in order to support LLVM 15+</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/builder.cr#L67" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="catch_pad(parent_pad,args:Array(LLVM::Value),name=&quot;&quot;)-instance-method">
+      <div class="signature">
+        
+        def <strong>catch_pad</strong>(parent_pad, args : <a href="../Array.html">Array</a>(<a href="../LLVM/Value.html">LLVM::Value</a>), name = <span class="s">&quot;&quot;</span>)
+
+        <a class="method-permalink" href="#catch_pad%28parent_pad%2Cargs%3AArray%28LLVM%3A%3AValue%29%2Cname%3D%22%22%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/builder.cr#L281" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="catch_switch(parent_pad,basic_block,num_handlers,name=&quot;&quot;)-instance-method">
+      <div class="signature">
+        
+        def <strong>catch_switch</strong>(parent_pad, basic_block, num_handlers, name = <span class="s">&quot;&quot;</span>)
+
+        <a class="method-permalink" href="#catch_switch%28parent_pad%2Cbasic_block%2Cnum_handlers%2Cname%3D%22%22%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/builder.cr#L277" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="clear_current_debug_location-instance-method">
+      <div class="signature">
+        
+        def <strong>clear_current_debug_location</strong>
+
+        <a class="method-permalink" href="#clear_current_debug_location-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/builder.cr#L363" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="cmpxchg(pointer,cmp,new,success_ordering,failure_ordering,singlethread:Bool=false)-instance-method">
+      <div class="signature">
+        
+        def <strong>cmpxchg</strong>(pointer, cmp, new, success_ordering, failure_ordering, singlethread : <a href="../Bool.html">Bool</a> = <span class="n">false</span>)
+
+        <a class="method-permalink" href="#cmpxchg%28pointer%2Ccmp%2Cnew%2Csuccess_ordering%2Cfailure_ordering%2Csinglethread%3ABool%3Dfalse%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/builder.cr#L338" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="cond(cond,then_block,else_block)-instance-method">
+      <div class="signature">
+        
+        def <strong>cond</strong>(cond, then_block, else_block)
+
+        <a class="method-permalink" href="#cond%28cond%2Cthen_block%2Celse_block%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/builder.cr#L29" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="current_debug_location-instance-method">
+      <div class="signature">
+        
+        def <strong>current_debug_location</strong>
+
+        <a class="method-permalink" href="#current_debug_location-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/builder.cr#L375" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="exact_sdiv(lhs,rhs,name=&quot;&quot;)-instance-method">
+      <div class="signature">
+        
+        def <strong>exact_sdiv</strong>(lhs, rhs, name = <span class="s">&quot;&quot;</span>)
+
+        <a class="method-permalink" href="#exact_sdiv%28lhs%2Crhs%2Cname%3D%22%22%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/builder.cr#L224" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="extract_value(value,index,name=&quot;&quot;)-instance-method">
+      <div class="signature">
+        
+        def <strong>extract_value</strong>(value, index, name = <span class="s">&quot;&quot;</span>)
+
+        <a class="method-permalink" href="#extract_value%28value%2Cindex%2Cname%3D%22%22%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/builder.cr#L209" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="fadd(lhs,rhs,name=&quot;&quot;)-instance-method">
+      <div class="signature">
+        
+        def <strong>fadd</strong>(lhs, rhs, name = <span class="s">&quot;&quot;</span>)
+
+        <a class="method-permalink" href="#fadd%28lhs%2Crhs%2Cname%3D%22%22%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/builder.cr#L224" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="fcmp(op,lhs,rhs,name=&quot;&quot;)-instance-method">
+      <div class="signature">
+        
+        def <strong>fcmp</strong>(op, lhs, rhs, name = <span class="s">&quot;&quot;</span>)
+
+        <a class="method-permalink" href="#fcmp%28op%2Clhs%2Crhs%2Cname%3D%22%22%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/builder.cr#L233" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="fdiv(lhs,rhs,name=&quot;&quot;)-instance-method">
+      <div class="signature">
+        
+        def <strong>fdiv</strong>(lhs, rhs, name = <span class="s">&quot;&quot;</span>)
+
+        <a class="method-permalink" href="#fdiv%28lhs%2Crhs%2Cname%3D%22%22%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/builder.cr#L224" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="fence(ordering,singlethread,name=&quot;&quot;)-instance-method">
+      <div class="signature">
+        
+        def <strong>fence</strong>(ordering, singlethread, name = <span class="s">&quot;&quot;</span>)
+
+        <a class="method-permalink" href="#fence%28ordering%2Csinglethread%2Cname%3D%22%22%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/builder.cr#L342" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="finalize-instance-method">
+      <div class="signature">
+        
+        def <strong>finalize</strong>
+
+        <a class="method-permalink" href="#finalize-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/builder.cr#L390" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="fmul(lhs,rhs,name=&quot;&quot;)-instance-method">
+      <div class="signature">
+        
+        def <strong>fmul</strong>(lhs, rhs, name = <span class="s">&quot;&quot;</span>)
+
+        <a class="method-permalink" href="#fmul%28lhs%2Crhs%2Cname%3D%22%22%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/builder.cr#L224" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="fneg(value,name=&quot;&quot;)-instance-method">
+      <div class="signature">
+        
+        def <strong>fneg</strong>(value, name = <span class="s">&quot;&quot;</span>)
+
+        <a class="method-permalink" href="#fneg%28value%2Cname%3D%22%22%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/builder.cr#L242" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="fp2si(value,type,name=&quot;&quot;)-instance-method">
+      <div class="signature">
+        
+        def <strong>fp2si</strong>(value, type, name = <span class="s">&quot;&quot;</span>)
+
+        <a class="method-permalink" href="#fp2si%28value%2Ctype%2Cname%3D%22%22%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/builder.cr#L215" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="fp2ui(value,type,name=&quot;&quot;)-instance-method">
+      <div class="signature">
+        
+        def <strong>fp2ui</strong>(value, type, name = <span class="s">&quot;&quot;</span>)
+
+        <a class="method-permalink" href="#fp2ui%28value%2Ctype%2Cname%3D%22%22%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/builder.cr#L215" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="fpext(value,type,name=&quot;&quot;)-instance-method">
+      <div class="signature">
+        
+        def <strong>fpext</strong>(value, type, name = <span class="s">&quot;&quot;</span>)
+
+        <a class="method-permalink" href="#fpext%28value%2Ctype%2Cname%3D%22%22%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/builder.cr#L215" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="fptrunc(value,type,name=&quot;&quot;)-instance-method">
+      <div class="signature">
+        
+        def <strong>fptrunc</strong>(value, type, name = <span class="s">&quot;&quot;</span>)
+
+        <a class="method-permalink" href="#fptrunc%28value%2Ctype%2Cname%3D%22%22%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/builder.cr#L215" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="fsub(lhs,rhs,name=&quot;&quot;)-instance-method">
+      <div class="signature">
+        
+        def <strong>fsub</strong>(lhs, rhs, name = <span class="s">&quot;&quot;</span>)
+
+        <a class="method-permalink" href="#fsub%28lhs%2Crhs%2Cname%3D%22%22%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/builder.cr#L224" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="gep(type:LLVM::Type,value:LLVM::Value,index1:LLVM::Value,index2:LLVM::Value,name=&quot;&quot;)-instance-method">
+      <div class="signature">
+        
+        def <strong>gep</strong>(type : <a href="../LLVM/Type.html">LLVM::Type</a>, value : <a href="../LLVM/Value.html">LLVM::Value</a>, index1 : <a href="../LLVM/Value.html">LLVM::Value</a>, index2 : <a href="../LLVM/Value.html">LLVM::Value</a>, name = <span class="s">&quot;&quot;</span>)
+
+        <a class="method-permalink" href="#gep%28type%3ALLVM%3A%3AType%2Cvalue%3ALLVM%3A%3AValue%2Cindex1%3ALLVM%3A%3AValue%2Cindex2%3ALLVM%3A%3AValue%2Cname%3D%22%22%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/builder.cr#L157" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="gep(value:LLVM::Value,indices:Array(LLVM::ValueRef),name=&quot;&quot;)-instance-method">
+      <div class="signature">
+        
+        def <strong>gep</strong>(value : <a href="../LLVM/Value.html">LLVM::Value</a>, indices : <a href="../Array.html">Array</a>(LLVM::ValueRef), name = <span class="s">&quot;&quot;</span>)
+
+        <a class="method-permalink" href="#gep%28value%3ALLVM%3A%3AValue%2Cindices%3AArray%28LLVM%3A%3AValueRef%29%2Cname%3D%22%22%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p><span class="flag red">DEPRECATED</span>  Pass the type of <code>value</code> as well (equal to <code>value.type</code>) in order to support LLVM 15+</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/builder.cr#L157" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="gep(type:LLVM::Type,value:LLVM::Value,indices:Array(LLVM::ValueRef),name=&quot;&quot;)-instance-method">
+      <div class="signature">
+        
+        def <strong>gep</strong>(type : <a href="../LLVM/Type.html">LLVM::Type</a>, value : <a href="../LLVM/Value.html">LLVM::Value</a>, indices : <a href="../Array.html">Array</a>(LLVM::ValueRef), name = <span class="s">&quot;&quot;</span>)
+
+        <a class="method-permalink" href="#gep%28type%3ALLVM%3A%3AType%2Cvalue%3ALLVM%3A%3AValue%2Cindices%3AArray%28LLVM%3A%3AValueRef%29%2Cname%3D%22%22%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/builder.cr#L157" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="gep(value:LLVM::Value,index1:LLVM::Value,index2:LLVM::Value,name=&quot;&quot;)-instance-method">
+      <div class="signature">
+        
+        def <strong>gep</strong>(value : <a href="../LLVM/Value.html">LLVM::Value</a>, index1 : <a href="../LLVM/Value.html">LLVM::Value</a>, index2 : <a href="../LLVM/Value.html">LLVM::Value</a>, name = <span class="s">&quot;&quot;</span>)
+
+        <a class="method-permalink" href="#gep%28value%3ALLVM%3A%3AValue%2Cindex1%3ALLVM%3A%3AValue%2Cindex2%3ALLVM%3A%3AValue%2Cname%3D%22%22%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p><span class="flag red">DEPRECATED</span>  Pass the type of <code>value</code> as well (equal to <code>value.type</code>) in order to support LLVM 15+</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/builder.cr#L157" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="gep(value:LLVM::Value,index:LLVM::Value,name=&quot;&quot;)-instance-method">
+      <div class="signature">
+        
+        def <strong>gep</strong>(value : <a href="../LLVM/Value.html">LLVM::Value</a>, index : <a href="../LLVM/Value.html">LLVM::Value</a>, name = <span class="s">&quot;&quot;</span>)
+
+        <a class="method-permalink" href="#gep%28value%3ALLVM%3A%3AValue%2Cindex%3ALLVM%3A%3AValue%2Cname%3D%22%22%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p><span class="flag red">DEPRECATED</span>  Pass the type of <code>value</code> as well (equal to <code>value.type</code>) in order to support LLVM 15+</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/builder.cr#L157" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="gep(type:LLVM::Type,value:LLVM::Value,index:LLVM::Value,name=&quot;&quot;)-instance-method">
+      <div class="signature">
+        
+        def <strong>gep</strong>(type : <a href="../LLVM/Type.html">LLVM::Type</a>, value : <a href="../LLVM/Value.html">LLVM::Value</a>, index : <a href="../LLVM/Value.html">LLVM::Value</a>, name = <span class="s">&quot;&quot;</span>)
+
+        <a class="method-permalink" href="#gep%28type%3ALLVM%3A%3AType%2Cvalue%3ALLVM%3A%3AValue%2Cindex%3ALLVM%3A%3AValue%2Cname%3D%22%22%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/builder.cr#L157" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="global_string_pointer(string,name=&quot;&quot;)-instance-method">
+      <div class="signature">
+        
+        def <strong>global_string_pointer</strong>(string, name = <span class="s">&quot;&quot;</span>)
+
+        <a class="method-permalink" href="#global_string_pointer%28string%2Cname%3D%22%22%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/builder.cr#L262" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="icmp(op,lhs,rhs,name=&quot;&quot;)-instance-method">
+      <div class="signature">
+        
+        def <strong>icmp</strong>(op, lhs, rhs, name = <span class="s">&quot;&quot;</span>)
+
+        <a class="method-permalink" href="#icmp%28op%2Clhs%2Crhs%2Cname%3D%22%22%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/builder.cr#L233" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="inbounds_gep(type:LLVM::Type,value:LLVM::Value,index1:LLVM::Value,index2:LLVM::Value,name=&quot;&quot;)-instance-method">
+      <div class="signature">
+        
+        def <strong>inbounds_gep</strong>(type : <a href="../LLVM/Type.html">LLVM::Type</a>, value : <a href="../LLVM/Value.html">LLVM::Value</a>, index1 : <a href="../LLVM/Value.html">LLVM::Value</a>, index2 : <a href="../LLVM/Value.html">LLVM::Value</a>, name = <span class="s">&quot;&quot;</span>)
+
+        <a class="method-permalink" href="#inbounds_gep%28type%3ALLVM%3A%3AType%2Cvalue%3ALLVM%3A%3AValue%2Cindex1%3ALLVM%3A%3AValue%2Cindex2%3ALLVM%3A%3AValue%2Cname%3D%22%22%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/builder.cr#L157" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="inbounds_gep(value:LLVM::Value,indices:Array(LLVM::ValueRef),name=&quot;&quot;)-instance-method">
+      <div class="signature">
+        
+        def <strong>inbounds_gep</strong>(value : <a href="../LLVM/Value.html">LLVM::Value</a>, indices : <a href="../Array.html">Array</a>(LLVM::ValueRef), name = <span class="s">&quot;&quot;</span>)
+
+        <a class="method-permalink" href="#inbounds_gep%28value%3ALLVM%3A%3AValue%2Cindices%3AArray%28LLVM%3A%3AValueRef%29%2Cname%3D%22%22%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p><span class="flag red">DEPRECATED</span>  Pass the type of <code>value</code> as well (equal to <code>value.type</code>) in order to support LLVM 15+</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/builder.cr#L157" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="inbounds_gep(type:LLVM::Type,value:LLVM::Value,indices:Array(LLVM::ValueRef),name=&quot;&quot;)-instance-method">
+      <div class="signature">
+        
+        def <strong>inbounds_gep</strong>(type : <a href="../LLVM/Type.html">LLVM::Type</a>, value : <a href="../LLVM/Value.html">LLVM::Value</a>, indices : <a href="../Array.html">Array</a>(LLVM::ValueRef), name = <span class="s">&quot;&quot;</span>)
+
+        <a class="method-permalink" href="#inbounds_gep%28type%3ALLVM%3A%3AType%2Cvalue%3ALLVM%3A%3AValue%2Cindices%3AArray%28LLVM%3A%3AValueRef%29%2Cname%3D%22%22%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/builder.cr#L157" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="inbounds_gep(value:LLVM::Value,index1:LLVM::Value,index2:LLVM::Value,name=&quot;&quot;)-instance-method">
+      <div class="signature">
+        
+        def <strong>inbounds_gep</strong>(value : <a href="../LLVM/Value.html">LLVM::Value</a>, index1 : <a href="../LLVM/Value.html">LLVM::Value</a>, index2 : <a href="../LLVM/Value.html">LLVM::Value</a>, name = <span class="s">&quot;&quot;</span>)
+
+        <a class="method-permalink" href="#inbounds_gep%28value%3ALLVM%3A%3AValue%2Cindex1%3ALLVM%3A%3AValue%2Cindex2%3ALLVM%3A%3AValue%2Cname%3D%22%22%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p><span class="flag red">DEPRECATED</span>  Pass the type of <code>value</code> as well (equal to <code>value.type</code>) in order to support LLVM 15+</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/builder.cr#L157" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="inbounds_gep(value:LLVM::Value,index:LLVM::Value,name=&quot;&quot;)-instance-method">
+      <div class="signature">
+        
+        def <strong>inbounds_gep</strong>(value : <a href="../LLVM/Value.html">LLVM::Value</a>, index : <a href="../LLVM/Value.html">LLVM::Value</a>, name = <span class="s">&quot;&quot;</span>)
+
+        <a class="method-permalink" href="#inbounds_gep%28value%3ALLVM%3A%3AValue%2Cindex%3ALLVM%3A%3AValue%2Cname%3D%22%22%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p><span class="flag red">DEPRECATED</span>  Pass the type of <code>value</code> as well (equal to <code>value.type</code>) in order to support LLVM 15+</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/builder.cr#L157" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="inbounds_gep(type:LLVM::Type,value:LLVM::Value,index:LLVM::Value,name=&quot;&quot;)-instance-method">
+      <div class="signature">
+        
+        def <strong>inbounds_gep</strong>(type : <a href="../LLVM/Type.html">LLVM::Type</a>, value : <a href="../LLVM/Value.html">LLVM::Value</a>, index : <a href="../LLVM/Value.html">LLVM::Value</a>, name = <span class="s">&quot;&quot;</span>)
+
+        <a class="method-permalink" href="#inbounds_gep%28type%3ALLVM%3A%3AType%2Cvalue%3ALLVM%3A%3AValue%2Cindex%3ALLVM%3A%3AValue%2Cname%3D%22%22%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/builder.cr#L157" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="insert_block-instance-method">
+      <div class="signature">
+        
+        def <strong>insert_block</strong>
+
+        <a class="method-permalink" href="#insert_block-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/builder.cr#L11" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="int2ptr(value,type,name=&quot;&quot;)-instance-method">
+      <div class="signature">
+        
+        def <strong>int2ptr</strong>(value, type, name = <span class="s">&quot;&quot;</span>)
+
+        <a class="method-permalink" href="#int2ptr%28value%2Ctype%2Cname%3D%22%22%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/builder.cr#L215" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="invoke(fn:LLVM::Function,args:Array(LLVM::Value),a_then,a_catch,bundle:LLVM::OperandBundleDef=LLVM::OperandBundleDef.null,name=&quot;&quot;)-instance-method">
+      <div class="signature">
+        
+        def <strong>invoke</strong>(fn : <a href="../LLVM/Function.html">LLVM::Function</a>, args : <a href="../Array.html">Array</a>(<a href="../LLVM/Value.html">LLVM::Value</a>), a_then, a_catch, bundle : <a href="../LLVM/OperandBundleDef.html">LLVM::OperandBundleDef</a> = <span class="t">LLVM</span><span class="t">::</span><span class="t">OperandBundleDef</span>.null, name = <span class="s">&quot;&quot;</span>)
+
+        <a class="method-permalink" href="#invoke%28fn%3ALLVM%3A%3AFunction%2Cargs%3AArray%28LLVM%3A%3AValue%29%2Ca_then%2Ca_catch%2Cbundle%3ALLVM%3A%3AOperandBundleDef%3DLLVM%3A%3AOperandBundleDef.null%2Cname%3D%22%22%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p><span class="flag red">DEPRECATED</span>  Pass the function type of <code>fn</code> as well (equal to <code>fn.function_type</code>) in order to support LLVM 15+</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/builder.cr#L298" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="invoke(type:LLVM::Type,fn:LLVM::Function,args:Array(LLVM::Value),a_then,a_catch,bundle:LLVM::OperandBundleDef,name=&quot;&quot;)-instance-method">
+      <div class="signature">
+        
+        def <strong>invoke</strong>(type : <a href="../LLVM/Type.html">LLVM::Type</a>, fn : <a href="../LLVM/Function.html">LLVM::Function</a>, args : <a href="../Array.html">Array</a>(<a href="../LLVM/Value.html">LLVM::Value</a>), a_then, a_catch, bundle : <a href="../LLVM/OperandBundleDef.html">LLVM::OperandBundleDef</a>, name = <span class="s">&quot;&quot;</span>)
+
+        <a class="method-permalink" href="#invoke%28type%3ALLVM%3A%3AType%2Cfn%3ALLVM%3A%3AFunction%2Cargs%3AArray%28LLVM%3A%3AValue%29%2Ca_then%2Ca_catch%2Cbundle%3ALLVM%3A%3AOperandBundleDef%2Cname%3D%22%22%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/builder.cr#L314" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="invoke(type:LLVM::Type,fn:LLVM::Function,args:Array(LLVM::Value),a_then,a_catch,*,name=&quot;&quot;)-instance-method">
+      <div class="signature">
+        
+        def <strong>invoke</strong>(type : <a href="../LLVM/Type.html">LLVM::Type</a>, fn : <a href="../LLVM/Function.html">LLVM::Function</a>, args : <a href="../Array.html">Array</a>(<a href="../LLVM/Value.html">LLVM::Value</a>), a_then, a_catch, *, name = <span class="s">&quot;&quot;</span>)
+
+        <a class="method-permalink" href="#invoke%28type%3ALLVM%3A%3AType%2Cfn%3ALLVM%3A%3AFunction%2Cargs%3AArray%28LLVM%3A%3AValue%29%2Ca_then%2Ca_catch%2C%2A%2Cname%3D%22%22%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/builder.cr#L307" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="landing_pad(type,personality,clauses,name=&quot;&quot;)-instance-method">
+      <div class="signature">
+        
+        def <strong>landing_pad</strong>(type, personality, clauses, name = <span class="s">&quot;&quot;</span>)
+
+        <a class="method-permalink" href="#landing_pad%28type%2Cpersonality%2Cclauses%2Cname%3D%22%22%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/builder.cr#L266" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="load(ptr:LLVM::Value,name=&quot;&quot;)-instance-method">
+      <div class="signature">
+        
+        def <strong>load</strong>(ptr : <a href="../LLVM/Value.html">LLVM::Value</a>, name = <span class="s">&quot;&quot;</span>)
+
+        <a class="method-permalink" href="#load%28ptr%3ALLVM%3A%3AValue%2Cname%3D%22%22%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p><span class="flag red">DEPRECATED</span>  Pass the pointee of <code>ptr</code> as well (equal to <code>ptr.type.element_type</code>) in order to support LLVM 15+</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/builder.cr#L132" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="load(type:LLVM::Type,ptr:LLVM::Value,name=&quot;&quot;)-instance-method">
+      <div class="signature">
+        
+        def <strong>load</strong>(type : <a href="../LLVM/Type.html">LLVM::Type</a>, ptr : <a href="../LLVM/Value.html">LLVM::Value</a>, name = <span class="s">&quot;&quot;</span>)
+
+        <a class="method-permalink" href="#load%28type%3ALLVM%3A%3AType%2Cptr%3ALLVM%3A%3AValue%2Cname%3D%22%22%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/builder.cr#L138" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="load_volatile(ptr:LLVM::Value,name=&quot;&quot;)-instance-method">
+      <div class="signature">
+        
+        def <strong>load_volatile</strong>(ptr : <a href="../LLVM/Value.html">LLVM::Value</a>, name = <span class="s">&quot;&quot;</span>)
+
+        <a class="method-permalink" href="#load_volatile%28ptr%3ALLVM%3A%3AValue%2Cname%3D%22%22%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/builder.cr#L149" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="load_volatile(type:LLVM::Type,ptr:LLVM::Value,name=&quot;&quot;)-instance-method">
+      <div class="signature">
+        
+        def <strong>load_volatile</strong>(type : <a href="../LLVM/Type.html">LLVM::Type</a>, ptr : <a href="../LLVM/Value.html">LLVM::Value</a>, name = <span class="s">&quot;&quot;</span>)
+
+        <a class="method-permalink" href="#load_volatile%28type%3ALLVM%3A%3AType%2Cptr%3ALLVM%3A%3AValue%2Cname%3D%22%22%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/builder.cr#L153" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="lshr(lhs,rhs,name=&quot;&quot;)-instance-method">
+      <div class="signature">
+        
+        def <strong>lshr</strong>(lhs, rhs, name = <span class="s">&quot;&quot;</span>)
+
+        <a class="method-permalink" href="#lshr%28lhs%2Crhs%2Cname%3D%22%22%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/builder.cr#L224" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="mul(lhs,rhs,name=&quot;&quot;)-instance-method">
+      <div class="signature">
+        
+        def <strong>mul</strong>(lhs, rhs, name = <span class="s">&quot;&quot;</span>)
+
+        <a class="method-permalink" href="#mul%28lhs%2Crhs%2Cname%3D%22%22%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/builder.cr#L224" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="neg(value,name=&quot;&quot;)-instance-method">
+      <div class="signature">
+        
+        def <strong>neg</strong>(value, name = <span class="s">&quot;&quot;</span>)
+
+        <a class="method-permalink" href="#neg%28value%2Cname%3D%22%22%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/builder.cr#L242" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="not(value,name=&quot;&quot;)-instance-method">
+      <div class="signature">
+        
+        def <strong>not</strong>(value, name = <span class="s">&quot;&quot;</span>)
+
+        <a class="method-permalink" href="#not%28value%2Cname%3D%22%22%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/builder.cr#L242" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="or(lhs,rhs,name=&quot;&quot;)-instance-method">
+      <div class="signature">
+        
+        def <strong>or</strong>(lhs, rhs, name = <span class="s">&quot;&quot;</span>)
+
+        <a class="method-permalink" href="#or%28lhs%2Crhs%2Cname%3D%22%22%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/builder.cr#L224" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="phi(type,incoming_blocks:Array(LLVM::BasicBlock),incoming_values:Array(LLVM::Value),name=&quot;&quot;)-instance-method">
+      <div class="signature">
+        
+        def <strong>phi</strong>(type, incoming_blocks : <a href="../Array.html">Array</a>(<a href="../LLVM/BasicBlock.html">LLVM::BasicBlock</a>), incoming_values : <a href="../Array.html">Array</a>(<a href="../LLVM/Value.html">LLVM::Value</a>), name = <span class="s">&quot;&quot;</span>)
+
+        <a class="method-permalink" href="#phi%28type%2Cincoming_blocks%3AArray%28LLVM%3A%3ABasicBlock%29%2Cincoming_values%3AArray%28LLVM%3A%3AValue%29%2Cname%3D%22%22%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/builder.cr#L41" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="phi(type,table:LLVM::PhiTable,name=&quot;&quot;)-instance-method">
+      <div class="signature">
+        
+        def <strong>phi</strong>(type, table : <a href="../LLVM/PhiTable.html">LLVM::PhiTable</a>, name = <span class="s">&quot;&quot;</span>)
+
+        <a class="method-permalink" href="#phi%28type%2Ctable%3ALLVM%3A%3APhiTable%2Cname%3D%22%22%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/builder.cr#L35" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="position_at_end(block)-instance-method">
+      <div class="signature">
+        
+        def <strong>position_at_end</strong>(block)
+
+        <a class="method-permalink" href="#position_at_end%28block%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/builder.cr#L7" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="ptr2int(value,type,name=&quot;&quot;)-instance-method">
+      <div class="signature">
+        
+        def <strong>ptr2int</strong>(value, type, name = <span class="s">&quot;&quot;</span>)
+
+        <a class="method-permalink" href="#ptr2int%28value%2Ctype%2Cname%3D%22%22%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/builder.cr#L215" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="ret(value)-instance-method">
+      <div class="signature">
+        
+        def <strong>ret</strong>(value)
+
+        <a class="method-permalink" href="#ret%28value%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/builder.cr#L19" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="ret-instance-method">
+      <div class="signature">
+        
+        def <strong>ret</strong>
+
+        <a class="method-permalink" href="#ret-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/builder.cr#L15" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="sdiv(lhs,rhs,name=&quot;&quot;)-instance-method">
+      <div class="signature">
+        
+        def <strong>sdiv</strong>(lhs, rhs, name = <span class="s">&quot;&quot;</span>)
+
+        <a class="method-permalink" href="#sdiv%28lhs%2Crhs%2Cname%3D%22%22%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/builder.cr#L224" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="select(cond,a_then,a_else,name=&quot;&quot;)-instance-method">
+      <div class="signature">
+        
+        def <strong>select</strong>(cond, a_then, a_else, name = <span class="s">&quot;&quot;</span>)
+
+        <a class="method-permalink" href="#select%28cond%2Ca_then%2Ca_else%2Cname%3D%22%22%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/builder.cr#L254" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="set_current_debug_location(line,column,scope,inlined_at=nil)-instance-method">
+      <div class="signature">
+        
+        def <strong>set_current_debug_location</strong>(line, column, scope, inlined_at = <span class="n">nil</span>)
+
+        <a class="method-permalink" href="#set_current_debug_location%28line%2Ccolumn%2Cscope%2Cinlined_at%3Dnil%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p><span class="flag red">DEPRECATED</span>  Call <code><a href="../LLVM/Builder.html#set_current_debug_location%28metadata%2Ccontext%3ALLVM%3A%3AContext%29-instance-method">#set_current_debug_location(metadata, context)</a></code> or <code><a href="../LLVM/Builder.html#clear_current_debug_location-instance-method">#clear_current_debug_location</a></code> instead</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/builder.cr#L351" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="set_current_debug_location(metadata,context:LLVM::Context)-instance-method">
+      <div class="signature">
+        
+        def <strong>set_current_debug_location</strong>(metadata, context : <a href="../LLVM/Context.html">LLVM::Context</a>)
+
+        <a class="method-permalink" href="#set_current_debug_location%28metadata%2Ccontext%3ALLVM%3A%3AContext%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/builder.cr#L355" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="set_metadata(value,kind,node)-instance-method">
+      <div class="signature">
+        
+        def <strong>set_metadata</strong>(value, kind, node)
+
+        <a class="method-permalink" href="#set_metadata%28value%2Ckind%2Cnode%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/builder.cr#L371" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="sext(value,type,name=&quot;&quot;)-instance-method">
+      <div class="signature">
+        
+        def <strong>sext</strong>(value, type, name = <span class="s">&quot;&quot;</span>)
+
+        <a class="method-permalink" href="#sext%28value%2Ctype%2Cname%3D%22%22%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/builder.cr#L215" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="shl(lhs,rhs,name=&quot;&quot;)-instance-method">
+      <div class="signature">
+        
+        def <strong>shl</strong>(lhs, rhs, name = <span class="s">&quot;&quot;</span>)
+
+        <a class="method-permalink" href="#shl%28lhs%2Crhs%2Cname%3D%22%22%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/builder.cr#L224" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="si2fp(value,type,name=&quot;&quot;)-instance-method">
+      <div class="signature">
+        
+        def <strong>si2fp</strong>(value, type, name = <span class="s">&quot;&quot;</span>)
+
+        <a class="method-permalink" href="#si2fp%28value%2Ctype%2Cname%3D%22%22%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/builder.cr#L215" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="srem(lhs,rhs,name=&quot;&quot;)-instance-method">
+      <div class="signature">
+        
+        def <strong>srem</strong>(lhs, rhs, name = <span class="s">&quot;&quot;</span>)
+
+        <a class="method-permalink" href="#srem%28lhs%2Crhs%2Cname%3D%22%22%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/builder.cr#L224" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="store(value,ptr)-instance-method">
+      <div class="signature">
+        
+        def <strong>store</strong>(value, ptr)
+
+        <a class="method-permalink" href="#store%28value%2Cptr%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/builder.cr#L124" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="store_volatile(value,ptr)-instance-method">
+      <div class="signature">
+        
+        def <strong>store_volatile</strong>(value, ptr)
+
+        <a class="method-permalink" href="#store_volatile%28value%2Cptr%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/builder.cr#L145" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="sub(lhs,rhs,name=&quot;&quot;)-instance-method">
+      <div class="signature">
+        
+        def <strong>sub</strong>(lhs, rhs, name = <span class="s">&quot;&quot;</span>)
+
+        <a class="method-permalink" href="#sub%28lhs%2Crhs%2Cname%3D%22%22%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/builder.cr#L224" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="switch(value,otherwise,cases)-instance-method">
+      <div class="signature">
+        
+        def <strong>switch</strong>(value, otherwise, cases)
+
+        <a class="method-permalink" href="#switch%28value%2Cotherwise%2Ccases%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/builder.cr#L324" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_unsafe:LibLLVM::BuilderRef-instance-method">
+      <div class="signature">
+        
+        def <strong>to_unsafe</strong> : LibLLVM::BuilderRef
+
+        <a class="method-permalink" href="#to_unsafe%3ALibLLVM%3A%3ABuilderRef-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/builder.cr#L379" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="trunc(value,type,name=&quot;&quot;)-instance-method">
+      <div class="signature">
+        
+        def <strong>trunc</strong>(value, type, name = <span class="s">&quot;&quot;</span>)
+
+        <a class="method-permalink" href="#trunc%28value%2Ctype%2Cname%3D%22%22%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/builder.cr#L215" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="udiv(lhs,rhs,name=&quot;&quot;)-instance-method">
+      <div class="signature">
+        
+        def <strong>udiv</strong>(lhs, rhs, name = <span class="s">&quot;&quot;</span>)
+
+        <a class="method-permalink" href="#udiv%28lhs%2Crhs%2Cname%3D%22%22%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/builder.cr#L224" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="ui2fp(value,type,name=&quot;&quot;)-instance-method">
+      <div class="signature">
+        
+        def <strong>ui2fp</strong>(value, type, name = <span class="s">&quot;&quot;</span>)
+
+        <a class="method-permalink" href="#ui2fp%28value%2Ctype%2Cname%3D%22%22%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/builder.cr#L215" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="unreachable-instance-method">
+      <div class="signature">
+        
+        def <strong>unreachable</strong>
+
+        <a class="method-permalink" href="#unreachable-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/builder.cr#L250" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="urem(lhs,rhs,name=&quot;&quot;)-instance-method">
+      <div class="signature">
+        
+        def <strong>urem</strong>(lhs, rhs, name = <span class="s">&quot;&quot;</span>)
+
+        <a class="method-permalink" href="#urem%28lhs%2Crhs%2Cname%3D%22%22%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/builder.cr#L224" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="va_arg(list,type,name=&quot;&quot;)-instance-method">
+      <div class="signature">
+        
+        def <strong>va_arg</strong>(list, type, name = <span class="s">&quot;&quot;</span>)
+
+        <a class="method-permalink" href="#va_arg%28list%2Ctype%2Cname%3D%22%22%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/builder.cr#L346" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="xor(lhs,rhs,name=&quot;&quot;)-instance-method">
+      <div class="signature">
+        
+        def <strong>xor</strong>(lhs, rhs, name = <span class="s">&quot;&quot;</span>)
+
+        <a class="method-permalink" href="#xor%28lhs%2Crhs%2Cname%3D%22%22%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/builder.cr#L224" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="zext(value,type,name=&quot;&quot;)-instance-method">
+      <div class="signature">
+        
+        def <strong>zext</strong>(value, type, name = <span class="s">&quot;&quot;</span>)
+
+        <a class="method-permalink" href="#zext%28value%2Ctype%2Cname%3D%22%22%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/llvm/builder.cr#L215" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+</div>
+
+</body>
+</html>

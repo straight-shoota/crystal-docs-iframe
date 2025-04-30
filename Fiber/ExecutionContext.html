@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Crystal Docs 1.16.1">
+<meta name="crystal_docs.project_version" content="1.17.0-dev">
+<meta name="crystal_docs.project_name" content="Crystal">
+
+  <meta name="crystal_docs.json_config_url" content="/api/versions.json">
+
+
+    <link rel="canonical" href="https://crystal-lang.org/api/latest/Fiber/ExecutionContext.html">
+
+<link href="../css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../js/doc.js"></script>
+
+  <meta name="repository-name" content="Crystal">
+  <title>Fiber::ExecutionContext - Crystal 1.17.0-dev</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "../";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill="currentColor" fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<input type="checkbox" id="sidebar-btn">
+<label for="sidebar-btn" id="sidebar-btn-label">
+  <svg class="open" xmlns="http://www.w3.org/2000/svg" height="2em" width="2em" viewBox="0 0 512 512"><title>Open Sidebar</title><path fill="currentColor" d="M80 96v64h352V96H80zm0 112v64h352v-64H80zm0 112v64h352v-64H80z"></path></svg>
+  <svg class="close" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><title>Close Sidebar</title><path fill="currentColor" d="m118.6 73.4-45.2 45.2L210.7 256 73.4 393.4l45.2 45.2L256 301.3l137.4 137.3 45.2-45.2L301.3 256l137.3-137.4-45.2-45.2L256 210.7Z"></path></svg>
+</label>
+<iframe class="sidebar" src="../sidebar.html"></iframe>
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">
+    module
+  </span> Fiber::<wbr>ExecutionContext
+
+</h1>
+
+
+
+
+
+  <h2>
+    <a id="overview" class="anchor" href="#overview">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Overview
+  </h2>
+
+  <p>An execution context creates and manages a dedicated pool of 1 or more threads
+where fibers can be executed into. Each context manages the rules to run,
+suspend and swap fibers internally.</p>
+<p><span class="flag lime">EXPERIMENTAL</span>  Execution contexts are an experimental feature, implementing
+<a href="https://github.com/crystal-lang/rfcs/pull/2">RFC 2</a>. It's opt-in and requires
+the compiler flags <code>-Dpreview_mt -Dexecution_context</code>.</p>
+<p>Applications can create any number of execution contexts in parallel. These
+contexts are isolated but they can communicate with the usual thread-safe
+synchronization primitives (e.g. <code><a href="../Channel.html">Channel</a></code>, <code><a href="../Mutex.html">Mutex</a></code>).</p>
+<p>An execution context groups fibers together. Instead of associating a fiber to
+a specific thread, we associate a fiber to an execution context, abstracting
+which thread(s) they actually run on.</p>
+<p>When spawning a fiber with <code>::spawn</code>, it spawns into the execution context of
+the current fiber. Thus child fibers execute in the same context as their
+parent (unless told otherwise).</p>
+<p>Once spawned, a fiber cannot <em>move</em> to another execution context. It always
+resumes in the same execution context.</p>
+<h2><a id="context-types" class="anchor" href="#context-types">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Context types</h2>
+<p>The standard library provides a number of execution context implementations
+for common use cases.</p>
+<ul>
+<li><code><a href="../Fiber/ExecutionContext/SingleThreaded.html">ExecutionContext::SingleThreaded</a></code>: Fully concurrent with limited
+parallelism. Fibers run concurrently in a single thread and never in parallel.
+They can use simpler and faster synchronization primitives internally (no
+atomics, no thread safety). Communication with fibers in other contexts
+requires thread-safe primitives. A blocking fiber blocks the entire thread and
+all other fibers in the context.</li>
+<li><code><a href="../Fiber/ExecutionContext/MultiThreaded.html">ExecutionContext::MultiThreaded</a></code>: Fully concurrent, fully parallel. Fibers
+running in this context can be resumed by any thread in this context. They run
+concurrently and in parallel to each other, in addition to running in parallel
+to any fibers in other contexts. Schedulers steal work from each other. The
+number of threads can grow and shrink dynamically.</li>
+<li><code><a href="../Fiber/ExecutionContext/Isolated.html">ExecutionContext::Isolated</a></code>: Single fiber in a single thread without
+concurrency. This is useful for tasks that can block thread execution for a
+long time (e.g. a GUI main loop, a game loop, or CPU heavy computation). The
+event-loop works normally (when the fiber sleeps, it pauses the thread).
+Communication with fibers in other contexts requires thread-safe primitives.</li>
+</ul>
+<h2><a id="the-default-execution-context" class="anchor" href="#the-default-execution-context">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>The default execution context</h2>
+<p>The Crystal runtime starts with a single threaded execution context, available
+in <code><a href="../Fiber/ExecutionContext.html#default%3AExecutionContext-class-method">Fiber::ExecutionContext.default</a></code>.</p>
+<pre><code class="language-crystal"><span class="t">Fiber</span><span class="t">::</span><span class="t">ExecutionContext</span>.default.<span class="k">class</span> <span class="c"># =&gt; Fiber::ExecutionContext::SingleThreaded</span></code></pre>
+<p><span class="flag purple">NOTE</span>  The single threaded default context is required for backwards
+compatibility. It may change to a multi-threaded default context in the
+future.</p>
+<p><span class="flag lime">EXPERIMENTAL</span> </p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="direct-including-types" class="anchor" href="#direct-including-types">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Direct including types
+  </h2>
+  <ul class="other-types-list">
+    
+      <li class="other-type"><a href="../Fiber/ExecutionContext/Isolated.html">Fiber::ExecutionContext::Isolated</a></li>
+    
+      <li class="other-type"><a href="../Fiber/ExecutionContext/MultiThreaded.html">Fiber::ExecutionContext::MultiThreaded</a></li>
+    
+      <li class="other-type"><a href="../Fiber/ExecutionContext/SingleThreaded.html">Fiber::ExecutionContext::SingleThreaded</a></li>
+    
+  </ul>
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/fiber/execution_context.cr#L69" target="_blank">
+        fiber/execution_context.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/fiber/execution_context/global_queue.cr#L8" target="_blank">
+        fiber/execution_context/global_queue.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/fiber/execution_context/isolated.cr#L4" target="_blank">
+        fiber/execution_context/isolated.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/fiber/execution_context/monitor.cr#L1" target="_blank">
+        fiber/execution_context/monitor.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/fiber/execution_context/multi_threaded.cr#L4" target="_blank">
+        fiber/execution_context/multi_threaded.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/fiber/execution_context/multi_threaded/scheduler.cr#L5" target="_blank">
+        fiber/execution_context/multi_threaded/scheduler.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/fiber/execution_context/runnables.cr#L14" target="_blank">
+        fiber/execution_context/runnables.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/fiber/execution_context/scheduler.cr#L1" target="_blank">
+        fiber/execution_context/scheduler.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/fiber/execution_context/single_threaded.cr#L5" target="_blank">
+        fiber/execution_context/single_threaded.cr
+      </a>
+    
+    <br/>
+  
+
+
+
+
+
+  
+  <h2>
+    <a id="constructors" class="anchor" href="#constructors">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructors
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#current%3AExecutionContext-class-method" class="signature"><strong>.current</strong> : ExecutionContext</a>
+        
+          <div class="summary"><p>Returns the <code><a href="../Fiber/ExecutionContext.html">ExecutionContext</a></code> the current fiber is running in.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#default%3AExecutionContext-class-method" class="signature"><strong>.default</strong> : ExecutionContext</a>
+        
+          <div class="summary"><p>Returns the default <code><a href="../Fiber/ExecutionContext.html">ExecutionContext</a></code> for the process, automatically started when the program started.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+  
+  <h2>
+    <a id="class-method-summary" class="anchor" href="#class-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Class Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#default_workers_count%3AInt32-class-method" class="signature"><strong>.default_workers_count</strong> : Int32</a>
+        
+          <div class="summary"><p>Returns the number of threads to start in the default multi threaded execution context.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#each%28%26%29%3ANil-class-method" class="signature"><strong>.each</strong>(&) : Nil</a>
+        
+          <div class="summary"><p>Iterates all execution contexts.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+  
+
+  
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#spawn%28%2A%2Cname%3AString%7CNil%3Dnil%2C%26block%3A-%3E%29%3AFiber-instance-method" class="signature"><strong>#spawn</strong>(*, name : String | Nil = <span class="n">nil</span>, &block :  -> ) : Fiber</a>
+        
+          <div class="summary"><p>Creates a new fiber then calls <code>#enqueue</code> to add it to the execution context.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+
+  <div class="methods-inherited">
+    
+  </div>
+
+  
+  <h2>
+    <a id="constructor-detail" class="anchor" href="#constructor-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructor Detail
+  </h2>
+  
+    <div class="entry-detail" id="current:ExecutionContext-class-method">
+      <div class="signature">
+        
+        def self.<strong>current</strong> : <a href="../Fiber/ExecutionContext.html">ExecutionContext</a>
+
+        <a class="method-permalink" href="#current%3AExecutionContext-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the <code><a href="../Fiber/ExecutionContext.html">ExecutionContext</a></code> the current fiber is running in.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/fiber/execution_context.cr#L121" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="default:ExecutionContext-class-method">
+      <div class="signature">
+        
+        def self.<strong>default</strong> : <a href="../Fiber/ExecutionContext.html">ExecutionContext</a>
+
+        <a class="method-permalink" href="#default%3AExecutionContext-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the default <code><a href="../Fiber/ExecutionContext.html">ExecutionContext</a></code> for the process, automatically
+started when the program started.</p>
+<p><span class="flag purple">NOTE</span>  The default context is a <code><a href="../Fiber/ExecutionContext/SingleThreaded.html">SingleThreaded</a></code> context for backwards
+compatibility reasons. It may change to a multi-threaded default context in
+the future.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/fiber/execution_context.cr#L79" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+  
+  <h2>
+    <a id="class-method-detail" class="anchor" href="#class-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Class Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="default_workers_count:Int32-class-method">
+      <div class="signature">
+        
+        def self.<strong>default_workers_count</strong> : <a href="../Int32.html">Int32</a>
+
+        <a class="method-permalink" href="#default_workers_count%3AInt32-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the number of threads to start in the default multi threaded
+execution context. Respects the <code>CRYSTAL_WORKERS</code> environment variable
+and otherwise returns the potential parallelism of the CPU (number of
+hardware threads).</p>
+<p>Currently unused because the default context is single threaded for
+now (this might change later with compilation flags).</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/fiber/execution_context.cr#L96" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="each(&amp;):Nil-class-method">
+      <div class="signature">
+        
+        def self.<strong>each</strong>(&) : <a href="../Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#each%28%26%29%3ANil-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Iterates all execution contexts.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/fiber/execution_context.cr#L115" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+  
+
+  
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="spawn(*,name:String|Nil=nil,&amp;block:-&gt;):Fiber-instance-method">
+      <div class="signature">
+        
+        def <strong>spawn</strong>(*, name : <a href="../String.html">String</a> | <a href="../Nil.html">Nil</a> = <span class="n">nil</span>, &block :  -> ) : <a href="../Fiber.html">Fiber</a>
+
+        <a class="method-permalink" href="#spawn%28%2A%2Cname%3AString%7CNil%3Dnil%2C%26block%3A-%3E%29%3AFiber-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Creates a new fiber then calls <code>#enqueue</code> to add it to the execution
+context.</p>
+<p>May be called from any <code><a href="../Fiber/ExecutionContext.html">ExecutionContext</a></code> (i.e. must be thread-safe).</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/fiber/execution_context.cr#L161" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+</div>
+
+</body>
+</html>

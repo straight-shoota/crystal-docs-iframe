@@ -1,0 +1,2519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Crystal Docs 1.16.1">
+<meta name="crystal_docs.project_version" content="1.17.0-dev">
+<meta name="crystal_docs.project_name" content="Crystal">
+
+  <meta name="crystal_docs.json_config_url" content="/api/versions.json">
+
+
+    <link rel="canonical" href="https://crystal-lang.org/api/latest/Object.html">
+
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/doc.js"></script>
+
+  <meta name="repository-name" content="Crystal">
+  <title>Object - Crystal 1.17.0-dev</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill="currentColor" fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<input type="checkbox" id="sidebar-btn">
+<label for="sidebar-btn" id="sidebar-btn-label">
+  <svg class="open" xmlns="http://www.w3.org/2000/svg" height="2em" width="2em" viewBox="0 0 512 512"><title>Open Sidebar</title><path fill="currentColor" d="M80 96v64h352V96H80zm0 112v64h352v-64H80zm0 112v64h352v-64H80z"></path></svg>
+  <svg class="close" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><title>Close Sidebar</title><path fill="currentColor" d="m118.6 73.4-45.2 45.2L210.7 256 73.4 393.4l45.2 45.2L256 301.3l137.4 137.3 45.2-45.2L301.3 256l137.3-137.4-45.2-45.2L256 210.7Z"></path></svg>
+</label>
+<iframe class="sidebar" src="sidebar.html"></iframe>
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">
+    abstract class
+  </span> Object
+
+</h1>
+
+
+
+
+
+  <h2>
+    <a id="overview" class="anchor" href="#overview">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Overview
+  </h2>
+
+  <p><code><a href="Object.html">Object</a></code> is the base type of all Crystal objects.</p>
+<h2><a id="getters" class="anchor" href="#getters">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Getters</h2>
+<p>Multiple macros are available to easily declare, initialize and expose
+instance variables as well as class variables on an <code><a href="Object.html">Object</a></code> by generating
+simple accessor methods.</p>
+<p>For example writing:</p>
+<pre><code class="language-crystal"><span class="k">class</span> <span class="t">Person</span>
+  getter name
+<span class="k">end</span></code></pre>
+<p>Is the same as writing:</p>
+<pre><code class="language-crystal"><span class="k">class</span> <span class="t">Person</span>
+  <span class="k">def</span> <span class="m">name</span>
+    @name
+  <span class="k">end</span>
+<span class="k">end</span></code></pre>
+<p>Similarly, we can write <code>class_getter name</code> to define a class variable, which
+generates a <code>def self.name</code> class method returning <code>@@name</code>.</p>
+<p>We can define as many variables as necessary in a single call. For example
+<code>getter name, age, city</code> will create a getter method for each of <code>name</code>, <code>age</code>
+and <code>city</code>.</p>
+<h3><a id="type-and-initial-value" class="anchor" href="#type-and-initial-value">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Type and initial value</h3>
+<p>Instead of plain arguments, we can specify a type as well as an initial value.
+If the initial value is simple enough Crystal should be able to infer the type
+of the instance or class variable!</p>
+<p>Specifying a type will also declare the instance or class variable with said
+type and type the accessor method arguments and return type accordingly.</p>
+<p>For example writing:</p>
+<pre><code class="language-crystal"><span class="k">class</span> <span class="t">Person</span>
+  getter name : <span class="t">String</span>
+  getter age <span class="o">=</span> <span class="n">0</span>
+  getter city : <span class="t">String</span> <span class="o">=</span> <span class="s">&quot;unspecified&quot;</span>
+<span class="k">end</span></code></pre>
+<p>Is the same as writing:</p>
+<pre><code class="language-crystal"><span class="k">class</span> <span class="t">Person</span>
+  @name : <span class="t">String</span>
+  @age <span class="o">=</span> <span class="n">0</span>
+  @city : <span class="t">String</span> <span class="o">=</span> <span class="s">&quot;unspecified&quot;</span>
+
+  <span class="k">def</span> <span class="m">name</span> : <span class="t">String</span>
+    @name
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="m">age</span>
+    @age
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="m">city</span> : <span class="t">String</span>
+    @city
+  <span class="k">end</span>
+<span class="k">end</span></code></pre>
+<p>The initial value of an instance variable is automatically set when the object
+is constructed. The initial value of a class variable will be set when the
+program starts up.</p>
+<h3><a id="lazy-initialization" class="anchor" href="#lazy-initialization">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Lazy initialization</h3>
+<p>Instead of eagerly initializing the value, we can lazily initialize it the
+first time the accessor method is called.</p>
+<p>Since the variable will be lazily initialized the type of the variable will be
+a nilable type. The generated method however will return the specified type
+only (not a nilable).</p>
+<p>For example writing:</p>
+<pre><code class="language-crystal"><span class="k">class</span> <span class="t">Person</span>
+  getter(city : <span class="t">City</span>) { <span class="t">City</span>.unspecified }
+<span class="k">end</span></code></pre>
+<p>Is equivalent to writing:</p>
+<pre><code class="language-crystal"><span class="k">class</span> <span class="t">Person</span>
+  @city : <span class="t">City</span>?
+
+  <span class="k">def</span> <span class="m">city</span> : <span class="t">City</span>
+    <span class="k">if</span> (city <span class="o">==</span> @city).<span class="k">nil?</span>
+      @city <span class="o">=</span> <span class="t">City</span>.unspecified
+    <span class="k">else</span>
+      city
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span></code></pre>
+<h3><a id="variants" class="anchor" href="#variants">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Variants</h3>
+<p>Please refer to the different variants to understand how they differ from the
+general overview presented above:</p>
+<ul>
+<li><code><a href="Object.html#getter%28%2Anames%2C%26block%29-macro">getter</a></code></li>
+<li><code><a href="Object.html#getter%3F%28%2Anames%2C%26block%29-macro">getter?</a></code></li>
+<li><code><a href="Object.html#getter%21%28%2Anames%29-macro">getter!</a></code></li>
+<li><code><a href="Object.html#class_getter%28%2Anames%2C%26block%29-macro">class_getter</a></code></li>
+<li><code><a href="Object.html#class_getter%3F%28%2Anames%2C%26block%29-macro">class_getter?</a></code></li>
+<li><code><a href="Object.html#class_getter%21%28%2Anames%29-macro">class_getter!</a></code></li>
+</ul>
+<h2><a id="setters" class="anchor" href="#setters">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Setters</h2>
+<p>The <code><a href="Object.html#setter%28%2Anames%29-macro">setter</a></code> and <code><a href="Object.html#class_setter%28%2Anames%29-macro">class_setter</a></code> macros are the write counterparts of the
+getter macros. They declare <code>name=(value)</code> accessor methods. The arguments
+behave just as for the getter macros. Each setter can have a type as well as
+an initial value. There is no lazy initialization however since the macro
+doesn't generate a getter method.</p>
+<p>For example writing:</p>
+<pre><code class="language-crystal"><span class="k">class</span> <span class="t">Person</span>
+  setter name
+  setter age <span class="o">=</span> <span class="n">0</span>
+  setter city : <span class="t">String</span> <span class="o">=</span> <span class="s">&quot;unspecified&quot;</span>
+<span class="k">end</span></code></pre>
+<p>Is the same as writing:</p>
+<pre><code class="language-crystal"><span class="k">class</span> <span class="t">Person</span>
+  @age <span class="o">=</span> <span class="n">0</span>
+  @city : <span class="t">String</span> <span class="o">=</span> <span class="s">&quot;unspecified&quot;</span>
+
+  <span class="k">def</span> <span class="m">name</span><span class="o">=</span>(@name)
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="m">age</span><span class="o">=</span>(@age)
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="m">city</span><span class="o">=</span>(@city : <span class="t">String</span>) : <span class="t">String</span>
+  <span class="k">end</span>
+<span class="k">end</span></code></pre>
+<p>For class variables we'd have called <code>class_setter name</code> that would have
+generated a <code>def self.name=(@@name)</code> class method instead.</p>
+<h2><a id="properties" class="anchor" href="#properties">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Properties</h2>
+<p>The property macros define both getter and setter methods at once.</p>
+<p>For example writing:</p>
+<pre><code class="language-crystal"><span class="k">class</span> <span class="t">Person</span>
+  property name
+<span class="k">end</span></code></pre>
+<p>Is equivalent to writing:</p>
+<pre><code class="language-crystal"><span class="k">class</span> <span class="t">Person</span>
+  getter name
+  setter name
+<span class="k">end</span></code></pre>
+<p>Which is the same as writing:</p>
+<pre><code class="language-crystal"><span class="k">class</span> <span class="t">Person</span>
+  <span class="k">def</span> <span class="m">name</span>
+    @name
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="m">name</span><span class="o">=</span>(@name)
+  <span class="k">end</span>
+<span class="k">end</span></code></pre>
+<p>Refer to <a href="#getters">Getters</a> and <a href="#setters">Setters</a> above for details. The
+macros take the exact same arguments.</p>
+
+
+
+
+
+
+
+  <h2>
+    <a id="included-modules" class="anchor" href="#included-modules">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Included Modules
+  </h2>
+  <ul class="other-types-list">
+    
+      <li class="other-type"><a href="Colorize/ObjectExtensions.html">Colorize::ObjectExtensions</a></li>
+    
+      <li class="other-type"><a href="Spec/ObjectExtensions.html">Spec::ObjectExtensions</a></li>
+    
+  </ul>
+
+
+
+
+
+  <h2>
+    <a id="direct-known-subclasses" class="anchor" href="#direct-known-subclasses">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Direct Known Subclasses
+  </h2>
+  <ul class="other-types-list">
+    
+      <li class="other-type"><a href="Reference.html">Reference</a></li>
+    
+      <li class="other-type"><a href="Value.html">Value</a></li>
+    
+  </ul>
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/colorize.cr#L201" target="_blank">
+        colorize.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/docs_pseudo_methods.cr#L131" target="_blank">
+        docs_pseudo_methods.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/any.cr#L327" target="_blank">
+        json/any.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/to_json.cr#L1" target="_blank">
+        json/to_json.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/object.cr#L201" target="_blank">
+        object.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/object/properties.cr#L7" target="_blank">
+        object/properties.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/primitives.cr#L9" target="_blank">
+        primitives.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/spec/expectations.cr#L531" target="_blank">
+        spec/expectations.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/yaml/any.cr#L368" target="_blank">
+        yaml/any.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/yaml/to_yaml.cr#L1" target="_blank">
+        yaml/to_yaml.cr
+      </a>
+    
+    <br/>
+  
+
+
+
+
+
+  
+
+  
+  <h2>
+    <a id="class-method-summary" class="anchor" href="#class-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Class Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#from_json%28string_or_io%2Croot%3AString%29-class-method" class="signature"><strong>.from_json</strong>(string_or_io, root : String)</a>
+        
+          <div class="summary"><p>Deserializes the given JSON in <em>string_or_io</em> into an instance of <code>self</code>, assuming the JSON consists of an JSON object with key <em>root</em>, and whose value is the value to deserialize.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#from_json%28string_or_io%29-class-method" class="signature"><strong>.from_json</strong>(string_or_io)</a>
+        
+          <div class="summary"><p>Deserializes the given JSON in <em>string_or_io</em> into an instance of <code>self</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#from_yaml%28string_or_io%3AString%7CIO%29-class-method" class="signature"><strong>.from_yaml</strong>(string_or_io : String | IO)</a>
+        
+          <div class="summary"><p>Deserializes the given YAML in <em>string_or_io</em> into an instance of <code>self</code>.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+  
+  <h2>
+    <a id="macro-summary" class="anchor" href="#macro-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Macro Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#class_getter%28%2Anames%2C%26block%29-macro" class="signature"><strong>class_getter</strong>(*names, &block)</a>
+        
+          <div class="summary"><p>Defines getter methods to access class variables.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#class_getter%21%28%2Anames%29-macro" class="signature"><strong>class_getter!</strong>(*names)</a>
+        
+          <div class="summary"><p>Similar to <code><a href="Object.html#class_getter%28%2Anames%2C%26block%29-macro">class_getter</a></code> but defines both raise-on-nil methods as well as query methods that return a nilable value.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#class_getter%3F%28%2Anames%2C%26block%29-macro" class="signature"><strong>class_getter?</strong>(*names, &block)</a>
+        
+          <div class="summary"><p>Identical to <code><a href="Object.html#class_getter%28%2Anames%2C%26block%29-macro">class_getter</a></code> but defines query methods.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#class_property%28%2Anames%2C%26block%29-macro" class="signature"><strong>class_property</strong>(*names, &block)</a>
+        
+          <div class="summary"><p>Generates both <code><a href="Object.html#class_getter%28%2Anames%2C%26block%29-macro">class_getter</a></code> and <code><a href="Object.html#class_setter%28%2Anames%29-macro">class_setter</a></code> methods to access instance variables.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#class_property%21%28%2Anames%29-macro" class="signature"><strong>class_property!</strong>(*names)</a>
+        
+          <div class="summary"><p>Generates both <code><a href="Object.html#class_getter%21%28%2Anames%29-macro">class_getter!</a></code> and <code><a href="Object.html#class_setter%28%2Anames%29-macro">class_setter</a></code> methods to access instance variables.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#class_property%3F%28%2Anames%2C%26block%29-macro" class="signature"><strong>class_property?</strong>(*names, &block)</a>
+        
+          <div class="summary"><p>Generates both <code><a href="Object.html#class_getter%3F%28%2Anames%2C%26block%29-macro">class_getter?</a></code> and <code><a href="Object.html#class_setter%28%2Anames%29-macro">class_setter</a></code> methods to access instance variables.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#class_setter%28%2Anames%29-macro" class="signature"><strong>class_setter</strong>(*names)</a>
+        
+          <div class="summary"><p>Generates setter methods to set class variables.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#def_clone-macro" class="signature"><strong>def_clone</strong></a>
+        
+          <div class="summary"><p>Defines a <code>clone</code> method that returns a copy of this object with all instance variables cloned (<code>clone</code> is in turn invoked on them).</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#def_equals%28%2Afields%29-macro" class="signature"><strong>def_equals</strong>(*fields)</a>
+        
+          <div class="summary"><p>Defines an <code><a href="Object.html#%3D%3D%28other%29-instance-method">#==</a></code> method by comparing the given fields.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#def_equals_and_hash%28%2Afields%29-macro" class="signature"><strong>def_equals_and_hash</strong>(*fields)</a>
+        
+          <div class="summary"><p>Defines <code><a href="Object.html#hash-instance-method">#hash</a></code> and <code><a href="Object.html#%3D%3D%28other%29-instance-method">#==</a></code> method from the given fields.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#def_hash%28%2Afields%29-macro" class="signature"><strong>def_hash</strong>(*fields)</a>
+        
+          <div class="summary"><p>Defines a <code><a href="Object.html#hash%28hasher%29-instance-method">#hash(hasher)</a></code> that will append a hash value for the given fields.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#delegate%28%2Amethods%2Ctoobject%29-macro" class="signature"><strong>delegate</strong>(*methods, to object)</a>
+        
+          <div class="summary"><p>Delegate <em>methods</em> to <em>to</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#forward_missing_to%28delegate%29-macro" class="signature"><strong>forward_missing_to</strong>(delegate)</a>
+        
+          <div class="summary"><p>Forwards missing methods to <em>delegate</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#getter%28%2Anames%2C%26block%29-macro" class="signature"><strong>getter</strong>(*names, &block)</a>
+        
+          <div class="summary"><p>Defines getter methods to access instance variables.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#getter%21%28%2Anames%29-macro" class="signature"><strong>getter!</strong>(*names)</a>
+        
+          <div class="summary"><p>Similar to <code><a href="Object.html#getter%28%2Anames%2C%26block%29-macro">getter</a></code> but defines both raise-on-nil methods as well as query methods that return a nilable value.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#getter%3F%28%2Anames%2C%26block%29-macro" class="signature"><strong>getter?</strong>(*names, &block)</a>
+        
+          <div class="summary"><p>Identical to <code><a href="Object.html#getter%28%2Anames%2C%26block%29-macro">getter</a></code> but defines query methods.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#property%28%2Anames%2C%26block%29-macro" class="signature"><strong>property</strong>(*names, &block)</a>
+        
+          <div class="summary"><p>Generates both <code><a href="Object.html#getter%28%2Anames%2C%26block%29-macro">getter</a></code> and <code><a href="Object.html#setter%28%2Anames%29-macro">setter</a></code> methods to access instance variables.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#property%21%28%2Anames%29-macro" class="signature"><strong>property!</strong>(*names)</a>
+        
+          <div class="summary"><p>Generates both <code><a href="Object.html#getter%21%28%2Anames%29-macro">getter!</a></code> and <code><a href="Object.html#setter%28%2Anames%29-macro">setter</a></code> methods to access instance variables.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#property%3F%28%2Anames%2C%26block%29-macro" class="signature"><strong>property?</strong>(*names, &block)</a>
+        
+          <div class="summary"><p>Generates both <code><a href="Object.html#getter%3F%28%2Anames%2C%26block%29-macro">getter?</a></code> and <code><a href="Object.html#setter%28%2Anames%29-macro">setter</a></code> methods to access instance variables.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#setter%28%2Anames%29-macro" class="signature"><strong>setter</strong>(*names)</a>
+        
+          <div class="summary"><p>Generates setter methods to set instance variables.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+  
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#%21%3ABool-instance-method" class="signature"><strong>#!</strong> : Bool</a>
+        
+          <div class="summary"><p>Returns the boolean negation of <code>self</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%21%3D%28other%29-instance-method" class="signature"><strong>#!=</strong>(other)</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this object is not equal to <em>other</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%21~%28other%29-instance-method" class="signature"><strong>#!~</strong>(other)</a>
+        
+          <div class="summary"><p>Shortcut to <code>!(self =~ other)</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%3D%3D%28other%29-instance-method" class="signature"><strong>#==</strong>(other)</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this object is equal to <em>other</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%3D%3D%3D%28other%3AJSON%3A%3AAny%29-instance-method" class="signature"><strong>#===</strong>(other : JSON::Any)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%3D%3D%3D%28other%3AYAML%3A%3AAny%29-instance-method" class="signature"><strong>#===</strong>(other : YAML::Any)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%3D%3D%3D%28other%29-instance-method" class="signature"><strong>#===</strong>(other)</a>
+        
+          <div class="summary"><p>Case equality.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%3D~%28other%29-instance-method" class="signature"><strong>#=~</strong>(other)</a>
+        
+          <div class="summary"><p>Pattern match.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#as%28type%3AClass%29-instance-method" class="signature"><strong>#as</strong>(type : Class)</a>
+        
+          <div class="summary"><p>Returns <code>self</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#as%3F%28type%3AClass%29-instance-method" class="signature"><strong>#as?</strong>(type : Class)</a>
+        
+          <div class="summary"><p>Returns <code>self</code> or <code>nil</code> if can't be restricted to <em>type</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#class-instance-method" class="signature"><strong>#class</strong></a>
+        
+          <div class="summary"><p>Returns the <strong>runtime</strong> <code><a href="Class.html">Class</a></code> of an object.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#dup-instance-method" class="signature"><strong>#dup</strong></a>
+        
+          <div class="summary"><p>Returns a shallow copy (“duplicate”) of this object.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#hash%28hasher%29-instance-method" class="signature"><strong>#hash</strong>(hasher)</a>
+        
+          <div class="summary"><p>Appends this object's value to <em>hasher</em>, and returns the modified <em>hasher</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#hash-instance-method" class="signature"><strong>#hash</strong></a>
+        
+          <div class="summary"><p>Generates an <code><a href="UInt64.html">UInt64</a></code> hash value for this object.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#in%3F%28collection%3AObject%29%3ABool-instance-method" class="signature"><strong>#in?</strong>(collection : Object) : Bool</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if <code>self</code> is included in the <em>collection</em> argument.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#in%3F%28%2Avalues%3AObject%29%3ABool-instance-method" class="signature"><strong>#in?</strong>(*values : Object) : Bool</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if <code>self</code> is included in the <em>collection</em> argument.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#inspect%28io%3AIO%29%3ANil-instance-method" class="signature"><strong>#inspect</strong>(io : IO) : Nil</a>
+        
+          <div class="summary"><p>Prints to <em>io</em> an unambiguous and information-rich string representation of this object, typically intended for developers.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#inspect%3AString-instance-method" class="signature"><strong>#inspect</strong> : String</a>
+        
+          <div class="summary"><p>Returns an unambiguous and information-rich string representation of this object, typically intended for developers.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#is_a%3F%28type%3AClass%29%3ABool-instance-method" class="signature"><strong>#is_a?</strong>(type : Class) : Bool</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if <code>self</code> inherits or includes <em>type</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#itself-instance-method" class="signature"><strong>#itself</strong></a>
+        
+          <div class="summary"><p>Returns <code>self</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#nil%3F%3ABool-instance-method" class="signature"><strong>#nil?</strong> : Bool</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if <code>self</code> is <code><a href="Nil.html">Nil</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#not_nil%21%28message%29-instance-method" class="signature"><strong>#not_nil!</strong>(message)</a>
+        
+          <div class="summary"><p>Returns <code>self</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#not_nil%21-instance-method" class="signature"><strong>#not_nil!</strong></a>
+        
+          <div class="summary"><p>Returns <code>self</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#pretty_inspect%28width%3D79%2Cnewline%3D%22%5Cn%22%2Cindent%3D0%29%3AString-instance-method" class="signature"><strong>#pretty_inspect</strong>(width = <span class="n">79</span>, newline = <span class="s">&quot;\n&quot;</span>, indent = <span class="n">0</span>) : String</a>
+        
+          <div class="summary"><p>Returns a pretty printed version of <code>self</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#pretty_print%28pp%3APrettyPrint%29%3ANil-instance-method" class="signature"><strong>#pretty_print</strong>(pp : PrettyPrint) : Nil</a>
+        
+          <div class="summary"><p>Pretty prints <code>self</code> into the given printer.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#responds_to%3F%28name%3ASymbol%29%3ABool-instance-method" class="signature"><strong>#responds_to?</strong>(name : Symbol) : Bool</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if method <em>name</em> can be called on <code>self</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#tap%28%26%29-instance-method" class="signature"><strong>#tap</strong>(&)</a>
+        
+          <div class="summary"><p>Yields <code>self</code> to the block, and then returns <code>self</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_json%28io%3AIO%29%3ANil-instance-method" class="signature"><strong>#to_json</strong>(io : IO) : Nil</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_json%3AString-instance-method" class="signature"><strong>#to_json</strong> : String</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_pretty_json%28indent%3AString%3D%22%22%29%3AString-instance-method" class="signature"><strong>#to_pretty_json</strong>(indent : String = <span class="s">&quot;  &quot;</span>) : String</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_pretty_json%28io%3AIO%2Cindent%3AString%3D%22%22%29%3ANil-instance-method" class="signature"><strong>#to_pretty_json</strong>(io : IO, indent : String = <span class="s">&quot;  &quot;</span>) : Nil</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_s%28io%3AIO%29%3ANil-instance-method" class="signature"><strong>#to_s</strong>(io : IO) : Nil</a>
+        
+          <div class="summary"><p>Prints a nicely readable and concise string representation of this object, typically intended for users, to <em>io</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_s%3AString-instance-method" class="signature"><strong>#to_s</strong> : String</a>
+        
+          <div class="summary"><p>Returns a nicely readable and concise string representation of this object, typically intended for users.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_yaml%28io%3AIO%29%3ANil-instance-method" class="signature"><strong>#to_yaml</strong>(io : IO) : Nil</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_yaml%3AString-instance-method" class="signature"><strong>#to_yaml</strong> : String</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#try%28%26%29-instance-method" class="signature"><strong>#try</strong>(&)</a>
+        
+          <div class="summary"><p>Yields <code>self</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#unsafe_as%28type%3AT.class%29forallT-instance-method" class="signature"><strong>#unsafe_as</strong>(type : <span class="t">T</span>.<span class="k">class</span>) forall T</a>
+        
+          <div class="summary"><p>Unsafely reinterprets the bytes of an object as being of another <code>type</code>.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+
+  <div class="methods-inherited">
+    
+      
+
+  <h3>Instance methods inherited from module <code><a href="Spec/ObjectExtensions.html">Spec::ObjectExtensions</a></code></h3>
+  
+  
+    <a href="Spec/ObjectExtensions.html#should%28expectation%3ABeAExpectation%28T%29%2Cfailure_message%3AString%7CNil%3Dnil%2C%2A%2Cfile%3D__FILE__%2Cline%3D__LINE__%29%3ATforallT-instance-method" class="tooltip">
+      <span>should(expectation : BeAExpectation(T), failure_message : String | Nil = <span class="n">nil</span>, *, file = __FILE__, line = __LINE__) : T forall T<br/>should(expectation, failure_message : String | Nil = <span class="n">nil</span>, *, file = __FILE__, line = __LINE__)</span>
+    should</a>, 
+    
+  
+    <a href="Spec/ObjectExtensions.html#should_not%28expectation%3ABeAExpectation%28T%29%2Cfailure_message%3AString%7CNil%3Dnil%2C%2A%2Cfile%3D__FILE__%2Cline%3D__LINE__%29forallT-instance-method" class="tooltip">
+      <span>should_not(expectation : BeAExpectation(T), failure_message : String | Nil = <span class="n">nil</span>, *, file = __FILE__, line = __LINE__) forall T<br/>should_not(expectation : BeNilExpectation, failure_message : String | Nil = <span class="n">nil</span>, *, file = __FILE__, line = __LINE__)<br/>should_not(expectation, failure_message : String | Nil = <span class="n">nil</span>, *, file = __FILE__, line = __LINE__)</span>
+    should_not</a>
+    
+  
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+      
+
+  <h3>Instance methods inherited from module <code><a href="Colorize/ObjectExtensions.html">Colorize::ObjectExtensions</a></code></h3>
+  
+  
+    <a href="Colorize/ObjectExtensions.html#colorize%28r%3AUInt8%2Cg%3AUInt8%2Cb%3AUInt8%29-instance-method" class="tooltip">
+      <span>colorize(r : UInt8, g : UInt8, b : UInt8)<br/>colorize(fore : UInt8)<br/>colorize(fore : Symbol)<br/>colorize(fore : Color)<br/>colorize : Colorize::Object</span>
+    colorize</a>
+    
+  
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+  </div>
+
+  
+
+  
+  <h2>
+    <a id="class-method-detail" class="anchor" href="#class-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Class Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="from_json(string_or_io,root:String)-class-method">
+      <div class="signature">
+        
+        def self.<strong>from_json</strong>(string_or_io, root : <a href="String.html">String</a>)
+
+        <a class="method-permalink" href="#from_json%28string_or_io%2Croot%3AString%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Deserializes the given JSON in <em>string_or_io</em> into
+an instance of <code>self</code>, assuming the JSON consists
+of an JSON object with key <em>root</em>, and whose value is
+the value to deserialize.</p>
+<pre><code class="language-crystal"><span class="t">Int32</span>.from_json(<span class="s">%({&quot;main&quot;: 1})</span>, root: <span class="s">&quot;main&quot;</span>) <span class="c"># =&gt; 1</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/from_json.cr#L24" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="from_json(string_or_io)-class-method">
+      <div class="signature">
+        
+        def self.<strong>from_json</strong>(string_or_io)
+
+        <a class="method-permalink" href="#from_json%28string_or_io%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Deserializes the given JSON in <em>string_or_io</em> into
+an instance of <code>self</code>. This simply creates a <code>parser = <a href="JSON/PullParser.html">JSON::PullParser</a></code>
+and invokes <code>new(parser)</code>: classes that want to provide JSON
+deserialization must provide an <code>def initialize(parser : <a href="JSON/PullParser.html">JSON::PullParser</a>)</code>
+method.</p>
+<pre><code class="language-crystal"><span class="t">Int32</span>.from_json(<span class="s">&quot;1&quot;</span>)                <span class="c"># =&gt; 1</span>
+<span class="t">Array</span>(<span class="t">Int32</span>).from_json(<span class="s">&quot;[1, 2, 3]&quot;</span>) <span class="c"># =&gt; [1, 2, 3]</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/from_json.cr#L11" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="from_yaml(string_or_io:String|IO)-class-method">
+      <div class="signature">
+        
+        def self.<strong>from_yaml</strong>(string_or_io : <a href="String.html">String</a> | <a href="IO.html">IO</a>)
+
+        <a class="method-permalink" href="#from_yaml%28string_or_io%3AString%7CIO%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Deserializes the given YAML in <em>string_or_io</em> into
+an instance of <code>self</code>. This simply creates an instance of
+<code><a href="YAML/ParseContext.html">YAML::ParseContext</a></code> and invokes <code>new(parser, yaml)</code>:
+classes that want to provide YAML deserialization must provide an
+<code>def initialize(parser : <a href="YAML/ParseContext.html">YAML::ParseContext</a>, yaml : string_or_io)</code>
+method.</p>
+<pre><code class="language-crystal"><span class="t">Hash</span>(<span class="t">String</span>, <span class="t">String</span>).from_yaml(<span class="s">&quot;{env: production}&quot;</span>) <span class="c"># =&gt; {&quot;env&quot; =&gt; &quot;production&quot;}</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/yaml/from_yaml.cr#L11" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+  
+  <h2>
+    <a id="macro-detail" class="anchor" href="#macro-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Macro Detail
+  </h2>
+  
+    <div class="entry-detail" id="class_getter(*names,&amp;block)-macro">
+      <div class="signature">
+        
+        macro <strong>class_getter</strong>(*names, &block)
+
+        <a class="method-permalink" href="#class_getter%28%2Anames%2C%26block%29-macro">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Defines getter methods to access class variables.</p>
+<p>For example, writing:</p>
+<pre><code class="language-crystal"><span class="k">class</span> <span class="t">Robot</span>
+  class_getter backend
+<span class="k">end</span></code></pre>
+<p>Is equivalent to writing:</p>
+<pre><code class="language-crystal"><span class="k">class</span> <span class="t">Robot</span>
+  <span class="k">def</span> <span class="m">self</span>.backend
+    @@backend
+  <span class="k">end</span>
+<span class="k">end</span></code></pre>
+<p>Refer to <a href="#getters">Getters</a> for details.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/object/properties.cr#L318" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="class_getter!(*names)-macro">
+      <div class="signature">
+        
+        macro <strong>class_getter!</strong>(*names)
+
+        <a class="method-permalink" href="#class_getter%21%28%2Anames%29-macro">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Similar to <code><a href="Object.html#class_getter%28%2Anames%2C%26block%29-macro">class_getter</a></code> but defines both raise-on-nil methods as well as
+query methods that return a nilable value.</p>
+<p>If a type is specified, then it will become a nilable type (union of the
+type and <code><a href="Nil.html">Nil</a></code>). Unlike with <code><a href="Object.html#class_getter%28%2Anames%2C%26block%29-macro">class_getter</a></code> the value is always initialized
+to <code>nil</code>. There are no initial value or lazy initialization.</p>
+<p>For example, writing:</p>
+<pre><code class="language-crystal"><span class="k">class</span> <span class="t">Robot</span>
+  class_getter! backend : <span class="t">String</span>
+<span class="k">end</span></code></pre>
+<p>Is equivalent to writing:</p>
+<pre><code class="language-crystal"><span class="k">class</span> <span class="t">Robot</span>
+  @@backend : <span class="t">String</span>?
+
+  <span class="k">def</span> <span class="m">self</span>.backend? : <span class="t">String</span>?
+    @@backend
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="m">backend</span> : <span class="t">String</span>
+    @@backend.not_nil!(<span class="s">&quot;Robot.backend cannot be nil&quot;</span>)
+  <span class="k">end</span>
+<span class="k">end</span></code></pre>
+<p>Refer to <a href="#getters">Getters</a> for general details.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/object/properties.cr#L439" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="class_getter?(*names,&amp;block)-macro">
+      <div class="signature">
+        
+        macro <strong>class_getter?</strong>(*names, &block)
+
+        <a class="method-permalink" href="#class_getter%3F%28%2Anames%2C%26block%29-macro">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Identical to <code><a href="Object.html#class_getter%28%2Anames%2C%26block%29-macro">class_getter</a></code> but defines query methods.</p>
+<p>For example, writing:</p>
+<pre><code class="language-crystal"><span class="k">class</span> <span class="t">Robot</span>
+  class_getter? backend
+<span class="k">end</span></code></pre>
+<p>Is equivalent to writing:</p>
+<pre><code class="language-crystal"><span class="k">class</span> <span class="t">Robot</span>
+  <span class="k">def</span> <span class="m">self</span>.backend?
+    @@backend
+  <span class="k">end</span>
+<span class="k">end</span></code></pre>
+<p>Refer to <a href="#getters">Getters</a> for general details.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/object/properties.cr#L373" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="class_property(*names,&amp;block)-macro">
+      <div class="signature">
+        
+        macro <strong>class_property</strong>(*names, &block)
+
+        <a class="method-permalink" href="#class_property%28%2Anames%2C%26block%29-macro">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Generates both <code><a href="Object.html#class_getter%28%2Anames%2C%26block%29-macro">class_getter</a></code> and <code><a href="Object.html#class_setter%28%2Anames%29-macro">class_setter</a></code>
+methods to access instance variables.</p>
+<p>Refer to the aforementioned macros for details.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/object/properties.cr#L512" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="class_property!(*names)-macro">
+      <div class="signature">
+        
+        macro <strong>class_property!</strong>(*names)
+
+        <a class="method-permalink" href="#class_property%21%28%2Anames%29-macro">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Generates both <code><a href="Object.html#class_getter%21%28%2Anames%29-macro">class_getter!</a></code> and <code><a href="Object.html#class_setter%28%2Anames%29-macro">class_setter</a></code>
+methods to access instance variables.</p>
+<p>Refer to the aforementioned macros for details.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/object/properties.cr#L594" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="class_property?(*names,&amp;block)-macro">
+      <div class="signature">
+        
+        macro <strong>class_property?</strong>(*names, &block)
+
+        <a class="method-permalink" href="#class_property%3F%28%2Anames%2C%26block%29-macro">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Generates both <code><a href="Object.html#class_getter%3F%28%2Anames%2C%26block%29-macro">class_getter?</a></code> and <code><a href="Object.html#class_setter%28%2Anames%29-macro">class_setter</a></code>
+methods to access instance variables.</p>
+<p>Refer to the aforementioned macros for details.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/object/properties.cr#L553" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="class_setter(*names)-macro">
+      <div class="signature">
+        
+        macro <strong>class_setter</strong>(*names)
+
+        <a class="method-permalink" href="#class_setter%28%2Anames%29-macro">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Generates setter methods to set class variables.</p>
+<p>For example, writing:</p>
+<pre><code class="language-crystal"><span class="k">class</span> <span class="t">Robot</span>
+  class_setter factories
+<span class="k">end</span></code></pre>
+<p>Is equivalent to writing:</p>
+<pre><code class="language-crystal"><span class="k">class</span> <span class="t">Robot</span>
+  @@factories
+
+  <span class="k">def</span> <span class="m">self</span>.factories<span class="o">=</span>(@@factories)
+  <span class="k">end</span>
+<span class="k">end</span></code></pre>
+<p>Refer to <a href="#setters">Setters</a> for general details.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/object/properties.cr#L487" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="def_clone-macro">
+      <div class="signature">
+        
+        macro <strong>def_clone</strong>
+
+        <a class="method-permalink" href="#def_clone-macro">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Defines a <code>clone</code> method that returns a copy of this object with all
+instance variables cloned (<code>clone</code> is in turn invoked on them).</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/object.cr#L680" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="def_equals(*fields)-macro">
+      <div class="signature">
+        
+        macro <strong>def_equals</strong>(*fields)
+
+        <a class="method-permalink" href="#def_equals%28%2Afields%29-macro">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Defines an <code><a href="Object.html#%3D%3D%28other%29-instance-method">#==</a></code> method by comparing the given fields.</p>
+<p>The generated <code><a href="Object.html#%3D%3D%28other%29-instance-method">#==</a></code> method has a <code>self</code> restriction.
+For classes it will first compare by reference and return <code>true</code>
+when an object instance is compared with itself, without comparing
+any of the fields.</p>
+<pre><code class="language-crystal"><span class="k">class</span> <span class="t">Person</span>
+  <span class="k">def</span> <span class="m">initialize</span>(@name, @age)
+  <span class="k">end</span>
+
+  <span class="c"># Define a `==` method that compares @name and @age</span>
+  def_equals @name, @age
+<span class="k">end</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/object.cr#L627" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="def_equals_and_hash(*fields)-macro">
+      <div class="signature">
+        
+        macro <strong>def_equals_and_hash</strong>(*fields)
+
+        <a class="method-permalink" href="#def_equals_and_hash%28%2Afields%29-macro">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Defines <code><a href="Object.html#hash-instance-method">#hash</a></code> and <code><a href="Object.html#%3D%3D%28other%29-instance-method">#==</a></code> method from the given fields.</p>
+<p>The generated <code><a href="Object.html#%3D%3D%28other%29-instance-method">#==</a></code> method has a <code>self</code> restriction.</p>
+<pre><code class="language-crystal"><span class="k">class</span> <span class="t">Person</span>
+  <span class="k">def</span> <span class="m">initialize</span>(@name, @age)
+  <span class="k">end</span>
+
+  <span class="c"># Define a hash method based on @name and @age</span>
+  <span class="c"># Define a `==` method that compares @name and @age</span>
+  def_equals_and_hash @name, @age
+<span class="k">end</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/object.cr#L653" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="def_hash(*fields)-macro">
+      <div class="signature">
+        
+        macro <strong>def_hash</strong>(*fields)
+
+        <a class="method-permalink" href="#def_hash%28%2Afields%29-macro">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Defines a <code><a href="Object.html#hash%28hasher%29-instance-method">#hash(hasher)</a></code> that will append a hash value for the given fields.</p>
+<pre><code class="language-crystal"><span class="k">class</span> <span class="t">Person</span>
+  <span class="k">def</span> <span class="m">initialize</span>(@name, @age)
+  <span class="k">end</span>
+
+  <span class="c"># Define a hash(hasher) method based on @name and @age</span>
+  def_hash @name, @age
+<span class="k">end</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/object.cr#L602" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="delegate(*methods,toobject)-macro">
+      <div class="signature">
+        
+        macro <strong>delegate</strong>(*methods, to object)
+
+        <a class="method-permalink" href="#delegate%28%2Amethods%2Ctoobject%29-macro">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Delegate <em>methods</em> to <em>to</em>.</p>
+<p>Note that due to current language limitations this is only useful
+when no captured blocks are involved.</p>
+<pre><code class="language-crystal"><span class="k">class</span> <span class="t">StringWrapper</span>
+  <span class="k">def</span> <span class="m">initialize</span>(@string : <span class="t">String</span>)
+  <span class="k">end</span>
+
+  delegate downcase, to: @string
+  delegate gsub, to: @string
+  delegate empty?, capitalize, to: @string
+  delegate <span class="n">:[]</span>, to: @string
+<span class="k">end</span>
+
+wrapper <span class="o">=</span> <span class="t">StringWrapper</span>.new <span class="s">&quot;HELLO&quot;</span>
+wrapper.downcase       <span class="c"># =&gt; &quot;hello&quot;</span>
+wrapper.gsub(<span class="o">/</span><span class="t">E</span><span class="o">/</span>, <span class="s">&quot;A&quot;</span>) <span class="c"># =&gt; &quot;HALLO&quot;</span>
+wrapper.empty?         <span class="c"># =&gt; false</span>
+wrapper.capitalize     <span class="c"># =&gt; &quot;Hello&quot;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/object.cr#L548" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="forward_missing_to(delegate)-macro">
+      <div class="signature">
+        
+        macro <strong>forward_missing_to</strong>(delegate)
+
+        <a class="method-permalink" href="#forward_missing_to%28delegate%29-macro">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Forwards missing methods to <em>delegate</em>.</p>
+<pre><code class="language-crystal"><span class="k">class</span> <span class="t">StringWrapper</span>
+  <span class="k">def</span> <span class="m">initialize</span>(@string : <span class="t">String</span>)
+  <span class="k">end</span>
+
+  forward_missing_to @string
+<span class="k">end</span>
+
+wrapper <span class="o">=</span> <span class="t">StringWrapper</span>.new <span class="s">&quot;HELLO&quot;</span>
+wrapper.downcase       <span class="c"># =&gt; &quot;hello&quot;</span>
+wrapper.gsub(<span class="o">/</span><span class="t">E</span><span class="o">/</span>, <span class="s">&quot;A&quot;</span>) <span class="c"># =&gt; &quot;HALLO&quot;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/object.cr#L672" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="getter(*names,&amp;block)-macro">
+      <div class="signature">
+        
+        macro <strong>getter</strong>(*names, &block)
+
+        <a class="method-permalink" href="#getter%28%2Anames%2C%26block%29-macro">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Defines getter methods to access instance variables.</p>
+<p>Refer to <a href="#getters">Getters</a> for details.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/object/properties.cr#L11" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="getter!(*names)-macro">
+      <div class="signature">
+        
+        macro <strong>getter!</strong>(*names)
+
+        <a class="method-permalink" href="#getter%21%28%2Anames%29-macro">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Similar to <code><a href="Object.html#getter%28%2Anames%2C%26block%29-macro">getter</a></code> but defines both raise-on-nil methods as well as query
+methods that return a nilable value.</p>
+<p>If a type is specified, then it will become a nilable type (union of the
+type and <code><a href="Nil.html">Nil</a></code>). Unlike the other <code><a href="Object.html#getter%28%2Anames%2C%26block%29-macro">getter</a></code> methods the value is always
+initialized to <code>nil</code>. There are no initial value or lazy initialization.</p>
+<p>For example, writing:</p>
+<pre><code class="language-crystal"><span class="k">class</span> <span class="t">Robot</span>
+  getter! name : <span class="t">String</span>
+<span class="k">end</span></code></pre>
+<p>Is equivalent to writing:</p>
+<pre><code class="language-crystal"><span class="k">class</span> <span class="t">Robot</span>
+  @name : <span class="t">String</span>?
+
+  <span class="k">def</span> <span class="m">name?</span> : <span class="t">String</span>?
+    @name
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="m">name</span> : <span class="t">String</span>
+    @name.not_nil!(<span class="s">&quot;Robot#name cannot be nil&quot;</span>)
+  <span class="k">end</span>
+<span class="k">end</span></code></pre>
+<p>Refer to <a href="#getters">Getters</a> for general details.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/object/properties.cr#L132" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="getter?(*names,&amp;block)-macro">
+      <div class="signature">
+        
+        macro <strong>getter?</strong>(*names, &block)
+
+        <a class="method-permalink" href="#getter%3F%28%2Anames%2C%26block%29-macro">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Identical to <code><a href="Object.html#getter%28%2Anames%2C%26block%29-macro">getter</a></code> but defines query methods.</p>
+<p>For example, writing:</p>
+<pre><code class="language-crystal"><span class="k">class</span> <span class="t">Robot</span>
+  getter? working
+<span class="k">end</span></code></pre>
+<p>Is equivalent to writing:</p>
+<pre><code class="language-crystal"><span class="k">class</span> <span class="t">Robot</span>
+  <span class="k">def</span> <span class="m">working?</span>
+    @working
+  <span class="k">end</span>
+<span class="k">end</span></code></pre>
+<p>Refer to <a href="#getters">Getters</a> for general details.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/object/properties.cr#L66" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="property(*names,&amp;block)-macro">
+      <div class="signature">
+        
+        macro <strong>property</strong>(*names, &block)
+
+        <a class="method-permalink" href="#property%28%2Anames%2C%26block%29-macro">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Generates both <code><a href="Object.html#getter%28%2Anames%2C%26block%29-macro">getter</a></code> and <code><a href="Object.html#setter%28%2Anames%29-macro">setter</a></code>
+methods to access instance variables.</p>
+<p>Refer to the aforementioned macros for details.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/object/properties.cr#L186" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="property!(*names)-macro">
+      <div class="signature">
+        
+        macro <strong>property!</strong>(*names)
+
+        <a class="method-permalink" href="#property%21%28%2Anames%29-macro">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Generates both <code><a href="Object.html#getter%21%28%2Anames%29-macro">getter!</a></code> and <code><a href="Object.html#setter%28%2Anames%29-macro">setter</a></code>
+methods to access instance variables.</p>
+<p>Refer to the aforementioned macros for details.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/object/properties.cr#L268" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="property?(*names,&amp;block)-macro">
+      <div class="signature">
+        
+        macro <strong>property?</strong>(*names, &block)
+
+        <a class="method-permalink" href="#property%3F%28%2Anames%2C%26block%29-macro">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Generates both <code><a href="Object.html#getter%3F%28%2Anames%2C%26block%29-macro">getter?</a></code> and <code><a href="Object.html#setter%28%2Anames%29-macro">setter</a></code>
+methods to access instance variables.</p>
+<p>Refer to the aforementioned macros for details.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/object/properties.cr#L227" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="setter(*names)-macro">
+      <div class="signature">
+        
+        macro <strong>setter</strong>(*names)
+
+        <a class="method-permalink" href="#setter%28%2Anames%29-macro">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Generates setter methods to set instance variables.</p>
+<p>Refer to <a href="#setters">Setters</a> for general details.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/object/properties.cr#L161" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+  
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="!:Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>!</strong> : <a href="Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#%21%3ABool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the boolean negation of <code>self</code>.</p>
+<pre><code class="language-crystal"><span class="o">!</span><span class="n">true</span>  <span class="c"># =&gt; false</span>
+<span class="o">!</span><span class="n">false</span> <span class="c"># =&gt; true</span>
+<span class="o">!</span><span class="n">nil</span>   <span class="c"># =&gt; true</span>
+<span class="o">!</span><span class="n">1</span>     <span class="c"># =&gt; false</span>
+<span class="o">!</span><span class="s">&quot;foo&quot;</span> <span class="c"># =&gt; false</span></code></pre>
+<p>This method is a unary operator and usually written in prefix notation
+(<code>!foo</code>) but it can also be written as a regular method call (<code>foo.!</code>).</p>
+<p><span class="flag purple">NOTE</span>  This is a pseudo-method provided directly by the Crystal compiler.
+It cannot be redefined nor overridden.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/docs_pseudo_methods.cr#L144" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="!=(other)-instance-method">
+      <div class="signature">
+        
+        def <strong>!=</strong>(other)
+
+        <a class="method-permalink" href="#%21%3D%28other%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this object is not equal to <em>other</em>.</p>
+<p>By default this method is implemented as <code>!(self == other)</code>
+so there's no need to override this unless there's a more efficient
+way to do it.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/object.cr#L212" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="!~(other)-instance-method">
+      <div class="signature">
+        
+        def <strong>!~</strong>(other)
+
+        <a class="method-permalink" href="#%21~%28other%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Shortcut to <code>!(self =~ other)</code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/object.cr#L217" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="==(other)-instance-method">
+      <div class="signature">
+        abstract 
+        def <strong>==</strong>(other)
+
+        <a class="method-permalink" href="#%3D%3D%28other%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this object is equal to <em>other</em>.</p>
+<p>Subclasses override this method to provide class-specific meaning.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/object.cr#L205" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="===(other:JSON::Any)-instance-method">
+      <div class="signature">
+        
+        def <strong>===</strong>(other : <a href="JSON/Any.html">JSON::Any</a>)
+
+        <a class="method-permalink" href="#%3D%3D%3D%28other%3AJSON%3A%3AAny%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/any.cr#L328" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="===(other:YAML::Any)-instance-method">
+      <div class="signature">
+        
+        def <strong>===</strong>(other : <a href="YAML/Any.html">YAML::Any</a>)
+
+        <a class="method-permalink" href="#%3D%3D%3D%28other%3AYAML%3A%3AAny%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/yaml/any.cr#L369" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="===(other)-instance-method">
+      <div class="signature">
+        
+        def <strong>===</strong>(other)
+
+        <a class="method-permalink" href="#%3D%3D%3D%28other%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Case equality.</p>
+<p>The <code><a href="Object.html#%3D%3D%3D%28other%3AJSON%3A%3AAny%29-instance-method">#===</a></code> method is used in a <code>case ... when ... end</code> expression.</p>
+<p>For example, this code:</p>
+<pre><code class="language-crystal"><span class="k">case</span> value
+<span class="k">when</span> x
+  <span class="c"># something when x</span>
+<span class="k">when</span> y
+  <span class="c"># something when y</span>
+<span class="k">end</span></code></pre>
+<p>Is equivalent to this code:</p>
+<pre><code class="language-crystal"><span class="k">if</span> x <span class="o">===</span> value
+  <span class="c"># something when x</span>
+<span class="k">elsif</span> y <span class="o">===</span> value
+  <span class="c"># something when y</span>
+<span class="k">end</span></code></pre>
+<p>Object simply implements <code><a href="Object.html#%3D%3D%3D%28other%3AJSON%3A%3AAny%29-instance-method">#===</a></code> by invoking <code><a href="Object.html#%3D%3D%28other%29-instance-method">#==</a></code>, but subclasses
+(notably <code><a href="Regex.html">Regex</a></code>) can override it to provide meaningful case-equality semantics.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/object.cr#L248" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="=~(other)-instance-method">
+      <div class="signature">
+        
+        def <strong>=~</strong>(other)
+
+        <a class="method-permalink" href="#%3D~%28other%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Pattern match.</p>
+<p>Overridden by descendants (notably <code><a href="Regex.html">Regex</a></code> and <code><a href="String.html">String</a></code>) to provide meaningful
+pattern-match semantics.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/object.cr#L256" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="as(type:Class)-instance-method">
+      <div class="signature">
+        
+        def <strong>as</strong>(type : <a href="Class.html">Class</a>)
+
+        <a class="method-permalink" href="#as%28type%3AClass%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>self</code>.</p>
+<p>The type of this expression is restricted to <em>type</em> by the compiler.
+<em>type</em> must be a constant or <code>typeof()</code> expression. It cannot be evaluated at runtime.</p>
+<p>If <em>type</em> is not a valid restriction for the expression type, it
+is a compile-time error.
+If <em>type</em>  is a valid restriction for the expression, but <code>self</code> can't
+be restricted to <em>type</em>, it raises at runtime.
+<em>type</em> may be a wider restriction than the expression type, the resulting
+type is narrowed to the minimal restriction.</p>
+<pre><code class="language-crystal">a <span class="o">=</span> [<span class="n">1</span>, <span class="s">&quot;foo&quot;</span>][<span class="n">0</span>]
+<span class="k">typeof</span>(a) <span class="c"># =&gt; Int32 | String</span>
+
+<span class="k">typeof</span>(a.<span class="k">as</span>(<span class="t">Int32</span>)) <span class="c"># =&gt; Int32</span>
+a.<span class="k">as</span>(<span class="t">Int32</span>)         <span class="c"># =&gt; 1</span>
+
+<span class="k">typeof</span>(a.<span class="k">as</span>(<span class="t">Bool</span>)) <span class="c"># Compile Error: can&#39;t cast (Int32 | String) to Bool</span>
+
+<span class="k">typeof</span>(a.<span class="k">as</span>(<span class="t">String</span>)) <span class="c"># =&gt; String</span>
+a.<span class="k">as</span>(<span class="t">String</span>)         <span class="c"># Runtime Error: Cast from Int32 to String failed</span>
+
+<span class="k">typeof</span>(a.<span class="k">as</span>(<span class="t">Int32</span> <span class="o">|</span> <span class="t">Bool</span>)) <span class="c"># =&gt; Int32</span>
+a.<span class="k">as</span>(<span class="t">Int32</span> <span class="o">|</span> <span class="t">Bool</span>)         <span class="c"># =&gt; 1</span></code></pre>
+<p><span class="flag purple">NOTE</span>  This is a pseudo-method provided directly by the Crystal compiler.
+It cannot be redefined nor overridden.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/docs_pseudo_methods.cr#L199" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="as?(type:Class)-instance-method">
+      <div class="signature">
+        
+        def <strong>as?</strong>(type : <a href="Class.html">Class</a>)
+
+        <a class="method-permalink" href="#as%3F%28type%3AClass%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>self</code> or <code>nil</code> if can't be restricted to <em>type</em>.</p>
+<p>The type of this expression is restricted to <em>type</em> by the compiler.
+If <em>type</em> is not a valid type restriction for the expression type, then
+it is restricted to <code><a href="Nil.html">Nil</a></code>.
+<em>type</em> must be a constant or <code>typeof()</code> expression. It cannot be evaluated at runtime.</p>
+<pre><code class="language-crystal">a <span class="o">=</span> [<span class="n">1</span>, <span class="s">&quot;foo&quot;</span>][<span class="n">0</span>]
+<span class="k">typeof</span>(a) <span class="c"># =&gt; Int32 | String</span>
+
+<span class="k">typeof</span>(a.<span class="k">as?</span>(<span class="t">Int32</span>)) <span class="c"># =&gt; Int32 | Nil</span>
+a.<span class="k">as?</span>(<span class="t">Int32</span>)         <span class="c"># =&gt; 1</span>
+
+<span class="k">typeof</span>(a.<span class="k">as?</span>(<span class="t">Bool</span>)) <span class="c"># =&gt; Bool | Nil</span>
+a.<span class="k">as?</span>(<span class="t">Bool</span>)         <span class="c"># =&gt; nil</span>
+
+<span class="k">typeof</span>(a.<span class="k">as?</span>(<span class="t">String</span>)) <span class="c"># =&gt; String | Nil</span>
+a.<span class="k">as?</span>(<span class="t">String</span>)         <span class="c"># nil</span>
+
+<span class="k">typeof</span>(a.<span class="k">as?</span>(<span class="t">Int32</span> <span class="o">|</span> <span class="t">Bool</span>)) <span class="c"># =&gt; Int32 | Nil</span>
+a.<span class="k">as?</span>(<span class="t">Int32</span> <span class="o">|</span> <span class="t">Bool</span>)         <span class="c"># =&gt; 1</span></code></pre>
+<p><span class="flag purple">NOTE</span>  This is a pseudo-method provided directly by the Crystal compiler.
+It cannot be redefined nor overridden.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/docs_pseudo_methods.cr#L225" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="class-instance-method">
+      <div class="signature">
+        
+        def <strong>class</strong>
+
+        <a class="method-permalink" href="#class-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the <strong>runtime</strong> <code><a href="Class.html">Class</a></code> of an object.</p>
+<pre><code class="language-crystal"><span class="n">1</span>.<span class="k">class</span>       <span class="c"># =&gt; Int32</span>
+<span class="s">&quot;hello&quot;</span>.<span class="k">class</span> <span class="c"># =&gt; String</span></code></pre>
+<p>Compare it with <code>typeof</code>, which returns the <strong>compile-time</strong> type of an object:</p>
+<pre><code class="language-crystal">random_value <span class="o">=</span> rand <span class="c"># =&gt; 0.627423</span>
+value <span class="o">=</span> random_value <span class="o">&lt;</span> <span class="n">0.5</span> ? <span class="n">1</span> : <span class="s">&quot;hello&quot;</span>
+value         <span class="c"># =&gt; &quot;hello&quot;</span>
+value.<span class="k">class</span>   <span class="c"># =&gt; String</span>
+<span class="k">typeof</span>(value) <span class="c"># =&gt; Int32 | String</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/primitives.cr#L27" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="dup-instance-method">
+      <div class="signature">
+        abstract 
+        def <strong>dup</strong>
+
+        <a class="method-permalink" href="#dup-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns a shallow copy (“duplicate”) of this object.</p>
+<p>In order to create a new object with the same value as an existing one, there
+are two possible routes:</p>
+<ul>
+<li>create a <em>shallow copy</em> (<code><a href="Object.html#dup-instance-method">#dup</a></code>): Constructs a new object with all its
+properties' values identical to the original object's properties. They
+are shared references. That means for mutable values that changes to
+either object's values will be present in both's.</li>
+<li>create a <em>deep copy</em> (<code>#clone</code>): Constructs a new object with all its
+properties' values being recursive deep copies of the original object's
+properties.
+There is no shared state and the new object is a completely independent
+copy, including everything inside it. This may not be available for every
+type.</li>
+</ul>
+<p>A shallow copy is only one level deep whereas a deep copy copies everything
+below.</p>
+<p>This distinction is only relevant for compound values. Primitive types
+do not have any properties that could be shared or cloned.
+In that case, <code><a href="Object.html#dup-instance-method">#dup</a></code> and <code>clone</code> are exactly the same.</p>
+<p>The <code>#clone</code> method can't be defined on <code><a href="Object.html">Object</a></code>. It's not
+generically available for every type because cycles could be involved, and
+the clone logic might not need to clone everything.</p>
+<p>Many types in the standard library, like <code><a href="Array.html">Array</a></code>, <code><a href="Hash.html">Hash</a></code>, <code><a href="Set.html">Set</a></code> and
+<code><a href="Deque.html">Deque</a></code>, and all primitive types, define <code><a href="Object.html#dup-instance-method">#dup</a></code> and <code>clone</code>.</p>
+<p>Example:</p>
+<pre><code class="language-crystal">original <span class="o">=</span> {<span class="s">&quot;foo&quot;</span> <span class="o">=&gt;</span> [<span class="n">1</span>, <span class="n">2</span>, <span class="n">3</span>]}
+shallow_copy <span class="o">=</span> original.dup
+deep_copy <span class="o">=</span> original.clone
+
+<span class="c"># &quot;foo&quot; references the same array object for both original and shallow copy,</span>
+<span class="c"># but not for a deep copy:</span>
+original[<span class="s">&quot;foo&quot;</span>] <span class="o">&lt;&lt;</span> <span class="n">4</span>
+shallow_copy[<span class="s">&quot;foo&quot;</span>] <span class="c"># =&gt; [1, 2, 3, 4]</span>
+deep_copy[<span class="s">&quot;foo&quot;</span>]    <span class="c"># =&gt; [1, 2, 3]</span>
+
+<span class="c"># Assigning new value does not share it to either copy:</span>
+original[<span class="s">&quot;foo&quot;</span>] <span class="o">=</span> [<span class="n">1</span>]
+shallow_copy[<span class="s">&quot;foo&quot;</span>] <span class="c"># =&gt; [1, 2, 3, 4]</span>
+deep_copy[<span class="s">&quot;foo&quot;</span>]    <span class="c"># =&gt; [1, 2, 3]</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/object.cr#L495" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="hash(hasher)-instance-method">
+      <div class="signature">
+        abstract 
+        def <strong>hash</strong>(hasher)
+
+        <a class="method-permalink" href="#hash%28hasher%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Appends this object's value to <em>hasher</em>, and returns the modified <em>hasher</em>.</p>
+<p>Usually the macro <code><a href="Object.html#def_hash%28%2Afields%29-macro">def_hash</a></code> can be used to generate this method.
+Otherwise, invoke <code><a href="Object.html#hash%28hasher%29-instance-method">#hash(hasher)</a></code> on each object's instance variables to
+accumulate the result:</p>
+<pre><code class="language-crystal"><span class="k">def</span> <span class="m">hash</span>(hasher)
+  hasher <span class="o">=</span> @some_ivar.hash(hasher)
+  hasher <span class="o">=</span> @some_other_ivar.hash(hasher)
+  hasher
+<span class="k">end</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/object.cr#L273" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="hash-instance-method">
+      <div class="signature">
+        
+        def <strong>hash</strong>
+
+        <a class="method-permalink" href="#hash-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Generates an <code><a href="UInt64.html">UInt64</a></code> hash value for this object.</p>
+<p>This method must have the property that <code>a == b</code> implies <code>a.hash == b.hash</code>.</p>
+<p>The hash value is used along with <code><a href="Object.html#%3D%3D%28other%29-instance-method">#==</a></code> by the <code><a href="Hash.html">Hash</a></code> class to determine if two objects
+reference the same hash key.</p>
+<p>Subclasses must not override this method. Instead, they must define <code><a href="Object.html#hash%28hasher%29-instance-method">#hash(hasher)</a></code>,
+though usually the macro <code><a href="Object.html#def_hash%28%2Afields%29-macro">def_hash</a></code> can be used to generate this method.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/object.cr#L284" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="in?(collection:Object):Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>in?</strong>(collection : <a href="Object.html">Object</a>) : <a href="Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#in%3F%28collection%3AObject%29%3ABool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if <code>self</code> is included in the <em>collection</em> argument.</p>
+<pre><code class="language-crystal"><span class="n">10</span>.in?(<span class="n">0</span>..<span class="n">100</span>)     <span class="c"># =&gt; true</span>
+<span class="n">10</span>.in?({<span class="n">0</span>, <span class="n">1</span>, <span class="n">10</span>}) <span class="c"># =&gt; true</span>
+<span class="n">10</span>.in?(<span class="n">0</span>, <span class="n">1</span>, <span class="n">10</span>)   <span class="c"># =&gt; true</span>
+<span class="n">10</span>.in?(<span class="n">:foo</span>, <span class="n">:bar</span>) <span class="c"># =&gt; false</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/object.cr#L403" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="in?(*values:Object):Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>in?</strong>(*values : <a href="Object.html">Object</a>) : <a href="Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#in%3F%28%2Avalues%3AObject%29%3ABool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if <code>self</code> is included in the <em>collection</em> argument.</p>
+<pre><code class="language-crystal"><span class="n">10</span>.in?(<span class="n">0</span>..<span class="n">100</span>)     <span class="c"># =&gt; true</span>
+<span class="n">10</span>.in?({<span class="n">0</span>, <span class="n">1</span>, <span class="n">10</span>}) <span class="c"># =&gt; true</span>
+<span class="n">10</span>.in?(<span class="n">0</span>, <span class="n">1</span>, <span class="n">10</span>)   <span class="c"># =&gt; true</span>
+<span class="n">10</span>.in?(<span class="n">:foo</span>, <span class="n">:bar</span>) <span class="c"># =&gt; false</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/object.cr#L408" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="inspect(io:IO):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>inspect</strong>(io : <a href="IO.html">IO</a>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#inspect%28io%3AIO%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Prints to <em>io</em> an unambiguous and information-rich string representation of this
+object, typically intended for developers.</p>
+<p>It is similar to <code><a href="Object.html#to_s%28io%3AIO%29%3ANil-instance-method">#to_s(IO)</a></code>, but often provides more information. Ideally, it should
+contain sufficient information to be able to recreate an object with the same value
+(given an identical environment).</p>
+<p>For types that don't provide a custom implementation of this method,
+default implementation delegates to <code><a href="Object.html#to_s%28io%3AIO%29%3ANil-instance-method">#to_s(IO)</a></code>. This said, it is advisable to
+have an appropriate <code><a href="Object.html#inspect%3AString-instance-method">#inspect</a></code> implementation on every type. Default
+implementations are provided by <code><a href="Struct.html#inspect%28io%3AIO%29%3ANil-instance-method">Struct#inspect</a></code> and <code><a href="Reference.html#inspect%28io%3AIO%29%3ANil-instance-method">Reference#inspect</a></code>.</p>
+<p><code>::p</code> and <code>::p!</code> use this method to print an object in <code><a href="toplevel.html#STDOUT">STDOUT</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/object.cr#L346" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="inspect:String-instance-method">
+      <div class="signature">
+        
+        def <strong>inspect</strong> : <a href="String.html">String</a>
+
+        <a class="method-permalink" href="#inspect%3AString-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns an unambiguous and information-rich string representation of this
+object, typically intended for developers.</p>
+<p>This method should usually <strong>not</strong> be overridden. It delegates to
+<code><a href="Object.html#inspect%28io%3AIO%29%3ANil-instance-method">#inspect(IO)</a></code> which can be overridden for custom implementations.</p>
+<p>Also see <code><a href="Object.html#to_s%3AString-instance-method">#to_s</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/object.cr#L327" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="is_a?(type:Class):Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>is_a?</strong>(type : <a href="Class.html">Class</a>) : <a href="Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#is_a%3F%28type%3AClass%29%3ABool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if <code>self</code> inherits or includes <em>type</em>.
+<em>type</em> must be a constant or <code>typeof()</code>expression. It cannot be evaluated at runtime.</p>
+<pre><code class="language-crystal">a <span class="o">=</span> <span class="n">1</span>
+a.<span class="k">class</span>                 <span class="c"># =&gt; Int32</span>
+a.<span class="k">is_a?</span>(<span class="t">Int32</span>)          <span class="c"># =&gt; true</span>
+a.<span class="k">is_a?</span>(<span class="t">String</span>)         <span class="c"># =&gt; false</span>
+a.<span class="k">is_a?</span>(<span class="t">Number</span>)         <span class="c"># =&gt; true</span>
+a.<span class="k">is_a?</span>(<span class="t">Int32</span> <span class="o">|</span> <span class="t">String</span>) <span class="c"># =&gt; true</span></code></pre>
+<p><span class="flag purple">NOTE</span>  This is a pseudo-method provided directly by the Crystal compiler.
+It cannot be redefined nor overridden.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/docs_pseudo_methods.cr#L158" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="itself-instance-method">
+      <div class="signature">
+        
+        def <strong>itself</strong>
+
+        <a class="method-permalink" href="#itself-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>self</code>.</p>
+<pre><code class="language-crystal">str <span class="o">=</span> <span class="s">&quot;hello&quot;</span>
+str.itself.object_id <span class="o">==</span> str.object_id <span class="c"># =&gt; true</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/object.cr#L443" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="nil?:Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>nil?</strong> : <a href="Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#nil%3F%3ABool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if <code>self</code> is <code><a href="Nil.html">Nil</a></code>.</p>
+<pre><code class="language-crystal"><span class="n">1</span>.<span class="k">nil?</span>   <span class="c"># =&gt; false</span>
+<span class="n">nil</span>.<span class="k">nil?</span> <span class="c"># =&gt; true</span></code></pre>
+<p>This method is equivalent to <code><a href="Object.html#is_a%3F%28type%3AClass%29%3ABool-instance-method">#is_a?(Nil)</a></code>.</p>
+<p><span class="flag purple">NOTE</span>  This is a pseudo-method provided directly by the Crystal compiler.
+It cannot be redefined nor overridden.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/docs_pseudo_methods.cr#L169" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="not_nil!(message)-instance-method">
+      <div class="signature">
+        
+        def <strong>not_nil!</strong>(message)
+
+        <a class="method-permalink" href="#not_nil%21%28message%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>self</code>.</p>
+<p><code><a href="Nil.html">Nil</a></code> overrides this method and raises <code><a href="NilAssertionError.html">NilAssertionError</a></code>, see <code><a href="Nil.html#not_nil%21%28message%3Dnil%29%3ANoReturn-instance-method">Nil#not_nil!</a></code>.</p>
+<p>This method can be used to remove <code><a href="Nil.html">Nil</a></code> from a union type.
+However, it should be avoided if possible and is often considered a code smell.
+Usually, you can write code in a way that the compiler can safely exclude <code><a href="Nil.html">Nil</a></code> types,
+for example using <a href="https://crystal-lang.org/reference/syntax_and_semantics/if_var.html"><code>if var</code></a>.
+<code><a href="Object.html#not_nil%21-instance-method">#not_nil!</a></code> is only meant as a last resort when there's no other way to explain this to the compiler.
+Either way, consider instead raising a concrete exception with a descriptive message.</p>
+<p><em>message</em> has no effect. It is only used by <code><a href="Nil.html#not_nil%21%28message%3Dnil%29%3ANoReturn-instance-method">Nil#not_nil!(message = nil)</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/object.cr#L429" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="not_nil!-instance-method">
+      <div class="signature">
+        
+        def <strong>not_nil!</strong>
+
+        <a class="method-permalink" href="#not_nil%21-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>self</code>.</p>
+<p><code><a href="Nil.html">Nil</a></code> overrides this method and raises <code><a href="NilAssertionError.html">NilAssertionError</a></code>, see <code><a href="Nil.html#not_nil%21%28message%3Dnil%29%3ANoReturn-instance-method">Nil#not_nil!</a></code>.</p>
+<p>This method can be used to remove <code><a href="Nil.html">Nil</a></code> from a union type.
+However, it should be avoided if possible and is often considered a code smell.
+Usually, you can write code in a way that the compiler can safely exclude <code><a href="Nil.html">Nil</a></code> types,
+for example using <a href="https://crystal-lang.org/reference/syntax_and_semantics/if_var.html"><code>if var</code></a>.
+<code><a href="Object.html#not_nil%21-instance-method">#not_nil!</a></code> is only meant as a last resort when there's no other way to explain this to the compiler.
+Either way, consider instead raising a concrete exception with a descriptive message.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/object.cr#L422" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="pretty_inspect(width=79,newline=&quot;\n&quot;,indent=0):String-instance-method">
+      <div class="signature">
+        
+        def <strong>pretty_inspect</strong>(width = <span class="n">79</span>, newline = <span class="s">&quot;\n&quot;</span>, indent = <span class="n">0</span>) : <a href="String.html">String</a>
+
+        <a class="method-permalink" href="#pretty_inspect%28width%3D79%2Cnewline%3D%22%5Cn%22%2Cindent%3D0%29%3AString-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns a pretty printed version of <code>self</code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/object.cr#L360" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="pretty_print(pp:PrettyPrint):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>pretty_print</strong>(pp : <a href="PrettyPrint.html">PrettyPrint</a>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#pretty_print%28pp%3APrettyPrint%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Pretty prints <code>self</code> into the given printer.</p>
+<p>By default appends a text that is the result of invoking
+<code><a href="Object.html#inspect%3AString-instance-method">#inspect</a></code> on <code>self</code>. Subclasses should override
+for custom pretty printing.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/object.cr#L355" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="responds_to?(name:Symbol):Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>responds_to?</strong>(name : <a href="Symbol.html">Symbol</a>) : <a href="Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#responds_to%3F%28name%3ASymbol%29%3ABool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if method <em>name</em> can be called on <code>self</code>.</p>
+<p><em>name</em> must be a symbol literal, it cannot be evaluated at runtime.</p>
+<pre><code class="language-crystal">a <span class="o">=</span> <span class="n">1</span>
+a.<span class="k">responds_to?</span>(<span class="n">:abs</span>)  <span class="c"># =&gt; true</span>
+a.<span class="k">responds_to?</span>(<span class="n">:size</span>) <span class="c"># =&gt; false</span></code></pre>
+<p><span class="flag purple">NOTE</span>  This is a pseudo-method provided directly by the Crystal compiler.
+It cannot be redefined nor overridden.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/docs_pseudo_methods.cr#L237" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="tap(&amp;)-instance-method">
+      <div class="signature">
+        
+        def <strong>tap</strong>(&)
+
+        <a class="method-permalink" href="#tap%28%26%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Yields <code>self</code> to the block, and then returns <code>self</code>.</p>
+<p>The primary purpose of this method is to &quot;tap into&quot; a method chain,
+in order to perform operations on intermediate results within the chain.</p>
+<pre><code class="language-crystal">(<span class="n">1</span>..<span class="n">10</span>).tap { <span class="o">|</span>x<span class="o">|</span> puts <span class="s">&quot;original: </span><span class="i">#{</span>x.inspect<span class="i">}</span><span class="s">&quot;</span> }
+  .to_a.tap { <span class="o">|</span>x<span class="o">|</span> puts <span class="s">&quot;array: </span><span class="i">#{</span>x.inspect<span class="i">}</span><span class="s">&quot;</span> }
+  .<span class="k">select</span> { <span class="o">|</span>x<span class="o">|</span> x <span class="o">%</span> <span class="n">2</span> <span class="o">==</span> <span class="n">0</span> }.tap { <span class="o">|</span>x<span class="o">|</span> puts <span class="s">&quot;evens: </span><span class="i">#{</span>x.inspect<span class="i">}</span><span class="s">&quot;</span> }
+  .map { <span class="o">|</span>x<span class="o">|</span> x<span class="o">*</span>x }.tap { <span class="o">|</span>x<span class="o">|</span> puts <span class="s">&quot;squares: </span><span class="i">#{</span>x.inspect<span class="i">}</span><span class="s">&quot;</span> }</code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/object.cr#L377" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_json(io:IO):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>to_json</strong>(io : <a href="IO.html">IO</a>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#to_json%28io%3AIO%29%3ANil-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/to_json.cr#L8" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_json:String-instance-method">
+      <div class="signature">
+        
+        def <strong>to_json</strong> : <a href="String.html">String</a>
+
+        <a class="method-permalink" href="#to_json%3AString-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/to_json.cr#L2" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_pretty_json(indent:String=&quot;&quot;):String-instance-method">
+      <div class="signature">
+        
+        def <strong>to_pretty_json</strong>(indent : <a href="String.html">String</a> = <span class="s">&quot;  &quot;</span>) : <a href="String.html">String</a>
+
+        <a class="method-permalink" href="#to_pretty_json%28indent%3AString%3D%22%22%29%3AString-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/to_json.cr#L14" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_pretty_json(io:IO,indent:String=&quot;&quot;):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>to_pretty_json</strong>(io : <a href="IO.html">IO</a>, indent : <a href="String.html">String</a> = <span class="s">&quot;  &quot;</span>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#to_pretty_json%28io%3AIO%2Cindent%3AString%3D%22%22%29%3ANil-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/to_json.cr#L20" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_s(io:IO):Nil-instance-method">
+      <div class="signature">
+        abstract 
+        def <strong>to_s</strong>(io : <a href="IO.html">IO</a>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#to_s%28io%3AIO%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Prints a nicely readable and concise string representation of this object,
+typically intended for users, to <em>io</em>.</p>
+<p>This method is called when an object is interpolated in a string literal:</p>
+<pre><code class="language-crystal"><span class="s">&quot;foo </span><span class="i">#{</span>bar<span class="i">}</span><span class="s"> baz&quot;</span> <span class="c"># calls bar.to_io with the builder for this string</span></code></pre>
+<p><code>IO#&lt;&lt;</code> calls this method to append an object to itself:</p>
+<pre><code class="language-crystal">io <span class="o">&lt;&lt;</span> bar <span class="c"># calls bar.to_s(io)</span></code></pre>
+<p>Thus implementations must not interpolate <code>self</code> in a string literal or call
+<code>io &lt;&lt; self</code> which both would lead to an endless loop.</p>
+<p>Also see <code><a href="Object.html#inspect%28io%3AIO%29%3ANil-instance-method">#inspect(IO)</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/object.cr#L318" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_s:String-instance-method">
+      <div class="signature">
+        
+        def <strong>to_s</strong> : <a href="String.html">String</a>
+
+        <a class="method-permalink" href="#to_s%3AString-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns a nicely readable and concise string representation of this object,
+typically intended for users.</p>
+<p>This method should usually <strong>not</strong> be overridden. It delegates to
+<code><a href="Object.html#to_s%28io%3AIO%29%3ANil-instance-method">#to_s(IO)</a></code> which can be overridden for custom implementations.</p>
+<p>Also see <code><a href="Object.html#inspect%3AString-instance-method">#inspect</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/object.cr#L295" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_yaml(io:IO):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>to_yaml</strong>(io : <a href="IO.html">IO</a>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#to_yaml%28io%3AIO%29%3ANil-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/yaml/to_yaml.cr#L8" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_yaml:String-instance-method">
+      <div class="signature">
+        
+        def <strong>to_yaml</strong> : <a href="String.html">String</a>
+
+        <a class="method-permalink" href="#to_yaml%3AString-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/yaml/to_yaml.cr#L2" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="try(&amp;)-instance-method">
+      <div class="signature">
+        
+        def <strong>try</strong>(&)
+
+        <a class="method-permalink" href="#try%28%26%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Yields <code>self</code>. <code><a href="Nil.html">Nil</a></code> overrides this method and doesn't yield.</p>
+<p>This method is useful for dealing with nilable types, to safely
+perform operations only when the value is not <code>nil</code>.</p>
+<pre><code class="language-crystal"><span class="c"># First program argument in downcase, or nil</span>
+<span class="t">ARGV</span>[<span class="n">0</span>]?.try <span class="o">&amp;</span>.downcase</code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/object.cr#L391" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="unsafe_as(type:T.class)forallT-instance-method">
+      <div class="signature">
+        
+        def <strong>unsafe_as</strong>(type : <span class="t">T</span>.<span class="k">class</span>) forall T
+
+        <a class="method-permalink" href="#unsafe_as%28type%3AT.class%29forallT-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Unsafely reinterprets the bytes of an object as being of another <code>type</code>.</p>
+<p>This method is useful to treat a type that is represented as a chunk of
+bytes as another type where those bytes convey useful information. As an
+example, you can check the individual bytes of an <code><a href="Int32.html">Int32</a></code>:</p>
+<pre><code class="language-crystal"><span class="n">0x01020304</span>.unsafe_as(<span class="t">StaticArray</span>(<span class="t">UInt8</span>, <span class="n">4</span>)) <span class="c"># =&gt; StaticArray[4, 3, 2, 1]</span></code></pre>
+<p>Or treat the bytes of a <code><a href="Float64.html">Float64</a></code> as an <code><a href="Int64.html">Int64</a></code>:</p>
+<pre><code class="language-crystal"><span class="n">1.234_f64</span>.unsafe_as(<span class="t">Int64</span>) <span class="c"># =&gt; 4608236261112822104</span></code></pre>
+<p>This method is <strong>unsafe</strong> because it behaves unpredictably when the given
+<code>type</code> doesn't have the same bytesize as the receiver, or when the given
+<code>type</code> representation doesn't semantically match the underlying bytes.</p>
+<p>Also note that because <code><a href="Object.html#unsafe_as%28type%3AT.class%29forallT-instance-method">#unsafe_as</a></code> is a regular method, unlike the pseudo-method
+<code><a href="Object.html#as%28type%3AClass%29-instance-method">#as</a></code>, you can't specify some types in the type grammar using a short notation, so
+specifying a static array must always be done as <code><a href="StaticArray.html">StaticArray</a>(T, N)</code>, a tuple
+as <code><a href="Tuple.html">Tuple</a>(...)</code> and so on, never as <code><a href="UInt8.html">UInt8</a>[4]</code> or <code>{<a href="Int32.html">Int32</a>, <a href="Int32.html">Int32</a>}</code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/object.cr#L521" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,3362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Crystal Docs 1.16.1">
+<meta name="crystal_docs.project_version" content="1.17.0-dev">
+<meta name="crystal_docs.project_name" content="Crystal">
+
+  <meta name="crystal_docs.json_config_url" content="/api/versions.json">
+
+
+    <link rel="canonical" href="https://crystal-lang.org/api/latest/File.html">
+
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/doc.js"></script>
+
+  <meta name="repository-name" content="Crystal">
+  <title>File - Crystal 1.17.0-dev</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill="currentColor" fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<input type="checkbox" id="sidebar-btn">
+<label for="sidebar-btn" id="sidebar-btn-label">
+  <svg class="open" xmlns="http://www.w3.org/2000/svg" height="2em" width="2em" viewBox="0 0 512 512"><title>Open Sidebar</title><path fill="currentColor" d="M80 96v64h352V96H80zm0 112v64h352v-64H80zm0 112v64h352v-64H80z"></path></svg>
+  <svg class="close" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><title>Close Sidebar</title><path fill="currentColor" d="m118.6 73.4-45.2 45.2L210.7 256 73.4 393.4l45.2 45.2L256 301.3l137.4 137.3 45.2-45.2L301.3 256l137.3-137.4-45.2-45.2L256 210.7Z"></path></svg>
+</label>
+<iframe class="sidebar" src="sidebar.html"></iframe>
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">
+    class
+  </span> File
+
+</h1>
+
+
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="File.html">File</a></li><li class="superclass"><a href="IO/FileDescriptor.html">IO::FileDescriptor</a></li><li class="superclass"><a href="IO.html">IO</a></li><li class="superclass"><a href="Reference.html">Reference</a></li><li class="superclass"><a href="Object.html">Object</a></li></ul>
+
+
+
+
+  <h2>
+    <a id="overview" class="anchor" href="#overview">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Overview
+  </h2>
+
+  <p>A <code><a href="File.html">File</a></code> instance represents a file entry in the local file system and allows using it as an <code><a href="IO.html">IO</a></code>.</p>
+<pre><code class="language-crystal">file <span class="o">=</span> <span class="t">File</span>.new(<span class="s">&quot;path/to/file&quot;</span>)
+content <span class="o">=</span> file.gets_to_end
+file.close
+
+<span class="c"># Implicit close with `open` and a block:</span>
+content <span class="o">=</span> <span class="t">File</span>.open(<span class="s">&quot;path/to/file&quot;</span>) <span class="k">do</span> <span class="o">|</span>file<span class="o">|</span>
+  file.gets_to_end
+<span class="k">end</span>
+
+<span class="c"># Shortcut of the above:</span>
+content <span class="o">=</span> <span class="t">File</span>.read(<span class="s">&quot;path/to/file&quot;</span>)
+
+<span class="c"># Write to a file by opening with a &quot;write mode&quot; specified.</span>
+<span class="t">File</span>.open(<span class="s">&quot;path/to/file&quot;</span>, <span class="s">&quot;w&quot;</span>) <span class="k">do</span> <span class="o">|</span>file<span class="o">|</span>
+  file.print <span class="s">&quot;hello&quot;</span>
+<span class="k">end</span>
+<span class="c"># Content of file on disk will now be &quot;hello&quot;.</span>
+
+<span class="c"># Shortcut of the above:</span>
+<span class="t">File</span>.write(<span class="s">&quot;path/to/file&quot;</span>, <span class="s">&quot;hello&quot;</span>)</code></pre>
+<p>See <code><a href="File.html#new%28filename%3APath%7CString%2Cmode%3D%22r%22%2Cperm%3DDEFAULT_CREATE_PERMISSIONS%2Cencoding%3Dnil%2Cinvalid%3Dnil%2Cblocking%3Dtrue%29-class-method">.new</a></code> for various options <em>mode</em> can be.</p>
+<h2><a id="temporary-files" class="anchor" href="#temporary-files">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Temporary Files</h2>
+<p>Every tempfile is operated as a <code><a href="File.html">File</a></code>, including initializing, reading and writing.</p>
+<pre><code class="language-crystal">tempfile <span class="o">=</span> <span class="t">File</span>.tempfile(<span class="s">&quot;foo&quot;</span>)
+
+<span class="t">File</span>.size(tempfile.path)                   <span class="c"># =&gt; 6</span>
+<span class="t">File</span>.info(tempfile.path).modification_time <span class="c"># =&gt; 2015-10-20 13:11:12 UTC</span>
+<span class="t">File</span>.exists?(tempfile.path)                <span class="c"># =&gt; true</span>
+<span class="t">File</span>.read_lines(tempfile.path)             <span class="c"># =&gt; [&quot;foobar&quot;]</span></code></pre>
+<p>Files created from <code><a href="File.html#tempfile%28prefix%3AString%7CNil%2Csuffix%3AString%7CNil%2C%2A%2Cdir%3AString%3DDir.tempdir%2Cencoding%3Dnil%2Cinvalid%3Dnil%29-class-method">.tempfile</a></code> are stored in a directory that handles
+temporary files (<code><a href="Dir.html#tempdir%3AString-class-method">Dir.tempdir</a></code>):</p>
+<pre><code class="language-crystal"><span class="t">File</span>.tempfile(<span class="s">&quot;foo&quot;</span>).path <span class="c"># =&gt; &quot;/tmp/foo.ulBCPS&quot;</span></code></pre>
+<p>It is encouraged to delete a tempfile after using it, which
+ensures they are not left behind in your filesystem until garbage collected.</p>
+<pre><code class="language-crystal">tempfile <span class="o">=</span> <span class="t">File</span>.tempfile(<span class="s">&quot;foo&quot;</span>)
+tempfile.delete</code></pre>
+
+
+
+
+
+
+
+  <h2>
+    <a id="included-modules" class="anchor" href="#included-modules">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Included Modules
+  </h2>
+  <ul class="other-types-list">
+    
+      <li class="other-type">Crystal::System::File</li>
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file.cr#L1" target="_blank">
+        file.cr:1
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file.cr#L62" target="_blank">
+        file.cr:62
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file/error.cr#L1" target="_blank">
+        file/error.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file/info.cr#L3" target="_blank">
+        file/info.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file/match.cr#L5" target="_blank">
+        file/match.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file/tempfile.cr#L1" target="_blank">
+        file/tempfile.cr
+      </a>
+    
+    <br/>
+  
+
+
+
+  
+    <h2>
+      <a id="constant-summary" class="anchor" href="#constant-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+      Constant Summary
+    </h2>
+  
+  <dl>
+    
+      <dt class="entry-const" id="NULL">
+        <strong>NULL</strong> = <code><span class="o">{%</span> <span class="k">if</span> flag?(<span class="n">:win32</span>) <span class="o">%}</span>
+           <span class="s">&quot;NUL&quot;</span>
+         <span class="o">{%</span> <span class="k">else</span> <span class="o">%}</span>
+           <span class="s">&quot;/dev/null&quot;</span>
+         <span class="o">{%</span> <span class="k">end</span> <span class="o">%}</span></code>
+      </dt>
+      
+      <dd class="entry-const-doc">
+        <p>The name of the null device on the host platform. <code>/dev/null</code> on UNIX and <code>NUL</code>
+on win32.</p>
+<p>When this device is opened using <code><a href="File.html#open%28filename%3APath%7CString%2Cmode%3D%22r%22%2Cperm%3DDEFAULT_CREATE_PERMISSIONS%2Cencoding%3Dnil%2Cinvalid%3Dnil%2Cblocking%3Dtrue%29%3Aself-class-method">File.open</a></code>, read operations will always
+return EOF, and any data written will be immediately discarded.</p>
+<pre><code class="language-crystal"><span class="t">File</span>.open(<span class="t">File</span><span class="t">::</span><span class="t">NULL</span>, <span class="s">&quot;w&quot;</span>) <span class="k">do</span> <span class="o">|</span>file<span class="o">|</span>
+  file.puts <span class="s">&quot;this is discarded&quot;</span>
+<span class="k">end</span></code></pre>
+      </dd>
+      
+    
+      <dt class="entry-const" id="SEPARATOR">
+        <strong>SEPARATOR</strong> = <code><span class="s">&#39;/&#39;</span></code>
+      </dt>
+      
+      <dd class="entry-const-doc">
+        <p>The file/directory separator character. <code>'/'</code> on all platforms.</p>
+      </dd>
+      
+    
+      <dt class="entry-const" id="SEPARATOR_STRING">
+        <strong>SEPARATOR_STRING</strong> = <code><span class="s">&quot;/&quot;</span></code>
+      </dt>
+      
+      <dd class="entry-const-doc">
+        <p>The file/directory separator string. <code>&quot;/&quot;</code> on all platforms.</p>
+      </dd>
+      
+    
+  </dl>
+
+
+
+  
+  <h2>
+    <a id="constructors" class="anchor" href="#constructors">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructors
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#new%28filename%3APath%7CString%2Cmode%3D%22r%22%2Cperm%3DDEFAULT_CREATE_PERMISSIONS%2Cencoding%3Dnil%2Cinvalid%3Dnil%2Cblocking%3Dtrue%29-class-method" class="signature"><strong>.new</strong>(filename : Path | String, mode = <span class="s">&quot;r&quot;</span>, perm = <span class="t">DEFAULT_CREATE_PERMISSIONS</span>, encoding = <span class="n">nil</span>, invalid = <span class="n">nil</span>, blocking = <span class="n">true</span>)</a>
+        
+          <div class="summary"><p>Opens the file named by <em>filename</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#open%28filename%3APath%7CString%2Cmode%3D%22r%22%2Cperm%3DDEFAULT_CREATE_PERMISSIONS%2Cencoding%3Dnil%2Cinvalid%3Dnil%2Cblocking%3Dtrue%29%3Aself-class-method" class="signature"><strong>.open</strong>(filename : Path | String, mode = <span class="s">&quot;r&quot;</span>, perm = <span class="t">DEFAULT_CREATE_PERMISSIONS</span>, encoding = <span class="n">nil</span>, invalid = <span class="n">nil</span>, blocking = <span class="n">true</span>) : <span class="k">self</span></a>
+        
+          <div class="summary"><p>Opens the file named by <em>filename</em>.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+  
+  <h2>
+    <a id="class-method-summary" class="anchor" href="#class-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Class Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#basename%28path%3APath%7CString%2Csuffix%3AString%29%3AString-class-method" class="signature"><strong>.basename</strong>(path : Path | String, suffix : String) : String</a>
+        
+          <div class="summary"><p>Returns the last component of the given <em>path</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#basename%28path%3APath%7CString%29%3AString-class-method" class="signature"><strong>.basename</strong>(path : Path | String) : String</a>
+        
+          <div class="summary"><p>Returns the last component of the given <em>path</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#chmod%28path%3APath%7CString%2Cpermissions%3AInt%7CPermissions%29%3ANil-class-method" class="signature"><strong>.chmod</strong>(path : Path | String, permissions : Int | Permissions) : Nil</a>
+        
+          <div class="summary"><p>Changes the permissions of the specified file.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#chown%28path%3APath%7CString%2Cuid%3AInt%3D-1%2Cgid%3AInt%3D-1%2Cfollow_symlinks%3Dfalse%29%3ANil-class-method" class="signature"><strong>.chown</strong>(path : Path | String, uid : Int = <span class="n">-1</span>, gid : Int = <span class="n">-1</span>, follow_symlinks = <span class="n">false</span>) : Nil</a>
+        
+          <div class="summary"><p>Changes the owner of the specified file.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#copy%28src%3AString%7CPath%2Cdst%3AString%7CPath%29%3ANil-class-method" class="signature"><strong>.copy</strong>(src : String | Path, dst : String | Path) : Nil</a>
+        
+          <div class="summary"><p>Copies the file <em>src</em> to the file <em>dst</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#delete%28path%3APath%7CString%29%3ANil-class-method" class="signature"><strong>.delete</strong>(path : Path | String) : Nil</a>
+        
+          <div class="summary"><p>Deletes the file at <em>path</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#delete%3F%28path%3APath%7CString%29%3ABool-class-method" class="signature"><strong>.delete?</strong>(path : Path | String) : Bool</a>
+        
+          <div class="summary"><p>Deletes the file at <em>path</em>, or returns <code>false</code> if the file does not exist.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#directory%3F%28path%3APath%7CString%29%3ABool-class-method" class="signature"><strong>.directory?</strong>(path : Path | String) : Bool</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if the given <em>path</em> exists and is a directory.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#dirname%28path%3APath%7CString%29%3AString-class-method" class="signature"><strong>.dirname</strong>(path : Path | String) : String</a>
+        
+          <div class="summary"><p>Returns all components of the given <em>path</em> except the last one.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#each_line%28filename%3APath%7CString%2Cencoding%3Dnil%2Cinvalid%3Dnil%2Cchomp%3Dtrue%2Cblocking%3Dtrue%2C%26%29-class-method" class="signature"><strong>.each_line</strong>(filename : Path | String, encoding = <span class="n">nil</span>, invalid = <span class="n">nil</span>, chomp = <span class="n">true</span>, blocking = <span class="n">true</span>, &)</a>
+        
+          <div class="summary"><p>Yields each line in <em>filename</em> to the given block.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#empty%3F%28path%3APath%7CString%29%3ABool-class-method" class="signature"><strong>.empty?</strong>(path : Path | String) : Bool</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if the file at <em>path</em> is empty, otherwise returns <code>false</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#executable%3F%28path%3APath%7CString%29%3ABool-class-method" class="signature"><strong>.executable?</strong>(path : Path | String) : Bool</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if <em>path</em> is executable by the real user id of this process else returns <code>false</code>.</p>
+<p><span class="flag red">DEPRECATED</span>  Use <code><a href="File/Info.html#executable%3F%28path%3APath%7CString%29%3ABool-class-method">File::Info.executable?</a></code> instead</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#exists%3F%28path%3APath%7CString%29%3ABool-class-method" class="signature"><strong>.exists?</strong>(path : Path | String) : Bool</a>
+        
+          <div class="summary"><p>Returns whether the file given by <em>path</em> exists.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#expand_path%28path%3APath%7CString%2Cdir%3Dnil%2C%2A%2Chome%3Dfalse%29%3AString-class-method" class="signature"><strong>.expand_path</strong>(path : Path | String, dir = <span class="n">nil</span>, *, home = <span class="n">false</span>) : String</a>
+        
+          <div class="summary"><p>Converts <em>path</em> to an absolute path.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#extname%28filename%3APath%7CString%29%3AString-class-method" class="signature"><strong>.extname</strong>(filename : Path | String) : String</a>
+        
+          <div class="summary"><p>Returns <em>filename</em>'s extension, or an empty string if it has no extension.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#file%3F%28path%3APath%7CString%29%3ABool-class-method" class="signature"><strong>.file?</strong>(path : Path | String) : Bool</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if given <em>path</em> exists and is a file.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#info%28path%3APath%7CString%2Cfollow_symlinks%3Dtrue%29%3AInfo-class-method" class="signature"><strong>.info</strong>(path : Path | String, follow_symlinks = <span class="n">true</span>) : Info</a>
+        
+          <div class="summary"><p>Returns a <code><a href="File/Info.html">File::Info</a></code> object for the file given by <em>path</em> or raises <code><a href="File/Error.html">File::Error</a></code> in case of an error.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#info%3F%28path%3APath%7CString%2Cfollow_symlinks%3Dtrue%29%3AInfo%7CNil-class-method" class="signature"><strong>.info?</strong>(path : Path | String, follow_symlinks = <span class="n">true</span>) : Info | Nil</a>
+        
+          <div class="summary"><p>Returns a <code><a href="File/Info.html">File::Info</a></code> object for the file given by <em>path</em> or returns <code>nil</code> if the file does not exist.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#join%28parts%3AEnumerable%29%3AString-class-method" class="signature"><strong>.join</strong>(parts : Enumerable) : String</a>
+        
+          <div class="summary"><p>Returns a new string formed by joining the strings using <code><a href="File.html#SEPARATOR">File::SEPARATOR</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#join%28%2Aparts%3AString%7CPath%29%3AString-class-method" class="signature"><strong>.join</strong>(*parts : String | Path) : String</a>
+        
+          <div class="summary"><p>Returns a new string formed by joining the strings using <code><a href="File.html#SEPARATOR">File::SEPARATOR</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#link%28old_path%3APath%7CString%2Cnew_path%3APath%7CString%29%3ANil-class-method" class="signature"><strong>.link</strong>(old_path : Path | String, new_path : Path | String) : Nil</a>
+        
+          <div class="summary"><p>Creates a new link (also known as a hard link) at <em>new_path</em> to an existing file given by <em>old_path</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#match%3F%28pattern%3AString%2Cpath%3APath%7CString%29%3ABool-class-method" class="signature"><strong>.match?</strong>(pattern : String, path : Path | String) : Bool</a>
+        
+          <div class="summary"><p>Matches <em>path</em> against <em>pattern</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#open%28filename%3APath%7CString%2Cmode%3D%22r%22%2Cperm%3DDEFAULT_CREATE_PERMISSIONS%2Cencoding%3Dnil%2Cinvalid%3Dnil%2Cblocking%3Dtrue%2C%26%29-class-method" class="signature"><strong>.open</strong>(filename : Path | String, mode = <span class="s">&quot;r&quot;</span>, perm = <span class="t">DEFAULT_CREATE_PERMISSIONS</span>, encoding = <span class="n">nil</span>, invalid = <span class="n">nil</span>, blocking = <span class="n">true</span>, &)</a>
+        
+          <div class="summary"><p>Opens the file named by <em>filename</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#read%28filename%3APath%7CString%2Cencoding%3Dnil%2Cinvalid%3Dnil%2Cblocking%3Dtrue%29%3AString-class-method" class="signature"><strong>.read</strong>(filename : Path | String, encoding = <span class="n">nil</span>, invalid = <span class="n">nil</span>, blocking = <span class="n">true</span>) : String</a>
+        
+          <div class="summary"><p>Returns the content of <em>filename</em> as a string.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#read_lines%28filename%3APath%7CString%2Cencoding%3Dnil%2Cinvalid%3Dnil%2Cchomp%3Dtrue%2Cblocking%3Dtrue%29%3AArray%28String%29-class-method" class="signature"><strong>.read_lines</strong>(filename : Path | String, encoding = <span class="n">nil</span>, invalid = <span class="n">nil</span>, chomp = <span class="n">true</span>, blocking = <span class="n">true</span>) : Array(String)</a>
+        
+          <div class="summary"><p>Returns all lines in <em>filename</em> as an array of strings.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#readable%3F%28path%3APath%7CString%29%3ABool-class-method" class="signature"><strong>.readable?</strong>(path : Path | String) : Bool</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if <em>path</em> is readable by the real user id of this process else returns <code>false</code>.</p>
+<p><span class="flag red">DEPRECATED</span>  Use <code><a href="File/Info.html#readable%3F%28path%3APath%7CString%29%3ABool-class-method">File::Info.readable?</a></code> instead</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#readlink%28path%3APath%7CString%29%3AString-class-method" class="signature"><strong>.readlink</strong>(path : Path | String) : String</a>
+        
+          <div class="summary"><p>Returns value of a symbolic link .</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#real_path%28path%3APath%7CString%29%3AString-class-method" class="signature"><strong>.real_path</strong>(path : Path | String) : String</a>
+        
+          <div class="summary"><p>Resolves the real path of <em>path</em> by following symbolic links.</p>
+<p><span class="flag red">DEPRECATED</span>  Use <code><a href="File.html#realpath%28path%3APath%7CString%29%3AString-class-method">.realpath</a></code> instead.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#realpath%28path%3APath%7CString%29%3AString-class-method" class="signature"><strong>.realpath</strong>(path : Path | String) : String</a>
+        
+          <div class="summary"><p>Resolves the real path of <em>path</em> by following symbolic links.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#rename%28old_filename%3APath%7CString%2Cnew_filename%3APath%7CString%29%3ANil-class-method" class="signature"><strong>.rename</strong>(old_filename : Path | String, new_filename : Path | String) : Nil</a>
+        
+          <div class="summary"><p>Moves <em>old_filename</em> to <em>new_filename</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#same%3F%28path1%3APath%7CString%2Cpath2%3APath%7CString%2Cfollow_symlinks%3Dfalse%29%3ABool-class-method" class="signature"><strong>.same?</strong>(path1 : Path | String, path2 : Path | String, follow_symlinks = <span class="n">false</span>) : Bool</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if <em>path1</em> and <em>path2</em> represents the same file.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#same_content%3F%28path1%3APath%7CString%2Cpath2%3APath%7CString%29%3ABool-class-method" class="signature"><strong>.same_content?</strong>(path1 : Path | String, path2 : Path | String) : Bool</a>
+        
+          <div class="summary"><p>Compares two files <em>filename1</em> to <em>filename2</em> to determine if they are identical.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#size%28filename%3APath%7CString%29%3AInt64-class-method" class="signature"><strong>.size</strong>(filename : Path | String) : Int64</a>
+        
+          <div class="summary"><p>Returns the size of the file at <em>filename</em> in bytes.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#symlink%28old_path%3APath%7CString%2Cnew_path%3APath%7CString%29%3ANil-class-method" class="signature"><strong>.symlink</strong>(old_path : Path | String, new_path : Path | String) : Nil</a>
+        
+          <div class="summary"><p>Creates a symbolic link at <em>new_path</em> to an existing file given by <em>old_path</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#symlink%3F%28path%3APath%7CString%29%3ABool-class-method" class="signature"><strong>.symlink?</strong>(path : Path | String) : Bool</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if the <em>path</em> is a symbolic link.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#tempfile%28prefix%3AString%7CNil%2Csuffix%3AString%7CNil%2C%2A%2Cdir%3AString%3DDir.tempdir%2Cencoding%3Dnil%2Cinvalid%3Dnil%29-class-method" class="signature"><strong>.tempfile</strong>(prefix : String | Nil, suffix : String | Nil, *, dir : String = <span class="t">Dir</span>.tempdir, encoding = <span class="n">nil</span>, invalid = <span class="n">nil</span>)</a>
+        
+          <div class="summary"><p>Creates a temporary file.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#tempfile%28suffix%3AString%7CNil%3Dnil%2C%2A%2Cdir%3AString%3DDir.tempdir%2Cencoding%3Dnil%2Cinvalid%3Dnil%29-class-method" class="signature"><strong>.tempfile</strong>(suffix : String | Nil = <span class="n">nil</span>, *, dir : String = <span class="t">Dir</span>.tempdir, encoding = <span class="n">nil</span>, invalid = <span class="n">nil</span>)</a>
+        
+          <div class="summary"><p>Creates a temporary file.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#tempfile%28prefix%3AString%7CNil%2Csuffix%3AString%7CNil%2C%2A%2Cdir%3AString%3DDir.tempdir%2Cencoding%3Dnil%2Cinvalid%3Dnil%2C%26%29-class-method" class="signature"><strong>.tempfile</strong>(prefix : String | Nil, suffix : String | Nil, *, dir : String = <span class="t">Dir</span>.tempdir, encoding = <span class="n">nil</span>, invalid = <span class="n">nil</span>, &)</a>
+        
+          <div class="summary"><p>Creates a temporary file and yields it to the given block.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#tempfile%28suffix%3AString%7CNil%3Dnil%2C%2A%2Cdir%3AString%3DDir.tempdir%2Cencoding%3Dnil%2Cinvalid%3Dnil%2C%26%29-class-method" class="signature"><strong>.tempfile</strong>(suffix : String | Nil = <span class="n">nil</span>, *, dir : String = <span class="t">Dir</span>.tempdir, encoding = <span class="n">nil</span>, invalid = <span class="n">nil</span>, &)</a>
+        
+          <div class="summary"><p>Creates a temporary file and yields it to the given block.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#tempname%28prefix%3AString%7CNil%2Csuffix%3AString%7CNil%2C%2A%2Cdir%3AString%3DDir.tempdir%29-class-method" class="signature"><strong>.tempname</strong>(prefix : String | Nil, suffix : String | Nil, *, dir : String = <span class="t">Dir</span>.tempdir)</a>
+        
+          <div class="summary"><p>Returns a fully-qualified path to a temporary file.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#tempname%28suffix%3AString%7CNil%3Dnil%2C%2A%2Cdir%3AString%3DDir.tempdir%29-class-method" class="signature"><strong>.tempname</strong>(suffix : String | Nil = <span class="n">nil</span>, *, dir : String = <span class="t">Dir</span>.tempdir)</a>
+        
+          <div class="summary"><p>Returns a fully-qualified path to a temporary file.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#touch%28filename%3APath%7CString%2Ctime%3ATime%3DTime.utc%29%3ANil-class-method" class="signature"><strong>.touch</strong>(filename : Path | String, time : Time = <span class="t">Time</span>.utc) : Nil</a>
+        
+          <div class="summary"><p>Attempts to set the access and modification times of the file named in the <em>filename</em> parameter to the value given in <em>time</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#utime%28atime%3ATime%2Cmtime%3ATime%2Cfilename%3APath%7CString%29%3ANil-class-method" class="signature"><strong>.utime</strong>(atime : Time, mtime : Time, filename : Path | String) : Nil</a>
+        
+          <div class="summary"><p>Sets the access and modification times of <em>filename</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#writable%3F%28path%3APath%7CString%29%3ABool-class-method" class="signature"><strong>.writable?</strong>(path : Path | String) : Bool</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if <em>path</em> is writable by the real user id of this process else returns <code>false</code>.</p>
+<p><span class="flag red">DEPRECATED</span>  Use <code><a href="File/Info.html#writable%3F%28path%3APath%7CString%29%3ABool-class-method">File::Info.writable?</a></code> instead</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#write%28filename%3APath%7CString%2Ccontent%2Cperm%3DDEFAULT_CREATE_PERMISSIONS%2Cencoding%3Dnil%2Cinvalid%3Dnil%2Cmode%3D%22w%22%2Cblocking%3Dtrue%29-class-method" class="signature"><strong>.write</strong>(filename : Path | String, content, perm = <span class="t">DEFAULT_CREATE_PERMISSIONS</span>, encoding = <span class="n">nil</span>, invalid = <span class="n">nil</span>, mode = <span class="s">&quot;w&quot;</span>, blocking = <span class="n">true</span>)</a>
+        
+          <div class="summary"><p>Writes the given <em>content</em> to <em>filename</em>.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+  
+
+  
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#chmod%28permissions%3AInt%7CPermissions%29%3ANil-instance-method" class="signature"><strong>#chmod</strong>(permissions : Int | Permissions) : Nil</a>
+        
+          <div class="summary"><p>Changes the permissions of the specified file.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#chown%28uid%3AInt%3D-1%2Cgid%3AInt%3D-1%29%3ANil-instance-method" class="signature"><strong>#chown</strong>(uid : Int = <span class="n">-1</span>, gid : Int = <span class="n">-1</span>) : Nil</a>
+        
+          <div class="summary"><p>Changes the owner of the specified file.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#delete%3ANil-instance-method" class="signature"><strong>#delete</strong> : Nil</a>
+        
+          <div class="summary"><p>Deletes this file.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#inspect%28io%3AIO%29%3ANil-instance-method" class="signature"><strong>#inspect</strong>(io : IO) : Nil</a>
+        
+          <div class="summary"><p>Appends a String representation of this object which includes its class name, its object address and the values of all instance variables.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#path%3AString-instance-method" class="signature"><strong>#path</strong> : String</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#read_at%28offset%2Cbytesize%2C%26%3AIO-%3E%29-instance-method" class="signature"><strong>#read_at</strong>(offset, bytesize, & : IO -> )</a>
+        
+          <div class="summary"><p>Yields an <code><a href="IO.html">IO</a></code> to read a section inside this file.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#rename%28new_filename%3APath%7CString%29%3ANil-instance-method" class="signature"><strong>#rename</strong>(new_filename : Path | String) : Nil</a>
+        
+          <div class="summary"><p>Rename the current <code><a href="File.html">File</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#size%3AInt64-instance-method" class="signature"><strong>#size</strong> : Int64</a>
+        
+          <div class="summary"><p>Returns the size in bytes of the currently opened file.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#touch%28time%3ATime%3DTime.utc%29%3ANil-instance-method" class="signature"><strong>#touch</strong>(time : Time = <span class="t">Time</span>.utc) : Nil</a>
+        
+          <div class="summary"><p>Attempts to set the access and modification times to the value given in <em>time</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#truncate%28size%3D0%29%3ANil-instance-method" class="signature"><strong>#truncate</strong>(size = <span class="n">0</span>) : Nil</a>
+        
+          <div class="summary"><p>Truncates the file to the specified <em>size</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#utime%28atime%3ATime%2Cmtime%3ATime%29%3ANil-instance-method" class="signature"><strong>#utime</strong>(atime : Time, mtime : Time) : Nil</a>
+        
+          <div class="summary"><p>Sets the access and modification times</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+
+  <div class="methods-inherited">
+    
+      
+
+
+      
+
+
+      
+
+  <h3>Class methods inherited from module <code>Crystal::System::File</code></h3>
+  
+  
+    <a href="Crystal/System/File.html#chmod%28path%2Cmode%29-class-method" class="tooltip">
+      <span>chmod(path, mode)</span>
+    chmod</a>, 
+    
+  
+    <a href="Crystal/System/File.html#chown%28path%2Cuid%3AInt%2Cgid%3AInt%2Cfollow_symlinks%29-class-method" class="tooltip">
+      <span>chown(path, uid : Int, gid : Int, follow_symlinks)</span>
+    chown</a>, 
+    
+  
+    <a href="Crystal/System/File.html#delete%28path%2C%2A%2Craise_on_missing%3ABool%29%3ABool-class-method" class="tooltip">
+      <span>delete(path, *, raise_on_missing : Bool) : Bool</span>
+    delete</a>, 
+    
+  
+    <a href="Crystal/System/File.html#executable%3F%28path%29%3ABool-class-method" class="tooltip">
+      <span>executable?(path) : Bool</span>
+    executable?</a>, 
+    
+  
+    <a href="Crystal/System/File.html#exists%3F%28path%29-class-method" class="tooltip">
+      <span>exists?(path)</span>
+    exists?</a>, 
+    
+  
+    <a href="Crystal/System/File.html#fchown%28path%2Cfd%2Cuid%3AInt%2Cgid%3AInt%29-class-method" class="tooltip">
+      <span>fchown(path, fd, uid : Int, gid : Int)</span>
+    fchown</a>, 
+    
+  
+    <a href="Crystal/System/File.html#fstat%28path%2Cstat%29-class-method" class="tooltip">
+      <span>fstat(path, stat)</span>
+    fstat</a>, 
+    
+  
+    <a href="Crystal/System/File.html#info%28path%2Cfollow_symlinks%29-class-method" class="tooltip">
+      <span>info(path, follow_symlinks)</span>
+    info</a>, 
+    
+  
+    <a href="Crystal/System/File.html#info%3F%28path%3AString%2Cfollow_symlinks%3ABool%29%3A%3A%3AFile%3A%3AInfo%7CNil-class-method" class="tooltip">
+      <span>info?(path : String, follow_symlinks : Bool) : ::File::Info | Nil</span>
+    info?</a>, 
+    
+  
+    <a href="Crystal/System/File.html#link%28old_path%2Cnew_path%29-class-method" class="tooltip">
+      <span>link(old_path, new_path)</span>
+    link</a>, 
+    
+  
+    <a href="Crystal/System/File.html#lstat%28path%2Cstat%29-class-method" class="tooltip">
+      <span>lstat(path, stat)</span>
+    lstat</a>, 
+    
+  
+    <a href="Crystal/System/File.html#mktemp%28prefix%3AString%7CNil%2Csuffix%3AString%7CNil%2Cdir%3AString%2Crandom%3A%3A%3ARandom%3D%3A%3ARandom%3A%3ADEFAULT%29%3ATuple%28FileDescriptor%3A%3AHandle%2CString%29-class-method" class="tooltip">
+      <span>mktemp(prefix : String | Nil, suffix : String | Nil, dir : String, random : ::Random = <span class="t">::</span><span class="t">Random</span><span class="t">::</span><span class="t">DEFAULT</span>) : Tuple(FileDescriptor::Handle, String)</span>
+    mktemp</a>, 
+    
+  
+    <a href="Crystal/System/File.html#open%28filename%3AString%2Cmode%3AString%2Cperm%3AInt32%7C%3A%3AFile%3A%3APermissions%2Cblocking%29-class-method" class="tooltip">
+      <span>open(filename : String, mode : String, perm : Int32 | ::File::Permissions, blocking)<br/>open(filename : String, flags : Int32, perm : ::File::Permissions, blocking _blocking) : Tuple(LibC::Int, Errno)</span>
+    open</a>, 
+    
+  
+    <a href="Crystal/System/File.html#readable%3F%28path%29%3ABool-class-method" class="tooltip">
+      <span>readable?(path) : Bool</span>
+    readable?</a>, 
+    
+  
+    <a href="Crystal/System/File.html#readlink%28path%29%3AString-class-method" class="tooltip">
+      <span>readlink(path) : String</span>
+    readlink</a>, 
+    
+  
+    <a href="Crystal/System/File.html#realpath%28path%29-class-method" class="tooltip">
+      <span>realpath(path)</span>
+    realpath</a>, 
+    
+  
+    <a href="Crystal/System/File.html#rename%28old_filename%2Cnew_filename%29%3A%3A%3AFile%3A%3AError%7CNil-class-method" class="tooltip">
+      <span>rename(old_filename, new_filename) : ::File::Error | Nil</span>
+    rename</a>, 
+    
+  
+    <a href="Crystal/System/File.html#stat%28path%2Cstat%29-class-method" class="tooltip">
+      <span>stat(path, stat)</span>
+    stat</a>, 
+    
+  
+    <a href="Crystal/System/File.html#symlink%28old_path%2Cnew_path%29-class-method" class="tooltip">
+      <span>symlink(old_path, new_path)</span>
+    symlink</a>, 
+    
+  
+    <a href="Crystal/System/File.html#utime%28atime%3A%3A%3ATime%2Cmtime%3A%3A%3ATime%2Cfilename%3AString%29%3ANil-class-method" class="tooltip">
+      <span>utime(atime : ::Time, mtime : ::Time, filename : String) : Nil</span>
+    utime</a>, 
+    
+  
+    <a href="Crystal/System/File.html#writable%3F%28path%29%3ABool-class-method" class="tooltip">
+      <span>writable?(path) : Bool</span>
+    writable?</a>
+    
+  
+
+
+      
+
+
+    
+      
+
+  <h3>Instance methods inherited from class <code><a href="IO/FileDescriptor.html">IO::FileDescriptor</a></code></h3>
+  
+  
+    <a href="IO/FileDescriptor.html#blocking-instance-method" class="tooltip">
+      <span>blocking</span>
+    blocking</a>, 
+    
+  
+    <a href="IO/FileDescriptor.html#blocking%3D%28value%29-instance-method" class="tooltip">
+      <span>blocking=(value)</span>
+    blocking=</a>, 
+    
+  
+    <a href="IO/FileDescriptor.html#close_on_exec%3D%28value%3ABool%29-instance-method" class="tooltip">
+      <span>close_on_exec=(value : Bool)</span>
+    close_on_exec=</a>, 
+    
+  
+    <a href="IO/FileDescriptor.html#close_on_exec%3F%3ABool-instance-method" class="tooltip">
+      <span>close_on_exec? : Bool</span>
+    close_on_exec?</a>, 
+    
+  
+    <a href="IO/FileDescriptor.html#close_on_finalize%3D%28close_on_finalize%3ABool%29-instance-method" class="tooltip">
+      <span>close_on_finalize=(close_on_finalize : Bool)</span>
+    close_on_finalize=</a>, 
+    
+  
+    <a href="IO/FileDescriptor.html#close_on_finalize%3F%3ABool-instance-method" class="tooltip">
+      <span>close_on_finalize? : Bool</span>
+    close_on_finalize?</a>, 
+    
+  
+    <a href="IO/FileDescriptor.html#closed%3F%3ABool-instance-method" class="tooltip">
+      <span>closed? : Bool</span>
+    closed?</a>, 
+    
+  
+    <a href="IO/FileDescriptor.html#cooked%28%26%3Aself-%3E_%29-instance-method" class="tooltip">
+      <span>cooked(& : <span class="k">self</span> -> _)</span>
+    cooked</a>, 
+    
+  
+    <a href="IO/FileDescriptor.html#cooked%21%3ANil-instance-method" class="tooltip">
+      <span>cooked! : Nil</span>
+    cooked!</a>, 
+    
+  
+    <a href="IO/FileDescriptor.html#echo%28%26%3Aself-%3E_%29-instance-method" class="tooltip">
+      <span>echo(& : <span class="k">self</span> -> _)</span>
+    echo</a>, 
+    
+  
+    <a href="IO/FileDescriptor.html#echo%21%3ANil-instance-method" class="tooltip">
+      <span>echo! : Nil</span>
+    echo!</a>, 
+    
+  
+    <a href="IO/FileDescriptor.html#fcntl%28cmd%2Carg%3D0%29-instance-method" class="tooltip">
+      <span>fcntl(cmd, arg = <span class="n">0</span>)</span>
+    fcntl</a>, 
+    
+  
+    <a href="IO/FileDescriptor.html#fd%3AHandle-instance-method" class="tooltip">
+      <span>fd : Handle</span>
+    fd</a>, 
+    
+  
+    <a href="IO/FileDescriptor.html#finalize-instance-method" class="tooltip">
+      <span>finalize</span>
+    finalize</a>, 
+    
+  
+    <a href="IO/FileDescriptor.html#flock_exclusive%28blocking%3Dtrue%2C%26%29-instance-method" class="tooltip">
+      <span>flock_exclusive(blocking = <span class="n">true</span>, &)<br/>flock_exclusive(blocking = <span class="n">true</span>) : Nil</span>
+    flock_exclusive</a>, 
+    
+  
+    <a href="IO/FileDescriptor.html#flock_shared%28blocking%3Dtrue%2C%26%29-instance-method" class="tooltip">
+      <span>flock_shared(blocking = <span class="n">true</span>, &)<br/>flock_shared(blocking = <span class="n">true</span>) : Nil</span>
+    flock_shared</a>, 
+    
+  
+    <a href="IO/FileDescriptor.html#flock_unlock%3ANil-instance-method" class="tooltip">
+      <span>flock_unlock : Nil</span>
+    flock_unlock</a>, 
+    
+  
+    <a href="IO/FileDescriptor.html#fsync%28flush_metadata%3Dtrue%29%3ANil-instance-method" class="tooltip">
+      <span>fsync(flush_metadata = <span class="n">true</span>) : Nil</span>
+    fsync</a>, 
+    
+  
+    <a href="IO/FileDescriptor.html#info%3AFile%3A%3AInfo-instance-method" class="tooltip">
+      <span>info : File::Info</span>
+    info</a>, 
+    
+  
+    <a href="IO/FileDescriptor.html#inspect%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>inspect(io : IO) : Nil</span>
+    inspect</a>, 
+    
+  
+    <a href="IO/FileDescriptor.html#noecho%28%26%3Aself-%3E_%29-instance-method" class="tooltip">
+      <span>noecho(& : <span class="k">self</span> -> _)</span>
+    noecho</a>, 
+    
+  
+    <a href="IO/FileDescriptor.html#noecho%21%3ANil-instance-method" class="tooltip">
+      <span>noecho! : Nil</span>
+    noecho!</a>, 
+    
+  
+    <a href="IO/FileDescriptor.html#pos%3D%28value%29-instance-method" class="tooltip">
+      <span>pos=(value)</span>
+    pos=</a>, 
+    
+  
+    <a href="IO/FileDescriptor.html#pretty_print%28pp%29-instance-method" class="tooltip">
+      <span>pretty_print(pp)</span>
+    pretty_print</a>, 
+    
+  
+    <a href="IO/FileDescriptor.html#raw%28%26%3Aself-%3E_%29-instance-method" class="tooltip">
+      <span>raw(& : <span class="k">self</span> -> _)</span>
+    raw</a>, 
+    
+  
+    <a href="IO/FileDescriptor.html#raw%21%3ANil-instance-method" class="tooltip">
+      <span>raw! : Nil</span>
+    raw!</a>, 
+    
+  
+    <a href="IO/FileDescriptor.html#read_timeout%3ATime%3A%3ASpan%7CNil-instance-method" class="tooltip">
+      <span>read_timeout : Time::Span | Nil</span>
+    read_timeout</a>, 
+    
+  
+    <a href="IO/FileDescriptor.html#read_timeout%3D%28read_timeout%3ANumber%29%3ANumber-instance-method" class="tooltip">
+      <span>read_timeout=(read_timeout : Number) : Number<br/>read_timeout=(read_timeout : Time::Span | Nil)</span>
+    read_timeout=</a>, 
+    
+  
+    <a href="IO/FileDescriptor.html#reopen%28other%3AIO%3A%3AFileDescriptor%29-instance-method" class="tooltip">
+      <span>reopen(other : IO::FileDescriptor)</span>
+    reopen</a>, 
+    
+  
+    <a href="IO/FileDescriptor.html#seek%28offset%2Cwhence%3ASeek%3DSeek%3A%3ASet%29-instance-method" class="tooltip">
+      <span>seek(offset, whence : Seek = <span class="t">Seek</span><span class="t">::</span><span class="t">Set</span>)<br/>seek(offset, whence : Seek = <span class="t">Seek</span><span class="t">::</span><span class="t">Set</span>, &)</span>
+    seek</a>, 
+    
+  
+    <a href="IO/FileDescriptor.html#tty%3F%3ABool-instance-method" class="tooltip">
+      <span>tty? : Bool</span>
+    tty?</a>, 
+    
+  
+    <a href="IO/FileDescriptor.html#write_timeout%3ATime%3A%3ASpan%7CNil-instance-method" class="tooltip">
+      <span>write_timeout : Time::Span | Nil</span>
+    write_timeout</a>, 
+    
+  
+    <a href="IO/FileDescriptor.html#write_timeout%3D%28write_timeout%3ANumber%29%3ANumber-instance-method" class="tooltip">
+      <span>write_timeout=(write_timeout : Number) : Number<br/>write_timeout=(write_timeout : Time::Span | Nil)</span>
+    write_timeout=</a>
+    
+  
+
+
+      
+
+  <h3>Constructor methods inherited from class <code><a href="IO/FileDescriptor.html">IO::FileDescriptor</a></code></h3>
+  
+  
+    <a href="IO/FileDescriptor.html#new%28fd%3AHandle%2Cblocking%3Dnil%2C%2A%2Cclose_on_finalize%3ABool%3Dtrue%29-class-method" class="tooltip">
+      <span>new(fd : Handle, blocking = <span class="n">nil</span>, *, close_on_finalize : Bool = <span class="n">true</span>)</span>
+    new</a>
+    
+  
+
+
+      
+
+  <h3>Class methods inherited from class <code><a href="IO/FileDescriptor.html">IO::FileDescriptor</a></code></h3>
+  
+  
+    <a href="IO/FileDescriptor.html#fcntl%28fd%2Ccmd%2Carg%3D0%29-class-method" class="tooltip">
+      <span>fcntl(fd, cmd, arg = <span class="n">0</span>)</span>
+    fcntl</a>
+    
+  
+
+
+      
+
+  <h3>Macros inherited from class <code><a href="IO/FileDescriptor.html">IO::FileDescriptor</a></code></h3>
+  
+  
+    <a href="IO/FileDescriptor.html#cooked_from_tc_mode%21-macro" class="tooltip">
+      <span>cooked_from_tc_mode!</span>
+    cooked_from_tc_mode!</a>, 
+    
+  
+    <a href="IO/FileDescriptor.html#noecho_from_tc_mode%21-macro" class="tooltip">
+      <span>noecho_from_tc_mode!</span>
+    noecho_from_tc_mode!</a>, 
+    
+  
+    <a href="IO/FileDescriptor.html#raw_from_tc_mode%21-macro" class="tooltip">
+      <span>raw_from_tc_mode!</span>
+    raw_from_tc_mode!</a>
+    
+  
+
+
+    
+      
+
+  <h3>Instance methods inherited from module <code><a href="IO/Buffered.html">IO::Buffered</a></code></h3>
+  
+  
+    <a href="IO/Buffered.html#buffer_size%3AInt32-instance-method" class="tooltip">
+      <span>buffer_size : Int32</span>
+    buffer_size</a>, 
+    
+  
+    <a href="IO/Buffered.html#buffer_size%3D%28value%29-instance-method" class="tooltip">
+      <span>buffer_size=(value)</span>
+    buffer_size=</a>, 
+    
+  
+    <a href="IO/Buffered.html#close%3ANil-instance-method" class="tooltip">
+      <span>close : Nil</span>
+    close</a>, 
+    
+  
+    <a href="IO/Buffered.html#flush-instance-method" class="tooltip">
+      <span>flush</span>
+    flush</a>, 
+    
+  
+    <a href="IO/Buffered.html#flush_on_newline%3D%28flush_on_newline%29-instance-method" class="tooltip">
+      <span>flush_on_newline=(flush_on_newline)</span>
+    flush_on_newline=</a>, 
+    
+  
+    <a href="IO/Buffered.html#flush_on_newline%3F%3ABool-instance-method" class="tooltip">
+      <span>flush_on_newline? : Bool</span>
+    flush_on_newline?</a>, 
+    
+  
+    <a href="IO/Buffered.html#peek%3ABytes-instance-method" class="tooltip">
+      <span>peek : Bytes</span>
+    peek</a>, 
+    
+  
+    <a href="IO/Buffered.html#pos%3AInt64-instance-method" class="tooltip">
+      <span>pos : Int64</span>
+    pos</a>, 
+    
+  
+    <a href="IO/Buffered.html#read%28slice%3ABytes%29%3AInt32-instance-method" class="tooltip">
+      <span>read(slice : Bytes) : Int32</span>
+    read</a>, 
+    
+  
+    <a href="IO/Buffered.html#read_buffering%3D%28read_buffering%29-instance-method" class="tooltip">
+      <span>read_buffering=(read_buffering)</span>
+    read_buffering=</a>, 
+    
+  
+    <a href="IO/Buffered.html#read_buffering%3F%3ABool-instance-method" class="tooltip">
+      <span>read_buffering? : Bool</span>
+    read_buffering?</a>, 
+    
+  
+    <a href="IO/Buffered.html#rewind-instance-method" class="tooltip">
+      <span>rewind</span>
+    rewind</a>, 
+    
+  
+    <a href="IO/Buffered.html#sync%3D%28sync%29-instance-method" class="tooltip">
+      <span>sync=(sync)</span>
+    sync=</a>, 
+    
+  
+    <a href="IO/Buffered.html#sync%3F%3ABool-instance-method" class="tooltip">
+      <span>sync? : Bool</span>
+    sync?</a>, 
+    
+  
+    <a href="IO/Buffered.html#unbuffered_close-instance-method" class="tooltip">
+      <span>unbuffered_close</span>
+    unbuffered_close</a>, 
+    
+  
+    <a href="IO/Buffered.html#unbuffered_flush-instance-method" class="tooltip">
+      <span>unbuffered_flush</span>
+    unbuffered_flush</a>, 
+    
+  
+    <a href="IO/Buffered.html#unbuffered_read%28slice%3ABytes%29-instance-method" class="tooltip">
+      <span>unbuffered_read(slice : Bytes)</span>
+    unbuffered_read</a>, 
+    
+  
+    <a href="IO/Buffered.html#unbuffered_rewind-instance-method" class="tooltip">
+      <span>unbuffered_rewind</span>
+    unbuffered_rewind</a>, 
+    
+  
+    <a href="IO/Buffered.html#unbuffered_write%28slice%3ABytes%29-instance-method" class="tooltip">
+      <span>unbuffered_write(slice : Bytes)</span>
+    unbuffered_write</a>, 
+    
+  
+    <a href="IO/Buffered.html#write%28slice%3ABytes%29%3ANil-instance-method" class="tooltip">
+      <span>write(slice : Bytes) : Nil</span>
+    write</a>
+    
+  
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+      
+
+  <h3>Instance methods inherited from module <code>Crystal::System::FileDescriptor</code></h3>
+  
+  
+    <a href="Crystal/System/FileDescriptor.html#__evloop_data%3AEventLoop%3A%3APolling%3A%3AArena%3A%3AIndex-instance-method" class="tooltip">
+      <span>__evloop_data : EventLoop::Polling::Arena::Index</span>
+    __evloop_data</a>, 
+    
+  
+    <a href="Crystal/System/FileDescriptor.html#__evloop_data%3D%28__evloop_data%3AEventLoop%3A%3APolling%3A%3AArena%3A%3AIndex%29-instance-method" class="tooltip">
+      <span>__evloop_data=(__evloop_data : EventLoop::Polling::Arena::Index)</span>
+    __evloop_data=</a>, 
+    
+  
+    <a href="Crystal/System/FileDescriptor.html#close_volatile_fd%3F%3AInt32%7CNil-instance-method" class="tooltip">
+      <span>close_volatile_fd? : Int32 | Nil</span>
+    close_volatile_fd?</a>, 
+    
+  
+    <a href="Crystal/System/FileDescriptor.html#file_descriptor_close%28%26%29%3ANil-instance-method" class="tooltip">
+      <span>file_descriptor_close(&) : Nil<br/>file_descriptor_close</span>
+    file_descriptor_close</a>
+    
+  
+
+
+      
+
+
+      
+
+  <h3>Class methods inherited from module <code>Crystal::System::FileDescriptor</code></h3>
+  
+  
+    <a href="Crystal/System/FileDescriptor.html#cfmakeraw%28termios%29-class-method" class="tooltip">
+      <span>cfmakeraw(termios)</span>
+    cfmakeraw</a>, 
+    
+  
+    <a href="Crystal/System/FileDescriptor.html#fcntl%28fd%2Ccmd%2Carg%3D0%29-class-method" class="tooltip">
+      <span>fcntl(fd, cmd, arg = <span class="n">0</span>)</span>
+    fcntl</a>, 
+    
+  
+    <a href="Crystal/System/FileDescriptor.html#from_stdio%28fd%29-class-method" class="tooltip">
+      <span>from_stdio(fd)</span>
+    from_stdio</a>, 
+    
+  
+    <a href="Crystal/System/FileDescriptor.html#pipe%28read_blocking%2Cwrite_blocking%29-class-method" class="tooltip">
+      <span>pipe(read_blocking, write_blocking)</span>
+    pipe</a>, 
+    
+  
+    <a href="Crystal/System/FileDescriptor.html#pread%28file%2Cbuffer%2Coffset%29-class-method" class="tooltip">
+      <span>pread(file, buffer, offset)</span>
+    pread</a>, 
+    
+  
+    <a href="Crystal/System/FileDescriptor.html#system_info%28fd%29-class-method" class="tooltip">
+      <span>system_info(fd)</span>
+    system_info</a>, 
+    
+  
+    <a href="Crystal/System/FileDescriptor.html#system_pipe%3AStaticArray%28LibC%3A%3AInt%2C2%29-class-method" class="tooltip">
+      <span>system_pipe : StaticArray(LibC::Int, <span class="n">2</span>)</span>
+    system_pipe</a>, 
+    
+  
+    <a href="Crystal/System/FileDescriptor.html#tcgetattr%28fd%29-class-method" class="tooltip">
+      <span>tcgetattr(fd)</span>
+    tcgetattr</a>, 
+    
+  
+    <a href="Crystal/System/FileDescriptor.html#tcsetattr%28fd%2Coptional_actions%2Ctermios_p%29-class-method" class="tooltip">
+      <span>tcsetattr(fd, optional_actions, termios_p)</span>
+    tcsetattr</a>, 
+    
+  
+    <a href="Crystal/System/FileDescriptor.html#write_fully%28fd%3ALibC%3A%3AInt%2Cpointer%3APointer%2Csize%3AInt32%3D1%29%3ANil-class-method" class="tooltip">
+      <span>write_fully(fd : LibC::Int, pointer : Pointer, size : Int32 = <span class="n">1</span>) : Nil<br/>write_fully(fd : LibC::Int, slice : Slice(UInt8)) : Nil</span>
+    write_fully</a>
+    
+  
+
+
+      
+
+
+    
+      
+
+  <h3>Instance methods inherited from class <code><a href="IO.html">IO</a></code></h3>
+  
+  
+    <a href="IO.html#%3C%3C%28obj%29%3Aself-instance-method" class="tooltip">
+      <span><<(obj) : <span class="k">self</span></span>
+    <<</a>, 
+    
+  
+    <a href="IO.html#close-instance-method" class="tooltip">
+      <span>close</span>
+    close</a>, 
+    
+  
+    <a href="IO.html#closed%3F%3ABool-instance-method" class="tooltip">
+      <span>closed? : Bool</span>
+    closed?</a>, 
+    
+  
+    <a href="IO.html#each_byte%28%26%29%3ANil-instance-method" class="tooltip">
+      <span>each_byte(&) : Nil<br/>each_byte</span>
+    each_byte</a>, 
+    
+  
+    <a href="IO.html#each_char%28%26%29%3ANil-instance-method" class="tooltip">
+      <span>each_char(&) : Nil<br/>each_char</span>
+    each_char</a>, 
+    
+  
+    <a href="IO.html#each_line%28%2Aargs%2C%2A%2Aoptions%2C%26block%3AString-%3E%29%3ANil-instance-method" class="tooltip">
+      <span>each_line(*args, **options, &block : String -> ) : Nil<br/>each_line(*args, **options)</span>
+    each_line</a>, 
+    
+  
+    <a href="IO.html#encoding%3AString-instance-method" class="tooltip">
+      <span>encoding : String</span>
+    encoding</a>, 
+    
+  
+    <a href="IO.html#flush-instance-method" class="tooltip">
+      <span>flush</span>
+    flush</a>, 
+    
+  
+    <a href="IO.html#getb_to_end%3ABytes-instance-method" class="tooltip">
+      <span>getb_to_end : Bytes</span>
+    getb_to_end</a>, 
+    
+  
+    <a href="IO.html#gets%28limit%3AInt%2Cchomp%3Dfalse%29%3AString%7CNil-instance-method" class="tooltip">
+      <span>gets(limit : Int, chomp = <span class="n">false</span>) : String | Nil<br/>gets(delimiter : Char, limit : Int, chomp = <span class="n">false</span>) : String | Nil<br/>gets(delimiter : Char, chomp = <span class="n">false</span>) : String | Nil<br/>gets(delimiter : String, chomp = <span class="n">false</span>) : String | Nil<br/>gets(chomp = <span class="n">true</span>) : String | Nil</span>
+    gets</a>, 
+    
+  
+    <a href="IO.html#gets_to_end%3AString-instance-method" class="tooltip">
+      <span>gets_to_end : String</span>
+    gets_to_end</a>, 
+    
+  
+    <a href="IO.html#peek%3ABytes%7CNil-instance-method" class="tooltip">
+      <span>peek : Bytes | Nil</span>
+    peek</a>, 
+    
+  
+    <a href="IO.html#pos-instance-method" class="tooltip">
+      <span>pos</span>
+    pos</a>, 
+    
+  
+    <a href="IO.html#pos%3D%28value%29-instance-method" class="tooltip">
+      <span>pos=(value)</span>
+    pos=</a>, 
+    
+  
+    <a href="IO.html#print%28obj%3A_%29%3ANil-instance-method" class="tooltip">
+      <span>print(obj : _) : Nil<br/>print(*objects : _) : Nil</span>
+    print</a>, 
+    
+  
+    <a href="IO.html#printf%28format_string%2Cargs%3AArray%7CTuple%29%3ANil-instance-method" class="tooltip">
+      <span>printf(format_string, args : Array | Tuple) : Nil<br/>printf(format_string, *args) : Nil</span>
+    printf</a>, 
+    
+  
+    <a href="IO.html#puts%28string%3AString%29%3ANil-instance-method" class="tooltip">
+      <span>puts(string : String) : Nil<br/>puts(obj : _) : Nil<br/>puts : Nil<br/>puts(*objects : _) : Nil</span>
+    puts</a>, 
+    
+  
+    <a href="IO.html#read%28slice%3ABytes%29-instance-method" class="tooltip">
+      <span>read(slice : Bytes)</span>
+    read</a>, 
+    
+  
+    <a href="IO.html#read_at%28offset%2Cbytesize%2C%26%3AIO-%3E%29-instance-method" class="tooltip">
+      <span>read_at(offset, bytesize, & : IO -> )</span>
+    read_at</a>, 
+    
+  
+    <a href="IO.html#read_byte%3AUInt8%7CNil-instance-method" class="tooltip">
+      <span>read_byte : UInt8 | Nil</span>
+    read_byte</a>, 
+    
+  
+    <a href="IO.html#read_bytes%28type%2Cformat%3AIO%3A%3AByteFormat%3DIO%3A%3AByteFormat%3A%3ASystemEndian%29-instance-method" class="tooltip">
+      <span>read_bytes(type, format : IO::ByteFormat = <span class="t">IO</span><span class="t">::</span><span class="t">ByteFormat</span><span class="t">::</span><span class="t">SystemEndian</span>)</span>
+    read_bytes</a>, 
+    
+  
+    <a href="IO.html#read_char%3AChar%7CNil-instance-method" class="tooltip">
+      <span>read_char : Char | Nil</span>
+    read_char</a>, 
+    
+  
+    <a href="IO.html#read_fully%28slice%3ABytes%29%3AInt32-instance-method" class="tooltip">
+      <span>read_fully(slice : Bytes) : Int32</span>
+    read_fully</a>, 
+    
+  
+    <a href="IO.html#read_fully%3F%28slice%3ABytes%29%3AInt32%7CNil-instance-method" class="tooltip">
+      <span>read_fully?(slice : Bytes) : Int32 | Nil</span>
+    read_fully?</a>, 
+    
+  
+    <a href="IO.html#read_line%28%2Aargs%2C%2A%2Aoptions%29%3AString-instance-method" class="tooltip">
+      <span>read_line(*args, **options) : String</span>
+    read_line</a>, 
+    
+  
+    <a href="IO.html#read_string%28bytesize%3AInt%29%3AString-instance-method" class="tooltip">
+      <span>read_string(bytesize : Int) : String</span>
+    read_string</a>, 
+    
+  
+    <a href="IO.html#read_utf8%28slice%3ABytes%29-instance-method" class="tooltip">
+      <span>read_utf8(slice : Bytes)</span>
+    read_utf8</a>, 
+    
+  
+    <a href="IO.html#read_utf8_byte%3AUInt8%7CNil-instance-method" class="tooltip">
+      <span>read_utf8_byte : UInt8 | Nil</span>
+    read_utf8_byte</a>, 
+    
+  
+    <a href="IO.html#rewind-instance-method" class="tooltip">
+      <span>rewind</span>
+    rewind</a>, 
+    
+  
+    <a href="IO.html#seek%28offset%2Cwhence%3ASeek%3DSeek%3A%3ASet%29-instance-method" class="tooltip">
+      <span>seek(offset, whence : Seek = <span class="t">Seek</span><span class="t">::</span><span class="t">Set</span>)</span>
+    seek</a>, 
+    
+  
+    <a href="IO.html#set_encoding%28encoding%3AString%2Cinvalid%3ASymbol%7CNil%3Dnil%29%3ANil-instance-method" class="tooltip">
+      <span>set_encoding(encoding : String, invalid : Symbol | Nil = <span class="n">nil</span>) : Nil</span>
+    set_encoding</a>, 
+    
+  
+    <a href="IO.html#skip%28bytes_count%3AInt%29%3ANil-instance-method" class="tooltip">
+      <span>skip(bytes_count : Int) : Nil</span>
+    skip</a>, 
+    
+  
+    <a href="IO.html#skip_to_end%3ANil-instance-method" class="tooltip">
+      <span>skip_to_end : Nil</span>
+    skip_to_end</a>, 
+    
+  
+    <a href="IO.html#tell-instance-method" class="tooltip">
+      <span>tell</span>
+    tell</a>, 
+    
+  
+    <a href="IO.html#tty%3F%3ABool-instance-method" class="tooltip">
+      <span>tty? : Bool</span>
+    tty?</a>, 
+    
+  
+    <a href="IO.html#write%28slice%3ABytes%29%3ANil-instance-method" class="tooltip">
+      <span>write(slice : Bytes) : Nil</span>
+    write</a>, 
+    
+  
+    <a href="IO.html#write_byte%28byte%3AUInt8%29%3ANil-instance-method" class="tooltip">
+      <span>write_byte(byte : UInt8) : Nil</span>
+    write_byte</a>, 
+    
+  
+    <a href="IO.html#write_bytes%28object%2Cformat%3AIO%3A%3AByteFormat%3DIO%3A%3AByteFormat%3A%3ASystemEndian%29%3ANil-instance-method" class="tooltip">
+      <span>write_bytes(object, format : IO::ByteFormat = <span class="t">IO</span><span class="t">::</span><span class="t">ByteFormat</span><span class="t">::</span><span class="t">SystemEndian</span>) : Nil</span>
+    write_bytes</a>, 
+    
+  
+    <a href="IO.html#write_string%28slice%3ABytes%29%3ANil-instance-method" class="tooltip">
+      <span>write_string(slice : Bytes) : Nil</span>
+    write_string</a>, 
+    
+  
+    <a href="IO.html#write_utf8%28slice%3ABytes%29%3ANil-instance-method" class="tooltip">
+      <span>write_utf8(slice : Bytes) : Nil</span>
+    write_utf8</a>
+    
+  
+
+
+      
+
+
+      
+
+  <h3>Class methods inherited from class <code><a href="IO.html">IO</a></code></h3>
+  
+  
+    <a href="IO.html#copy%28src%2Cdst%2Climit%3AInt%29%3AInt64-class-method" class="tooltip">
+      <span>copy(src, dst, limit : Int) : Int64<br/>copy(src, dst) : Int64</span>
+    copy</a>, 
+    
+  
+    <a href="IO.html#pipe%28read_blocking%3Dfalse%2Cwrite_blocking%3Dfalse%29%3ATuple%28IO%3A%3AFileDescriptor%2CIO%3A%3AFileDescriptor%29-class-method" class="tooltip">
+      <span>pipe(read_blocking = <span class="n">false</span>, write_blocking = <span class="n">false</span>) : Tuple(IO::FileDescriptor, IO::FileDescriptor)<br/>pipe(read_blocking = <span class="n">false</span>, write_blocking = <span class="n">false</span>, &)</span>
+    pipe</a>, 
+    
+  
+    <a href="IO.html#same_content%3F%28stream1%3AIO%2Cstream2%3AIO%29%3ABool-class-method" class="tooltip">
+      <span>same_content?(stream1 : IO, stream2 : IO) : Bool</span>
+    same_content?</a>
+    
+  
+
+
+      
+
+
+    
+      
+
+  <h3>Instance methods inherited from class <code><a href="Reference.html">Reference</a></code></h3>
+  
+  
+    <a href="Reference.html#%3D%3D%28other%3Aself%29-instance-method" class="tooltip">
+      <span>==(other : <span class="k">self</span>)<br/>==(other : JSON::Any)<br/>==(other : YAML::Any)<br/>==(other)</span>
+    ==</a>, 
+    
+  
+    <a href="Reference.html#dup-instance-method" class="tooltip">
+      <span>dup</span>
+    dup</a>, 
+    
+  
+    <a href="Reference.html#hash%28hasher%29-instance-method" class="tooltip">
+      <span>hash(hasher)</span>
+    hash</a>, 
+    
+  
+    <a href="Reference.html#initialize-instance-method" class="tooltip">
+      <span>initialize</span>
+    initialize</a>, 
+    
+  
+    <a href="Reference.html#inspect%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>inspect(io : IO) : Nil</span>
+    inspect</a>, 
+    
+  
+    <a href="Reference.html#object_id%3AUInt64-instance-method" class="tooltip">
+      <span>object_id : UInt64</span>
+    object_id</a>, 
+    
+  
+    <a href="Reference.html#pretty_print%28pp%29%3ANil-instance-method" class="tooltip">
+      <span>pretty_print(pp) : Nil</span>
+    pretty_print</a>, 
+    
+  
+    <a href="Reference.html#same%3F%28other%3AReference%29%3ABool-instance-method" class="tooltip">
+      <span>same?(other : Reference) : Bool<br/>same?(other : Nil)</span>
+    same?</a>, 
+    
+  
+    <a href="Reference.html#to_s%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_s(io : IO) : Nil</span>
+    to_s</a>
+    
+  
+
+
+      
+
+  <h3>Constructor methods inherited from class <code><a href="Reference.html">Reference</a></code></h3>
+  
+  
+    <a href="Reference.html#new-class-method" class="tooltip">
+      <span>new</span>
+    new</a>, 
+    
+  
+    <a href="Reference.html#unsafe_construct%28address%3APointer%2C%2Aargs%2C%2A%2Aopts%29%3Aself-class-method" class="tooltip">
+      <span>unsafe_construct(address : Pointer, *args, **opts) : <span class="k">self</span></span>
+    unsafe_construct</a>
+    
+  
+
+
+      
+
+  <h3>Class methods inherited from class <code><a href="Reference.html">Reference</a></code></h3>
+  
+  
+    <a href="Reference.html#pre_initialize%28address%3APointer%29-class-method" class="tooltip">
+      <span>pre_initialize(address : Pointer)</span>
+    pre_initialize</a>
+    
+  
+
+
+      
+
+
+    
+      
+
+  <h3>Instance methods inherited from class <code><a href="Object.html">Object</a></code></h3>
+  
+  
+    <a href="Object.html#%21%3ABool-instance-method" class="tooltip">
+      <span>! : Bool</span>
+    !</a>, 
+    
+  
+    <a href="Object.html#%21%3D%28other%29-instance-method" class="tooltip">
+      <span>!=(other)</span>
+    !=</a>, 
+    
+  
+    <a href="Object.html#%21~%28other%29-instance-method" class="tooltip">
+      <span>!~(other)</span>
+    !~</a>, 
+    
+  
+    <a href="Object.html#%3D%3D%28other%29-instance-method" class="tooltip">
+      <span>==(other)</span>
+    ==</a>, 
+    
+  
+    <a href="Object.html#%3D%3D%3D%28other%3AJSON%3A%3AAny%29-instance-method" class="tooltip">
+      <span>===(other : JSON::Any)<br/>===(other : YAML::Any)<br/>===(other)</span>
+    ===</a>, 
+    
+  
+    <a href="Object.html#%3D~%28other%29-instance-method" class="tooltip">
+      <span>=~(other)</span>
+    =~</a>, 
+    
+  
+    <a href="Object.html#as%28type%3AClass%29-instance-method" class="tooltip">
+      <span>as(type : Class)</span>
+    as</a>, 
+    
+  
+    <a href="Object.html#as%3F%28type%3AClass%29-instance-method" class="tooltip">
+      <span>as?(type : Class)</span>
+    as?</a>, 
+    
+  
+    <a href="Object.html#class-instance-method" class="tooltip">
+      <span>class</span>
+    class</a>, 
+    
+  
+    <a href="Object.html#dup-instance-method" class="tooltip">
+      <span>dup</span>
+    dup</a>, 
+    
+  
+    <a href="Object.html#hash%28hasher%29-instance-method" class="tooltip">
+      <span>hash(hasher)<br/>hash</span>
+    hash</a>, 
+    
+  
+    <a href="Object.html#in%3F%28collection%3AObject%29%3ABool-instance-method" class="tooltip">
+      <span>in?(collection : Object) : Bool<br/>in?(*values : Object) : Bool</span>
+    in?</a>, 
+    
+  
+    <a href="Object.html#inspect%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>inspect(io : IO) : Nil<br/>inspect : String</span>
+    inspect</a>, 
+    
+  
+    <a href="Object.html#is_a%3F%28type%3AClass%29%3ABool-instance-method" class="tooltip">
+      <span>is_a?(type : Class) : Bool</span>
+    is_a?</a>, 
+    
+  
+    <a href="Object.html#itself-instance-method" class="tooltip">
+      <span>itself</span>
+    itself</a>, 
+    
+  
+    <a href="Object.html#nil%3F%3ABool-instance-method" class="tooltip">
+      <span>nil? : Bool</span>
+    nil?</a>, 
+    
+  
+    <a href="Object.html#not_nil%21%28message%29-instance-method" class="tooltip">
+      <span>not_nil!(message)<br/>not_nil!</span>
+    not_nil!</a>, 
+    
+  
+    <a href="Object.html#pretty_inspect%28width%3D79%2Cnewline%3D%22%5Cn%22%2Cindent%3D0%29%3AString-instance-method" class="tooltip">
+      <span>pretty_inspect(width = <span class="n">79</span>, newline = <span class="s">&quot;\n&quot;</span>, indent = <span class="n">0</span>) : String</span>
+    pretty_inspect</a>, 
+    
+  
+    <a href="Object.html#pretty_print%28pp%3APrettyPrint%29%3ANil-instance-method" class="tooltip">
+      <span>pretty_print(pp : PrettyPrint) : Nil</span>
+    pretty_print</a>, 
+    
+  
+    <a href="Object.html#responds_to%3F%28name%3ASymbol%29%3ABool-instance-method" class="tooltip">
+      <span>responds_to?(name : Symbol) : Bool</span>
+    responds_to?</a>, 
+    
+  
+    <a href="Object.html#tap%28%26%29-instance-method" class="tooltip">
+      <span>tap(&)</span>
+    tap</a>, 
+    
+  
+    <a href="Object.html#to_json%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_json(io : IO) : Nil<br/>to_json : String</span>
+    to_json</a>, 
+    
+  
+    <a href="Object.html#to_pretty_json%28indent%3AString%3D%22%22%29%3AString-instance-method" class="tooltip">
+      <span>to_pretty_json(indent : String = <span class="s">&quot;  &quot;</span>) : String<br/>to_pretty_json(io : IO, indent : String = <span class="s">&quot;  &quot;</span>) : Nil</span>
+    to_pretty_json</a>, 
+    
+  
+    <a href="Object.html#to_s%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_s(io : IO) : Nil<br/>to_s : String</span>
+    to_s</a>, 
+    
+  
+    <a href="Object.html#to_yaml%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_yaml(io : IO) : Nil<br/>to_yaml : String</span>
+    to_yaml</a>, 
+    
+  
+    <a href="Object.html#try%28%26%29-instance-method" class="tooltip">
+      <span>try(&)</span>
+    try</a>, 
+    
+  
+    <a href="Object.html#unsafe_as%28type%3AT.class%29forallT-instance-method" class="tooltip">
+      <span>unsafe_as(type : <span class="t">T</span>.<span class="k">class</span>) forall T</span>
+    unsafe_as</a>
+    
+  
+
+
+      
+
+
+      
+
+  <h3>Class methods inherited from class <code><a href="Object.html">Object</a></code></h3>
+  
+  
+    <a href="Object.html#from_json%28string_or_io%2Croot%3AString%29-class-method" class="tooltip">
+      <span>from_json(string_or_io, root : String)<br/>from_json(string_or_io)</span>
+    from_json</a>, 
+    
+  
+    <a href="Object.html#from_yaml%28string_or_io%3AString%7CIO%29-class-method" class="tooltip">
+      <span>from_yaml(string_or_io : String | IO)</span>
+    from_yaml</a>
+    
+  
+
+
+      
+
+  <h3>Macros inherited from class <code><a href="Object.html">Object</a></code></h3>
+  
+  
+    <a href="Object.html#class_getter%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_getter(*names, &block)</span>
+    class_getter</a>, 
+    
+  
+    <a href="Object.html#class_getter%21%28%2Anames%29-macro" class="tooltip">
+      <span>class_getter!(*names)</span>
+    class_getter!</a>, 
+    
+  
+    <a href="Object.html#class_getter%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_getter?(*names, &block)</span>
+    class_getter?</a>, 
+    
+  
+    <a href="Object.html#class_property%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_property(*names, &block)</span>
+    class_property</a>, 
+    
+  
+    <a href="Object.html#class_property%21%28%2Anames%29-macro" class="tooltip">
+      <span>class_property!(*names)</span>
+    class_property!</a>, 
+    
+  
+    <a href="Object.html#class_property%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_property?(*names, &block)</span>
+    class_property?</a>, 
+    
+  
+    <a href="Object.html#class_setter%28%2Anames%29-macro" class="tooltip">
+      <span>class_setter(*names)</span>
+    class_setter</a>, 
+    
+  
+    <a href="Object.html#def_clone-macro" class="tooltip">
+      <span>def_clone</span>
+    def_clone</a>, 
+    
+  
+    <a href="Object.html#def_equals%28%2Afields%29-macro" class="tooltip">
+      <span>def_equals(*fields)</span>
+    def_equals</a>, 
+    
+  
+    <a href="Object.html#def_equals_and_hash%28%2Afields%29-macro" class="tooltip">
+      <span>def_equals_and_hash(*fields)</span>
+    def_equals_and_hash</a>, 
+    
+  
+    <a href="Object.html#def_hash%28%2Afields%29-macro" class="tooltip">
+      <span>def_hash(*fields)</span>
+    def_hash</a>, 
+    
+  
+    <a href="Object.html#delegate%28%2Amethods%2Ctoobject%29-macro" class="tooltip">
+      <span>delegate(*methods, to object)</span>
+    delegate</a>, 
+    
+  
+    <a href="Object.html#forward_missing_to%28delegate%29-macro" class="tooltip">
+      <span>forward_missing_to(delegate)</span>
+    forward_missing_to</a>, 
+    
+  
+    <a href="Object.html#getter%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>getter(*names, &block)</span>
+    getter</a>, 
+    
+  
+    <a href="Object.html#getter%21%28%2Anames%29-macro" class="tooltip">
+      <span>getter!(*names)</span>
+    getter!</a>, 
+    
+  
+    <a href="Object.html#getter%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>getter?(*names, &block)</span>
+    getter?</a>, 
+    
+  
+    <a href="Object.html#property%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>property(*names, &block)</span>
+    property</a>, 
+    
+  
+    <a href="Object.html#property%21%28%2Anames%29-macro" class="tooltip">
+      <span>property!(*names)</span>
+    property!</a>, 
+    
+  
+    <a href="Object.html#property%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>property?(*names, &block)</span>
+    property?</a>, 
+    
+  
+    <a href="Object.html#setter%28%2Anames%29-macro" class="tooltip">
+      <span>setter(*names)</span>
+    setter</a>
+    
+  
+
+
+    
+  </div>
+
+  
+  <h2>
+    <a id="constructor-detail" class="anchor" href="#constructor-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructor Detail
+  </h2>
+  
+    <div class="entry-detail" id="new(filename:Path|String,mode=&quot;r&quot;,perm=DEFAULT_CREATE_PERMISSIONS,encoding=nil,invalid=nil,blocking=true)-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(filename : <a href="Path.html">Path</a> | <a href="String.html">String</a>, mode = <span class="s">&quot;r&quot;</span>, perm = <span class="t">DEFAULT_CREATE_PERMISSIONS</span>, encoding = <span class="n">nil</span>, invalid = <span class="n">nil</span>, blocking = <span class="n">true</span>)
+
+        <a class="method-permalink" href="#new%28filename%3APath%7CString%2Cmode%3D%22r%22%2Cperm%3DDEFAULT_CREATE_PERMISSIONS%2Cencoding%3Dnil%2Cinvalid%3Dnil%2Cblocking%3Dtrue%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Opens the file named by <em>filename</em>.</p>
+<p><em>mode</em> must be one of the following file open modes:</p>
+<pre><code class="language-text">Mode       | Description
+-----------+------------------------------------------------------
+r rb       | Read-only, starts at the beginning of the file.
+r+ r+b rb+ | Read-write, starts at the beginning of the file.
+w wb       | Write-only, truncates existing file to zero length or
+           | creates a new file if the file doesn't exist.
+w+ w+b wb+ | Read-write, truncates existing file to zero length or
+           | creates a new file if the file doesn't exist.
+a ab       | Write-only, all writes seek to the end of the file,
+           | creates a new file if the file doesn't exist.
+a+ a+b ab+ | Read-write, all writes seek to the end of the file,
+           | creates a new file if the file doesn't exist.</code></pre>
+<p>Line endings are preserved on all platforms. The <code>b</code> mode flag has no
+effect; it is provided only for POSIX compatibility.</p>
+<p><em>blocking</em> is set to <code>true</code> by default because system event queues (e.g.
+epoll, kqueue) will always report the file descriptor of regular disk files
+as ready.</p>
+<p><em>blocking</em> must be set to <code>false</code> on POSIX targets when the file to open
+isn't a regular file but a character device (e.g. <code>/dev/tty</code>) or fifo. These
+files depend on another process or thread to also be reading or writing, and
+system event queues will properly report readiness.</p>
+<p><em>blocking</em> may also be set to <code>nil</code> in which case the blocking or
+non-blocking flag will be determined automatically, at the expense of an
+additional syscall.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file.cr#L174" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="open(filename:Path|String,mode=&quot;r&quot;,perm=DEFAULT_CREATE_PERMISSIONS,encoding=nil,invalid=nil,blocking=true):self-class-method">
+      <div class="signature">
+        
+        def self.<strong>open</strong>(filename : <a href="Path.html">Path</a> | <a href="String.html">String</a>, mode = <span class="s">&quot;r&quot;</span>, perm = <span class="t">DEFAULT_CREATE_PERMISSIONS</span>, encoding = <span class="n">nil</span>, invalid = <span class="n">nil</span>, blocking = <span class="n">true</span>) : <span class="k">self</span>
+
+        <a class="method-permalink" href="#open%28filename%3APath%7CString%2Cmode%3D%22r%22%2Cperm%3DDEFAULT_CREATE_PERMISSIONS%2Cencoding%3Dnil%2Cinvalid%3Dnil%2Cblocking%3Dtrue%29%3Aself-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Opens the file named by <em>filename</em>. If a file is being created, its initial
+permissions may be set using the <em>perm</em> parameter.</p>
+<p>See <code>self<a href="File.html#new%28filename%3APath%7CString%2Cmode%3D%22r%22%2Cperm%3DDEFAULT_CREATE_PERMISSIONS%2Cencoding%3Dnil%2Cinvalid%3Dnil%2Cblocking%3Dtrue%29-class-method">.new</a></code> for what <em>mode</em> can be.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file.cr#L511" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+  
+  <h2>
+    <a id="class-method-detail" class="anchor" href="#class-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Class Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="basename(path:Path|String,suffix:String):String-class-method">
+      <div class="signature">
+        
+        def self.<strong>basename</strong>(path : <a href="Path.html">Path</a> | <a href="String.html">String</a>, suffix : <a href="String.html">String</a>) : <a href="String.html">String</a>
+
+        <a class="method-permalink" href="#basename%28path%3APath%7CString%2Csuffix%3AString%29%3AString-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the last component of the given <em>path</em>.</p>
+<p>If <em>suffix</em> is present at the end of <em>path</em>, it is removed.</p>
+<pre><code class="language-crystal"><span class="t">File</span>.basename(<span class="s">&quot;/foo/bar/file.cr&quot;</span>, <span class="s">&quot;.cr&quot;</span>) <span class="c"># =&gt; &quot;file&quot;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file.cr#L374" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="basename(path:Path|String):String-class-method">
+      <div class="signature">
+        
+        def self.<strong>basename</strong>(path : <a href="Path.html">Path</a> | <a href="String.html">String</a>) : <a href="String.html">String</a>
+
+        <a class="method-permalink" href="#basename%28path%3APath%7CString%29%3AString-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the last component of the given <em>path</em>.</p>
+<pre><code class="language-crystal"><span class="t">File</span>.basename(<span class="s">&quot;/foo/bar/file.cr&quot;</span>) <span class="c"># =&gt; &quot;file.cr&quot;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file.cr#L363" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="chmod(path:Path|String,permissions:Int|Permissions):Nil-class-method">
+      <div class="signature">
+        
+        def self.<strong>chmod</strong>(path : <a href="Path.html">Path</a> | <a href="String.html">String</a>, permissions : <a href="Int.html">Int</a> | <a href="File/Permissions.html">Permissions</a>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#chmod%28path%3APath%7CString%2Cpermissions%3AInt%7CPermissions%29%3ANil-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Changes the permissions of the specified file.</p>
+<p>Symlinks are dereferenced, so that only the permissions of the symlink
+destination are changed, never the permissions of the symlink itself.</p>
+<pre><code class="language-crystal"><span class="t">File</span>.chmod(<span class="s">&quot;foo&quot;</span>, <span class="n">0o755</span>)
+<span class="t">File</span>.info(<span class="s">&quot;foo&quot;</span>).permissions.value <span class="c"># =&gt; 0o755</span>
+
+<span class="t">File</span>.chmod(<span class="s">&quot;foo&quot;</span>, <span class="n">0o700</span>)
+<span class="t">File</span>.info(<span class="s">&quot;foo&quot;</span>).permissions.value <span class="c"># =&gt; 0o700</span></code></pre>
+<p>Use <code><a href="File.html#chmod%28permissions%3AInt%7CPermissions%29%3ANil-instance-method">#chmod</a></code> if the <code><a href="File.html">File</a></code> is already open.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file.cr#L413" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="chown(path:Path|String,uid:Int=-1,gid:Int=-1,follow_symlinks=false):Nil-class-method">
+      <div class="signature">
+        
+        def self.<strong>chown</strong>(path : <a href="Path.html">Path</a> | <a href="String.html">String</a>, uid : <a href="Int.html">Int</a> = <span class="n">-1</span>, gid : <a href="Int.html">Int</a> = <span class="n">-1</span>, follow_symlinks = <span class="n">false</span>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#chown%28path%3APath%7CString%2Cuid%3AInt%3D-1%2Cgid%3AInt%3D-1%2Cfollow_symlinks%3Dfalse%29%3ANil-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Changes the owner of the specified file.</p>
+<pre><code class="language-crystal"><span class="t">File</span>.chown(<span class="s">&quot;/foo/bar/baz.cr&quot;</span>, <span class="n">1001</span>, <span class="n">100</span>)
+<span class="t">File</span>.chown(<span class="s">&quot;/foo/bar&quot;</span>, gid: <span class="n">100</span>)</code></pre>
+<p>Unless <em>follow_symlinks</em> is set to <code>true</code>, then the owner symlink itself will
+be changed, otherwise the owner of the symlink destination file will be
+changed. For example, assuming symlinks as <code>foo -&gt; bar -&gt; baz</code>:</p>
+<pre><code class="language-crystal"><span class="t">File</span>.chown(<span class="s">&quot;foo&quot;</span>, gid: <span class="n">100</span>)                        <span class="c"># changes foo&#39;s gid</span>
+<span class="t">File</span>.chown(<span class="s">&quot;foo&quot;</span>, gid: <span class="n">100</span>, follow_symlinks: <span class="n">true</span>) <span class="c"># changes baz&#39;s gid</span></code></pre>
+<p>Use <code><a href="File.html#chown%28uid%3AInt%3D-1%2Cgid%3AInt%3D-1%29%3ANil-instance-method">#chown</a></code> if the <code><a href="File.html">File</a></code> is already open.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file.cr#L395" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="copy(src:String|Path,dst:String|Path):Nil-class-method">
+      <div class="signature">
+        
+        def self.<strong>copy</strong>(src : <a href="String.html">String</a> | <a href="Path.html">Path</a>, dst : <a href="String.html">String</a> | <a href="Path.html">Path</a>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#copy%28src%3AString%7CPath%2Cdst%3AString%7CPath%29%3ANil-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Copies the file <em>src</em> to the file <em>dst</em>.
+Permission bits are copied too.</p>
+<pre><code class="language-crystal"><span class="t">File</span>.touch(<span class="s">&quot;afile&quot;</span>)
+<span class="t">File</span>.chmod(<span class="s">&quot;afile&quot;</span>, <span class="n">0o600</span>)
+<span class="t">File</span>.copy(<span class="s">&quot;afile&quot;</span>, <span class="s">&quot;afile_copy&quot;</span>)
+<span class="t">File</span>.info(<span class="s">&quot;afile_copy&quot;</span>).permissions.value <span class="c"># =&gt; 0o600</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file.cr#L627" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="delete(path:Path|String):Nil-class-method">
+      <div class="signature">
+        
+        def self.<strong>delete</strong>(path : <a href="Path.html">Path</a> | <a href="String.html">String</a>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#delete%28path%3APath%7CString%29%3ANil-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Deletes the file at <em>path</em>. Raises <code><a href="File/Error.html">File::Error</a></code> on failure.</p>
+<p>On Windows, this also deletes reparse points, including symbolic links,
+regardless of whether the reparse point is a directory.</p>
+<pre><code class="language-crystal"><span class="t">File</span>.write(<span class="s">&quot;foo&quot;</span>, <span class="s">&quot;&quot;</span>)
+<span class="t">File</span>.delete(<span class="s">&quot;./foo&quot;</span>)
+<span class="t">File</span>.delete(<span class="s">&quot;./bar&quot;</span>) <span class="c"># raises File::NotFoundError (No such file or directory)</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file.cr#L427" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="delete?(path:Path|String):Bool-class-method">
+      <div class="signature">
+        
+        def self.<strong>delete?</strong>(path : <a href="Path.html">Path</a> | <a href="String.html">String</a>) : <a href="Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#delete%3F%28path%3APath%7CString%29%3ABool-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Deletes the file at <em>path</em>, or returns <code>false</code> if the file does not exist.
+Raises <code><a href="File/Error.html">File::Error</a></code> on other kinds of failure.</p>
+<p>On Windows, this also deletes reparse points, including symbolic links,
+regardless of whether the reparse point is a directory.</p>
+<pre><code class="language-crystal"><span class="t">File</span>.write(<span class="s">&quot;foo&quot;</span>, <span class="s">&quot;&quot;</span>)
+<span class="t">File</span>.delete?(<span class="s">&quot;./foo&quot;</span>) <span class="c"># =&gt; true</span>
+<span class="t">File</span>.delete?(<span class="s">&quot;./bar&quot;</span>) <span class="c"># =&gt; false</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file.cr#L442" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="directory?(path:Path|String):Bool-class-method">
+      <div class="signature">
+        
+        def self.<strong>directory?</strong>(path : <a href="Path.html">Path</a> | <a href="String.html">String</a>) : <a href="Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#directory%3F%28path%3APath%7CString%29%3ABool-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if the given <em>path</em> exists and is a directory.</p>
+<pre><code class="language-crystal"><span class="t">File</span>.write(<span class="s">&quot;foo&quot;</span>, <span class="s">&quot;&quot;</span>)
+<span class="t">Dir</span>.mkdir(<span class="s">&quot;dir2&quot;</span>)
+<span class="t">File</span>.directory?(<span class="s">&quot;foo&quot;</span>)    <span class="c"># =&gt; false</span>
+<span class="t">File</span>.directory?(<span class="s">&quot;dir2&quot;</span>)   <span class="c"># =&gt; true</span>
+<span class="t">File</span>.directory?(<span class="s">&quot;foobar&quot;</span>) <span class="c"># =&gt; false</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file.cr#L345" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="dirname(path:Path|String):String-class-method">
+      <div class="signature">
+        
+        def self.<strong>dirname</strong>(path : <a href="Path.html">Path</a> | <a href="String.html">String</a>) : <a href="String.html">String</a>
+
+        <a class="method-permalink" href="#dirname%28path%3APath%7CString%29%3AString-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns all components of the given <em>path</em> except the last one.</p>
+<pre><code class="language-crystal"><span class="t">File</span>.dirname(<span class="s">&quot;/foo/bar/file.cr&quot;</span>) <span class="c"># =&gt; &quot;/foo/bar&quot;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file.cr#L354" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="each_line(filename:Path|String,encoding=nil,invalid=nil,chomp=true,blocking=true,&amp;)-class-method">
+      <div class="signature">
+        
+        def self.<strong>each_line</strong>(filename : <a href="Path.html">Path</a> | <a href="String.html">String</a>, encoding = <span class="n">nil</span>, invalid = <span class="n">nil</span>, chomp = <span class="n">true</span>, blocking = <span class="n">true</span>, &)
+
+        <a class="method-permalink" href="#each_line%28filename%3APath%7CString%2Cencoding%3Dnil%2Cinvalid%3Dnil%2Cchomp%3Dtrue%2Cblocking%3Dtrue%2C%26%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Yields each line in <em>filename</em> to the given block.</p>
+<pre><code class="language-crystal"><span class="t">File</span>.write(<span class="s">&quot;foobar&quot;</span>, <span class="s">&quot;foo\nbar&quot;</span>)
+
+array <span class="o">=</span> <span class="o">[]</span> <span class="k">of</span> <span class="t">String</span>
+<span class="t">File</span>.each_line(<span class="s">&quot;foobar&quot;</span>) <span class="k">do</span> <span class="o">|</span>line<span class="o">|</span>
+  array <span class="o">&lt;&lt;</span> line
+<span class="k">end</span>
+array <span class="c"># =&gt; [&quot;foo&quot;, &quot;bar&quot;]</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file.cr#L564" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="empty?(path:Path|String):Bool-class-method">
+      <div class="signature">
+        
+        def self.<strong>empty?</strong>(path : <a href="Path.html">Path</a> | <a href="String.html">String</a>) : <a href="Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#empty%3F%28path%3APath%7CString%29%3ABool-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if the file at <em>path</em> is empty, otherwise returns <code>false</code>.
+Raises <code><a href="File/NotFoundError.html">File::NotFoundError</a></code> if the file at <em>path</em> does not exist.</p>
+<pre><code class="language-crystal"><span class="t">File</span>.write(<span class="s">&quot;foo&quot;</span>, <span class="s">&quot;&quot;</span>)
+<span class="t">File</span>.empty?(<span class="s">&quot;foo&quot;</span>) <span class="c"># =&gt; true</span>
+<span class="t">File</span>.write(<span class="s">&quot;foo&quot;</span>, <span class="s">&quot;foo&quot;</span>)
+<span class="t">File</span>.empty?(<span class="s">&quot;foo&quot;</span>) <span class="c"># =&gt; false</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file.cr#L282" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="executable?(path:Path|String):Bool-class-method">
+      <div class="signature">
+        
+        def self.<strong>executable?</strong>(path : <a href="Path.html">Path</a> | <a href="String.html">String</a>) : <a href="Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#executable%3F%28path%3APath%7CString%29%3ABool-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if <em>path</em> is executable by the real user id of this process else returns <code>false</code>.</p>
+<pre><code class="language-crystal"><span class="t">File</span>.write(<span class="s">&quot;foo&quot;</span>, <span class="s">&quot;foo&quot;</span>)
+<span class="t">File</span>.executable?(<span class="s">&quot;foo&quot;</span>) <span class="c"># =&gt; false</span></code></pre>
+<p><span class="flag red">DEPRECATED</span>  Use <code><a href="File/Info.html#executable%3F%28path%3APath%7CString%29%3ABool-class-method">File::Info.executable?</a></code> instead</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file.cr#L315" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="exists?(path:Path|String):Bool-class-method">
+      <div class="signature">
+        
+        def self.<strong>exists?</strong>(path : <a href="Path.html">Path</a> | <a href="String.html">String</a>) : <a href="Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#exists%3F%28path%3APath%7CString%29%3ABool-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns whether the file given by <em>path</em> exists.</p>
+<p>Symbolic links are dereferenced, possibly recursively. Returns <code>false</code> if a
+symbolic link refers to a non-existent file.</p>
+<pre><code class="language-crystal"><span class="t">File</span>.delete(<span class="s">&quot;foo&quot;</span>) <span class="k">if</span> <span class="t">File</span>.exists?(<span class="s">&quot;foo&quot;</span>)
+<span class="t">File</span>.exists?(<span class="s">&quot;foo&quot;</span>) <span class="c"># =&gt; false</span>
+<span class="t">File</span>.write(<span class="s">&quot;foo&quot;</span>, <span class="s">&quot;foo&quot;</span>)
+<span class="t">File</span>.exists?(<span class="s">&quot;foo&quot;</span>) <span class="c"># =&gt; true</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file.cr#L233" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="expand_path(path:Path|String,dir=nil,*,home=false):String-class-method">
+      <div class="signature">
+        
+        def self.<strong>expand_path</strong>(path : <a href="Path.html">Path</a> | <a href="String.html">String</a>, dir = <span class="n">nil</span>, *, home = <span class="n">false</span>) : <a href="String.html">String</a>
+
+        <a class="method-permalink" href="#expand_path%28path%3APath%7CString%2Cdir%3Dnil%2C%2A%2Chome%3Dfalse%29%3AString-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Converts <em>path</em> to an absolute path. Relative paths are
+referenced from the current working directory of the process unless
+<em>dir</em> is given, in which case it will be used as the starting point.
+&quot;~&quot; is expanded to the value passed to <em>home</em>.
+If it is <code>false</code> (default), home is not expanded.
+If <code>true</code>, it is expanded to the user's home directory (<code><a href="Path.html#home%3APath-class-method">Path.home</a></code>).</p>
+<pre><code class="language-crystal"><span class="t">File</span>.expand_path(<span class="s">&quot;foo&quot;</span>)                 <span class="c"># =&gt; &quot;/home/.../foo&quot;</span>
+<span class="t">File</span>.expand_path(<span class="s">&quot;~/foo&quot;</span>, home: <span class="s">&quot;/bar&quot;</span>) <span class="c"># =&gt; &quot;/bar/foo&quot;</span>
+<span class="t">File</span>.expand_path(<span class="s">&quot;baz&quot;</span>, <span class="s">&quot;/foo/bar&quot;</span>)     <span class="c"># =&gt; &quot;/foo/bar/baz&quot;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file.cr#L467" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="extname(filename:Path|String):String-class-method">
+      <div class="signature">
+        
+        def self.<strong>extname</strong>(filename : <a href="Path.html">Path</a> | <a href="String.html">String</a>) : <a href="String.html">String</a>
+
+        <a class="method-permalink" href="#extname%28filename%3APath%7CString%29%3AString-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <em>filename</em>'s extension, or an empty string if it has no extension.</p>
+<pre><code class="language-crystal"><span class="t">File</span>.extname(<span class="s">&quot;foo.cr&quot;</span>) <span class="c"># =&gt; &quot;.cr&quot;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file.cr#L451" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="file?(path:Path|String):Bool-class-method">
+      <div class="signature">
+        
+        def self.<strong>file?</strong>(path : <a href="Path.html">Path</a> | <a href="String.html">String</a>) : <a href="Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#file%3F%28path%3APath%7CString%29%3ABool-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if given <em>path</em> exists and is a file.</p>
+<pre><code class="language-crystal"><span class="t">File</span>.write(<span class="s">&quot;foo&quot;</span>, <span class="s">&quot;&quot;</span>)
+<span class="t">Dir</span>.mkdir(<span class="s">&quot;dir1&quot;</span>)
+<span class="t">File</span>.file?(<span class="s">&quot;foo&quot;</span>)    <span class="c"># =&gt; true</span>
+<span class="t">File</span>.file?(<span class="s">&quot;dir1&quot;</span>)   <span class="c"># =&gt; false</span>
+<span class="t">File</span>.file?(<span class="s">&quot;foobar&quot;</span>) <span class="c"># =&gt; false</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file.cr#L328" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="info(path:Path|String,follow_symlinks=true):Info-class-method">
+      <div class="signature">
+        
+        def self.<strong>info</strong>(path : <a href="Path.html">Path</a> | <a href="String.html">String</a>, follow_symlinks = <span class="n">true</span>) : <a href="File/Info.html">Info</a>
+
+        <a class="method-permalink" href="#info%28path%3APath%7CString%2Cfollow_symlinks%3Dtrue%29%3AInfo-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns a <code><a href="File/Info.html">File::Info</a></code> object for the file given by <em>path</em> or raises
+<code><a href="File/Error.html">File::Error</a></code> in case of an error.</p>
+<p>If <em>follow_symlinks</em> is set (the default), symbolic links are followed. Otherwise,
+symbolic links return information on the symlink itself.</p>
+<pre><code class="language-crystal"><span class="t">File</span>.write(<span class="s">&quot;foo&quot;</span>, <span class="s">&quot;foo&quot;</span>)
+<span class="t">File</span>.info(<span class="s">&quot;foo&quot;</span>).size              <span class="c"># =&gt; 3</span>
+<span class="t">File</span>.info(<span class="s">&quot;foo&quot;</span>).modification_time <span class="c"># =&gt; 2015-09-23 06:24:19 UTC</span>
+
+<span class="t">File</span>.symlink(<span class="s">&quot;foo&quot;</span>, <span class="s">&quot;bar&quot;</span>)
+<span class="t">File</span>.info(<span class="s">&quot;bar&quot;</span>, follow_symlinks: <span class="n">false</span>).<span class="k">type</span>.symlink? <span class="c"># =&gt; true</span></code></pre>
+<p>Use <code><a href="IO/FileDescriptor.html#info%3AFile%3A%3AInfo-instance-method">IO::FileDescriptor#info</a></code> if the file is already open.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file.cr#L218" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="info?(path:Path|String,follow_symlinks=true):Info|Nil-class-method">
+      <div class="signature">
+        
+        def self.<strong>info?</strong>(path : <a href="Path.html">Path</a> | <a href="String.html">String</a>, follow_symlinks = <span class="n">true</span>) : <a href="File/Info.html">Info</a> | <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#info%3F%28path%3APath%7CString%2Cfollow_symlinks%3Dtrue%29%3AInfo%7CNil-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns a <code><a href="File/Info.html">File::Info</a></code> object for the file given by <em>path</em> or returns <code>nil</code>
+if the file does not exist.</p>
+<p>If <em>follow_symlinks</em> is set (the default), symbolic links are followed. Otherwise,
+symbolic links return information on the symlink itself.</p>
+<pre><code class="language-crystal"><span class="t">File</span>.write(<span class="s">&quot;foo&quot;</span>, <span class="s">&quot;foo&quot;</span>)
+<span class="t">File</span>.info?(<span class="s">&quot;foo&quot;</span>).try(<span class="o">&amp;</span>.size) <span class="c"># =&gt; 3</span>
+<span class="t">File</span>.info?(<span class="s">&quot;non_existent&quot;</span>)    <span class="c"># =&gt; nil</span>
+
+<span class="t">File</span>.symlink(<span class="s">&quot;foo&quot;</span>, <span class="s">&quot;bar&quot;</span>)
+<span class="t">File</span>.info?(<span class="s">&quot;bar&quot;</span>, follow_symlinks: <span class="n">false</span>).try(<span class="o">&amp;</span>.<span class="k">type</span>.symlink?) <span class="c"># =&gt; true</span></code></pre>
+<p>Use <code><a href="IO/FileDescriptor.html#info%3AFile%3A%3AInfo-instance-method">IO::FileDescriptor#info</a></code> if the file is already open.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file.cr#L198" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="join(parts:Enumerable):String-class-method">
+      <div class="signature">
+        
+        def self.<strong>join</strong>(parts : <a href="Enumerable.html">Enumerable</a>) : <a href="String.html">String</a>
+
+        <a class="method-permalink" href="#join%28parts%3AEnumerable%29%3AString-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns a new string formed by joining the strings using <code><a href="File.html#SEPARATOR">File::SEPARATOR</a></code>.</p>
+<pre><code class="language-crystal"><span class="t">File</span>.join({<span class="s">&quot;foo&quot;</span>, <span class="s">&quot;bar&quot;</span>, <span class="s">&quot;baz&quot;</span>})       <span class="c"># =&gt; &quot;foo/bar/baz&quot;</span>
+<span class="t">File</span>.join({<span class="s">&quot;foo/&quot;</span>, <span class="s">&quot;/bar/&quot;</span>, <span class="s">&quot;/baz&quot;</span>})   <span class="c"># =&gt; &quot;foo/bar/baz&quot;</span>
+<span class="t">File</span>.join([<span class="s">&quot;/foo/&quot;</span>, <span class="s">&quot;/bar/&quot;</span>, <span class="s">&quot;/baz/&quot;</span>]) <span class="c"># =&gt; &quot;/foo/bar/baz/&quot;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file.cr#L662" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="join(*parts:String|Path):String-class-method">
+      <div class="signature">
+        
+        def self.<strong>join</strong>(*parts : <a href="String.html">String</a> | <a href="Path.html">Path</a>) : <a href="String.html">String</a>
+
+        <a class="method-permalink" href="#join%28%2Aparts%3AString%7CPath%29%3AString-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns a new string formed by joining the strings using <code><a href="File.html#SEPARATOR">File::SEPARATOR</a></code>.</p>
+<pre><code class="language-crystal"><span class="t">File</span>.join(<span class="s">&quot;foo&quot;</span>, <span class="s">&quot;bar&quot;</span>, <span class="s">&quot;baz&quot;</span>)       <span class="c"># =&gt; &quot;foo/bar/baz&quot;</span>
+<span class="t">File</span>.join(<span class="s">&quot;foo/&quot;</span>, <span class="s">&quot;/bar/&quot;</span>, <span class="s">&quot;/baz&quot;</span>)   <span class="c"># =&gt; &quot;foo/bar/baz&quot;</span>
+<span class="t">File</span>.join(<span class="s">&quot;/foo/&quot;</span>, <span class="s">&quot;/bar/&quot;</span>, <span class="s">&quot;/baz/&quot;</span>) <span class="c"># =&gt; &quot;/foo/bar/baz/&quot;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file.cr#L651" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="link(old_path:Path|String,new_path:Path|String):Nil-class-method">
+      <div class="signature">
+        
+        def self.<strong>link</strong>(old_path : <a href="Path.html">Path</a> | <a href="String.html">String</a>, new_path : <a href="Path.html">Path</a> | <a href="String.html">String</a>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#link%28old_path%3APath%7CString%2Cnew_path%3APath%7CString%29%3ANil-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Creates a new link (also known as a hard link) at <em>new_path</em> to an existing file
+given by <em>old_path</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file.cr#L484" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="match?(pattern:String,path:Path|String):Bool-class-method">
+      <div class="signature">
+        
+        def self.<strong>match?</strong>(pattern : <a href="String.html">String</a>, path : <a href="Path.html">Path</a> | <a href="String.html">String</a>) : <a href="Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#match%3F%28pattern%3AString%2Cpath%3APath%7CString%29%3ABool-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Matches <em>path</em> against <em>pattern</em>.</p>
+<p>The pattern syntax is similar to shell filename globbing. It may contain the following metacharacters:</p>
+<ul>
+<li><code>*</code>: Wildcard matches zero or more characters, except for directory separators.</li>
+<li><code>**</code>: Globstar matches zero or more characters, including directory separators.
+It must match a complete path segment, i.e. it must be wrapped in <code>/</code>
+except for the beginning and end of the pattern.</li>
+<li><code>?</code>: Matches a single Unicode character, except for directory separators.</li>
+<li>Character classes:
+<ul>
+<li><code>[abc]</code>: Character set matches one of the Unicode characters contained in the brackets.</li>
+<li><code>[^abc]</code>: Negated character set matches any Unicode character <em>except</em> those contained in the brackets.</li>
+<li><code>[a-z]</code>: Character range matches one Unicode character contained in the character range.</li>
+<li><code>[^a-z]</code>: Negated character range matches one Unicode character <em>except</em> those contained in the character range.</li>
+</ul>
+</li>
+<li><code>{a,b}</code>: Branches matches one of the subpatterns contained in the braces. Subpatterns
+may contain any other pattern feature, including nested branches (max nesting depth is 10 levels deep).</li>
+<li><code>\\</code>: Backslash escapes the next character.</li>
+</ul>
+<p>Multiple character pattern can be combined in the same brackets to define a
+character class (for example: <code>[0-9a-f]</code>).</p>
+<p>If <em>path</em> is a <code><a href="Path.html">Path</a></code>, all directory separators supported by <em>path</em> are
+recognized, according to the path's kind. If <em>path</em> is a <code><a href="String.html">String</a></code>, only <code>/</code>
+is considered a directory separator.</p>
+<p><span class="flag purple">NOTE</span>  Only <code>/</code> in <em>pattern</em> matches directory separators in <em>path</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file/match.cr#L35" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="open(filename:Path|String,mode=&quot;r&quot;,perm=DEFAULT_CREATE_PERMISSIONS,encoding=nil,invalid=nil,blocking=true,&amp;)-class-method">
+      <div class="signature">
+        
+        def self.<strong>open</strong>(filename : <a href="Path.html">Path</a> | <a href="String.html">String</a>, mode = <span class="s">&quot;r&quot;</span>, perm = <span class="t">DEFAULT_CREATE_PERMISSIONS</span>, encoding = <span class="n">nil</span>, invalid = <span class="n">nil</span>, blocking = <span class="n">true</span>, &)
+
+        <a class="method-permalink" href="#open%28filename%3APath%7CString%2Cmode%3D%22r%22%2Cperm%3DDEFAULT_CREATE_PERMISSIONS%2Cencoding%3Dnil%2Cinvalid%3Dnil%2Cblocking%3Dtrue%2C%26%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Opens the file named by <em>filename</em>. If a file is being created, its initial
+permissions may be set using the <em>perm</em> parameter. Then given block will be passed the opened
+file as an argument, the file will be automatically closed when the block returns.</p>
+<p>See <code>self<a href="File.html#new%28filename%3APath%7CString%2Cmode%3D%22r%22%2Cperm%3DDEFAULT_CREATE_PERMISSIONS%2Cencoding%3Dnil%2Cinvalid%3Dnil%2Cblocking%3Dtrue%29-class-method">.new</a></code> for what <em>mode</em> can be.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file.cr#L520" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="read(filename:Path|String,encoding=nil,invalid=nil,blocking=true):String-class-method">
+      <div class="signature">
+        
+        def self.<strong>read</strong>(filename : <a href="Path.html">Path</a> | <a href="String.html">String</a>, encoding = <span class="n">nil</span>, invalid = <span class="n">nil</span>, blocking = <span class="n">true</span>) : <a href="String.html">String</a>
+
+        <a class="method-permalink" href="#read%28filename%3APath%7CString%2Cencoding%3Dnil%2Cinvalid%3Dnil%2Cblocking%3Dtrue%29%3AString-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the content of <em>filename</em> as a string.</p>
+<pre><code class="language-crystal"><span class="t">File</span>.write(<span class="s">&quot;bar&quot;</span>, <span class="s">&quot;foo&quot;</span>)
+<span class="t">File</span>.read(<span class="s">&quot;bar&quot;</span>) <span class="c"># =&gt; &quot;foo&quot;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file.cr#L535" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="read_lines(filename:Path|String,encoding=nil,invalid=nil,chomp=true,blocking=true):Array(String)-class-method">
+      <div class="signature">
+        
+        def self.<strong>read_lines</strong>(filename : <a href="Path.html">Path</a> | <a href="String.html">String</a>, encoding = <span class="n">nil</span>, invalid = <span class="n">nil</span>, chomp = <span class="n">true</span>, blocking = <span class="n">true</span>) : <a href="Array.html">Array</a>(<a href="String.html">String</a>)
+
+        <a class="method-permalink" href="#read_lines%28filename%3APath%7CString%2Cencoding%3Dnil%2Cinvalid%3Dnil%2Cchomp%3Dtrue%2Cblocking%3Dtrue%29%3AArray%28String%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns all lines in <em>filename</em> as an array of strings.</p>
+<pre><code class="language-crystal"><span class="t">File</span>.write(<span class="s">&quot;foobar&quot;</span>, <span class="s">&quot;foo\nbar&quot;</span>)
+<span class="t">File</span>.read_lines(<span class="s">&quot;foobar&quot;</span>) <span class="c"># =&gt; [&quot;foo&quot;, &quot;bar&quot;]</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file.cr#L578" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="readable?(path:Path|String):Bool-class-method">
+      <div class="signature">
+        
+        def self.<strong>readable?</strong>(path : <a href="Path.html">Path</a> | <a href="String.html">String</a>) : <a href="Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#readable%3F%28path%3APath%7CString%29%3ABool-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if <em>path</em> is readable by the real user id of this process else returns <code>false</code>.</p>
+<pre><code class="language-crystal"><span class="t">File</span>.write(<span class="s">&quot;foo&quot;</span>, <span class="s">&quot;foo&quot;</span>)
+<span class="t">File</span>.readable?(<span class="s">&quot;foo&quot;</span>) <span class="c"># =&gt; true</span></code></pre>
+<p><span class="flag red">DEPRECATED</span>  Use <code><a href="File/Info.html#readable%3F%28path%3APath%7CString%29%3ABool-class-method">File::Info.readable?</a></code> instead</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file.cr#L293" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="readlink(path:Path|String):String-class-method">
+      <div class="signature">
+        
+        def self.<strong>readlink</strong>(path : <a href="Path.html">Path</a> | <a href="String.html">String</a>) : <a href="String.html">String</a>
+
+        <a class="method-permalink" href="#readlink%28path%3APath%7CString%29%3AString-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns value of a symbolic link .</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file.cr#L503" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="real_path(path:Path|String):String-class-method">
+      <div class="signature">
+        
+        def self.<strong>real_path</strong>(path : <a href="Path.html">Path</a> | <a href="String.html">String</a>) : <a href="String.html">String</a>
+
+        <a class="method-permalink" href="#real_path%28path%3APath%7CString%29%3AString-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Resolves the real path of <em>path</em> by following symbolic links.</p>
+<p><span class="flag red">DEPRECATED</span>  Use <code><a href="File.html#realpath%28path%3APath%7CString%29%3AString-class-method">.realpath</a></code> instead.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file.cr#L478" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="realpath(path:Path|String):String-class-method">
+      <div class="signature">
+        
+        def self.<strong>realpath</strong>(path : <a href="Path.html">Path</a> | <a href="String.html">String</a>) : <a href="String.html">String</a>
+
+        <a class="method-permalink" href="#realpath%28path%3APath%7CString%29%3AString-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Resolves the real path of <em>path</em> by following symbolic links.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file.cr#L472" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="rename(old_filename:Path|String,new_filename:Path|String):Nil-class-method">
+      <div class="signature">
+        
+        def self.<strong>rename</strong>(old_filename : <a href="Path.html">Path</a> | <a href="String.html">String</a>, new_filename : <a href="Path.html">Path</a> | <a href="String.html">String</a>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#rename%28old_filename%3APath%7CString%2Cnew_filename%3APath%7CString%29%3ANil-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Moves <em>old_filename</em> to <em>new_filename</em>.</p>
+<pre><code class="language-crystal"><span class="t">File</span>.write(<span class="s">&quot;afile&quot;</span>, <span class="s">&quot;foo&quot;</span>)
+<span class="t">File</span>.exists?(<span class="s">&quot;afile&quot;</span>) <span class="c"># =&gt; true</span>
+
+<span class="t">File</span>.rename(<span class="s">&quot;afile&quot;</span>, <span class="s">&quot;afile.cr&quot;</span>)
+<span class="t">File</span>.exists?(<span class="s">&quot;afile&quot;</span>)    <span class="c"># =&gt; false</span>
+<span class="t">File</span>.exists?(<span class="s">&quot;afile.cr&quot;</span>) <span class="c"># =&gt; true</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file.cr#L676" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="same?(path1:Path|String,path2:Path|String,follow_symlinks=false):Bool-class-method">
+      <div class="signature">
+        
+        def self.<strong>same?</strong>(path1 : <a href="Path.html">Path</a> | <a href="String.html">String</a>, path2 : <a href="Path.html">Path</a> | <a href="String.html">String</a>, follow_symlinks = <span class="n">false</span>) : <a href="Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#same%3F%28path1%3APath%7CString%2Cpath2%3APath%7CString%2Cfollow_symlinks%3Dfalse%29%3ABool-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if <em>path1</em> and <em>path2</em> represents the same file.
+The comparison take symlinks in consideration if <em>follow_symlinks</em> is <code>true</code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file.cr#L239" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="same_content?(path1:Path|String,path2:Path|String):Bool-class-method">
+      <div class="signature">
+        
+        def self.<strong>same_content?</strong>(path1 : <a href="Path.html">Path</a> | <a href="String.html">String</a>, path2 : <a href="Path.html">Path</a> | <a href="String.html">String</a>) : <a href="Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#same_content%3F%28path1%3APath%7CString%2Cpath2%3APath%7CString%29%3ABool-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Compares two files <em>filename1</em> to <em>filename2</em> to determine if they are identical.
+Returns <code>true</code> if content are the same, <code>false</code> otherwise.</p>
+<pre><code class="language-crystal"><span class="t">File</span>.write(<span class="s">&quot;file.cr&quot;</span>, <span class="s">&quot;1&quot;</span>)
+<span class="t">File</span>.write(<span class="s">&quot;bar.cr&quot;</span>, <span class="s">&quot;1&quot;</span>)
+<span class="t">File</span>.same_content?(<span class="s">&quot;file.cr&quot;</span>, <span class="s">&quot;bar.cr&quot;</span>) <span class="c"># =&gt; true</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file.cr#L251" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="size(filename:Path|String):Int64-class-method">
+      <div class="signature">
+        
+        def self.<strong>size</strong>(filename : <a href="Path.html">Path</a> | <a href="String.html">String</a>) : <a href="Int64.html">Int64</a>
+
+        <a class="method-permalink" href="#size%28filename%3APath%7CString%29%3AInt64-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the size of the file at <em>filename</em> in bytes.
+Raises <code><a href="File/NotFoundError.html">File::NotFoundError</a></code> if the file at <em>filename</em> does not exist.</p>
+<pre><code class="language-crystal"><span class="t">File</span>.size(<span class="s">&quot;foo&quot;</span>) <span class="c"># raises File::NotFoundError</span>
+<span class="t">File</span>.write(<span class="s">&quot;foo&quot;</span>, <span class="s">&quot;foo&quot;</span>)
+<span class="t">File</span>.size(<span class="s">&quot;foo&quot;</span>) <span class="c"># =&gt; 3</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file.cr#L269" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="symlink(old_path:Path|String,new_path:Path|String):Nil-class-method">
+      <div class="signature">
+        
+        def self.<strong>symlink</strong>(old_path : <a href="Path.html">Path</a> | <a href="String.html">String</a>, new_path : <a href="Path.html">Path</a> | <a href="String.html">String</a>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#symlink%28old_path%3APath%7CString%2Cnew_path%3APath%7CString%29%3ANil-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Creates a symbolic link at <em>new_path</em> to an existing file given by <em>old_path</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file.cr#L489" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="symlink?(path:Path|String):Bool-class-method">
+      <div class="signature">
+        
+        def self.<strong>symlink?</strong>(path : <a href="Path.html">Path</a> | <a href="String.html">String</a>) : <a href="Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#symlink%3F%28path%3APath%7CString%29%3ABool-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if the <em>path</em> is a symbolic link.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file.cr#L494" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="tempfile(prefix:String|Nil,suffix:String|Nil,*,dir:String=Dir.tempdir,encoding=nil,invalid=nil)-class-method">
+      <div class="signature">
+        
+        def self.<strong>tempfile</strong>(prefix : <a href="String.html">String</a> | <a href="Nil.html">Nil</a>, suffix : <a href="String.html">String</a> | <a href="Nil.html">Nil</a>, *, dir : <a href="String.html">String</a> = <span class="t">Dir</span>.tempdir, encoding = <span class="n">nil</span>, invalid = <span class="n">nil</span>)
+
+        <a class="method-permalink" href="#tempfile%28prefix%3AString%7CNil%2Csuffix%3AString%7CNil%2C%2A%2Cdir%3AString%3DDir.tempdir%2Cencoding%3Dnil%2Cinvalid%3Dnil%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Creates a temporary file.</p>
+<pre><code class="language-crystal">tempfile <span class="o">=</span> <span class="t">File</span>.tempfile(<span class="s">&quot;foo&quot;</span>, <span class="s">&quot;.bar&quot;</span>)
+tempfile.delete</code></pre>
+<p><em>prefix</em> and <em>suffix</em> are appended to the front and end of the file name, respectively.</p>
+<p><span class="flag purple">NOTE</span>  These path values may contain directory separators. It's the caller's
+responsibility to ensure they are used safely. For example by rejecting
+user-provided values that would result in navigating the directory tree.</p>
+<p>The file will be placed in <em>dir</em> which defaults to the standard temporary directory <code><a href="Dir.html#tempdir%3AString-class-method">Dir.tempdir</a></code>.</p>
+<p><em>encoding</em> and <em>invalid</em> are passed to <code><a href="IO.html#set_encoding%28encoding%3AString%2Cinvalid%3ASymbol%7CNil%3Dnil%29%3ANil-instance-method">IO#set_encoding</a></code>.</p>
+<p>It is the caller's responsibility to remove the file when no longer needed.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file/tempfile.cr#L66" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="tempfile(suffix:String|Nil=nil,*,dir:String=Dir.tempdir,encoding=nil,invalid=nil)-class-method">
+      <div class="signature">
+        
+        def self.<strong>tempfile</strong>(suffix : <a href="String.html">String</a> | <a href="Nil.html">Nil</a> = <span class="n">nil</span>, *, dir : <a href="String.html">String</a> = <span class="t">Dir</span>.tempdir, encoding = <span class="n">nil</span>, invalid = <span class="n">nil</span>)
+
+        <a class="method-permalink" href="#tempfile%28suffix%3AString%7CNil%3Dnil%2C%2A%2Cdir%3AString%3DDir.tempdir%2Cencoding%3Dnil%2Cinvalid%3Dnil%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Creates a temporary file.</p>
+<pre><code class="language-crystal">tempfile <span class="o">=</span> <span class="t">File</span>.tempfile(<span class="s">&quot;.bar&quot;</span>)
+tempfile.delete</code></pre>
+<p><em>prefix</em> and <em>suffix</em> are appended to the front and end of the file name, respectively.</p>
+<p><span class="flag purple">NOTE</span>  These path values may contain directory separators. It's the caller's
+responsibility to ensure they are used safely. For example by rejecting
+user-provided values that would result in navigating the directory tree.</p>
+<p>The file will be placed in <em>dir</em> which defaults to the standard temporary directory <code><a href="Dir.html#tempdir%3AString-class-method">Dir.tempdir</a></code>.</p>
+<p><em>encoding</em> and <em>invalid</em> are passed to <code><a href="IO.html#set_encoding%28encoding%3AString%2Cinvalid%3ASymbol%7CNil%3Dnil%29%3ANil-instance-method">IO#set_encoding</a></code>.</p>
+<p>It is the caller's responsibility to remove the file when no longer needed.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file/tempfile.cr#L89" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="tempfile(prefix:String|Nil,suffix:String|Nil,*,dir:String=Dir.tempdir,encoding=nil,invalid=nil,&amp;)-class-method">
+      <div class="signature">
+        
+        def self.<strong>tempfile</strong>(prefix : <a href="String.html">String</a> | <a href="Nil.html">Nil</a>, suffix : <a href="String.html">String</a> | <a href="Nil.html">Nil</a>, *, dir : <a href="String.html">String</a> = <span class="t">Dir</span>.tempdir, encoding = <span class="n">nil</span>, invalid = <span class="n">nil</span>, &)
+
+        <a class="method-permalink" href="#tempfile%28prefix%3AString%7CNil%2Csuffix%3AString%7CNil%2C%2A%2Cdir%3AString%3DDir.tempdir%2Cencoding%3Dnil%2Cinvalid%3Dnil%2C%26%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Creates a temporary file and yields it to the given block. It is closed and returned at the end of this method call.</p>
+<pre><code class="language-crystal">tempfile <span class="o">=</span> <span class="t">File</span>.tempfile(<span class="s">&quot;foo&quot;</span>, <span class="s">&quot;.bar&quot;</span>) <span class="k">do</span> <span class="o">|</span>file<span class="o">|</span>
+  file.print(<span class="s">&quot;bar&quot;</span>)
+<span class="k">end</span>
+<span class="t">File</span>.read(tempfile.path) <span class="c"># =&gt; &quot;bar&quot;</span>
+tempfile.delete</code></pre>
+<p><em>prefix</em> and <em>suffix</em> are appended to the front and end of the file name, respectively.
+These values may contain directory separators.</p>
+<p>The file will be placed in <em>dir</em> which defaults to the standard temporary directory <code><a href="Dir.html#tempdir%3AString-class-method">Dir.tempdir</a></code>.</p>
+<p><em>encoding</em> and <em>invalid</em> are passed to <code><a href="IO.html#set_encoding%28encoding%3AString%2Cinvalid%3ASymbol%7CNil%3Dnil%29%3ANil-instance-method">IO#set_encoding</a></code>.</p>
+<p>It is the caller's responsibility to remove the file when no longer needed.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file/tempfile.cr#L111" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="tempfile(suffix:String|Nil=nil,*,dir:String=Dir.tempdir,encoding=nil,invalid=nil,&amp;)-class-method">
+      <div class="signature">
+        
+        def self.<strong>tempfile</strong>(suffix : <a href="String.html">String</a> | <a href="Nil.html">Nil</a> = <span class="n">nil</span>, *, dir : <a href="String.html">String</a> = <span class="t">Dir</span>.tempdir, encoding = <span class="n">nil</span>, invalid = <span class="n">nil</span>, &)
+
+        <a class="method-permalink" href="#tempfile%28suffix%3AString%7CNil%3Dnil%2C%2A%2Cdir%3AString%3DDir.tempdir%2Cencoding%3Dnil%2Cinvalid%3Dnil%2C%26%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Creates a temporary file and yields it to the given block. It is closed and returned at the end of this method call.</p>
+<pre><code class="language-crystal">tempfile <span class="o">=</span> <span class="t">File</span>.tempfile(<span class="s">&quot;.bar&quot;</span>) <span class="k">do</span> <span class="o">|</span>file<span class="o">|</span>
+  file.print(<span class="s">&quot;bar&quot;</span>)
+<span class="k">end</span>
+<span class="t">File</span>.read(tempfile.path) <span class="c"># =&gt; &quot;bar&quot;</span>
+tempfile.delete</code></pre>
+<p><em>prefix</em> and <em>suffix</em> are appended to the front and end of the file name, respectively.</p>
+<p><span class="flag purple">NOTE</span>  These path values may contain directory separators. It's the caller's
+responsibility to ensure they are used safely. For example by rejecting
+user-provided values that would result in navigating the directory tree.</p>
+<p>The file will be placed in <em>dir</em> which defaults to the standard temporary directory <code><a href="Dir.html#tempdir%3AString-class-method">Dir.tempdir</a></code>.</p>
+<p><em>encoding</em> and <em>invalid</em> are passed to <code><a href="IO.html#set_encoding%28encoding%3AString%2Cinvalid%3ASymbol%7CNil%3Dnil%29%3ANil-instance-method">IO#set_encoding</a></code>.</p>
+<p>It is the caller's responsibility to remove the file when no longer needed.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file/tempfile.cr#L142" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="tempname(prefix:String|Nil,suffix:String|Nil,*,dir:String=Dir.tempdir)-class-method">
+      <div class="signature">
+        
+        def self.<strong>tempname</strong>(prefix : <a href="String.html">String</a> | <a href="Nil.html">Nil</a>, suffix : <a href="String.html">String</a> | <a href="Nil.html">Nil</a>, *, dir : <a href="String.html">String</a> = <span class="t">Dir</span>.tempdir)
+
+        <a class="method-permalink" href="#tempname%28prefix%3AString%7CNil%2Csuffix%3AString%7CNil%2C%2A%2Cdir%3AString%3DDir.tempdir%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns a fully-qualified path to a temporary file.
+The file is not actually created on the file system.</p>
+<pre><code class="language-crystal"><span class="t">File</span>.tempname(<span class="s">&quot;foo&quot;</span>, <span class="s">&quot;.sock&quot;</span>) <span class="c"># =&gt; &quot;/tmp/foo20171206-1234-449386.sock&quot;</span></code></pre>
+<p><em>prefix</em> and <em>suffix</em> are appended to the front and end of the file name, respectively.</p>
+<p><span class="flag purple">NOTE</span>  These path values may contain directory separators. It's the caller's
+responsibility to ensure they are used safely. For example by rejecting
+user-provided values that would result in navigating the directory tree.</p>
+<p>The path will be placed in <em>dir</em> which defaults to the standard temporary directory <code><a href="Dir.html#tempdir%3AString-class-method">Dir.tempdir</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file/tempfile.cr#L16" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="tempname(suffix:String|Nil=nil,*,dir:String=Dir.tempdir)-class-method">
+      <div class="signature">
+        
+        def self.<strong>tempname</strong>(suffix : <a href="String.html">String</a> | <a href="Nil.html">Nil</a> = <span class="n">nil</span>, *, dir : <a href="String.html">String</a> = <span class="t">Dir</span>.tempdir)
+
+        <a class="method-permalink" href="#tempname%28suffix%3AString%7CNil%3Dnil%2C%2A%2Cdir%3AString%3DDir.tempdir%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns a fully-qualified path to a temporary file.
+The optional <em>suffix</em> is appended to the file name.</p>
+<pre><code class="language-crystal"><span class="t">File</span>.tempname          <span class="c"># =&gt; &quot;/tmp/20171206-1234-449386&quot;</span>
+<span class="t">File</span>.tempname(<span class="s">&quot;.sock&quot;</span>) <span class="c"># =&gt; &quot;/tmp/20171206-1234-449386.sock&quot;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file/tempfile.cr#L44" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="touch(filename:Path|String,time:Time=Time.utc):Nil-class-method">
+      <div class="signature">
+        
+        def self.<strong>touch</strong>(filename : <a href="Path.html">Path</a> | <a href="String.html">String</a>, time : <a href="Time.html">Time</a> = <span class="t">Time</span>.utc) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#touch%28filename%3APath%7CString%2Ctime%3ATime%3DTime.utc%29%3ANil-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Attempts to set the access and modification times of the file named
+in the <em>filename</em> parameter to the value given in <em>time</em>.</p>
+<p>If the file does not exist, it will be created.</p>
+<p>Use <code><a href="File.html#touch%28time%3ATime%3DTime.utc%29%3ANil-instance-method">#touch</a></code> if the <code><a href="File.html">File</a></code> is already open.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file.cr#L701" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="utime(atime:Time,mtime:Time,filename:Path|String):Nil-class-method">
+      <div class="signature">
+        
+        def self.<strong>utime</strong>(atime : <a href="Time.html">Time</a>, mtime : <a href="Time.html">Time</a>, filename : <a href="Path.html">Path</a> | <a href="String.html">String</a>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#utime%28atime%3ATime%2Cmtime%3ATime%2Cfilename%3APath%7CString%29%3ANil-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Sets the access and modification times of <em>filename</em>.</p>
+<p>Use <code><a href="File.html#utime%28atime%3ATime%2Cmtime%3ATime%29%3ANil-instance-method">#utime</a></code> if the <code><a href="File.html">File</a></code> is already open.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file.cr#L691" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="writable?(path:Path|String):Bool-class-method">
+      <div class="signature">
+        
+        def self.<strong>writable?</strong>(path : <a href="Path.html">Path</a> | <a href="String.html">String</a>) : <a href="Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#writable%3F%28path%3APath%7CString%29%3ABool-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if <em>path</em> is writable by the real user id of this process else returns <code>false</code>.</p>
+<pre><code class="language-crystal"><span class="t">File</span>.write(<span class="s">&quot;foo&quot;</span>, <span class="s">&quot;foo&quot;</span>)
+<span class="t">File</span>.writable?(<span class="s">&quot;foo&quot;</span>) <span class="c"># =&gt; true</span></code></pre>
+<p><span class="flag red">DEPRECATED</span>  Use <code><a href="File/Info.html#writable%3F%28path%3APath%7CString%29%3ABool-class-method">File::Info.writable?</a></code> instead</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file.cr#L304" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="write(filename:Path|String,content,perm=DEFAULT_CREATE_PERMISSIONS,encoding=nil,invalid=nil,mode=&quot;w&quot;,blocking=true)-class-method">
+      <div class="signature">
+        
+        def self.<strong>write</strong>(filename : <a href="Path.html">Path</a> | <a href="String.html">String</a>, content, perm = <span class="t">DEFAULT_CREATE_PERMISSIONS</span>, encoding = <span class="n">nil</span>, invalid = <span class="n">nil</span>, mode = <span class="s">&quot;w&quot;</span>, blocking = <span class="n">true</span>)
+
+        <a class="method-permalink" href="#write%28filename%3APath%7CString%2Ccontent%2Cperm%3DDEFAULT_CREATE_PERMISSIONS%2Cencoding%3Dnil%2Cinvalid%3Dnil%2Cmode%3D%22w%22%2Cblocking%3Dtrue%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Writes the given <em>content</em> to <em>filename</em>.</p>
+<p>By default, an existing file will be overwritten.</p>
+<p><em>filename</em> will be created if it does not already exist.</p>
+<pre><code class="language-crystal"><span class="t">File</span>.write(<span class="s">&quot;foo&quot;</span>, <span class="s">&quot;bar&quot;</span>)
+<span class="t">File</span>.write(<span class="s">&quot;foo&quot;</span>, <span class="s">&quot;baz&quot;</span>, mode: <span class="s">&quot;a&quot;</span>)</code></pre>
+<p><span class="flag purple">NOTE</span>  If the content is a <code><a href="Slice.html">Slice</a>(<a href="UInt8.html">UInt8</a>)</code>, those bytes will be written.
+If it's an <code><a href="IO.html">IO</a></code>, all bytes from the <code><a href="IO.html">IO</a></code> will be written.
+Otherwise, the string representation of <em>content</em> will be written
+(the result of invoking <code>to_s</code> on <em>content</em>).</p>
+<p>See <code>self<a href="File.html#new%28filename%3APath%7CString%2Cmode%3D%22r%22%2Cperm%3DDEFAULT_CREATE_PERMISSIONS%2Cencoding%3Dnil%2Cinvalid%3Dnil%2Cblocking%3Dtrue%29-class-method">.new</a></code> for what <em>mode</em> can be.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file.cr#L603" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+  
+
+  
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="chmod(permissions:Int|Permissions):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>chmod</strong>(permissions : <a href="Int.html">Int</a> | <a href="File/Permissions.html">Permissions</a>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#chmod%28permissions%3AInt%7CPermissions%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Changes the permissions of the specified file.</p>
+<pre><code class="language-crystal">file.chmod(<span class="n">0o755</span>)
+file.info.permissions.value <span class="c"># =&gt; 0o755</span>
+
+file.chmod(<span class="n">0o700</span>)
+file.info.permissions.value <span class="c"># =&gt; 0o700</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file.cr#L764" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="chown(uid:Int=-1,gid:Int=-1):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>chown</strong>(uid : <a href="Int.html">Int</a> = <span class="n">-1</span>, gid : <a href="Int.html">Int</a> = <span class="n">-1</span>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#chown%28uid%3AInt%3D-1%2Cgid%3AInt%3D-1%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Changes the owner of the specified file.</p>
+<pre><code class="language-crystal">file.chown(<span class="n">1001</span>, <span class="n">100</span>)
+file.chown(gid: <span class="n">100</span>)</code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file.cr#L751" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="delete:Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>delete</strong> : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#delete%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Deletes this file.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file.cr#L780" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="inspect(io:IO):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>inspect</strong>(io : <a href="IO.html">IO</a>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#inspect%28io%3AIO%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+            <div class="doc-inherited">
+              Description copied from class <a href="Reference.html">Reference</a>
+            </div>
+          
+          <p>Appends a String representation of this object
+which includes its class name, its object address
+and the values of all instance variables.</p>
+<pre><code class="language-crystal"><span class="k">class</span> <span class="t">Person</span>
+  <span class="k">def</span> <span class="m">initialize</span>(@name : <span class="t">String</span>, @age : <span class="t">Int32</span>)
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="t">Person</span>.new(<span class="s">&quot;John&quot;</span>, <span class="n">32</span>).inspect <span class="c"># =&gt; #&lt;Person:0x10fd31f20 @name=&quot;John&quot;, @age=32&gt;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file.cr#L739" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="path:String-instance-method">
+      <div class="signature">
+        
+        def <strong>path</strong> : <a href="String.html">String</a>
+
+        <a class="method-permalink" href="#path%3AString-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file.cr#L180" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="read_at(offset,bytesize,&amp;:IO-&gt;)-instance-method">
+      <div class="signature">
+        
+        def <strong>read_at</strong>(offset, bytesize, & : <a href="IO.html">IO</a> -> )
+
+        <a class="method-permalink" href="#read_at%28offset%2Cbytesize%2C%26%3AIO-%3E%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Yields an <code><a href="IO.html">IO</a></code> to read a section inside this file.
+Multiple sections can be read concurrently.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file.cr#L720" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="rename(new_filename:Path|String):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>rename</strong>(new_filename : <a href="Path.html">Path</a> | <a href="String.html">String</a>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#rename%28new_filename%3APath%7CString%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Rename the current <code><a href="File.html">File</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file.cr#L683" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="size:Int64-instance-method">
+      <div class="signature">
+        
+        def <strong>size</strong> : <a href="Int64.html">Int64</a>
+
+        <a class="method-permalink" href="#size%3AInt64-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the size in bytes of the currently opened file.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file.cr#L707" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="touch(time:Time=Time.utc):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>touch</strong>(time : <a href="Time.html">Time</a> = <span class="t">Time</span>.utc) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#touch%28time%3ATime%3DTime.utc%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Attempts to set the access and modification times
+to the value given in <em>time</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file.cr#L775" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="truncate(size=0):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>truncate</strong>(size = <span class="n">0</span>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#truncate%28size%3D0%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Truncates the file to the specified <em>size</em>. Requires that the current file is opened
+for writing.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file.cr#L713" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="utime(atime:Time,mtime:Time):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>utime</strong>(atime : <a href="Time.html">Time</a>, mtime : <a href="Time.html">Time</a>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#utime%28atime%3ATime%2Cmtime%3ATime%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Sets the access and modification times</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/file.cr#L769" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Crystal Docs 1.16.1">
+<meta name="crystal_docs.project_version" content="1.17.0-dev">
+<meta name="crystal_docs.project_name" content="Crystal">
+
+  <meta name="crystal_docs.json_config_url" content="/api/versions.json">
+
+
+    <link rel="canonical" href="https://crystal-lang.org/api/latest/Crystal/Macros/Expressions.html">
+
+<link href="../../css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../../js/doc.js"></script>
+
+  <meta name="repository-name" content="Crystal">
+  <title>Crystal::Macros::Expressions - Crystal 1.17.0-dev</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "../../";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill="currentColor" fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<input type="checkbox" id="sidebar-btn">
+<label for="sidebar-btn" id="sidebar-btn-label">
+  <svg class="open" xmlns="http://www.w3.org/2000/svg" height="2em" width="2em" viewBox="0 0 512 512"><title>Open Sidebar</title><path fill="currentColor" d="M80 96v64h352V96H80zm0 112v64h352v-64H80zm0 112v64h352v-64H80z"></path></svg>
+  <svg class="close" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><title>Close Sidebar</title><path fill="currentColor" d="m118.6 73.4-45.2 45.2L210.7 256 73.4 393.4l45.2 45.2L256 301.3l137.4 137.3 45.2-45.2L301.3 256l137.3-137.4-45.2-45.2L256 210.7Z"></path></svg>
+</label>
+<iframe class="sidebar" src="../../sidebar.html"></iframe>
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">
+    class
+  </span> Crystal::<wbr>Macros::<wbr>Expressions
+
+</h1>
+
+
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../../Crystal/Macros/Expressions.html">Crystal::Macros::Expressions</a></li><li class="superclass"><a href="../../Crystal/Macros/ASTNode.html">Crystal::Macros::ASTNode</a></li></ul>
+
+
+
+
+  <h2>
+    <a id="overview" class="anchor" href="#overview">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Overview
+  </h2>
+
+  <p>A group of expressions.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/compiler/crystal/macros.cr#L1191" target="_blank">
+        compiler/crystal/macros.cr
+      </a>
+    
+    <br/>
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#expressions%3AArrayLiteral%28ASTNode%29-instance-method" class="signature"><strong>#expressions</strong> : ArrayLiteral(ASTNode)</a>
+        
+          <div class="summary"><p>Returns the list of expressions in this node</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+
+  <div class="methods-inherited">
+    
+      
+
+  <h3>Instance methods inherited from class <code><a href="../../Crystal/Macros/ASTNode.html">Crystal::Macros::ASTNode</a></code></h3>
+  
+  
+    <a href="../../Crystal/Macros/ASTNode.html#%21%3D%28other%3AASTNode%29%3ABoolLiteral-instance-method" class="tooltip">
+      <span>!=(other : ASTNode) : BoolLiteral</span>
+    !=</a>, 
+    
+  
+    <a href="../../Crystal/Macros/ASTNode.html#%3D%3D%28other%3AASTNode%29%3ABoolLiteral-instance-method" class="tooltip">
+      <span>==(other : ASTNode) : BoolLiteral</span>
+    ==</a>, 
+    
+  
+    <a href="../../Crystal/Macros/ASTNode.html#class_name%3AStringLiteral-instance-method" class="tooltip">
+      <span>class_name : StringLiteral</span>
+    class_name</a>, 
+    
+  
+    <a href="../../Crystal/Macros/ASTNode.html#column_number%3AStringLiteral%7CNilLiteral-instance-method" class="tooltip">
+      <span>column_number : StringLiteral | NilLiteral</span>
+    column_number</a>, 
+    
+  
+    <a href="../../Crystal/Macros/ASTNode.html#doc%3AStringLiteral-instance-method" class="tooltip">
+      <span>doc : StringLiteral</span>
+    doc</a>, 
+    
+  
+    <a href="../../Crystal/Macros/ASTNode.html#doc_comment%3AMacroId-instance-method" class="tooltip">
+      <span>doc_comment : MacroId</span>
+    doc_comment</a>, 
+    
+  
+    <a href="../../Crystal/Macros/ASTNode.html#end_column_number%3AStringLiteral%7CNilLiteral-instance-method" class="tooltip">
+      <span>end_column_number : StringLiteral | NilLiteral</span>
+    end_column_number</a>, 
+    
+  
+    <a href="../../Crystal/Macros/ASTNode.html#end_line_number%3AStringLiteral%7CNilLiteral-instance-method" class="tooltip">
+      <span>end_line_number : StringLiteral | NilLiteral</span>
+    end_line_number</a>, 
+    
+  
+    <a href="../../Crystal/Macros/ASTNode.html#filename%3AStringLiteral%7CNilLiteral-instance-method" class="tooltip">
+      <span>filename : StringLiteral | NilLiteral</span>
+    filename</a>, 
+    
+  
+    <a href="../../Crystal/Macros/ASTNode.html#id%3AMacroId-instance-method" class="tooltip">
+      <span>id : MacroId</span>
+    id</a>, 
+    
+  
+    <a href="../../Crystal/Macros/ASTNode.html#is_a%3F%28type%3ATypeNode%29%3ABoolLiteral-instance-method" class="tooltip">
+      <span>is_a?(type : TypeNode) : BoolLiteral</span>
+    is_a?</a>, 
+    
+  
+    <a href="../../Crystal/Macros/ASTNode.html#line_number%3AStringLiteral%7CNilLiteral-instance-method" class="tooltip">
+      <span>line_number : StringLiteral | NilLiteral</span>
+    line_number</a>, 
+    
+  
+    <a href="../../Crystal/Macros/ASTNode.html#nil%3F%3ABoolLiteral-instance-method" class="tooltip">
+      <span>nil? : BoolLiteral</span>
+    nil?</a>, 
+    
+  
+    <a href="../../Crystal/Macros/ASTNode.html#raise%28message%29%3ANoReturn-instance-method" class="tooltip">
+      <span>raise(message) : NoReturn</span>
+    raise</a>, 
+    
+  
+    <a href="../../Crystal/Macros/ASTNode.html#stringify%3AStringLiteral-instance-method" class="tooltip">
+      <span>stringify : StringLiteral</span>
+    stringify</a>, 
+    
+  
+    <a href="../../Crystal/Macros/ASTNode.html#symbolize%3ASymbolLiteral-instance-method" class="tooltip">
+      <span>symbolize : SymbolLiteral</span>
+    symbolize</a>, 
+    
+  
+    <a href="../../Crystal/Macros/ASTNode.html#warning%28message%3AStringLiteral%29%3ANilLiteral-instance-method" class="tooltip">
+      <span>warning(message : StringLiteral) : NilLiteral</span>
+    warning</a>
+    
+  
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+  </div>
+
+  
+
+  
+
+  
+
+  
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="expressions:ArrayLiteral(ASTNode)-instance-method">
+      <div class="signature">
+        
+        def <strong>expressions</strong> : <a href="../../Crystal/Macros/ArrayLiteral.html">ArrayLiteral</a>(<a href="../../Crystal/Macros/ASTNode.html">ASTNode</a>)
+
+        <a class="method-permalink" href="#expressions%3AArrayLiteral%28ASTNode%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the list of expressions in this node</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/compiler/crystal/macros.cr#L1193" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+</div>
+
+</body>
+</html>

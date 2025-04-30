@@ -1,0 +1,3391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Crystal Docs 1.16.1">
+<meta name="crystal_docs.project_version" content="1.17.0-dev">
+<meta name="crystal_docs.project_name" content="Crystal">
+
+  <meta name="crystal_docs.json_config_url" content="/api/versions.json">
+
+
+    <link rel="canonical" href="https://crystal-lang.org/api/latest/WasiError.html">
+
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/doc.js"></script>
+
+  <meta name="repository-name" content="Crystal">
+  <title>WasiError - Crystal 1.17.0-dev</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill="currentColor" fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<input type="checkbox" id="sidebar-btn">
+<label for="sidebar-btn" id="sidebar-btn-label">
+  <svg class="open" xmlns="http://www.w3.org/2000/svg" height="2em" width="2em" viewBox="0 0 512 512"><title>Open Sidebar</title><path fill="currentColor" d="M80 96v64h352V96H80zm0 112v64h352v-64H80zm0 112v64h352v-64H80z"></path></svg>
+  <svg class="close" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><title>Close Sidebar</title><path fill="currentColor" d="m118.6 73.4-45.2 45.2L210.7 256 73.4 393.4l45.2 45.2L256 301.3l137.4 137.3 45.2-45.2L301.3 256l137.3-137.4-45.2-45.2L256 210.7Z"></path></svg>
+</label>
+<iframe class="sidebar" src="sidebar.html"></iframe>
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">
+    enum
+  </span> WasiError
+
+</h1>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/wasi_error.cr#L1" target="_blank">
+        wasi_error.cr
+      </a>
+    
+    <br/>
+  
+
+
+
+  
+    <h2>
+      <a id="enum-members" class="anchor" href="#enum-members">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+      Enum Members
+    </h2>
+  
+  <dl>
+    
+      <dt class="entry-const" id="SUCCESS">
+        <strong>SUCCESS</strong> = <code><span class="n">0_u16</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="TOOBIG">
+        <strong>TOOBIG</strong> = <code><span class="n">1_u16</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="ACCES">
+        <strong>ACCES</strong> = <code><span class="n">2_u16</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="ADDRINUSE">
+        <strong>ADDRINUSE</strong> = <code><span class="n">3_u16</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="ADDRNOTAVAIL">
+        <strong>ADDRNOTAVAIL</strong> = <code><span class="n">4_u16</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="AFNOSUPPORT">
+        <strong>AFNOSUPPORT</strong> = <code><span class="n">5_u16</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="AGAIN">
+        <strong>AGAIN</strong> = <code><span class="n">6_u16</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="ALREADY">
+        <strong>ALREADY</strong> = <code><span class="n">7_u16</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="BADF">
+        <strong>BADF</strong> = <code><span class="n">8_u16</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="BADMSG">
+        <strong>BADMSG</strong> = <code><span class="n">9_u16</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="BUSY">
+        <strong>BUSY</strong> = <code><span class="n">10_u16</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="CANCELED">
+        <strong>CANCELED</strong> = <code><span class="n">11_u16</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="CHILD">
+        <strong>CHILD</strong> = <code><span class="n">12_u16</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="CONNABORTED">
+        <strong>CONNABORTED</strong> = <code><span class="n">13_u16</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="CONNREFUSED">
+        <strong>CONNREFUSED</strong> = <code><span class="n">14_u16</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="CONNRESET">
+        <strong>CONNRESET</strong> = <code><span class="n">15_u16</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="DEADLK">
+        <strong>DEADLK</strong> = <code><span class="n">16_u16</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="DESTADDRREQ">
+        <strong>DESTADDRREQ</strong> = <code><span class="n">17_u16</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="DOM">
+        <strong>DOM</strong> = <code><span class="n">18_u16</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="DQUOT">
+        <strong>DQUOT</strong> = <code><span class="n">19_u16</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="EXIST">
+        <strong>EXIST</strong> = <code><span class="n">20_u16</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="FAULT">
+        <strong>FAULT</strong> = <code><span class="n">21_u16</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="FBIG">
+        <strong>FBIG</strong> = <code><span class="n">22_u16</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="HOSTUNREACH">
+        <strong>HOSTUNREACH</strong> = <code><span class="n">23_u16</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="IDRM">
+        <strong>IDRM</strong> = <code><span class="n">24_u16</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="ILSEQ">
+        <strong>ILSEQ</strong> = <code><span class="n">25_u16</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="INPROGRESS">
+        <strong>INPROGRESS</strong> = <code><span class="n">26_u16</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="INTR">
+        <strong>INTR</strong> = <code><span class="n">27_u16</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="INVAL">
+        <strong>INVAL</strong> = <code><span class="n">28_u16</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="IO">
+        <strong>IO</strong> = <code><span class="n">29_u16</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="ISCONN">
+        <strong>ISCONN</strong> = <code><span class="n">30_u16</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="ISDIR">
+        <strong>ISDIR</strong> = <code><span class="n">31_u16</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="LOOP">
+        <strong>LOOP</strong> = <code><span class="n">32_u16</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="MFILE">
+        <strong>MFILE</strong> = <code><span class="n">33_u16</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="MLINK">
+        <strong>MLINK</strong> = <code><span class="n">34_u16</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="MSGSIZE">
+        <strong>MSGSIZE</strong> = <code><span class="n">35_u16</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="MULTIHOP">
+        <strong>MULTIHOP</strong> = <code><span class="n">36_u16</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="NAMETOOLONG">
+        <strong>NAMETOOLONG</strong> = <code><span class="n">37_u16</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="NETDOWN">
+        <strong>NETDOWN</strong> = <code><span class="n">38_u16</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="NETRESET">
+        <strong>NETRESET</strong> = <code><span class="n">39_u16</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="NETUNREACH">
+        <strong>NETUNREACH</strong> = <code><span class="n">40_u16</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="NFILE">
+        <strong>NFILE</strong> = <code><span class="n">41_u16</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="NOBUFS">
+        <strong>NOBUFS</strong> = <code><span class="n">42_u16</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="NODEV">
+        <strong>NODEV</strong> = <code><span class="n">43_u16</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="NOENT">
+        <strong>NOENT</strong> = <code><span class="n">44_u16</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="NOEXEC">
+        <strong>NOEXEC</strong> = <code><span class="n">45_u16</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="NOLCK">
+        <strong>NOLCK</strong> = <code><span class="n">46_u16</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="NOLINK">
+        <strong>NOLINK</strong> = <code><span class="n">47_u16</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="NOMEM">
+        <strong>NOMEM</strong> = <code><span class="n">48_u16</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="NOMSG">
+        <strong>NOMSG</strong> = <code><span class="n">49_u16</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="NOPROTOOPT">
+        <strong>NOPROTOOPT</strong> = <code><span class="n">50_u16</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="NOSPC">
+        <strong>NOSPC</strong> = <code><span class="n">51_u16</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="NOSYS">
+        <strong>NOSYS</strong> = <code><span class="n">52_u16</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="NOTCONN">
+        <strong>NOTCONN</strong> = <code><span class="n">53_u16</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="NOTDIR">
+        <strong>NOTDIR</strong> = <code><span class="n">54_u16</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="NOTEMPTY">
+        <strong>NOTEMPTY</strong> = <code><span class="n">55_u16</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="NOTRECOVERABLE">
+        <strong>NOTRECOVERABLE</strong> = <code><span class="n">56_u16</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="NOTSOCK">
+        <strong>NOTSOCK</strong> = <code><span class="n">57_u16</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="NOTSUP">
+        <strong>NOTSUP</strong> = <code><span class="n">58_u16</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="NOTTY">
+        <strong>NOTTY</strong> = <code><span class="n">59_u16</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="NXIO">
+        <strong>NXIO</strong> = <code><span class="n">60_u16</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="OVERFLOW">
+        <strong>OVERFLOW</strong> = <code><span class="n">61_u16</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="OWNERDEAD">
+        <strong>OWNERDEAD</strong> = <code><span class="n">62_u16</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="PERM">
+        <strong>PERM</strong> = <code><span class="n">63_u16</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="PIPE">
+        <strong>PIPE</strong> = <code><span class="n">64_u16</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="PROTO">
+        <strong>PROTO</strong> = <code><span class="n">65_u16</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="PROTONOSUPPORT">
+        <strong>PROTONOSUPPORT</strong> = <code><span class="n">66_u16</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="PROTOTYPE">
+        <strong>PROTOTYPE</strong> = <code><span class="n">67_u16</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="RANGE">
+        <strong>RANGE</strong> = <code><span class="n">68_u16</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="ROFS">
+        <strong>ROFS</strong> = <code><span class="n">69_u16</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="SPIPE">
+        <strong>SPIPE</strong> = <code><span class="n">70_u16</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="SRCH">
+        <strong>SRCH</strong> = <code><span class="n">71_u16</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="STALE">
+        <strong>STALE</strong> = <code><span class="n">72_u16</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="TIMEDOUT">
+        <strong>TIMEDOUT</strong> = <code><span class="n">73_u16</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="TXTBSY">
+        <strong>TXTBSY</strong> = <code><span class="n">74_u16</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="XDEV">
+        <strong>XDEV</strong> = <code><span class="n">75_u16</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="NOTCAPABLE">
+        <strong>NOTCAPABLE</strong> = <code><span class="n">76_u16</span></code>
+      </dt>
+      
+    
+  </dl>
+
+
+
+  
+
+  
+
+  
+
+  
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#acces%3F-instance-method" class="signature"><strong>#acces?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#ACCES">ACCES</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#addrinuse%3F-instance-method" class="signature"><strong>#addrinuse?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#ADDRINUSE">ADDRINUSE</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#addrnotavail%3F-instance-method" class="signature"><strong>#addrnotavail?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#ADDRNOTAVAIL">ADDRNOTAVAIL</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#afnosupport%3F-instance-method" class="signature"><strong>#afnosupport?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#AFNOSUPPORT">AFNOSUPPORT</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#again%3F-instance-method" class="signature"><strong>#again?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#AGAIN">AGAIN</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#already%3F-instance-method" class="signature"><strong>#already?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#ALREADY">ALREADY</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#badf%3F-instance-method" class="signature"><strong>#badf?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#BADF">BADF</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#badmsg%3F-instance-method" class="signature"><strong>#badmsg?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#BADMSG">BADMSG</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#busy%3F-instance-method" class="signature"><strong>#busy?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#BUSY">BUSY</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#canceled%3F-instance-method" class="signature"><strong>#canceled?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#CANCELED">CANCELED</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#child%3F-instance-method" class="signature"><strong>#child?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#CHILD">CHILD</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#connaborted%3F-instance-method" class="signature"><strong>#connaborted?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#CONNABORTED">CONNABORTED</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#connrefused%3F-instance-method" class="signature"><strong>#connrefused?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#CONNREFUSED">CONNREFUSED</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#connreset%3F-instance-method" class="signature"><strong>#connreset?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#CONNRESET">CONNRESET</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#deadlk%3F-instance-method" class="signature"><strong>#deadlk?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#DEADLK">DEADLK</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#destaddrreq%3F-instance-method" class="signature"><strong>#destaddrreq?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#DESTADDRREQ">DESTADDRREQ</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#dom%3F-instance-method" class="signature"><strong>#dom?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#DOM">DOM</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#dquot%3F-instance-method" class="signature"><strong>#dquot?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#DQUOT">DQUOT</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#exist%3F-instance-method" class="signature"><strong>#exist?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#EXIST">EXIST</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#fault%3F-instance-method" class="signature"><strong>#fault?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#FAULT">FAULT</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#fbig%3F-instance-method" class="signature"><strong>#fbig?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#FBIG">FBIG</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#hostunreach%3F-instance-method" class="signature"><strong>#hostunreach?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#HOSTUNREACH">HOSTUNREACH</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#idrm%3F-instance-method" class="signature"><strong>#idrm?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#IDRM">IDRM</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#ilseq%3F-instance-method" class="signature"><strong>#ilseq?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#ILSEQ">ILSEQ</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#inprogress%3F-instance-method" class="signature"><strong>#inprogress?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#INPROGRESS">INPROGRESS</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#intr%3F-instance-method" class="signature"><strong>#intr?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#INTR">INTR</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#inval%3F-instance-method" class="signature"><strong>#inval?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#INVAL">INVAL</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#io%3F-instance-method" class="signature"><strong>#io?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#IO">IO</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#isconn%3F-instance-method" class="signature"><strong>#isconn?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#ISCONN">ISCONN</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#isdir%3F-instance-method" class="signature"><strong>#isdir?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#ISDIR">ISDIR</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#loop%3F-instance-method" class="signature"><strong>#loop?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#LOOP">LOOP</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#message%3AString-instance-method" class="signature"><strong>#message</strong> : String</a>
+        
+          <div class="summary"><p>Returns the system error message associated with this error code.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#mfile%3F-instance-method" class="signature"><strong>#mfile?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#MFILE">MFILE</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#mlink%3F-instance-method" class="signature"><strong>#mlink?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#MLINK">MLINK</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#msgsize%3F-instance-method" class="signature"><strong>#msgsize?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#MSGSIZE">MSGSIZE</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#multihop%3F-instance-method" class="signature"><strong>#multihop?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#MULTIHOP">MULTIHOP</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#nametoolong%3F-instance-method" class="signature"><strong>#nametoolong?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#NAMETOOLONG">NAMETOOLONG</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#netdown%3F-instance-method" class="signature"><strong>#netdown?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#NETDOWN">NETDOWN</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#netreset%3F-instance-method" class="signature"><strong>#netreset?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#NETRESET">NETRESET</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#netunreach%3F-instance-method" class="signature"><strong>#netunreach?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#NETUNREACH">NETUNREACH</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#nfile%3F-instance-method" class="signature"><strong>#nfile?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#NFILE">NFILE</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#nobufs%3F-instance-method" class="signature"><strong>#nobufs?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#NOBUFS">NOBUFS</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#nodev%3F-instance-method" class="signature"><strong>#nodev?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#NODEV">NODEV</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#noent%3F-instance-method" class="signature"><strong>#noent?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#NOENT">NOENT</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#noexec%3F-instance-method" class="signature"><strong>#noexec?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#NOEXEC">NOEXEC</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#nolck%3F-instance-method" class="signature"><strong>#nolck?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#NOLCK">NOLCK</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#nolink%3F-instance-method" class="signature"><strong>#nolink?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#NOLINK">NOLINK</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#nomem%3F-instance-method" class="signature"><strong>#nomem?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#NOMEM">NOMEM</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#nomsg%3F-instance-method" class="signature"><strong>#nomsg?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#NOMSG">NOMSG</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#noprotoopt%3F-instance-method" class="signature"><strong>#noprotoopt?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#NOPROTOOPT">NOPROTOOPT</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#nospc%3F-instance-method" class="signature"><strong>#nospc?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#NOSPC">NOSPC</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#nosys%3F-instance-method" class="signature"><strong>#nosys?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#NOSYS">NOSYS</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#notcapable%3F-instance-method" class="signature"><strong>#notcapable?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#NOTCAPABLE">NOTCAPABLE</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#notconn%3F-instance-method" class="signature"><strong>#notconn?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#NOTCONN">NOTCONN</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#notdir%3F-instance-method" class="signature"><strong>#notdir?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#NOTDIR">NOTDIR</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#notempty%3F-instance-method" class="signature"><strong>#notempty?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#NOTEMPTY">NOTEMPTY</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#notrecoverable%3F-instance-method" class="signature"><strong>#notrecoverable?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#NOTRECOVERABLE">NOTRECOVERABLE</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#notsock%3F-instance-method" class="signature"><strong>#notsock?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#NOTSOCK">NOTSOCK</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#notsup%3F-instance-method" class="signature"><strong>#notsup?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#NOTSUP">NOTSUP</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#notty%3F-instance-method" class="signature"><strong>#notty?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#NOTTY">NOTTY</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#nxio%3F-instance-method" class="signature"><strong>#nxio?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#NXIO">NXIO</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#overflow%3F-instance-method" class="signature"><strong>#overflow?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#OVERFLOW">OVERFLOW</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#ownerdead%3F-instance-method" class="signature"><strong>#ownerdead?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#OWNERDEAD">OWNERDEAD</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#perm%3F-instance-method" class="signature"><strong>#perm?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#PERM">PERM</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#pipe%3F-instance-method" class="signature"><strong>#pipe?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#PIPE">PIPE</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#proto%3F-instance-method" class="signature"><strong>#proto?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#PROTO">PROTO</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#protonosupport%3F-instance-method" class="signature"><strong>#protonosupport?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#PROTONOSUPPORT">PROTONOSUPPORT</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#prototype%3F-instance-method" class="signature"><strong>#prototype?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#PROTOTYPE">PROTOTYPE</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#range%3F-instance-method" class="signature"><strong>#range?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#RANGE">RANGE</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#rofs%3F-instance-method" class="signature"><strong>#rofs?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#ROFS">ROFS</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#spipe%3F-instance-method" class="signature"><strong>#spipe?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#SPIPE">SPIPE</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#srch%3F-instance-method" class="signature"><strong>#srch?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#SRCH">SRCH</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#stale%3F-instance-method" class="signature"><strong>#stale?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#STALE">STALE</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#success%3F-instance-method" class="signature"><strong>#success?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#SUCCESS">SUCCESS</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#timedout%3F-instance-method" class="signature"><strong>#timedout?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#TIMEDOUT">TIMEDOUT</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_errno%3AErrno-instance-method" class="signature"><strong>#to_errno</strong> : Errno</a>
+        
+          <div class="summary"><p>Transforms this <code><a href="WasiError.html">WasiError</a></code> value to the equivalent <code><a href="Errno.html">Errno</a></code> value.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#toobig%3F-instance-method" class="signature"><strong>#toobig?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#TOOBIG">TOOBIG</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#txtbsy%3F-instance-method" class="signature"><strong>#txtbsy?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#TXTBSY">TXTBSY</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#xdev%3F-instance-method" class="signature"><strong>#xdev?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#XDEV">XDEV</a></code></p></div>
+        
+      </li>
+    
+  </ul>
+
+
+
+  <div class="methods-inherited">
+    
+      
+
+  <h3>Instance methods inherited from struct <code><a href="Enum.html">Enum</a></code></h3>
+  
+  
+    <a href="Enum.html#%26%28other%3Aself%29%3Aself-instance-method" class="tooltip">
+      <span>&(other : <span class="k">self</span>) : <span class="k">self</span></span>
+    &</a>, 
+    
+  
+    <a href="Enum.html#%2B%28other%3AInt%29%3Aself-instance-method" class="tooltip">
+      <span>+(other : Int) : <span class="k">self</span></span>
+    +</a>, 
+    
+  
+    <a href="Enum.html#-%28other%3AInt%29%3Aself-instance-method" class="tooltip">
+      <span>-(other : Int) : <span class="k">self</span></span>
+    -</a>, 
+    
+  
+    <a href="Enum.html#%3C%3D%3E%28other%3Aself%29-instance-method" class="tooltip">
+      <span><=>(other : <span class="k">self</span>)</span>
+    <=></a>, 
+    
+  
+    <a href="Enum.html#%3D%3D%28other%3Aself%29-instance-method" class="tooltip">
+      <span>==(other : <span class="k">self</span>)<br/>==(other)</span>
+    ==</a>, 
+    
+  
+    <a href="Enum.html#%5E%28other%3Aself%29%3Aself-instance-method" class="tooltip">
+      <span>^(other : <span class="k">self</span>) : <span class="k">self</span></span>
+    ^</a>, 
+    
+  
+    <a href="Enum.html#%7C%28other%3Aself%29%3Aself-instance-method" class="tooltip">
+      <span>|(other : <span class="k">self</span>) : <span class="k">self</span></span>
+    |</a>, 
+    
+  
+    <a href="Enum.html#~%3Aself-instance-method" class="tooltip">
+      <span>~ : <span class="k">self</span></span>
+    ~</a>, 
+    
+  
+    <a href="Enum.html#clone-instance-method" class="tooltip">
+      <span>clone</span>
+    clone</a>, 
+    
+  
+    <a href="Enum.html#each%28%26%3Aself-%3E%29-instance-method" class="tooltip">
+      <span>each(& : <span class="k">self</span> -> )</span>
+    each</a>, 
+    
+  
+    <a href="Enum.html#hash%28hasher%29-instance-method" class="tooltip">
+      <span>hash(hasher)</span>
+    hash</a>, 
+    
+  
+    <a href="Enum.html#includes%3F%28other%3Aself%29%3ABool-instance-method" class="tooltip">
+      <span>includes?(other : <span class="k">self</span>) : Bool</span>
+    includes?</a>, 
+    
+  
+    <a href="Enum.html#inspect%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>inspect(io : IO) : Nil</span>
+    inspect</a>, 
+    
+  
+    <a href="Enum.html#to_f32%3AFloat32-instance-method" class="tooltip">
+      <span>to_f32 : Float32</span>
+    to_f32</a>, 
+    
+  
+    <a href="Enum.html#to_f32%21%3AFloat32-instance-method" class="tooltip">
+      <span>to_f32! : Float32</span>
+    to_f32!</a>, 
+    
+  
+    <a href="Enum.html#to_f64%3AFloat64-instance-method" class="tooltip">
+      <span>to_f64 : Float64</span>
+    to_f64</a>, 
+    
+  
+    <a href="Enum.html#to_f64%21%3AFloat64-instance-method" class="tooltip">
+      <span>to_f64! : Float64</span>
+    to_f64!</a>, 
+    
+  
+    <a href="Enum.html#to_i%3AInt32-instance-method" class="tooltip">
+      <span>to_i : Int32</span>
+    to_i</a>, 
+    
+  
+    <a href="Enum.html#to_i128%3AInt128-instance-method" class="tooltip">
+      <span>to_i128 : Int128</span>
+    to_i128</a>, 
+    
+  
+    <a href="Enum.html#to_i128%21%3AInt128-instance-method" class="tooltip">
+      <span>to_i128! : Int128</span>
+    to_i128!</a>, 
+    
+  
+    <a href="Enum.html#to_i16%3AInt16-instance-method" class="tooltip">
+      <span>to_i16 : Int16</span>
+    to_i16</a>, 
+    
+  
+    <a href="Enum.html#to_i16%21%3AInt16-instance-method" class="tooltip">
+      <span>to_i16! : Int16</span>
+    to_i16!</a>, 
+    
+  
+    <a href="Enum.html#to_i32%3AInt32-instance-method" class="tooltip">
+      <span>to_i32 : Int32</span>
+    to_i32</a>, 
+    
+  
+    <a href="Enum.html#to_i32%21%3AInt32-instance-method" class="tooltip">
+      <span>to_i32! : Int32</span>
+    to_i32!</a>, 
+    
+  
+    <a href="Enum.html#to_i64%3AInt64-instance-method" class="tooltip">
+      <span>to_i64 : Int64</span>
+    to_i64</a>, 
+    
+  
+    <a href="Enum.html#to_i64%21%3AInt64-instance-method" class="tooltip">
+      <span>to_i64! : Int64</span>
+    to_i64!</a>, 
+    
+  
+    <a href="Enum.html#to_i8%3AInt8-instance-method" class="tooltip">
+      <span>to_i8 : Int8</span>
+    to_i8</a>, 
+    
+  
+    <a href="Enum.html#to_i8%21%3AInt8-instance-method" class="tooltip">
+      <span>to_i8! : Int8</span>
+    to_i8!</a>, 
+    
+  
+    <a href="Enum.html#to_json%28json%3AJSON%3A%3ABuilder%29-instance-method" class="tooltip">
+      <span>to_json(json : JSON::Builder)</span>
+    to_json</a>, 
+    
+  
+    <a href="Enum.html#to_s%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_s(io : IO) : Nil<br/>to_s : String</span>
+    to_s</a>, 
+    
+  
+    <a href="Enum.html#to_u128%3AUInt128-instance-method" class="tooltip">
+      <span>to_u128 : UInt128</span>
+    to_u128</a>, 
+    
+  
+    <a href="Enum.html#to_u128%21%3AUInt128-instance-method" class="tooltip">
+      <span>to_u128! : UInt128</span>
+    to_u128!</a>, 
+    
+  
+    <a href="Enum.html#to_u16%3AUInt16-instance-method" class="tooltip">
+      <span>to_u16 : UInt16</span>
+    to_u16</a>, 
+    
+  
+    <a href="Enum.html#to_u16%21%3AUInt16-instance-method" class="tooltip">
+      <span>to_u16! : UInt16</span>
+    to_u16!</a>, 
+    
+  
+    <a href="Enum.html#to_u32%3AUInt32-instance-method" class="tooltip">
+      <span>to_u32 : UInt32</span>
+    to_u32</a>, 
+    
+  
+    <a href="Enum.html#to_u32%21%3AUInt32-instance-method" class="tooltip">
+      <span>to_u32! : UInt32</span>
+    to_u32!</a>, 
+    
+  
+    <a href="Enum.html#to_u64%3AUInt64-instance-method" class="tooltip">
+      <span>to_u64 : UInt64</span>
+    to_u64</a>, 
+    
+  
+    <a href="Enum.html#to_u64%21%3AUInt64-instance-method" class="tooltip">
+      <span>to_u64! : UInt64</span>
+    to_u64!</a>, 
+    
+  
+    <a href="Enum.html#to_u8%3AUInt8-instance-method" class="tooltip">
+      <span>to_u8 : UInt8</span>
+    to_u8</a>, 
+    
+  
+    <a href="Enum.html#to_u8%21%3AUInt8-instance-method" class="tooltip">
+      <span>to_u8! : UInt8</span>
+    to_u8!</a>, 
+    
+  
+    <a href="Enum.html#to_yaml%28yaml%3AYAML%3A%3ANodes%3A%3ABuilder%29-instance-method" class="tooltip">
+      <span>to_yaml(yaml : YAML::Nodes::Builder)</span>
+    to_yaml</a>, 
+    
+  
+    <a href="Enum.html#value%3AInt-instance-method" class="tooltip">
+      <span>value : Int</span>
+    value</a>
+    
+  
+
+
+      
+
+  <h3>Constructor methods inherited from struct <code><a href="Enum.html">Enum</a></code></h3>
+  
+  
+    <a href="Enum.html#from_value%28value%3AInt%29%3Aself-class-method" class="tooltip">
+      <span>from_value(value : Int) : <span class="k">self</span></span>
+    from_value</a>, 
+    
+  
+    <a href="Enum.html#new%28ctx%3AYAML%3A%3AParseContext%2Cnode%3AYAML%3A%3ANodes%3A%3ANode%29-class-method" class="tooltip">
+      <span>new(ctx : YAML::ParseContext, node : YAML::Nodes::Node)<br/>new(value : <span class="k">self</span>)<br/>new(pull : JSON::PullParser)</span>
+    new</a>, 
+    
+  
+    <a href="Enum.html#parse%28string%3AString%29%3Aself-class-method" class="tooltip">
+      <span>parse(string : String) : <span class="k">self</span></span>
+    parse</a>
+    
+  
+
+
+      
+
+  <h3>Class methods inherited from struct <code><a href="Enum.html">Enum</a></code></h3>
+  
+  
+    <a href="Enum.html#each%28%26%3Aself-%3E%29-class-method" class="tooltip">
+      <span>each(& : <span class="k">self</span> -> )</span>
+    each</a>, 
+    
+  
+    <a href="Enum.html#from_value%3F%28value%3AInt%29%3Aself%7CNil-class-method" class="tooltip">
+      <span>from_value?(value : Int) : <span class="k">self</span> | Nil</span>
+    from_value?</a>, 
+    
+  
+    <a href="Enum.html#names%3AArray%28String%29-class-method" class="tooltip">
+      <span>names : Array(String)</span>
+    names</a>, 
+    
+  
+    <a href="Enum.html#parse%3F%28string%3AString%29%3Aself%7CNil-class-method" class="tooltip">
+      <span>parse?(string : String) : <span class="k">self</span> | Nil</span>
+    parse?</a>, 
+    
+  
+    <a href="Enum.html#valid%3F%28value%3Aself%29%3ABool-class-method" class="tooltip">
+      <span>valid?(value : <span class="k">self</span>) : Bool</span>
+    valid?</a>, 
+    
+  
+    <a href="Enum.html#values%3AArray%28self%29-class-method" class="tooltip">
+      <span>values : Array(<span class="k">self</span>)</span>
+    values</a>
+    
+  
+
+
+      
+
+  <h3>Macros inherited from struct <code><a href="Enum.html">Enum</a></code></h3>
+  
+  
+    <a href="Enum.html#%5B%5D%28%2Avalues%29-macro" class="tooltip">
+      <span>[](*values)</span>
+    []</a>, 
+    
+  
+    <a href="Enum.html#flags%28%2Avalues%29-macro" class="tooltip">
+      <span>flags(*values)</span>
+    flags</a>
+    
+  
+
+
+    
+      
+
+  <h3>Instance methods inherited from module <code><a href="Comparable.html">Comparable</a>(<a href="Enum.html">Enum</a>)</code></h3>
+  
+  
+    <a href="Comparable.html#%3C%28other%3AT%29%3ABool-instance-method" class="tooltip">
+      <span><(other : T) : Bool</span>
+    <</a>, 
+    
+  
+    <a href="Comparable.html#%3C%3D%28other%3AT%29-instance-method" class="tooltip">
+      <span><=(other : T)</span>
+    <=</a>, 
+    
+  
+    <a href="Comparable.html#%3C%3D%3E%28other%3AT%29-instance-method" class="tooltip">
+      <span><=>(other : T)</span>
+    <=></a>, 
+    
+  
+    <a href="Comparable.html#%3D%3D%28other%3AT%29-instance-method" class="tooltip">
+      <span>==(other : T)</span>
+    ==</a>, 
+    
+  
+    <a href="Comparable.html#%3E%28other%3AT%29%3ABool-instance-method" class="tooltip">
+      <span>>(other : T) : Bool</span>
+    ></a>, 
+    
+  
+    <a href="Comparable.html#%3E%3D%28other%3AT%29-instance-method" class="tooltip">
+      <span>>=(other : T)</span>
+    >=</a>, 
+    
+  
+    <a href="Comparable.html#clamp%28min%2Cmax%29-instance-method" class="tooltip">
+      <span>clamp(min, max)<br/>clamp(range : Range)</span>
+    clamp</a>
+    
+  
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+      
+
+  <h3>Instance methods inherited from struct <code><a href="Value.html">Value</a></code></h3>
+  
+  
+    <a href="Value.html#%3D%3D%28other%3AJSON%3A%3AAny%29-instance-method" class="tooltip">
+      <span>==(other : JSON::Any)<br/>==(other : YAML::Any)<br/>==(other)</span>
+    ==</a>, 
+    
+  
+    <a href="Value.html#dup-instance-method" class="tooltip">
+      <span>dup</span>
+    dup</a>
+    
+  
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+      
+
+  <h3>Instance methods inherited from class <code><a href="Object.html">Object</a></code></h3>
+  
+  
+    <a href="Object.html#%21%3ABool-instance-method" class="tooltip">
+      <span>! : Bool</span>
+    !</a>, 
+    
+  
+    <a href="Object.html#%21%3D%28other%29-instance-method" class="tooltip">
+      <span>!=(other)</span>
+    !=</a>, 
+    
+  
+    <a href="Object.html#%21~%28other%29-instance-method" class="tooltip">
+      <span>!~(other)</span>
+    !~</a>, 
+    
+  
+    <a href="Object.html#%3D%3D%28other%29-instance-method" class="tooltip">
+      <span>==(other)</span>
+    ==</a>, 
+    
+  
+    <a href="Object.html#%3D%3D%3D%28other%3AJSON%3A%3AAny%29-instance-method" class="tooltip">
+      <span>===(other : JSON::Any)<br/>===(other : YAML::Any)<br/>===(other)</span>
+    ===</a>, 
+    
+  
+    <a href="Object.html#%3D~%28other%29-instance-method" class="tooltip">
+      <span>=~(other)</span>
+    =~</a>, 
+    
+  
+    <a href="Object.html#as%28type%3AClass%29-instance-method" class="tooltip">
+      <span>as(type : Class)</span>
+    as</a>, 
+    
+  
+    <a href="Object.html#as%3F%28type%3AClass%29-instance-method" class="tooltip">
+      <span>as?(type : Class)</span>
+    as?</a>, 
+    
+  
+    <a href="Object.html#class-instance-method" class="tooltip">
+      <span>class</span>
+    class</a>, 
+    
+  
+    <a href="Object.html#dup-instance-method" class="tooltip">
+      <span>dup</span>
+    dup</a>, 
+    
+  
+    <a href="Object.html#hash%28hasher%29-instance-method" class="tooltip">
+      <span>hash(hasher)<br/>hash</span>
+    hash</a>, 
+    
+  
+    <a href="Object.html#in%3F%28collection%3AObject%29%3ABool-instance-method" class="tooltip">
+      <span>in?(collection : Object) : Bool<br/>in?(*values : Object) : Bool</span>
+    in?</a>, 
+    
+  
+    <a href="Object.html#inspect%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>inspect(io : IO) : Nil<br/>inspect : String</span>
+    inspect</a>, 
+    
+  
+    <a href="Object.html#is_a%3F%28type%3AClass%29%3ABool-instance-method" class="tooltip">
+      <span>is_a?(type : Class) : Bool</span>
+    is_a?</a>, 
+    
+  
+    <a href="Object.html#itself-instance-method" class="tooltip">
+      <span>itself</span>
+    itself</a>, 
+    
+  
+    <a href="Object.html#nil%3F%3ABool-instance-method" class="tooltip">
+      <span>nil? : Bool</span>
+    nil?</a>, 
+    
+  
+    <a href="Object.html#not_nil%21%28message%29-instance-method" class="tooltip">
+      <span>not_nil!(message)<br/>not_nil!</span>
+    not_nil!</a>, 
+    
+  
+    <a href="Object.html#pretty_inspect%28width%3D79%2Cnewline%3D%22%5Cn%22%2Cindent%3D0%29%3AString-instance-method" class="tooltip">
+      <span>pretty_inspect(width = <span class="n">79</span>, newline = <span class="s">&quot;\n&quot;</span>, indent = <span class="n">0</span>) : String</span>
+    pretty_inspect</a>, 
+    
+  
+    <a href="Object.html#pretty_print%28pp%3APrettyPrint%29%3ANil-instance-method" class="tooltip">
+      <span>pretty_print(pp : PrettyPrint) : Nil</span>
+    pretty_print</a>, 
+    
+  
+    <a href="Object.html#responds_to%3F%28name%3ASymbol%29%3ABool-instance-method" class="tooltip">
+      <span>responds_to?(name : Symbol) : Bool</span>
+    responds_to?</a>, 
+    
+  
+    <a href="Object.html#tap%28%26%29-instance-method" class="tooltip">
+      <span>tap(&)</span>
+    tap</a>, 
+    
+  
+    <a href="Object.html#to_json%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_json(io : IO) : Nil<br/>to_json : String</span>
+    to_json</a>, 
+    
+  
+    <a href="Object.html#to_pretty_json%28indent%3AString%3D%22%22%29%3AString-instance-method" class="tooltip">
+      <span>to_pretty_json(indent : String = <span class="s">&quot;  &quot;</span>) : String<br/>to_pretty_json(io : IO, indent : String = <span class="s">&quot;  &quot;</span>) : Nil</span>
+    to_pretty_json</a>, 
+    
+  
+    <a href="Object.html#to_s%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_s(io : IO) : Nil<br/>to_s : String</span>
+    to_s</a>, 
+    
+  
+    <a href="Object.html#to_yaml%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_yaml(io : IO) : Nil<br/>to_yaml : String</span>
+    to_yaml</a>, 
+    
+  
+    <a href="Object.html#try%28%26%29-instance-method" class="tooltip">
+      <span>try(&)</span>
+    try</a>, 
+    
+  
+    <a href="Object.html#unsafe_as%28type%3AT.class%29forallT-instance-method" class="tooltip">
+      <span>unsafe_as(type : <span class="t">T</span>.<span class="k">class</span>) forall T</span>
+    unsafe_as</a>
+    
+  
+
+
+      
+
+
+      
+
+  <h3>Class methods inherited from class <code><a href="Object.html">Object</a></code></h3>
+  
+  
+    <a href="Object.html#from_json%28string_or_io%2Croot%3AString%29-class-method" class="tooltip">
+      <span>from_json(string_or_io, root : String)<br/>from_json(string_or_io)</span>
+    from_json</a>, 
+    
+  
+    <a href="Object.html#from_yaml%28string_or_io%3AString%7CIO%29-class-method" class="tooltip">
+      <span>from_yaml(string_or_io : String | IO)</span>
+    from_yaml</a>
+    
+  
+
+
+      
+
+  <h3>Macros inherited from class <code><a href="Object.html">Object</a></code></h3>
+  
+  
+    <a href="Object.html#class_getter%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_getter(*names, &block)</span>
+    class_getter</a>, 
+    
+  
+    <a href="Object.html#class_getter%21%28%2Anames%29-macro" class="tooltip">
+      <span>class_getter!(*names)</span>
+    class_getter!</a>, 
+    
+  
+    <a href="Object.html#class_getter%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_getter?(*names, &block)</span>
+    class_getter?</a>, 
+    
+  
+    <a href="Object.html#class_property%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_property(*names, &block)</span>
+    class_property</a>, 
+    
+  
+    <a href="Object.html#class_property%21%28%2Anames%29-macro" class="tooltip">
+      <span>class_property!(*names)</span>
+    class_property!</a>, 
+    
+  
+    <a href="Object.html#class_property%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_property?(*names, &block)</span>
+    class_property?</a>, 
+    
+  
+    <a href="Object.html#class_setter%28%2Anames%29-macro" class="tooltip">
+      <span>class_setter(*names)</span>
+    class_setter</a>, 
+    
+  
+    <a href="Object.html#def_clone-macro" class="tooltip">
+      <span>def_clone</span>
+    def_clone</a>, 
+    
+  
+    <a href="Object.html#def_equals%28%2Afields%29-macro" class="tooltip">
+      <span>def_equals(*fields)</span>
+    def_equals</a>, 
+    
+  
+    <a href="Object.html#def_equals_and_hash%28%2Afields%29-macro" class="tooltip">
+      <span>def_equals_and_hash(*fields)</span>
+    def_equals_and_hash</a>, 
+    
+  
+    <a href="Object.html#def_hash%28%2Afields%29-macro" class="tooltip">
+      <span>def_hash(*fields)</span>
+    def_hash</a>, 
+    
+  
+    <a href="Object.html#delegate%28%2Amethods%2Ctoobject%29-macro" class="tooltip">
+      <span>delegate(*methods, to object)</span>
+    delegate</a>, 
+    
+  
+    <a href="Object.html#forward_missing_to%28delegate%29-macro" class="tooltip">
+      <span>forward_missing_to(delegate)</span>
+    forward_missing_to</a>, 
+    
+  
+    <a href="Object.html#getter%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>getter(*names, &block)</span>
+    getter</a>, 
+    
+  
+    <a href="Object.html#getter%21%28%2Anames%29-macro" class="tooltip">
+      <span>getter!(*names)</span>
+    getter!</a>, 
+    
+  
+    <a href="Object.html#getter%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>getter?(*names, &block)</span>
+    getter?</a>, 
+    
+  
+    <a href="Object.html#property%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>property(*names, &block)</span>
+    property</a>, 
+    
+  
+    <a href="Object.html#property%21%28%2Anames%29-macro" class="tooltip">
+      <span>property!(*names)</span>
+    property!</a>, 
+    
+  
+    <a href="Object.html#property%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>property?(*names, &block)</span>
+    property?</a>, 
+    
+  
+    <a href="Object.html#setter%28%2Anames%29-macro" class="tooltip">
+      <span>setter(*names)</span>
+    setter</a>
+    
+  
+
+
+    
+  </div>
+
+  
+
+  
+
+  
+
+  
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="acces?-instance-method">
+      <div class="signature">
+        
+        def <strong>acces?</strong>
+
+        <a class="method-permalink" href="#acces%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#ACCES">ACCES</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/wasi_error.cr#L179" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="addrinuse?-instance-method">
+      <div class="signature">
+        
+        def <strong>addrinuse?</strong>
+
+        <a class="method-permalink" href="#addrinuse%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#ADDRINUSE">ADDRINUSE</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/wasi_error.cr#L180" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="addrnotavail?-instance-method">
+      <div class="signature">
+        
+        def <strong>addrnotavail?</strong>
+
+        <a class="method-permalink" href="#addrnotavail%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#ADDRNOTAVAIL">ADDRNOTAVAIL</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/wasi_error.cr#L181" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="afnosupport?-instance-method">
+      <div class="signature">
+        
+        def <strong>afnosupport?</strong>
+
+        <a class="method-permalink" href="#afnosupport%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#AFNOSUPPORT">AFNOSUPPORT</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/wasi_error.cr#L182" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="again?-instance-method">
+      <div class="signature">
+        
+        def <strong>again?</strong>
+
+        <a class="method-permalink" href="#again%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#AGAIN">AGAIN</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/wasi_error.cr#L183" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="already?-instance-method">
+      <div class="signature">
+        
+        def <strong>already?</strong>
+
+        <a class="method-permalink" href="#already%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#ALREADY">ALREADY</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/wasi_error.cr#L184" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="badf?-instance-method">
+      <div class="signature">
+        
+        def <strong>badf?</strong>
+
+        <a class="method-permalink" href="#badf%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#BADF">BADF</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/wasi_error.cr#L185" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="badmsg?-instance-method">
+      <div class="signature">
+        
+        def <strong>badmsg?</strong>
+
+        <a class="method-permalink" href="#badmsg%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#BADMSG">BADMSG</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/wasi_error.cr#L186" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="busy?-instance-method">
+      <div class="signature">
+        
+        def <strong>busy?</strong>
+
+        <a class="method-permalink" href="#busy%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#BUSY">BUSY</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/wasi_error.cr#L187" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="canceled?-instance-method">
+      <div class="signature">
+        
+        def <strong>canceled?</strong>
+
+        <a class="method-permalink" href="#canceled%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#CANCELED">CANCELED</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/wasi_error.cr#L188" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="child?-instance-method">
+      <div class="signature">
+        
+        def <strong>child?</strong>
+
+        <a class="method-permalink" href="#child%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#CHILD">CHILD</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/wasi_error.cr#L189" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="connaborted?-instance-method">
+      <div class="signature">
+        
+        def <strong>connaborted?</strong>
+
+        <a class="method-permalink" href="#connaborted%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#CONNABORTED">CONNABORTED</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/wasi_error.cr#L190" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="connrefused?-instance-method">
+      <div class="signature">
+        
+        def <strong>connrefused?</strong>
+
+        <a class="method-permalink" href="#connrefused%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#CONNREFUSED">CONNREFUSED</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/wasi_error.cr#L191" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="connreset?-instance-method">
+      <div class="signature">
+        
+        def <strong>connreset?</strong>
+
+        <a class="method-permalink" href="#connreset%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#CONNRESET">CONNRESET</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/wasi_error.cr#L192" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="deadlk?-instance-method">
+      <div class="signature">
+        
+        def <strong>deadlk?</strong>
+
+        <a class="method-permalink" href="#deadlk%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#DEADLK">DEADLK</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/wasi_error.cr#L193" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="destaddrreq?-instance-method">
+      <div class="signature">
+        
+        def <strong>destaddrreq?</strong>
+
+        <a class="method-permalink" href="#destaddrreq%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#DESTADDRREQ">DESTADDRREQ</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/wasi_error.cr#L194" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="dom?-instance-method">
+      <div class="signature">
+        
+        def <strong>dom?</strong>
+
+        <a class="method-permalink" href="#dom%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#DOM">DOM</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/wasi_error.cr#L195" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="dquot?-instance-method">
+      <div class="signature">
+        
+        def <strong>dquot?</strong>
+
+        <a class="method-permalink" href="#dquot%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#DQUOT">DQUOT</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/wasi_error.cr#L196" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="exist?-instance-method">
+      <div class="signature">
+        
+        def <strong>exist?</strong>
+
+        <a class="method-permalink" href="#exist%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#EXIST">EXIST</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/wasi_error.cr#L197" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="fault?-instance-method">
+      <div class="signature">
+        
+        def <strong>fault?</strong>
+
+        <a class="method-permalink" href="#fault%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#FAULT">FAULT</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/wasi_error.cr#L198" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="fbig?-instance-method">
+      <div class="signature">
+        
+        def <strong>fbig?</strong>
+
+        <a class="method-permalink" href="#fbig%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#FBIG">FBIG</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/wasi_error.cr#L199" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="hostunreach?-instance-method">
+      <div class="signature">
+        
+        def <strong>hostunreach?</strong>
+
+        <a class="method-permalink" href="#hostunreach%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#HOSTUNREACH">HOSTUNREACH</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/wasi_error.cr#L200" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="idrm?-instance-method">
+      <div class="signature">
+        
+        def <strong>idrm?</strong>
+
+        <a class="method-permalink" href="#idrm%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#IDRM">IDRM</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/wasi_error.cr#L201" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="ilseq?-instance-method">
+      <div class="signature">
+        
+        def <strong>ilseq?</strong>
+
+        <a class="method-permalink" href="#ilseq%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#ILSEQ">ILSEQ</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/wasi_error.cr#L202" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="inprogress?-instance-method">
+      <div class="signature">
+        
+        def <strong>inprogress?</strong>
+
+        <a class="method-permalink" href="#inprogress%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#INPROGRESS">INPROGRESS</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/wasi_error.cr#L203" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="intr?-instance-method">
+      <div class="signature">
+        
+        def <strong>intr?</strong>
+
+        <a class="method-permalink" href="#intr%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#INTR">INTR</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/wasi_error.cr#L204" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="inval?-instance-method">
+      <div class="signature">
+        
+        def <strong>inval?</strong>
+
+        <a class="method-permalink" href="#inval%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#INVAL">INVAL</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/wasi_error.cr#L205" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="io?-instance-method">
+      <div class="signature">
+        
+        def <strong>io?</strong>
+
+        <a class="method-permalink" href="#io%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#IO">IO</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/wasi_error.cr#L206" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="isconn?-instance-method">
+      <div class="signature">
+        
+        def <strong>isconn?</strong>
+
+        <a class="method-permalink" href="#isconn%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#ISCONN">ISCONN</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/wasi_error.cr#L207" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="isdir?-instance-method">
+      <div class="signature">
+        
+        def <strong>isdir?</strong>
+
+        <a class="method-permalink" href="#isdir%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#ISDIR">ISDIR</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/wasi_error.cr#L208" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="loop?-instance-method">
+      <div class="signature">
+        
+        def <strong>loop?</strong>
+
+        <a class="method-permalink" href="#loop%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#LOOP">LOOP</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/wasi_error.cr#L209" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="message:String-instance-method">
+      <div class="signature">
+        
+        def <strong>message</strong> : <a href="String.html">String</a>
+
+        <a class="method-permalink" href="#message%3AString-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the system error message associated with this error code.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/wasi_error.cr#L3" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="mfile?-instance-method">
+      <div class="signature">
+        
+        def <strong>mfile?</strong>
+
+        <a class="method-permalink" href="#mfile%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#MFILE">MFILE</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/wasi_error.cr#L210" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="mlink?-instance-method">
+      <div class="signature">
+        
+        def <strong>mlink?</strong>
+
+        <a class="method-permalink" href="#mlink%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#MLINK">MLINK</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/wasi_error.cr#L211" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="msgsize?-instance-method">
+      <div class="signature">
+        
+        def <strong>msgsize?</strong>
+
+        <a class="method-permalink" href="#msgsize%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#MSGSIZE">MSGSIZE</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/wasi_error.cr#L212" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="multihop?-instance-method">
+      <div class="signature">
+        
+        def <strong>multihop?</strong>
+
+        <a class="method-permalink" href="#multihop%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#MULTIHOP">MULTIHOP</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/wasi_error.cr#L213" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="nametoolong?-instance-method">
+      <div class="signature">
+        
+        def <strong>nametoolong?</strong>
+
+        <a class="method-permalink" href="#nametoolong%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#NAMETOOLONG">NAMETOOLONG</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/wasi_error.cr#L214" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="netdown?-instance-method">
+      <div class="signature">
+        
+        def <strong>netdown?</strong>
+
+        <a class="method-permalink" href="#netdown%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#NETDOWN">NETDOWN</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/wasi_error.cr#L215" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="netreset?-instance-method">
+      <div class="signature">
+        
+        def <strong>netreset?</strong>
+
+        <a class="method-permalink" href="#netreset%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#NETRESET">NETRESET</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/wasi_error.cr#L216" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="netunreach?-instance-method">
+      <div class="signature">
+        
+        def <strong>netunreach?</strong>
+
+        <a class="method-permalink" href="#netunreach%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#NETUNREACH">NETUNREACH</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/wasi_error.cr#L217" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="nfile?-instance-method">
+      <div class="signature">
+        
+        def <strong>nfile?</strong>
+
+        <a class="method-permalink" href="#nfile%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#NFILE">NFILE</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/wasi_error.cr#L218" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="nobufs?-instance-method">
+      <div class="signature">
+        
+        def <strong>nobufs?</strong>
+
+        <a class="method-permalink" href="#nobufs%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#NOBUFS">NOBUFS</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/wasi_error.cr#L219" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="nodev?-instance-method">
+      <div class="signature">
+        
+        def <strong>nodev?</strong>
+
+        <a class="method-permalink" href="#nodev%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#NODEV">NODEV</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/wasi_error.cr#L220" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="noent?-instance-method">
+      <div class="signature">
+        
+        def <strong>noent?</strong>
+
+        <a class="method-permalink" href="#noent%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#NOENT">NOENT</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/wasi_error.cr#L221" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="noexec?-instance-method">
+      <div class="signature">
+        
+        def <strong>noexec?</strong>
+
+        <a class="method-permalink" href="#noexec%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#NOEXEC">NOEXEC</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/wasi_error.cr#L222" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="nolck?-instance-method">
+      <div class="signature">
+        
+        def <strong>nolck?</strong>
+
+        <a class="method-permalink" href="#nolck%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#NOLCK">NOLCK</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/wasi_error.cr#L223" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="nolink?-instance-method">
+      <div class="signature">
+        
+        def <strong>nolink?</strong>
+
+        <a class="method-permalink" href="#nolink%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#NOLINK">NOLINK</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/wasi_error.cr#L224" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="nomem?-instance-method">
+      <div class="signature">
+        
+        def <strong>nomem?</strong>
+
+        <a class="method-permalink" href="#nomem%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#NOMEM">NOMEM</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/wasi_error.cr#L225" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="nomsg?-instance-method">
+      <div class="signature">
+        
+        def <strong>nomsg?</strong>
+
+        <a class="method-permalink" href="#nomsg%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#NOMSG">NOMSG</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/wasi_error.cr#L226" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="noprotoopt?-instance-method">
+      <div class="signature">
+        
+        def <strong>noprotoopt?</strong>
+
+        <a class="method-permalink" href="#noprotoopt%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#NOPROTOOPT">NOPROTOOPT</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/wasi_error.cr#L227" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="nospc?-instance-method">
+      <div class="signature">
+        
+        def <strong>nospc?</strong>
+
+        <a class="method-permalink" href="#nospc%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#NOSPC">NOSPC</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/wasi_error.cr#L228" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="nosys?-instance-method">
+      <div class="signature">
+        
+        def <strong>nosys?</strong>
+
+        <a class="method-permalink" href="#nosys%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#NOSYS">NOSYS</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/wasi_error.cr#L229" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="notcapable?-instance-method">
+      <div class="signature">
+        
+        def <strong>notcapable?</strong>
+
+        <a class="method-permalink" href="#notcapable%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#NOTCAPABLE">NOTCAPABLE</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/wasi_error.cr#L253" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="notconn?-instance-method">
+      <div class="signature">
+        
+        def <strong>notconn?</strong>
+
+        <a class="method-permalink" href="#notconn%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#NOTCONN">NOTCONN</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/wasi_error.cr#L230" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="notdir?-instance-method">
+      <div class="signature">
+        
+        def <strong>notdir?</strong>
+
+        <a class="method-permalink" href="#notdir%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#NOTDIR">NOTDIR</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/wasi_error.cr#L231" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="notempty?-instance-method">
+      <div class="signature">
+        
+        def <strong>notempty?</strong>
+
+        <a class="method-permalink" href="#notempty%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#NOTEMPTY">NOTEMPTY</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/wasi_error.cr#L232" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="notrecoverable?-instance-method">
+      <div class="signature">
+        
+        def <strong>notrecoverable?</strong>
+
+        <a class="method-permalink" href="#notrecoverable%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#NOTRECOVERABLE">NOTRECOVERABLE</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/wasi_error.cr#L233" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="notsock?-instance-method">
+      <div class="signature">
+        
+        def <strong>notsock?</strong>
+
+        <a class="method-permalink" href="#notsock%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#NOTSOCK">NOTSOCK</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/wasi_error.cr#L234" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="notsup?-instance-method">
+      <div class="signature">
+        
+        def <strong>notsup?</strong>
+
+        <a class="method-permalink" href="#notsup%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#NOTSUP">NOTSUP</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/wasi_error.cr#L235" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="notty?-instance-method">
+      <div class="signature">
+        
+        def <strong>notty?</strong>
+
+        <a class="method-permalink" href="#notty%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#NOTTY">NOTTY</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/wasi_error.cr#L236" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="nxio?-instance-method">
+      <div class="signature">
+        
+        def <strong>nxio?</strong>
+
+        <a class="method-permalink" href="#nxio%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#NXIO">NXIO</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/wasi_error.cr#L237" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="overflow?-instance-method">
+      <div class="signature">
+        
+        def <strong>overflow?</strong>
+
+        <a class="method-permalink" href="#overflow%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#OVERFLOW">OVERFLOW</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/wasi_error.cr#L238" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="ownerdead?-instance-method">
+      <div class="signature">
+        
+        def <strong>ownerdead?</strong>
+
+        <a class="method-permalink" href="#ownerdead%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#OWNERDEAD">OWNERDEAD</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/wasi_error.cr#L239" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="perm?-instance-method">
+      <div class="signature">
+        
+        def <strong>perm?</strong>
+
+        <a class="method-permalink" href="#perm%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#PERM">PERM</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/wasi_error.cr#L240" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="pipe?-instance-method">
+      <div class="signature">
+        
+        def <strong>pipe?</strong>
+
+        <a class="method-permalink" href="#pipe%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#PIPE">PIPE</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/wasi_error.cr#L241" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="proto?-instance-method">
+      <div class="signature">
+        
+        def <strong>proto?</strong>
+
+        <a class="method-permalink" href="#proto%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#PROTO">PROTO</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/wasi_error.cr#L242" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="protonosupport?-instance-method">
+      <div class="signature">
+        
+        def <strong>protonosupport?</strong>
+
+        <a class="method-permalink" href="#protonosupport%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#PROTONOSUPPORT">PROTONOSUPPORT</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/wasi_error.cr#L243" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="prototype?-instance-method">
+      <div class="signature">
+        
+        def <strong>prototype?</strong>
+
+        <a class="method-permalink" href="#prototype%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#PROTOTYPE">PROTOTYPE</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/wasi_error.cr#L244" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="range?-instance-method">
+      <div class="signature">
+        
+        def <strong>range?</strong>
+
+        <a class="method-permalink" href="#range%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#RANGE">RANGE</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/wasi_error.cr#L245" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="rofs?-instance-method">
+      <div class="signature">
+        
+        def <strong>rofs?</strong>
+
+        <a class="method-permalink" href="#rofs%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#ROFS">ROFS</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/wasi_error.cr#L246" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="spipe?-instance-method">
+      <div class="signature">
+        
+        def <strong>spipe?</strong>
+
+        <a class="method-permalink" href="#spipe%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#SPIPE">SPIPE</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/wasi_error.cr#L247" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="srch?-instance-method">
+      <div class="signature">
+        
+        def <strong>srch?</strong>
+
+        <a class="method-permalink" href="#srch%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#SRCH">SRCH</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/wasi_error.cr#L248" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="stale?-instance-method">
+      <div class="signature">
+        
+        def <strong>stale?</strong>
+
+        <a class="method-permalink" href="#stale%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#STALE">STALE</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/wasi_error.cr#L249" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="success?-instance-method">
+      <div class="signature">
+        
+        def <strong>success?</strong>
+
+        <a class="method-permalink" href="#success%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#SUCCESS">SUCCESS</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/wasi_error.cr#L177" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="timedout?-instance-method">
+      <div class="signature">
+        
+        def <strong>timedout?</strong>
+
+        <a class="method-permalink" href="#timedout%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#TIMEDOUT">TIMEDOUT</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/wasi_error.cr#L250" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_errno:Errno-instance-method">
+      <div class="signature">
+        
+        def <strong>to_errno</strong> : <a href="Errno.html">Errno</a>
+
+        <a class="method-permalink" href="#to_errno%3AErrno-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Transforms this <code><a href="WasiError.html">WasiError</a></code> value to the equivalent <code><a href="Errno.html">Errno</a></code> value.</p>
+<p>This is only defined for some values. If no transformation is defined for
+a specific value, the default result is <code><a href="Errno.html#EINVAL">Errno::EINVAL</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/wasi_error.cr#L95" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="toobig?-instance-method">
+      <div class="signature">
+        
+        def <strong>toobig?</strong>
+
+        <a class="method-permalink" href="#toobig%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#TOOBIG">TOOBIG</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/wasi_error.cr#L178" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="txtbsy?-instance-method">
+      <div class="signature">
+        
+        def <strong>txtbsy?</strong>
+
+        <a class="method-permalink" href="#txtbsy%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#TXTBSY">TXTBSY</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/wasi_error.cr#L251" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="xdev?-instance-method">
+      <div class="signature">
+        
+        def <strong>xdev?</strong>
+
+        <a class="method-permalink" href="#xdev%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="WasiError.html#XDEV">XDEV</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/wasi_error.cr#L252" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+</div>
+
+</body>
+</html>

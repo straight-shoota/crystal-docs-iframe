@@ -1,0 +1,2441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Crystal Docs 1.16.1">
+<meta name="crystal_docs.project_version" content="1.17.0-dev">
+<meta name="crystal_docs.project_name" content="Crystal">
+
+  <meta name="crystal_docs.json_config_url" content="/api/versions.json">
+
+
+    <link rel="canonical" href="https://crystal-lang.org/api/latest/Enum.html">
+
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/doc.js"></script>
+
+  <meta name="repository-name" content="Crystal">
+  <title>Enum - Crystal 1.17.0-dev</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill="currentColor" fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<input type="checkbox" id="sidebar-btn">
+<label for="sidebar-btn" id="sidebar-btn-label">
+  <svg class="open" xmlns="http://www.w3.org/2000/svg" height="2em" width="2em" viewBox="0 0 512 512"><title>Open Sidebar</title><path fill="currentColor" d="M80 96v64h352V96H80zm0 112v64h352v-64H80zm0 112v64h352v-64H80z"></path></svg>
+  <svg class="close" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><title>Close Sidebar</title><path fill="currentColor" d="m118.6 73.4-45.2 45.2L210.7 256 73.4 393.4l45.2 45.2L256 301.3l137.4 137.3 45.2-45.2L301.3 256l137.3-137.4-45.2-45.2L256 210.7Z"></path></svg>
+</label>
+<iframe class="sidebar" src="sidebar.html"></iframe>
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">
+    abstract struct
+  </span> Enum
+
+</h1>
+
+
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="Enum.html">Enum</a></li><li class="superclass"><a href="Value.html">Value</a></li><li class="superclass"><a href="Object.html">Object</a></li></ul>
+
+
+
+
+  <h2>
+    <a id="overview" class="anchor" href="#overview">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Overview
+  </h2>
+
+  <p>Enum is the base type of all enums.</p>
+<p>An enum is a set of integer values, where each value has an associated name. For example:</p>
+<pre><code class="language-crystal"><span class="k">enum</span> <span class="t">Color</span>
+  <span class="t">Red</span>   <span class="c"># 0</span>
+  <span class="t">Green</span> <span class="c"># 1</span>
+  <span class="t">Blue</span>  <span class="c"># 2</span>
+<span class="k">end</span></code></pre>
+<p>Values start with the value <code>0</code> and are incremented by one, but can be overwritten.</p>
+<p>To get the underlying value you invoke value on it:</p>
+<pre><code class="language-crystal"><span class="t">Color</span><span class="t">::</span><span class="t">Green</span>.value <span class="c"># =&gt; 1</span></code></pre>
+<p>Each constant (member) in the enum has the type of the enum:</p>
+<pre><code class="language-crystal"><span class="k">typeof</span>(<span class="t">Color</span><span class="t">::</span><span class="t">Red</span>) <span class="c"># =&gt; Color</span></code></pre>
+<h3><a id="flags-enum" class="anchor" href="#flags-enum">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Flags enum</h3>
+<p>An enum can be marked with the <code>@[<a href="Flags.html">Flags</a>]</code> annotation. This changes the default values:</p>
+<pre><code class="language-crystal">@[<span class="t">Flags</span>]
+<span class="k">enum</span> <span class="t">IOMode</span>
+  <span class="t">Read</span>  <span class="c"># 1</span>
+  <span class="t">Write</span> <span class="c"># 2</span>
+  <span class="t">Async</span> <span class="c"># 4</span>
+<span class="k">end</span></code></pre>
+<p>Additionally, some methods change their behaviour.</p>
+<h3><a id="enums-from-integers" class="anchor" href="#enums-from-integers">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Enums from integers</h3>
+<p>An enum can be created from an integer:</p>
+<pre><code class="language-crystal"><span class="t">Color</span>.new(<span class="n">1</span>).to_s <span class="c"># =&gt; &quot;Green&quot;</span></code></pre>
+<p>Values that don't correspond to enum's constants are allowed: the value
+will still be of type Color, but when printed you will get the underlying value:</p>
+<pre><code class="language-crystal"><span class="t">Color</span>.new(<span class="n">10</span>).to_s <span class="c"># =&gt; &quot;10&quot;</span></code></pre>
+<p>This method is mainly intended to convert integers from C to enums in Crystal.</p>
+<h3><a id="question-methods" class="anchor" href="#question-methods">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Question methods</h3>
+<p>An enum automatically defines question methods for each member, using
+<code><a href="String.html#underscore%28options%3AUnicode%3A%3ACaseOptions%3D%3Anone%29%3AString-instance-method">String#underscore</a></code> for the method name.</p>
+<ul>
+<li>In the case of regular enums, this compares by equality (<code><a href="Enum.html#%3D%3D%28other%3Aself%29-instance-method">#==</a></code>).</li>
+<li>In the case of flags enums, this invokes <code><a href="Enum.html#includes%3F%28other%3Aself%29%3ABool-instance-method">#includes?</a></code>.</li>
+</ul>
+<p>For example:</p>
+<pre><code class="language-crystal">color <span class="o">=</span> <span class="t">Color</span><span class="t">::</span><span class="t">Blue</span>
+color.red?  <span class="c"># =&gt; false</span>
+color.blue? <span class="c"># =&gt; true</span>
+
+mode <span class="o">=</span> <span class="t">IOMode</span><span class="t">::</span><span class="t">Read</span> <span class="o">|</span> <span class="t">IOMode</span><span class="t">::</span><span class="t">Async</span>
+mode.read?  <span class="c"># =&gt; true</span>
+mode.write? <span class="c"># =&gt; false</span>
+mode.async? <span class="c"># =&gt; true</span></code></pre>
+<p>This is very convenient in <code>case</code> expressions:</p>
+<pre><code class="language-crystal"><span class="k">case</span> color
+<span class="k">when</span> .red?
+  puts <span class="s">&quot;Got red&quot;</span>
+<span class="k">when</span> .blue?
+  puts <span class="s">&quot;Got blue&quot;</span>
+<span class="k">end</span></code></pre>
+<h3><a id="changing-the-base-type" class="anchor" href="#changing-the-base-type">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Changing the Base Type</h3>
+<p>The type of the underlying enum value is <code><a href="Int32.html">Int32</a></code> by default, but it can be changed to any type in <code><a href="Int/Primitive.html">Int::Primitive</a></code>.</p>
+<pre><code class="language-crystal"><span class="k">enum</span> <span class="t">Color</span> : <span class="t">UInt8</span>
+  <span class="t">Red</span>
+  <span class="t">Green</span>
+  <span class="t">Blue</span>
+<span class="k">end</span>
+
+<span class="t">Color</span><span class="t">::</span><span class="t">Red</span>.value <span class="c"># : UInt8</span></code></pre>
+
+
+
+
+
+
+
+  <h2>
+    <a id="included-modules" class="anchor" href="#included-modules">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Included Modules
+  </h2>
+  <ul class="other-types-list">
+    
+      <li class="other-type"><a href="Comparable.html">Comparable</a>(<a href="Enum.html">Enum</a>)</li>
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/enum.cr#L103" target="_blank">
+        enum.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/to_json.cr#L182" target="_blank">
+        json/to_json.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri/params/to_www_form.cr#L36" target="_blank">
+        uri/params/to_www_form.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/yaml/to_yaml.cr#L136" target="_blank">
+        yaml/to_yaml.cr
+      </a>
+    
+    <br/>
+  
+
+
+
+
+
+  
+  <h2>
+    <a id="constructors" class="anchor" href="#constructors">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructors
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#from_value%28value%3AInt%29%3Aself-class-method" class="signature"><strong>.from_value</strong>(value : Int) : <span class="k">self</span></a>
+        
+          <div class="summary"><p>Returns the enum member that has the given value, or raises if no such member exists.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#new%28ctx%3AYAML%3A%3AParseContext%2Cnode%3AYAML%3A%3ANodes%3A%3ANode%29-class-method" class="signature"><strong>.new</strong>(ctx : YAML::ParseContext, node : YAML::Nodes::Node)</a>
+        
+          <div class="summary"><p>Reads a serialized enum member by name from <em>ctx</em> and <em>node</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#new%28value%3Aself%29-class-method" class="signature"><strong>.new</strong>(value : <span class="k">self</span>)</a>
+        
+          <div class="summary"><p>Returns <em>value</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#new%28pull%3AJSON%3A%3APullParser%29-class-method" class="signature"><strong>.new</strong>(pull : JSON::PullParser)</a>
+        
+          <div class="summary"><p>Reads a serialized enum member by name from <em>pull</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#parse%28string%3AString%29%3Aself-class-method" class="signature"><strong>.parse</strong>(string : String) : <span class="k">self</span></a>
+        
+          <div class="summary"><p>Returns the enum member that has the given name, or raises <code><a href="ArgumentError.html">ArgumentError</a></code> if no such member exists.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+  
+  <h2>
+    <a id="class-method-summary" class="anchor" href="#class-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Class Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#each%28%26%3Aself-%3E%29-class-method" class="signature"><strong>.each</strong>(& : <span class="k">self</span> -> )</a>
+        
+          <div class="summary"><p>Iterates each member of the enum.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#from_value%3F%28value%3AInt%29%3Aself%7CNil-class-method" class="signature"><strong>.from_value?</strong>(value : Int) : <span class="k">self</span> | Nil</a>
+        
+          <div class="summary"><p>Returns the enum member that has the given value, or <code>nil</code> if no such member exists.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#names%3AArray%28String%29-class-method" class="signature"><strong>.names</strong> : Array(String)</a>
+        
+          <div class="summary"><p>Returns all enum members as an <code><a href="Array.html">Array</a>(<a href="String.html">String</a>)</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#parse%3F%28string%3AString%29%3Aself%7CNil-class-method" class="signature"><strong>.parse?</strong>(string : String) : <span class="k">self</span> | Nil</a>
+        
+          <div class="summary"><p>Returns the enum member that has the given name, or <code>nil</code> if no such member exists.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#valid%3F%28value%3Aself%29%3ABool-class-method" class="signature"><strong>.valid?</strong>(value : <span class="k">self</span>) : Bool</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if the given <em>value</em> is an enum member, otherwise <code>false</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#values%3AArray%28self%29-class-method" class="signature"><strong>.values</strong> : Array(<span class="k">self</span>)</a>
+        
+          <div class="summary"><p>Returns all enum members as an <code><a href="Array.html">Array</a>(self)</code>.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+  
+  <h2>
+    <a id="macro-summary" class="anchor" href="#macro-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Macro Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#%5B%5D%28%2Avalues%29-macro" class="signature"><strong>[]</strong>(*values)</a>
+        
+          <div class="summary"><p>Convenience macro to create a combined enum (combines given members using <code><a href="Enum.html#%7C%28other%3Aself%29%3Aself-instance-method">#|</a></code> (or) logical operator).</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#flags%28%2Avalues%29-macro" class="signature"><strong>flags</strong>(*values)</a>
+        
+          <div class="summary"><p>Convenience macro to create a combined enum (combines given members using <code><a href="Enum.html#%7C%28other%3Aself%29%3Aself-instance-method">#|</a></code> (or) logical operator)</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+  
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#%26%28other%3Aself%29%3Aself-instance-method" class="signature"><strong>#&</strong>(other : <span class="k">self</span>) : <span class="k">self</span></a>
+        
+          <div class="summary"><p>Returns the enum member that results from applying a logical &quot;and&quot; operation between this enum member's value and <em>other</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%2B%28other%3AInt%29%3Aself-instance-method" class="signature"><strong>#+</strong>(other : Int) : <span class="k">self</span></a>
+        
+          <div class="summary"><p>Returns the enum member that results from adding <em>other</em> to this enum member's value.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#-%28other%3AInt%29%3Aself-instance-method" class="signature"><strong>#-</strong>(other : Int) : <span class="k">self</span></a>
+        
+          <div class="summary"><p>Returns the enum member that results from subtracting <em>other</em> to this enum member's value.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%3C%3D%3E%28other%3Aself%29-instance-method" class="signature"><strong>#<=></strong>(other : <span class="k">self</span>)</a>
+        
+          <div class="summary"><p>Compares this enum member against another, according to their underlying value.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%3D%3D%28other%3Aself%29-instance-method" class="signature"><strong>#==</strong>(other : <span class="k">self</span>)</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum member and <em>other</em> have the same underlying value.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%3D%3D%28other%29-instance-method" class="signature"><strong>#==</strong>(other)</a>
+        
+          <div class="summary"><p>Returns <code>false</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%5E%28other%3Aself%29%3Aself-instance-method" class="signature"><strong>#^</strong>(other : <span class="k">self</span>) : <span class="k">self</span></a>
+        
+          <div class="summary"><p>Returns the enum member that results from applying a logical &quot;xor&quot; operation between this enum member's value and <em>other</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%7C%28other%3Aself%29%3Aself-instance-method" class="signature"><strong>#|</strong>(other : <span class="k">self</span>) : <span class="k">self</span></a>
+        
+          <div class="summary"><p>Returns the enum member that results from applying a logical &quot;or&quot; operation between this enum member's value and <em>other</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#~%3Aself-instance-method" class="signature"><strong>#~</strong> : <span class="k">self</span></a>
+        
+          <div class="summary"><p>Returns the enum member that results from applying a logical &quot;not&quot; operation of this enum member's value.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#clone-instance-method" class="signature"><strong>#clone</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#each%28%26%3Aself-%3E%29-instance-method" class="signature"><strong>#each</strong>(& : <span class="k">self</span> -> )</a>
+        
+          <div class="summary"><p>Iterates each values in a Flags Enum.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#hash%28hasher%29-instance-method" class="signature"><strong>#hash</strong>(hasher)</a>
+        
+          <div class="summary"><p>See <code><a href="Object.html#hash%28hasher%29-instance-method">Object#hash(hasher)</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#includes%3F%28other%3Aself%29%3ABool-instance-method" class="signature"><strong>#includes?</strong>(other : <span class="k">self</span>) : Bool</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum member's value includes <em>other</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#inspect%28io%3AIO%29%3ANil-instance-method" class="signature"><strong>#inspect</strong>(io : IO) : Nil</a>
+        
+          <div class="summary"><p>Returns an unambiguous <code><a href="String.html">String</a></code> representation of this enum member.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_f32%3AFloat32-instance-method" class="signature"><strong>#to_f32</strong> : Float32</a>
+        
+          <div class="summary"><p>Returns the value of this enum member as a <code><a href="Float32.html">Float32</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_f32%21%3AFloat32-instance-method" class="signature"><strong>#to_f32!</strong> : Float32</a>
+        
+          <div class="summary"><p>Returns the value of this enum member as a <code><a href="Float32.html">Float32</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_f64%3AFloat64-instance-method" class="signature"><strong>#to_f64</strong> : Float64</a>
+        
+          <div class="summary"><p>Returns the value of this enum member as a <code><a href="Float64.html">Float64</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_f64%21%3AFloat64-instance-method" class="signature"><strong>#to_f64!</strong> : Float64</a>
+        
+          <div class="summary"><p>Returns the value of this enum member as a <code><a href="Float64.html">Float64</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_i%3AInt32-instance-method" class="signature"><strong>#to_i</strong> : Int32</a>
+        
+          <div class="summary"><p>Returns the value of this enum member as an <code><a href="Int32.html">Int32</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_i128%3AInt128-instance-method" class="signature"><strong>#to_i128</strong> : Int128</a>
+        
+          <div class="summary"><p>Returns the value of this enum member as a <code><a href="Int128.html">Int128</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_i128%21%3AInt128-instance-method" class="signature"><strong>#to_i128!</strong> : Int128</a>
+        
+          <div class="summary"><p>Returns the value of this enum member as a <code><a href="Int128.html">Int128</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_i16%3AInt16-instance-method" class="signature"><strong>#to_i16</strong> : Int16</a>
+        
+          <div class="summary"><p>Returns the value of this enum member as a <code><a href="Int16.html">Int16</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_i16%21%3AInt16-instance-method" class="signature"><strong>#to_i16!</strong> : Int16</a>
+        
+          <div class="summary"><p>Returns the value of this enum member as a <code><a href="Int16.html">Int16</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_i32%3AInt32-instance-method" class="signature"><strong>#to_i32</strong> : Int32</a>
+        
+          <div class="summary"><p>Returns the value of this enum member as a <code><a href="Int32.html">Int32</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_i32%21%3AInt32-instance-method" class="signature"><strong>#to_i32!</strong> : Int32</a>
+        
+          <div class="summary"><p>Returns the value of this enum member as a <code><a href="Int32.html">Int32</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_i64%3AInt64-instance-method" class="signature"><strong>#to_i64</strong> : Int64</a>
+        
+          <div class="summary"><p>Returns the value of this enum member as a <code><a href="Int64.html">Int64</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_i64%21%3AInt64-instance-method" class="signature"><strong>#to_i64!</strong> : Int64</a>
+        
+          <div class="summary"><p>Returns the value of this enum member as a <code><a href="Int64.html">Int64</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_i8%3AInt8-instance-method" class="signature"><strong>#to_i8</strong> : Int8</a>
+        
+          <div class="summary"><p>Returns the value of this enum member as a <code><a href="Int8.html">Int8</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_i8%21%3AInt8-instance-method" class="signature"><strong>#to_i8!</strong> : Int8</a>
+        
+          <div class="summary"><p>Returns the value of this enum member as a <code><a href="Int8.html">Int8</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_json%28json%3AJSON%3A%3ABuilder%29-instance-method" class="signature"><strong>#to_json</strong>(json : JSON::Builder)</a>
+        
+          <div class="summary"><p>Serializes this enum member by name.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_s%28io%3AIO%29%3ANil-instance-method" class="signature"><strong>#to_s</strong>(io : IO) : Nil</a>
+        
+          <div class="summary"><p>Appends a <code><a href="String.html">String</a></code> representation of this enum member to the given <em>io</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_s%3AString-instance-method" class="signature"><strong>#to_s</strong> : String</a>
+        
+          <div class="summary"><p>Returns a <code><a href="String.html">String</a></code> representation of this enum member.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_u128%3AUInt128-instance-method" class="signature"><strong>#to_u128</strong> : UInt128</a>
+        
+          <div class="summary"><p>Returns the value of this enum member as a <code><a href="UInt128.html">UInt128</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_u128%21%3AUInt128-instance-method" class="signature"><strong>#to_u128!</strong> : UInt128</a>
+        
+          <div class="summary"><p>Returns the value of this enum member as a <code><a href="UInt128.html">UInt128</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_u16%3AUInt16-instance-method" class="signature"><strong>#to_u16</strong> : UInt16</a>
+        
+          <div class="summary"><p>Returns the value of this enum member as a <code><a href="UInt16.html">UInt16</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_u16%21%3AUInt16-instance-method" class="signature"><strong>#to_u16!</strong> : UInt16</a>
+        
+          <div class="summary"><p>Returns the value of this enum member as a <code><a href="UInt16.html">UInt16</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_u32%3AUInt32-instance-method" class="signature"><strong>#to_u32</strong> : UInt32</a>
+        
+          <div class="summary"><p>Returns the value of this enum member as a <code><a href="UInt32.html">UInt32</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_u32%21%3AUInt32-instance-method" class="signature"><strong>#to_u32!</strong> : UInt32</a>
+        
+          <div class="summary"><p>Returns the value of this enum member as a <code><a href="UInt32.html">UInt32</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_u64%3AUInt64-instance-method" class="signature"><strong>#to_u64</strong> : UInt64</a>
+        
+          <div class="summary"><p>Returns the value of this enum member as a <code><a href="UInt64.html">UInt64</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_u64%21%3AUInt64-instance-method" class="signature"><strong>#to_u64!</strong> : UInt64</a>
+        
+          <div class="summary"><p>Returns the value of this enum member as a <code><a href="UInt64.html">UInt64</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_u8%3AUInt8-instance-method" class="signature"><strong>#to_u8</strong> : UInt8</a>
+        
+          <div class="summary"><p>Returns the value of this enum member as a <code><a href="UInt8.html">UInt8</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_u8%21%3AUInt8-instance-method" class="signature"><strong>#to_u8!</strong> : UInt8</a>
+        
+          <div class="summary"><p>Returns the value of this enum member as a <code><a href="UInt8.html">UInt8</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_yaml%28yaml%3AYAML%3A%3ANodes%3A%3ABuilder%29-instance-method" class="signature"><strong>#to_yaml</strong>(yaml : YAML::Nodes::Builder)</a>
+        
+          <div class="summary"><p>Serializes this enum member by name.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#value%3AInt-instance-method" class="signature"><strong>#value</strong> : Int</a>
+        
+          <div class="summary"><p>Returns the underlying value held by the enum instance.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+
+  <div class="methods-inherited">
+    
+      
+
+  <h3>Instance methods inherited from module <code><a href="Comparable.html">Comparable</a>(<a href="Enum.html">Enum</a>)</code></h3>
+  
+  
+    <a href="Comparable.html#%3C%28other%3AT%29%3ABool-instance-method" class="tooltip">
+      <span><(other : T) : Bool</span>
+    <</a>, 
+    
+  
+    <a href="Comparable.html#%3C%3D%28other%3AT%29-instance-method" class="tooltip">
+      <span><=(other : T)</span>
+    <=</a>, 
+    
+  
+    <a href="Comparable.html#%3C%3D%3E%28other%3AT%29-instance-method" class="tooltip">
+      <span><=>(other : T)</span>
+    <=></a>, 
+    
+  
+    <a href="Comparable.html#%3D%3D%28other%3AT%29-instance-method" class="tooltip">
+      <span>==(other : T)</span>
+    ==</a>, 
+    
+  
+    <a href="Comparable.html#%3E%28other%3AT%29%3ABool-instance-method" class="tooltip">
+      <span>>(other : T) : Bool</span>
+    ></a>, 
+    
+  
+    <a href="Comparable.html#%3E%3D%28other%3AT%29-instance-method" class="tooltip">
+      <span>>=(other : T)</span>
+    >=</a>, 
+    
+  
+    <a href="Comparable.html#clamp%28min%2Cmax%29-instance-method" class="tooltip">
+      <span>clamp(min, max)<br/>clamp(range : Range)</span>
+    clamp</a>
+    
+  
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+      
+
+  <h3>Instance methods inherited from struct <code><a href="Value.html">Value</a></code></h3>
+  
+  
+    <a href="Value.html#%3D%3D%28other%3AJSON%3A%3AAny%29-instance-method" class="tooltip">
+      <span>==(other : JSON::Any)<br/>==(other : YAML::Any)<br/>==(other)</span>
+    ==</a>, 
+    
+  
+    <a href="Value.html#dup-instance-method" class="tooltip">
+      <span>dup</span>
+    dup</a>
+    
+  
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+      
+
+  <h3>Instance methods inherited from class <code><a href="Object.html">Object</a></code></h3>
+  
+  
+    <a href="Object.html#%21%3ABool-instance-method" class="tooltip">
+      <span>! : Bool</span>
+    !</a>, 
+    
+  
+    <a href="Object.html#%21%3D%28other%29-instance-method" class="tooltip">
+      <span>!=(other)</span>
+    !=</a>, 
+    
+  
+    <a href="Object.html#%21~%28other%29-instance-method" class="tooltip">
+      <span>!~(other)</span>
+    !~</a>, 
+    
+  
+    <a href="Object.html#%3D%3D%28other%29-instance-method" class="tooltip">
+      <span>==(other)</span>
+    ==</a>, 
+    
+  
+    <a href="Object.html#%3D%3D%3D%28other%3AJSON%3A%3AAny%29-instance-method" class="tooltip">
+      <span>===(other : JSON::Any)<br/>===(other : YAML::Any)<br/>===(other)</span>
+    ===</a>, 
+    
+  
+    <a href="Object.html#%3D~%28other%29-instance-method" class="tooltip">
+      <span>=~(other)</span>
+    =~</a>, 
+    
+  
+    <a href="Object.html#as%28type%3AClass%29-instance-method" class="tooltip">
+      <span>as(type : Class)</span>
+    as</a>, 
+    
+  
+    <a href="Object.html#as%3F%28type%3AClass%29-instance-method" class="tooltip">
+      <span>as?(type : Class)</span>
+    as?</a>, 
+    
+  
+    <a href="Object.html#class-instance-method" class="tooltip">
+      <span>class</span>
+    class</a>, 
+    
+  
+    <a href="Object.html#dup-instance-method" class="tooltip">
+      <span>dup</span>
+    dup</a>, 
+    
+  
+    <a href="Object.html#hash%28hasher%29-instance-method" class="tooltip">
+      <span>hash(hasher)<br/>hash</span>
+    hash</a>, 
+    
+  
+    <a href="Object.html#in%3F%28collection%3AObject%29%3ABool-instance-method" class="tooltip">
+      <span>in?(collection : Object) : Bool<br/>in?(*values : Object) : Bool</span>
+    in?</a>, 
+    
+  
+    <a href="Object.html#inspect%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>inspect(io : IO) : Nil<br/>inspect : String</span>
+    inspect</a>, 
+    
+  
+    <a href="Object.html#is_a%3F%28type%3AClass%29%3ABool-instance-method" class="tooltip">
+      <span>is_a?(type : Class) : Bool</span>
+    is_a?</a>, 
+    
+  
+    <a href="Object.html#itself-instance-method" class="tooltip">
+      <span>itself</span>
+    itself</a>, 
+    
+  
+    <a href="Object.html#nil%3F%3ABool-instance-method" class="tooltip">
+      <span>nil? : Bool</span>
+    nil?</a>, 
+    
+  
+    <a href="Object.html#not_nil%21%28message%29-instance-method" class="tooltip">
+      <span>not_nil!(message)<br/>not_nil!</span>
+    not_nil!</a>, 
+    
+  
+    <a href="Object.html#pretty_inspect%28width%3D79%2Cnewline%3D%22%5Cn%22%2Cindent%3D0%29%3AString-instance-method" class="tooltip">
+      <span>pretty_inspect(width = <span class="n">79</span>, newline = <span class="s">&quot;\n&quot;</span>, indent = <span class="n">0</span>) : String</span>
+    pretty_inspect</a>, 
+    
+  
+    <a href="Object.html#pretty_print%28pp%3APrettyPrint%29%3ANil-instance-method" class="tooltip">
+      <span>pretty_print(pp : PrettyPrint) : Nil</span>
+    pretty_print</a>, 
+    
+  
+    <a href="Object.html#responds_to%3F%28name%3ASymbol%29%3ABool-instance-method" class="tooltip">
+      <span>responds_to?(name : Symbol) : Bool</span>
+    responds_to?</a>, 
+    
+  
+    <a href="Object.html#tap%28%26%29-instance-method" class="tooltip">
+      <span>tap(&)</span>
+    tap</a>, 
+    
+  
+    <a href="Object.html#to_json%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_json(io : IO) : Nil<br/>to_json : String</span>
+    to_json</a>, 
+    
+  
+    <a href="Object.html#to_pretty_json%28indent%3AString%3D%22%22%29%3AString-instance-method" class="tooltip">
+      <span>to_pretty_json(indent : String = <span class="s">&quot;  &quot;</span>) : String<br/>to_pretty_json(io : IO, indent : String = <span class="s">&quot;  &quot;</span>) : Nil</span>
+    to_pretty_json</a>, 
+    
+  
+    <a href="Object.html#to_s%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_s(io : IO) : Nil<br/>to_s : String</span>
+    to_s</a>, 
+    
+  
+    <a href="Object.html#to_yaml%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_yaml(io : IO) : Nil<br/>to_yaml : String</span>
+    to_yaml</a>, 
+    
+  
+    <a href="Object.html#try%28%26%29-instance-method" class="tooltip">
+      <span>try(&)</span>
+    try</a>, 
+    
+  
+    <a href="Object.html#unsafe_as%28type%3AT.class%29forallT-instance-method" class="tooltip">
+      <span>unsafe_as(type : <span class="t">T</span>.<span class="k">class</span>) forall T</span>
+    unsafe_as</a>
+    
+  
+
+
+      
+
+
+      
+
+  <h3>Class methods inherited from class <code><a href="Object.html">Object</a></code></h3>
+  
+  
+    <a href="Object.html#from_json%28string_or_io%2Croot%3AString%29-class-method" class="tooltip">
+      <span>from_json(string_or_io, root : String)<br/>from_json(string_or_io)</span>
+    from_json</a>, 
+    
+  
+    <a href="Object.html#from_yaml%28string_or_io%3AString%7CIO%29-class-method" class="tooltip">
+      <span>from_yaml(string_or_io : String | IO)</span>
+    from_yaml</a>
+    
+  
+
+
+      
+
+  <h3>Macros inherited from class <code><a href="Object.html">Object</a></code></h3>
+  
+  
+    <a href="Object.html#class_getter%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_getter(*names, &block)</span>
+    class_getter</a>, 
+    
+  
+    <a href="Object.html#class_getter%21%28%2Anames%29-macro" class="tooltip">
+      <span>class_getter!(*names)</span>
+    class_getter!</a>, 
+    
+  
+    <a href="Object.html#class_getter%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_getter?(*names, &block)</span>
+    class_getter?</a>, 
+    
+  
+    <a href="Object.html#class_property%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_property(*names, &block)</span>
+    class_property</a>, 
+    
+  
+    <a href="Object.html#class_property%21%28%2Anames%29-macro" class="tooltip">
+      <span>class_property!(*names)</span>
+    class_property!</a>, 
+    
+  
+    <a href="Object.html#class_property%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_property?(*names, &block)</span>
+    class_property?</a>, 
+    
+  
+    <a href="Object.html#class_setter%28%2Anames%29-macro" class="tooltip">
+      <span>class_setter(*names)</span>
+    class_setter</a>, 
+    
+  
+    <a href="Object.html#def_clone-macro" class="tooltip">
+      <span>def_clone</span>
+    def_clone</a>, 
+    
+  
+    <a href="Object.html#def_equals%28%2Afields%29-macro" class="tooltip">
+      <span>def_equals(*fields)</span>
+    def_equals</a>, 
+    
+  
+    <a href="Object.html#def_equals_and_hash%28%2Afields%29-macro" class="tooltip">
+      <span>def_equals_and_hash(*fields)</span>
+    def_equals_and_hash</a>, 
+    
+  
+    <a href="Object.html#def_hash%28%2Afields%29-macro" class="tooltip">
+      <span>def_hash(*fields)</span>
+    def_hash</a>, 
+    
+  
+    <a href="Object.html#delegate%28%2Amethods%2Ctoobject%29-macro" class="tooltip">
+      <span>delegate(*methods, to object)</span>
+    delegate</a>, 
+    
+  
+    <a href="Object.html#forward_missing_to%28delegate%29-macro" class="tooltip">
+      <span>forward_missing_to(delegate)</span>
+    forward_missing_to</a>, 
+    
+  
+    <a href="Object.html#getter%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>getter(*names, &block)</span>
+    getter</a>, 
+    
+  
+    <a href="Object.html#getter%21%28%2Anames%29-macro" class="tooltip">
+      <span>getter!(*names)</span>
+    getter!</a>, 
+    
+  
+    <a href="Object.html#getter%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>getter?(*names, &block)</span>
+    getter?</a>, 
+    
+  
+    <a href="Object.html#property%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>property(*names, &block)</span>
+    property</a>, 
+    
+  
+    <a href="Object.html#property%21%28%2Anames%29-macro" class="tooltip">
+      <span>property!(*names)</span>
+    property!</a>, 
+    
+  
+    <a href="Object.html#property%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>property?(*names, &block)</span>
+    property?</a>, 
+    
+  
+    <a href="Object.html#setter%28%2Anames%29-macro" class="tooltip">
+      <span>setter(*names)</span>
+    setter</a>
+    
+  
+
+
+    
+  </div>
+
+  
+  <h2>
+    <a id="constructor-detail" class="anchor" href="#constructor-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructor Detail
+  </h2>
+  
+    <div class="entry-detail" id="from_value(value:Int):self-class-method">
+      <div class="signature">
+        
+        def self.<strong>from_value</strong>(value : <a href="Int.html">Int</a>) : <span class="k">self</span>
+
+        <a class="method-permalink" href="#from_value%28value%3AInt%29%3Aself-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the enum member that has the given value, or raises
+if no such member exists.</p>
+<pre><code class="language-crystal"><span class="t">Color</span>.from_value(<span class="n">0</span>) <span class="c"># =&gt; Color::Red</span>
+<span class="t">Color</span>.from_value(<span class="n">1</span>) <span class="c"># =&gt; Color::Green</span>
+<span class="t">Color</span>.from_value(<span class="n">2</span>) <span class="c"># =&gt; Color::Blue</span>
+<span class="t">Color</span>.from_value(<span class="n">3</span>) <span class="c"># raises ArgumentError</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/enum.cr#L451" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="new(ctx:YAML::ParseContext,node:YAML::Nodes::Node)-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(ctx : <a href="YAML/ParseContext.html">YAML::ParseContext</a>, node : <a href="YAML/Nodes/Node.html">YAML::Nodes::Node</a>)
+
+        <a class="method-permalink" href="#new%28ctx%3AYAML%3A%3AParseContext%2Cnode%3AYAML%3A%3ANodes%3A%3ANode%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Reads a serialized enum member by name from <em>ctx</em> and <em>node</em>.</p>
+<p>See <code><a href="Enum.html#to_yaml%28yaml%3AYAML%3A%3ANodes%3A%3ABuilder%29-instance-method">#to_yaml</a></code> for reference.</p>
+<p>Raises <code><a href="YAML/ParseException.html">YAML::ParseException</a></code> if the deserialization fails.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/yaml/from_yaml.cr#L246" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="new(value:self)-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(value : <span class="k">self</span>)
+
+        <a class="method-permalink" href="#new%28value%3Aself%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <em>value</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/enum.cr#L107" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="new(pull:JSON::PullParser)-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(pull : <a href="JSON/PullParser.html">JSON::PullParser</a>)
+
+        <a class="method-permalink" href="#new%28pull%3AJSON%3A%3APullParser%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Reads a serialized enum member by name from <em>pull</em>.</p>
+<p>See <code><a href="Enum.html#to_json%28json%3AJSON%3A%3ABuilder%29-instance-method">#to_json</a></code> for reference.</p>
+<p>Raises <code><a href="JSON/ParseException.html">JSON::ParseException</a></code> if the deserialization fails.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/from_json.cr#L318" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="parse(string:String):self-class-method">
+      <div class="signature">
+        
+        def self.<strong>parse</strong>(string : <a href="String.html">String</a>) : <span class="k">self</span>
+
+        <a class="method-permalink" href="#parse%28string%3AString%29%3Aself-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the enum member that has the given name, or
+raises <code><a href="ArgumentError.html">ArgumentError</a></code> if no such member exists. The comparison is made by using
+<code><a href="String.html#camelcase%28io%3AIO%2Coptions%3AUnicode%3A%3ACaseOptions%3DUnicode%3A%3ACaseOptions%3A%3ANone%2C%2A%2Clower%3ABool%3Dfalse%29%3ANil-instance-method">String#camelcase</a></code> and <code><a href="String.html#downcase%28options%3AUnicode%3A%3ACaseOptions%3D%3Anone%29%3AString-instance-method">String#downcase</a></code> between <em>string</em> and
+the enum members names. Dashes (<code><a href="Enum.html#-%28other%3AInt%29%3Aself-instance-method">#-</a></code>) in <em>string</em> have the same meaning as an underscore (<code>_</code>).
+A member named &quot;FortyTwo&quot; or &quot;FORTY_TWO&quot;
+is found with any of these strings: &quot;forty_two&quot;, &quot;FortyTwo&quot;, &quot;FORTY_TWO&quot;,
+&quot;Forty-Two&quot;, &quot;FORTYTWO&quot;, &quot;fortytwo&quot;.</p>
+<pre><code class="language-crystal"><span class="t">Color</span>.parse(<span class="s">&quot;Red&quot;</span>)    <span class="c"># =&gt; Color::Red</span>
+<span class="t">Color</span>.parse(<span class="s">&quot;BLUE&quot;</span>)   <span class="c"># =&gt; Color::Blue</span>
+<span class="t">Color</span>.parse(<span class="s">&quot;Yellow&quot;</span>) <span class="c"># raises ArgumentError</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/enum.cr#L491" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+  
+  <h2>
+    <a id="class-method-detail" class="anchor" href="#class-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Class Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="each(&amp;:self-&gt;)-class-method">
+      <div class="signature">
+        
+        def self.<strong>each</strong>(& : <span class="k">self</span> -> )
+
+        <a class="method-permalink" href="#each%28%26%3Aself-%3E%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Iterates each member of the enum.
+It won't iterate the <code>None</code> and <code>All</code> members of flags enums.</p>
+<pre><code class="language-crystal"><span class="t">IOMode</span>.each <span class="k">do</span> <span class="o">|</span>member, value<span class="o">|</span>
+  <span class="c"># yield IOMode::Read, 1</span>
+  <span class="c"># yield IOMode::Write, 2</span>
+  <span class="c"># yield IOMode::Async, 3</span>
+<span class="k">end</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/enum.cr#L582" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="from_value?(value:Int):self|Nil-class-method">
+      <div class="signature">
+        
+        def self.<strong>from_value?</strong>(value : <a href="Int.html">Int</a>) : <span class="k">self</span> | <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#from_value%3F%28value%3AInt%29%3Aself%7CNil-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the enum member that has the given value, or <code>nil</code> if
+no such member exists.</p>
+<pre><code class="language-crystal"><span class="t">Color</span>.from_value?(<span class="n">0</span>) <span class="c"># =&gt; Color::Red</span>
+<span class="t">Color</span>.from_value?(<span class="n">1</span>) <span class="c"># =&gt; Color::Green</span>
+<span class="t">Color</span>.from_value?(<span class="n">2</span>) <span class="c"># =&gt; Color::Blue</span>
+<span class="t">Color</span>.from_value?(<span class="n">3</span>) <span class="c"># =&gt; nil</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/enum.cr#L429" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="names:Array(String)-class-method">
+      <div class="signature">
+        
+        def self.<strong>names</strong> : <a href="Array.html">Array</a>(<a href="String.html">String</a>)
+
+        <a class="method-permalink" href="#names%3AArray%28String%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns all enum members as an <code><a href="Array.html">Array</a>(<a href="String.html">String</a>)</code>.</p>
+<pre><code class="language-crystal"><span class="t">Color</span>.names <span class="c"># =&gt; [&quot;Red&quot;, &quot;Green&quot;, &quot;Blue&quot;]</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/enum.cr#L399" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="parse?(string:String):self|Nil-class-method">
+      <div class="signature">
+        
+        def self.<strong>parse?</strong>(string : <a href="String.html">String</a>) : <span class="k">self</span> | <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#parse%3F%28string%3AString%29%3Aself%7CNil-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the enum member that has the given name, or
+<code>nil</code> if no such member exists. The comparison is made by using
+<code><a href="String.html#camelcase%28io%3AIO%2Coptions%3AUnicode%3A%3ACaseOptions%3DUnicode%3A%3ACaseOptions%3A%3ANone%2C%2A%2Clower%3ABool%3Dfalse%29%3ANil-instance-method">String#camelcase</a></code> and <code><a href="String.html#downcase%28options%3AUnicode%3A%3ACaseOptions%3D%3Anone%29%3AString-instance-method">String#downcase</a></code> between <em>string</em> and
+the enum members names. Dashes (<code><a href="Enum.html#-%28other%3AInt%29%3Aself-instance-method">#-</a></code>) in <em>string</em> have the same meaning as an underscore (<code>_</code>).
+A member named &quot;FortyTwo&quot;, or &quot;FORTY_TWO&quot;
+is found with any of these strings: &quot;forty_two&quot;, &quot;FortyTwo&quot;, &quot;FORTY_TWO&quot;,
+&quot;Forty-Two&quot;, &quot;FORTYTWO&quot;, &quot;fortytwo&quot;.</p>
+<pre><code class="language-crystal"><span class="t">Color</span>.parse?(<span class="s">&quot;Red&quot;</span>)    <span class="c"># =&gt; Color::Red</span>
+<span class="t">Color</span>.parse?(<span class="s">&quot;BLUE&quot;</span>)   <span class="c"># =&gt; Color::Blue</span>
+<span class="t">Color</span>.parse?(<span class="s">&quot;Yellow&quot;</span>) <span class="c"># =&gt; nil</span></code></pre>
+<p>If multiple members match the same normalized string, the first one is returned.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/enum.cr#L510" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="valid?(value:self):Bool-class-method">
+      <div class="signature">
+        
+        def self.<strong>valid?</strong>(value : <span class="k">self</span>) : <a href="Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#valid%3F%28value%3Aself%29%3ABool-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if the given <em>value</em> is an enum member, otherwise <code>false</code>.
+<code>false</code> if not member.</p>
+<pre><code class="language-crystal"><span class="t">Color</span>.valid?(<span class="t">Color</span><span class="t">::</span><span class="t">Red</span>)   <span class="c"># =&gt; true</span>
+<span class="t">Color</span>.valid?(<span class="t">Color</span>.new(<span class="n">4</span>)) <span class="c"># =&gt; false</span></code></pre>
+<p><span class="flag purple">NOTE</span>  This is a class method, not an instance method because
+an instance method <code><a href="Enum.html#valid%3F%28value%3Aself%29%3ABool-class-method">.valid?</a></code> is defined by the language when a user
+defines an enum member named <code>Valid</code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/enum.cr#L466" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="values:Array(self)-class-method">
+      <div class="signature">
+        
+        def self.<strong>values</strong> : <a href="Array.html">Array</a>(<span class="k">self</span>)
+
+        <a class="method-permalink" href="#values%3AArray%28self%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns all enum members as an <code><a href="Array.html">Array</a>(self)</code>.</p>
+<pre><code class="language-crystal"><span class="t">Color</span>.values <span class="c"># =&gt; [Color::Red, Color::Green, Color::Blue]</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/enum.cr#L412" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+  
+  <h2>
+    <a id="macro-detail" class="anchor" href="#macro-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Macro Detail
+  </h2>
+  
+    <div class="entry-detail" id="[](*values)-macro">
+      <div class="signature">
+        
+        macro <strong>[]</strong>(*values)
+
+        <a class="method-permalink" href="#%5B%5D%28%2Avalues%29-macro">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Convenience macro to create a combined enum (combines given members using <code><a href="Enum.html#%7C%28other%3Aself%29%3Aself-instance-method">#|</a></code> (or) logical operator).</p>
+<p>Arguments can be the name of a member, a symbol representing a member name or a numerical value.</p>
+<pre><code class="language-crystal"><span class="t">IOMode</span>[<span class="t">Read</span>]             <span class="c"># =&gt; IOMode[Read]</span>
+<span class="t">IOMode</span>[<span class="n">1</span>]                <span class="c"># =&gt; IOMode[Read]</span>
+<span class="t">IOMode</span>[<span class="t">Read</span>, <span class="t">Write</span>]      <span class="c"># =&gt; IOMode[Read, Write]</span>
+<span class="t">IOMode</span>[<span class="t">Read</span>, <span class="n">64</span>]         <span class="c"># =&gt; IOMode[Read, 64]</span>
+<span class="t">IOMode</span>[<span class="t">Read</span>, <span class="n">:write</span>, <span class="n">64</span>] <span class="c"># =&gt; IOMode[Read, Write, 64]</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/enum.cr#L561" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="flags(*values)-macro">
+      <div class="signature">
+        
+        macro <strong>flags</strong>(*values)
+
+        <a class="method-permalink" href="#flags%28%2Avalues%29-macro">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Convenience macro to create a combined enum (combines given members using <code><a href="Enum.html#%7C%28other%3Aself%29%3Aself-instance-method">#|</a></code> (or) logical operator)</p>
+<pre><code class="language-crystal"><span class="t">IOMode</span>.flags(<span class="t">Read</span>, <span class="t">Write</span>) <span class="c"># =&gt; IOMode[Read, Write]</span></code></pre>
+<ul>
+<li><code><a href="Enum.html#%5B%5D%28%2Avalues%29-macro">Enum.[]</a></code> is a more advanced alternative which also allows int and symbol parameters.</li>
+</ul>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/enum.cr#L544" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+  
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="&amp;(other:self):self-instance-method">
+      <div class="signature">
+        
+        def <strong>&</strong>(other : <span class="k">self</span>) : <span class="k">self</span>
+
+        <a class="method-permalink" href="#%26%28other%3Aself%29%3Aself-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the enum member that results from applying a logical
+&quot;and&quot; operation between this enum member's value and <em>other</em>.
+This is mostly useful with flag enums.</p>
+<pre><code class="language-crystal">(<span class="t">IOMode</span><span class="t">::</span><span class="t">Read</span> <span class="o">|</span> <span class="t">IOMode</span><span class="t">::</span><span class="t">Async</span>) <span class="o">&amp;</span> <span class="t">IOMode</span><span class="t">::</span><span class="t">Read</span> <span class="c"># =&gt; IOMode::Read</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/enum.cr#L307" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="+(other:Int):self-instance-method">
+      <div class="signature">
+        
+        def <strong>+</strong>(other : <a href="Int.html">Int</a>) : <span class="k">self</span>
+
+        <a class="method-permalink" href="#%2B%28other%3AInt%29%3Aself-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the enum member that results from adding <em>other</em>
+to this enum member's value.</p>
+<pre><code class="language-crystal"><span class="t">Color</span><span class="t">::</span><span class="t">Red</span> <span class="o">+</span> <span class="n">1</span> <span class="c"># =&gt; Color::Green</span>
+<span class="t">Color</span><span class="t">::</span><span class="t">Red</span> <span class="o">+</span> <span class="n">2</span> <span class="c"># =&gt; Color::Blue</span>
+<span class="t">Color</span><span class="t">::</span><span class="t">Red</span> <span class="o">+</span> <span class="n">3</span> <span class="c"># =&gt; Color.new(3)</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/enum.cr#L273" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="-(other:Int):self-instance-method">
+      <div class="signature">
+        
+        def <strong>-</strong>(other : <a href="Int.html">Int</a>) : <span class="k">self</span>
+
+        <a class="method-permalink" href="#-%28other%3AInt%29%3Aself-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the enum member that results from subtracting <em>other</em>
+to this enum member's value.</p>
+<pre><code class="language-crystal"><span class="t">Color</span><span class="t">::</span><span class="t">Blue</span> <span class="o">-</span> <span class="n">1</span> <span class="c"># =&gt; Color::Green</span>
+<span class="t">Color</span><span class="t">::</span><span class="t">Blue</span> <span class="o">-</span> <span class="n">2</span> <span class="c"># =&gt; Color::Red</span>
+<span class="t">Color</span><span class="t">::</span><span class="t">Blue</span> <span class="o">-</span> <span class="n">3</span> <span class="c"># =&gt; Color.new(-1)</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/enum.cr#L285" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="&lt;=&gt;(other:self)-instance-method">
+      <div class="signature">
+        
+        def <strong><=></strong>(other : <span class="k">self</span>)
+
+        <a class="method-permalink" href="#%3C%3D%3E%28other%3Aself%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Compares this enum member against another, according to their underlying
+value.</p>
+<pre><code class="language-crystal"><span class="t">Color</span><span class="t">::</span><span class="t">Red</span> <span class="o">&lt;=&gt;</span> <span class="t">Color</span><span class="t">::</span><span class="t">Blue</span>  <span class="c"># =&gt; -1</span>
+<span class="t">Color</span><span class="t">::</span><span class="t">Blue</span> <span class="o">&lt;=&gt;</span> <span class="t">Color</span><span class="t">::</span><span class="t">Red</span>  <span class="c"># =&gt; 1</span>
+<span class="t">Color</span><span class="t">::</span><span class="t">Blue</span> <span class="o">&lt;=&gt;</span> <span class="t">Color</span><span class="t">::</span><span class="t">Blue</span> <span class="c"># =&gt; 0</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/enum.cr#L332" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="==(other:self)-instance-method">
+      <div class="signature">
+        
+        def <strong>==</strong>(other : <span class="k">self</span>)
+
+        <a class="method-permalink" href="#%3D%3D%28other%3Aself%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum member and <em>other</em> have the same underlying value.</p>
+<pre><code class="language-crystal"><span class="t">Color</span><span class="t">::</span><span class="t">Red</span> <span class="o">==</span> <span class="t">Color</span><span class="t">::</span><span class="t">Red</span>  <span class="c"># =&gt; true</span>
+<span class="t">Color</span><span class="t">::</span><span class="t">Red</span> <span class="o">==</span> <span class="t">Color</span><span class="t">::</span><span class="t">Blue</span> <span class="c"># =&gt; false</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/enum.cr#L362" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="==(other)-instance-method">
+      <div class="signature">
+        
+        def <strong>==</strong>(other)
+
+        <a class="method-permalink" href="#%3D%3D%28other%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+            <div class="doc-inherited">
+              Description copied from struct <a href="Value.html">Value</a>
+            </div>
+          
+          <p>Returns <code>false</code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/enum.cr#L336" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="^(other:self):self-instance-method">
+      <div class="signature">
+        
+        def <strong>^</strong>(other : <span class="k">self</span>) : <span class="k">self</span>
+
+        <a class="method-permalink" href="#%5E%28other%3Aself%29%3Aself-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the enum member that results from applying a logical
+&quot;xor&quot; operation between this enum member's value and <em>other</em>.
+This is mostly useful with flag enums.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/enum.cr#L314" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="|(other:self):self-instance-method">
+      <div class="signature">
+        
+        def <strong>|</strong>(other : <span class="k">self</span>) : <span class="k">self</span>
+
+        <a class="method-permalink" href="#%7C%28other%3Aself%29%3Aself-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the enum member that results from applying a logical
+&quot;or&quot; operation between this enum member's value and <em>other</em>.
+This is mostly useful with flag enums.</p>
+<pre><code class="language-crystal">(<span class="t">IOMode</span><span class="t">::</span><span class="t">Read</span> <span class="o">|</span> <span class="t">IOMode</span><span class="t">::</span><span class="t">Async</span>) <span class="c"># =&gt; IOMode::Read | IOMode::Async</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/enum.cr#L296" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="~:self-instance-method">
+      <div class="signature">
+        
+        def <strong>~</strong> : <span class="k">self</span>
+
+        <a class="method-permalink" href="#~%3Aself-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the enum member that results from applying a logical
+&quot;not&quot; operation of this enum member's value.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/enum.cr#L320" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="clone-instance-method">
+      <div class="signature">
+        
+        def <strong>clone</strong>
+
+        <a class="method-permalink" href="#clone-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/enum.cr#L533" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="each(&amp;:self-&gt;)-instance-method">
+      <div class="signature">
+        
+        def <strong>each</strong>(& : <span class="k">self</span> -> )
+
+        <a class="method-permalink" href="#each%28%26%3Aself-%3E%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Iterates each values in a Flags Enum.</p>
+<pre><code class="language-crystal">(<span class="t">IOMode</span><span class="t">::</span><span class="t">Read</span> <span class="o">|</span> <span class="t">IOMode</span><span class="t">::</span><span class="t">Async</span>).each <span class="k">do</span> <span class="o">|</span>member, value<span class="o">|</span>
+  <span class="c"># yield IOMode::Read, 1</span>
+  <span class="c"># yield IOMode::Async, 3</span>
+<span class="k">end</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/enum.cr#L379" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="hash(hasher)-instance-method">
+      <div class="signature">
+        
+        def <strong>hash</strong>(hasher)
+
+        <a class="method-permalink" href="#hash%28hasher%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>See <code><a href="Object.html#hash%28hasher%29-instance-method">Object#hash(hasher)</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/enum.cr#L367" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="includes?(other:self):Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>includes?</strong>(other : <span class="k">self</span>) : <a href="Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#includes%3F%28other%3Aself%29%3ABool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum member's value includes <em>other</em>. This
+performs a logical &quot;and&quot; between this enum member's value and <em>other</em>'s.</p>
+<p>This is mostly useful for flag enums.</p>
+<p>For example:</p>
+<pre><code class="language-crystal">mode <span class="o">=</span> <span class="t">IOMode</span><span class="t">::</span><span class="t">Read</span> <span class="o">|</span> <span class="t">IOMode</span><span class="t">::</span><span class="t">Write</span>
+mode.includes?(<span class="t">IOMode</span><span class="t">::</span><span class="t">Read</span>)  <span class="c"># =&gt; true</span>
+mode.includes?(<span class="t">IOMode</span><span class="t">::</span><span class="t">Async</span>) <span class="c"># =&gt; false</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/enum.cr#L352" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="inspect(io:IO):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>inspect</strong>(io : <a href="IO.html">IO</a>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#inspect%28io%3AIO%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns an unambiguous <code><a href="String.html">String</a></code> representation of this enum member.
+In the case of a single member value, this is the fully qualified name of
+the member (equivalent to <code><a href="Enum.html#to_s%3AString-instance-method">#to_s</a></code> with the enum name as prefix).
+In the case of multiple members (for a flags enum), it's a call to <code><a href="Enum.html#%5B%5D%28%2Avalues%29-macro">Enum.[]</a></code>
+for recreating the same value.</p>
+<p>If the value can't be represented fully by named members, the remaining value
+is appended.</p>
+<pre><code class="language-crystal"><span class="t">Color</span><span class="t">::</span><span class="t">Red</span>                     <span class="c"># =&gt; Color:Red</span>
+<span class="t">IOMode</span><span class="t">::</span><span class="t">None</span>                   <span class="c"># =&gt; IOMode::None</span>
+(<span class="t">IOMode</span><span class="t">::</span><span class="t">Read</span> <span class="o">|</span> <span class="t">IOMode</span><span class="t">::</span><span class="t">Write</span>) <span class="c"># =&gt; IOMode[Read, Write]</span>
+
+<span class="t">Color</span>.new(<span class="n">10</span>) <span class="c"># =&gt; Color[10]</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/enum.cr#L184" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_f32:Float32-instance-method">
+      <div class="signature">
+        
+        def <strong>to_f32</strong> : <a href="Float32.html">Float32</a>
+
+        <a class="method-permalink" href="#to_f32%3AFloat32-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the value of this enum member as a <code><a href="Float32.html">Float32</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/enum.cr#L251" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_f32!:Float32-instance-method">
+      <div class="signature">
+        
+        def <strong>to_f32!</strong> : <a href="Float32.html">Float32</a>
+
+        <a class="method-permalink" href="#to_f32%21%3AFloat32-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the value of this enum member as a <code><a href="Float32.html">Float32</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/enum.cr#L251" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_f64:Float64-instance-method">
+      <div class="signature">
+        
+        def <strong>to_f64</strong> : <a href="Float64.html">Float64</a>
+
+        <a class="method-permalink" href="#to_f64%3AFloat64-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the value of this enum member as a <code><a href="Float64.html">Float64</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/enum.cr#L251" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_f64!:Float64-instance-method">
+      <div class="signature">
+        
+        def <strong>to_f64!</strong> : <a href="Float64.html">Float64</a>
+
+        <a class="method-permalink" href="#to_f64%21%3AFloat64-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the value of this enum member as a <code><a href="Float64.html">Float64</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/enum.cr#L251" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_i:Int32-instance-method">
+      <div class="signature">
+        
+        def <strong>to_i</strong> : <a href="Int32.html">Int32</a>
+
+        <a class="method-permalink" href="#to_i%3AInt32-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the value of this enum member as an <code><a href="Int32.html">Int32</a></code>.</p>
+<pre><code class="language-crystal"><span class="t">Color</span><span class="t">::</span><span class="t">Blue</span>.to_i                    <span class="c"># =&gt; 2</span>
+(<span class="t">IOMode</span><span class="t">::</span><span class="t">Read</span> <span class="o">|</span> <span class="t">IOMode</span><span class="t">::</span><span class="t">Write</span>).to_i <span class="c"># =&gt; 3</span>
+
+<span class="t">Color</span>.new(<span class="n">10</span>).to_i <span class="c"># =&gt; 10</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/enum.cr#L247" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_i128:Int128-instance-method">
+      <div class="signature">
+        
+        def <strong>to_i128</strong> : <a href="Int128.html">Int128</a>
+
+        <a class="method-permalink" href="#to_i128%3AInt128-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the value of this enum member as a <code><a href="Int128.html">Int128</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/enum.cr#L251" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_i128!:Int128-instance-method">
+      <div class="signature">
+        
+        def <strong>to_i128!</strong> : <a href="Int128.html">Int128</a>
+
+        <a class="method-permalink" href="#to_i128%21%3AInt128-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the value of this enum member as a <code><a href="Int128.html">Int128</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/enum.cr#L251" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_i16:Int16-instance-method">
+      <div class="signature">
+        
+        def <strong>to_i16</strong> : <a href="Int16.html">Int16</a>
+
+        <a class="method-permalink" href="#to_i16%3AInt16-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the value of this enum member as a <code><a href="Int16.html">Int16</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/enum.cr#L251" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_i16!:Int16-instance-method">
+      <div class="signature">
+        
+        def <strong>to_i16!</strong> : <a href="Int16.html">Int16</a>
+
+        <a class="method-permalink" href="#to_i16%21%3AInt16-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the value of this enum member as a <code><a href="Int16.html">Int16</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/enum.cr#L251" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_i32:Int32-instance-method">
+      <div class="signature">
+        
+        def <strong>to_i32</strong> : <a href="Int32.html">Int32</a>
+
+        <a class="method-permalink" href="#to_i32%3AInt32-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the value of this enum member as a <code><a href="Int32.html">Int32</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/enum.cr#L251" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_i32!:Int32-instance-method">
+      <div class="signature">
+        
+        def <strong>to_i32!</strong> : <a href="Int32.html">Int32</a>
+
+        <a class="method-permalink" href="#to_i32%21%3AInt32-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the value of this enum member as a <code><a href="Int32.html">Int32</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/enum.cr#L251" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_i64:Int64-instance-method">
+      <div class="signature">
+        
+        def <strong>to_i64</strong> : <a href="Int64.html">Int64</a>
+
+        <a class="method-permalink" href="#to_i64%3AInt64-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the value of this enum member as a <code><a href="Int64.html">Int64</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/enum.cr#L251" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_i64!:Int64-instance-method">
+      <div class="signature">
+        
+        def <strong>to_i64!</strong> : <a href="Int64.html">Int64</a>
+
+        <a class="method-permalink" href="#to_i64%21%3AInt64-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the value of this enum member as a <code><a href="Int64.html">Int64</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/enum.cr#L251" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_i8:Int8-instance-method">
+      <div class="signature">
+        
+        def <strong>to_i8</strong> : <a href="Int8.html">Int8</a>
+
+        <a class="method-permalink" href="#to_i8%3AInt8-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the value of this enum member as a <code><a href="Int8.html">Int8</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/enum.cr#L251" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_i8!:Int8-instance-method">
+      <div class="signature">
+        
+        def <strong>to_i8!</strong> : <a href="Int8.html">Int8</a>
+
+        <a class="method-permalink" href="#to_i8%21%3AInt8-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the value of this enum member as a <code><a href="Int8.html">Int8</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/enum.cr#L251" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_json(json:JSON::Builder)-instance-method">
+      <div class="signature">
+        
+        def <strong>to_json</strong>(json : <a href="JSON/Builder.html">JSON::Builder</a>)
+
+        <a class="method-permalink" href="#to_json%28json%3AJSON%3A%3ABuilder%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Serializes this enum member by name.</p>
+<p>For non-flags enums, the serialization is a JSON string. The value is the
+member name (see <code><a href="Enum.html#to_s%3AString-instance-method">#to_s</a></code>) transformed with <code><a href="String.html#underscore%28options%3AUnicode%3A%3ACaseOptions%3D%3Anone%29%3AString-instance-method">String#underscore</a></code>.</p>
+<pre><code class="language-crystal"><span class="k">enum</span> <span class="t">Stages</span>
+  <span class="t">INITIAL</span>
+  <span class="t">SECOND_STAGE</span>
+<span class="k">end</span>
+
+<span class="t">Stages</span><span class="t">::</span><span class="t">INITIAL</span>.to_json      <span class="c"># =&gt; %(&quot;initial&quot;)</span>
+<span class="t">Stages</span><span class="t">::</span><span class="t">SECOND_STAGE</span>.to_json <span class="c"># =&gt; %(&quot;second_stage&quot;)</span></code></pre>
+<p>For flags enums, the serialization is a JSON array including every flagged
+member individually serialized in the same way as a member of a non-flags enum.
+<code>None</code> is serialized as an empty array, <code>All</code> as an array containing
+all members.</p>
+<pre><code class="language-crystal">@[<span class="t">Flags</span>]
+<span class="k">enum</span> <span class="t">Sides</span>
+  <span class="t">LEFT</span>
+  <span class="t">RIGHT</span>
+<span class="k">end</span>
+
+<span class="t">Sides</span><span class="t">::</span><span class="t">LEFT</span>.to_json                  <span class="c"># =&gt; %([&quot;left&quot;])</span>
+(<span class="t">Sides</span><span class="t">::</span><span class="t">LEFT</span> <span class="o">|</span> <span class="t">Sides</span><span class="t">::</span><span class="t">RIGHT</span>).to_json <span class="c"># =&gt; %([&quot;left&quot;,&quot;right&quot;])</span>
+<span class="t">Sides</span><span class="t">::</span><span class="t">All</span>.to_json                   <span class="c"># =&gt; %([&quot;left&quot;,&quot;right&quot;])</span>
+<span class="t">Sides</span><span class="t">::</span><span class="t">None</span>.to_json                  <span class="c"># =&gt; %([])</span></code></pre>
+<p><code><a href="Enum/ValueConverter.html#to_json%28value%3AT%2Cio%3AIO%29-class-method">ValueConverter.to_json</a></code> offers a different serialization strategy based on the
+member value.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/to_json.cr#L218" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_s(io:IO):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>to_s</strong>(io : <a href="IO.html">IO</a>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#to_s%28io%3AIO%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Appends a <code><a href="String.html">String</a></code> representation of this enum member to the given <em>io</em>.</p>
+<p>See also: <code><a href="Enum.html#to_s%3AString-instance-method">#to_s</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/enum.cr#L131" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_s:String-instance-method">
+      <div class="signature">
+        
+        def <strong>to_s</strong> : <a href="String.html">String</a>
+
+        <a class="method-permalink" href="#to_s%3AString-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns a <code><a href="String.html">String</a></code> representation of this enum member.
+In the case of regular enums, this is just the name of the member.
+In the case of flag enums, it's the names joined by vertical bars, or &quot;None&quot;,
+if the value is zero.</p>
+<p>If an enum's value doesn't match a member's value, the raw value
+is returned as a string.</p>
+<pre><code class="language-crystal"><span class="t">Color</span><span class="t">::</span><span class="t">Red</span>.to_s                     <span class="c"># =&gt; &quot;Red&quot;</span>
+<span class="t">IOMode</span><span class="t">::</span><span class="t">None</span>.to_s                   <span class="c"># =&gt; &quot;None&quot;</span>
+(<span class="t">IOMode</span><span class="t">::</span><span class="t">Read</span> <span class="o">|</span> <span class="t">IOMode</span><span class="t">::</span><span class="t">Write</span>).to_s <span class="c"># =&gt; &quot;Read | Write&quot;</span>
+
+<span class="t">Color</span>.new(<span class="n">10</span>).to_s <span class="c"># =&gt; &quot;10&quot;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/enum.cr#L160" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_u128:UInt128-instance-method">
+      <div class="signature">
+        
+        def <strong>to_u128</strong> : <a href="UInt128.html">UInt128</a>
+
+        <a class="method-permalink" href="#to_u128%3AUInt128-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the value of this enum member as a <code><a href="UInt128.html">UInt128</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/enum.cr#L251" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_u128!:UInt128-instance-method">
+      <div class="signature">
+        
+        def <strong>to_u128!</strong> : <a href="UInt128.html">UInt128</a>
+
+        <a class="method-permalink" href="#to_u128%21%3AUInt128-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the value of this enum member as a <code><a href="UInt128.html">UInt128</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/enum.cr#L251" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_u16:UInt16-instance-method">
+      <div class="signature">
+        
+        def <strong>to_u16</strong> : <a href="UInt16.html">UInt16</a>
+
+        <a class="method-permalink" href="#to_u16%3AUInt16-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the value of this enum member as a <code><a href="UInt16.html">UInt16</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/enum.cr#L251" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_u16!:UInt16-instance-method">
+      <div class="signature">
+        
+        def <strong>to_u16!</strong> : <a href="UInt16.html">UInt16</a>
+
+        <a class="method-permalink" href="#to_u16%21%3AUInt16-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the value of this enum member as a <code><a href="UInt16.html">UInt16</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/enum.cr#L251" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_u32:UInt32-instance-method">
+      <div class="signature">
+        
+        def <strong>to_u32</strong> : <a href="UInt32.html">UInt32</a>
+
+        <a class="method-permalink" href="#to_u32%3AUInt32-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the value of this enum member as a <code><a href="UInt32.html">UInt32</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/enum.cr#L251" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_u32!:UInt32-instance-method">
+      <div class="signature">
+        
+        def <strong>to_u32!</strong> : <a href="UInt32.html">UInt32</a>
+
+        <a class="method-permalink" href="#to_u32%21%3AUInt32-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the value of this enum member as a <code><a href="UInt32.html">UInt32</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/enum.cr#L251" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_u64:UInt64-instance-method">
+      <div class="signature">
+        
+        def <strong>to_u64</strong> : <a href="UInt64.html">UInt64</a>
+
+        <a class="method-permalink" href="#to_u64%3AUInt64-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the value of this enum member as a <code><a href="UInt64.html">UInt64</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/enum.cr#L251" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_u64!:UInt64-instance-method">
+      <div class="signature">
+        
+        def <strong>to_u64!</strong> : <a href="UInt64.html">UInt64</a>
+
+        <a class="method-permalink" href="#to_u64%21%3AUInt64-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the value of this enum member as a <code><a href="UInt64.html">UInt64</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/enum.cr#L251" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_u8:UInt8-instance-method">
+      <div class="signature">
+        
+        def <strong>to_u8</strong> : <a href="UInt8.html">UInt8</a>
+
+        <a class="method-permalink" href="#to_u8%3AUInt8-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the value of this enum member as a <code><a href="UInt8.html">UInt8</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/enum.cr#L251" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_u8!:UInt8-instance-method">
+      <div class="signature">
+        
+        def <strong>to_u8!</strong> : <a href="UInt8.html">UInt8</a>
+
+        <a class="method-permalink" href="#to_u8%21%3AUInt8-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the value of this enum member as a <code><a href="UInt8.html">UInt8</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/enum.cr#L251" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_yaml(yaml:YAML::Nodes::Builder)-instance-method">
+      <div class="signature">
+        
+        def <strong>to_yaml</strong>(yaml : <a href="YAML/Nodes/Builder.html">YAML::Nodes::Builder</a>)
+
+        <a class="method-permalink" href="#to_yaml%28yaml%3AYAML%3A%3ANodes%3A%3ABuilder%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Serializes this enum member by name.</p>
+<p>For non-flags enums, the serialization is a YAML string. The value is the
+member name (see <code><a href="Enum.html#to_s%3AString-instance-method">#to_s</a></code>) transformed with <code><a href="String.html#underscore%28options%3AUnicode%3A%3ACaseOptions%3D%3Anone%29%3AString-instance-method">String#underscore</a></code>.</p>
+<pre><code class="language-crystal"><span class="k">enum</span> <span class="t">Stages</span>
+  <span class="t">INITIAL</span>
+  <span class="t">SECOND_STAGE</span>
+<span class="k">end</span>
+
+<span class="t">Stages</span><span class="t">::</span><span class="t">INITIAL</span>.to_yaml      <span class="c"># =&gt; %(--- initial\n)</span>
+<span class="t">Stages</span><span class="t">::</span><span class="t">SECOND_STAGE</span>.to_yaml <span class="c"># =&gt; %(--- second_stage\n)</span></code></pre>
+<p>For flags enums, the serialization is a YAML sequence including every flagged
+member individually serialized in the same way as a member of a non-flags enum.
+<code>None</code> is serialized as an empty sequence, <code>All</code> as a sequence containing
+all members.</p>
+<pre><code class="language-crystal">@[<span class="t">Flags</span>]
+<span class="k">enum</span> <span class="t">Sides</span>
+  <span class="t">LEFT</span>
+  <span class="t">RIGHT</span>
+<span class="k">end</span>
+
+<span class="t">Sides</span><span class="t">::</span><span class="t">LEFT</span>.to_yaml                  <span class="c"># =&gt; %(--- [left]\n)</span>
+(<span class="t">Sides</span><span class="t">::</span><span class="t">LEFT</span> <span class="o">|</span> <span class="t">Sides</span><span class="t">::</span><span class="t">RIGHT</span>).to_yaml <span class="c"># =&gt; %(--- [left, right]\n)</span>
+<span class="t">Sides</span><span class="t">::</span><span class="t">All</span>.to_yaml                   <span class="c"># =&gt; %(--- [left, right]\n)</span>
+<span class="t">Sides</span><span class="t">::</span><span class="t">None</span>.to_yaml                  <span class="c"># =&gt; %(--- []\n)</span></code></pre>
+<p><code><a href="Enum/ValueConverter.html#to_yaml%28value%3AT%2Cio%3AIO%29-class-method">ValueConverter.to_yaml</a></code> offers a different serialization strategy based on the
+member value.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/yaml/to_yaml.cr#L172" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="value:Int-instance-method">
+      <div class="signature">
+        
+        def <strong>value</strong> : <a href="Int.html">Int</a>
+
+        <a class="method-permalink" href="#value%3AInt-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the underlying value held by the enum instance.</p>
+<pre><code class="language-crystal"><span class="k">enum</span> <span class="t">Color</span>
+  <span class="t">Red</span>
+  <span class="t">Green</span>
+  <span class="t">Blue</span>
+<span class="k">end</span>
+
+<span class="t">Color</span><span class="t">::</span><span class="t">Red</span>.value   <span class="c"># =&gt; 0</span>
+<span class="t">Color</span><span class="t">::</span><span class="t">Green</span>.value <span class="c"># =&gt; 1</span>
+<span class="t">Color</span><span class="t">::</span><span class="t">Blue</span>.value  <span class="c"># =&gt; 2</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/enum.cr#L124" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+</div>
+
+</body>
+</html>

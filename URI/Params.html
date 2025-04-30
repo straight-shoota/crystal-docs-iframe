@@ -1,0 +1,2056 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Crystal Docs 1.16.1">
+<meta name="crystal_docs.project_version" content="1.17.0-dev">
+<meta name="crystal_docs.project_name" content="Crystal">
+
+  <meta name="crystal_docs.json_config_url" content="/api/versions.json">
+
+
+    <link rel="canonical" href="https://crystal-lang.org/api/latest/URI/Params.html">
+
+<link href="../css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../js/doc.js"></script>
+
+  <meta name="repository-name" content="Crystal">
+  <title>URI::Params - Crystal 1.17.0-dev</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "../";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill="currentColor" fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<input type="checkbox" id="sidebar-btn">
+<label for="sidebar-btn" id="sidebar-btn-label">
+  <svg class="open" xmlns="http://www.w3.org/2000/svg" height="2em" width="2em" viewBox="0 0 512 512"><title>Open Sidebar</title><path fill="currentColor" d="M80 96v64h352V96H80zm0 112v64h352v-64H80zm0 112v64h352v-64H80z"></path></svg>
+  <svg class="close" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><title>Close Sidebar</title><path fill="currentColor" d="m118.6 73.4-45.2 45.2L210.7 256 73.4 393.4l45.2 45.2L256 301.3l137.4 137.3 45.2-45.2L301.3 256l137.3-137.4-45.2-45.2L256 210.7Z"></path></svg>
+</label>
+<iframe class="sidebar" src="../sidebar.html"></iframe>
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">
+    struct
+  </span> URI::<wbr>Params
+
+</h1>
+
+
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../URI/Params.html">URI::Params</a></li><li class="superclass"><a href="../Struct.html">Struct</a></li><li class="superclass"><a href="../Value.html">Value</a></li><li class="superclass"><a href="../Object.html">Object</a></li></ul>
+
+
+
+
+  <h2>
+    <a id="overview" class="anchor" href="#overview">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Overview
+  </h2>
+
+  <p>An ordered multi-value mapped collection representing generic URI parameters.</p>
+
+
+
+
+
+
+
+  <h2>
+    <a id="included-modules" class="anchor" href="#included-modules">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Included Modules
+  </h2>
+  <ul class="other-types-list">
+    
+      <li class="other-type"><a href="../Enumerable.html">Enumerable</a>({<a href="../String.html">String</a>, <a href="../String.html">String</a>})</li>
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri/params.cr#L5" target="_blank">
+        uri/params.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri/params/serializable.cr#L6" target="_blank">
+        uri/params/serializable.cr
+      </a>
+    
+    <br/>
+  
+
+
+
+
+
+  
+  <h2>
+    <a id="constructors" class="anchor" href="#constructors">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructors
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#new%28raw_params%3AHash%28String%2CArray%28String%29%29%29-class-method" class="signature"><strong>.new</strong>(raw_params : Hash(String, Array(String)))</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#new-class-method" class="signature"><strong>.new</strong></a>
+        
+          <div class="summary"><p>Returns an empty <code><a href="../URI/Params.html">URI::Params</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#parse%28query%3AString%29%3Aself-class-method" class="signature"><strong>.parse</strong>(query : String) : <span class="k">self</span></a>
+        
+          <div class="summary"><p>Parses an URI query string into a <code><a href="../URI/Params.html">URI::Params</a></code></p></div>
+        
+      </li>
+    
+  </ul>
+
+
+  
+  <h2>
+    <a id="class-method-summary" class="anchor" href="#class-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Class Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#build%28io%3AIO%2C%2A%2Cspace_to_plus%3ABool%3Dtrue%2C%26%3ABuilder-%3E%29%3ANil-class-method" class="signature"><strong>.build</strong>(io : IO, *, space_to_plus : Bool = <span class="n">true</span>, & : Builder -> ) : Nil</a>
+        
+          <div class="summary"><p>Builds an url-encoded URI form/query.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#build%28%2A%2Cspace_to_plus%3ABool%3Dtrue%2C%26block%3ABuilder-%3E%29%3AString-class-method" class="signature"><strong>.build</strong>(*, space_to_plus : Bool = <span class="n">true</span>, &block : Builder -> ) : String</a>
+        
+          <div class="summary"><p>Builds an url-encoded URI form/query.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#encode%28io%3AIO%2Chash%3AHash%28String%2CString%7CArray%28String%29%29%29%3ANil-class-method" class="signature"><strong>.encode</strong>(io : IO, hash : Hash(String, String | Array(String))) : Nil</a>
+        
+          <div class="summary"><p>Appends the given key value pairs as a url-encoded URI form/query to the given <code>io</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#encode%28io%3AIO%2Cnamed_tuple%3ANamedTuple%29%3ANil-class-method" class="signature"><strong>.encode</strong>(io : IO, named_tuple : NamedTuple) : Nil</a>
+        
+          <div class="summary"><p>Appends the given key value pairs as a url-encoded URI form/query to the given <code>io</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#encode%28hash%3AHash%28String%2CString%7CArray%28String%29%29%29%3AString-class-method" class="signature"><strong>.encode</strong>(hash : Hash(String, String | Array(String))) : String</a>
+        
+          <div class="summary"><p>Returns the given key value pairs as a url-encoded URI form/query.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#encode%28named_tuple%3ANamedTuple%29%3AString-class-method" class="signature"><strong>.encode</strong>(named_tuple : NamedTuple) : String</a>
+        
+          <div class="summary"><p>Returns the given key value pairs as a url-encoded URI form/query.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#parse%28query%3AString%2C%26%29-class-method" class="signature"><strong>.parse</strong>(query : String, &)</a>
+        
+          <div class="summary"><p>Parses an URI query and yields each key-value pair.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+  
+
+  
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#%3D%3D%28other%3Aself%29-instance-method" class="signature"><strong>#==</strong>(other : <span class="k">self</span>)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%5B%5D%28name%29%3AString-instance-method" class="signature"><strong>#[]</strong>(name) : String</a>
+        
+          <div class="summary"><p>Returns first value for specified param name.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%5B%5D%3D%28name%2Cvalue%3AString%7CArray%28String%29%29-instance-method" class="signature"><strong>#[]=</strong>(name, value : String | Array(String))</a>
+        
+          <div class="summary"><p>Sets the <em>name</em> key to <em>value</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%5B%5D%3F%28name%29%3AString%7CNil-instance-method" class="signature"><strong>#[]?</strong>(name) : String | Nil</a>
+        
+          <div class="summary"><p>Returns first value or <code>nil</code> for specified param <em>name</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#add%28name%2Cvalue%29-instance-method" class="signature"><strong>#add</strong>(name, value)</a>
+        
+          <div class="summary"><p>Appends new value for specified param <em>name</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#clone%3Aself-instance-method" class="signature"><strong>#clone</strong> : <span class="k">self</span></a>
+        
+          <div class="summary"><p>Returns a copy of this <code><a href="../URI/Params.html">URI::Params</a></code> instance.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#delete%28name%29%3AString-instance-method" class="signature"><strong>#delete</strong>(name) : String</a>
+        
+          <div class="summary"><p>Deletes first value for provided param <em>name</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#delete_all%28name%29%3AArray%28String%29%7CNil-instance-method" class="signature"><strong>#delete_all</strong>(name) : Array(String) | Nil</a>
+        
+          <div class="summary"><p>Deletes all values for provided param <em>name</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#dup%3Aself-instance-method" class="signature"><strong>#dup</strong> : <span class="k">self</span></a>
+        
+          <div class="summary"><p>Returns a copy of this <code><a href="../URI/Params.html">URI::Params</a></code> instance.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#each%28%26%29-instance-method" class="signature"><strong>#each</strong>(&)</a>
+        
+          <div class="summary"><p>Allows to iterate over all name-value pairs.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#empty%3F%28%2Aargs%2C%2A%2Aoptions%29-instance-method" class="signature"><strong>#empty?</strong>(*args, **options)</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if params is empty.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#empty%3F%28%2Aargs%2C%2A%2Aoptions%2C%26%29-instance-method" class="signature"><strong>#empty?</strong>(*args, **options, &)</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if params is empty.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#fetch%28name%2Cdefault%29-instance-method" class="signature"><strong>#fetch</strong>(name, default)</a>
+        
+          <div class="summary"><p>Returns first value for specified param <em>name</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#fetch%28name%2C%26%29-instance-method" class="signature"><strong>#fetch</strong>(name, &)</a>
+        
+          <div class="summary"><p>Returns first value for specified param <em>name</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#fetch_all%28name%29%3AArray%28String%29-instance-method" class="signature"><strong>#fetch_all</strong>(name) : Array(String)</a>
+        
+          <div class="summary"><p>Returns all values for specified param <em>name</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#has_key%3F%28%2Aargs%2C%2A%2Aoptions%29-instance-method" class="signature"><strong>#has_key?</strong>(*args, **options)</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if param with provided name exists.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#has_key%3F%28%2Aargs%2C%2A%2Aoptions%2C%26%29-instance-method" class="signature"><strong>#has_key?</strong>(*args, **options, &)</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if param with provided name exists.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#hash%28hasher%29-instance-method" class="signature"><strong>#hash</strong>(hasher)</a>
+        
+          <div class="summary"><p>See <code><a href="../Object.html#hash%28hasher%29-instance-method">Object#hash(hasher)</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#inspect%28io%3AIO%29-instance-method" class="signature"><strong>#inspect</strong>(io : IO)</a>
+        
+          <div class="summary"><p>Appends this struct's name and instance variables names and values to the given IO.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#merge%28params%3AURI%3A%3AParams%2C%2A%2Creplace%3ABool%3Dtrue%29%3AURI%3A%3AParams-instance-method" class="signature"><strong>#merge</strong>(params : URI::Params, *, replace : Bool = <span class="n">true</span>) : URI::Params</a>
+        
+          <div class="summary"><p>Merges <em>params</em> and self into a new instance.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#merge%21%28params%3AURI%3A%3AParams%2C%2A%2Creplace%3ABool%3Dtrue%29%3AURI%3A%3AParams-instance-method" class="signature"><strong>#merge!</strong>(params : URI::Params, *, replace : Bool = <span class="n">true</span>) : URI::Params</a>
+        
+          <div class="summary"><p>Merges <em>params</em> into self.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#set_all%28name%2Cvalues%29-instance-method" class="signature"><strong>#set_all</strong>(name, values)</a>
+        
+          <div class="summary"><p>Sets all <em>values</em> for specified param <em>name</em> at once.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_s%28io%3AIO%2C%2A%2Cspace_to_plus%3ABool%3Dtrue%29%3ANil-instance-method" class="signature"><strong>#to_s</strong>(io : IO, *, space_to_plus : Bool = <span class="n">true</span>) : Nil</a>
+        
+          <div class="summary"><p>Serializes to string representation as http url-encoded form.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_s%28%2A%2Cspace_to_plus%3ABool%3Dtrue%29-instance-method" class="signature"><strong>#to_s</strong>(*, space_to_plus : Bool = <span class="n">true</span>)</a>
+        
+          <div class="summary"><p>Serializes to string representation as http url-encoded form.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+
+  <div class="methods-inherited">
+    
+      
+
+  <h3>Instance methods inherited from module <code><a href="../Enumerable.html">Enumerable</a>({<a href="../String.html">String</a>, <a href="../String.html">String</a>})</code></h3>
+  
+  
+    <a href="../Enumerable.html#accumulate%28initial%3AU%29%3AArray%28U%29forallU-instance-method" class="tooltip">
+      <span>accumulate(initial : U) : Array(U) forall U<br/>accumulate : Array({String, String})<br/>accumulate(initial : U, &block : U, {String, String} -> U) : Array(U) forall U<br/>accumulate(&block : {String, String}, {String, String} -> {String, String}) : Array({String, String})</span>
+    accumulate</a>, 
+    
+  
+    <a href="../Enumerable.html#all%3F%28%26%3A%7BString%2CString%7D-%3E%29%3ABool-instance-method" class="tooltip">
+      <span>all?(& : {String, String} -> ) : Bool<br/>all?(pattern) : Bool<br/>all? : Bool</span>
+    all?</a>, 
+    
+  
+    <a href="../Enumerable.html#any%3F%28%26%3A%7BString%2CString%7D-%3E%29%3ABool-instance-method" class="tooltip">
+      <span>any?(& : {String, String} -> ) : Bool<br/>any?(pattern) : Bool<br/>any? : Bool</span>
+    any?</a>, 
+    
+  
+    <a href="../Enumerable.html#chunks%28%26block%3A%7BString%2CString%7D-%3EU%29forallU-instance-method" class="tooltip">
+      <span>chunks(&block : {String, String} -> U) forall U</span>
+    chunks</a>, 
+    
+  
+    <a href="../Enumerable.html#compact_map%28%26%3A%7BString%2CString%7D-%3E_%29-instance-method" class="tooltip">
+      <span>compact_map(& : {String, String} -> _)</span>
+    compact_map</a>, 
+    
+  
+    <a href="../Enumerable.html#count%28%26%3A%7BString%2CString%7D-%3E%29%3AInt32-instance-method" class="tooltip">
+      <span>count(& : {String, String} -> ) : Int32<br/>count(item) : Int32</span>
+    count</a>, 
+    
+  
+    <a href="../Enumerable.html#cycle%28n%2C%26%3A%7BString%2CString%7D-%3E%29%3ANil-instance-method" class="tooltip">
+      <span>cycle(n, & : {String, String} -> ) : Nil<br/>cycle(& : {String, String} -> ) : Nil</span>
+    cycle</a>, 
+    
+  
+    <a href="../Enumerable.html#each%28%26%3A%7BString%2CString%7D-%3E%29-instance-method" class="tooltip">
+      <span>each(& : {String, String} -> )</span>
+    each</a>, 
+    
+  
+    <a href="../Enumerable.html#each_cons%28count%3AInt%2Creuse%3Dfalse%2C%26%29-instance-method" class="tooltip">
+      <span>each_cons(count : Int, reuse = <span class="n">false</span>, &)</span>
+    each_cons</a>, 
+    
+  
+    <a href="../Enumerable.html#each_cons_pair%28%26%3A%7BString%2CString%7D%2C%7BString%2CString%7D-%3E%29%3ANil-instance-method" class="tooltip">
+      <span>each_cons_pair(& : {String, String}, {String, String} -> ) : Nil</span>
+    each_cons_pair</a>, 
+    
+  
+    <a href="../Enumerable.html#each_slice%28count%3AInt%2Creuse%3Dfalse%2C%26%29-instance-method" class="tooltip">
+      <span>each_slice(count : Int, reuse = <span class="n">false</span>, &)</span>
+    each_slice</a>, 
+    
+  
+    <a href="../Enumerable.html#each_step%28n%3AInt%2C%2A%2Coffset%3AInt%3D0%2C%26%3A%7BString%2CString%7D-%3E%29%3ANil-instance-method" class="tooltip">
+      <span>each_step(n : Int, *, offset : Int = <span class="n">0</span>, & : {String, String} -> ) : Nil</span>
+    each_step</a>, 
+    
+  
+    <a href="../Enumerable.html#each_with_index%28offset%3D0%2C%26%29-instance-method" class="tooltip">
+      <span>each_with_index(offset = <span class="n">0</span>, &)</span>
+    each_with_index</a>, 
+    
+  
+    <a href="../Enumerable.html#each_with_object%28obj%3AU%2C%26%3A%7BString%2CString%7D%2CU-%3E%29%3AUforallU-instance-method" class="tooltip">
+      <span>each_with_object(obj : U, & : {String, String}, U -> ) : U forall U</span>
+    each_with_object</a>, 
+    
+  
+    <a href="../Enumerable.html#empty%3F%3ABool-instance-method" class="tooltip">
+      <span>empty? : Bool</span>
+    empty?</a>, 
+    
+  
+    <a href="../Enumerable.html#find%28if_none%3Dnil%2C%26%3A%7BString%2CString%7D-%3E%29-instance-method" class="tooltip">
+      <span>find(if_none = <span class="n">nil</span>, & : {String, String} -> )</span>
+    find</a>, 
+    
+  
+    <a href="../Enumerable.html#find%21%28%26%3A%7BString%2CString%7D-%3E%29%3A%7BString%2CString%7D-instance-method" class="tooltip">
+      <span>find!(& : {String, String} -> ) : {String, String}</span>
+    find!</a>, 
+    
+  
+    <a href="../Enumerable.html#find_value%28if_none%3Dnil%2C%26%3A%7BString%2CString%7D-%3E%29-instance-method" class="tooltip">
+      <span>find_value(if_none = <span class="n">nil</span>, & : {String, String} -> )</span>
+    find_value</a>, 
+    
+  
+    <a href="../Enumerable.html#first%28%26%29-instance-method" class="tooltip">
+      <span>first(&)<br/>first(count : Int) : Array({String, String})<br/>first : {String, String}</span>
+    first</a>, 
+    
+  
+    <a href="../Enumerable.html#first%3F%3A%7BString%2CString%7D%7CNil-instance-method" class="tooltip">
+      <span>first? : {String, String} | Nil</span>
+    first?</a>, 
+    
+  
+    <a href="../Enumerable.html#flat_map%28%26%3A%7BString%2CString%7D-%3E_%29-instance-method" class="tooltip">
+      <span>flat_map(& : {String, String} -> _)</span>
+    flat_map</a>, 
+    
+  
+    <a href="../Enumerable.html#group_by%28%26%3A%7BString%2CString%7D-%3EU%29forallU-instance-method" class="tooltip">
+      <span>group_by(& : {String, String} -> U) forall U</span>
+    group_by</a>, 
+    
+  
+    <a href="../Enumerable.html#in_groups_of%28size%3AInt%2Cfilled_up_with%3AU%3Dnil%29forallU-instance-method" class="tooltip">
+      <span>in_groups_of(size : Int, filled_up_with : U = <span class="n">nil</span>) forall U<br/>in_groups_of(size : Int, filled_up_with : U = <span class="n">nil</span>, reuse = <span class="n">false</span>, &) forall U</span>
+    in_groups_of</a>, 
+    
+  
+    <a href="../Enumerable.html#in_slices_of%28size%3AInt%29%3AArray%28Array%28%7BString%2CString%7D%29%29-instance-method" class="tooltip">
+      <span>in_slices_of(size : Int) : Array(Array({String, String}))</span>
+    in_slices_of</a>, 
+    
+  
+    <a href="../Enumerable.html#includes%3F%28obj%29%3ABool-instance-method" class="tooltip">
+      <span>includes?(obj) : Bool</span>
+    includes?</a>, 
+    
+  
+    <a href="../Enumerable.html#index%28%26%3A%7BString%2CString%7D-%3E%29%3AInt32%7CNil-instance-method" class="tooltip">
+      <span>index(& : {String, String} -> ) : Int32 | Nil<br/>index(obj) : Int32 | Nil</span>
+    index</a>, 
+    
+  
+    <a href="../Enumerable.html#index%21%28%26%3A%7BString%2CString%7D-%3E%29%3AInt32-instance-method" class="tooltip">
+      <span>index!(& : {String, String} -> ) : Int32<br/>index!(obj) : Int32</span>
+    index!</a>, 
+    
+  
+    <a href="../Enumerable.html#index_by%28%26%3A%7BString%2CString%7D-%3EU%29%3AHash%28U%2C%7BString%2CString%7D%29forallU-instance-method" class="tooltip">
+      <span>index_by(& : {String, String} -> U) : Hash(U, {String, String}) forall U</span>
+    index_by</a>, 
+    
+  
+    <a href="../Enumerable.html#join%28io%3AIO%2Cseparator%3D%22%22%29%3ANil-instance-method" class="tooltip">
+      <span>join(io : IO, separator = <span class="s">&quot;&quot;</span>) : Nil<br/>join(separator, io : IO) : Nil<br/>join(separator = <span class="s">&quot;&quot;</span>) : String<br/>join(io : IO, separator = <span class="s">&quot;&quot;</span>, & : {String, String}, IO -> )<br/>join(separator, io : IO, &)<br/>join(separator = <span class="s">&quot;&quot;</span>, & : {String, String} -> )</span>
+    join</a>, 
+    
+  
+    <a href="../Enumerable.html#map%28%26%3A%7BString%2CString%7D-%3EU%29%3AArray%28U%29forallU-instance-method" class="tooltip">
+      <span>map(& : {String, String} -> U) : Array(U) forall U</span>
+    map</a>, 
+    
+  
+    <a href="../Enumerable.html#map_with_index%28offset%3D0%2C%26%3A%7BString%2CString%7D%2CInt32-%3EU%29%3AArray%28U%29forallU-instance-method" class="tooltip">
+      <span>map_with_index(offset = <span class="n">0</span>, & : {String, String}, Int32 -> U) : Array(U) forall U</span>
+    map_with_index</a>, 
+    
+  
+    <a href="../Enumerable.html#max%28count%3AInt%29%3AArray%28%7BString%2CString%7D%29-instance-method" class="tooltip">
+      <span>max(count : Int) : Array({String, String})<br/>max : {String, String}</span>
+    max</a>, 
+    
+  
+    <a href="../Enumerable.html#max%3F%3A%7BString%2CString%7D%7CNil-instance-method" class="tooltip">
+      <span>max? : {String, String} | Nil</span>
+    max?</a>, 
+    
+  
+    <a href="../Enumerable.html#max_by%28%26%3A%7BString%2CString%7D-%3EU%29%3A%7BString%2CString%7DforallU-instance-method" class="tooltip">
+      <span>max_by(& : {String, String} -> U) : {String, String} forall U</span>
+    max_by</a>, 
+    
+  
+    <a href="../Enumerable.html#max_by%3F%28%26%3A%7BString%2CString%7D-%3EU%29%3A%7BString%2CString%7D%7CNilforallU-instance-method" class="tooltip">
+      <span>max_by?(& : {String, String} -> U) : {String, String} | Nil forall U</span>
+    max_by?</a>, 
+    
+  
+    <a href="../Enumerable.html#max_of%28%26%3A%7BString%2CString%7D-%3EU%29%3AUforallU-instance-method" class="tooltip">
+      <span>max_of(& : {String, String} -> U) : U forall U</span>
+    max_of</a>, 
+    
+  
+    <a href="../Enumerable.html#max_of%3F%28%26%3A%7BString%2CString%7D-%3EU%29%3AU%7CNilforallU-instance-method" class="tooltip">
+      <span>max_of?(& : {String, String} -> U) : U | Nil forall U</span>
+    max_of?</a>, 
+    
+  
+    <a href="../Enumerable.html#min%28count%3AInt%29%3AArray%28%7BString%2CString%7D%29-instance-method" class="tooltip">
+      <span>min(count : Int) : Array({String, String})<br/>min : {String, String}</span>
+    min</a>, 
+    
+  
+    <a href="../Enumerable.html#min%3F%3A%7BString%2CString%7D%7CNil-instance-method" class="tooltip">
+      <span>min? : {String, String} | Nil</span>
+    min?</a>, 
+    
+  
+    <a href="../Enumerable.html#min_by%28%26%3A%7BString%2CString%7D-%3EU%29%3A%7BString%2CString%7DforallU-instance-method" class="tooltip">
+      <span>min_by(& : {String, String} -> U) : {String, String} forall U</span>
+    min_by</a>, 
+    
+  
+    <a href="../Enumerable.html#min_by%3F%28%26%3A%7BString%2CString%7D-%3EU%29%3A%7BString%2CString%7D%7CNilforallU-instance-method" class="tooltip">
+      <span>min_by?(& : {String, String} -> U) : {String, String} | Nil forall U</span>
+    min_by?</a>, 
+    
+  
+    <a href="../Enumerable.html#min_of%28%26%3A%7BString%2CString%7D-%3EU%29%3AUforallU-instance-method" class="tooltip">
+      <span>min_of(& : {String, String} -> U) : U forall U</span>
+    min_of</a>, 
+    
+  
+    <a href="../Enumerable.html#min_of%3F%28%26%3A%7BString%2CString%7D-%3EU%29%3AU%7CNilforallU-instance-method" class="tooltip">
+      <span>min_of?(& : {String, String} -> U) : U | Nil forall U</span>
+    min_of?</a>, 
+    
+  
+    <a href="../Enumerable.html#minmax%3ATuple%28%7BString%2CString%7D%2C%7BString%2CString%7D%29-instance-method" class="tooltip">
+      <span>minmax : Tuple({String, String}, {String, String})</span>
+    minmax</a>, 
+    
+  
+    <a href="../Enumerable.html#minmax%3F%3ATuple%28%7BString%2CString%7D%7CNil%2C%7BString%2CString%7D%7CNil%29-instance-method" class="tooltip">
+      <span>minmax? : Tuple({String, String} | Nil, {String, String} | Nil)</span>
+    minmax?</a>, 
+    
+  
+    <a href="../Enumerable.html#minmax_by%28%26%3A%7BString%2CString%7D-%3EU%29%3ATuple%28%7BString%2CString%7D%2C%7BString%2CString%7D%29forallU-instance-method" class="tooltip">
+      <span>minmax_by(& : {String, String} -> U) : Tuple({String, String}, {String, String}) forall U</span>
+    minmax_by</a>, 
+    
+  
+    <a href="../Enumerable.html#minmax_by%3F%28%26%3A%7BString%2CString%7D-%3EU%29%3ATuple%28%7BString%2CString%7D%2C%7BString%2CString%7D%29%7CTuple%28Nil%2CNil%29forallU-instance-method" class="tooltip">
+      <span>minmax_by?(& : {String, String} -> U) : Tuple({String, String}, {String, String}) | Tuple(Nil, Nil) forall U</span>
+    minmax_by?</a>, 
+    
+  
+    <a href="../Enumerable.html#minmax_of%28%26%3A%7BString%2CString%7D-%3EU%29%3ATuple%28U%2CU%29forallU-instance-method" class="tooltip">
+      <span>minmax_of(& : {String, String} -> U) : Tuple(U, U) forall U</span>
+    minmax_of</a>, 
+    
+  
+    <a href="../Enumerable.html#minmax_of%3F%28%26%3A%7BString%2CString%7D-%3EU%29%3ATuple%28U%2CU%29%7CTuple%28Nil%2CNil%29forallU-instance-method" class="tooltip">
+      <span>minmax_of?(& : {String, String} -> U) : Tuple(U, U) | Tuple(Nil, Nil) forall U</span>
+    minmax_of?</a>, 
+    
+  
+    <a href="../Enumerable.html#none%3F%28%26%3A%7BString%2CString%7D-%3E%29%3ABool-instance-method" class="tooltip">
+      <span>none?(& : {String, String} -> ) : Bool<br/>none?(pattern) : Bool<br/>none? : Bool</span>
+    none?</a>, 
+    
+  
+    <a href="../Enumerable.html#one%3F%28%26%3A%7BString%2CString%7D-%3E%29%3ABool-instance-method" class="tooltip">
+      <span>one?(& : {String, String} -> ) : Bool<br/>one?(pattern) : Bool<br/>one? : Bool</span>
+    one?</a>, 
+    
+  
+    <a href="../Enumerable.html#partition%28%26%3A%7BString%2CString%7D-%3E%29%3ATuple%28Array%28%7BString%2CString%7D%29%2CArray%28%7BString%2CString%7D%29%29-instance-method" class="tooltip">
+      <span>partition(& : {String, String} -> ) : Tuple(Array({String, String}), Array({String, String}))<br/>partition(type : <span class="t">U</span>.<span class="k">class</span>) forall U</span>
+    partition</a>, 
+    
+  
+    <a href="../Enumerable.html#present%3F%3ABool-instance-method" class="tooltip">
+      <span>present? : Bool</span>
+    present?</a>, 
+    
+  
+    <a href="../Enumerable.html#product%28initial%3ANumber%29-instance-method" class="tooltip">
+      <span>product(initial : Number)<br/>product<br/>product(initial : Number, & : {String, String} -> )<br/>product(& : {String, String} -> _)</span>
+    product</a>, 
+    
+  
+    <a href="../Enumerable.html#reduce%28memo%2C%26%29-instance-method" class="tooltip">
+      <span>reduce(memo, &)<br/>reduce(&)</span>
+    reduce</a>, 
+    
+  
+    <a href="../Enumerable.html#reduce%3F%28%26%29-instance-method" class="tooltip">
+      <span>reduce?(&)</span>
+    reduce?</a>, 
+    
+  
+    <a href="../Enumerable.html#reject%28%26%3A%7BString%2CString%7D-%3E%29-instance-method" class="tooltip">
+      <span>reject(& : {String, String} -> )<br/>reject(type : <span class="t">U</span>.<span class="k">class</span>) forall U<br/>reject(pattern) : Array({String, String})</span>
+    reject</a>, 
+    
+  
+    <a href="../Enumerable.html#sample%28n%3AInt%2Crandom%3ARandom%3DRandom%3A%3ADEFAULT%29%3AArray%28%7BString%2CString%7D%29-instance-method" class="tooltip">
+      <span>sample(n : Int, random : Random = <span class="t">Random</span><span class="t">::</span><span class="t">DEFAULT</span>) : Array({String, String})<br/>sample(random : Random = <span class="t">Random</span><span class="t">::</span><span class="t">DEFAULT</span>) : {String, String}</span>
+    sample</a>, 
+    
+  
+    <a href="../Enumerable.html#select%28%26%3A%7BString%2CString%7D-%3E%29-instance-method" class="tooltip">
+      <span>select(& : {String, String} -> )<br/>select(type : <span class="t">U</span>.<span class="k">class</span>) : Array(U) forall U<br/>select(pattern) : Array({String, String})</span>
+    select</a>, 
+    
+  
+    <a href="../Enumerable.html#size%3AInt32-instance-method" class="tooltip">
+      <span>size : Int32</span>
+    size</a>, 
+    
+  
+    <a href="../Enumerable.html#skip%28count%3AInt%29-instance-method" class="tooltip">
+      <span>skip(count : Int)</span>
+    skip</a>, 
+    
+  
+    <a href="../Enumerable.html#skip_while%28%26%3A%7BString%2CString%7D-%3E%29%3AArray%28%7BString%2CString%7D%29-instance-method" class="tooltip">
+      <span>skip_while(& : {String, String} -> ) : Array({String, String})</span>
+    skip_while</a>, 
+    
+  
+    <a href="../Enumerable.html#sum%28initial%29-instance-method" class="tooltip">
+      <span>sum(initial)<br/>sum<br/>sum(initial, & : {String, String} -> )<br/>sum(& : {String, String} -> )</span>
+    sum</a>, 
+    
+  
+    <a href="../Enumerable.html#take_while%28%26%3A%7BString%2CString%7D-%3E%29%3AArray%28%7BString%2CString%7D%29-instance-method" class="tooltip">
+      <span>take_while(& : {String, String} -> ) : Array({String, String})</span>
+    take_while</a>, 
+    
+  
+    <a href="../Enumerable.html#tally%28hash%29-instance-method" class="tooltip">
+      <span>tally(hash)<br/>tally : Hash({String, String}, Int32)</span>
+    tally</a>, 
+    
+  
+    <a href="../Enumerable.html#tally_by%28hash%2C%26%29-instance-method" class="tooltip">
+      <span>tally_by(hash, &)<br/>tally_by(&block : {String, String} -> U) : Hash(U, Int32) forall U</span>
+    tally_by</a>, 
+    
+  
+    <a href="../Enumerable.html#to_a%3AArray%28%7BString%2CString%7D%29-instance-method" class="tooltip">
+      <span>to_a : Array({String, String})<br/>to_a(& : {String, String} -> U) : Array(U) forall U</span>
+    to_a</a>, 
+    
+  
+    <a href="../Enumerable.html#to_h-instance-method" class="tooltip">
+      <span>to_h<br/>to_h(& : {String, String} -> Tuple(K, V)) forall K, V</span>
+    to_h</a>, 
+    
+  
+    <a href="../Enumerable.html#to_set%3ASet%28%7BString%2CString%7D%29-instance-method" class="tooltip">
+      <span>to_set : Set({String, String})<br/>to_set(&block : {String, String} -> U) : Set(U) forall U</span>
+    to_set</a>, 
+    
+  
+    <a href="../Enumerable.html#zip%28%2Aothers%3AIndexable%7CIterable%7CIterator%2C%26%29-instance-method" class="tooltip">
+      <span>zip(*others : Indexable | Iterable | Iterator, &)<br/>zip(*others : Indexable | Iterable | Iterator)</span>
+    zip</a>, 
+    
+  
+    <a href="../Enumerable.html#zip%3F%28%2Aothers%3AIndexable%7CIterable%7CIterator%2C%26%29-instance-method" class="tooltip">
+      <span>zip?(*others : Indexable | Iterable | Iterator, &)<br/>zip?(*others : Indexable | Iterable | Iterator)</span>
+    zip?</a>
+    
+  
+
+
+      
+
+
+      
+
+  <h3>Class methods inherited from module <code><a href="../Enumerable.html">Enumerable</a>({<a href="../String.html">String</a>, <a href="../String.html">String</a>})</code></h3>
+  
+  
+    <a href="../Enumerable.html#element_type%28x%29-class-method" class="tooltip">
+      <span>element_type(x)</span>
+    element_type</a>
+    
+  
+
+
+      
+
+
+    
+      
+
+  <h3>Instance methods inherited from struct <code><a href="../Struct.html">Struct</a></code></h3>
+  
+  
+    <a href="../Struct.html#%3D%3D%28other%29%3ABool-instance-method" class="tooltip">
+      <span>==(other) : Bool</span>
+    ==</a>, 
+    
+  
+    <a href="../Struct.html#hash%28hasher%29-instance-method" class="tooltip">
+      <span>hash(hasher)</span>
+    hash</a>, 
+    
+  
+    <a href="../Struct.html#inspect%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>inspect(io : IO) : Nil</span>
+    inspect</a>, 
+    
+  
+    <a href="../Struct.html#pretty_print%28pp%29%3ANil-instance-method" class="tooltip">
+      <span>pretty_print(pp) : Nil</span>
+    pretty_print</a>, 
+    
+  
+    <a href="../Struct.html#to_s%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_s(io : IO) : Nil</span>
+    to_s</a>
+    
+  
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+      
+
+  <h3>Instance methods inherited from struct <code><a href="../Value.html">Value</a></code></h3>
+  
+  
+    <a href="../Value.html#%3D%3D%28other%3AJSON%3A%3AAny%29-instance-method" class="tooltip">
+      <span>==(other : JSON::Any)<br/>==(other : YAML::Any)<br/>==(other)</span>
+    ==</a>, 
+    
+  
+    <a href="../Value.html#dup-instance-method" class="tooltip">
+      <span>dup</span>
+    dup</a>
+    
+  
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+      
+
+  <h3>Instance methods inherited from class <code><a href="../Object.html">Object</a></code></h3>
+  
+  
+    <a href="../Object.html#%21%3ABool-instance-method" class="tooltip">
+      <span>! : Bool</span>
+    !</a>, 
+    
+  
+    <a href="../Object.html#%21%3D%28other%29-instance-method" class="tooltip">
+      <span>!=(other)</span>
+    !=</a>, 
+    
+  
+    <a href="../Object.html#%21~%28other%29-instance-method" class="tooltip">
+      <span>!~(other)</span>
+    !~</a>, 
+    
+  
+    <a href="../Object.html#%3D%3D%28other%29-instance-method" class="tooltip">
+      <span>==(other)</span>
+    ==</a>, 
+    
+  
+    <a href="../Object.html#%3D%3D%3D%28other%3AJSON%3A%3AAny%29-instance-method" class="tooltip">
+      <span>===(other : JSON::Any)<br/>===(other : YAML::Any)<br/>===(other)</span>
+    ===</a>, 
+    
+  
+    <a href="../Object.html#%3D~%28other%29-instance-method" class="tooltip">
+      <span>=~(other)</span>
+    =~</a>, 
+    
+  
+    <a href="../Object.html#as%28type%3AClass%29-instance-method" class="tooltip">
+      <span>as(type : Class)</span>
+    as</a>, 
+    
+  
+    <a href="../Object.html#as%3F%28type%3AClass%29-instance-method" class="tooltip">
+      <span>as?(type : Class)</span>
+    as?</a>, 
+    
+  
+    <a href="../Object.html#class-instance-method" class="tooltip">
+      <span>class</span>
+    class</a>, 
+    
+  
+    <a href="../Object.html#dup-instance-method" class="tooltip">
+      <span>dup</span>
+    dup</a>, 
+    
+  
+    <a href="../Object.html#hash%28hasher%29-instance-method" class="tooltip">
+      <span>hash(hasher)<br/>hash</span>
+    hash</a>, 
+    
+  
+    <a href="../Object.html#in%3F%28collection%3AObject%29%3ABool-instance-method" class="tooltip">
+      <span>in?(collection : Object) : Bool<br/>in?(*values : Object) : Bool</span>
+    in?</a>, 
+    
+  
+    <a href="../Object.html#inspect%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>inspect(io : IO) : Nil<br/>inspect : String</span>
+    inspect</a>, 
+    
+  
+    <a href="../Object.html#is_a%3F%28type%3AClass%29%3ABool-instance-method" class="tooltip">
+      <span>is_a?(type : Class) : Bool</span>
+    is_a?</a>, 
+    
+  
+    <a href="../Object.html#itself-instance-method" class="tooltip">
+      <span>itself</span>
+    itself</a>, 
+    
+  
+    <a href="../Object.html#nil%3F%3ABool-instance-method" class="tooltip">
+      <span>nil? : Bool</span>
+    nil?</a>, 
+    
+  
+    <a href="../Object.html#not_nil%21%28message%29-instance-method" class="tooltip">
+      <span>not_nil!(message)<br/>not_nil!</span>
+    not_nil!</a>, 
+    
+  
+    <a href="../Object.html#pretty_inspect%28width%3D79%2Cnewline%3D%22%5Cn%22%2Cindent%3D0%29%3AString-instance-method" class="tooltip">
+      <span>pretty_inspect(width = <span class="n">79</span>, newline = <span class="s">&quot;\n&quot;</span>, indent = <span class="n">0</span>) : String</span>
+    pretty_inspect</a>, 
+    
+  
+    <a href="../Object.html#pretty_print%28pp%3APrettyPrint%29%3ANil-instance-method" class="tooltip">
+      <span>pretty_print(pp : PrettyPrint) : Nil</span>
+    pretty_print</a>, 
+    
+  
+    <a href="../Object.html#responds_to%3F%28name%3ASymbol%29%3ABool-instance-method" class="tooltip">
+      <span>responds_to?(name : Symbol) : Bool</span>
+    responds_to?</a>, 
+    
+  
+    <a href="../Object.html#tap%28%26%29-instance-method" class="tooltip">
+      <span>tap(&)</span>
+    tap</a>, 
+    
+  
+    <a href="../Object.html#to_json%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_json(io : IO) : Nil<br/>to_json : String</span>
+    to_json</a>, 
+    
+  
+    <a href="../Object.html#to_pretty_json%28indent%3AString%3D%22%22%29%3AString-instance-method" class="tooltip">
+      <span>to_pretty_json(indent : String = <span class="s">&quot;  &quot;</span>) : String<br/>to_pretty_json(io : IO, indent : String = <span class="s">&quot;  &quot;</span>) : Nil</span>
+    to_pretty_json</a>, 
+    
+  
+    <a href="../Object.html#to_s%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_s(io : IO) : Nil<br/>to_s : String</span>
+    to_s</a>, 
+    
+  
+    <a href="../Object.html#to_yaml%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_yaml(io : IO) : Nil<br/>to_yaml : String</span>
+    to_yaml</a>, 
+    
+  
+    <a href="../Object.html#try%28%26%29-instance-method" class="tooltip">
+      <span>try(&)</span>
+    try</a>, 
+    
+  
+    <a href="../Object.html#unsafe_as%28type%3AT.class%29forallT-instance-method" class="tooltip">
+      <span>unsafe_as(type : <span class="t">T</span>.<span class="k">class</span>) forall T</span>
+    unsafe_as</a>
+    
+  
+
+
+      
+
+
+      
+
+  <h3>Class methods inherited from class <code><a href="../Object.html">Object</a></code></h3>
+  
+  
+    <a href="../Object.html#from_json%28string_or_io%2Croot%3AString%29-class-method" class="tooltip">
+      <span>from_json(string_or_io, root : String)<br/>from_json(string_or_io)</span>
+    from_json</a>, 
+    
+  
+    <a href="../Object.html#from_yaml%28string_or_io%3AString%7CIO%29-class-method" class="tooltip">
+      <span>from_yaml(string_or_io : String | IO)</span>
+    from_yaml</a>
+    
+  
+
+
+      
+
+  <h3>Macros inherited from class <code><a href="../Object.html">Object</a></code></h3>
+  
+  
+    <a href="../Object.html#class_getter%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_getter(*names, &block)</span>
+    class_getter</a>, 
+    
+  
+    <a href="../Object.html#class_getter%21%28%2Anames%29-macro" class="tooltip">
+      <span>class_getter!(*names)</span>
+    class_getter!</a>, 
+    
+  
+    <a href="../Object.html#class_getter%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_getter?(*names, &block)</span>
+    class_getter?</a>, 
+    
+  
+    <a href="../Object.html#class_property%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_property(*names, &block)</span>
+    class_property</a>, 
+    
+  
+    <a href="../Object.html#class_property%21%28%2Anames%29-macro" class="tooltip">
+      <span>class_property!(*names)</span>
+    class_property!</a>, 
+    
+  
+    <a href="../Object.html#class_property%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_property?(*names, &block)</span>
+    class_property?</a>, 
+    
+  
+    <a href="../Object.html#class_setter%28%2Anames%29-macro" class="tooltip">
+      <span>class_setter(*names)</span>
+    class_setter</a>, 
+    
+  
+    <a href="../Object.html#def_clone-macro" class="tooltip">
+      <span>def_clone</span>
+    def_clone</a>, 
+    
+  
+    <a href="../Object.html#def_equals%28%2Afields%29-macro" class="tooltip">
+      <span>def_equals(*fields)</span>
+    def_equals</a>, 
+    
+  
+    <a href="../Object.html#def_equals_and_hash%28%2Afields%29-macro" class="tooltip">
+      <span>def_equals_and_hash(*fields)</span>
+    def_equals_and_hash</a>, 
+    
+  
+    <a href="../Object.html#def_hash%28%2Afields%29-macro" class="tooltip">
+      <span>def_hash(*fields)</span>
+    def_hash</a>, 
+    
+  
+    <a href="../Object.html#delegate%28%2Amethods%2Ctoobject%29-macro" class="tooltip">
+      <span>delegate(*methods, to object)</span>
+    delegate</a>, 
+    
+  
+    <a href="../Object.html#forward_missing_to%28delegate%29-macro" class="tooltip">
+      <span>forward_missing_to(delegate)</span>
+    forward_missing_to</a>, 
+    
+  
+    <a href="../Object.html#getter%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>getter(*names, &block)</span>
+    getter</a>, 
+    
+  
+    <a href="../Object.html#getter%21%28%2Anames%29-macro" class="tooltip">
+      <span>getter!(*names)</span>
+    getter!</a>, 
+    
+  
+    <a href="../Object.html#getter%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>getter?(*names, &block)</span>
+    getter?</a>, 
+    
+  
+    <a href="../Object.html#property%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>property(*names, &block)</span>
+    property</a>, 
+    
+  
+    <a href="../Object.html#property%21%28%2Anames%29-macro" class="tooltip">
+      <span>property!(*names)</span>
+    property!</a>, 
+    
+  
+    <a href="../Object.html#property%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>property?(*names, &block)</span>
+    property?</a>, 
+    
+  
+    <a href="../Object.html#setter%28%2Anames%29-macro" class="tooltip">
+      <span>setter(*names)</span>
+    setter</a>
+    
+  
+
+
+    
+  </div>
+
+  
+  <h2>
+    <a id="constructor-detail" class="anchor" href="#constructor-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructor Detail
+  </h2>
+  
+    <div class="entry-detail" id="new(raw_params:Hash(String,Array(String)))-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(raw_params : <a href="../Hash.html">Hash</a>(<a href="../String.html">String</a>, <a href="../Array.html">Array</a>(<a href="../String.html">String</a>)))
+
+        <a class="method-permalink" href="#new%28raw_params%3AHash%28String%2CArray%28String%29%29%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri/params.cr#L192" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="new-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>
+
+        <a class="method-permalink" href="#new-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns an empty <code><a href="../URI/Params.html">URI::Params</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri/params.cr#L188" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="parse(query:String):self-class-method">
+      <div class="signature">
+        
+        def self.<strong>parse</strong>(query : <a href="../String.html">String</a>) : <span class="k">self</span>
+
+        <a class="method-permalink" href="#parse%28query%3AString%29%3Aself-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Parses an URI query string into a <code><a href="../URI/Params.html">URI::Params</a></code></p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;uri/params&quot;</span>
+
+<span class="t">URI</span><span class="t">::</span><span class="t">Params</span>.parse(<span class="s">&quot;foo=bar&amp;foo=baz&amp;qux=zoo&quot;</span>)
+<span class="c"># =&gt; #&lt;URI::Params @raw_params = {&quot;foo&quot; =&gt; [&quot;bar&quot;, &quot;baz&quot;], &quot;qux&quot; =&gt; [&quot;zoo&quot;]}&gt;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri/params.cr#L16" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+  
+  <h2>
+    <a id="class-method-detail" class="anchor" href="#class-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Class Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="build(io:IO,*,space_to_plus:Bool=true,&amp;:Builder-&gt;):Nil-class-method">
+      <div class="signature">
+        
+        def self.<strong>build</strong>(io : <a href="../IO.html">IO</a>, *, space_to_plus : <a href="../Bool.html">Bool</a> = <span class="n">true</span>, & : <a href="../URI/Params/Builder.html">Builder</a> -> ) : <a href="../Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#build%28io%3AIO%2C%2A%2Cspace_to_plus%3ABool%3Dtrue%2C%26%3ABuilder-%3E%29%3ANil-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Builds an url-encoded URI form/query.</p>
+<p>The yielded object has an <code><a href="../URI/Params.html#add%28name%2Cvalue%29-instance-method">#add</a></code> method that accepts two arguments,
+a key (<code><a href="../String.html">String</a></code>) and a value (<code><a href="../String.html">String</a></code> or <code><a href="../Nil.html">Nil</a></code>).
+Keys and values are escaped using <code><a href="../URI.html#encode_www_form%28string%3AString%2Cio%3AIO%2C%2A%2Cspace_to_plus%3ABool%3Dtrue%29%3ANil-class-method">URI.encode_www_form</a></code>.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;uri/params&quot;</span>
+
+params <span class="o">=</span> <span class="t">URI</span><span class="t">::</span><span class="t">Params</span>.build <span class="k">do</span> <span class="o">|</span>form<span class="o">|</span>
+  form.add <span class="s">&quot;color&quot;</span>, <span class="s">&quot;black&quot;</span>
+  form.add <span class="s">&quot;name&quot;</span>, <span class="s">&quot;crystal&quot;</span>
+  form.add <span class="s">&quot;year&quot;</span>, <span class="s">&quot;2012 - today&quot;</span>
+<span class="k">end</span>
+params <span class="c"># =&gt; &quot;color=black&amp;name=crystal&amp;year=2012+-+today&quot;</span></code></pre>
+<p>By default spaces are outputted as <code>+</code>.
+If <em>space_to_plus</em> is <code>false</code> then they are outputted as <code>%20</code>:</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;uri/params&quot;</span>
+
+params <span class="o">=</span> <span class="t">URI</span><span class="t">::</span><span class="t">Params</span>.build(space_to_plus: <span class="n">false</span>) <span class="k">do</span> <span class="o">|</span>form<span class="o">|</span>
+  form.add <span class="s">&quot;year&quot;</span>, <span class="s">&quot;2012 - today&quot;</span>
+<span class="k">end</span>
+params <span class="c"># =&gt; &quot;year=2012%20-%20today&quot;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri/params.cr#L181" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="build(*,space_to_plus:Bool=true,&amp;block:Builder-&gt;):String-class-method">
+      <div class="signature">
+        
+        def self.<strong>build</strong>(*, space_to_plus : <a href="../Bool.html">Bool</a> = <span class="n">true</span>, &block : <a href="../URI/Params/Builder.html">Builder</a> -> ) : <a href="../String.html">String</a>
+
+        <a class="method-permalink" href="#build%28%2A%2Cspace_to_plus%3ABool%3Dtrue%2C%26block%3ABuilder-%3E%29%3AString-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Builds an url-encoded URI form/query.</p>
+<p>The yielded object has an <code><a href="../URI/Params.html#add%28name%2Cvalue%29-instance-method">#add</a></code> method that accepts two arguments,
+a key (<code><a href="../String.html">String</a></code>) and a value (<code><a href="../String.html">String</a></code> or <code><a href="../Nil.html">Nil</a></code>).
+Keys and values are escaped using <code><a href="../URI.html#encode_www_form%28string%3AString%2Cio%3AIO%2C%2A%2Cspace_to_plus%3ABool%3Dtrue%29%3ANil-class-method">URI.encode_www_form</a></code>.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;uri/params&quot;</span>
+
+params <span class="o">=</span> <span class="t">URI</span><span class="t">::</span><span class="t">Params</span>.build <span class="k">do</span> <span class="o">|</span>form<span class="o">|</span>
+  form.add <span class="s">&quot;color&quot;</span>, <span class="s">&quot;black&quot;</span>
+  form.add <span class="s">&quot;name&quot;</span>, <span class="s">&quot;crystal&quot;</span>
+  form.add <span class="s">&quot;year&quot;</span>, <span class="s">&quot;2012 - today&quot;</span>
+<span class="k">end</span>
+params <span class="c"># =&gt; &quot;color=black&amp;name=crystal&amp;year=2012+-+today&quot;</span></code></pre>
+<p>By default spaces are outputted as <code>+</code>.
+If <em>space_to_plus</em> is <code>false</code> then they are outputted as <code>%20</code>:</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;uri/params&quot;</span>
+
+params <span class="o">=</span> <span class="t">URI</span><span class="t">::</span><span class="t">Params</span>.build(space_to_plus: <span class="n">false</span>) <span class="k">do</span> <span class="o">|</span>form<span class="o">|</span>
+  form.add <span class="s">&quot;year&quot;</span>, <span class="s">&quot;2012 - today&quot;</span>
+<span class="k">end</span>
+params <span class="c"># =&gt; &quot;year=2012%20-%20today&quot;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri/params.cr#L174" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="encode(io:IO,hash:Hash(String,String|Array(String))):Nil-class-method">
+      <div class="signature">
+        
+        def self.<strong>encode</strong>(io : <a href="../IO.html">IO</a>, hash : <a href="../Hash.html">Hash</a>(<a href="../String.html">String</a>, <a href="../String.html">String</a> | <a href="../Array.html">Array</a>(<a href="../String.html">String</a>))) : <a href="../Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#encode%28io%3AIO%2Chash%3AHash%28String%2CString%7CArray%28String%29%29%29%3ANil-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Appends the given key value pairs as a url-encoded URI form/query to the given <code>io</code>.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;uri/params&quot;</span>
+
+io <span class="o">=</span> <span class="t">IO</span><span class="t">::</span><span class="t">Memory</span>.new
+<span class="t">URI</span><span class="t">::</span><span class="t">Params</span>.encode(io, {<span class="s">&quot;foo&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;bar&quot;</span>, <span class="s">&quot;baz&quot;</span> <span class="o">=&gt;</span> [<span class="s">&quot;quux&quot;</span>, <span class="s">&quot;quuz&quot;</span>]})
+io.to_s <span class="c"># =&gt; &quot;foo=bar&amp;baz=quux&amp;baz=quuz&quot;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri/params.cr#L106" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="encode(io:IO,named_tuple:NamedTuple):Nil-class-method">
+      <div class="signature">
+        
+        def self.<strong>encode</strong>(io : <a href="../IO.html">IO</a>, named_tuple : <a href="../NamedTuple.html">NamedTuple</a>) : <a href="../Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#encode%28io%3AIO%2Cnamed_tuple%3ANamedTuple%29%3ANil-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Appends the given key value pairs as a url-encoded URI form/query to the given <code>io</code>.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;uri/params&quot;</span>
+
+io <span class="o">=</span> <span class="t">IO</span><span class="t">::</span><span class="t">Memory</span>.new
+<span class="t">URI</span><span class="t">::</span><span class="t">Params</span>.encode(io, {foo: <span class="s">&quot;bar&quot;</span>, baz: [<span class="s">&quot;quux&quot;</span>, <span class="s">&quot;quuz&quot;</span>]})
+io.to_s <span class="c"># =&gt; &quot;foo=bar&amp;baz=quux&amp;baz=quuz&quot;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri/params.cr#L138" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="encode(hash:Hash(String,String|Array(String))):String-class-method">
+      <div class="signature">
+        
+        def self.<strong>encode</strong>(hash : <a href="../Hash.html">Hash</a>(<a href="../String.html">String</a>, <a href="../String.html">String</a> | <a href="../Array.html">Array</a>(<a href="../String.html">String</a>))) : <a href="../String.html">String</a>
+
+        <a class="method-permalink" href="#encode%28hash%3AHash%28String%2CString%7CArray%28String%29%29%29%3AString-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the given key value pairs as a url-encoded URI form/query.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;uri/params&quot;</span>
+
+<span class="t">URI</span><span class="t">::</span><span class="t">Params</span>.encode({<span class="s">&quot;foo&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;bar&quot;</span>, <span class="s">&quot;baz&quot;</span> <span class="o">=&gt;</span> [<span class="s">&quot;quux&quot;</span>, <span class="s">&quot;quuz&quot;</span>]}) <span class="c"># =&gt; &quot;foo=bar&amp;baz=quux&amp;baz=quuz&quot;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri/params.cr#L89" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="encode(named_tuple:NamedTuple):String-class-method">
+      <div class="signature">
+        
+        def self.<strong>encode</strong>(named_tuple : <a href="../NamedTuple.html">NamedTuple</a>) : <a href="../String.html">String</a>
+
+        <a class="method-permalink" href="#encode%28named_tuple%3ANamedTuple%29%3AString-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the given key value pairs as a url-encoded URI form/query.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;uri/params&quot;</span>
+
+<span class="t">URI</span><span class="t">::</span><span class="t">Params</span>.encode({foo: <span class="s">&quot;bar&quot;</span>, baz: [<span class="s">&quot;quux&quot;</span>, <span class="s">&quot;quuz&quot;</span>]}) <span class="c"># =&gt; &quot;foo=bar&amp;baz=quux&amp;baz=quuz&quot;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri/params.cr#L121" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="parse(query:String,&amp;)-class-method">
+      <div class="signature">
+        
+        def self.<strong>parse</strong>(query : <a href="../String.html">String</a>, &)
+
+        <a class="method-permalink" href="#parse%28query%3AString%2C%26%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Parses an URI query and yields each key-value pair.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;uri/params&quot;</span>
+
+query <span class="o">=</span> <span class="s">&quot;foo=bar&amp;foo=baz&amp;qux=zoo&quot;</span>
+<span class="t">URI</span><span class="t">::</span><span class="t">Params</span>.parse(query) <span class="k">do</span> <span class="o">|</span>key, value<span class="o">|</span>
+  <span class="c"># ...</span>
+<span class="k">end</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri/params.cr#L34" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+  
+
+  
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="==(other:self)-instance-method">
+      <div class="signature">
+        
+        def <strong>==</strong>(other : <span class="k">self</span>)
+
+        <a class="method-permalink" href="#%3D%3D%28other%3Aself%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="[](name):String-instance-method">
+      <div class="signature">
+        
+        def <strong>[]</strong>(name) : <a href="../String.html">String</a>
+
+        <a class="method-permalink" href="#%5B%5D%28name%29%3AString-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns first value for specified param name.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;uri/params&quot;</span>
+
+params <span class="o">=</span> <span class="t">URI</span><span class="t">::</span><span class="t">Params</span>.parse(<span class="s">&quot;email=john@example.org&quot;</span>)
+params[<span class="s">&quot;email&quot;</span>]              <span class="c"># =&gt; &quot;john@example.org&quot;</span>
+params[<span class="s">&quot;non_existent_param&quot;</span>] <span class="c"># KeyError</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri/params.cr#L243" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="[]=(name,value:String|Array(String))-instance-method">
+      <div class="signature">
+        
+        def <strong>[]=</strong>(name, value : <a href="../String.html">String</a> | <a href="../Array.html">Array</a>(<a href="../String.html">String</a>))
+
+        <a class="method-permalink" href="#%5B%5D%3D%28name%2Cvalue%3AString%7CArray%28String%29%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Sets the <em>name</em> key to <em>value</em>.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;uri/params&quot;</span>
+
+params <span class="o">=</span> <span class="t">URI</span><span class="t">::</span><span class="t">Params</span>{<span class="s">&quot;a&quot;</span> <span class="o">=&gt;</span> [<span class="s">&quot;b&quot;</span>, <span class="s">&quot;c&quot;</span>]}
+params[<span class="s">&quot;a&quot;</span>] <span class="o">=</span> <span class="s">&quot;d&quot;</span>
+params[<span class="s">&quot;a&quot;</span>]           <span class="c"># =&gt; &quot;d&quot;</span>
+params.fetch_all(<span class="s">&quot;a&quot;</span>) <span class="c"># =&gt; [&quot;d&quot;]</span>
+
+params[<span class="s">&quot;a&quot;</span>] <span class="o">=</span> [<span class="s">&quot;e&quot;</span>, <span class="s">&quot;f&quot;</span>]
+params[<span class="s">&quot;a&quot;</span>]           <span class="c"># =&gt; &quot;e&quot;</span>
+params.fetch_all(<span class="s">&quot;a&quot;</span>) <span class="c"># =&gt; [&quot;e&quot;, &quot;f&quot;]</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri/params.cr#L287" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="[]?(name):String|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>[]?</strong>(name) : <a href="../String.html">String</a> | <a href="../Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#%5B%5D%3F%28name%29%3AString%7CNil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns first value or <code>nil</code> for specified param <em>name</em>.</p>
+<pre><code class="language-crystal">params[<span class="s">&quot;email&quot;</span>]?              <span class="c"># =&gt; &quot;john@example.org&quot;</span>
+params[<span class="s">&quot;non_existent_param&quot;</span>]? <span class="c"># nil</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri/params.cr#L253" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="add(name,value)-instance-method">
+      <div class="signature">
+        
+        def <strong>add</strong>(name, value)
+
+        <a class="method-permalink" href="#add%28name%2Cvalue%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Appends new value for specified param <em>name</em>.
+Creates param when there was no such param.</p>
+<pre><code class="language-crystal">params.add(<span class="s">&quot;item&quot;</span>, <span class="s">&quot;keychain&quot;</span>)
+params.fetch_all(<span class="s">&quot;item&quot;</span>) <span class="c"># =&gt; [&quot;pencil&quot;, &quot;book&quot;, &quot;workbook&quot;, &quot;keychain&quot;]</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri/params.cr#L337" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="clone:self-instance-method">
+      <div class="signature">
+        
+        def <strong>clone</strong> : <span class="k">self</span>
+
+        <a class="method-permalink" href="#clone%3Aself-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns a copy of this <code><a href="../URI/Params.html">URI::Params</a></code> instance.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;uri/params&quot;</span>
+
+original <span class="o">=</span> <span class="t">URI</span><span class="t">::</span><span class="t">Params</span>{<span class="s">&quot;name&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;Jamie&quot;</span>}
+updated <span class="o">=</span> original.clone
+updated[<span class="s">&quot;name&quot;</span>] <span class="o">=</span> <span class="s">&quot;Ary&quot;</span>
+
+original[<span class="s">&quot;name&quot;</span>] <span class="c"># =&gt; &quot;Jamie&quot;</span></code></pre>
+<p>Identical to <code><a href="../URI/Params.html#dup%3Aself-instance-method">#dup</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri/params.cr#L230" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="delete(name):String-instance-method">
+      <div class="signature">
+        
+        def <strong>delete</strong>(name) : <a href="../String.html">String</a>
+
+        <a class="method-permalink" href="#delete%28name%29%3AString-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Deletes first value for provided param <em>name</em>. If there are no values left,
+deletes param itself. Returns deleted value.</p>
+<pre><code class="language-crystal">params.delete(<span class="s">&quot;item&quot;</span>)    <span class="c"># =&gt; &quot;keychain&quot;</span>
+params.fetch_all(<span class="s">&quot;item&quot;</span>) <span class="c"># =&gt; [&quot;keynote&quot;]</span>
+
+params.delete(<span class="s">&quot;item&quot;</span>) <span class="c"># =&gt; &quot;keynote&quot;</span>
+params[<span class="s">&quot;item&quot;</span>]        <span class="c"># KeyError</span>
+
+params.delete(<span class="s">&quot;non_existent_param&quot;</span>) <span class="c"># KeyError</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri/params.cr#L385" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="delete_all(name):Array(String)|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>delete_all</strong>(name) : <a href="../Array.html">Array</a>(<a href="../String.html">String</a>) | <a href="../Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#delete_all%28name%29%3AArray%28String%29%7CNil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Deletes all values for provided param <em>name</em>. Returns array of deleted
+values.</p>
+<pre><code class="language-crystal">params.set_all(<span class="s">&quot;comments&quot;</span>, [<span class="s">&quot;hello, world!&quot;</span>, <span class="s">&quot;:+1:&quot;</span>])
+params.delete_all(<span class="s">&quot;comments&quot;</span>) <span class="c"># =&gt; [&quot;hello, world!&quot;, &quot;:+1:&quot;]</span>
+params.has_key?(<span class="s">&quot;comments&quot;</span>)   <span class="c"># =&gt; false</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri/params.cr#L399" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="dup:self-instance-method">
+      <div class="signature">
+        
+        def <strong>dup</strong> : <span class="k">self</span>
+
+        <a class="method-permalink" href="#dup%3Aself-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns a copy of this <code><a href="../URI/Params.html">URI::Params</a></code> instance.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;uri/params&quot;</span>
+
+original <span class="o">=</span> <span class="t">URI</span><span class="t">::</span><span class="t">Params</span>{<span class="s">&quot;name&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;Jamie&quot;</span>}
+updated <span class="o">=</span> original.dup
+updated[<span class="s">&quot;name&quot;</span>] <span class="o">=</span> <span class="s">&quot;Ary&quot;</span>
+
+original[<span class="s">&quot;name&quot;</span>] <span class="c"># =&gt; &quot;Jamie&quot;</span></code></pre>
+<p>Identical to <code><a href="../URI/Params.html#clone%3Aself-instance-method">#clone</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri/params.cr#L210" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="each(&amp;)-instance-method">
+      <div class="signature">
+        
+        def <strong>each</strong>(&)
+
+        <a class="method-permalink" href="#each%28%26%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Allows to iterate over all name-value pairs.</p>
+<pre><code class="language-crystal">params.each <span class="k">do</span> <span class="o">|</span>name, value<span class="o">|</span>
+  puts <span class="s">&quot;</span><span class="i">#{</span>name<span class="i">}</span><span class="s"> =&gt; </span><span class="i">#{</span>value<span class="i">}</span><span class="s">&quot;</span>
+<span class="k">end</span>
+
+<span class="c"># Outputs:</span>
+<span class="c"># email =&gt; john@example.org</span>
+<span class="c"># item =&gt; keychain</span>
+<span class="c"># item =&gt; keynote</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri/params.cr#L365" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="empty?(*args,**options)-instance-method">
+      <div class="signature">
+        
+        def <strong>empty?</strong>(*args, **options)
+
+        <a class="method-permalink" href="#empty%3F%28%2Aargs%2C%2A%2Aoptions%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if params is empty.</p>
+<pre><code class="language-crystal"><span class="t">URI</span><span class="t">::</span><span class="t">Params</span>.new.empty?                              <span class="c"># =&gt; true</span>
+<span class="t">URI</span><span class="t">::</span><span class="t">Params</span>.parse(<span class="s">&quot;foo=bar&amp;foo=baz&amp;qux=zoo&quot;</span>).empty? <span class="c"># =&gt; false</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri/params.cr#L271" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="empty?(*args,**options,&amp;)-instance-method">
+      <div class="signature">
+        
+        def <strong>empty?</strong>(*args, **options, &)
+
+        <a class="method-permalink" href="#empty%3F%28%2Aargs%2C%2A%2Aoptions%2C%26%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if params is empty.</p>
+<pre><code class="language-crystal"><span class="t">URI</span><span class="t">::</span><span class="t">Params</span>.new.empty?                              <span class="c"># =&gt; true</span>
+<span class="t">URI</span><span class="t">::</span><span class="t">Params</span>.parse(<span class="s">&quot;foo=bar&amp;foo=baz&amp;qux=zoo&quot;</span>).empty? <span class="c"># =&gt; false</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri/params.cr#L271" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="fetch(name,default)-instance-method">
+      <div class="signature">
+        
+        def <strong>fetch</strong>(name, default)
+
+        <a class="method-permalink" href="#fetch%28name%2Cdefault%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns first value for specified param <em>name</em>. Falls back to provided
+<em>default</em> value when there is no such param.</p>
+<pre><code class="language-crystal">params[<span class="s">&quot;email&quot;</span>] <span class="o">=</span> <span class="s">&quot;john@example.org&quot;</span>
+params.fetch(<span class="s">&quot;email&quot;</span>, <span class="s">&quot;none@example.org&quot;</span>)           <span class="c"># =&gt; &quot;john@example.org&quot;</span>
+params.fetch(<span class="s">&quot;non_existent_param&quot;</span>, <span class="s">&quot;default value&quot;</span>) <span class="c"># =&gt; &quot;default value&quot;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri/params.cr#L313" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="fetch(name,&amp;)-instance-method">
+      <div class="signature">
+        
+        def <strong>fetch</strong>(name, &)
+
+        <a class="method-permalink" href="#fetch%28name%2C%26%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns first value for specified param <em>name</em>. Falls back to return value
+of provided block when there is no such param.</p>
+<pre><code class="language-crystal">params.delete(<span class="s">&quot;email&quot;</span>)
+params.fetch(<span class="s">&quot;email&quot;</span>) { raise <span class="s">&quot;Email is missing&quot;</span> }              <span class="c"># raises &quot;Email is missing&quot;</span>
+params.fetch(<span class="s">&quot;non_existent_param&quot;</span>) { <span class="s">&quot;default computed value&quot;</span> } <span class="c"># =&gt; &quot;default computed value&quot;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri/params.cr#L325" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="fetch_all(name):Array(String)-instance-method">
+      <div class="signature">
+        
+        def <strong>fetch_all</strong>(name) : <a href="../Array.html">Array</a>(<a href="../String.html">String</a>)
+
+        <a class="method-permalink" href="#fetch_all%28name%29%3AArray%28String%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns all values for specified param <em>name</em>.</p>
+<pre><code class="language-crystal">params.set_all(<span class="s">&quot;item&quot;</span>, [<span class="s">&quot;pencil&quot;</span>, <span class="s">&quot;book&quot;</span>, <span class="s">&quot;workbook&quot;</span>])
+params.fetch_all(<span class="s">&quot;item&quot;</span>) <span class="c"># =&gt; [&quot;pencil&quot;, &quot;book&quot;, &quot;workbook&quot;]</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri/params.cr#L301" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="has_key?(*args,**options)-instance-method">
+      <div class="signature">
+        
+        def <strong>has_key?</strong>(*args, **options)
+
+        <a class="method-permalink" href="#has_key%3F%28%2Aargs%2C%2A%2Aoptions%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if param with provided name exists.</p>
+<pre><code class="language-crystal">params.has_key?(<span class="s">&quot;email&quot;</span>)   <span class="c"># =&gt; true</span>
+params.has_key?(<span class="s">&quot;garbage&quot;</span>) <span class="c"># =&gt; false</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri/params.cr#L263" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="has_key?(*args,**options,&amp;)-instance-method">
+      <div class="signature">
+        
+        def <strong>has_key?</strong>(*args, **options, &)
+
+        <a class="method-permalink" href="#has_key%3F%28%2Aargs%2C%2A%2Aoptions%2C%26%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if param with provided name exists.</p>
+<pre><code class="language-crystal">params.has_key?(<span class="s">&quot;email&quot;</span>)   <span class="c"># =&gt; true</span>
+params.has_key?(<span class="s">&quot;garbage&quot;</span>) <span class="c"># =&gt; false</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri/params.cr#L263" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="hash(hasher)-instance-method">
+      <div class="signature">
+        
+        def <strong>hash</strong>(hasher)
+
+        <a class="method-permalink" href="#hash%28hasher%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+            <div class="doc-inherited">
+              Description copied from struct <a href="../Struct.html">Struct</a>
+            </div>
+          
+          <p>See <code><a href="../Object.html#hash%28hasher%29-instance-method">Object#hash(hasher)</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="inspect(io:IO)-instance-method">
+      <div class="signature">
+        
+        def <strong>inspect</strong>(io : <a href="../IO.html">IO</a>)
+
+        <a class="method-permalink" href="#inspect%28io%3AIO%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+            <div class="doc-inherited">
+              Description copied from struct <a href="../Struct.html">Struct</a>
+            </div>
+          
+          <p>Appends this struct's name and instance variables names and values
+to the given IO.</p>
+<pre><code class="language-crystal"><span class="k">struct</span> <span class="t">Point</span>
+  <span class="k">def</span> <span class="m">initialize</span>(@x : <span class="t">Int32</span>, @y : <span class="t">Int32</span>)
+  <span class="k">end</span>
+<span class="k">end</span>
+
+p1 <span class="o">=</span> <span class="t">Point</span>.new <span class="n">1</span>, <span class="n">2</span>
+p1.to_s    <span class="c"># &quot;Point(@x=1, @y=2)&quot;</span>
+p1.inspect <span class="c"># &quot;Point(@x=1, @y=2)&quot;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri/params.cr#L473" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="merge(params:URI::Params,*,replace:Bool=true):URI::Params-instance-method">
+      <div class="signature">
+        
+        def <strong>merge</strong>(params : <a href="../URI/Params.html">URI::Params</a>, *, replace : <a href="../Bool.html">Bool</a> = <span class="n">true</span>) : <a href="../URI/Params.html">URI::Params</a>
+
+        <a class="method-permalink" href="#merge%28params%3AURI%3A%3AParams%2C%2A%2Creplace%3ABool%3Dtrue%29%3AURI%3A%3AParams-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Merges <em>params</em> and self into a new instance.
+If <em>replace</em> is <code>false</code> values with the same key are concatenated.
+Otherwise the value in <em>params</em> overrides the one in self.</p>
+<pre><code class="language-crystal">params <span class="o">=</span> <span class="t">URI</span><span class="t">::</span><span class="t">Params</span>.parse(<span class="s">&quot;foo=bar&amp;foo=baz&amp;qux=zoo&quot;</span>)
+other_params <span class="o">=</span> <span class="t">URI</span><span class="t">::</span><span class="t">Params</span>.parse(<span class="s">&quot;foo=buzz&amp;foo=extra&quot;</span>)
+params.merge(other_params).to_s                 <span class="c"># =&gt; &quot;foo=buzz&amp;foo=extra&amp;qux=zoo&quot;</span>
+params.merge(other_params, replace: <span class="n">false</span>).to_s <span class="c"># =&gt; &quot;foo=bar&amp;foo=baz&amp;foo=buzz&amp;foo=extra&amp;qux=zoo&quot;</span></code></pre>
+<p>See <code><a href="../URI/Params.html#merge%21%28params%3AURI%3A%3AParams%2C%2A%2Creplace%3ABool%3Dtrue%29%3AURI%3A%3AParams-instance-method">#merge!</a></code> for a mutating alternative</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri/params.cr#L437" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="merge!(params:URI::Params,*,replace:Bool=true):URI::Params-instance-method">
+      <div class="signature">
+        
+        def <strong>merge!</strong>(params : <a href="../URI/Params.html">URI::Params</a>, *, replace : <a href="../Bool.html">Bool</a> = <span class="n">true</span>) : <a href="../URI/Params.html">URI::Params</a>
+
+        <a class="method-permalink" href="#merge%21%28params%3AURI%3A%3AParams%2C%2A%2Creplace%3ABool%3Dtrue%29%3AURI%3A%3AParams-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Merges <em>params</em> into self.</p>
+<pre><code class="language-crystal">params <span class="o">=</span> <span class="t">URI</span><span class="t">::</span><span class="t">Params</span>.parse(<span class="s">&quot;foo=bar&amp;foo=baz&amp;qux=zoo&quot;</span>)
+other_params <span class="o">=</span> <span class="t">URI</span><span class="t">::</span><span class="t">Params</span>.parse(<span class="s">&quot;foo=buzz&amp;foo=extra&quot;</span>)
+params.merge!(other_params).to_s <span class="c"># =&gt; &quot;foo=buzz&amp;foo=extra&amp;qux=zoo&quot;</span>
+params.fetch_all(<span class="s">&quot;foo&quot;</span>)          <span class="c"># =&gt; [&quot;buzz&quot;, &quot;extra&quot;]</span></code></pre>
+<p>See <code><a href="../URI/Params.html#merge%28params%3AURI%3A%3AParams%2C%2A%2Creplace%3ABool%3Dtrue%29%3AURI%3A%3AParams-instance-method">#merge</a></code> for a non-mutating alternative</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri/params.cr#L413" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="set_all(name,values)-instance-method">
+      <div class="signature">
+        
+        def <strong>set_all</strong>(name, values)
+
+        <a class="method-permalink" href="#set_all%28name%2Cvalues%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Sets all <em>values</em> for specified param <em>name</em> at once.</p>
+<pre><code class="language-crystal">params.set_all(<span class="s">&quot;item&quot;</span>, [<span class="s">&quot;keychain&quot;</span>, <span class="s">&quot;keynote&quot;</span>])
+params.fetch_all(<span class="s">&quot;item&quot;</span>) <span class="c"># =&gt; [&quot;keychain&quot;, &quot;keynote&quot;]</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri/params.cr#L349" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_s(io:IO,*,space_to_plus:Bool=true):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>to_s</strong>(io : <a href="../IO.html">IO</a>, *, space_to_plus : <a href="../Bool.html">Bool</a> = <span class="n">true</span>) : <a href="../Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#to_s%28io%3AIO%2C%2A%2Cspace_to_plus%3ABool%3Dtrue%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Serializes to string representation as http url-encoded form.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;uri/params&quot;</span>
+
+params <span class="o">=</span> <span class="t">URI</span><span class="t">::</span><span class="t">Params</span>.parse(<span class="s">&quot;item=keychain&amp;greeting=hello+world&amp;email=john@example.org&quot;</span>)
+params.to_s <span class="c"># =&gt; &quot;item=keychain&amp;greeting=hello+world&amp;email=john%40example.org&quot;</span></code></pre>
+<p>By default spaces are outputted as <code>+</code>.
+If <em>space_to_plus</em> is <code>false</code> then they are outputted as <code>%20</code>:</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;uri/params&quot;</span>
+
+params <span class="o">=</span> <span class="t">URI</span><span class="t">::</span><span class="t">Params</span>.parse(<span class="s">&quot;item=keychain&amp;greeting=hello+world&amp;email=john@example.org&quot;</span>)
+params.to_s(space_to_plus: <span class="n">false</span>) <span class="c"># =&gt; &quot;item=keychain&amp;greeting=hello%20world&amp;email=john%40example.org&quot;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri/params.cr#L466" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_s(*,space_to_plus:Bool=true)-instance-method">
+      <div class="signature">
+        
+        def <strong>to_s</strong>(*, space_to_plus : <a href="../Bool.html">Bool</a> = <span class="n">true</span>)
+
+        <a class="method-permalink" href="#to_s%28%2A%2Cspace_to_plus%3ABool%3Dtrue%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Serializes to string representation as http url-encoded form.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;uri/params&quot;</span>
+
+params <span class="o">=</span> <span class="t">URI</span><span class="t">::</span><span class="t">Params</span>.parse(<span class="s">&quot;item=keychain&amp;greeting=hello+world&amp;email=john@example.org&quot;</span>)
+params.to_s <span class="c"># =&gt; &quot;item=keychain&amp;greeting=hello+world&amp;email=john%40example.org&quot;</span></code></pre>
+<p>By default spaces are outputted as <code>+</code>.
+If <em>space_to_plus</em> is <code>false</code> then they are outputted as <code>%20</code>:</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;uri/params&quot;</span>
+
+params <span class="o">=</span> <span class="t">URI</span><span class="t">::</span><span class="t">Params</span>.parse(<span class="s">&quot;item=keychain&amp;greeting=hello+world&amp;email=john@example.org&quot;</span>)
+params.to_s(space_to_plus: <span class="n">false</span>) <span class="c"># =&gt; &quot;item=keychain&amp;greeting=hello%20world&amp;email=john%40example.org&quot;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/uri/params.cr#L459" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+</div>
+
+</body>
+</html>

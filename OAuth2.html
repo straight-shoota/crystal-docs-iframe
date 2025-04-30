@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Crystal Docs 1.16.1">
+<meta name="crystal_docs.project_version" content="1.17.0-dev">
+<meta name="crystal_docs.project_name" content="Crystal">
+
+  <meta name="crystal_docs.json_config_url" content="/api/versions.json">
+
+
+    <link rel="canonical" href="https://crystal-lang.org/api/latest/OAuth2.html">
+
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/doc.js"></script>
+
+  <meta name="repository-name" content="Crystal">
+  <title>OAuth2 - Crystal 1.17.0-dev</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill="currentColor" fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<input type="checkbox" id="sidebar-btn">
+<label for="sidebar-btn" id="sidebar-btn-label">
+  <svg class="open" xmlns="http://www.w3.org/2000/svg" height="2em" width="2em" viewBox="0 0 512 512"><title>Open Sidebar</title><path fill="currentColor" d="M80 96v64h352V96H80zm0 112v64h352v-64H80zm0 112v64h352v-64H80z"></path></svg>
+  <svg class="close" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><title>Close Sidebar</title><path fill="currentColor" d="m118.6 73.4-45.2 45.2L210.7 256 73.4 393.4l45.2 45.2L256 301.3l137.4 137.3 45.2-45.2L301.3 256l137.3-137.4-45.2-45.2L256 210.7Z"></path></svg>
+</label>
+<iframe class="sidebar" src="sidebar.html"></iframe>
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">
+    module
+  </span> OAuth2
+
+</h1>
+
+
+
+
+
+  <h2>
+    <a id="overview" class="anchor" href="#overview">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Overview
+  </h2>
+
+  <p>The OAuth module provides an <code><a href="OAuth2/Client.html">OAuth2::Client</a></code> as specified
+by <a href="https://tools.ietf.org/html/rfc6749">RFC 6749</a>.</p>
+<p><span class="flag purple">NOTE</span>  To use <code><a href="OAuth2.html">OAuth2</a></code>, you must explicitly import it with <code>require &quot;oauth2&quot;</code></p>
+<h3><a id="performing-http-client-requests-with-o-auth2-authentication" class="anchor" href="#performing-http-client-requests-with-o-auth2-authentication">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Performing HTTP client requests with OAuth2 authentication</h3>
+<p>Assuming you have an access token, you can setup an <code><a href="HTTP/Client.html">HTTP::Client</a></code>
+to be authenticated with OAuth2 using this code:</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;http/client&quot;</span>
+<span class="k">require</span> <span class="s">&quot;oauth2&quot;</span>
+
+<span class="c"># Here we use a bearer token, but it could be a mac token. We also set the</span>
+<span class="c"># expires in value to 172,800 seconds, or 48 hours</span>
+access_token <span class="o">=</span> <span class="t">OAuth2</span><span class="t">::</span><span class="t">AccessToken</span><span class="t">::</span><span class="t">Bearer</span>.new(<span class="s">&quot;some_access_token&quot;</span>, <span class="n">172_800</span>)
+
+<span class="c"># Create an HTTP::Client</span>
+client <span class="o">=</span> <span class="t">HTTP</span><span class="t">::</span><span class="t">Client</span>.new(<span class="s">&quot;api.example.com&quot;</span>, tls: <span class="n">true</span>)
+
+<span class="c"># Prepare it for using OAuth2 authentication</span>
+access_token.authenticate(client)
+
+<span class="c"># Execute requests as usual: they will be authenticated</span>
+client.get(<span class="s">&quot;/some_path&quot;</span>)</code></pre>
+<p>This is implemented with <code><a href="HTTP/Client.html#before_request%28%26callback%3AHTTP%3A%3ARequest-%3E%29%3ANil-instance-method">HTTP::Client#before_request</a></code> to add an authorization
+header to every request.</p>
+<h3><a id="obtaining-access-tokens" class="anchor" href="#obtaining-access-tokens">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Obtaining access tokens</h3>
+<p>See <code><a href="OAuth2/Client.html">OAuth2::Client</a></code> for an example.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/oauth2/auth_scheme.cr#L12" target="_blank">
+        oauth2/auth_scheme.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/oauth2/oauth2.cr#L35" target="_blank">
+        oauth2/oauth2.cr
+      </a>
+    
+    <br/>
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+
+  <div class="methods-inherited">
+    
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,1986 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Crystal Docs 1.16.1">
+<meta name="crystal_docs.project_version" content="1.17.0-dev">
+<meta name="crystal_docs.project_name" content="Crystal">
+
+  <meta name="crystal_docs.json_config_url" content="/api/versions.json">
+
+
+    <link rel="canonical" href="https://crystal-lang.org/api/latest/Colorize/Object.html">
+
+<link href="../css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../js/doc.js"></script>
+
+  <meta name="repository-name" content="Crystal">
+  <title>Colorize::Object(T) - Crystal 1.17.0-dev</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "../";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill="currentColor" fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<input type="checkbox" id="sidebar-btn">
+<label for="sidebar-btn" id="sidebar-btn-label">
+  <svg class="open" xmlns="http://www.w3.org/2000/svg" height="2em" width="2em" viewBox="0 0 512 512"><title>Open Sidebar</title><path fill="currentColor" d="M80 96v64h352V96H80zm0 112v64h352v-64H80zm0 112v64h352v-64H80z"></path></svg>
+  <svg class="close" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><title>Close Sidebar</title><path fill="currentColor" d="m118.6 73.4-45.2 45.2L210.7 256 73.4 393.4l45.2 45.2L256 301.3l137.4 137.3 45.2-45.2L301.3 256l137.3-137.4-45.2-45.2L256 210.7Z"></path></svg>
+</label>
+<iframe class="sidebar" src="../sidebar.html"></iframe>
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">
+    struct
+  </span> Colorize::<wbr>Object(T)
+
+</h1>
+
+
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../Colorize/Object.html">Colorize::Object(T)</a></li><li class="superclass"><a href="../Struct.html">Struct</a></li><li class="superclass"><a href="../Value.html">Value</a></li><li class="superclass"><a href="../Object.html">Object</a></li></ul>
+
+
+
+
+  <h2>
+    <a id="overview" class="anchor" href="#overview">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Overview
+  </h2>
+
+  <p>A colorized object. Colors and text decorations can be modified.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/colorize.cr#L323" target="_blank">
+        colorize.cr
+      </a>
+    
+    <br/>
+  
+
+
+
+
+
+  
+  <h2>
+    <a id="constructors" class="anchor" href="#constructors">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructors
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#new%28object%3AT%29-class-method" class="signature"><strong>.new</strong>(object : T)</a>
+        
+      </li>
+    
+  </ul>
+
+
+  
+
+  
+
+  
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#ansi_escape%28io%3AIO%29%3ANil-instance-method" class="signature"><strong>#ansi_escape</strong>(io : IO) : Nil</a>
+        
+          <div class="summary"><p>Same as <code><a href="../Colorize/Object.html#ansi_escape%3AString-instance-method">#ansi_escape</a></code> but writes to a given <em>io</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#ansi_escape%3AString-instance-method" class="signature"><strong>#ansi_escape</strong> : String</a>
+        
+          <div class="summary"><p>Prints the ANSI escape codes for an object.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#back%28r%3AUInt8%2Cg%3AUInt8%2Cb%3AUInt8%29-instance-method" class="signature"><strong>#back</strong>(r : UInt8, g : UInt8, b : UInt8)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#back%28color%3ASymbol%29%3Aself-instance-method" class="signature"><strong>#back</strong>(color : Symbol) : <span class="k">self</span></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#back%28back%3AColor%29%3Aself-instance-method" class="signature"><strong>#back</strong>(back : Color) : <span class="k">self</span></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#back%28back%3AUInt8%29-instance-method" class="signature"><strong>#back</strong>(back : UInt8)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#black-instance-method" class="signature"><strong>#black</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#blink-instance-method" class="signature"><strong>#blink</strong></a>
+        
+          <div class="summary"><p>Apply text decoration <code><a href="../Colorize/Mode.html#Blink">Mode::Blink</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#blink_fast-instance-method" class="signature"><strong>#blink_fast</strong></a>
+        
+          <div class="summary"><p>Apply text decoration <code><a href="../Colorize/Mode.html#BlinkFast">Mode::BlinkFast</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#blue-instance-method" class="signature"><strong>#blue</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#bold-instance-method" class="signature"><strong>#bold</strong></a>
+        
+          <div class="summary"><p>Apply text decoration <code><a href="../Colorize/Mode.html#Bold">Mode::Bold</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#bright-instance-method" class="signature"><strong>#bright</strong></a>
+        
+          <div class="summary"><p>Apply text decoration <code><a href="../Colorize/Mode.html#Bright">Mode::Bright</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#cyan-instance-method" class="signature"><strong>#cyan</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#dark_gray-instance-method" class="signature"><strong>#dark_gray</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#default-instance-method" class="signature"><strong>#default</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#dim-instance-method" class="signature"><strong>#dim</strong></a>
+        
+          <div class="summary"><p>Apply text decoration <code><a href="../Colorize/Mode.html#Dim">Mode::Dim</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#double_underline-instance-method" class="signature"><strong>#double_underline</strong></a>
+        
+          <div class="summary"><p>Apply text decoration <code><a href="../Colorize/Mode.html#DoubleUnderline">Mode::DoubleUnderline</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#fore%28r%3AUInt8%2Cg%3AUInt8%2Cb%3AUInt8%29-instance-method" class="signature"><strong>#fore</strong>(r : UInt8, g : UInt8, b : UInt8)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#fore%28color%3ASymbol%29%3Aself-instance-method" class="signature"><strong>#fore</strong>(color : Symbol) : <span class="k">self</span></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#fore%28fore%3AColor%29%3Aself-instance-method" class="signature"><strong>#fore</strong>(fore : Color) : <span class="k">self</span></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#fore%28fore%3AUInt8%29-instance-method" class="signature"><strong>#fore</strong>(fore : UInt8)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#green-instance-method" class="signature"><strong>#green</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#hidden-instance-method" class="signature"><strong>#hidden</strong></a>
+        
+          <div class="summary"><p>Apply text decoration <code><a href="../Colorize/Mode.html#Hidden">Mode::Hidden</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#inspect%28io%3AIO%29%3ANil-instance-method" class="signature"><strong>#inspect</strong>(io : IO) : Nil</a>
+        
+          <div class="summary"><p>Inspects this object and makes the ANSI escape codes visible.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#italic-instance-method" class="signature"><strong>#italic</strong></a>
+        
+          <div class="summary"><p>Apply text decoration <code><a href="../Colorize/Mode.html#Italic">Mode::Italic</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#light_blue-instance-method" class="signature"><strong>#light_blue</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#light_cyan-instance-method" class="signature"><strong>#light_cyan</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#light_gray-instance-method" class="signature"><strong>#light_gray</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#light_green-instance-method" class="signature"><strong>#light_green</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#light_magenta-instance-method" class="signature"><strong>#light_magenta</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#light_red-instance-method" class="signature"><strong>#light_red</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#light_yellow-instance-method" class="signature"><strong>#light_yellow</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#magenta-instance-method" class="signature"><strong>#magenta</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#mode%28mode%3AMode%29%3Aself-instance-method" class="signature"><strong>#mode</strong>(mode : Mode) : <span class="k">self</span></a>
+        
+          <div class="summary"><p>Adds <em>mode</em> to the text's decorations.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#on%28color%3ASymbol%29-instance-method" class="signature"><strong>#on</strong>(color : Symbol)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#on_black-instance-method" class="signature"><strong>#on_black</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#on_blue-instance-method" class="signature"><strong>#on_blue</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#on_cyan-instance-method" class="signature"><strong>#on_cyan</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#on_dark_gray-instance-method" class="signature"><strong>#on_dark_gray</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#on_default-instance-method" class="signature"><strong>#on_default</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#on_green-instance-method" class="signature"><strong>#on_green</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#on_light_blue-instance-method" class="signature"><strong>#on_light_blue</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#on_light_cyan-instance-method" class="signature"><strong>#on_light_cyan</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#on_light_gray-instance-method" class="signature"><strong>#on_light_gray</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#on_light_green-instance-method" class="signature"><strong>#on_light_green</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#on_light_magenta-instance-method" class="signature"><strong>#on_light_magenta</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#on_light_red-instance-method" class="signature"><strong>#on_light_red</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#on_light_yellow-instance-method" class="signature"><strong>#on_light_yellow</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#on_magenta-instance-method" class="signature"><strong>#on_magenta</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#on_red-instance-method" class="signature"><strong>#on_red</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#on_white-instance-method" class="signature"><strong>#on_white</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#on_yellow-instance-method" class="signature"><strong>#on_yellow</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#overline-instance-method" class="signature"><strong>#overline</strong></a>
+        
+          <div class="summary"><p>Apply text decoration <code><a href="../Colorize/Mode.html#Overline">Mode::Overline</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#red-instance-method" class="signature"><strong>#red</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#reverse-instance-method" class="signature"><strong>#reverse</strong></a>
+        
+          <div class="summary"><p>Apply text decoration <code><a href="../Colorize/Mode.html#Reverse">Mode::Reverse</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#strikethrough-instance-method" class="signature"><strong>#strikethrough</strong></a>
+        
+          <div class="summary"><p>Apply text decoration <code><a href="../Colorize/Mode.html#Strikethrough">Mode::Strikethrough</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#surround%28io%3DSTDOUT%2C%26%29-instance-method" class="signature"><strong>#surround</strong>(io = <span class="t">STDOUT</span>, &)</a>
+        
+          <div class="summary"><p>Surrounds <em>io</em> by the ANSI escape codes and lets you build colored strings:</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_s%28io%3AIO%29%3ANil-instance-method" class="signature"><strong>#to_s</strong>(io : IO) : Nil</a>
+        
+          <div class="summary"><p>Appends this object colored and with text decoration to <em>io</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#toggle%28flag%29-instance-method" class="signature"><strong>#toggle</strong>(flag)</a>
+        
+          <div class="summary"><p>Enables or disables colors and text decoration on this object.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#underline-instance-method" class="signature"><strong>#underline</strong></a>
+        
+          <div class="summary"><p>Apply text decoration <code><a href="../Colorize/Mode.html#Underline">Mode::Underline</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#white-instance-method" class="signature"><strong>#white</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#yellow-instance-method" class="signature"><strong>#yellow</strong></a>
+        
+      </li>
+    
+  </ul>
+
+
+
+  <div class="methods-inherited">
+    
+      
+
+  <h3>Instance methods inherited from struct <code><a href="../Struct.html">Struct</a></code></h3>
+  
+  
+    <a href="../Struct.html#%3D%3D%28other%29%3ABool-instance-method" class="tooltip">
+      <span>==(other) : Bool</span>
+    ==</a>, 
+    
+  
+    <a href="../Struct.html#hash%28hasher%29-instance-method" class="tooltip">
+      <span>hash(hasher)</span>
+    hash</a>, 
+    
+  
+    <a href="../Struct.html#inspect%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>inspect(io : IO) : Nil</span>
+    inspect</a>, 
+    
+  
+    <a href="../Struct.html#pretty_print%28pp%29%3ANil-instance-method" class="tooltip">
+      <span>pretty_print(pp) : Nil</span>
+    pretty_print</a>, 
+    
+  
+    <a href="../Struct.html#to_s%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_s(io : IO) : Nil</span>
+    to_s</a>
+    
+  
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+      
+
+  <h3>Instance methods inherited from struct <code><a href="../Value.html">Value</a></code></h3>
+  
+  
+    <a href="../Value.html#%3D%3D%28other%3AJSON%3A%3AAny%29-instance-method" class="tooltip">
+      <span>==(other : JSON::Any)<br/>==(other : YAML::Any)<br/>==(other)</span>
+    ==</a>, 
+    
+  
+    <a href="../Value.html#dup-instance-method" class="tooltip">
+      <span>dup</span>
+    dup</a>
+    
+  
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+      
+
+  <h3>Instance methods inherited from class <code><a href="../Object.html">Object</a></code></h3>
+  
+  
+    <a href="../Object.html#%21%3ABool-instance-method" class="tooltip">
+      <span>! : Bool</span>
+    !</a>, 
+    
+  
+    <a href="../Object.html#%21%3D%28other%29-instance-method" class="tooltip">
+      <span>!=(other)</span>
+    !=</a>, 
+    
+  
+    <a href="../Object.html#%21~%28other%29-instance-method" class="tooltip">
+      <span>!~(other)</span>
+    !~</a>, 
+    
+  
+    <a href="../Object.html#%3D%3D%28other%29-instance-method" class="tooltip">
+      <span>==(other)</span>
+    ==</a>, 
+    
+  
+    <a href="../Object.html#%3D%3D%3D%28other%3AJSON%3A%3AAny%29-instance-method" class="tooltip">
+      <span>===(other : JSON::Any)<br/>===(other : YAML::Any)<br/>===(other)</span>
+    ===</a>, 
+    
+  
+    <a href="../Object.html#%3D~%28other%29-instance-method" class="tooltip">
+      <span>=~(other)</span>
+    =~</a>, 
+    
+  
+    <a href="../Object.html#as%28type%3AClass%29-instance-method" class="tooltip">
+      <span>as(type : Class)</span>
+    as</a>, 
+    
+  
+    <a href="../Object.html#as%3F%28type%3AClass%29-instance-method" class="tooltip">
+      <span>as?(type : Class)</span>
+    as?</a>, 
+    
+  
+    <a href="../Object.html#class-instance-method" class="tooltip">
+      <span>class</span>
+    class</a>, 
+    
+  
+    <a href="../Object.html#dup-instance-method" class="tooltip">
+      <span>dup</span>
+    dup</a>, 
+    
+  
+    <a href="../Object.html#hash%28hasher%29-instance-method" class="tooltip">
+      <span>hash(hasher)<br/>hash</span>
+    hash</a>, 
+    
+  
+    <a href="../Object.html#in%3F%28collection%3AObject%29%3ABool-instance-method" class="tooltip">
+      <span>in?(collection : Object) : Bool<br/>in?(*values : Object) : Bool</span>
+    in?</a>, 
+    
+  
+    <a href="../Object.html#inspect%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>inspect(io : IO) : Nil<br/>inspect : String</span>
+    inspect</a>, 
+    
+  
+    <a href="../Object.html#is_a%3F%28type%3AClass%29%3ABool-instance-method" class="tooltip">
+      <span>is_a?(type : Class) : Bool</span>
+    is_a?</a>, 
+    
+  
+    <a href="../Object.html#itself-instance-method" class="tooltip">
+      <span>itself</span>
+    itself</a>, 
+    
+  
+    <a href="../Object.html#nil%3F%3ABool-instance-method" class="tooltip">
+      <span>nil? : Bool</span>
+    nil?</a>, 
+    
+  
+    <a href="../Object.html#not_nil%21%28message%29-instance-method" class="tooltip">
+      <span>not_nil!(message)<br/>not_nil!</span>
+    not_nil!</a>, 
+    
+  
+    <a href="../Object.html#pretty_inspect%28width%3D79%2Cnewline%3D%22%5Cn%22%2Cindent%3D0%29%3AString-instance-method" class="tooltip">
+      <span>pretty_inspect(width = <span class="n">79</span>, newline = <span class="s">&quot;\n&quot;</span>, indent = <span class="n">0</span>) : String</span>
+    pretty_inspect</a>, 
+    
+  
+    <a href="../Object.html#pretty_print%28pp%3APrettyPrint%29%3ANil-instance-method" class="tooltip">
+      <span>pretty_print(pp : PrettyPrint) : Nil</span>
+    pretty_print</a>, 
+    
+  
+    <a href="../Object.html#responds_to%3F%28name%3ASymbol%29%3ABool-instance-method" class="tooltip">
+      <span>responds_to?(name : Symbol) : Bool</span>
+    responds_to?</a>, 
+    
+  
+    <a href="../Object.html#tap%28%26%29-instance-method" class="tooltip">
+      <span>tap(&)</span>
+    tap</a>, 
+    
+  
+    <a href="../Object.html#to_json%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_json(io : IO) : Nil<br/>to_json : String</span>
+    to_json</a>, 
+    
+  
+    <a href="../Object.html#to_pretty_json%28indent%3AString%3D%22%22%29%3AString-instance-method" class="tooltip">
+      <span>to_pretty_json(indent : String = <span class="s">&quot;  &quot;</span>) : String<br/>to_pretty_json(io : IO, indent : String = <span class="s">&quot;  &quot;</span>) : Nil</span>
+    to_pretty_json</a>, 
+    
+  
+    <a href="../Object.html#to_s%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_s(io : IO) : Nil<br/>to_s : String</span>
+    to_s</a>, 
+    
+  
+    <a href="../Object.html#to_yaml%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_yaml(io : IO) : Nil<br/>to_yaml : String</span>
+    to_yaml</a>, 
+    
+  
+    <a href="../Object.html#try%28%26%29-instance-method" class="tooltip">
+      <span>try(&)</span>
+    try</a>, 
+    
+  
+    <a href="../Object.html#unsafe_as%28type%3AT.class%29forallT-instance-method" class="tooltip">
+      <span>unsafe_as(type : <span class="t">T</span>.<span class="k">class</span>) forall T</span>
+    unsafe_as</a>
+    
+  
+
+
+      
+
+
+      
+
+  <h3>Class methods inherited from class <code><a href="../Object.html">Object</a></code></h3>
+  
+  
+    <a href="../Object.html#from_json%28string_or_io%2Croot%3AString%29-class-method" class="tooltip">
+      <span>from_json(string_or_io, root : String)<br/>from_json(string_or_io)</span>
+    from_json</a>, 
+    
+  
+    <a href="../Object.html#from_yaml%28string_or_io%3AString%7CIO%29-class-method" class="tooltip">
+      <span>from_yaml(string_or_io : String | IO)</span>
+    from_yaml</a>
+    
+  
+
+
+      
+
+  <h3>Macros inherited from class <code><a href="../Object.html">Object</a></code></h3>
+  
+  
+    <a href="../Object.html#class_getter%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_getter(*names, &block)</span>
+    class_getter</a>, 
+    
+  
+    <a href="../Object.html#class_getter%21%28%2Anames%29-macro" class="tooltip">
+      <span>class_getter!(*names)</span>
+    class_getter!</a>, 
+    
+  
+    <a href="../Object.html#class_getter%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_getter?(*names, &block)</span>
+    class_getter?</a>, 
+    
+  
+    <a href="../Object.html#class_property%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_property(*names, &block)</span>
+    class_property</a>, 
+    
+  
+    <a href="../Object.html#class_property%21%28%2Anames%29-macro" class="tooltip">
+      <span>class_property!(*names)</span>
+    class_property!</a>, 
+    
+  
+    <a href="../Object.html#class_property%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_property?(*names, &block)</span>
+    class_property?</a>, 
+    
+  
+    <a href="../Object.html#class_setter%28%2Anames%29-macro" class="tooltip">
+      <span>class_setter(*names)</span>
+    class_setter</a>, 
+    
+  
+    <a href="../Object.html#def_clone-macro" class="tooltip">
+      <span>def_clone</span>
+    def_clone</a>, 
+    
+  
+    <a href="../Object.html#def_equals%28%2Afields%29-macro" class="tooltip">
+      <span>def_equals(*fields)</span>
+    def_equals</a>, 
+    
+  
+    <a href="../Object.html#def_equals_and_hash%28%2Afields%29-macro" class="tooltip">
+      <span>def_equals_and_hash(*fields)</span>
+    def_equals_and_hash</a>, 
+    
+  
+    <a href="../Object.html#def_hash%28%2Afields%29-macro" class="tooltip">
+      <span>def_hash(*fields)</span>
+    def_hash</a>, 
+    
+  
+    <a href="../Object.html#delegate%28%2Amethods%2Ctoobject%29-macro" class="tooltip">
+      <span>delegate(*methods, to object)</span>
+    delegate</a>, 
+    
+  
+    <a href="../Object.html#forward_missing_to%28delegate%29-macro" class="tooltip">
+      <span>forward_missing_to(delegate)</span>
+    forward_missing_to</a>, 
+    
+  
+    <a href="../Object.html#getter%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>getter(*names, &block)</span>
+    getter</a>, 
+    
+  
+    <a href="../Object.html#getter%21%28%2Anames%29-macro" class="tooltip">
+      <span>getter!(*names)</span>
+    getter!</a>, 
+    
+  
+    <a href="../Object.html#getter%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>getter?(*names, &block)</span>
+    getter?</a>, 
+    
+  
+    <a href="../Object.html#property%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>property(*names, &block)</span>
+    property</a>, 
+    
+  
+    <a href="../Object.html#property%21%28%2Anames%29-macro" class="tooltip">
+      <span>property!(*names)</span>
+    property!</a>, 
+    
+  
+    <a href="../Object.html#property%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>property?(*names, &block)</span>
+    property?</a>, 
+    
+  
+    <a href="../Object.html#setter%28%2Anames%29-macro" class="tooltip">
+      <span>setter(*names)</span>
+    setter</a>
+    
+  
+
+
+    
+  </div>
+
+  
+  <h2>
+    <a id="constructor-detail" class="anchor" href="#constructor-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructor Detail
+  </h2>
+  
+    <div class="entry-detail" id="new(object:T)-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(object : T)
+
+        <a class="method-permalink" href="#new%28object%3AT%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/colorize.cr#L329" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+  
+
+  
+
+  
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="ansi_escape(io:IO):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>ansi_escape</strong>(io : <a href="../IO.html">IO</a>) : <a href="../Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#ansi_escape%28io%3AIO%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Same as <code><a href="../Colorize/Object.html#ansi_escape%3AString-instance-method">#ansi_escape</a></code> but writes to a given <em>io</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/colorize.cr#L479" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="ansi_escape:String-instance-method">
+      <div class="signature">
+        
+        def <strong>ansi_escape</strong> : <a href="../String.html">String</a>
+
+        <a class="method-permalink" href="#ansi_escape%3AString-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Prints the ANSI escape codes for an object. Note that this has no effect on a <code><a href="../Colorize/Object.html">Colorize::Object</a></code> with content,
+only the escape codes.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;colorize&quot;</span>
+
+<span class="t">Colorize</span>.<span class="k">with</span>.red.ansi_escape        <span class="c"># =&gt; &quot;\e[31m&quot;</span>
+<span class="s">&quot;hello world&quot;</span>.green.bold.ansi_escape <span class="c"># =&gt; &quot;\e[32;1m&quot;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/colorize.cr#L472" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="back(r:UInt8,g:UInt8,b:UInt8)-instance-method">
+      <div class="signature">
+        
+        def <strong>back</strong>(r : <a href="../UInt8.html">UInt8</a>, g : <a href="../UInt8.html">UInt8</a>, b : <a href="../UInt8.html">UInt8</a>)
+
+        <a class="method-permalink" href="#back%28r%3AUInt8%2Cg%3AUInt8%2Cb%3AUInt8%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/colorize.cr#L400" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="back(color:Symbol):self-instance-method">
+      <div class="signature">
+        
+        def <strong>back</strong>(color : <a href="../Symbol.html">Symbol</a>) : <span class="k">self</span>
+
+        <a class="method-permalink" href="#back%28color%3ASymbol%29%3Aself-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/colorize.cr#L380" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="back(back:Color):self-instance-method">
+      <div class="signature">
+        
+        def <strong>back</strong>(back : <a href="../Colorize/Color.html">Color</a>) : <span class="k">self</span>
+
+        <a class="method-permalink" href="#back%28back%3AColor%29%3Aself-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/colorize.cr#L391" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="back(back:UInt8)-instance-method">
+      <div class="signature">
+        
+        def <strong>back</strong>(back : <a href="../UInt8.html">UInt8</a>)
+
+        <a class="method-permalink" href="#back%28back%3AUInt8%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/colorize.cr#L395" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="black-instance-method">
+      <div class="signature">
+        
+        def <strong>black</strong>
+
+        <a class="method-permalink" href="#black-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/colorize.cr#L336" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="blink-instance-method">
+      <div class="signature">
+        
+        def <strong>blink</strong>
+
+        <a class="method-permalink" href="#blink-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Apply text decoration <code><a href="../Colorize/Mode.html#Blink">Mode::Blink</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/colorize.cr#L348" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="blink_fast-instance-method">
+      <div class="signature">
+        
+        def <strong>blink_fast</strong>
+
+        <a class="method-permalink" href="#blink_fast-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Apply text decoration <code><a href="../Colorize/Mode.html#BlinkFast">Mode::BlinkFast</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/colorize.cr#L348" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="blue-instance-method">
+      <div class="signature">
+        
+        def <strong>blue</strong>
+
+        <a class="method-permalink" href="#blue-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/colorize.cr#L336" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="bold-instance-method">
+      <div class="signature">
+        
+        def <strong>bold</strong>
+
+        <a class="method-permalink" href="#bold-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Apply text decoration <code><a href="../Colorize/Mode.html#Bold">Mode::Bold</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/colorize.cr#L348" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="bright-instance-method">
+      <div class="signature">
+        
+        def <strong>bright</strong>
+
+        <a class="method-permalink" href="#bright-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Apply text decoration <code><a href="../Colorize/Mode.html#Bright">Mode::Bright</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/colorize.cr#L348" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="cyan-instance-method">
+      <div class="signature">
+        
+        def <strong>cyan</strong>
+
+        <a class="method-permalink" href="#cyan-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/colorize.cr#L336" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="dark_gray-instance-method">
+      <div class="signature">
+        
+        def <strong>dark_gray</strong>
+
+        <a class="method-permalink" href="#dark_gray-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/colorize.cr#L336" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="default-instance-method">
+      <div class="signature">
+        
+        def <strong>default</strong>
+
+        <a class="method-permalink" href="#default-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/colorize.cr#L336" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="dim-instance-method">
+      <div class="signature">
+        
+        def <strong>dim</strong>
+
+        <a class="method-permalink" href="#dim-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Apply text decoration <code><a href="../Colorize/Mode.html#Dim">Mode::Dim</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/colorize.cr#L348" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="double_underline-instance-method">
+      <div class="signature">
+        
+        def <strong>double_underline</strong>
+
+        <a class="method-permalink" href="#double_underline-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Apply text decoration <code><a href="../Colorize/Mode.html#DoubleUnderline">Mode::DoubleUnderline</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/colorize.cr#L348" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="fore(r:UInt8,g:UInt8,b:UInt8)-instance-method">
+      <div class="signature">
+        
+        def <strong>fore</strong>(r : <a href="../UInt8.html">UInt8</a>, g : <a href="../UInt8.html">UInt8</a>, b : <a href="../UInt8.html">UInt8</a>)
+
+        <a class="method-permalink" href="#fore%28r%3AUInt8%2Cg%3AUInt8%2Cb%3AUInt8%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/colorize.cr#L375" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="fore(color:Symbol):self-instance-method">
+      <div class="signature">
+        
+        def <strong>fore</strong>(color : <a href="../Symbol.html">Symbol</a>) : <span class="k">self</span>
+
+        <a class="method-permalink" href="#fore%28color%3ASymbol%29%3Aself-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/colorize.cr#L355" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="fore(fore:Color):self-instance-method">
+      <div class="signature">
+        
+        def <strong>fore</strong>(fore : <a href="../Colorize/Color.html">Color</a>) : <span class="k">self</span>
+
+        <a class="method-permalink" href="#fore%28fore%3AColor%29%3Aself-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/colorize.cr#L366" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="fore(fore:UInt8)-instance-method">
+      <div class="signature">
+        
+        def <strong>fore</strong>(fore : <a href="../UInt8.html">UInt8</a>)
+
+        <a class="method-permalink" href="#fore%28fore%3AUInt8%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/colorize.cr#L370" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="green-instance-method">
+      <div class="signature">
+        
+        def <strong>green</strong>
+
+        <a class="method-permalink" href="#green-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/colorize.cr#L336" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="hidden-instance-method">
+      <div class="signature">
+        
+        def <strong>hidden</strong>
+
+        <a class="method-permalink" href="#hidden-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Apply text decoration <code><a href="../Colorize/Mode.html#Hidden">Mode::Hidden</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/colorize.cr#L348" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="inspect(io:IO):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>inspect</strong>(io : <a href="../IO.html">IO</a>) : <a href="../Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#inspect%28io%3AIO%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Inspects this object and makes the ANSI escape codes visible.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/colorize.cr#L429" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="italic-instance-method">
+      <div class="signature">
+        
+        def <strong>italic</strong>
+
+        <a class="method-permalink" href="#italic-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Apply text decoration <code><a href="../Colorize/Mode.html#Italic">Mode::Italic</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/colorize.cr#L348" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="light_blue-instance-method">
+      <div class="signature">
+        
+        def <strong>light_blue</strong>
+
+        <a class="method-permalink" href="#light_blue-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/colorize.cr#L336" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="light_cyan-instance-method">
+      <div class="signature">
+        
+        def <strong>light_cyan</strong>
+
+        <a class="method-permalink" href="#light_cyan-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/colorize.cr#L336" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="light_gray-instance-method">
+      <div class="signature">
+        
+        def <strong>light_gray</strong>
+
+        <a class="method-permalink" href="#light_gray-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/colorize.cr#L336" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="light_green-instance-method">
+      <div class="signature">
+        
+        def <strong>light_green</strong>
+
+        <a class="method-permalink" href="#light_green-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/colorize.cr#L336" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="light_magenta-instance-method">
+      <div class="signature">
+        
+        def <strong>light_magenta</strong>
+
+        <a class="method-permalink" href="#light_magenta-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/colorize.cr#L336" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="light_red-instance-method">
+      <div class="signature">
+        
+        def <strong>light_red</strong>
+
+        <a class="method-permalink" href="#light_red-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/colorize.cr#L336" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="light_yellow-instance-method">
+      <div class="signature">
+        
+        def <strong>light_yellow</strong>
+
+        <a class="method-permalink" href="#light_yellow-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/colorize.cr#L336" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="magenta-instance-method">
+      <div class="signature">
+        
+        def <strong>magenta</strong>
+
+        <a class="method-permalink" href="#magenta-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/colorize.cr#L336" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="mode(mode:Mode):self-instance-method">
+      <div class="signature">
+        
+        def <strong>mode</strong>(mode : <a href="../Colorize/Mode.html">Mode</a>) : <span class="k">self</span>
+
+        <a class="method-permalink" href="#mode%28mode%3AMode%29%3Aself-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Adds <em>mode</em> to the text's decorations.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/colorize.cr#L406" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="on(color:Symbol)-instance-method">
+      <div class="signature">
+        
+        def <strong>on</strong>(color : <a href="../Symbol.html">Symbol</a>)
+
+        <a class="method-permalink" href="#on%28color%3ASymbol%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/colorize.cr#L411" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="on_black-instance-method">
+      <div class="signature">
+        
+        def <strong>on_black</strong>
+
+        <a class="method-permalink" href="#on_black-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/colorize.cr#L336" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="on_blue-instance-method">
+      <div class="signature">
+        
+        def <strong>on_blue</strong>
+
+        <a class="method-permalink" href="#on_blue-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/colorize.cr#L336" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="on_cyan-instance-method">
+      <div class="signature">
+        
+        def <strong>on_cyan</strong>
+
+        <a class="method-permalink" href="#on_cyan-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/colorize.cr#L336" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="on_dark_gray-instance-method">
+      <div class="signature">
+        
+        def <strong>on_dark_gray</strong>
+
+        <a class="method-permalink" href="#on_dark_gray-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/colorize.cr#L336" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="on_default-instance-method">
+      <div class="signature">
+        
+        def <strong>on_default</strong>
+
+        <a class="method-permalink" href="#on_default-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/colorize.cr#L336" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="on_green-instance-method">
+      <div class="signature">
+        
+        def <strong>on_green</strong>
+
+        <a class="method-permalink" href="#on_green-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/colorize.cr#L336" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="on_light_blue-instance-method">
+      <div class="signature">
+        
+        def <strong>on_light_blue</strong>
+
+        <a class="method-permalink" href="#on_light_blue-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/colorize.cr#L336" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="on_light_cyan-instance-method">
+      <div class="signature">
+        
+        def <strong>on_light_cyan</strong>
+
+        <a class="method-permalink" href="#on_light_cyan-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/colorize.cr#L336" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="on_light_gray-instance-method">
+      <div class="signature">
+        
+        def <strong>on_light_gray</strong>
+
+        <a class="method-permalink" href="#on_light_gray-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/colorize.cr#L336" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="on_light_green-instance-method">
+      <div class="signature">
+        
+        def <strong>on_light_green</strong>
+
+        <a class="method-permalink" href="#on_light_green-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/colorize.cr#L336" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="on_light_magenta-instance-method">
+      <div class="signature">
+        
+        def <strong>on_light_magenta</strong>
+
+        <a class="method-permalink" href="#on_light_magenta-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/colorize.cr#L336" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="on_light_red-instance-method">
+      <div class="signature">
+        
+        def <strong>on_light_red</strong>
+
+        <a class="method-permalink" href="#on_light_red-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/colorize.cr#L336" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="on_light_yellow-instance-method">
+      <div class="signature">
+        
+        def <strong>on_light_yellow</strong>
+
+        <a class="method-permalink" href="#on_light_yellow-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/colorize.cr#L336" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="on_magenta-instance-method">
+      <div class="signature">
+        
+        def <strong>on_magenta</strong>
+
+        <a class="method-permalink" href="#on_magenta-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/colorize.cr#L336" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="on_red-instance-method">
+      <div class="signature">
+        
+        def <strong>on_red</strong>
+
+        <a class="method-permalink" href="#on_red-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/colorize.cr#L336" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="on_white-instance-method">
+      <div class="signature">
+        
+        def <strong>on_white</strong>
+
+        <a class="method-permalink" href="#on_white-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/colorize.cr#L336" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="on_yellow-instance-method">
+      <div class="signature">
+        
+        def <strong>on_yellow</strong>
+
+        <a class="method-permalink" href="#on_yellow-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/colorize.cr#L336" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="overline-instance-method">
+      <div class="signature">
+        
+        def <strong>overline</strong>
+
+        <a class="method-permalink" href="#overline-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Apply text decoration <code><a href="../Colorize/Mode.html#Overline">Mode::Overline</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/colorize.cr#L348" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="red-instance-method">
+      <div class="signature">
+        
+        def <strong>red</strong>
+
+        <a class="method-permalink" href="#red-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/colorize.cr#L336" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="reverse-instance-method">
+      <div class="signature">
+        
+        def <strong>reverse</strong>
+
+        <a class="method-permalink" href="#reverse-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Apply text decoration <code><a href="../Colorize/Mode.html#Reverse">Mode::Reverse</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/colorize.cr#L348" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="strikethrough-instance-method">
+      <div class="signature">
+        
+        def <strong>strikethrough</strong>
+
+        <a class="method-permalink" href="#strikethrough-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Apply text decoration <code><a href="../Colorize/Mode.html#Strikethrough">Mode::Strikethrough</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/colorize.cr#L348" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="surround(io=STDOUT,&amp;)-instance-method">
+      <div class="signature">
+        
+        def <strong>surround</strong>(io = <span class="t">STDOUT</span>, &)
+
+        <a class="method-permalink" href="#surround%28io%3DSTDOUT%2C%26%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Surrounds <em>io</em> by the ANSI escape codes and lets you build colored strings:</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;colorize&quot;</span>
+
+io <span class="o">=</span> <span class="t">IO</span><span class="t">::</span><span class="t">Memory</span>.new
+
+<span class="t">Colorize</span>.<span class="k">with</span>.red.surround(io) <span class="k">do</span>
+  io <span class="o">&lt;&lt;</span> <span class="s">&quot;colorful&quot;</span>
+  <span class="t">Colorize</span>.<span class="k">with</span>.green.bold.surround(io) <span class="k">do</span>
+    io <span class="o">&lt;&lt;</span> <span class="s">&quot; hello &quot;</span>
+  <span class="k">end</span>
+  <span class="t">Colorize</span>.<span class="k">with</span>.blue.surround(io) <span class="k">do</span>
+    io <span class="o">&lt;&lt;</span> <span class="s">&quot;world&quot;</span>
+  <span class="k">end</span>
+  io <span class="o">&lt;&lt;</span> <span class="s">&quot; string&quot;</span>
+<span class="k">end</span>
+
+io.to_s <span class="c"># returns a colorful string where &quot;colorful&quot; is red, &quot;hello&quot; green, &quot;world&quot; blue and &quot; string&quot; red again</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/colorize.cr#L455" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_s(io:IO):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>to_s</strong>(io : <a href="../IO.html">IO</a>) : <a href="../Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#to_s%28io%3AIO%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Appends this object colored and with text decoration to <em>io</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/colorize.cr#L422" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="toggle(flag)-instance-method">
+      <div class="signature">
+        
+        def <strong>toggle</strong>(flag)
+
+        <a class="method-permalink" href="#toggle%28flag%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Enables or disables colors and text decoration on this object.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/colorize.cr#L416" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="underline-instance-method">
+      <div class="signature">
+        
+        def <strong>underline</strong>
+
+        <a class="method-permalink" href="#underline-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Apply text decoration <code><a href="../Colorize/Mode.html#Underline">Mode::Underline</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/colorize.cr#L348" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="white-instance-method">
+      <div class="signature">
+        
+        def <strong>white</strong>
+
+        <a class="method-permalink" href="#white-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/colorize.cr#L336" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="yellow-instance-method">
+      <div class="signature">
+        
+        def <strong>yellow</strong>
+
+        <a class="method-permalink" href="#yellow-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/colorize.cr#L336" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+</div>
+
+</body>
+</html>

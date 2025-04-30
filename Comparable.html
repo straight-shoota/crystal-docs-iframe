@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Crystal Docs 1.16.1">
+<meta name="crystal_docs.project_version" content="1.17.0-dev">
+<meta name="crystal_docs.project_name" content="Crystal">
+
+  <meta name="crystal_docs.json_config_url" content="/api/versions.json">
+
+
+    <link rel="canonical" href="https://crystal-lang.org/api/latest/Comparable.html">
+
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/doc.js"></script>
+
+  <meta name="repository-name" content="Crystal">
+  <title>Comparable(T) - Crystal 1.17.0-dev</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill="currentColor" fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<input type="checkbox" id="sidebar-btn">
+<label for="sidebar-btn" id="sidebar-btn-label">
+  <svg class="open" xmlns="http://www.w3.org/2000/svg" height="2em" width="2em" viewBox="0 0 512 512"><title>Open Sidebar</title><path fill="currentColor" d="M80 96v64h352V96H80zm0 112v64h352v-64H80zm0 112v64h352v-64H80z"></path></svg>
+  <svg class="close" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><title>Close Sidebar</title><path fill="currentColor" d="m118.6 73.4-45.2 45.2L210.7 256 73.4 393.4l45.2 45.2L256 301.3l137.4 137.3 45.2-45.2L301.3 256l137.3-137.4-45.2-45.2L256 210.7Z"></path></svg>
+</label>
+<iframe class="sidebar" src="sidebar.html"></iframe>
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">
+    module
+  </span> Comparable(T)
+
+</h1>
+
+
+
+
+
+  <h2>
+    <a id="overview" class="anchor" href="#overview">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Overview
+  </h2>
+
+  <p>The <code><a href="Comparable.html">Comparable</a></code> mixin is used by classes whose objects may be ordered.</p>
+<p>Including types must provide an <code>&lt;=&gt;</code> method, which compares the receiver against
+another object, returning:</p>
+<ul>
+<li>a negative number if <code>self</code> is less than the other object</li>
+<li>a positive number if <code>self</code> is greater than the other object</li>
+<li><code>0</code> if <code>self</code> is equal to the other object</li>
+<li><code>nil</code> if <code>self</code> and the other object are not comparable</li>
+</ul>
+<p><code><a href="Comparable.html">Comparable</a></code> uses <code>&lt;=&gt;</code> to implement the conventional comparison operators
+(<code>&lt;</code>, <code>&lt;=</code>, <code><a href="Comparable.html#%3D%3D%28other%3AT%29-instance-method">#==</a></code>, <code>&gt;=</code>, and <code>&gt;</code>). All of these return <code>false</code> when <code>&lt;=&gt;</code>
+returns <code>nil</code>.</p>
+<p>Note that returning <code>nil</code> is only useful when defining a partial comparable
+relationship. One such example is float values: they are generally comparable,
+except for <code>NaN</code>. If none of the values of a type are comparable between each
+other, <code><a href="Comparable.html">Comparable</a></code> shouldn't be included.</p>
+<p><span class="flag purple">NOTE</span>  When <code>nil</code> is returned from <code>&lt;=&gt;</code>, <code><a href="Array.html#sort%3AArray%28T%29-instance-method">Array#sort</a></code> and related sorting
+methods will perform slightly slower.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="direct-including-types" class="anchor" href="#direct-including-types">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Direct including types
+  </h2>
+  <ul class="other-types-list">
+    
+      <li class="other-type"><a href="Array.html">Array(T)</a></li>
+    
+      <li class="other-type"><a href="BigDecimal.html">BigDecimal</a></li>
+    
+      <li class="other-type"><a href="BigFloat.html">BigFloat</a></li>
+    
+      <li class="other-type"><a href="BigInt.html">BigInt</a></li>
+    
+      <li class="other-type"><a href="BigRational.html">BigRational</a></li>
+    
+      <li class="other-type"><a href="Char.html">Char</a></li>
+    
+      <li class="other-type"><a href="Enum.html">Enum</a></li>
+    
+      <li class="other-type"><a href="Float.html">Float</a></li>
+    
+      <li class="other-type"><a href="Int.html">Int</a></li>
+    
+      <li class="other-type"><a href="Number.html">Number</a></li>
+    
+      <li class="other-type"><a href="Path.html">Path</a></li>
+    
+      <li class="other-type"><a href="Pointer.html">Pointer(T)</a></li>
+    
+      <li class="other-type"><a href="SemanticVersion.html">SemanticVersion</a></li>
+    
+      <li class="other-type"><a href="SemanticVersion/Prerelease.html">SemanticVersion::Prerelease</a></li>
+    
+      <li class="other-type"><a href="Slice.html">Slice(T)</a></li>
+    
+      <li class="other-type"><a href="StaticArray.html">StaticArray(T, N)</a></li>
+    
+      <li class="other-type"><a href="String.html">String</a></li>
+    
+      <li class="other-type"><a href="Symbol.html">Symbol</a></li>
+    
+      <li class="other-type"><a href="Time.html">Time</a></li>
+    
+      <li class="other-type"><a href="Time/Span.html">Time::Span</a></li>
+    
+      <li class="other-type"><a href="Tuple.html">Tuple(*T)</a></li>
+    
+      <li class="other-type"><a href="UUID.html">UUID</a></li>
+    
+  </ul>
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/comparable.cr#L21" target="_blank">
+        comparable.cr
+      </a>
+    
+    <br/>
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#%3C%28other%3AT%29%3ABool-instance-method" class="signature"><strong>#<</strong>(other : T) : Bool</a>
+        
+          <div class="summary"><p>Compares this object to <em>other</em> based on the receiver’s <code>&lt;=&gt;</code> method, returning <code>true</code> if it returns a negative number.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%3C%3D%28other%3AT%29-instance-method" class="signature"><strong>#<=</strong>(other : T)</a>
+        
+          <div class="summary"><p>Compares this object to <em>other</em> based on the receiver’s <code>&lt;=&gt;</code> method, returning <code>true</code> if it returns a value equal or less then <code>0</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%3C%3D%3E%28other%3AT%29-instance-method" class="signature"><strong>#<=></strong>(other : T)</a>
+        
+          <div class="summary"><p>The comparison operator.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%3D%3D%28other%3AT%29-instance-method" class="signature"><strong>#==</strong>(other : T)</a>
+        
+          <div class="summary"><p>Compares this object to <em>other</em> based on the receiver’s <code>&lt;=&gt;</code> method, returning <code>true</code> if it returns <code>0</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%3E%28other%3AT%29%3ABool-instance-method" class="signature"><strong>#></strong>(other : T) : Bool</a>
+        
+          <div class="summary"><p>Compares this object to <em>other</em> based on the receiver’s <code>&lt;=&gt;</code> method, returning <code>true</code> if it returns a value greater then <code>0</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%3E%3D%28other%3AT%29-instance-method" class="signature"><strong>#>=</strong>(other : T)</a>
+        
+          <div class="summary"><p>Compares this object to <em>other</em> based on the receiver’s <code>&lt;=&gt;</code> method, returning <code>true</code> if it returns a value equal or greater than <code>0</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#clamp%28min%2Cmax%29-instance-method" class="signature"><strong>#clamp</strong>(min, max)</a>
+        
+          <div class="summary"><p>Clamps a value between <em>min</em> and <em>max</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#clamp%28range%3ARange%29-instance-method" class="signature"><strong>#clamp</strong>(range : Range)</a>
+        
+          <div class="summary"><p>Clamps a value within <em>range</em>.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+
+  <div class="methods-inherited">
+    
+  </div>
+
+  
+
+  
+
+  
+
+  
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="&lt;(other:T):Bool-instance-method">
+      <div class="signature">
+        
+        def <strong><</strong>(other : T) : <a href="Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#%3C%28other%3AT%29%3ABool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Compares this object to <em>other</em> based on the receiver’s <code>&lt;=&gt;</code> method,
+returning <code>true</code> if it returns a negative number.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/comparable.cr#L24" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="&lt;=(other:T)-instance-method">
+      <div class="signature">
+        
+        def <strong><=</strong>(other : T)
+
+        <a class="method-permalink" href="#%3C%3D%28other%3AT%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Compares this object to <em>other</em> based on the receiver’s <code>&lt;=&gt;</code> method,
+returning <code>true</code> if it returns a value equal or less then <code>0</code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/comparable.cr#L31" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="&lt;=&gt;(other:T)-instance-method">
+      <div class="signature">
+        abstract 
+        def <strong><=></strong>(other : T)
+
+        <a class="method-permalink" href="#%3C%3D%3E%28other%3AT%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>The comparison operator. Returns <code>0</code> if the two objects are equal,
+a negative number if this object is considered less than <em>other</em>,
+a positive number if this object is considered greater than <em>other</em>,
+or <code>nil</code> if the two objects are not comparable.</p>
+<p>Subclasses define this method to provide class-specific ordering.</p>
+<p>The comparison operator is usually used to sort values:</p>
+<pre><code class="language-crystal"><span class="c"># Sort in a descending way:</span>
+[<span class="n">3</span>, <span class="n">1</span>, <span class="n">2</span>].sort { <span class="o">|</span>x, y<span class="o">|</span> y <span class="o">&lt;=&gt;</span> x } <span class="c"># =&gt; [3, 2, 1]</span>
+
+<span class="c"># Sort in an ascending way:</span>
+[<span class="n">3</span>, <span class="n">1</span>, <span class="n">2</span>].sort { <span class="o">|</span>x, y<span class="o">|</span> x <span class="o">&lt;=&gt;</span> y } <span class="c"># =&gt; [1, 2, 3]</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/comparable.cr#L83" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="==(other:T)-instance-method">
+      <div class="signature">
+        
+        def <strong>==</strong>(other : T)
+
+        <a class="method-permalink" href="#%3D%3D%28other%3AT%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Compares this object to <em>other</em> based on the receiver’s <code>&lt;=&gt;</code> method,
+returning <code>true</code> if it returns <code>0</code>.</p>
+<p>Also returns <code>true</code> if this and <em>other</em> are the same object.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/comparable.cr#L40" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="&gt;(other:T):Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>></strong>(other : T) : <a href="Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#%3E%28other%3AT%29%3ABool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Compares this object to <em>other</em> based on the receiver’s <code>&lt;=&gt;</code> method,
+returning <code>true</code> if it returns a value greater then <code>0</code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/comparable.cr#L55" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="&gt;=(other:T)-instance-method">
+      <div class="signature">
+        
+        def <strong>>=</strong>(other : T)
+
+        <a class="method-permalink" href="#%3E%3D%28other%3AT%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Compares this object to <em>other</em> based on the receiver’s <code>&lt;=&gt;</code> method,
+returning <code>true</code> if it returns a value equal or greater than <code>0</code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/comparable.cr#L62" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="clamp(min,max)-instance-method">
+      <div class="signature">
+        
+        def <strong>clamp</strong>(min, max)
+
+        <a class="method-permalink" href="#clamp%28min%2Cmax%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Clamps a value between <em>min</em> and <em>max</em>.</p>
+<pre><code class="language-crystal"><span class="n">5</span>.clamp(<span class="n">10</span>, <span class="n">100</span>)   <span class="c"># =&gt; 10</span>
+<span class="n">50</span>.clamp(<span class="n">10</span>, <span class="n">100</span>)  <span class="c"># =&gt; 50</span>
+<span class="n">500</span>.clamp(<span class="n">10</span>, <span class="n">100</span>) <span class="c"># =&gt; 100</span>
+
+<span class="n">5</span>.clamp(<span class="n">10</span>, <span class="n">nil</span>)  <span class="c"># =&gt; 10</span>
+<span class="n">50</span>.clamp(<span class="n">10</span>, <span class="n">nil</span>) <span class="c"># =&gt; 50</span>
+
+<span class="n">5</span>.clamp(<span class="n">nil</span>, <span class="n">10</span>)  <span class="c"># =&gt; 5</span>
+<span class="n">50</span>.clamp(<span class="n">nil</span>, <span class="n">10</span>) <span class="c"># =&gt; 10</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/comparable.cr#L116" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="clamp(range:Range)-instance-method">
+      <div class="signature">
+        
+        def <strong>clamp</strong>(range : <a href="Range.html">Range</a>)
+
+        <a class="method-permalink" href="#clamp%28range%3ARange%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Clamps a value within <em>range</em>.</p>
+<pre><code class="language-crystal"><span class="n">5</span>.clamp(<span class="n">10</span>..<span class="n">100</span>)   <span class="c"># =&gt; 10</span>
+<span class="n">50</span>.clamp(<span class="n">10</span>..<span class="n">100</span>)  <span class="c"># =&gt; 50</span>
+<span class="n">500</span>.clamp(<span class="n">10</span>..<span class="n">100</span>) <span class="c"># =&gt; 100</span>
+
+<span class="n">5</span>.clamp(<span class="n">10</span>..)  <span class="c"># =&gt; 10</span>
+<span class="n">50</span>.clamp(<span class="n">10</span>..) <span class="c"># =&gt; 50</span>
+
+<span class="n">5</span>.clamp(..<span class="n">10</span>)  <span class="c"># =&gt; 5</span>
+<span class="n">50</span>.clamp(..<span class="n">10</span>) <span class="c"># =&gt; 10</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/comparable.cr#L98" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Crystal Docs 1.16.1">
+<meta name="crystal_docs.project_version" content="1.17.0-dev">
+<meta name="crystal_docs.project_name" content="Crystal">
+
+  <meta name="crystal_docs.json_config_url" content="/api/versions.json">
+
+
+    <link rel="canonical" href="https://crystal-lang.org/api/latest/MIME.html">
+
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/doc.js"></script>
+
+  <meta name="repository-name" content="Crystal">
+  <title>MIME - Crystal 1.17.0-dev</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill="currentColor" fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<input type="checkbox" id="sidebar-btn">
+<label for="sidebar-btn" id="sidebar-btn-label">
+  <svg class="open" xmlns="http://www.w3.org/2000/svg" height="2em" width="2em" viewBox="0 0 512 512"><title>Open Sidebar</title><path fill="currentColor" d="M80 96v64h352V96H80zm0 112v64h352v-64H80zm0 112v64h352v-64H80z"></path></svg>
+  <svg class="close" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><title>Close Sidebar</title><path fill="currentColor" d="m118.6 73.4-45.2 45.2L210.7 256 73.4 393.4l45.2 45.2L256 301.3l137.4 137.3 45.2-45.2L301.3 256l137.3-137.4-45.2-45.2L256 210.7Z"></path></svg>
+</label>
+<iframe class="sidebar" src="sidebar.html"></iframe>
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">
+    module
+  </span> MIME
+
+</h1>
+
+
+
+
+
+  <h2>
+    <a id="overview" class="anchor" href="#overview">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Overview
+  </h2>
+
+  <p>This module implements a global MIME registry.</p>
+<p><span class="flag purple">NOTE</span>  To use <code><a href="MIME.html">MIME</a></code>, you must explicitly import it with <code>require &quot;mime&quot;</code></p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;mime&quot;</span>
+
+<span class="t">MIME</span>.from_extension(<span class="s">&quot;.html&quot;</span>)         <span class="c"># =&gt; &quot;text/html&quot;</span>
+<span class="t">MIME</span>.from_filename(<span class="s">&quot;path/file.html&quot;</span>) <span class="c"># =&gt; &quot;text/html&quot;</span></code></pre>
+<p>The registry will be populated with some default values (see <code><a href="MIME.html#DEFAULT_TYPES">DEFAULT_TYPES</a></code>)
+as well as the operating system's MIME database.</p>
+<p>Default initialization can be skipped by calling <code><a href="MIME.html#init%28load_defaults%3ABool%3Dtrue%29%3ANil-class-method">MIME.init(false)</a></code> before the first
+query to the MIME database.</p>
+<h2><a id="os-provided-mime-database" class="anchor" href="#os-provided-mime-database">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>OS-provided MIME database</h2>
+<p>On a POSIX system, the following files are tried to be read in sequential order,
+stopping at the first existing file. These values override those from <code><a href="MIME.html#DEFAULT_TYPES">DEFAULT_TYPES</a></code>.</p>
+<pre><code class="language-plain">/etc/mime.types
+/etc/httpd/mime.types                    # Mac OS X
+/etc/httpd/conf/mime.types               # Apache
+/etc/apache/mime.types                   # Apache 1
+/etc/apache2/mime.types                  # Apache 2
+/usr/local/etc/httpd/conf/mime.types
+/usr/local/lib/netscape/mime.types
+/usr/local/etc/httpd/conf/mime.types     # Apache 1.2
+/usr/local/etc/mime.types                # FreeBSD
+/usr/share/misc/mime.types               # OpenBSD</code></pre>
+<h2><a id="registering-custom-mime-types" class="anchor" href="#registering-custom-mime-types">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Registering custom MIME types</h2>
+<p>Applications can register their own MIME types:</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;mime&quot;</span>
+
+<span class="t">MIME</span>.from_extension?(<span class="s">&quot;.cr&quot;</span>)     <span class="c"># =&gt; nil</span>
+<span class="t">MIME</span>.extensions(<span class="s">&quot;text/crystal&quot;</span>) <span class="c"># =&gt; Set(String).new</span>
+
+<span class="t">MIME</span>.register(<span class="s">&quot;.cr&quot;</span>, <span class="s">&quot;text/crystal&quot;</span>)
+<span class="t">MIME</span>.from_extension?(<span class="s">&quot;.cr&quot;</span>)     <span class="c"># =&gt; &quot;text/crystal&quot;</span>
+<span class="t">MIME</span>.extensions(<span class="s">&quot;text/crystal&quot;</span>) <span class="c"># =&gt; Set(String){&quot;.cr&quot;}</span></code></pre>
+<h2><a id="loading-a-custom-mime-database" class="anchor" href="#loading-a-custom-mime-database">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Loading a custom MIME database</h2>
+<p>To load a custom MIME database, <code><a href="MIME.html#load_mime_database%28io%3AIO%29%3ANil-class-method">.load_mime_database</a></code> can be called with an
+<code><a href="IO.html">IO</a></code> to read the database from.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;mime&quot;</span>
+
+<span class="c"># Load user-defined MIME types</span>
+<span class="t">File</span>.open(<span class="s">&quot;~/.mime.types&quot;</span>) <span class="k">do</span> <span class="o">|</span>io<span class="o">|</span>
+  <span class="t">MIME</span>.load_mime_database(io)
+<span class="k">end</span></code></pre>
+<p>Loaded values override previously defined mappings.</p>
+<p>The data format must follow the format of <code>mime.types</code>: Each line declares
+a MIME type followed by a whitespace-separated list of extensions mapped to
+this type. Everything following a <code>#</code> is considered a comment until the end of
+line. Empty lines are ignored.</p>
+<pre><code class="language-plain">text/html html htm
+
+# comment</code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/mime.cr#L79" target="_blank">
+        mime.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/mime/media_type.cr#L5" target="_blank">
+        mime/media_type.cr
+      </a>
+    
+    <br/>
+  
+
+
+
+  
+    <h2>
+      <a id="constant-summary" class="anchor" href="#constant-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+      Constant Summary
+    </h2>
+  
+  <dl>
+    
+      <dt class="entry-const" id="DEFAULT_TYPES">
+        <strong>DEFAULT_TYPES</strong> = <code>{<span class="s">&quot;.css&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;text/css; charset=utf-8&quot;</span>, <span class="s">&quot;.gif&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;image/gif&quot;</span>, <span class="s">&quot;.htm&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;text/html; charset=utf-8&quot;</span>, <span class="s">&quot;.html&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;text/html; charset=utf-8&quot;</span>, <span class="s">&quot;.jpg&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;image/jpeg&quot;</span>, <span class="s">&quot;.jpeg&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;image/jpeg&quot;</span>, <span class="s">&quot;.js&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;text/javascript; charset=utf-8&quot;</span>, <span class="s">&quot;.json&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;application/json&quot;</span>, <span class="s">&quot;.pdf&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;application/pdf&quot;</span>, <span class="s">&quot;.png&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;image/png&quot;</span>, <span class="s">&quot;.svg&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;image/svg+xml&quot;</span>, <span class="s">&quot;.txt&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;text/plain; charset=utf-8&quot;</span>, <span class="s">&quot;.xml&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;text/xml; charset=utf-8&quot;</span>, <span class="s">&quot;.wasm&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;application/wasm&quot;</span>, <span class="s">&quot;.webp&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;image/webp&quot;</span>}</code>
+      </dt>
+      
+      <dd class="entry-const-doc">
+        <p>A limited set of default MIME types.</p>
+      </dd>
+      
+    
+  </dl>
+
+
+
+  
+
+  
+  <h2>
+    <a id="class-method-summary" class="anchor" href="#class-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Class Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#extensions%28type%3AString%29%3ASet%28String%29-class-method" class="signature"><strong>.extensions</strong>(type : String) : Set(String)</a>
+        
+          <div class="summary"><p>Returns all extensions registered for <em>type</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#from_extension%28extension%3AString%2Cdefault%29%3AString-class-method" class="signature"><strong>.from_extension</strong>(extension : String, default) : String</a>
+        
+          <div class="summary"><p>Looks up the MIME type associated with <em>extension</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#from_extension%28extension%3AString%29%3AString-class-method" class="signature"><strong>.from_extension</strong>(extension : String) : String</a>
+        
+          <div class="summary"><p>Looks up the MIME type associated with <em>extension</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#from_extension%28extension%3AString%2C%26%29-class-method" class="signature"><strong>.from_extension</strong>(extension : String, &)</a>
+        
+          <div class="summary"><p>Looks up the MIME type associated with <em>extension</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#from_extension%3F%28extension%3AString%29%3AString%7CNil-class-method" class="signature"><strong>.from_extension?</strong>(extension : String) : String | Nil</a>
+        
+          <div class="summary"><p>Looks up the MIME type associated with <em>extension</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#from_filename%28filename%3AString%7CPath%2Cdefault%29%3AString-class-method" class="signature"><strong>.from_filename</strong>(filename : String | Path, default) : String</a>
+        
+          <div class="summary"><p>Looks up the MIME type associated with the extension in <em>filename</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#from_filename%28filename%3AString%7CPath%29%3AString-class-method" class="signature"><strong>.from_filename</strong>(filename : String | Path) : String</a>
+        
+          <div class="summary"><p>Looks up the MIME type associated with the extension in <em>filename</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#from_filename%28filename%3AString%7CPath%2C%26%29-class-method" class="signature"><strong>.from_filename</strong>(filename : String | Path, &)</a>
+        
+          <div class="summary"><p>Looks up the MIME type associated with the extension in <em>filename</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#from_filename%3F%28filename%3AString%7CPath%29%3AString%7CNil-class-method" class="signature"><strong>.from_filename?</strong>(filename : String | Path) : String | Nil</a>
+        
+          <div class="summary"><p>Looks up the MIME type associated with the extension in <em>filename</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#init%28load_defaults%3ABool%3Dtrue%29%3ANil-class-method" class="signature"><strong>.init</strong>(load_defaults : Bool = <span class="n">true</span>) : Nil</a>
+        
+          <div class="summary"><p>Initializes the MIME database.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#init%28filename%3AString%29%3ANil-class-method" class="signature"><strong>.init</strong>(filename : String) : Nil</a>
+        
+          <div class="summary"><p>Initializes the MIME database loading contents from a file.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#load_mime_database%28io%3AIO%29%3ANil-class-method" class="signature"><strong>.load_mime_database</strong>(io : IO) : Nil</a>
+        
+          <div class="summary"><p>Reads MIME type mappings from <em>io</em> and registers the extension-to-type relation (see <code><a href="MIME.html#register%28extension%3AString%2Ctype%3AString%29%3ANil-class-method">.register</a></code>).</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#register%28extension%3AString%2Ctype%3AString%29%3ANil-class-method" class="signature"><strong>.register</strong>(extension : String, type : String) : Nil</a>
+        
+          <div class="summary"><p>Register <em>type</em> for <em>extension</em>.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+  
+
+  
+
+
+  <div class="methods-inherited">
+    
+  </div>
+
+  
+
+  
+  <h2>
+    <a id="class-method-detail" class="anchor" href="#class-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Class Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="extensions(type:String):Set(String)-class-method">
+      <div class="signature">
+        
+        def self.<strong>extensions</strong>(type : <a href="String.html">String</a>) : <a href="Set.html">Set</a>(<a href="String.html">String</a>)
+
+        <a class="method-permalink" href="#extensions%28type%3AString%29%3ASet%28String%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns all extensions registered for <em>type</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/mime.cr#L239" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="from_extension(extension:String,default):String-class-method">
+      <div class="signature">
+        
+        def self.<strong>from_extension</strong>(extension : <a href="String.html">String</a>, default) : <a href="String.html">String</a>
+
+        <a class="method-permalink" href="#from_extension%28extension%3AString%2Cdefault%29%3AString-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Looks up the MIME type associated with <em>extension</em>.</p>
+<p>A case-sensitive search is tried first, if this yields no result, it is
+matched case-insensitive. Returns <em>default</em> if <em>extension</em> is not registered.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/mime.cr#L151" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="from_extension(extension:String):String-class-method">
+      <div class="signature">
+        
+        def self.<strong>from_extension</strong>(extension : <a href="String.html">String</a>) : <a href="String.html">String</a>
+
+        <a class="method-permalink" href="#from_extension%28extension%3AString%29%3AString-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Looks up the MIME type associated with <em>extension</em>.</p>
+<p>A case-sensitive search is tried first, if this yields no result, it is
+matched case-insensitive. Raises <code><a href="KeyError.html">KeyError</a></code> if <em>extension</em> is not registered.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/mime.cr#L159" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="from_extension(extension:String,&amp;)-class-method">
+      <div class="signature">
+        
+        def self.<strong>from_extension</strong>(extension : <a href="String.html">String</a>, &)
+
+        <a class="method-permalink" href="#from_extension%28extension%3AString%2C%26%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Looks up the MIME type associated with <em>extension</em>.</p>
+<p>A case-sensitive search is tried first, if this yields no result, it is
+matched case-insensitive. Runs the given block if <em>extension</em> is not registered.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/mime.cr#L175" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="from_extension?(extension:String):String|Nil-class-method">
+      <div class="signature">
+        
+        def self.<strong>from_extension?</strong>(extension : <a href="String.html">String</a>) : <a href="String.html">String</a> | <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#from_extension%3F%28extension%3AString%29%3AString%7CNil-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Looks up the MIME type associated with <em>extension</em>.</p>
+<p>A case-sensitive search is tried first, if this yields no result, it is
+matched case-insensitive. Returns <code>nil</code> if <em>extension</em> is not registered.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/mime.cr#L167" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="from_filename(filename:String|Path,default):String-class-method">
+      <div class="signature">
+        
+        def self.<strong>from_filename</strong>(filename : <a href="String.html">String</a> | <a href="Path.html">Path</a>, default) : <a href="String.html">String</a>
+
+        <a class="method-permalink" href="#from_filename%28filename%3AString%7CPath%2Cdefault%29%3AString-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Looks up the MIME type associated with the extension in <em>filename</em>.</p>
+<p>A case-sensitive search is tried first, if this yields no result, it is
+matched case-insensitive. Returns <em>default</em> if extension is not registered.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/mime.cr#L185" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="from_filename(filename:String|Path):String-class-method">
+      <div class="signature">
+        
+        def self.<strong>from_filename</strong>(filename : <a href="String.html">String</a> | <a href="Path.html">Path</a>) : <a href="String.html">String</a>
+
+        <a class="method-permalink" href="#from_filename%28filename%3AString%7CPath%29%3AString-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Looks up the MIME type associated with the extension in <em>filename</em>.</p>
+<p>A case-sensitive search is tried first, if this yields no result, it is
+matched case-insensitive. Raises <code><a href="KeyError.html">KeyError</a></code> if extension is not registered.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/mime.cr#L193" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="from_filename(filename:String|Path,&amp;)-class-method">
+      <div class="signature">
+        
+        def self.<strong>from_filename</strong>(filename : <a href="String.html">String</a> | <a href="Path.html">Path</a>, &)
+
+        <a class="method-permalink" href="#from_filename%28filename%3AString%7CPath%2C%26%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Looks up the MIME type associated with the extension in <em>filename</em>.</p>
+<p>A case-sensitive search is tried first, if this yields no result, it is
+matched case-insensitive. Runs the given block if extension is not registered.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/mime.cr#L209" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="from_filename?(filename:String|Path):String|Nil-class-method">
+      <div class="signature">
+        
+        def self.<strong>from_filename?</strong>(filename : <a href="String.html">String</a> | <a href="Path.html">Path</a>) : <a href="String.html">String</a> | <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#from_filename%3F%28filename%3AString%7CPath%29%3AString%7CNil-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Looks up the MIME type associated with the extension in <em>filename</em>.</p>
+<p>A case-sensitive search is tried first, if this yields no result, it is
+matched case-insensitive. Returns <code>nil</code> if extension is not registered.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/mime.cr#L201" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="init(load_defaults:Bool=true):Nil-class-method">
+      <div class="signature">
+        
+        def self.<strong>init</strong>(load_defaults : <a href="Bool.html">Bool</a> = <span class="n">true</span>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#init%28load_defaults%3ABool%3Dtrue%29%3ANil-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Initializes the MIME database.</p>
+<p>The default behaviour is to load the internal defaults as well as the OS-provided
+MIME database. This can be disabled with <em>load_defaults</em> set to <code>false</code>.</p>
+<p>This method usually doesn't need to be called explicitly when the default behaviour is expected.
+It will be called implicitly with <code>load_defaults: true</code> when a query method
+is called and the MIME database has not been initialized before.</p>
+<p>Calling this method repeatedly is allowed.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/mime.cr#L117" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="init(filename:String):Nil-class-method">
+      <div class="signature">
+        
+        def self.<strong>init</strong>(filename : <a href="String.html">String</a>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#init%28filename%3AString%29%3ANil-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Initializes the MIME database loading contents from a file.</p>
+<p>This will neither load the internal defaults nor the OS-provided MIME database,
+only the database at <em>filename</em> (using <code><a href="MIME.html#load_mime_database%28io%3AIO%29%3ANil-class-method">.load_mime_database</a></code>).</p>
+<p>Calling this method repeatedly is allowed.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/mime.cr#L135" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="load_mime_database(io:IO):Nil-class-method">
+      <div class="signature">
+        
+        def self.<strong>load_mime_database</strong>(io : <a href="IO.html">IO</a>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#load_mime_database%28io%3AIO%29%3ANil-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Reads MIME type mappings from <em>io</em> and registers the extension-to-type
+relation (see <code><a href="MIME.html#register%28extension%3AString%2Ctype%3AString%29%3ANil-class-method">.register</a></code>).</p>
+<p>The format follows that of <code>mime.types</code>: Each line is list of MIME type and
+zero or more extensions, separated by whitespace.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/mime.cr#L281" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="register(extension:String,type:String):Nil-class-method">
+      <div class="signature">
+        
+        def self.<strong>register</strong>(extension : <a href="String.html">String</a>, type : <a href="String.html">String</a>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#register%28extension%3AString%2Ctype%3AString%29%3ANil-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Register <em>type</em> for <em>extension</em>.</p>
+<p><em>extension</em> must start with a dot (<code>.</code>) and must not contain any null bytes.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/mime.cr#L216" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+  
+
+  
+
+
+</div>
+
+</body>
+</html>

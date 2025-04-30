@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Crystal Docs 1.16.1">
+<meta name="crystal_docs.project_version" content="1.17.0-dev">
+<meta name="crystal_docs.project_name" content="Crystal">
+
+  <meta name="crystal_docs.json_config_url" content="/api/versions.json">
+
+
+    <link rel="canonical" href="https://crystal-lang.org/api/latest/Spec.html">
+
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/doc.js"></script>
+
+  <meta name="repository-name" content="Crystal">
+  <title>Spec - Crystal 1.17.0-dev</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill="currentColor" fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<input type="checkbox" id="sidebar-btn">
+<label for="sidebar-btn" id="sidebar-btn-label">
+  <svg class="open" xmlns="http://www.w3.org/2000/svg" height="2em" width="2em" viewBox="0 0 512 512"><title>Open Sidebar</title><path fill="currentColor" d="M80 96v64h352V96H80zm0 112v64h352v-64H80zm0 112v64h352v-64H80z"></path></svg>
+  <svg class="close" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><title>Close Sidebar</title><path fill="currentColor" d="m118.6 73.4-45.2 45.2L210.7 256 73.4 393.4l45.2 45.2L256 301.3l137.4 137.3 45.2-45.2L301.3 256l137.3-137.4-45.2-45.2L256 210.7Z"></path></svg>
+</label>
+<iframe class="sidebar" src="sidebar.html"></iframe>
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">
+    module
+  </span> Spec
+
+</h1>
+
+
+
+
+
+  <h2>
+    <a id="overview" class="anchor" href="#overview">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Overview
+  </h2>
+
+  <p>Crystal's built-in testing library. It provides a structure for writing executable examples
+of how your code should behave. A domain specific language allows you to write them in a way similar to natural language.</p>
+<p>The Crystal compiler has a <code>spec</code> command with tools to constrain which examples get run and tailor the output.</p>
+<p>A basic spec looks something like this:</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;spec&quot;</span>
+
+describe <span class="t">Array</span> <span class="k">do</span>
+  describe <span class="s">&quot;#size&quot;</span> <span class="k">do</span>
+    it <span class="s">&quot;correctly reports the number of elements in the Array&quot;</span> <span class="k">do</span>
+      [<span class="n">1</span>, <span class="n">2</span>, <span class="n">3</span>].size.should eq <span class="n">3</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+
+  describe <span class="s">&quot;#empty?&quot;</span> <span class="k">do</span>
+    it <span class="s">&quot;is empty when no elements are in the array&quot;</span> <span class="k">do</span>
+      (<span class="o">[]</span> <span class="k">of</span> <span class="t">Int32</span>).empty?.should be_true
+    <span class="k">end</span>
+
+    it <span class="s">&quot;is not empty if there are elements in the array&quot;</span> <span class="k">do</span>
+      [<span class="n">1</span>].empty?.should be_false
+    <span class="k">end</span>
+  <span class="k">end</span>
+
+  <span class="c"># lots more specs</span>
+<span class="k">end</span></code></pre>
+<p>Test files are structured by use of the <code>describe</code> or <code>context</code> methods.
+Typically a top level <code>describe</code> defines the <code>outer</code> unit (such as a class)
+that is to be tested by the spec. Further <code>describe</code> calls can be nested within
+the outer unit to specify smaller units under test (such as individual methods).
+<code>describe</code> can also be used to set up a certain context - think empty <code><a href="Array.html">Array</a></code> versus
+<code><a href="Array.html">Array</a></code> with elements. The <code>context</code> method behaves just like the <code>describe</code> method
+and may be used instead, to emphasize context to the reader.</p>
+<p>Within a <code>describe</code> block, concrete test cases are defined with <code>it</code> . A
+descriptive string is supplied to <code>it</code> describing what the test case
+tests specifically.</p>
+<p>Specs then use the <code>should</code> method to verify that the expected value is
+returned. See the example above for details.</p>
+<p>By convention, specs live in the <code>spec</code> directory of a project. You can compile
+and run the specs of a project by running <code>crystal spec</code>.</p>
+<pre><code class="language-console"># Run all specs in files matching spec/**/*_spec.cr
+crystal spec
+
+# Run all specs in files matching spec/my/test/**/*_spec.cr
+crystal spec spec/my/test/
+
+# Run all specs in spec/my/test/file_spec.cr
+crystal spec spec/my/test/file_spec.cr
+
+# Run the spec or group defined in line 14 of spec/my/test/file_spec.cr
+crystal spec spec/my/test/file_spec.cr:14
+
+# Run all specs tagged with &quot;fast&quot;
+crystal spec --tag 'fast'
+
+# Run all specs not tagged with &quot;slow&quot;
+crystal spec --tag '~slow'</code></pre>
+<h2><a id="focusing-on-a-group-of-specs" class="anchor" href="#focusing-on-a-group-of-specs">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Focusing on a group of specs</h2>
+<p>A <code>describe</code>, <code>context</code> or <code>it</code> can be marked with <code>focus: true</code>, like this:</p>
+<pre><code class="language-crystal">it <span class="s">&quot;adds&quot;</span>, focus: <span class="n">true</span> <span class="k">do</span>
+  (<span class="n">2</span> <span class="o">+</span> <span class="n">2</span>).should_not eq(<span class="n">5</span>)
+<span class="k">end</span></code></pre>
+<p>If any such thing is marked with <code>focus: true</code> then only those examples will run.</p>
+<h2><a id="randomizing-order-of-specs" class="anchor" href="#randomizing-order-of-specs">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Randomizing order of specs</h2>
+<p>Specs, by default, run in the order defined, but can be run in a random order
+by passing <code>--order random</code> to <code>crystal spec</code>.</p>
+<p>Specs run in random order will display a seed value upon completion. This seed
+value can be used to rerun the specs in that same order by passing the seed
+value to <code>--order</code>.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/spec.cr#L93" target="_blank">
+        spec.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/spec/cli.cr#L7" target="_blank">
+        spec/cli.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/spec/context.cr#L3" target="_blank">
+        spec/context.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/spec/dsl.cr#L4" target="_blank">
+        spec/dsl.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/spec/example.cr#L3" target="_blank">
+        spec/example.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/spec/example/procsy.cr#L1" target="_blank">
+        spec/example/procsy.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/spec/example_group/procsy.cr#L1" target="_blank">
+        spec/example_group/procsy.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/spec/expectations.cr#L1" target="_blank">
+        spec/expectations.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/spec/filters.cr#L5" target="_blank">
+        spec/filters.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/spec/formatter.cr#L1" target="_blank">
+        spec/formatter.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/spec/item.cr#L1" target="_blank">
+        spec/item.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/spec/junit_formatter.cr#L3" target="_blank">
+        spec/junit_formatter.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/spec/source.cr#L1" target="_blank">
+        spec/source.cr
+      </a>
+    
+    <br/>
+  
+
+
+
+
+
+  
+
+  
+  <h2>
+    <a id="class-method-summary" class="anchor" href="#class-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Class Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#add_formatter%28formatter%29-class-method" class="signature"><strong>.add_formatter</strong>(formatter)</a>
+        
+          <div class="summary"><p><span class="flag red">DEPRECATED</span>  This is an internal API.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#add_split_filter%28filter%29-class-method" class="signature"><strong>.add_split_filter</strong>(filter)</a>
+        
+          <div class="summary"><p><span class="flag red">DEPRECATED</span>  This is an internal API.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#after_each%28%26block%29-class-method" class="signature"><strong>.after_each</strong>(&block)</a>
+        
+          <div class="summary"><p>Instructs the spec runner to execute the given block after each spec in the spec suite.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#after_suite%28%26block%29-class-method" class="signature"><strong>.after_suite</strong>(&block)</a>
+        
+          <div class="summary"><p>Instructs the spec runner to execute the given block after the entire spec suite.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#around_each%28%26block%3AExample%3A%3AProcsy-%3E%29-class-method" class="signature"><strong>.around_each</strong>(&block : Example::Procsy -> )</a>
+        
+          <div class="summary"><p>Instructs the spec runner to execute the given block when each spec in the spec suite runs.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#before_each%28%26block%29-class-method" class="signature"><strong>.before_each</strong>(&block)</a>
+        
+          <div class="summary"><p>Instructs the spec runner to execute the given block before each spec in the spec suite.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#before_suite%28%26block%29-class-method" class="signature"><strong>.before_suite</strong>(&block)</a>
+        
+          <div class="summary"><p>Instructs the spec runner to execute the given block before the entire spec suite.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#finish_run-class-method" class="signature"><strong>.finish_run</strong></a>
+        
+          <div class="summary"><p><span class="flag red">DEPRECATED</span>  This is an internal API.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#override_default_formatter%28formatter%29-class-method" class="signature"><strong>.override_default_formatter</strong>(formatter)</a>
+        
+          <div class="summary"><p><span class="flag red">DEPRECATED</span>  This is an internal API.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#randomizer%3ARandom%3A%3APCG32%7CNil-class-method" class="signature"><strong>.randomizer</strong> : Random::PCG32 | Nil</a>
+        
+          <div class="summary"><p><span class="flag red">DEPRECATED</span>  This is an internal API.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+  
+
+  
+
+
+  <div class="methods-inherited">
+    
+  </div>
+
+  
+
+  
+  <h2>
+    <a id="class-method-detail" class="anchor" href="#class-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Class Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="add_formatter(formatter)-class-method">
+      <div class="signature">
+        
+        def self.<strong>add_formatter</strong>(formatter)
+
+        <a class="method-permalink" href="#add_formatter%28formatter%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p><span class="flag red">DEPRECATED</span>  This is an internal API.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/spec/formatter.cr#L142" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="add_split_filter(filter)-class-method">
+      <div class="signature">
+        
+        def self.<strong>add_split_filter</strong>(filter)
+
+        <a class="method-permalink" href="#add_split_filter%28filter%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p><span class="flag red">DEPRECATED</span>  This is an internal API.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/spec/dsl.cr#L333" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="after_each(&amp;block)-class-method">
+      <div class="signature">
+        
+        def self.<strong>after_each</strong>(&block)
+
+        <a class="method-permalink" href="#after_each%28%26block%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Instructs the spec runner to execute the given block
+after each spec in the spec suite.</p>
+<p>If multiple blocks are registered they run in the reversed
+order that they are given.</p>
+<p>For example:</p>
+<pre><code class="language-crystal"><span class="t">Spec</span>.after_each { puts <span class="n">1</span> }
+<span class="t">Spec</span>.after_each { puts <span class="n">2</span> }</code></pre>
+<p>will print, just after each spec, 2 and then 1.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/spec/dsl.cr#L123" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="after_suite(&amp;block)-class-method">
+      <div class="signature">
+        
+        def self.<strong>after_suite</strong>(&block)
+
+        <a class="method-permalink" href="#after_suite%28%26block%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Instructs the spec runner to execute the given block
+after the entire spec suite.</p>
+<p>If multiple blocks are registered they run in the reversed
+order that they are given.</p>
+<p>For example:</p>
+<pre><code class="language-crystal"><span class="t">Spec</span>.after_suite { puts <span class="n">1</span> }
+<span class="t">Spec</span>.after_suite { puts <span class="n">2</span> }</code></pre>
+<p>will print, just after the spec suite ends, 2 and then 1.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/spec/dsl.cr#L159" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="around_each(&amp;block:Example::Procsy-&gt;)-class-method">
+      <div class="signature">
+        
+        def self.<strong>around_each</strong>(&block : <a href="Spec/Example/Procsy.html">Example::Procsy</a> -> )
+
+        <a class="method-permalink" href="#around_each%28%26block%3AExample%3A%3AProcsy-%3E%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Instructs the spec runner to execute the given block when each spec in the
+spec suite runs.</p>
+<p>The block must call <code>run</code> on the given <code><a href="Spec/Example/Procsy.html">Example::Procsy</a></code> object.</p>
+<p>If multiple blocks are registered they run in the reversed
+order that they are given.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;spec&quot;</span>
+
+<span class="t">Spec</span>.around_each <span class="k">do</span> <span class="o">|</span>example<span class="o">|</span>
+  puts <span class="s">&quot;runs before each sample&quot;</span>
+  example.run
+  puts <span class="s">&quot;runs after each sample&quot;</span>
+<span class="k">end</span>
+
+it { }
+it { }</code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/spec/dsl.cr#L183" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="before_each(&amp;block)-class-method">
+      <div class="signature">
+        
+        def self.<strong>before_each</strong>(&block)
+
+        <a class="method-permalink" href="#before_each%28%26block%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Instructs the spec runner to execute the given block
+before each spec in the spec suite.</p>
+<p>If multiple blocks are registered they run in the order
+that they are given.</p>
+<p>For example:</p>
+<pre><code class="language-crystal"><span class="t">Spec</span>.before_each { puts <span class="n">1</span> }
+<span class="t">Spec</span>.before_each { puts <span class="n">2</span> }</code></pre>
+<p>will print, just before each spec, 1 and then 2.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/spec/dsl.cr#L105" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="before_suite(&amp;block)-class-method">
+      <div class="signature">
+        
+        def self.<strong>before_suite</strong>(&block)
+
+        <a class="method-permalink" href="#before_suite%28%26block%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Instructs the spec runner to execute the given block
+before the entire spec suite.</p>
+<p>If multiple blocks are registered they run in the order
+that they are given.</p>
+<p>For example:</p>
+<pre><code class="language-crystal"><span class="t">Spec</span>.before_suite { puts <span class="n">1</span> }
+<span class="t">Spec</span>.before_suite { puts <span class="n">2</span> }</code></pre>
+<p>will print, just before the spec suite starts, 1 and then 2.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/spec/dsl.cr#L141" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="finish_run-class-method">
+      <div class="signature">
+        
+        def self.<strong>finish_run</strong>
+
+        <a class="method-permalink" href="#finish_run-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p><span class="flag red">DEPRECATED</span>  This is an internal API.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/spec/dsl.cr#L328" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="override_default_formatter(formatter)-class-method">
+      <div class="signature">
+        
+        def self.<strong>override_default_formatter</strong>(formatter)
+
+        <a class="method-permalink" href="#override_default_formatter%28formatter%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p><span class="flag red">DEPRECATED</span>  This is an internal API.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/spec/formatter.cr#L137" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="randomizer:Random::PCG32|Nil-class-method">
+      <div class="signature">
+        
+        def self.<strong>randomizer</strong> : <a href="Random/PCG32.html">Random::PCG32</a> | <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#randomizer%3ARandom%3A%3APCG32%7CNil-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p><span class="flag red">DEPRECATED</span>  This is an internal API.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/spec/cli.cr#L127" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+  
+
+  
+
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,2048 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Crystal Docs 1.16.1">
+<meta name="crystal_docs.project_version" content="1.17.0-dev">
+<meta name="crystal_docs.project_name" content="Crystal">
+
+  <meta name="crystal_docs.json_config_url" content="/api/versions.json">
+
+
+    <link rel="canonical" href="https://crystal-lang.org/api/latest/Regex.html">
+
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/doc.js"></script>
+
+  <meta name="repository-name" content="Crystal">
+  <title>Regex - Crystal 1.17.0-dev</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill="currentColor" fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<input type="checkbox" id="sidebar-btn">
+<label for="sidebar-btn" id="sidebar-btn-label">
+  <svg class="open" xmlns="http://www.w3.org/2000/svg" height="2em" width="2em" viewBox="0 0 512 512"><title>Open Sidebar</title><path fill="currentColor" d="M80 96v64h352V96H80zm0 112v64h352v-64H80zm0 112v64h352v-64H80z"></path></svg>
+  <svg class="close" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><title>Close Sidebar</title><path fill="currentColor" d="m118.6 73.4-45.2 45.2L210.7 256 73.4 393.4l45.2 45.2L256 301.3l137.4 137.3 45.2-45.2L301.3 256l137.3-137.4-45.2-45.2L256 210.7Z"></path></svg>
+</label>
+<iframe class="sidebar" src="sidebar.html"></iframe>
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">
+    class
+  </span> Regex
+
+</h1>
+
+
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="Regex.html">Regex</a></li><li class="superclass"><a href="Reference.html">Reference</a></li><li class="superclass"><a href="Object.html">Object</a></li></ul>
+
+
+
+
+  <h2>
+    <a id="overview" class="anchor" href="#overview">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Overview
+  </h2>
+
+  <p>A <code><a href="Regex.html">Regex</a></code> represents a regular expression, a pattern that describes the
+contents of strings. A <code><a href="Regex.html">Regex</a></code> can determine whether or not a string matches
+its description, and extract the parts of the string that match.</p>
+<p>A <code><a href="Regex.html">Regex</a></code> can be created using the literal syntax, in which it is delimited by
+forward slashes (<code>/</code>):</p>
+<pre><code class="language-crystal"><span class="s">/hay/</span> <span class="o">=~</span> <span class="s">&quot;haystack&quot;</span>   <span class="c"># =&gt; 0</span>
+<span class="o">/</span>y<span class="o">/</span>.match(<span class="s">&quot;haystack&quot;</span>) <span class="c"># =&gt; Regex::MatchData(&quot;y&quot;)</span></code></pre>
+<p>See <a href="https://crystal-lang.org/reference/syntax_and_semantics/literals/regex.html"><code>Regex</code> literals</a> in the language reference.</p>
+<p>Interpolation works in regular expression literals just as it does in string
+literals. Be aware that using this feature will cause an exception to be
+raised at runtime, if the resulting string would not be a valid regular
+expression.</p>
+<pre><code class="language-crystal">x <span class="o">=</span> <span class="s">&quot;a&quot;</span>
+<span class="o">/</span><span class="c">#{x}/.match(&quot;asdf&quot;) # =&gt; Regex::MatchData(&quot;a&quot;)</span>
+x <span class="o">=</span> <span class="s">&quot;(&quot;</span>
+<span class="o">/</span><span class="c">#{x}/ # raises ArgumentError</span></code></pre>
+<p>When we check to see if a particular regular expression describes a string,
+we can say that we are performing a match or matching one against the other.
+If we find that a regular expression does describe a string, we say that it
+matches, and we can refer to a part of the string that was described as
+a match.</p>
+<p>Here <code>&quot;haystack&quot;</code> does not contain the pattern <code>/needle/</code>, so it doesn't match:</p>
+<pre><code class="language-crystal"><span class="s">/needle/</span>.match(<span class="s">&quot;haystack&quot;</span>) <span class="c"># =&gt; nil</span></code></pre>
+<p>Here <code>&quot;haystack&quot;</code> contains the pattern <code>/hay/</code>, so it matches:</p>
+<pre><code class="language-crystal"><span class="s">/hay/</span>.match(<span class="s">&quot;haystack&quot;</span>) <span class="c"># =&gt; Regex::MatchData(&quot;hay&quot;)</span></code></pre>
+<p>Regex methods that perform a match usually return a truthy value if there was
+a match and <code>nil</code> if there was no match. After performing a match, the
+special variable <code>$~</code> will be an instance of <code><a href="Regex/MatchData.html">Regex::MatchData</a></code> if it matched, <code>nil</code>
+otherwise.</p>
+<p>When matching a regular expression using <code><a href="Regex.html#%3D~%28other%3AString%29%3AInt32%7CNil-instance-method">#=~</a></code> (either <code><a href="String.html#%3D~%28regex%3ARegex%2C%2A%2Coptions%3ARegex%3A%3AMatchOptions%3DRegex%3A%3AMatchOptions%3A%3ANone%29%3AInt32%7CNil-instance-method">String#=~</a></code> or
+<code><a href="Regex.html#%3D~%28other%3AString%29%3AInt32%7CNil-instance-method">Regex#=~</a></code>), the returned value will be the index of the first match in the
+string if the expression matched, <code>nil</code> otherwise.</p>
+<pre><code class="language-crystal"><span class="s">/stack/</span> <span class="o">=~</span> <span class="s">&quot;haystack&quot;</span>  <span class="c"># =&gt; 3</span>
+<span class="s">&quot;haystack&quot;</span> <span class="o">=~</span> <span class="s">/stack/</span>  <span class="c"># =&gt; 3</span>
+$~                     <span class="c"># =&gt; Regex::MatchData(&quot;stack&quot;)</span>
+<span class="o">/</span>needle<span class="o">/</span> <span class="o">=~</span> <span class="s">&quot;haystack&quot;</span> <span class="c"># =&gt; nil</span>
+<span class="s">&quot;haystack&quot;</span> <span class="o">=~</span> <span class="s">/needle/</span> <span class="c"># =&gt; nil</span>
+$~                     <span class="c"># raises Exception</span></code></pre>
+<p>When matching a regular expression using <code><a href="Regex.html#match%28str%3AString%2Cpos%3AInt32%3D0%2Coptions%3ARegex%3A%3AMatchOptions%3D%3Anone%29%3AMatchData%7CNil-instance-method">#match</a></code> (either <code><a href="String.html#match%28regex%3ARegex%2Cpos%3D0%2C%2A%2Coptions%3ARegex%3A%3AMatchOptions%3DRegex%3A%3AMatchOptions%3A%3ANone%29%3ARegex%3A%3AMatchData%7CNil-instance-method">String#match</a></code> or
+<code><a href="Regex.html#match%28str%3AString%2Cpos%3AInt32%3D0%2Coptions%3ARegex%3A%3AMatchOptions%3D%3Anone%29%3AMatchData%7CNil-instance-method">Regex#match</a></code>), the returned value will be a <code><a href="Regex/MatchData.html">Regex::MatchData</a></code> if the expression
+matched, <code>nil</code> otherwise.</p>
+<pre><code class="language-crystal"><span class="s">/hay/</span>.match(<span class="s">&quot;haystack&quot;</span>)    <span class="c"># =&gt; Regex::MatchData(&quot;hay&quot;)</span>
+<span class="s">&quot;haystack&quot;</span>.match(<span class="o">/</span>hay<span class="o">/</span>)    <span class="c"># =&gt; Regex::MatchData(&quot;hay&quot;)</span>
+$~                         <span class="c"># =&gt; Regex::MatchData(&quot;hay&quot;)</span>
+<span class="o">/</span>needle<span class="o">/</span>.match(<span class="s">&quot;haystack&quot;</span>) <span class="c"># =&gt; nil</span>
+<span class="s">&quot;haystack&quot;</span>.match(<span class="o">/</span>needle<span class="o">/</span>) <span class="c"># =&gt; nil</span>
+$~                         <span class="c"># raises Exception</span></code></pre>
+<p><a href="https://en.wikipedia.org/wiki/Regular_expression">Regular expressions</a>
+have their own language for describing strings.</p>
+<p>Many programming languages and tools implement their own regular expression
+language, but Crystal uses <a href="http://www.pcre.org/">PCRE2</a>, a popular C library, with
+<a href="http://www.pcre.org/current/doc/html/pcre2jit.html">JIT compilation</a> enabled
+for providing regular expressions. Here give a brief summary of the most
+basic features of regular expressions - grouping, repetition, and
+alternation - but the feature set of PCRE2 extends far beyond these, and we
+don't attempt to describe it in full here. For more information, refer to
+the PCRE2 documentation, especially the
+<a href="http://www.pcre.org/current/doc/html/pcre2pattern.html">full pattern syntax</a>
+or
+<a href="http://www.pcre.org/current/doc/html/pcre2syntax.html">syntax quick reference</a>.</p>
+<p><span class="flag purple">NOTE</span>  Prior to Crystal 1.8 the compiler expected regex literals to follow the
+original <a href="https://www.pcre.org/original/doc/html/pcrepattern.html">PCRE pattern syntax</a>.
+The following summary applies to both PCRE and PCRE2.</p>
+<p>The regular expression language can be used to match much more than just the
+static substrings in the above examples. Certain characters, called
+<a href="http://www.pcre.org/current/doc/html/pcre2pattern.html#SEC4">metacharacters</a>,
+are given special treatment in regular expressions, and can be used to
+describe more complex patterns. To match metacharacters literally in a
+regular expression, they must be escaped by being preceded with a backslash
+(<code>\</code>). <code><a href="Regex.html#escape%28str%29%3AString-class-method">.escape</a></code> will do this automatically for a given String.</p>
+<p>A group of characters (often called a capture group or
+<a href="http://www.pcre.org/current/doc/html/pcre2pattern.html#SEC14">subpattern</a>)
+can be identified by enclosing it in parentheses (<code>()</code>). The contents of
+each capture group can be extracted on a successful match:</p>
+<pre><code class="language-crystal"><span class="s">/a(sd)f/</span>.match(<span class="s">&quot;_asdf_&quot;</span>)                     <span class="c"># =&gt; Regex::MatchData(&quot;asdf&quot; 1:&quot;sd&quot;)</span>
+<span class="o">/</span>a(sd)f<span class="o">/</span>.match(<span class="s">&quot;_asdf_&quot;</span>).try <span class="o">&amp;</span>.[<span class="n">1</span>]           <span class="c"># =&gt; &quot;sd&quot;</span>
+<span class="o">/</span>a(?<span class="o">&lt;</span>grp<span class="o">&gt;</span>sd)f<span class="o">/</span>.match(<span class="s">&quot;_asdf_&quot;</span>)               <span class="c"># =&gt; Regex::MatchData(&quot;asdf&quot; grp:&quot;sd&quot;)</span>
+<span class="o">/</span>a(?<span class="o">&lt;</span>grp<span class="o">&gt;</span>sd)f<span class="o">/</span>.match(<span class="s">&quot;_asdf_&quot;</span>).try <span class="o">&amp;</span>.[<span class="s">&quot;grp&quot;</span>] <span class="c"># =&gt; &quot;sd&quot;</span></code></pre>
+<p>Capture groups are indexed starting from 1. Methods that accept a capture
+group index will usually also accept 0 to refer to the full match. Capture
+groups can also be given names, using the <code>(?&amp;lt;name&amp;gt;...)</code> syntax, as in the
+previous example.</p>
+<p>Following a match, the special variables $N (e.g., $1, $2, $3, ...) can be used
+to access a capture group. Trying to access an invalid capture group will raise an
+exception. Note that it is possible to have a successful match with a nil capture:</p>
+<pre><code class="language-crystal"><span class="s">/(spice)(s)?/</span>.match(<span class="s">&quot;spice&quot;</span>) <span class="c"># =&gt; Regex::MatchData(&quot;spice&quot; 1:&quot;spice&quot; 2:nil)</span>
+$1                           <span class="c"># =&gt; &quot;spice&quot;</span>
+$2                           <span class="c"># =&gt; raises Exception</span></code></pre>
+<p>This can be mitigated by using the nilable version of the above: $N?,
+(e.g., $1? $2?, $3?, ...). Changing the above to use <code>$2?</code> instead of <code>$2</code>
+would return <code>nil</code>. <code>$2?.nil?</code> would return <code>true</code>.</p>
+<p>A character or group can be
+<a href="http://www.pcre.org/current/doc/html/pcre2pattern.html#SEC17">repeated</a>
+or made optional using an asterisk (<code>*</code> - zero or more), a plus sign
+(<code><a href="Regex.html#%2B%28other%29%3ARegex-instance-method">#+</a></code> - one or more), integer bounds in curly braces
+(<code>{n,m}</code>) (at least <code>n</code>, no more than <code>m</code>), or a question mark
+(<code>?</code>) (zero or one).</p>
+<pre><code class="language-crystal"><span class="s">/fo*/</span>.match(<span class="s">&quot;_f_&quot;</span>)         <span class="c"># =&gt; Regex::MatchData(&quot;f&quot;)</span>
+<span class="o">/</span>fo<span class="o">+</span><span class="o">/</span>.match(<span class="s">&quot;_f_&quot;</span>)         <span class="c"># =&gt; nil</span>
+<span class="o">/</span>fo<span class="o">*</span><span class="o">/</span>.match(<span class="s">&quot;_foo_&quot;</span>)       <span class="c"># =&gt; Regex::MatchData(&quot;foo&quot;)</span>
+<span class="o">/</span>fo{<span class="n">3</span>,}<span class="o">/</span>.match(<span class="s">&quot;_foo_&quot;</span>)    <span class="c"># =&gt; nil</span>
+<span class="o">/</span>fo{<span class="n">1</span>,<span class="n">3</span>}<span class="o">/</span>.match(<span class="s">&quot;_foo_&quot;</span>)   <span class="c"># =&gt; Regex::MatchData(&quot;foo&quot;)</span>
+<span class="o">/</span>fo<span class="o">*</span><span class="o">/</span>.match(<span class="s">&quot;_foo_&quot;</span>)       <span class="c"># =&gt; Regex::MatchData(&quot;foo&quot;)</span>
+<span class="o">/</span>fo<span class="o">*</span><span class="o">/</span>.match(<span class="s">&quot;_foooooooo_&quot;</span>) <span class="c"># =&gt; Regex::MatchData(&quot;foooooooo&quot;)</span>
+<span class="o">/</span>fo{,<span class="n">3</span>}<span class="o">/</span>.match(<span class="s">&quot;_foooo_&quot;</span>)  <span class="c"># =&gt; nil</span>
+<span class="o">/</span>f(op)<span class="o">*</span><span class="o">/</span>.match(<span class="s">&quot;fopopo&quot;</span>)   <span class="c"># =&gt; Regex::MatchData(&quot;fopop&quot; 1:&quot;op&quot;)</span>
+<span class="o">/</span>foo?bar<span class="o">/</span>.match(<span class="s">&quot;foobar&quot;</span>)  <span class="c"># =&gt; Regex::MatchData(&quot;foobar&quot;)</span>
+<span class="o">/</span>foo?bar<span class="o">/</span>.match(<span class="s">&quot;fobar&quot;</span>)   <span class="c"># =&gt; Regex::MatchData(&quot;fobar&quot;)</span></code></pre>
+<p>Alternatives can be separated using a
+<a href="http://www.pcre.org/current/doc/html/pcre2pattern.html#SEC12">vertical bar</a>
+(<code>|</code>). Any single character can be represented by
+<a href="http://www.pcre.org/current/doc/html/pcre2pattern.html#SEC7">dot</a>
+(<code>.</code>). When matching only one character, specific
+alternatives can be expressed as a
+<a href="http://www.pcre.org/current/doc/html/pcre2pattern.html#SEC9">character class</a>,
+enclosed in square brackets (<code>[]</code>):</p>
+<pre><code class="language-crystal"><span class="s">/foo|bar/</span>.match(<span class="s">&quot;foo&quot;</span>)     <span class="c"># =&gt; Regex::MatchData(&quot;foo&quot;)</span>
+<span class="o">/</span>foo<span class="o">|</span>bar<span class="o">/</span>.match(<span class="s">&quot;bar&quot;</span>)     <span class="c"># =&gt; Regex::MatchData(&quot;bar&quot;)</span>
+<span class="o">/</span>_(x<span class="o">|</span>y)_<span class="o">/</span>.match(<span class="s">&quot;_x_&quot;</span>)     <span class="c"># =&gt; Regex::MatchData(&quot;_x_&quot; 1:&quot;x&quot;)</span>
+<span class="o">/</span>_(x<span class="o">|</span>y)_<span class="o">/</span>.match(<span class="s">&quot;_y_&quot;</span>)     <span class="c"># =&gt; Regex::MatchData(&quot;_y_&quot; 1:&quot;y&quot;)</span>
+<span class="o">/</span>_(x<span class="o">|</span>y)_<span class="o">/</span>.match(<span class="s">&quot;_(x|y)_&quot;</span>) <span class="c"># =&gt; nil</span>
+<span class="o">/</span>_(x<span class="o">|</span>y)_<span class="o">/</span>.match(<span class="s">&quot;_(x|y)_&quot;</span>) <span class="c"># =&gt; nil</span>
+<span class="o">/</span>_._<span class="o">/</span>.match(<span class="s">&quot;_x_&quot;</span>)         <span class="c"># =&gt; Regex::MatchData(&quot;_x_&quot;)</span>
+<span class="o">/</span>_[xyz]_<span class="o">/</span>.match(<span class="s">&quot;_x_&quot;</span>)     <span class="c"># =&gt; Regex::MatchData(&quot;_x_&quot;)</span>
+<span class="o">/</span>_[a<span class="o">-</span>z]_<span class="o">/</span>.match(<span class="s">&quot;_x_&quot;</span>)     <span class="c"># =&gt; Regex::MatchData(&quot;_x_&quot;)</span>
+<span class="o">/</span>_[<span class="o">^</span>a<span class="o">-</span>z]_<span class="o">/</span>.match(<span class="s">&quot;_x_&quot;</span>)    <span class="c"># =&gt; nil</span>
+<span class="o">/</span>_[<span class="o">^</span>a<span class="o">-</span>wy<span class="o">-</span>z]_<span class="o">/</span>.match(<span class="s">&quot;_x_&quot;</span>) <span class="c"># =&gt; Regex::MatchData(&quot;_x_&quot;)</span></code></pre>
+<p>Regular expressions can be defined with these 3
+<a href="http://www.pcre.org/current/doc/html/pcre2pattern.html#SEC13">optional flags</a>:</p>
+<ul>
+<li><code>i</code>: ignore case (<code><a href="Regex/Options.html#IGNORE_CASE">Regex::Options::IGNORE_CASE</a></code>)</li>
+<li><code>m</code>: multiline (<code><a href="Regex/Options.html#MULTILINE">Regex::Options::MULTILINE</a></code>)</li>
+<li><code>x</code>: extended (<code><a href="Regex/Options.html#EXTENDED">Regex::Options::EXTENDED</a></code>)</li>
+</ul>
+<pre><code class="language-crystal"><span class="s">/asdf/</span> <span class="o">=~</span> <span class="s">&quot;ASDF&quot;</span>    <span class="c"># =&gt; nil</span>
+<span class="o">/</span>asdf<span class="o">/</span>i <span class="o">=~</span> <span class="s">&quot;ASDF&quot;</span>   <span class="c"># =&gt; 0</span>
+<span class="o">/</span><span class="o">^</span>z<span class="o">/</span>i <span class="o">=~</span> <span class="s">&quot;ASDF\nZ&quot;</span>  <span class="c"># =&gt; nil</span>
+<span class="o">/</span><span class="o">^</span>z<span class="o">/</span>im <span class="o">=~</span> <span class="s">&quot;ASDF\nZ&quot;</span> <span class="c"># =&gt; 5</span></code></pre>
+<p>PCRE2 supports other encodings, but Crystal strings are UTF-8 only, so Crystal
+regular expressions are also UTF-8 only (by default).
+Crystal strings are expected to contain only valid UTF-8 encodings, but that's
+not guaranteed. There's a chance that a string <em>can</em> contain invalid bytes.
+Especially data read from external sources must not be trusted to be valid encoding.
+The regex engine demands valid UTF-8, so it checks the encoding for every
+match. This can be unnecessary if the string is already validated (for example
+via <code><a href="String.html#valid_encoding%3F%3ABool-instance-method">String#valid_encoding?</a></code> or because it has already been used in a previous
+regex match).
+If that's the case, it's profitable to skip UTF-8 validation via <code><a href="Regex/MatchOptions.html#NO_UTF_CHECK">MatchOptions::NO_UTF_CHECK</a></code>
+(or <code><a href="Regex/Options.html#NO_UTF_CHECK">CompileOptions::NO_UTF_CHECK</a></code> for the pattern).</p>
+<p>PCRE2 optionally permits named capture groups (named subpatterns) to not be
+unique. Crystal exposes the name table of a <code><a href="Regex.html">Regex</a></code> as a
+<code><a href="Hash.html">Hash</a></code> of <code><a href="String.html">String</a></code> =&gt; <code><a href="Int32.html">Int32</a></code>, and therefore requires named capture groups to have
+unique names within a single <code><a href="Regex.html">Regex</a></code>.</p>
+
+
+
+
+
+
+
+  <h2>
+    <a id="included-modules" class="anchor" href="#included-modules">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Included Modules
+  </h2>
+  <ul class="other-types-list">
+    
+      <li class="other-type">Regex::PCRE2</li>
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/any.cr#L357" target="_blank">
+        json/any.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/regex.cr#L211" target="_blank">
+        regex.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/regex/match_data.cr#L1" target="_blank">
+        regex/match_data.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/yaml/any.cr#L398" target="_blank">
+        yaml/any.cr
+      </a>
+    
+    <br/>
+  
+
+
+
+  
+    <h2>
+      <a id="constant-summary" class="anchor" href="#constant-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+      Constant Summary
+    </h2>
+  
+  <dl>
+    
+      <dt class="entry-const" id="SPECIAL_CHARACTERS">
+        <strong>SPECIAL_CHARACTERS</strong> = <code>{<span class="s">&#39; &#39;</span>, <span class="s">&#39;.&#39;</span>, <span class="s">&#39;\\&#39;</span>, <span class="s">&#39;+&#39;</span>, <span class="s">&#39;*&#39;</span>, <span class="s">&#39;?&#39;</span>, <span class="s">&#39;[&#39;</span>, <span class="s">&#39;^&#39;</span>, <span class="s">&#39;]&#39;</span>, <span class="s">&#39;$&#39;</span>, <span class="s">&#39;(&#39;</span>, <span class="s">&#39;)&#39;</span>, <span class="s">&#39;{&#39;</span>, <span class="s">&#39;}&#39;</span>, <span class="s">&#39;=&#39;</span>, <span class="s">&#39;!&#39;</span>, <span class="s">&#39;&lt;&#39;</span>, <span class="s">&#39;&gt;&#39;</span>, <span class="s">&#39;|&#39;</span>, <span class="s">&#39;:&#39;</span>, <span class="s">&#39;-&#39;</span>}</code>
+      </dt>
+      
+      <dd class="entry-const-doc">
+        <p>List of metacharacters that need to be escaped.</p>
+<p>See <code><a href="Regex.html#needs_escape%3F%28char%3AChar%29%3ABool-class-method">Regex.needs_escape?</a></code> and <code><a href="Regex.html#escape%28str%29%3AString-class-method">Regex.escape</a></code>.</p>
+      </dd>
+      
+    
+  </dl>
+
+
+
+  
+  <h2>
+    <a id="constructors" class="anchor" href="#constructors">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructors
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#literal%28pattern%3AString%2C%2A%2Ci%3ABool%3Dfalse%2Cm%3ABool%3Dfalse%2Cx%3ABool%3Dfalse%29%3Aself-class-method" class="signature"><strong>.literal</strong>(pattern : String, *, i : Bool = <span class="n">false</span>, m : Bool = <span class="n">false</span>, x : Bool = <span class="n">false</span>) : <span class="k">self</span></a>
+        
+          <div class="summary"><p>Creates a new <code><a href="Regex.html">Regex</a></code> instance from a literal consisting of a <em>pattern</em> and the named parameter modifiers.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#new%28source%3AString%2Coptions%3AOptions%3DOptions%3A%3ANone%29-class-method" class="signature"><strong>.new</strong>(source : String, options : Options = <span class="t">Options</span><span class="t">::</span><span class="t">None</span>)</a>
+        
+          <div class="summary"><p>Creates a new <code><a href="Regex.html">Regex</a></code> out of the given source <code><a href="String.html">String</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#union%28patterns%3AEnumerable%28Regex%7CString%29%29%3Aself-class-method" class="signature"><strong>.union</strong>(patterns : Enumerable(Regex | String)) : <span class="k">self</span></a>
+        
+          <div class="summary"><p>Union.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#union%28%2Apatterns%3ARegex%7CString%29%3Aself-class-method" class="signature"><strong>.union</strong>(*patterns : Regex | String) : <span class="k">self</span></a>
+        
+          <div class="summary"><p>Union.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+  
+  <h2>
+    <a id="class-method-summary" class="anchor" href="#class-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Class Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#error%3F%28source%29%3AString%7CNil-class-method" class="signature"><strong>.error?</strong>(source) : String | Nil</a>
+        
+          <div class="summary"><p>Determines Regex's source validity.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#escape%28str%29%3AString-class-method" class="signature"><strong>.escape</strong>(str) : String</a>
+        
+          <div class="summary"><p>Returns a <code><a href="String.html">String</a></code> constructed by escaping any metacharacters in <em>str</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#needs_escape%3F%28char%3AChar%29%3ABool-class-method" class="signature"><strong>.needs_escape?</strong>(char : Char) : Bool</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if <em>char</em> need to be escaped, <code>false</code> otherwise.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#needs_escape%3F%28str%3AString%29%3ABool-class-method" class="signature"><strong>.needs_escape?</strong>(str : String) : Bool</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if <em>str</em> need to be escaped, <code>false</code> otherwise.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#supports_compile_options%3F%28options%3ACompileOptions%29%3ABool-class-method" class="signature"><strong>.supports_compile_options?</strong>(options : CompileOptions) : Bool</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if the regex engine supports all <em>options</em> flags when compiling a pattern.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#supports_match_options%3F%28options%3AMatchOptions%29%3ABool-class-method" class="signature"><strong>.supports_match_options?</strong>(options : MatchOptions) : Bool</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if the regex engine supports all <em>options</em> flags when matching a pattern.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+  
+
+  
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#%2B%28other%29%3ARegex-instance-method" class="signature"><strong>#+</strong>(other) : Regex</a>
+        
+          <div class="summary"><p>Union.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%3D%3D%28other%3ARegex%29-instance-method" class="signature"><strong>#==</strong>(other : Regex)</a>
+        
+          <div class="summary"><p>Equality.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%3D%3D%3D%28other%3AString%29-instance-method" class="signature"><strong>#===</strong>(other : String)</a>
+        
+          <div class="summary"><p>Case equality.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%3D%3D%3D%28other%3AJSON%3A%3AAny%29-instance-method" class="signature"><strong>#===</strong>(other : JSON::Any)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%3D%3D%3D%28other%3AYAML%3A%3AAny%29-instance-method" class="signature"><strong>#===</strong>(other : YAML::Any)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%3D~%28other%3AString%29%3AInt32%7CNil-instance-method" class="signature"><strong>#=~</strong>(other : String) : Int32 | Nil</a>
+        
+          <div class="summary"><p>Match.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%3D~%28other%29%3ANil-instance-method" class="signature"><strong>#=~</strong>(other) : Nil</a>
+        
+          <div class="summary"><p>Match.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#capture_count%3AInt32-instance-method" class="signature"><strong>#capture_count</strong> : Int32</a>
+        
+          <div class="summary"><p>Returns the number of (named &amp; non-named) capture groups.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#clone-instance-method" class="signature"><strong>#clone</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#dup-instance-method" class="signature"><strong>#dup</strong></a>
+        
+          <div class="summary"><p>Returns a shallow copy of this object.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#hash%28hasher%29-instance-method" class="signature"><strong>#hash</strong>(hasher)</a>
+        
+          <div class="summary"><p>See <code><a href="Object.html#hash%28hasher%29-instance-method">Object#hash(hasher)</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#inspect%28io%3AIO%29%3ANil-instance-method" class="signature"><strong>#inspect</strong>(io : IO) : Nil</a>
+        
+          <div class="summary"><p>Prints to <em>io</em> an unambiguous string representation of this regular expression object.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#match%28str%3AString%2Cpos%3AInt32%3D0%2Coptions%3ARegex%3A%3AMatchOptions%3D%3Anone%29%3AMatchData%7CNil-instance-method" class="signature"><strong>#match</strong>(str : String, pos : Int32 = <span class="n">0</span>, options : Regex::MatchOptions = <span class="n">:none</span>) : MatchData | Nil</a>
+        
+          <div class="summary"><p>Match at character index.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#match%28str%2Cpos%2C_options%29%3AMatchData%7CNil-instance-method" class="signature"><strong>#match</strong>(str, pos, _options) : MatchData | Nil</a>
+        
+          <div class="summary"><p>Match at character index.</p>
+<p><span class="flag red">DEPRECATED</span>  Use the overload with <code><a href="Regex/MatchOptions.html">Regex::MatchOptions</a></code> instead.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#match%28str%2Cpos%3D0%2C%2A%2Coptions%29%3AMatchData%7CNil-instance-method" class="signature"><strong>#match</strong>(str, pos = <span class="n">0</span>, *, options) : MatchData | Nil</a>
+        
+          <div class="summary"><p>Match at character index.</p>
+<p><span class="flag red">DEPRECATED</span>  Use the overload with <code><a href="Regex/MatchOptions.html">Regex::MatchOptions</a></code> instead.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#match%21%28str%3AString%2Cpos%3AInt32%3D0%2C%2A%2Coptions%3ARegex%3A%3AMatchOptions%3D%3Anone%29%3AMatchData-instance-method" class="signature"><strong>#match!</strong>(str : String, pos : Int32 = <span class="n">0</span>, *, options : Regex::MatchOptions = <span class="n">:none</span>) : MatchData</a>
+        
+          <div class="summary"><p>Matches a regular expression against <em>str</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#match_at_byte_index%28str%3AString%2Cbyte_index%3AInt32%3D0%2Coptions%3ARegex%3A%3AMatchOptions%3D%3Anone%29%3AMatchData%7CNil-instance-method" class="signature"><strong>#match_at_byte_index</strong>(str : String, byte_index : Int32 = <span class="n">0</span>, options : Regex::MatchOptions = <span class="n">:none</span>) : MatchData | Nil</a>
+        
+          <div class="summary"><p>Match at byte index.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#match_at_byte_index%28str%2Cbyte_index%2C_options%29%3AMatchData%7CNil-instance-method" class="signature"><strong>#match_at_byte_index</strong>(str, byte_index, _options) : MatchData | Nil</a>
+        
+          <div class="summary"><p>Match at byte index.</p>
+<p><span class="flag red">DEPRECATED</span>  Use the overload with <code><a href="Regex/MatchOptions.html">Regex::MatchOptions</a></code> instead.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#match_at_byte_index%28str%2Cbyte_index%3D0%2C%2A%2Coptions%29%3AMatchData%7CNil-instance-method" class="signature"><strong>#match_at_byte_index</strong>(str, byte_index = <span class="n">0</span>, *, options) : MatchData | Nil</a>
+        
+          <div class="summary"><p>Match at byte index.</p>
+<p><span class="flag red">DEPRECATED</span>  Use the overload with <code><a href="Regex/MatchOptions.html">Regex::MatchOptions</a></code> instead.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#matches%3F%28str%3AString%2Cpos%3AInt32%3D0%2Coptions%3ARegex%3A%3AMatchOptions%3D%3Anone%29%3ABool-instance-method" class="signature"><strong>#matches?</strong>(str : String, pos : Int32 = <span class="n">0</span>, options : Regex::MatchOptions = <span class="n">:none</span>) : Bool</a>
+        
+          <div class="summary"><p>Match at character index.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#matches%3F%28str%2Cpos%2C_options%29%3ABool-instance-method" class="signature"><strong>#matches?</strong>(str, pos, _options) : Bool</a>
+        
+          <div class="summary"><p>Match at character index.</p>
+<p><span class="flag red">DEPRECATED</span>  Use the overload with <code><a href="Regex/MatchOptions.html">Regex::MatchOptions</a></code> instead.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#matches%3F%28str%2Cpos%3D0%2C%2A%2Coptions%29%3ABool-instance-method" class="signature"><strong>#matches?</strong>(str, pos = <span class="n">0</span>, *, options) : Bool</a>
+        
+          <div class="summary"><p>Match at character index.</p>
+<p><span class="flag red">DEPRECATED</span>  Use the overload with <code><a href="Regex/MatchOptions.html">Regex::MatchOptions</a></code> instead.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#matches_at_byte_index%3F%28str%3AString%2Cbyte_index%3AInt32%3D0%2Coptions%3ARegex%3A%3AMatchOptions%3D%3Anone%29%3ABool-instance-method" class="signature"><strong>#matches_at_byte_index?</strong>(str : String, byte_index : Int32 = <span class="n">0</span>, options : Regex::MatchOptions = <span class="n">:none</span>) : Bool</a>
+        
+          <div class="summary"><p>Match at byte index.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#matches_at_byte_index%3F%28str%2Cbyte_index%2C_options%29%3ABool-instance-method" class="signature"><strong>#matches_at_byte_index?</strong>(str, byte_index, _options) : Bool</a>
+        
+          <div class="summary"><p>Match at byte index.</p>
+<p><span class="flag red">DEPRECATED</span>  Use the overload with <code><a href="Regex/MatchOptions.html">Regex::MatchOptions</a></code> instead.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#matches_at_byte_index%3F%28str%2Cbyte_index%3D0%2C%2A%2Coptions%29%3ABool-instance-method" class="signature"><strong>#matches_at_byte_index?</strong>(str, byte_index = <span class="n">0</span>, *, options) : Bool</a>
+        
+          <div class="summary"><p>Match at byte index.</p>
+<p><span class="flag red">DEPRECATED</span>  Use the overload with <code><a href="Regex/MatchOptions.html">Regex::MatchOptions</a></code> instead.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#name_table%3AHash%28Int32%2CString%29-instance-method" class="signature"><strong>#name_table</strong> : Hash(Int32, String)</a>
+        
+          <div class="summary"><p>Returns a <code><a href="Hash.html">Hash</a></code> where the values are the names of capture groups and the keys are their indexes.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#options%3AOptions-instance-method" class="signature"><strong>#options</strong> : Options</a>
+        
+          <div class="summary"><p>Returns a <code><a href="Regex/CompileOptions.html">Regex::CompileOptions</a></code> representing the optional flags applied to this <code><a href="Regex.html">Regex</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#source%3AString-instance-method" class="signature"><strong>#source</strong> : String</a>
+        
+          <div class="summary"><p>Returns the original <code><a href="String.html">String</a></code> representation of the <code><a href="Regex.html">Regex</a></code> pattern.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_s%28io%3AIO%29%3ANil-instance-method" class="signature"><strong>#to_s</strong>(io : IO) : Nil</a>
+        
+          <div class="summary"><p>Convert to <code><a href="String.html">String</a></code> in subpattern format.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+
+  <div class="methods-inherited">
+    
+      
+
+  <h3>Instance methods inherited from module <code>Regex::PCRE2</code></h3>
+  
+  
+    <a href="Regex/PCRE2.html#finalize-instance-method" class="tooltip">
+      <span>finalize</span>
+    finalize</a>
+    
+  
+
+
+      
+
+
+      
+
+  <h3>Class methods inherited from module <code>Regex::PCRE2</code></h3>
+  
+  
+    <a href="Regex/PCRE2.html#jit_stack-class-method" class="tooltip">
+      <span>jit_stack</span>
+    jit_stack</a>, 
+    
+  
+    <a href="Regex/PCRE2.html#match_context%3APointer%28LibPCRE2%3A%3AMatchContext%29-class-method" class="tooltip">
+      <span>match_context : Pointer(LibPCRE2::MatchContext)</span>
+    match_context</a>, 
+    
+  
+    <a href="Regex/PCRE2.html#supports_compile_flag%3F%28options%29-class-method" class="tooltip">
+      <span>supports_compile_flag?(options)</span>
+    supports_compile_flag?</a>, 
+    
+  
+    <a href="Regex/PCRE2.html#supports_match_flag%3F%28options%29-class-method" class="tooltip">
+      <span>supports_match_flag?(options)</span>
+    supports_match_flag?</a>, 
+    
+  
+    <a href="Regex/PCRE2.html#version%3AString-class-method" class="tooltip">
+      <span>version : String</span>
+    version</a>, 
+    
+  
+    <a href="Regex/PCRE2.html#version_number%3ATuple%28Int32%2CInt32%29-class-method" class="tooltip">
+      <span>version_number : Tuple(Int32, Int32)</span>
+    version_number</a>
+    
+  
+
+
+      
+
+
+    
+      
+
+  <h3>Instance methods inherited from class <code><a href="Reference.html">Reference</a></code></h3>
+  
+  
+    <a href="Reference.html#%3D%3D%28other%3Aself%29-instance-method" class="tooltip">
+      <span>==(other : <span class="k">self</span>)<br/>==(other : JSON::Any)<br/>==(other : YAML::Any)<br/>==(other)</span>
+    ==</a>, 
+    
+  
+    <a href="Reference.html#dup-instance-method" class="tooltip">
+      <span>dup</span>
+    dup</a>, 
+    
+  
+    <a href="Reference.html#hash%28hasher%29-instance-method" class="tooltip">
+      <span>hash(hasher)</span>
+    hash</a>, 
+    
+  
+    <a href="Reference.html#initialize-instance-method" class="tooltip">
+      <span>initialize</span>
+    initialize</a>, 
+    
+  
+    <a href="Reference.html#inspect%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>inspect(io : IO) : Nil</span>
+    inspect</a>, 
+    
+  
+    <a href="Reference.html#object_id%3AUInt64-instance-method" class="tooltip">
+      <span>object_id : UInt64</span>
+    object_id</a>, 
+    
+  
+    <a href="Reference.html#pretty_print%28pp%29%3ANil-instance-method" class="tooltip">
+      <span>pretty_print(pp) : Nil</span>
+    pretty_print</a>, 
+    
+  
+    <a href="Reference.html#same%3F%28other%3AReference%29%3ABool-instance-method" class="tooltip">
+      <span>same?(other : Reference) : Bool<br/>same?(other : Nil)</span>
+    same?</a>, 
+    
+  
+    <a href="Reference.html#to_s%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_s(io : IO) : Nil</span>
+    to_s</a>
+    
+  
+
+
+      
+
+  <h3>Constructor methods inherited from class <code><a href="Reference.html">Reference</a></code></h3>
+  
+  
+    <a href="Reference.html#new-class-method" class="tooltip">
+      <span>new</span>
+    new</a>, 
+    
+  
+    <a href="Reference.html#unsafe_construct%28address%3APointer%2C%2Aargs%2C%2A%2Aopts%29%3Aself-class-method" class="tooltip">
+      <span>unsafe_construct(address : Pointer, *args, **opts) : <span class="k">self</span></span>
+    unsafe_construct</a>
+    
+  
+
+
+      
+
+  <h3>Class methods inherited from class <code><a href="Reference.html">Reference</a></code></h3>
+  
+  
+    <a href="Reference.html#pre_initialize%28address%3APointer%29-class-method" class="tooltip">
+      <span>pre_initialize(address : Pointer)</span>
+    pre_initialize</a>
+    
+  
+
+
+      
+
+
+    
+      
+
+  <h3>Instance methods inherited from class <code><a href="Object.html">Object</a></code></h3>
+  
+  
+    <a href="Object.html#%21%3ABool-instance-method" class="tooltip">
+      <span>! : Bool</span>
+    !</a>, 
+    
+  
+    <a href="Object.html#%21%3D%28other%29-instance-method" class="tooltip">
+      <span>!=(other)</span>
+    !=</a>, 
+    
+  
+    <a href="Object.html#%21~%28other%29-instance-method" class="tooltip">
+      <span>!~(other)</span>
+    !~</a>, 
+    
+  
+    <a href="Object.html#%3D%3D%28other%29-instance-method" class="tooltip">
+      <span>==(other)</span>
+    ==</a>, 
+    
+  
+    <a href="Object.html#%3D%3D%3D%28other%3AJSON%3A%3AAny%29-instance-method" class="tooltip">
+      <span>===(other : JSON::Any)<br/>===(other : YAML::Any)<br/>===(other)</span>
+    ===</a>, 
+    
+  
+    <a href="Object.html#%3D~%28other%29-instance-method" class="tooltip">
+      <span>=~(other)</span>
+    =~</a>, 
+    
+  
+    <a href="Object.html#as%28type%3AClass%29-instance-method" class="tooltip">
+      <span>as(type : Class)</span>
+    as</a>, 
+    
+  
+    <a href="Object.html#as%3F%28type%3AClass%29-instance-method" class="tooltip">
+      <span>as?(type : Class)</span>
+    as?</a>, 
+    
+  
+    <a href="Object.html#class-instance-method" class="tooltip">
+      <span>class</span>
+    class</a>, 
+    
+  
+    <a href="Object.html#dup-instance-method" class="tooltip">
+      <span>dup</span>
+    dup</a>, 
+    
+  
+    <a href="Object.html#hash%28hasher%29-instance-method" class="tooltip">
+      <span>hash(hasher)<br/>hash</span>
+    hash</a>, 
+    
+  
+    <a href="Object.html#in%3F%28collection%3AObject%29%3ABool-instance-method" class="tooltip">
+      <span>in?(collection : Object) : Bool<br/>in?(*values : Object) : Bool</span>
+    in?</a>, 
+    
+  
+    <a href="Object.html#inspect%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>inspect(io : IO) : Nil<br/>inspect : String</span>
+    inspect</a>, 
+    
+  
+    <a href="Object.html#is_a%3F%28type%3AClass%29%3ABool-instance-method" class="tooltip">
+      <span>is_a?(type : Class) : Bool</span>
+    is_a?</a>, 
+    
+  
+    <a href="Object.html#itself-instance-method" class="tooltip">
+      <span>itself</span>
+    itself</a>, 
+    
+  
+    <a href="Object.html#nil%3F%3ABool-instance-method" class="tooltip">
+      <span>nil? : Bool</span>
+    nil?</a>, 
+    
+  
+    <a href="Object.html#not_nil%21%28message%29-instance-method" class="tooltip">
+      <span>not_nil!(message)<br/>not_nil!</span>
+    not_nil!</a>, 
+    
+  
+    <a href="Object.html#pretty_inspect%28width%3D79%2Cnewline%3D%22%5Cn%22%2Cindent%3D0%29%3AString-instance-method" class="tooltip">
+      <span>pretty_inspect(width = <span class="n">79</span>, newline = <span class="s">&quot;\n&quot;</span>, indent = <span class="n">0</span>) : String</span>
+    pretty_inspect</a>, 
+    
+  
+    <a href="Object.html#pretty_print%28pp%3APrettyPrint%29%3ANil-instance-method" class="tooltip">
+      <span>pretty_print(pp : PrettyPrint) : Nil</span>
+    pretty_print</a>, 
+    
+  
+    <a href="Object.html#responds_to%3F%28name%3ASymbol%29%3ABool-instance-method" class="tooltip">
+      <span>responds_to?(name : Symbol) : Bool</span>
+    responds_to?</a>, 
+    
+  
+    <a href="Object.html#tap%28%26%29-instance-method" class="tooltip">
+      <span>tap(&)</span>
+    tap</a>, 
+    
+  
+    <a href="Object.html#to_json%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_json(io : IO) : Nil<br/>to_json : String</span>
+    to_json</a>, 
+    
+  
+    <a href="Object.html#to_pretty_json%28indent%3AString%3D%22%22%29%3AString-instance-method" class="tooltip">
+      <span>to_pretty_json(indent : String = <span class="s">&quot;  &quot;</span>) : String<br/>to_pretty_json(io : IO, indent : String = <span class="s">&quot;  &quot;</span>) : Nil</span>
+    to_pretty_json</a>, 
+    
+  
+    <a href="Object.html#to_s%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_s(io : IO) : Nil<br/>to_s : String</span>
+    to_s</a>, 
+    
+  
+    <a href="Object.html#to_yaml%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_yaml(io : IO) : Nil<br/>to_yaml : String</span>
+    to_yaml</a>, 
+    
+  
+    <a href="Object.html#try%28%26%29-instance-method" class="tooltip">
+      <span>try(&)</span>
+    try</a>, 
+    
+  
+    <a href="Object.html#unsafe_as%28type%3AT.class%29forallT-instance-method" class="tooltip">
+      <span>unsafe_as(type : <span class="t">T</span>.<span class="k">class</span>) forall T</span>
+    unsafe_as</a>
+    
+  
+
+
+      
+
+
+      
+
+  <h3>Class methods inherited from class <code><a href="Object.html">Object</a></code></h3>
+  
+  
+    <a href="Object.html#from_json%28string_or_io%2Croot%3AString%29-class-method" class="tooltip">
+      <span>from_json(string_or_io, root : String)<br/>from_json(string_or_io)</span>
+    from_json</a>, 
+    
+  
+    <a href="Object.html#from_yaml%28string_or_io%3AString%7CIO%29-class-method" class="tooltip">
+      <span>from_yaml(string_or_io : String | IO)</span>
+    from_yaml</a>
+    
+  
+
+
+      
+
+  <h3>Macros inherited from class <code><a href="Object.html">Object</a></code></h3>
+  
+  
+    <a href="Object.html#class_getter%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_getter(*names, &block)</span>
+    class_getter</a>, 
+    
+  
+    <a href="Object.html#class_getter%21%28%2Anames%29-macro" class="tooltip">
+      <span>class_getter!(*names)</span>
+    class_getter!</a>, 
+    
+  
+    <a href="Object.html#class_getter%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_getter?(*names, &block)</span>
+    class_getter?</a>, 
+    
+  
+    <a href="Object.html#class_property%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_property(*names, &block)</span>
+    class_property</a>, 
+    
+  
+    <a href="Object.html#class_property%21%28%2Anames%29-macro" class="tooltip">
+      <span>class_property!(*names)</span>
+    class_property!</a>, 
+    
+  
+    <a href="Object.html#class_property%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_property?(*names, &block)</span>
+    class_property?</a>, 
+    
+  
+    <a href="Object.html#class_setter%28%2Anames%29-macro" class="tooltip">
+      <span>class_setter(*names)</span>
+    class_setter</a>, 
+    
+  
+    <a href="Object.html#def_clone-macro" class="tooltip">
+      <span>def_clone</span>
+    def_clone</a>, 
+    
+  
+    <a href="Object.html#def_equals%28%2Afields%29-macro" class="tooltip">
+      <span>def_equals(*fields)</span>
+    def_equals</a>, 
+    
+  
+    <a href="Object.html#def_equals_and_hash%28%2Afields%29-macro" class="tooltip">
+      <span>def_equals_and_hash(*fields)</span>
+    def_equals_and_hash</a>, 
+    
+  
+    <a href="Object.html#def_hash%28%2Afields%29-macro" class="tooltip">
+      <span>def_hash(*fields)</span>
+    def_hash</a>, 
+    
+  
+    <a href="Object.html#delegate%28%2Amethods%2Ctoobject%29-macro" class="tooltip">
+      <span>delegate(*methods, to object)</span>
+    delegate</a>, 
+    
+  
+    <a href="Object.html#forward_missing_to%28delegate%29-macro" class="tooltip">
+      <span>forward_missing_to(delegate)</span>
+    forward_missing_to</a>, 
+    
+  
+    <a href="Object.html#getter%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>getter(*names, &block)</span>
+    getter</a>, 
+    
+  
+    <a href="Object.html#getter%21%28%2Anames%29-macro" class="tooltip">
+      <span>getter!(*names)</span>
+    getter!</a>, 
+    
+  
+    <a href="Object.html#getter%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>getter?(*names, &block)</span>
+    getter?</a>, 
+    
+  
+    <a href="Object.html#property%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>property(*names, &block)</span>
+    property</a>, 
+    
+  
+    <a href="Object.html#property%21%28%2Anames%29-macro" class="tooltip">
+      <span>property!(*names)</span>
+    property!</a>, 
+    
+  
+    <a href="Object.html#property%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>property?(*names, &block)</span>
+    property?</a>, 
+    
+  
+    <a href="Object.html#setter%28%2Anames%29-macro" class="tooltip">
+      <span>setter(*names)</span>
+    setter</a>
+    
+  
+
+
+    
+  </div>
+
+  
+  <h2>
+    <a id="constructor-detail" class="anchor" href="#constructor-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructor Detail
+  </h2>
+  
+    <div class="entry-detail" id="literal(pattern:String,*,i:Bool=false,m:Bool=false,x:Bool=false):self-class-method">
+      <div class="signature">
+        
+        def self.<strong>literal</strong>(pattern : <a href="String.html">String</a>, *, i : <a href="Bool.html">Bool</a> = <span class="n">false</span>, m : <a href="Bool.html">Bool</a> = <span class="n">false</span>, x : <a href="Bool.html">Bool</a> = <span class="n">false</span>) : <span class="k">self</span>
+
+        <a class="method-permalink" href="#literal%28pattern%3AString%2C%2A%2Ci%3ABool%3Dfalse%2Cm%3ABool%3Dfalse%2Cx%3ABool%3Dfalse%29%3Aself-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Creates a new <code><a href="Regex.html">Regex</a></code> instance from a literal consisting of a <em>pattern</em> and the named parameter modifiers.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/regex.cr#L418" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="new(source:String,options:Options=Options::None)-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(source : <a href="String.html">String</a>, options : <a href="Regex/Options.html">Options</a> = <span class="t">Options</span><span class="t">::</span><span class="t">None</span>)
+
+        <a class="method-permalink" href="#new%28source%3AString%2Coptions%3AOptions%3DOptions%3A%3ANone%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Creates a new <code><a href="Regex.html">Regex</a></code> out of the given source <code><a href="String.html">String</a></code>.</p>
+<pre><code class="language-crystal"><span class="t">Regex</span>.new(<span class="s">&quot;^a-z+:\\s+\\w+&quot;</span>)                          <span class="c"># =&gt; /^a-z+:\s+\w+/</span>
+<span class="t">Regex</span>.new(<span class="s">&quot;cat&quot;</span>, <span class="t">Regex</span><span class="t">::</span><span class="t">CompileOptions</span><span class="t">::</span><span class="t">IGNORE_CASE</span>) <span class="c"># =&gt; /cat/i</span>
+options <span class="o">=</span> <span class="t">Regex</span><span class="t">::</span><span class="t">CompileOptions</span><span class="t">::</span><span class="t">IGNORE_CASE</span> <span class="o">|</span> <span class="t">Regex</span><span class="t">::</span><span class="t">CompileOptions</span><span class="t">::</span><span class="t">EXTENDED</span>
+<span class="t">Regex</span>.new(<span class="s">&quot;dog&quot;</span>, options) <span class="c"># =&gt; /dog/ix</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/regex.cr#L413" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="union(patterns:Enumerable(Regex|String)):self-class-method">
+      <div class="signature">
+        
+        def self.<strong>union</strong>(patterns : <a href="Enumerable.html">Enumerable</a>(<a href="Regex.html">Regex</a> | <a href="String.html">String</a>)) : <span class="k">self</span>
+
+        <a class="method-permalink" href="#union%28patterns%3AEnumerable%28Regex%7CString%29%29%3Aself-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Union. Returns a <code><a href="Regex.html">Regex</a></code> that matches any of <em>patterns</em>.</p>
+<p>All capture groups in the patterns after the first one will have their
+indexes offset.</p>
+<pre><code class="language-crystal">re <span class="o">=</span> <span class="t">Regex</span>.<span class="k">union</span>([<span class="o">/</span>skiing<span class="o">/</span>i, <span class="s">&quot;sledding&quot;</span>])
+re.match(<span class="s">&quot;Skiing&quot;</span>)   <span class="c"># =&gt; Regex::MatchData(&quot;Skiing&quot;)</span>
+re.match(<span class="s">&quot;sledding&quot;</span>) <span class="c"># =&gt; Regex::MatchData(&quot;sledding&quot;)</span>
+re <span class="o">=</span> <span class="t">Regex</span>.<span class="k">union</span>({<span class="o">/</span>skiing<span class="o">/</span>i, <span class="s">&quot;sledding&quot;</span>})
+re.match(<span class="s">&quot;Skiing&quot;</span>)   <span class="c"># =&gt; Regex::MatchData(&quot;Skiing&quot;)</span>
+re.match(<span class="s">&quot;sledding&quot;</span>) <span class="c"># =&gt; Regex::MatchData(&quot;sledding&quot;)</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/regex.cr#L493" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="union(*patterns:Regex|String):self-class-method">
+      <div class="signature">
+        
+        def self.<strong>union</strong>(*patterns : <a href="Regex.html">Regex</a> | <a href="String.html">String</a>) : <span class="k">self</span>
+
+        <a class="method-permalink" href="#union%28%2Apatterns%3ARegex%7CString%29%3Aself-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Union. Returns a <code><a href="Regex.html">Regex</a></code> that matches any of <em>patterns</em>.</p>
+<p>All capture groups in the patterns after the first one will have their
+indexes offset.</p>
+<pre><code class="language-crystal">re <span class="o">=</span> <span class="t">Regex</span>.<span class="k">union</span>(<span class="o">/</span>skiing<span class="o">/</span>i, <span class="s">&quot;sledding&quot;</span>)
+re.match(<span class="s">&quot;Skiing&quot;</span>)   <span class="c"># =&gt; Regex::MatchData(&quot;Skiing&quot;)</span>
+re.match(<span class="s">&quot;sledding&quot;</span>) <span class="c"># =&gt; Regex::MatchData(&quot;sledding&quot;)</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/regex.cr#L507" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+  
+  <h2>
+    <a id="class-method-detail" class="anchor" href="#class-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Class Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="error?(source):String|Nil-class-method">
+      <div class="signature">
+        
+        def self.<strong>error?</strong>(source) : <a href="String.html">String</a> | <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#error%3F%28source%29%3AString%7CNil-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Determines Regex's source validity. If it is, <code>nil</code> is returned.
+If it's not, a <code><a href="String.html">String</a></code> containing the error message is returned.</p>
+<pre><code class="language-crystal"><span class="t">Regex</span>.error?(<span class="s">&quot;(foo|bar)&quot;</span>) <span class="c"># =&gt; nil</span>
+<span class="t">Regex</span>.error?(<span class="s">&quot;(foo|bar&quot;</span>)  <span class="c"># =&gt; &quot;missing ) at 8&quot;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/regex.cr#L433" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="escape(str):String-class-method">
+      <div class="signature">
+        
+        def self.<strong>escape</strong>(str) : <a href="String.html">String</a>
+
+        <a class="method-permalink" href="#escape%28str%29%3AString-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns a <code><a href="String.html">String</a></code> constructed by escaping any metacharacters in <em>str</em>.</p>
+<pre><code class="language-crystal">string <span class="o">=</span> <span class="t">Regex</span>.escape(<span class="s">&quot;*?{}.&quot;</span>) <span class="c"># =&gt; &quot;\\*\\?\\{\\}\\.&quot;</span>
+<span class="o">/</span><span class="c">#{string}/                    # =&gt; /\*\?\{\}\./</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/regex.cr#L464" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="needs_escape?(char:Char):Bool-class-method">
+      <div class="signature">
+        
+        def self.<strong>needs_escape?</strong>(char : <a href="Char.html">Char</a>) : <a href="Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#needs_escape%3F%28char%3AChar%29%3ABool-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if <em>char</em> need to be escaped, <code>false</code> otherwise.</p>
+<pre><code class="language-crystal"><span class="t">Regex</span>.needs_escape?(<span class="s">&#39;*&#39;</span>) <span class="c"># =&gt; true</span>
+<span class="t">Regex</span>.needs_escape?(<span class="s">&#39;@&#39;</span>) <span class="c"># =&gt; false</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/regex.cr#L443" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="needs_escape?(str:String):Bool-class-method">
+      <div class="signature">
+        
+        def self.<strong>needs_escape?</strong>(str : <a href="String.html">String</a>) : <a href="Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#needs_escape%3F%28str%3AString%29%3ABool-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if <em>str</em> need to be escaped, <code>false</code> otherwise.</p>
+<pre><code class="language-crystal"><span class="t">Regex</span>.needs_escape?(<span class="s">&quot;10$&quot;</span>) <span class="c"># =&gt; true</span>
+<span class="t">Regex</span>.needs_escape?(<span class="s">&quot;foo&quot;</span>) <span class="c"># =&gt; false</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/regex.cr#L453" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="supports_compile_options?(options:CompileOptions):Bool-class-method">
+      <div class="signature">
+        
+        def self.<strong>supports_compile_options?</strong>(options : <a href="Regex/CompileOptions.html">CompileOptions</a>) : <a href="Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#supports_compile_options%3F%28options%3ACompileOptions%29%3ABool-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if the regex engine supports all <em>options</em> flags when compiling a pattern.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/regex.cr#L328" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="supports_match_options?(options:MatchOptions):Bool-class-method">
+      <div class="signature">
+        
+        def self.<strong>supports_match_options?</strong>(options : <a href="Regex/MatchOptions.html">MatchOptions</a>) : <a href="Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#supports_match_options%3F%28options%3AMatchOptions%29%3ABool-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if the regex engine supports all <em>options</em> flags when matching a pattern.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/regex.cr#L383" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+  
+
+  
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="+(other):Regex-instance-method">
+      <div class="signature">
+        
+        def <strong>+</strong>(other) : <a href="Regex.html">Regex</a>
+
+        <a class="method-permalink" href="#%2B%28other%29%3ARegex-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Union. Returns a <code><a href="Regex.html">Regex</a></code> that matches either of the operands.</p>
+<p>All capture groups in the second operand will have their indexes
+offset.</p>
+<pre><code class="language-crystal">re <span class="o">=</span> <span class="s">/skiing/</span>i <span class="o">+</span> <span class="s">/sledding/</span>
+re.match(<span class="s">&quot;Skiing&quot;</span>)   <span class="c"># =&gt; Regex::MatchData(&quot;Skiing&quot;)</span>
+re.match(<span class="s">&quot;sledding&quot;</span>) <span class="c"># =&gt; Regex::MatchData(&quot;sledding&quot;)</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/regex.cr#L529" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="==(other:Regex)-instance-method">
+      <div class="signature">
+        
+        def <strong>==</strong>(other : <a href="Regex.html">Regex</a>)
+
+        <a class="method-permalink" href="#%3D%3D%28other%3ARegex%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Equality. Two regexes are equal if their sources and options are the same.</p>
+<pre><code class="language-crystal"><span class="s">/abc/</span> <span class="o">==</span> <span class="s">/abc/</span>i  <span class="c"># =&gt; false</span>
+<span class="o">/</span>abc<span class="o">/</span>i <span class="o">==</span> <span class="s">/ABC/</span>i <span class="c"># =&gt; false</span>
+<span class="o">/</span>abc<span class="o">/</span>i <span class="o">==</span> <span class="s">/abc/</span>i <span class="c"># =&gt; true</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/regex.cr#L540" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="===(other:String)-instance-method">
+      <div class="signature">
+        
+        def <strong>===</strong>(other : <a href="String.html">String</a>)
+
+        <a class="method-permalink" href="#%3D%3D%3D%28other%3AString%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Case equality. This is equivalent to <code><a href="Regex.html#match%28str%3AString%2Cpos%3AInt32%3D0%2Coptions%3ARegex%3A%3AMatchOptions%3D%3Anone%29%3AMatchData%7CNil-instance-method">#match</a></code> or <code><a href="Regex.html#%3D~%28other%3AString%29%3AInt32%7CNil-instance-method">#=~</a></code> but only returns
+<code>true</code> or <code>false</code>. Used in <code>case</code> expressions. The special variable
+<code>$~</code> will contain a <code><a href="Regex/MatchData.html">Regex::MatchData</a></code> if there was a match, <code>nil</code> otherwise.</p>
+<pre><code class="language-crystal">a <span class="o">=</span> <span class="s">&quot;HELLO&quot;</span>
+b <span class="o">=</span> <span class="k">case</span> a
+    <span class="k">when</span> <span class="s">/^[a-z]*$/</span>
+      <span class="s">&quot;Lower case&quot;</span>
+    <span class="k">when</span> <span class="s">/^[A-Z]*$/</span>
+      <span class="s">&quot;Upper case&quot;</span>
+    <span class="k">else</span>
+      <span class="s">&quot;Mixed case&quot;</span>
+    <span class="k">end</span>
+b <span class="c"># =&gt; &quot;Upper case&quot;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/regex.cr#L567" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="===(other:JSON::Any)-instance-method">
+      <div class="signature">
+        
+        def <strong>===</strong>(other : <a href="JSON/Any.html">JSON::Any</a>)
+
+        <a class="method-permalink" href="#%3D%3D%3D%28other%3AJSON%3A%3AAny%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/any.cr#L358" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="===(other:YAML::Any)-instance-method">
+      <div class="signature">
+        
+        def <strong>===</strong>(other : <a href="YAML/Any.html">YAML::Any</a>)
+
+        <a class="method-permalink" href="#%3D%3D%3D%28other%3AYAML%3A%3AAny%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/yaml/any.cr#L399" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="=~(other:String):Int32|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>=~</strong>(other : <a href="String.html">String</a>) : <a href="Int32.html">Int32</a> | <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#%3D~%28other%3AString%29%3AInt32%7CNil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Match. Matches a regular expression against <em>other</em> and returns
+the starting position of the match if <em>other</em> is a matching <code><a href="String.html">String</a></code>,
+otherwise <code>nil</code>. <code>$~</code> will contain a <code><a href="Regex/MatchData.html">Regex::MatchData</a></code> if there was a match,
+<code>nil</code> otherwise.</p>
+<pre><code class="language-crystal"><span class="s">/at/</span> <span class="o">=~</span> <span class="s">&quot;input data&quot;</span> <span class="c"># =&gt; 7</span>
+<span class="o">/</span>ax<span class="o">/</span> <span class="o">=~</span> <span class="s">&quot;input data&quot;</span> <span class="c"># =&gt; nil</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/regex.cr#L582" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="=~(other):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>=~</strong>(other) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#%3D~%28other%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Match. When the argument is not a <code><a href="String.html">String</a></code>, always returns <code>nil</code>.</p>
+<pre><code class="language-crystal"><span class="s">/at/</span> <span class="o">=~</span> <span class="s">&quot;input data&quot;</span> <span class="c"># =&gt; 7</span>
+<span class="o">/</span>ax<span class="o">/</span> <span class="o">=~</span> <span class="s">&quot;input data&quot;</span> <span class="c"># =&gt; nil</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/regex.cr#L594" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="capture_count:Int32-instance-method">
+      <div class="signature">
+        
+        def <strong>capture_count</strong> : <a href="Int32.html">Int32</a>
+
+        <a class="method-permalink" href="#capture_count%3AInt32-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the number of (named &amp; non-named) capture groups.</p>
+<pre><code class="language-crystal"><span class="s">/(?:.+)/</span>.capture_count     <span class="c"># =&gt; 0</span>
+<span class="o">/</span>(?<span class="o">&lt;</span>foo<span class="o">&gt;</span>.<span class="o">+</span>)<span class="o">/</span>.capture_count <span class="c"># =&gt; 1</span>
+<span class="o">/</span>(.)<span class="o">/</span>.capture_count        <span class="c"># =&gt; 1</span>
+<span class="o">/</span>(.)<span class="o">|</span>(.)<span class="o">/</span>.capture_count    <span class="c"># =&gt; 2</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/regex.cr#L813" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="clone-instance-method">
+      <div class="signature">
+        
+        def <strong>clone</strong>
+
+        <a class="method-permalink" href="#clone-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/regex.cr#L865" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="dup-instance-method">
+      <div class="signature">
+        
+        def <strong>dup</strong>
+
+        <a class="method-permalink" href="#dup-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+            <div class="doc-inherited">
+              Description copied from class <a href="Reference.html">Reference</a>
+            </div>
+          
+          <p>Returns a shallow copy of this object.</p>
+<p>This allocates a new object and copies the contents of
+<code>self</code> into it.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/regex.cr#L861" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="hash(hasher)-instance-method">
+      <div class="signature">
+        
+        def <strong>hash</strong>(hasher)
+
+        <a class="method-permalink" href="#hash%28hasher%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>See <code><a href="Object.html#hash%28hasher%29-instance-method">Object#hash(hasher)</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/regex.cr#L545" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="inspect(io:IO):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>inspect</strong>(io : <a href="IO.html">IO</a>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#inspect%28io%3AIO%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Prints to <em>io</em> an unambiguous string representation of this regular expression object.</p>
+<p>Uses the regex literal syntax with basic option flags if sufficient (i.e. no
+other options than <code>IGNORE_CASE</code>, <code>MULTILINE</code>, or <code>EXTENDED</code> are set).
+Otherwise the syntax presents a <code><a href="Regex.html#new%28source%3AString%2Coptions%3AOptions%3DOptions%3A%3ANone%29-class-method">Regex.new</a></code> call.</p>
+<pre><code class="language-crystal"><span class="s">/ab+c/</span>ix.inspect                     <span class="c"># =&gt; &quot;/ab+c/ix&quot;</span>
+<span class="t">Regex</span>.new(<span class="s">&quot;ab+c&quot;</span>, <span class="n">:anchored</span>).inspect <span class="c"># =&gt; Regex.new(&quot;ab+c&quot;, Regex::Options::ANCHORED)</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/regex.cr#L607" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="match(str:String,pos:Int32=0,options:Regex::MatchOptions=:none):MatchData|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>match</strong>(str : <a href="String.html">String</a>, pos : <a href="Int32.html">Int32</a> = <span class="n">0</span>, options : <a href="Regex/MatchOptions.html">Regex::MatchOptions</a> = <span class="n">:none</span>) : <a href="Regex/MatchData.html">MatchData</a> | <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#match%28str%3AString%2Cpos%3AInt32%3D0%2Coptions%3ARegex%3A%3AMatchOptions%3D%3Anone%29%3AMatchData%7CNil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Match at character index. Matches a regular expression against <code><a href="String.html">String</a></code>
+<em>str</em>. Starts at the character index given by <em>pos</em> if given, otherwise at
+the start of <em>str</em>. Returns a <code><a href="Regex/MatchData.html">Regex::MatchData</a></code> if <em>str</em> matched, otherwise
+<code>nil</code>. <code>$~</code> will contain the same value that was returned.</p>
+<pre><code class="language-crystal"><span class="s">/(.)(.)(.)/</span>.match(<span class="s">&quot;abc&quot;</span>).try <span class="o">&amp;</span>.[<span class="n">2</span>]   <span class="c"># =&gt; &quot;b&quot;</span>
+<span class="o">/</span>(.)(.)<span class="o">/</span>.match(<span class="s">&quot;abc&quot;</span>, <span class="n">1</span>).try <span class="o">&amp;</span>.[<span class="n">2</span>]   <span class="c"># =&gt; &quot;c&quot;</span>
+<span class="o">/</span>(.)(.)<span class="o">/</span>.match(<span class="s">&quot;クリスタル&quot;</span>, <span class="n">3</span>).try <span class="o">&amp;</span>.[<span class="n">2</span>] <span class="c"># =&gt; &quot;ル&quot;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/regex.cr#L662" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="match(str,pos,_options):MatchData|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>match</strong>(str, pos, _options) : <a href="Regex/MatchData.html">MatchData</a> | <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#match%28str%2Cpos%2C_options%29%3AMatchData%7CNil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Match at character index. Matches a regular expression against <code><a href="String.html">String</a></code>
+<em>str</em>. Starts at the character index given by <em>pos</em> if given, otherwise at
+the start of <em>str</em>. Returns a <code><a href="Regex/MatchData.html">Regex::MatchData</a></code> if <em>str</em> matched, otherwise
+<code>nil</code>. <code>$~</code> will contain the same value that was returned.</p>
+<pre><code class="language-crystal"><span class="s">/(.)(.)(.)/</span>.match(<span class="s">&quot;abc&quot;</span>).try <span class="o">&amp;</span>.[<span class="n">2</span>]   <span class="c"># =&gt; &quot;b&quot;</span>
+<span class="o">/</span>(.)(.)<span class="o">/</span>.match(<span class="s">&quot;abc&quot;</span>, <span class="n">1</span>).try <span class="o">&amp;</span>.[<span class="n">2</span>]   <span class="c"># =&gt; &quot;c&quot;</span>
+<span class="o">/</span>(.)(.)<span class="o">/</span>.match(<span class="s">&quot;クリスタル&quot;</span>, <span class="n">3</span>).try <span class="o">&amp;</span>.[<span class="n">2</span>] <span class="c"># =&gt; &quot;ル&quot;</span></code></pre>
+<p><span class="flag red">DEPRECATED</span>  Use the overload with <code><a href="Regex/MatchOptions.html">Regex::MatchOptions</a></code> instead.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/regex.cr#L682" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="match(str,pos=0,*,options):MatchData|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>match</strong>(str, pos = <span class="n">0</span>, *, options) : <a href="Regex/MatchData.html">MatchData</a> | <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#match%28str%2Cpos%3D0%2C%2A%2Coptions%29%3AMatchData%7CNil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Match at character index. Matches a regular expression against <code><a href="String.html">String</a></code>
+<em>str</em>. Starts at the character index given by <em>pos</em> if given, otherwise at
+the start of <em>str</em>. Returns a <code><a href="Regex/MatchData.html">Regex::MatchData</a></code> if <em>str</em> matched, otherwise
+<code>nil</code>. <code>$~</code> will contain the same value that was returned.</p>
+<pre><code class="language-crystal"><span class="s">/(.)(.)(.)/</span>.match(<span class="s">&quot;abc&quot;</span>).try <span class="o">&amp;</span>.[<span class="n">2</span>]   <span class="c"># =&gt; &quot;b&quot;</span>
+<span class="o">/</span>(.)(.)<span class="o">/</span>.match(<span class="s">&quot;abc&quot;</span>, <span class="n">1</span>).try <span class="o">&amp;</span>.[<span class="n">2</span>]   <span class="c"># =&gt; &quot;c&quot;</span>
+<span class="o">/</span>(.)(.)<span class="o">/</span>.match(<span class="s">&quot;クリスタル&quot;</span>, <span class="n">3</span>).try <span class="o">&amp;</span>.[<span class="n">2</span>] <span class="c"># =&gt; &quot;ル&quot;</span></code></pre>
+<p><span class="flag red">DEPRECATED</span>  Use the overload with <code><a href="Regex/MatchOptions.html">Regex::MatchOptions</a></code> instead.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/regex.cr#L672" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="match!(str:String,pos:Int32=0,*,options:Regex::MatchOptions=:none):MatchData-instance-method">
+      <div class="signature">
+        
+        def <strong>match!</strong>(str : <a href="String.html">String</a>, pos : <a href="Int32.html">Int32</a> = <span class="n">0</span>, *, options : <a href="Regex/MatchOptions.html">Regex::MatchOptions</a> = <span class="n">:none</span>) : <a href="Regex/MatchData.html">MatchData</a>
+
+        <a class="method-permalink" href="#match%21%28str%3AString%2Cpos%3AInt32%3D0%2C%2A%2Coptions%3ARegex%3A%3AMatchOptions%3D%3Anone%29%3AMatchData-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Matches a regular expression against <em>str</em>. This starts at the character
+index <em>pos</em> if given, otherwise at the start of <em>str</em>. Returns a <code><a href="Regex/MatchData.html">Regex::MatchData</a></code>
+if <em>str</em> matched, otherwise raises <code><a href="Regex/Error.html">Regex::Error</a></code>. <code>$~</code> will contain the same value
+if matched.</p>
+<pre><code class="language-crystal"><span class="s">/(.)(.)(.)/</span>.match!(<span class="s">&quot;abc&quot;</span>)[<span class="n">2</span>]   <span class="c"># =&gt; &quot;b&quot;</span>
+<span class="o">/</span>(.)(.)<span class="o">/</span>.match!(<span class="s">&quot;abc&quot;</span>, <span class="n">1</span>)[<span class="n">2</span>]   <span class="c"># =&gt; &quot;c&quot;</span>
+<span class="o">/</span>(.)(タ)<span class="o">/</span>.match!(<span class="s">&quot;クリスタル&quot;</span>, <span class="n">3</span>)[<span class="n">2</span>] <span class="c"># raises Exception</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/regex.cr#L696" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="match_at_byte_index(str:String,byte_index:Int32=0,options:Regex::MatchOptions=:none):MatchData|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>match_at_byte_index</strong>(str : <a href="String.html">String</a>, byte_index : <a href="Int32.html">Int32</a> = <span class="n">0</span>, options : <a href="Regex/MatchOptions.html">Regex::MatchOptions</a> = <span class="n">:none</span>) : <a href="Regex/MatchData.html">MatchData</a> | <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#match_at_byte_index%28str%3AString%2Cbyte_index%3AInt32%3D0%2Coptions%3ARegex%3A%3AMatchOptions%3D%3Anone%29%3AMatchData%7CNil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Match at byte index. Matches a regular expression against <code><a href="String.html">String</a></code>
+<em>str</em>. Starts at the byte index given by <em>pos</em> if given, otherwise at
+the start of <em>str</em>. Returns a <code><a href="Regex/MatchData.html">Regex::MatchData</a></code> if <em>str</em> matched, otherwise
+<code>nil</code>. <code>$~</code> will contain the same value that was returned.</p>
+<pre><code class="language-crystal"><span class="s">/(.)(.)(.)/</span>.match_at_byte_index(<span class="s">&quot;abc&quot;</span>).try <span class="o">&amp;</span>.[<span class="n">2</span>]   <span class="c"># =&gt; &quot;b&quot;</span>
+<span class="o">/</span>(.)(.)<span class="o">/</span>.match_at_byte_index(<span class="s">&quot;abc&quot;</span>, <span class="n">1</span>).try <span class="o">&amp;</span>.[<span class="n">2</span>]   <span class="c"># =&gt; &quot;c&quot;</span>
+<span class="o">/</span>(.)(.)<span class="o">/</span>.match_at_byte_index(<span class="s">&quot;クリスタル&quot;</span>, <span class="n">3</span>).try <span class="o">&amp;</span>.[<span class="n">2</span>] <span class="c"># =&gt; &quot;ス&quot;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/regex.cr#L711" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="match_at_byte_index(str,byte_index,_options):MatchData|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>match_at_byte_index</strong>(str, byte_index, _options) : <a href="Regex/MatchData.html">MatchData</a> | <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#match_at_byte_index%28str%2Cbyte_index%2C_options%29%3AMatchData%7CNil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Match at byte index. Matches a regular expression against <code><a href="String.html">String</a></code>
+<em>str</em>. Starts at the byte index given by <em>pos</em> if given, otherwise at
+the start of <em>str</em>. Returns a <code><a href="Regex/MatchData.html">Regex::MatchData</a></code> if <em>str</em> matched, otherwise
+<code>nil</code>. <code>$~</code> will contain the same value that was returned.</p>
+<pre><code class="language-crystal"><span class="s">/(.)(.)(.)/</span>.match_at_byte_index(<span class="s">&quot;abc&quot;</span>).try <span class="o">&amp;</span>.[<span class="n">2</span>]   <span class="c"># =&gt; &quot;b&quot;</span>
+<span class="o">/</span>(.)(.)<span class="o">/</span>.match_at_byte_index(<span class="s">&quot;abc&quot;</span>, <span class="n">1</span>).try <span class="o">&amp;</span>.[<span class="n">2</span>]   <span class="c"># =&gt; &quot;c&quot;</span>
+<span class="o">/</span>(.)(.)<span class="o">/</span>.match_at_byte_index(<span class="s">&quot;クリスタル&quot;</span>, <span class="n">3</span>).try <span class="o">&amp;</span>.[<span class="n">2</span>] <span class="c"># =&gt; &quot;ス&quot;</span></code></pre>
+<p><span class="flag red">DEPRECATED</span>  Use the overload with <code><a href="Regex/MatchOptions.html">Regex::MatchOptions</a></code> instead.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/regex.cr#L731" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="match_at_byte_index(str,byte_index=0,*,options):MatchData|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>match_at_byte_index</strong>(str, byte_index = <span class="n">0</span>, *, options) : <a href="Regex/MatchData.html">MatchData</a> | <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#match_at_byte_index%28str%2Cbyte_index%3D0%2C%2A%2Coptions%29%3AMatchData%7CNil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Match at byte index. Matches a regular expression against <code><a href="String.html">String</a></code>
+<em>str</em>. Starts at the byte index given by <em>pos</em> if given, otherwise at
+the start of <em>str</em>. Returns a <code><a href="Regex/MatchData.html">Regex::MatchData</a></code> if <em>str</em> matched, otherwise
+<code>nil</code>. <code>$~</code> will contain the same value that was returned.</p>
+<pre><code class="language-crystal"><span class="s">/(.)(.)(.)/</span>.match_at_byte_index(<span class="s">&quot;abc&quot;</span>).try <span class="o">&amp;</span>.[<span class="n">2</span>]   <span class="c"># =&gt; &quot;b&quot;</span>
+<span class="o">/</span>(.)(.)<span class="o">/</span>.match_at_byte_index(<span class="s">&quot;abc&quot;</span>, <span class="n">1</span>).try <span class="o">&amp;</span>.[<span class="n">2</span>]   <span class="c"># =&gt; &quot;c&quot;</span>
+<span class="o">/</span>(.)(.)<span class="o">/</span>.match_at_byte_index(<span class="s">&quot;クリスタル&quot;</span>, <span class="n">3</span>).try <span class="o">&amp;</span>.[<span class="n">2</span>] <span class="c"># =&gt; &quot;ス&quot;</span></code></pre>
+<p><span class="flag red">DEPRECATED</span>  Use the overload with <code><a href="Regex/MatchOptions.html">Regex::MatchOptions</a></code> instead.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/regex.cr#L721" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="matches?(str:String,pos:Int32=0,options:Regex::MatchOptions=:none):Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>matches?</strong>(str : <a href="String.html">String</a>, pos : <a href="Int32.html">Int32</a> = <span class="n">0</span>, options : <a href="Regex/MatchOptions.html">Regex::MatchOptions</a> = <span class="n">:none</span>) : <a href="Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#matches%3F%28str%3AString%2Cpos%3AInt32%3D0%2Coptions%3ARegex%3A%3AMatchOptions%3D%3Anone%29%3ABool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Match at character index. It behaves like <code><a href="Regex.html#match%28str%3AString%2Cpos%3AInt32%3D0%2Coptions%3ARegex%3A%3AMatchOptions%3D%3Anone%29%3AMatchData%7CNil-instance-method">#match</a></code>, however it returns <code><a href="Bool.html">Bool</a></code> value.
+It neither returns <code><a href="Regex/MatchData.html">MatchData</a></code> nor assigns it to the <code>$~</code> variable.</p>
+<pre><code class="language-crystal"><span class="s">/foo/</span>.matches?(<span class="s">&quot;bar&quot;</span>) <span class="c"># =&gt; false</span>
+<span class="o">/</span>foo<span class="o">/</span>.matches?(<span class="s">&quot;foo&quot;</span>) <span class="c"># =&gt; true</span>
+
+<span class="c"># `$~` is not set even if last match succeeds.</span>
+$~ <span class="c"># raises Exception</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/regex.cr#L745" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="matches?(str,pos,_options):Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>matches?</strong>(str, pos, _options) : <a href="Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#matches%3F%28str%2Cpos%2C_options%29%3ABool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Match at character index. It behaves like <code><a href="Regex.html#match%28str%3AString%2Cpos%3AInt32%3D0%2Coptions%3ARegex%3A%3AMatchOptions%3D%3Anone%29%3AMatchData%7CNil-instance-method">#match</a></code>, however it returns <code><a href="Bool.html">Bool</a></code> value.
+It neither returns <code><a href="Regex/MatchData.html">MatchData</a></code> nor assigns it to the <code>$~</code> variable.</p>
+<pre><code class="language-crystal"><span class="s">/foo/</span>.matches?(<span class="s">&quot;bar&quot;</span>) <span class="c"># =&gt; false</span>
+<span class="o">/</span>foo<span class="o">/</span>.matches?(<span class="s">&quot;foo&quot;</span>) <span class="c"># =&gt; true</span>
+
+<span class="c"># `$~` is not set even if last match succeeds.</span>
+$~ <span class="c"># raises Exception</span></code></pre>
+<p><span class="flag red">DEPRECATED</span>  Use the overload with <code><a href="Regex/MatchOptions.html">Regex::MatchOptions</a></code> instead.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/regex.cr#L765" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="matches?(str,pos=0,*,options):Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>matches?</strong>(str, pos = <span class="n">0</span>, *, options) : <a href="Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#matches%3F%28str%2Cpos%3D0%2C%2A%2Coptions%29%3ABool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Match at character index. It behaves like <code><a href="Regex.html#match%28str%3AString%2Cpos%3AInt32%3D0%2Coptions%3ARegex%3A%3AMatchOptions%3D%3Anone%29%3AMatchData%7CNil-instance-method">#match</a></code>, however it returns <code><a href="Bool.html">Bool</a></code> value.
+It neither returns <code><a href="Regex/MatchData.html">MatchData</a></code> nor assigns it to the <code>$~</code> variable.</p>
+<pre><code class="language-crystal"><span class="s">/foo/</span>.matches?(<span class="s">&quot;bar&quot;</span>) <span class="c"># =&gt; false</span>
+<span class="o">/</span>foo<span class="o">/</span>.matches?(<span class="s">&quot;foo&quot;</span>) <span class="c"># =&gt; true</span>
+
+<span class="c"># `$~` is not set even if last match succeeds.</span>
+$~ <span class="c"># raises Exception</span></code></pre>
+<p><span class="flag red">DEPRECATED</span>  Use the overload with <code><a href="Regex/MatchOptions.html">Regex::MatchOptions</a></code> instead.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/regex.cr#L755" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="matches_at_byte_index?(str:String,byte_index:Int32=0,options:Regex::MatchOptions=:none):Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>matches_at_byte_index?</strong>(str : <a href="String.html">String</a>, byte_index : <a href="Int32.html">Int32</a> = <span class="n">0</span>, options : <a href="Regex/MatchOptions.html">Regex::MatchOptions</a> = <span class="n">:none</span>) : <a href="Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#matches_at_byte_index%3F%28str%3AString%2Cbyte_index%3AInt32%3D0%2Coptions%3ARegex%3A%3AMatchOptions%3D%3Anone%29%3ABool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Match at byte index. It behaves like <code><a href="Regex.html#match_at_byte_index%28str%3AString%2Cbyte_index%3AInt32%3D0%2Coptions%3ARegex%3A%3AMatchOptions%3D%3Anone%29%3AMatchData%7CNil-instance-method">#match_at_byte_index</a></code>, however it returns <code><a href="Bool.html">Bool</a></code> value.
+It neither returns <code><a href="Regex/MatchData.html">MatchData</a></code> nor assigns it to the <code>$~</code> variable.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/regex.cr#L771" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="matches_at_byte_index?(str,byte_index,_options):Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>matches_at_byte_index?</strong>(str, byte_index, _options) : <a href="Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#matches_at_byte_index%3F%28str%2Cbyte_index%2C_options%29%3ABool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Match at byte index. It behaves like <code><a href="Regex.html#match_at_byte_index%28str%3AString%2Cbyte_index%3AInt32%3D0%2Coptions%3ARegex%3A%3AMatchOptions%3D%3Anone%29%3AMatchData%7CNil-instance-method">#match_at_byte_index</a></code>, however it returns <code><a href="Bool.html">Bool</a></code> value.
+It neither returns <code><a href="Regex/MatchData.html">MatchData</a></code> nor assigns it to the <code>$~</code> variable.</p>
+<p><span class="flag red">DEPRECATED</span>  Use the overload with <code><a href="Regex/MatchOptions.html">Regex::MatchOptions</a></code> instead.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/regex.cr#L787" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="matches_at_byte_index?(str,byte_index=0,*,options):Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>matches_at_byte_index?</strong>(str, byte_index = <span class="n">0</span>, *, options) : <a href="Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#matches_at_byte_index%3F%28str%2Cbyte_index%3D0%2C%2A%2Coptions%29%3ABool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Match at byte index. It behaves like <code><a href="Regex.html#match_at_byte_index%28str%3AString%2Cbyte_index%3AInt32%3D0%2Coptions%3ARegex%3A%3AMatchOptions%3D%3Anone%29%3AMatchData%7CNil-instance-method">#match_at_byte_index</a></code>, however it returns <code><a href="Bool.html">Bool</a></code> value.
+It neither returns <code><a href="Regex/MatchData.html">MatchData</a></code> nor assigns it to the <code>$~</code> variable.</p>
+<p><span class="flag red">DEPRECATED</span>  Use the overload with <code><a href="Regex/MatchOptions.html">Regex::MatchOptions</a></code> instead.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/regex.cr#L779" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="name_table:Hash(Int32,String)-instance-method">
+      <div class="signature">
+        
+        def <strong>name_table</strong> : <a href="Hash.html">Hash</a>(<a href="Int32.html">Int32</a>, <a href="String.html">String</a>)
+
+        <a class="method-permalink" href="#name_table%3AHash%28Int32%2CString%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns a <code><a href="Hash.html">Hash</a></code> where the values are the names of capture groups and the
+keys are their indexes. Non-named capture groups will not have entries in
+the <code><a href="Hash.html">Hash</a></code>. Capture groups are indexed starting from <code>1</code>.</p>
+<pre><code class="language-crystal"><span class="s">/(.)/</span>.name_table                         <span class="c"># =&gt; {}</span>
+<span class="o">/</span>(?<span class="o">&lt;</span>foo<span class="o">&gt;</span>.)<span class="o">/</span>.name_table                   <span class="c"># =&gt; {1 =&gt; &quot;foo&quot;}</span>
+<span class="o">/</span>(?<span class="o">&lt;</span>foo<span class="o">&gt;</span>.)(?<span class="o">&lt;</span>bar<span class="o">&gt;</span>.)<span class="o">/</span>.name_table          <span class="c"># =&gt; {2 =&gt; &quot;bar&quot;, 1 =&gt; &quot;foo&quot;}</span>
+<span class="o">/</span>(.)(?<span class="o">&lt;</span>foo<span class="o">&gt;</span>.)(.)(?<span class="o">&lt;</span>bar<span class="o">&gt;</span>.)(.)<span class="o">/</span>.name_table <span class="c"># =&gt; {4 =&gt; &quot;bar&quot;, 2 =&gt; &quot;foo&quot;}</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/regex.cr#L801" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="options:Options-instance-method">
+      <div class="signature">
+        
+        def <strong>options</strong> : <a href="Regex/Options.html">Options</a>
+
+        <a class="method-permalink" href="#options%3AOptions-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns a <code><a href="Regex/CompileOptions.html">Regex::CompileOptions</a></code> representing the optional flags applied to this <code><a href="Regex.html">Regex</a></code>.</p>
+<pre><code class="language-crystal"><span class="s">/ab+c/</span>ix.options      <span class="c"># =&gt; Regex::CompileOptions::IGNORE_CASE | Regex::CompileOptions::EXTENDED</span>
+<span class="o">/</span>ab<span class="o">+</span>c<span class="o">/</span>ix.options.to_s <span class="c"># =&gt; &quot;IGNORE_CASE | EXTENDED&quot;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/regex.cr#L396" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="source:String-instance-method">
+      <div class="signature">
+        
+        def <strong>source</strong> : <a href="String.html">String</a>
+
+        <a class="method-permalink" href="#source%3AString-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the original <code><a href="String.html">String</a></code> representation of the <code><a href="Regex.html">Regex</a></code> pattern.</p>
+<pre><code class="language-crystal"><span class="s">/ab+c/</span>x.source <span class="c"># =&gt; &quot;ab+c&quot;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/regex.cr#L403" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_s(io:IO):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>to_s</strong>(io : <a href="IO.html">IO</a>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#to_s%28io%3AIO%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Convert to <code><a href="String.html">String</a></code> in subpattern format. Produces a <code><a href="String.html">String</a></code> which can be
+embedded in another <code><a href="Regex.html">Regex</a></code> via interpolation, where it will be interpreted
+as a non-capturing subexpression in another regular expression.</p>
+<pre><code class="language-crystal">re <span class="o">=</span> <span class="s">/A*/</span>i                 <span class="c"># =&gt; /A*/i</span>
+re.to_s                    <span class="c"># =&gt; &quot;(?i-msx:A*)&quot;</span>
+<span class="s">&quot;Crystal&quot;</span>.match(<span class="o">/</span>t<span class="c">#{re}l/) # =&gt; Regex::MatchData(&quot;tal&quot;)</span>
+re <span class="o">=</span> <span class="s">/A*/</span>                  <span class="c"># =&gt; &quot;(?-imsx:A*)&quot;</span>
+<span class="s">&quot;Crystal&quot;</span>.match(<span class="o">/</span>t<span class="c">#{re}l/) # =&gt; nil</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/regex.cr#L828" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+</div>
+
+</body>
+</html>

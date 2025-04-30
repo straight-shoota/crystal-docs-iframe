@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Crystal Docs 1.16.1">
+<meta name="crystal_docs.project_version" content="1.17.0-dev">
+<meta name="crystal_docs.project_name" content="Crystal">
+
+  <meta name="crystal_docs.json_config_url" content="/api/versions.json">
+
+
+    <link rel="canonical" href="https://crystal-lang.org/api/latest/YAML/ArrayConverter.html">
+
+<link href="../css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../js/doc.js"></script>
+
+  <meta name="repository-name" content="Crystal">
+  <title>YAML::ArrayConverter(Converter) - Crystal 1.17.0-dev</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "../";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill="currentColor" fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<input type="checkbox" id="sidebar-btn">
+<label for="sidebar-btn" id="sidebar-btn-label">
+  <svg class="open" xmlns="http://www.w3.org/2000/svg" height="2em" width="2em" viewBox="0 0 512 512"><title>Open Sidebar</title><path fill="currentColor" d="M80 96v64h352V96H80zm0 112v64h352v-64H80zm0 112v64h352v-64H80z"></path></svg>
+  <svg class="close" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><title>Close Sidebar</title><path fill="currentColor" d="m118.6 73.4-45.2 45.2L210.7 256 73.4 393.4l45.2 45.2L256 301.3l137.4 137.3 45.2-45.2L301.3 256l137.3-137.4-45.2-45.2L256 210.7Z"></path></svg>
+</label>
+<iframe class="sidebar" src="../sidebar.html"></iframe>
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">
+    module
+  </span> YAML::<wbr>ArrayConverter(Converter)
+
+</h1>
+
+
+
+
+
+  <h2>
+    <a id="overview" class="anchor" href="#overview">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Overview
+  </h2>
+
+  <p>Converter to be used with <code><a href="../YAML/Serializable.html">YAML::Serializable</a></code>
+to serialize the elements of an <code><a href="../Array.html">Array</a>(T)</code> with the custom converter.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;yaml&quot;</span>
+
+<span class="k">class</span> <span class="t">Timestamp</span>
+  <span class="k">include</span> <span class="t">YAML</span><span class="t">::</span><span class="t">Serializable</span>
+
+  @[<span class="t">YAML</span><span class="t">::</span><span class="t">Field</span>(converter: <span class="t">YAML</span><span class="t">::</span><span class="t">ArrayConverter</span>(<span class="t">Time</span><span class="t">::</span><span class="t">EpochConverter</span>))]
+  property values : <span class="t">Array</span>(<span class="t">Time</span>)
+<span class="k">end</span>
+
+timestamp <span class="o">=</span> <span class="t">Timestamp</span>.from_yaml(<span class="s">%({&quot;values&quot;:[1459859781,1567628762]})</span>)
+timestamp.values  <span class="c"># =&gt; [2016-04-05 12:36:21 UTC, 2019-09-04 20:26:02 UTC]</span>
+timestamp.to_yaml <span class="c"># =&gt; &quot;---\nvalues:\n- 1459859781\n- 1567628762\n&quot;</span></code></pre>
+<p><code><a href="../YAML/ArrayConverter.html#new%28converter%3AConverter%29-class-method">YAML::ArrayConverter.new</a></code> should be used if the nested converter is also an
+instance instead of a type.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;yaml&quot;</span>
+
+<span class="k">class</span> <span class="t">Timestamp</span>
+  <span class="k">include</span> <span class="t">YAML</span><span class="t">::</span><span class="t">Serializable</span>
+
+  @[<span class="t">YAML</span><span class="t">::</span><span class="t">Field</span>(converter: <span class="t">YAML</span><span class="t">::</span><span class="t">ArrayConverter</span>.new(<span class="t">Time</span><span class="t">::</span><span class="t">Format</span>.new(<span class="s">&quot;%b %-d, %Y&quot;</span>)))]
+  property values : <span class="t">Array</span>(<span class="t">Time</span>)
+<span class="k">end</span>
+
+timestamp <span class="o">=</span> <span class="t">Timestamp</span>.from_yaml(<span class="s">%({&quot;values&quot;:[&quot;Apr 5, 2016&quot;,&quot;Sep 4, 2019&quot;]})</span>)
+timestamp.values  <span class="c"># =&gt; [2016-04-05 00:00:00 UTC, 2019-09-04 00:00:00 UTC]</span>
+timestamp.to_yaml <span class="c"># =&gt; &quot;---\nvalues:\n- Apr 5, 2016\n- Sep 4, 2019\n&quot;</span></code></pre>
+<p>This implies that <code><a href="../YAML/ArrayConverter.html">YAML::ArrayConverter</a>(T)</code> and
+<code><a href="../YAML/ArrayConverter.html">YAML::ArrayConverter</a>(T.class)<a href="../YAML/ArrayConverter.html#new%28converter%3AConverter%29-class-method">.new(T)</a></code> perform the same serializations.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/yaml/from_yaml.cr#L364" target="_blank">
+        yaml/from_yaml.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/yaml/to_yaml.cr#L297" target="_blank">
+        yaml/to_yaml.cr
+      </a>
+    
+    <br/>
+  
+
+
+
+
+
+  
+  <h2>
+    <a id="constructors" class="anchor" href="#constructors">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructors
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#new%28converter%3AConverter%29-class-method" class="signature"><strong>.new</strong>(converter : Converter)</a>
+        
+      </li>
+    
+  </ul>
+
+
+  
+  <h2>
+    <a id="class-method-summary" class="anchor" href="#class-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Class Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#from_yaml%28ctx%3AYAML%3A%3AParseContext%2Cnode%3AYAML%3A%3ANodes%3A%3ANode%29%3AArray-class-method" class="signature"><strong>.from_yaml</strong>(ctx : YAML::ParseContext, node : YAML::Nodes::Node) : Array</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_yaml%28values%3AArray%2Cyaml%3AYAML%3A%3ANodes%3A%3ABuilder%29-class-method" class="signature"><strong>.to_yaml</strong>(values : Array, yaml : YAML::Nodes::Builder)</a>
+        
+      </li>
+    
+  </ul>
+
+
+  
+
+  
+
+
+  <div class="methods-inherited">
+    
+  </div>
+
+  
+  <h2>
+    <a id="constructor-detail" class="anchor" href="#constructor-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructor Detail
+  </h2>
+  
+    <div class="entry-detail" id="new(converter:Converter)-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(converter : Converter)
+
+        <a class="method-permalink" href="#new%28converter%3AConverter%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/yaml/to_yaml.cr#L311" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+  
+  <h2>
+    <a id="class-method-detail" class="anchor" href="#class-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Class Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="from_yaml(ctx:YAML::ParseContext,node:YAML::Nodes::Node):Array-class-method">
+      <div class="signature">
+        
+        def self.<strong>from_yaml</strong>(ctx : <a href="../YAML/ParseContext.html">YAML::ParseContext</a>, node : <a href="../YAML/Nodes/Node.html">YAML::Nodes::Node</a>) : <a href="../Array.html">Array</a>
+
+        <a class="method-permalink" href="#from_yaml%28ctx%3AYAML%3A%3AParseContext%2Cnode%3AYAML%3A%3ANodes%3A%3ANode%29%3AArray-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/yaml/from_yaml.cr#L381" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_yaml(values:Array,yaml:YAML::Nodes::Builder)-class-method">
+      <div class="signature">
+        
+        def self.<strong>to_yaml</strong>(values : <a href="../Array.html">Array</a>, yaml : <a href="../YAML/Nodes/Builder.html">YAML::Nodes::Builder</a>)
+
+        <a class="method-permalink" href="#to_yaml%28values%3AArray%2Cyaml%3AYAML%3A%3ANodes%3A%3ABuilder%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/yaml/to_yaml.cr#L315" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+  
+
+  
+
+
+</div>
+
+</body>
+</html>

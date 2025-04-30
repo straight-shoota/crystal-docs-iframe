@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Crystal Docs 1.16.1">
+<meta name="crystal_docs.project_version" content="1.17.0-dev">
+<meta name="crystal_docs.project_name" content="Crystal">
+
+  <meta name="crystal_docs.json_config_url" content="/api/versions.json">
+
+
+    <link rel="canonical" href="https://crystal-lang.org/api/latest/Crystal/Macros/TupleLiteral.html">
+
+<link href="../../css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../../js/doc.js"></script>
+
+  <meta name="repository-name" content="Crystal">
+  <title>Crystal::Macros::TupleLiteral - Crystal 1.17.0-dev</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "../../";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill="currentColor" fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<input type="checkbox" id="sidebar-btn">
+<label for="sidebar-btn" id="sidebar-btn-label">
+  <svg class="open" xmlns="http://www.w3.org/2000/svg" height="2em" width="2em" viewBox="0 0 512 512"><title>Open Sidebar</title><path fill="currentColor" d="M80 96v64h352V96H80zm0 112v64h352v-64H80zm0 112v64h352v-64H80z"></path></svg>
+  <svg class="close" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><title>Close Sidebar</title><path fill="currentColor" d="m118.6 73.4-45.2 45.2L210.7 256 73.4 393.4l45.2 45.2L256 301.3l137.4 137.3 45.2-45.2L301.3 256l137.3-137.4-45.2-45.2L256 210.7Z"></path></svg>
+</label>
+<iframe class="sidebar" src="../../sidebar.html"></iframe>
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">
+    class
+  </span> Crystal::<wbr>Macros::<wbr>TupleLiteral
+
+</h1>
+
+
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../../Crystal/Macros/TupleLiteral.html">Crystal::Macros::TupleLiteral</a></li><li class="superclass"><a href="../../Crystal/Macros/ASTNode.html">Crystal::Macros::ASTNode</a></li></ul>
+
+
+
+
+  <h2>
+    <a id="overview" class="anchor" href="#overview">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Overview
+  </h2>
+
+  <p>A tuple literal.</p>
+<p>Its macro methods are nearly the same as <code><a href="../../Crystal/Macros/ArrayLiteral.html">ArrayLiteral</a></code>.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/compiler/crystal/macros.cr#L974" target="_blank">
+        compiler/crystal/macros.cr
+      </a>
+    
+    <br/>
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#%2B%28other%3ATupleLiteral%29%3ATupleLiteral-instance-method" class="signature"><strong>#+</strong>(other : TupleLiteral) : TupleLiteral</a>
+        
+          <div class="summary"><p>Similar to <code><a href="../../Tuple.html#%2B%28other%3ATuple%29-instance-method">Tuple#+</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#-%28other%3ATupleLiteral%29%3ATupleLiteral-instance-method" class="signature"><strong>#-</strong>(other : TupleLiteral) : TupleLiteral</a>
+        
+          <div class="summary"><p>Similar to <code><a href="../../Array.html#-%28other%3AArray%28U%29%29%3AArray%28T%29forallU-instance-method">Array#-</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%3C%3C%28value%3AASTNode%29%3ATupleLiteral-instance-method" class="signature"><strong>#<<</strong>(value : ASTNode) : TupleLiteral</a>
+        
+          <div class="summary"><p>Similar to <code>Array#&lt;&lt;</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%5B%5D%28index%3ANumberLiteral%29%3AASTNode-instance-method" class="signature"><strong>#[]</strong>(index : NumberLiteral) : ASTNode</a>
+        
+          <div class="summary"><p>Similar to <code><a href="../../Tuple.html#%5B%5D%28index%3AInt%29-instance-method">Tuple#[]</a></code>, but returns <code><a href="../../Crystal/Macros/NilLiteral.html">NilLiteral</a></code> on out of bounds.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%5B%5D%28index%3ARangeLiteral%29%3ATupleLiteral%28ASTNode%29-instance-method" class="signature"><strong>#[]</strong>(index : RangeLiteral) : TupleLiteral(ASTNode)</a>
+        
+          <div class="summary"><p>Similar to <code><a href="../../Tuple.html#%5B%5D%28index%3AInt%29-instance-method">Tuple#[]</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%5B%5D%3D%28index%3ANumberLiteral%2Cvalue%3AASTNode%29%3AASTNode-instance-method" class="signature"><strong>#[]=</strong>(index : NumberLiteral, value : ASTNode) : ASTNode</a>
+        
+          <div class="summary"><p>Similar to <code><a href="../../Array.html#%5B%5D%3D%28start%3AInt%2Ccount%3AInt%2Cvalues%3AArray%28T%29%29-instance-method">Array#[]=</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#all%3F%28%26%29%3ABoolLiteral-instance-method" class="signature"><strong>#all?</strong>(&) : BoolLiteral</a>
+        
+          <div class="summary"><p>Similar to <code><a href="../../Enumerable.html#all%3F%28%26%3AT-%3E%29%3ABool-instance-method">Enumerable#all?</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#any%3F%28%26%29%3ABoolLiteral-instance-method" class="signature"><strong>#any?</strong>(&) : BoolLiteral</a>
+        
+          <div class="summary"><p>Similar to <code><a href="../../Enumerable.html#any%3F%28%26%3AT-%3E%29%3ABool-instance-method">Enumerable#any?</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#each%28%26%29%3ANil-instance-method" class="signature"><strong>#each</strong>(&) : Nil</a>
+        
+          <div class="summary"><p>Similar to <code><a href="../../Tuple.html#each%28%26%3AUnion%28%2AT%29-%3E%29%3ANil-instance-method">Tuple#each</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#each_with_index%28%26%29%3ANil-instance-method" class="signature"><strong>#each_with_index</strong>(&) : Nil</a>
+        
+          <div class="summary"><p>Similar to <code><a href="../../Enumerable.html#each_with_index%28offset%3D0%2C%26%29-instance-method">Enumerable#each_with_index</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#empty%3F%3ABoolLiteral-instance-method" class="signature"><strong>#empty?</strong> : BoolLiteral</a>
+        
+          <div class="summary"><p>Similar to <code>Tuple#empty?</code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#find%28%26%29%3AASTNode%7CNilLiteral-instance-method" class="signature"><strong>#find</strong>(&) : ASTNode | NilLiteral</a>
+        
+          <div class="summary"><p>Similar to <code><a href="../../Enumerable.html#find%28if_none%3Dnil%2C%26%3AT-%3E%29-instance-method">Enumerable#find</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#first%3AASTNode%7CNilLiteral-instance-method" class="signature"><strong>#first</strong> : ASTNode | NilLiteral</a>
+        
+          <div class="summary"><p>Similar to <code><a href="../../Tuple.html#first-instance-method">Tuple#first</a></code>, but returns a <code><a href="../../Crystal/Macros/NilLiteral.html">NilLiteral</a></code> if the tuple is empty.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#includes%3F%28node%3AASTNode%29%3ABoolLiteral-instance-method" class="signature"><strong>#includes?</strong>(node : ASTNode) : BoolLiteral</a>
+        
+          <div class="summary"><p>Similar to <code><a href="../../Enumerable.html#includes%3F%28obj%29%3ABool-instance-method">Enumerable#includes?(obj)</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#join%28separator%29%3AStringLiteral-instance-method" class="signature"><strong>#join</strong>(separator) : StringLiteral</a>
+        
+          <div class="summary"><p>Similar to <code><a href="../../Enumerable.html#join%28io%3AIO%2Cseparator%3D%22%22%29%3ANil-instance-method">Enumerable#join</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#last%3AASTNode%7CNilLiteral-instance-method" class="signature"><strong>#last</strong> : ASTNode | NilLiteral</a>
+        
+          <div class="summary"><p>Similar to <code><a href="../../Tuple.html#last-instance-method">Tuple#last</a></code>, but returns a <code><a href="../../Crystal/Macros/NilLiteral.html">NilLiteral</a></code> if the tuple is empty.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#map%28%26%29%3ATupleLiteral-instance-method" class="signature"><strong>#map</strong>(&) : TupleLiteral</a>
+        
+          <div class="summary"><p>Similar to <code><a href="../../Enumerable.html#map%28%26%3AT-%3EU%29%3AArray%28U%29forallU-instance-method">Enumerable#map</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#map_with_index%28%26%29%3ATupleLiteral-instance-method" class="signature"><strong>#map_with_index</strong>(&) : TupleLiteral</a>
+        
+          <div class="summary"><p>Similar to <code><a href="../../Enumerable.html#map_with_index%28offset%3D0%2C%26%3AT%2CInt32-%3EU%29%3AArray%28U%29forallU-instance-method">Enumerable#map_with_index</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#push%28value%3AASTNode%29%3ATupleLiteral-instance-method" class="signature"><strong>#push</strong>(value : ASTNode) : TupleLiteral</a>
+        
+          <div class="summary"><p>Similar to <code><a href="../../Array.html#push%28value%3AT%29%3Aself-instance-method">Array#push</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#reduce%28memo%3AASTNode%2C%26%29%3AASTNode-instance-method" class="signature"><strong>#reduce</strong>(memo : ASTNode, &) : ASTNode</a>
+        
+          <div class="summary"><p>Similar to <code><a href="../../Enumerable.html#reduce%28%26%29-instance-method">Enumerable#reduce</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#reduce%28%26%29%3AASTNode-instance-method" class="signature"><strong>#reduce</strong>(&) : ASTNode</a>
+        
+          <div class="summary"><p>Similar to <code><a href="../../Enumerable.html#reduce%28%26%29-instance-method">Enumerable#reduce</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#reject%28%26%29%3ATupleLiteral-instance-method" class="signature"><strong>#reject</strong>(&) : TupleLiteral</a>
+        
+          <div class="summary"><p>Similar to <code><a href="../../Enumerable.html#reject%28%26%3AT-%3E%29-instance-method">Enumerable#reject</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#select%28%26%29%3ATupleLiteral-instance-method" class="signature"><strong>#select</strong>(&) : TupleLiteral</a>
+        
+          <div class="summary"><p>Similar to <code><a href="../../Enumerable.html#select%28%26%3AT-%3E%29-instance-method">Enumerable#select</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#shuffle%3ATupleLiteral-instance-method" class="signature"><strong>#shuffle</strong> : TupleLiteral</a>
+        
+          <div class="summary"><p>Similar to <code><a href="../../Array.html#shuffle%28random%3ARandom%3DRandom%3A%3ADEFAULT%29%3AArray%28T%29-instance-method">Array#shuffle</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#size%3ANumberLiteral-instance-method" class="signature"><strong>#size</strong> : NumberLiteral</a>
+        
+          <div class="summary"><p>Similar to <code><a href="../../Tuple.html#size-instance-method">Tuple#size</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#sort%3ATupleLiteral-instance-method" class="signature"><strong>#sort</strong> : TupleLiteral</a>
+        
+          <div class="summary"><p>Similar to <code><a href="../../Array.html#sort%3AArray%28T%29-instance-method">Array#sort</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#sort_by%28%26%29%3ATupleLiteral-instance-method" class="signature"><strong>#sort_by</strong>(&) : TupleLiteral</a>
+        
+          <div class="summary"><p>Similar to <code><a href="../../Array.html#sort_by%28%26block%3AT-%3E_%29%3AArray%28T%29-instance-method">Array#sort_by</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#splat%28trailing_string%3AStringLiteral%3Dnil%29%3AMacroId-instance-method" class="signature"><strong>#splat</strong>(trailing_string : StringLiteral = <span class="n">nil</span>) : MacroId</a>
+        
+          <div class="summary"><p>Returns a <code><a href="../../Crystal/Macros/MacroId.html">MacroId</a></code> with all of this tuple's elements joined by commas.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#uniq%3ATupleLiteral-instance-method" class="signature"><strong>#uniq</strong> : TupleLiteral</a>
+        
+          <div class="summary"><p>Similar to <code><a href="../../Array.html#uniq%3AArray%28T%29-instance-method">Array#uniq</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#unshift%28value%3AASTNode%29%3ATupleLiteral-instance-method" class="signature"><strong>#unshift</strong>(value : ASTNode) : TupleLiteral</a>
+        
+          <div class="summary"><p>Similar to <code><a href="../../Array.html#unshift%28object%3AT%29%3Aself-instance-method">Array#unshift</a></code>.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+
+  <div class="methods-inherited">
+    
+      
+
+  <h3>Instance methods inherited from class <code><a href="../../Crystal/Macros/ASTNode.html">Crystal::Macros::ASTNode</a></code></h3>
+  
+  
+    <a href="../../Crystal/Macros/ASTNode.html#%21%3D%28other%3AASTNode%29%3ABoolLiteral-instance-method" class="tooltip">
+      <span>!=(other : ASTNode) : BoolLiteral</span>
+    !=</a>, 
+    
+  
+    <a href="../../Crystal/Macros/ASTNode.html#%3D%3D%28other%3AASTNode%29%3ABoolLiteral-instance-method" class="tooltip">
+      <span>==(other : ASTNode) : BoolLiteral</span>
+    ==</a>, 
+    
+  
+    <a href="../../Crystal/Macros/ASTNode.html#class_name%3AStringLiteral-instance-method" class="tooltip">
+      <span>class_name : StringLiteral</span>
+    class_name</a>, 
+    
+  
+    <a href="../../Crystal/Macros/ASTNode.html#column_number%3AStringLiteral%7CNilLiteral-instance-method" class="tooltip">
+      <span>column_number : StringLiteral | NilLiteral</span>
+    column_number</a>, 
+    
+  
+    <a href="../../Crystal/Macros/ASTNode.html#doc%3AStringLiteral-instance-method" class="tooltip">
+      <span>doc : StringLiteral</span>
+    doc</a>, 
+    
+  
+    <a href="../../Crystal/Macros/ASTNode.html#doc_comment%3AMacroId-instance-method" class="tooltip">
+      <span>doc_comment : MacroId</span>
+    doc_comment</a>, 
+    
+  
+    <a href="../../Crystal/Macros/ASTNode.html#end_column_number%3AStringLiteral%7CNilLiteral-instance-method" class="tooltip">
+      <span>end_column_number : StringLiteral | NilLiteral</span>
+    end_column_number</a>, 
+    
+  
+    <a href="../../Crystal/Macros/ASTNode.html#end_line_number%3AStringLiteral%7CNilLiteral-instance-method" class="tooltip">
+      <span>end_line_number : StringLiteral | NilLiteral</span>
+    end_line_number</a>, 
+    
+  
+    <a href="../../Crystal/Macros/ASTNode.html#filename%3AStringLiteral%7CNilLiteral-instance-method" class="tooltip">
+      <span>filename : StringLiteral | NilLiteral</span>
+    filename</a>, 
+    
+  
+    <a href="../../Crystal/Macros/ASTNode.html#id%3AMacroId-instance-method" class="tooltip">
+      <span>id : MacroId</span>
+    id</a>, 
+    
+  
+    <a href="../../Crystal/Macros/ASTNode.html#is_a%3F%28type%3ATypeNode%29%3ABoolLiteral-instance-method" class="tooltip">
+      <span>is_a?(type : TypeNode) : BoolLiteral</span>
+    is_a?</a>, 
+    
+  
+    <a href="../../Crystal/Macros/ASTNode.html#line_number%3AStringLiteral%7CNilLiteral-instance-method" class="tooltip">
+      <span>line_number : StringLiteral | NilLiteral</span>
+    line_number</a>, 
+    
+  
+    <a href="../../Crystal/Macros/ASTNode.html#nil%3F%3ABoolLiteral-instance-method" class="tooltip">
+      <span>nil? : BoolLiteral</span>
+    nil?</a>, 
+    
+  
+    <a href="../../Crystal/Macros/ASTNode.html#raise%28message%29%3ANoReturn-instance-method" class="tooltip">
+      <span>raise(message) : NoReturn</span>
+    raise</a>, 
+    
+  
+    <a href="../../Crystal/Macros/ASTNode.html#stringify%3AStringLiteral-instance-method" class="tooltip">
+      <span>stringify : StringLiteral</span>
+    stringify</a>, 
+    
+  
+    <a href="../../Crystal/Macros/ASTNode.html#symbolize%3ASymbolLiteral-instance-method" class="tooltip">
+      <span>symbolize : SymbolLiteral</span>
+    symbolize</a>, 
+    
+  
+    <a href="../../Crystal/Macros/ASTNode.html#warning%28message%3AStringLiteral%29%3ANilLiteral-instance-method" class="tooltip">
+      <span>warning(message : StringLiteral) : NilLiteral</span>
+    warning</a>
+    
+  
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+  </div>
+
+  
+
+  
+
+  
+
+  
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="+(other:TupleLiteral):TupleLiteral-instance-method">
+      <div class="signature">
+        
+        def <strong>+</strong>(other : <a href="../../Crystal/Macros/TupleLiteral.html">TupleLiteral</a>) : <a href="../../Crystal/Macros/TupleLiteral.html">TupleLiteral</a>
+
+        <a class="method-permalink" href="#%2B%28other%3ATupleLiteral%29%3ATupleLiteral-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Similar to <code><a href="../../Tuple.html#%2B%28other%3ATuple%29-instance-method">Tuple#+</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/compiler/crystal/macros.cr#L1094" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="-(other:TupleLiteral):TupleLiteral-instance-method">
+      <div class="signature">
+        
+        def <strong>-</strong>(other : <a href="../../Crystal/Macros/TupleLiteral.html">TupleLiteral</a>) : <a href="../../Crystal/Macros/TupleLiteral.html">TupleLiteral</a>
+
+        <a class="method-permalink" href="#-%28other%3ATupleLiteral%29%3ATupleLiteral-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Similar to <code><a href="../../Array.html#-%28other%3AArray%28U%29%29%3AArray%28T%29forallU-instance-method">Array#-</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/compiler/crystal/macros.cr#L1098" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="&lt;&lt;(value:ASTNode):TupleLiteral-instance-method">
+      <div class="signature">
+        
+        def <strong><<</strong>(value : <a href="../../Crystal/Macros/ASTNode.html">ASTNode</a>) : <a href="../../Crystal/Macros/TupleLiteral.html">TupleLiteral</a>
+
+        <a class="method-permalink" href="#%3C%3C%28value%3AASTNode%29%3ATupleLiteral-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Similar to <code>Array#&lt;&lt;</code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/compiler/crystal/macros.cr#L1090" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="[](index:NumberLiteral):ASTNode-instance-method">
+      <div class="signature">
+        
+        def <strong>[]</strong>(index : <a href="../../Crystal/Macros/NumberLiteral.html">NumberLiteral</a>) : <a href="../../Crystal/Macros/ASTNode.html">ASTNode</a>
+
+        <a class="method-permalink" href="#%5B%5D%28index%3ANumberLiteral%29%3AASTNode-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Similar to <code><a href="../../Tuple.html#%5B%5D%28index%3AInt%29-instance-method">Tuple#[]</a></code>, but returns <code><a href="../../Crystal/Macros/NilLiteral.html">NilLiteral</a></code> on out of bounds.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/compiler/crystal/macros.cr#L1070" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="[](index:RangeLiteral):TupleLiteral(ASTNode)-instance-method">
+      <div class="signature">
+        
+        def <strong>[]</strong>(index : <a href="../../Crystal/Macros/RangeLiteral.html">RangeLiteral</a>) : <a href="../../Crystal/Macros/TupleLiteral.html">TupleLiteral</a>(<a href="../../Crystal/Macros/ASTNode.html">ASTNode</a>)
+
+        <a class="method-permalink" href="#%5B%5D%28index%3ARangeLiteral%29%3ATupleLiteral%28ASTNode%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Similar to <code><a href="../../Tuple.html#%5B%5D%28index%3AInt%29-instance-method">Tuple#[]</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/compiler/crystal/macros.cr#L1074" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="[]=(index:NumberLiteral,value:ASTNode):ASTNode-instance-method">
+      <div class="signature">
+        
+        def <strong>[]=</strong>(index : <a href="../../Crystal/Macros/NumberLiteral.html">NumberLiteral</a>, value : <a href="../../Crystal/Macros/ASTNode.html">ASTNode</a>) : <a href="../../Crystal/Macros/ASTNode.html">ASTNode</a>
+
+        <a class="method-permalink" href="#%5B%5D%3D%28index%3ANumberLiteral%2Cvalue%3AASTNode%29%3AASTNode-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Similar to <code><a href="../../Array.html#%5B%5D%3D%28start%3AInt%2Ccount%3AInt%2Cvalues%3AArray%28T%29%29-instance-method">Array#[]=</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/compiler/crystal/macros.cr#L1078" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="all?(&amp;):BoolLiteral-instance-method">
+      <div class="signature">
+        
+        def <strong>all?</strong>(&) : <a href="../../Crystal/Macros/BoolLiteral.html">BoolLiteral</a>
+
+        <a class="method-permalink" href="#all%3F%28%26%29%3ABoolLiteral-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Similar to <code><a href="../../Enumerable.html#all%3F%28%26%3AT-%3E%29%3ABool-instance-method">Enumerable#all?</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/compiler/crystal/macros.cr#L980" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="any?(&amp;):BoolLiteral-instance-method">
+      <div class="signature">
+        
+        def <strong>any?</strong>(&) : <a href="../../Crystal/Macros/BoolLiteral.html">BoolLiteral</a>
+
+        <a class="method-permalink" href="#any%3F%28%26%29%3ABoolLiteral-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Similar to <code><a href="../../Enumerable.html#any%3F%28%26%3AT-%3E%29%3ABool-instance-method">Enumerable#any?</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/compiler/crystal/macros.cr#L976" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="each(&amp;):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>each</strong>(&) : <a href="../../Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#each%28%26%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Similar to <code><a href="../../Tuple.html#each%28%26%3AUnion%28%2AT%29-%3E%29%3ANil-instance-method">Tuple#each</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/compiler/crystal/macros.cr#L1030" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="each_with_index(&amp;):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>each_with_index</strong>(&) : <a href="../../Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#each_with_index%28%26%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Similar to <code><a href="../../Enumerable.html#each_with_index%28offset%3D0%2C%26%29-instance-method">Enumerable#each_with_index</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/compiler/crystal/macros.cr#L1034" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="empty?:BoolLiteral-instance-method">
+      <div class="signature">
+        
+        def <strong>empty?</strong> : <a href="../../Crystal/Macros/BoolLiteral.html">BoolLiteral</a>
+
+        <a class="method-permalink" href="#empty%3F%3ABoolLiteral-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Similar to <code>Tuple#empty?</code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/compiler/crystal/macros.cr#L994" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="find(&amp;):ASTNode|NilLiteral-instance-method">
+      <div class="signature">
+        
+        def <strong>find</strong>(&) : <a href="../../Crystal/Macros/ASTNode.html">ASTNode</a> | <a href="../../Crystal/Macros/NilLiteral.html">NilLiteral</a>
+
+        <a class="method-permalink" href="#find%28%26%29%3AASTNode%7CNilLiteral-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Similar to <code><a href="../../Enumerable.html#find%28if_none%3Dnil%2C%26%3AT-%3E%29-instance-method">Enumerable#find</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/compiler/crystal/macros.cr#L998" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="first:ASTNode|NilLiteral-instance-method">
+      <div class="signature">
+        
+        def <strong>first</strong> : <a href="../../Crystal/Macros/ASTNode.html">ASTNode</a> | <a href="../../Crystal/Macros/NilLiteral.html">NilLiteral</a>
+
+        <a class="method-permalink" href="#first%3AASTNode%7CNilLiteral-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Similar to <code><a href="../../Tuple.html#first-instance-method">Tuple#first</a></code>, but returns a <code><a href="../../Crystal/Macros/NilLiteral.html">NilLiteral</a></code> if the tuple is empty.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/compiler/crystal/macros.cr#L1002" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="includes?(node:ASTNode):BoolLiteral-instance-method">
+      <div class="signature">
+        
+        def <strong>includes?</strong>(node : <a href="../../Crystal/Macros/ASTNode.html">ASTNode</a>) : <a href="../../Crystal/Macros/BoolLiteral.html">BoolLiteral</a>
+
+        <a class="method-permalink" href="#includes%3F%28node%3AASTNode%29%3ABoolLiteral-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Similar to <code><a href="../../Enumerable.html#includes%3F%28obj%29%3ABool-instance-method">Enumerable#includes?(obj)</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/compiler/crystal/macros.cr#L1006" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="join(separator):StringLiteral-instance-method">
+      <div class="signature">
+        
+        def <strong>join</strong>(separator) : <a href="../../Crystal/Macros/StringLiteral.html">StringLiteral</a>
+
+        <a class="method-permalink" href="#join%28separator%29%3AStringLiteral-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Similar to <code><a href="../../Enumerable.html#join%28io%3AIO%2Cseparator%3D%22%22%29%3ANil-instance-method">Enumerable#join</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/compiler/crystal/macros.cr#L1010" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="last:ASTNode|NilLiteral-instance-method">
+      <div class="signature">
+        
+        def <strong>last</strong> : <a href="../../Crystal/Macros/ASTNode.html">ASTNode</a> | <a href="../../Crystal/Macros/NilLiteral.html">NilLiteral</a>
+
+        <a class="method-permalink" href="#last%3AASTNode%7CNilLiteral-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Similar to <code><a href="../../Tuple.html#last-instance-method">Tuple#last</a></code>, but returns a <code><a href="../../Crystal/Macros/NilLiteral.html">NilLiteral</a></code> if the tuple is empty.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/compiler/crystal/macros.cr#L1014" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="map(&amp;):TupleLiteral-instance-method">
+      <div class="signature">
+        
+        def <strong>map</strong>(&) : <a href="../../Crystal/Macros/TupleLiteral.html">TupleLiteral</a>
+
+        <a class="method-permalink" href="#map%28%26%29%3ATupleLiteral-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Similar to <code><a href="../../Enumerable.html#map%28%26%3AT-%3EU%29%3AArray%28U%29forallU-instance-method">Enumerable#map</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/compiler/crystal/macros.cr#L1022" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="map_with_index(&amp;):TupleLiteral-instance-method">
+      <div class="signature">
+        
+        def <strong>map_with_index</strong>(&) : <a href="../../Crystal/Macros/TupleLiteral.html">TupleLiteral</a>
+
+        <a class="method-permalink" href="#map_with_index%28%26%29%3ATupleLiteral-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Similar to <code><a href="../../Enumerable.html#map_with_index%28offset%3D0%2C%26%3AT%2CInt32-%3EU%29%3AArray%28U%29forallU-instance-method">Enumerable#map_with_index</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/compiler/crystal/macros.cr#L1026" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="push(value:ASTNode):TupleLiteral-instance-method">
+      <div class="signature">
+        
+        def <strong>push</strong>(value : <a href="../../Crystal/Macros/ASTNode.html">ASTNode</a>) : <a href="../../Crystal/Macros/TupleLiteral.html">TupleLiteral</a>
+
+        <a class="method-permalink" href="#push%28value%3AASTNode%29%3ATupleLiteral-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Similar to <code><a href="../../Array.html#push%28value%3AT%29%3Aself-instance-method">Array#push</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/compiler/crystal/macros.cr#L1086" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="reduce(memo:ASTNode,&amp;):ASTNode-instance-method">
+      <div class="signature">
+        
+        def <strong>reduce</strong>(memo : <a href="../../Crystal/Macros/ASTNode.html">ASTNode</a>, &) : <a href="../../Crystal/Macros/ASTNode.html">ASTNode</a>
+
+        <a class="method-permalink" href="#reduce%28memo%3AASTNode%2C%26%29%3AASTNode-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Similar to <code><a href="../../Enumerable.html#reduce%28%26%29-instance-method">Enumerable#reduce</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/compiler/crystal/macros.cr#L1050" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="reduce(&amp;):ASTNode-instance-method">
+      <div class="signature">
+        
+        def <strong>reduce</strong>(&) : <a href="../../Crystal/Macros/ASTNode.html">ASTNode</a>
+
+        <a class="method-permalink" href="#reduce%28%26%29%3AASTNode-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Similar to <code><a href="../../Enumerable.html#reduce%28%26%29-instance-method">Enumerable#reduce</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/compiler/crystal/macros.cr#L1046" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="reject(&amp;):TupleLiteral-instance-method">
+      <div class="signature">
+        
+        def <strong>reject</strong>(&) : <a href="../../Crystal/Macros/TupleLiteral.html">TupleLiteral</a>
+
+        <a class="method-permalink" href="#reject%28%26%29%3ATupleLiteral-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Similar to <code><a href="../../Enumerable.html#reject%28%26%3AT-%3E%29-instance-method">Enumerable#reject</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/compiler/crystal/macros.cr#L1042" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="select(&amp;):TupleLiteral-instance-method">
+      <div class="signature">
+        
+        def <strong>select</strong>(&) : <a href="../../Crystal/Macros/TupleLiteral.html">TupleLiteral</a>
+
+        <a class="method-permalink" href="#select%28%26%29%3ATupleLiteral-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Similar to <code><a href="../../Enumerable.html#select%28%26%3AT-%3E%29-instance-method">Enumerable#select</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/compiler/crystal/macros.cr#L1038" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="shuffle:TupleLiteral-instance-method">
+      <div class="signature">
+        
+        def <strong>shuffle</strong> : <a href="../../Crystal/Macros/TupleLiteral.html">TupleLiteral</a>
+
+        <a class="method-permalink" href="#shuffle%3ATupleLiteral-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Similar to <code><a href="../../Array.html#shuffle%28random%3ARandom%3DRandom%3A%3ADEFAULT%29%3AArray%28T%29-instance-method">Array#shuffle</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/compiler/crystal/macros.cr#L1054" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="size:NumberLiteral-instance-method">
+      <div class="signature">
+        
+        def <strong>size</strong> : <a href="../../Crystal/Macros/NumberLiteral.html">NumberLiteral</a>
+
+        <a class="method-permalink" href="#size%3ANumberLiteral-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Similar to <code><a href="../../Tuple.html#size-instance-method">Tuple#size</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/compiler/crystal/macros.cr#L1018" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="sort:TupleLiteral-instance-method">
+      <div class="signature">
+        
+        def <strong>sort</strong> : <a href="../../Crystal/Macros/TupleLiteral.html">TupleLiteral</a>
+
+        <a class="method-permalink" href="#sort%3ATupleLiteral-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Similar to <code><a href="../../Array.html#sort%3AArray%28T%29-instance-method">Array#sort</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/compiler/crystal/macros.cr#L1058" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="sort_by(&amp;):TupleLiteral-instance-method">
+      <div class="signature">
+        
+        def <strong>sort_by</strong>(&) : <a href="../../Crystal/Macros/TupleLiteral.html">TupleLiteral</a>
+
+        <a class="method-permalink" href="#sort_by%28%26%29%3ATupleLiteral-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Similar to <code><a href="../../Array.html#sort_by%28%26block%3AT-%3E_%29%3AArray%28T%29-instance-method">Array#sort_by</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/compiler/crystal/macros.cr#L1062" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="splat(trailing_string:StringLiteral=nil):MacroId-instance-method">
+      <div class="signature">
+        
+        def <strong>splat</strong>(trailing_string : <a href="../../Crystal/Macros/StringLiteral.html">StringLiteral</a> = <span class="n">nil</span>) : <a href="../../Crystal/Macros/MacroId.html">MacroId</a>
+
+        <a class="method-permalink" href="#splat%28trailing_string%3AStringLiteral%3Dnil%29%3AMacroId-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns a <code><a href="../../Crystal/Macros/MacroId.html">MacroId</a></code> with all of this tuple's elements joined
+by commas.</p>
+<p>If <em>trailing_string</em> is given, it will be appended to
+the result unless this tuple is empty. This lets you
+splat a tuple and optionally write a trailing comma
+if needed.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/compiler/crystal/macros.cr#L990" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="uniq:TupleLiteral-instance-method">
+      <div class="signature">
+        
+        def <strong>uniq</strong> : <a href="../../Crystal/Macros/TupleLiteral.html">TupleLiteral</a>
+
+        <a class="method-permalink" href="#uniq%3ATupleLiteral-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Similar to <code><a href="../../Array.html#uniq%3AArray%28T%29-instance-method">Array#uniq</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/compiler/crystal/macros.cr#L1066" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="unshift(value:ASTNode):TupleLiteral-instance-method">
+      <div class="signature">
+        
+        def <strong>unshift</strong>(value : <a href="../../Crystal/Macros/ASTNode.html">ASTNode</a>) : <a href="../../Crystal/Macros/TupleLiteral.html">TupleLiteral</a>
+
+        <a class="method-permalink" href="#unshift%28value%3AASTNode%29%3ATupleLiteral-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Similar to <code><a href="../../Array.html#unshift%28object%3AT%29%3Aself-instance-method">Array#unshift</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/compiler/crystal/macros.cr#L1082" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+</div>
+
+</body>
+</html>

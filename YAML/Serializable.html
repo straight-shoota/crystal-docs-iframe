@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Crystal Docs 1.16.1">
+<meta name="crystal_docs.project_version" content="1.17.0-dev">
+<meta name="crystal_docs.project_name" content="Crystal">
+
+  <meta name="crystal_docs.json_config_url" content="/api/versions.json">
+
+
+    <link rel="canonical" href="https://crystal-lang.org/api/latest/YAML/Serializable.html">
+
+<link href="../css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../js/doc.js"></script>
+
+  <meta name="repository-name" content="Crystal">
+  <title>YAML::Serializable - Crystal 1.17.0-dev</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "../";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill="currentColor" fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<input type="checkbox" id="sidebar-btn">
+<label for="sidebar-btn" id="sidebar-btn-label">
+  <svg class="open" xmlns="http://www.w3.org/2000/svg" height="2em" width="2em" viewBox="0 0 512 512"><title>Open Sidebar</title><path fill="currentColor" d="M80 96v64h352V96H80zm0 112v64h352v-64H80zm0 112v64h352v-64H80z"></path></svg>
+  <svg class="close" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><title>Close Sidebar</title><path fill="currentColor" d="m118.6 73.4-45.2 45.2L210.7 256 73.4 393.4l45.2 45.2L256 301.3l137.4 137.3 45.2-45.2L301.3 256l137.3-137.4-45.2-45.2L256 210.7Z"></path></svg>
+</label>
+<iframe class="sidebar" src="../sidebar.html"></iframe>
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">
+    module
+  </span> YAML::<wbr>Serializable
+
+</h1>
+
+
+
+
+
+  <h2>
+    <a id="overview" class="anchor" href="#overview">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Overview
+  </h2>
+
+  <p>The <code><a href="../YAML/Serializable.html">YAML::Serializable</a></code> module automatically generates methods for YAML serialization when included.</p>
+<h3><a id="example" class="anchor" href="#example">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Example</h3>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;yaml&quot;</span>
+
+<span class="k">class</span> <span class="t">Location</span>
+  <span class="k">include</span> <span class="t">YAML</span><span class="t">::</span><span class="t">Serializable</span>
+
+  @[<span class="t">YAML</span><span class="t">::</span><span class="t">Field</span>(key: <span class="s">&quot;lat&quot;</span>)]
+  property latitude : <span class="t">Float64</span>
+
+  @[<span class="t">YAML</span><span class="t">::</span><span class="t">Field</span>(key: <span class="s">&quot;lng&quot;</span>)]
+  property longitude : <span class="t">Float64</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="t">House</span>
+  <span class="k">include</span> <span class="t">YAML</span><span class="t">::</span><span class="t">Serializable</span>
+  property address : <span class="t">String</span>
+  property location : <span class="t">Location</span>?
+<span class="k">end</span>
+
+house <span class="o">=</span> <span class="t">House</span>.from_yaml(<span class="s">%({&quot;address&quot;: &quot;Crystal Road 1234&quot;, &quot;location&quot;: {&quot;lat&quot;: 12.3, &quot;lng&quot;: 34.5}})</span>)
+house.address  <span class="c"># =&gt; &quot;Crystal Road 1234&quot;</span>
+house.location <span class="c"># =&gt; #&lt;Location:0x10cd93d80 @latitude=12.3, @longitude=34.5&gt;</span>
+house.to_yaml  <span class="c"># =&gt; &quot;---\naddress: Crystal Road 1234\nlocation:\n  lat: 12.3\n  lng: 34.5\n&quot;</span>
+
+houses <span class="o">=</span> <span class="t">Array</span>(<span class="t">House</span>).from_yaml(<span class="s">&quot;---\n- address: Crystal Road 1234\n  location:\n    lat: 12.3\n    lng: 34.5\n&quot;</span>)
+houses.size    <span class="c"># =&gt; 1</span>
+houses.to_yaml <span class="c"># =&gt; &quot;---\n- address: Crystal Road 1234\n  location:\n    lat: 12.3\n    lng: 34.5\n&quot;</span></code></pre>
+<h3><a id="usage" class="anchor" href="#usage">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Usage</h3>
+<p>Including <code><a href="../YAML/Serializable.html">YAML::Serializable</a></code> will create <code><a href="../YAML/Serializable.html#to_yaml%28yaml%3AYAML%3A%3ANodes%3A%3ABuilder%29-instance-method">#to_yaml</a></code> and <code>self.from_yaml</code> methods on the current class,
+and a constructor which takes a <code><a href="../YAML/PullParser.html">YAML::PullParser</a></code>. By default, these methods serialize into a yaml
+object containing the value of every instance variable, the keys being the instance variable name.
+Most primitives and collections supported as instance variable values (string, integer, array, hash, etc.),
+along with objects which define to_yaml and a constructor taking a <code><a href="../YAML/PullParser.html">YAML::PullParser</a></code>.
+Union types are also supported, including unions with nil. If multiple types in a union parse correctly,
+it is undefined which one will be chosen.</p>
+<p>To change how individual instance variables are parsed and serialized, the annotation <code><a href="../YAML/Field.html">YAML::Field</a></code>
+can be placed on the instance variable. Annotating property, getter and setter macros is also allowed.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;yaml&quot;</span>
+
+<span class="k">class</span> <span class="t">A</span>
+  <span class="k">include</span> <span class="t">YAML</span><span class="t">::</span><span class="t">Serializable</span>
+
+  @[<span class="t">YAML</span><span class="t">::</span><span class="t">Field</span>(key: <span class="s">&quot;my_key&quot;</span>, emit_null: <span class="n">true</span>)]
+  getter a : <span class="t">Int32</span>?
+<span class="k">end</span></code></pre>
+<p><code><a href="../YAML/Field.html">YAML::Field</a></code> properties:</p>
+<ul>
+<li><strong>ignore</strong>: if <code>true</code> skip this field in serialization and deserialization (by default false)</li>
+<li><strong>ignore_serialize</strong>: If truthy, skip this field in serialization (default: <code>false</code>). The value can be any Crystal expression and is evaluated at runtime.</li>
+<li><strong>ignore_deserialize</strong>: if <code>true</code> skip this field in deserialization (by default false)</li>
+<li><strong>key</strong>: the value of the key in the yaml object (by default the name of the instance variable)</li>
+<li><strong>converter</strong>: specify an alternate type for parsing and generation. The converter must define <code>from_yaml(<a href="../YAML/ParseContext.html">YAML::ParseContext</a>, <a href="../YAML/Nodes/Node.html">YAML::Nodes::Node</a>)</code> and <code>to_yaml(value, <a href="../YAML/Nodes/Builder.html">YAML::Nodes::Builder</a>)</code>. Examples of converters are a <code><a href="../Time/Format.html">Time::Format</a></code> instance and <code><a href="../Time/EpochConverter.html">Time::EpochConverter</a></code> for <code><a href="../Time.html">Time</a></code>.</li>
+<li><strong>presence</strong>: if <code>true</code>, a <code>@{{key}}_present</code> instance variable will be generated when the key was present (even if it has a <code>null</code> value), <code>false</code> by default</li>
+<li><strong>emit_null</strong>: if <code>true</code>, emits a <code>null</code> value for nilable property (by default nulls are not emitted)</li>
+</ul>
+<p>Deserialization also respects default values of variables:</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;yaml&quot;</span>
+
+<span class="k">struct</span> <span class="t">A</span>
+  <span class="k">include</span> <span class="t">YAML</span><span class="t">::</span><span class="t">Serializable</span>
+  @a : <span class="t">Int32</span>
+  @b : <span class="t">Float64</span> <span class="o">=</span> <span class="n">1.0</span>
+<span class="k">end</span>
+
+<span class="t">A</span>.from_yaml(<span class="s">&quot;---\na: 1\n&quot;</span>) <span class="c"># =&gt; A(@a=1, @b=1.0)</span></code></pre>
+<h3><a id="extensions-yamlserializablestrict-and-yamlserializableunmapped." class="anchor" href="#extensions-yamlserializablestrict-and-yamlserializableunmapped.">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Extensions: <code><a href="../YAML/Serializable/Strict.html">YAML::Serializable::Strict</a></code> and <code><a href="../YAML/Serializable/Unmapped.html">YAML::Serializable::Unmapped</a></code>.</h3>
+<p>If the <code><a href="../YAML/Serializable/Strict.html">YAML::Serializable::Strict</a></code> module is included, unknown properties in the YAML
+document will raise a parse exception. By default the unknown properties
+are silently ignored.
+If the <code><a href="../YAML/Serializable/Unmapped.html">YAML::Serializable::Unmapped</a></code> module is included, unknown properties in the YAML
+document will be stored in a <code><a href="../Hash.html">Hash</a>(<a href="../String.html">String</a>, <a href="../YAML/Any.html">YAML::Any</a>)</code>. On serialization, any keys inside yaml_unmapped
+will be serialized appended to the current yaml object.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;yaml&quot;</span>
+
+<span class="k">struct</span> <span class="t">A</span>
+  <span class="k">include</span> <span class="t">YAML</span><span class="t">::</span><span class="t">Serializable</span>
+  <span class="k">include</span> <span class="t">YAML</span><span class="t">::</span><span class="t">Serializable</span><span class="t">::</span><span class="t">Unmapped</span>
+  @a : <span class="t">Int32</span>
+<span class="k">end</span>
+
+a <span class="o">=</span> <span class="t">A</span>.from_yaml(<span class="s">&quot;---\na: 1\nb: 2\n&quot;</span>) <span class="c"># =&gt; A(@yaml_unmapped={&quot;b&quot; =&gt; 2}, @a=1)</span>
+a.yaml_unmapped[<span class="s">&quot;b&quot;</span>].raw.<span class="k">class</span>       <span class="c"># =&gt; Int64</span>
+a.to_yaml                            <span class="c"># =&gt; &quot;---\na: 1\nb: 2\n&quot;</span></code></pre>
+<h3><a id="class-annotation-yamlserializableoptions" class="anchor" href="#class-annotation-yamlserializableoptions">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Class annotation <code><a href="../YAML/Serializable/Options.html">YAML::Serializable::Options</a></code></h3>
+<p>supported properties:</p>
+<ul>
+<li><strong>emit_nulls</strong>: if <code>true</code>, emits a <code>null</code> value for all nilable properties (by default nulls are not emitted)</li>
+</ul>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;yaml&quot;</span>
+
+@[<span class="t">YAML</span><span class="t">::</span><span class="t">Serializable</span><span class="t">::</span><span class="t">Options</span>(emit_nulls: <span class="n">true</span>)]
+<span class="k">class</span> <span class="t">A</span>
+  <span class="k">include</span> <span class="t">YAML</span><span class="t">::</span><span class="t">Serializable</span>
+  @a : <span class="t">Int32</span>?
+<span class="k">end</span></code></pre>
+<h3><a id="discriminator-field" class="anchor" href="#discriminator-field">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Discriminator field</h3>
+<p>A very common YAML serialization strategy for handling different objects
+under a same hierarchy is to use a discriminator field. For example in
+<a href="https://tools.ietf.org/html/rfc7946">GeoJSON</a> each object has a &quot;type&quot;
+field, and the rest of the fields, and their meaning, depend on its value.</p>
+<p>You can use <code><a href="../YAML/Serializable.html#use_yaml_discriminator%28field%2Cmapping%29-macro">YAML::Serializable.use_yaml_discriminator</a></code> for this use case.</p>
+<h3><a id="after-initialize-method" class="anchor" href="#after-initialize-method">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a><code>after_initialize</code> method</h3>
+<p><code>#after_initialize</code> is a method that runs after an instance is deserialized
+from YAML. It can be used as a hook to post-process the initialized object.</p>
+<p>Example:</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;yaml&quot;</span>
+
+<span class="k">class</span> <span class="t">Person</span>
+  <span class="k">include</span> <span class="t">YAML</span><span class="t">::</span><span class="t">Serializable</span>
+  getter name : <span class="t">String</span>
+
+  <span class="k">def</span> <span class="m">after_initialize</span>
+    @name <span class="o">=</span> @name.upcase
+  <span class="k">end</span>
+<span class="k">end</span>
+
+person <span class="o">=</span> <span class="t">Person</span>.from_yaml <span class="s">&quot;---\nname: Jane\n&quot;</span>
+person.name <span class="c"># =&gt; &quot;JANE&quot;</span></code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/yaml/serialization.cr#L151" target="_blank">
+        yaml/serialization.cr
+      </a>
+    
+    <br/>
+  
+
+
+
+
+
+  
+  <h2>
+    <a id="constructors" class="anchor" href="#constructors">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructors
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#new%28%2A%2C__context_for_yaml_serializablectx%3AYAML%3A%3AParseContext%2C__node_for_yaml_serializablenode%3AYAML%3A%3ANodes%3A%3ANode%29-class-method" class="signature"><strong>.new</strong>(*, __context_for_yaml_serializable ctx : YAML::ParseContext, __node_for_yaml_serializable node : YAML::Nodes::Node)</a>
+        
+      </li>
+    
+  </ul>
+
+
+  
+
+  
+  <h2>
+    <a id="macro-summary" class="anchor" href="#macro-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Macro Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#use_yaml_discriminator%28field%2Cmapping%29-macro" class="signature"><strong>use_yaml_discriminator</strong>(field, mapping)</a>
+        
+          <div class="summary"><p>Tells this class to decode YAML by using a field as a discriminator.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+  
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#to_yaml%28yaml%3AYAML%3A%3ANodes%3A%3ABuilder%29-instance-method" class="signature"><strong>#to_yaml</strong>(yaml : YAML::Nodes::Builder)</a>
+        
+      </li>
+    
+  </ul>
+
+
+
+  <div class="methods-inherited">
+    
+  </div>
+
+  
+  <h2>
+    <a id="constructor-detail" class="anchor" href="#constructor-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructor Detail
+  </h2>
+  
+    <div class="entry-detail" id="new(*,__context_for_yaml_serializablectx:YAML::ParseContext,__node_for_yaml_serializablenode:YAML::Nodes::Node)-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(*, __context_for_yaml_serializable ctx : <a href="../YAML/ParseContext.html">YAML::ParseContext</a>, __node_for_yaml_serializable node : <a href="../YAML/Nodes/Node.html">YAML::Nodes::Node</a>)
+
+        <a class="method-permalink" href="#new%28%2A%2C__context_for_yaml_serializablectx%3AYAML%3A%3AParseContext%2C__node_for_yaml_serializablenode%3AYAML%3A%3ANodes%3A%3ANode%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/yaml/serialization.cr#L187" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+  
+
+  
+  <h2>
+    <a id="macro-detail" class="anchor" href="#macro-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Macro Detail
+  </h2>
+  
+    <div class="entry-detail" id="use_yaml_discriminator(field,mapping)-macro">
+      <div class="signature">
+        
+        macro <strong>use_yaml_discriminator</strong>(field, mapping)
+
+        <a class="method-permalink" href="#use_yaml_discriminator%28field%2Cmapping%29-macro">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Tells this class to decode YAML by using a field as a discriminator.</p>
+<ul>
+<li><em>field</em> must be the field name to use as a discriminator</li>
+<li><em>mapping</em> must be a hash or named tuple where each key-value pair
+maps a discriminator value to a class to deserialize</li>
+</ul>
+<p>For example:</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;yaml&quot;</span>
+
+<span class="k">abstract</span> <span class="k">class</span> <span class="t">Shape</span>
+  <span class="k">include</span> <span class="t">YAML</span><span class="t">::</span><span class="t">Serializable</span>
+
+  use_yaml_discriminator <span class="s">&quot;type&quot;</span>, {point: <span class="t">Point</span>, circle: <span class="t">Circle</span>}
+
+  property <span class="k">type</span> : <span class="t">String</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="t">Point</span> <span class="o">&lt;</span> <span class="t">Shape</span>
+  property x : <span class="t">Int32</span>
+  property y : <span class="t">Int32</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="t">Circle</span> <span class="o">&lt;</span> <span class="t">Shape</span>
+  property x : <span class="t">Int32</span>
+  property y : <span class="t">Int32</span>
+  property radius : <span class="t">Int32</span>
+<span class="k">end</span>
+
+<span class="t">Shape</span>.from_yaml(<span class="s">%(
+  type: point
+  x: 1
+  y: 2
+)</span>) <span class="c"># =&gt; #&lt;Point:0x10373ae20 @type=&quot;point&quot;, @x=1, @y=2&gt;</span>
+
+<span class="t">Shape</span>.from_yaml(<span class="s">%(
+  type: circle
+  x: 1
+  y: 2
+  radius: 3
+)</span>) <span class="c"># =&gt; #&lt;Circle:0x106a4cea0 @type=&quot;circle&quot;, @x=1, @y=2, @radius=3&gt;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/yaml/serialization.cr#L407" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+  
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="to_yaml(yaml:YAML::Nodes::Builder)-instance-method">
+      <div class="signature">
+        
+        def <strong>to_yaml</strong>(yaml : <a href="../YAML/Nodes/Builder.html">YAML::Nodes::Builder</a>)
+
+        <a class="method-permalink" href="#to_yaml%28yaml%3AYAML%3A%3ANodes%3A%3ABuilder%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/yaml/serialization.cr#L286" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+</div>
+
+</body>
+</html>

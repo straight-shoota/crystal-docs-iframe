@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Crystal Docs 1.16.1">
+<meta name="crystal_docs.project_version" content="1.17.0-dev">
+<meta name="crystal_docs.project_name" content="Crystal">
+
+  <meta name="crystal_docs.json_config_url" content="/api/versions.json">
+
+
+    <link rel="canonical" href="https://crystal-lang.org/api/latest/Crystal.html">
+
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/doc.js"></script>
+
+  <meta name="repository-name" content="Crystal">
+  <title>Crystal - Crystal 1.17.0-dev</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill="currentColor" fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<input type="checkbox" id="sidebar-btn">
+<label for="sidebar-btn" id="sidebar-btn-label">
+  <svg class="open" xmlns="http://www.w3.org/2000/svg" height="2em" width="2em" viewBox="0 0 512 512"><title>Open Sidebar</title><path fill="currentColor" d="M80 96v64h352V96H80zm0 112v64h352v-64H80zm0 112v64h352v-64H80z"></path></svg>
+  <svg class="close" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><title>Close Sidebar</title><path fill="currentColor" d="m118.6 73.4-45.2 45.2L210.7 256 73.4 393.4l45.2 45.2L256 301.3l137.4 137.3 45.2-45.2L301.3 256l137.3-137.4-45.2-45.2L256 210.7Z"></path></svg>
+</label>
+<iframe class="sidebar" src="sidebar.html"></iframe>
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">
+    module
+  </span> Crystal
+
+</h1>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/crystal/datum.cr#L1" target="_blank">
+        crystal/datum.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/crystal/dwarf.cr#L6" target="_blank">
+        crystal/dwarf.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/crystal/dwarf/abbrev.cr#L3" target="_blank">
+        crystal/dwarf/abbrev.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/crystal/dwarf/info.cr#L4" target="_blank">
+        crystal/dwarf/info.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/crystal/dwarf/line_numbers.cr#L1" target="_blank">
+        crystal/dwarf/line_numbers.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/crystal/dwarf/strings.cr#L1" target="_blank">
+        crystal/dwarf/strings.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/crystal/elf.cr#L1" target="_blank">
+        crystal/elf.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/crystal/main.cr#L8" target="_blank">
+        crystal/main.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/crystal/once.cr#L14" target="_blank">
+        crystal/once.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/crystal/print_buffered.cr#L1" target="_blank">
+        crystal/print_buffered.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/crystal/small_deque.cr#L1" target="_blank">
+        crystal/small_deque.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/crystal/tracing.cr#L3" target="_blank">
+        crystal/tracing.cr
+      </a>
+    
+    <br/>
+  
+
+
+
+  
+    <h2>
+      <a id="constant-summary" class="anchor" href="#constant-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+      Constant Summary
+    </h2>
+  
+  <dl>
+    
+      <dt class="entry-const" id="BUILD_COMMIT">
+        <strong>BUILD_COMMIT</strong> = <code><span class="s">&quot;af0f55415&quot;</span></code>
+      </dt>
+      
+      <dd class="entry-const-doc">
+        <p>The build commit identifier of the Crystal compiler.</p>
+      </dd>
+      
+    
+      <dt class="entry-const" id="BUILD_DATE">
+        <strong>BUILD_DATE</strong> = <code><span class="s">&quot;2025-04-30&quot;</span></code>
+      </dt>
+      
+      <dd class="entry-const-doc">
+        <p>The build date of the Crystal compiler.</p>
+      </dd>
+      
+    
+      <dt class="entry-const" id="CACHE_DIR">
+        <strong>CACHE_DIR</strong> = <code><span class="s">&quot;/root/.cache/crystal&quot;</span></code>
+      </dt>
+      
+      <dd class="entry-const-doc">
+        <p>The cache directory configured for the Crystal compiler.</p>
+<p>The value is defined by the environment variable <code>CRYSTAL_CACHE_DIR</code> and
+defaults to the user's configured cache directory.</p>
+      </dd>
+      
+    
+      <dt class="entry-const" id="DEFAULT_PATH">
+        <strong>DEFAULT_PATH</strong> = <code><span class="s">&quot;$ORIGIN/../share/crystal/src&quot;</span></code>
+      </dt>
+      
+      <dd class="entry-const-doc">
+        <p>The default Crystal path configured in the compiler. This value is baked
+into the compiler and usually points to the accompanying version of the
+standard library.</p>
+      </dd>
+      
+    
+      <dt class="entry-const" id="DESCRIPTION">
+        <strong>DESCRIPTION</strong> = <code><span class="s">&quot;Crystal 1.17.0-dev [af0f55415] (2025-04-30)\n\nLLVM: 18.1.8\nDefault target: x86_64-unknown-linux-gnu\n&quot;</span></code>
+      </dt>
+      
+      <dd class="entry-const-doc">
+        <p>Full version information of the Crystal compiler. Equivalent to <code>crystal --version</code>.</p>
+      </dd>
+      
+    
+      <dt class="entry-const" id="HOST_TRIPLE">
+        <strong>HOST_TRIPLE</strong> = <code><span class="s">&quot;x86_64-unknown-linux-gnu&quot;</span></code>
+      </dt>
+      
+      <dd class="entry-const-doc">
+        <p>The LLVM target triple of the host system (the machine that the compiler runs on).</p>
+      </dd>
+      
+    
+      <dt class="entry-const" id="LIBRARY_PATH">
+        <strong>LIBRARY_PATH</strong> = <code><span class="s">&quot;/usr/bin/../lib/crystal&quot;</span></code>
+      </dt>
+      
+      <dd class="entry-const-doc">
+        <p>Colon-separated paths where the compiler searches for (binary) libraries.</p>
+<p>The value is defined by the environment variables <code>CRYSTAL_LIBRARY_PATH</code>.</p>
+      </dd>
+      
+    
+      <dt class="entry-const" id="LLVM_VERSION">
+        <strong>LLVM_VERSION</strong> = <code><span class="s">&quot;18.1.8&quot;</span></code>
+      </dt>
+      
+      <dd class="entry-const-doc">
+        <p>The version of LLVM used by the Crystal compiler.</p>
+      </dd>
+      
+    
+      <dt class="entry-const" id="PATH">
+        <strong>PATH</strong> = <code><span class="s">&quot;./lib:/crystal/src&quot;</span></code>
+      </dt>
+      
+      <dd class="entry-const-doc">
+        <p>Colon-separated paths where the compiler searches for required source files.</p>
+<p>The value is defined by the environment variable <code>CRYSTAL_PATH</code>
+and defaults to <code><a href="Crystal.html#DEFAULT_PATH">DEFAULT_PATH</a></code>.</p>
+      </dd>
+      
+    
+      <dt class="entry-const" id="TARGET_TRIPLE">
+        <strong>TARGET_TRIPLE</strong> = <code><span class="s">&quot;x86_64-unknown-linux-gnu&quot;</span></code>
+      </dt>
+      
+      <dd class="entry-const-doc">
+        <p>The LLVM target triple of the target system (the machine that the compiler builds for).</p>
+      </dd>
+      
+    
+      <dt class="entry-const" id="VERSION">
+        <strong>VERSION</strong> = <code><span class="s">&quot;1.17.0-dev&quot;</span></code>
+      </dt>
+      
+      <dd class="entry-const-doc">
+        <p>The version of the Crystal compiler.</p>
+      </dd>
+      
+    
+  </dl>
+
+
+
+  
+
+  
+  <h2>
+    <a id="class-method-summary" class="anchor" href="#class-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Class Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#main%28%26%29-class-method" class="signature"><strong>.main</strong>(&)</a>
+        
+          <div class="summary"><p>Defines the main routine run by normal Crystal programs:</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#main%28argc%3AInt32%2Cargv%3APointer%28Pointer%28UInt8%29%29%29-class-method" class="signature"><strong>.main</strong>(argc : Int32, argv : Pointer(Pointer(UInt8)))</a>
+        
+          <div class="summary"><p>Main method run by all Crystal programs at startup.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#main_user_code%28argc%3AInt32%2Cargv%3APointer%28Pointer%28UInt8%29%29%29-class-method" class="signature"><strong>.main_user_code</strong>(argc : Int32, argv : Pointer(Pointer(UInt8)))</a>
+        
+          <div class="summary"><p>Executes the main user code.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#print_buffered%28message%3AString%2C%2Aargs%2Ctoio%3AIO%2Cexception%3Dnil%2Cbacktrace%3Dnil%29%3ANil-class-method" class="signature"><strong>.print_buffered</strong>(message : String, *args, to io : IO, exception = <span class="n">nil</span>, backtrace = <span class="n">nil</span>) : Nil</a>
+        
+          <div class="summary"><p>Prepares an error message, with an optional exception or backtrace, to an in-memory buffer, before writing to an IO, usually STDERR, in a single write operation.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#print_error_buffered%28message%3AString%2C%2Aargs%2Cexception%3Dnil%2Cbacktrace%3Dnil%29%3ANil-class-method" class="signature"><strong>.print_error_buffered</strong>(message : String, *args, exception = <span class="n">nil</span>, backtrace = <span class="n">nil</span>) : Nil</a>
+        
+          <div class="summary"><p>Identical to <code><a href="Crystal.html#print_buffered%28message%3AString%2C%2Aargs%2Ctoio%3AIO%2Cexception%3Dnil%2Cbacktrace%3Dnil%29%3ANil-class-method">#print_buffered</a></code> but eventually calls <code><a href="Crystal/System.html#print_error%28bytes%3ASlice%28UInt16%29%29%3ANil-class-method">System.print_error(bytes)</a></code> to write to stderr without going through the event loop.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#trace%28section%3ATracing%3A%3ASection%2Coperation%3AString%2Ctime%3AUInt64%7CNil%3Dnil%2C%2A%2Ametadata%2C%26%29-class-method" class="signature"><strong>.trace</strong>(section : Tracing::Section, operation : String, time : UInt64 | Nil = <span class="n">nil</span>, **metadata, &)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#trace%28section%3ATracing%3A%3ASection%2Coperation%3AString%2Ctime%3AUInt64%7CNil%3Dnil%2C%2A%2Ametadata%29-class-method" class="signature"><strong>.trace</strong>(section : Tracing::Section, operation : String, time : UInt64 | Nil = <span class="n">nil</span>, **metadata)</a>
+        
+      </li>
+    
+  </ul>
+
+
+  
+
+  
+
+
+  <div class="methods-inherited">
+    
+  </div>
+
+  
+
+  
+  <h2>
+    <a id="class-method-detail" class="anchor" href="#class-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Class Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="main(&amp;)-class-method">
+      <div class="signature">
+        
+        def self.<strong>main</strong>(&)
+
+        <a class="method-permalink" href="#main%28%26%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Defines the main routine run by normal Crystal programs:</p>
+<ul>
+<li>Initializes runtime requirements (GC, ...)</li>
+<li>Invokes the given <em>block</em></li>
+<li>Handles unhandled exceptions</li>
+<li>Invokes <code>at_exit</code> handlers</li>
+<li>Flushes <code><a href="toplevel.html#STDOUT">STDOUT</a></code> and <code><a href="toplevel.html#STDERR">STDERR</a></code></li>
+</ul>
+<p>This method can be invoked if you need to define a custom
+main (as in C main) function, doing all the above steps.</p>
+<p>For example:</p>
+<pre><code class="language-crystal"><span class="k">fun</span> main(argc : <span class="t">Int32</span>, argv : <span class="t">UInt8</span><span class="o">**</span>) : <span class="t">Int32</span>
+  <span class="t">Crystal</span>.main <span class="k">do</span>
+    elapsed <span class="o">=</span> <span class="t">Time</span>.measure <span class="k">do</span>
+      <span class="t">Crystal</span>.main_user_code(argc, argv)
+    <span class="k">end</span>
+    puts <span class="s">&quot;Time to execute program: </span><span class="i">#{</span>elapsed<span class="i">}</span><span class="s">&quot;</span>
+  <span class="k">end</span>
+<span class="k">end</span></code></pre>
+<p>Note that the above is really just an example, almost the
+same can be accomplished with <code>at_exit</code>. But in some cases
+redefinition of C's main is needed.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/crystal/main.cr#L36" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="main(argc:Int32,argv:Pointer(Pointer(UInt8)))-class-method">
+      <div class="signature">
+        
+        def self.<strong>main</strong>(argc : <a href="Int32.html">Int32</a>, argv : <a href="Pointer.html">Pointer</a>(<a href="Pointer.html">Pointer</a>(<a href="UInt8.html">UInt8</a>)))
+
+        <a class="method-permalink" href="#main%28argc%3AInt32%2Cargv%3APointer%28Pointer%28UInt8%29%29%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Main method run by all Crystal programs at startup.</p>
+<p>This setups up the GC, invokes your program, rescuing
+any handled exception, and then runs <code>at_exit</code> handlers.</p>
+<p>This method is automatically invoked for you, so you
+don't need to invoke it.</p>
+<p>However, if you need to define a special main C function,
+you can redefine main and invoke <code><a href="Crystal.html#main%28%26%29-class-method">Crystal.main</a></code> from it:</p>
+<pre><code class="language-crystal"><span class="k">fun</span> main(argc : <span class="t">Int32</span>, argv : <span class="t">UInt8</span><span class="o">**</span>) : <span class="t">Int32</span>
+  <span class="c"># some setup before Crystal main</span>
+  <span class="t">Crystal</span>.main(argc, argv)
+  <span class="c"># some cleanup logic after Crystal main</span>
+<span class="k">end</span></code></pre>
+<p>The <code><a href="Crystal.html#main%28%26%29-class-method">Crystal.main</a></code> can also be passed as a callback:</p>
+<pre><code class="language-crystal"><span class="k">fun</span> main(argc : <span class="t">Int32</span>, argv : <span class="t">UInt8</span><span class="o">**</span>) : <span class="t">Int32</span>
+  <span class="t">LibFoo</span>.init_foo_and_invoke_main(argc, argv, <span class="o">-&gt;</span><span class="t">Crystal</span>.main(<span class="t">Int32</span>, <span class="t">UInt8</span><span class="o">**</span>))
+<span class="k">end</span></code></pre>
+<p>Note that before <code><a href="Crystal.html#main%28%26%29-class-method">Crystal.main</a></code> is invoked the GC
+is not setup yet, so nothing that allocates memory
+in Crystal (like <code>new</code> for classes) can be used.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/crystal/main.cr#L113" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="main_user_code(argc:Int32,argv:Pointer(Pointer(UInt8)))-class-method">
+      <div class="signature">
+        
+        def self.<strong>main_user_code</strong>(argc : <a href="Int32.html">Int32</a>, argv : <a href="Pointer.html">Pointer</a>(<a href="Pointer.html">Pointer</a>(<a href="UInt8.html">UInt8</a>)))
+
+        <a class="method-permalink" href="#main_user_code%28argc%3AInt32%2Cargv%3APointer%28Pointer%28UInt8%29%29%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Executes the main user code. This normally is executed
+after initializing the GC and before executing <code>at_exit</code> handlers.</p>
+<p>You should never invoke this method unless you need to
+redefine C's main function. See <code><a href="Crystal.html#main%28%26%29-class-method">Crystal.main</a></code> for
+more details.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/crystal/main.cr#L128" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="print_buffered(message:String,*args,toio:IO,exception=nil,backtrace=nil):Nil-class-method">
+      <div class="signature">
+        
+        def self.<strong>print_buffered</strong>(message : <a href="String.html">String</a>, *args, to io : <a href="IO.html">IO</a>, exception = <span class="n">nil</span>, backtrace = <span class="n">nil</span>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#print_buffered%28message%3AString%2C%2Aargs%2Ctoio%3AIO%2Cexception%3Dnil%2Cbacktrace%3Dnil%29%3ANil-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Prepares an error message, with an optional exception or backtrace, to an
+in-memory buffer, before writing to an IO, usually STDERR, in a single write
+operation.</p>
+<p>Avoids intermingled messages caused by multiple threads writing to a STDIO
+in parallel. This may still happen, since writes may not be atomic when the
+overall size is larger than PIPE_BUF, buf it should at least write 512 bytes
+atomically.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/crystal/print_buffered.cr#L10" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="print_error_buffered(message:String,*args,exception=nil,backtrace=nil):Nil-class-method">
+      <div class="signature">
+        
+        def self.<strong>print_error_buffered</strong>(message : <a href="String.html">String</a>, *args, exception = <span class="n">nil</span>, backtrace = <span class="n">nil</span>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#print_error_buffered%28message%3AString%2C%2Aargs%2Cexception%3Dnil%2Cbacktrace%3Dnil%29%3ANil-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Identical to <code><a href="Crystal.html#print_buffered%28message%3AString%2C%2Aargs%2Ctoio%3AIO%2Cexception%3Dnil%2Cbacktrace%3Dnil%29%3ANil-class-method">#print_buffered</a></code> but eventually calls <code><a href="Crystal/System.html#print_error%28bytes%3ASlice%28UInt16%29%29%3ANil-class-method">System.print_error(bytes)</a></code>
+to write to stderr without going through the event loop.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/crystal/print_buffered.cr#L18" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="trace(section:Tracing::Section,operation:String,time:UInt64|Nil=nil,**metadata,&amp;)-class-method">
+      <div class="signature">
+        
+        def self.<strong>trace</strong>(section : Tracing::Section, operation : <a href="String.html">String</a>, time : <a href="UInt64.html">UInt64</a> | <a href="Nil.html">Nil</a> = <span class="n">nil</span>, **metadata, &)
+
+        <a class="method-permalink" href="#trace%28section%3ATracing%3A%3ASection%2Coperation%3AString%2Ctime%3AUInt64%7CNil%3Dnil%2C%2A%2Ametadata%2C%26%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/crystal/tracing.cr#L40" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="trace(section:Tracing::Section,operation:String,time:UInt64|Nil=nil,**metadata)-class-method">
+      <div class="signature">
+        
+        def self.<strong>trace</strong>(section : Tracing::Section, operation : <a href="String.html">String</a>, time : <a href="UInt64.html">UInt64</a> | <a href="Nil.html">Nil</a> = <span class="n">nil</span>, **metadata)
+
+        <a class="method-permalink" href="#trace%28section%3ATracing%3A%3ASection%2Coperation%3AString%2Ctime%3AUInt64%7CNil%3Dnil%2C%2A%2Ametadata%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/crystal/tracing.cr#L40" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+  
+
+  
+
+
+</div>
+
+</body>
+</html>

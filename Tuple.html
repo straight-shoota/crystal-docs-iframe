@@ -1,0 +1,2801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Crystal Docs 1.16.1">
+<meta name="crystal_docs.project_version" content="1.17.0-dev">
+<meta name="crystal_docs.project_name" content="Crystal">
+
+  <meta name="crystal_docs.json_config_url" content="/api/versions.json">
+
+
+    <link rel="canonical" href="https://crystal-lang.org/api/latest/Tuple.html">
+
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/doc.js"></script>
+
+  <meta name="repository-name" content="Crystal">
+  <title>Tuple(*T) - Crystal 1.17.0-dev</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill="currentColor" fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<input type="checkbox" id="sidebar-btn">
+<label for="sidebar-btn" id="sidebar-btn-label">
+  <svg class="open" xmlns="http://www.w3.org/2000/svg" height="2em" width="2em" viewBox="0 0 512 512"><title>Open Sidebar</title><path fill="currentColor" d="M80 96v64h352V96H80zm0 112v64h352v-64H80zm0 112v64h352v-64H80z"></path></svg>
+  <svg class="close" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><title>Close Sidebar</title><path fill="currentColor" d="m118.6 73.4-45.2 45.2L210.7 256 73.4 393.4l45.2 45.2L256 301.3l137.4 137.3 45.2-45.2L301.3 256l137.3-137.4-45.2-45.2L256 210.7Z"></path></svg>
+</label>
+<iframe class="sidebar" src="sidebar.html"></iframe>
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">
+    struct
+  </span> Tuple(*T)
+
+</h1>
+
+
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="Tuple.html">Tuple(*T)</a></li><li class="superclass"><a href="Value.html">Value</a></li><li class="superclass"><a href="Object.html">Object</a></li></ul>
+
+
+
+
+  <h2>
+    <a id="overview" class="anchor" href="#overview">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Overview
+  </h2>
+
+  <p>A tuple is a fixed-size, immutable, stack-allocated sequence of values
+of possibly different types.</p>
+<p>You can think of a <code><a href="Tuple.html">Tuple</a></code> as an immutable <code><a href="Array.html">Array</a></code> whose types for each position
+are known at compile time.</p>
+<p>A tuple can be created with the usual <code><a href="Tuple.html#new%28ctx%3AYAML%3A%3AParseContext%2Cnode%3AYAML%3A%3ANodes%3A%3ANode%29-class-method">.new</a></code> method or with a tuple literal:</p>
+<pre><code class="language-crystal">tuple <span class="o">=</span> {<span class="n">1</span>, <span class="s">&quot;hello&quot;</span>, <span class="s">&#39;x&#39;</span>} <span class="c"># Tuple(Int32, String, Char)</span>
+tuple[<span class="n">0</span>]                  <span class="c"># =&gt; 1</span>
+tuple[<span class="n">1</span>]                  <span class="c"># =&gt; &quot;hello&quot;</span>
+tuple[<span class="n">2</span>]                  <span class="c"># =&gt; &#39;x&#39;</span></code></pre>
+<p>See <a href="https://crystal-lang.org/reference/syntax_and_semantics/literals/tuple.html"><code>Tuple</code> literals</a> in the language reference.</p>
+<p>The compiler knows what types are in each position, so when indexing
+a tuple with an integer literal the compiler will return
+the value in that index and with the expected type, like in the above
+snippet. Indexing with an integer literal outside the bounds of the tuple
+will give a compile-time error.</p>
+<p>Indexing with an integer value that is only known at runtime will return
+a value whose type is the union of all the types in the tuple, and might raise
+<code><a href="IndexError.html">IndexError</a></code>.</p>
+<p>Indexing with <code><a href="Tuple.html#%5B%5D%3F%28index%3AInt%29-instance-method">#[]?</a></code> does not make the return value nilable if the index is
+known to be within bounds:</p>
+<pre><code class="language-crystal">tuple <span class="o">=</span> {<span class="n">1</span>, <span class="s">&quot;hello&quot;</span>, <span class="s">&#39;x&#39;</span>}
+tuple[<span class="n">0</span>]?         <span class="c"># =&gt; 1</span>
+<span class="k">typeof</span>(tuple[<span class="n">0</span>]?) <span class="c"># =&gt; Int32</span></code></pre>
+<p>Indexing with a range literal known at compile-time is also allowed, and the
+returned value will have the correct sub-tuple type:</p>
+<pre><code class="language-crystal">tuple <span class="o">=</span> {<span class="n">1</span>, <span class="s">&quot;hello&quot;</span>, <span class="s">&#39;x&#39;</span>} <span class="c"># Tuple(Int32, String, Char)</span>
+sub <span class="o">=</span> tuple[<span class="n">0</span>..<span class="n">1</span>]         <span class="c"># =&gt; {1, &quot;hello&quot;}</span>
+<span class="k">typeof</span>(sub)               <span class="c"># =&gt; Tuple(Int32, String)</span></code></pre>
+<p><code><a href="Tuple.html">Tuple</a></code>'s own instance classes may also be indexed in a similar manner,
+returning their element types instead:</p>
+<pre><code class="language-crystal">tuple <span class="o">=</span> <span class="t">Tuple</span>(<span class="t">Int32</span>, <span class="t">String</span>, <span class="t">Char</span>)
+tuple[<span class="n">0</span>]   <span class="c"># =&gt; Int32</span>
+tuple[<span class="n">3</span>]?  <span class="c"># =&gt; nil</span>
+tuple[<span class="n">1</span>..] <span class="c"># =&gt; Tuple(String, Char)</span></code></pre>
+<p>Tuples are the preferred way to return fixed-size multiple return
+values because no memory is needed to be allocated for them:</p>
+<pre><code class="language-crystal"><span class="k">def</span> <span class="m">one_and_hello</span>
+  {<span class="n">1</span>, <span class="s">&quot;hello&quot;</span>}
+<span class="k">end</span>
+
+one, hello <span class="o">=</span> one_and_hello
+one   <span class="c"># =&gt; 1</span>
+hello <span class="c"># =&gt; &quot;hello&quot;</span></code></pre>
+<p>Good examples of the above are <code><a href="Number.html#divmod%28number%29-instance-method">Number#divmod</a></code> and <code><a href="Enumerable.html#minmax%3ATuple%28T%2CT%29-instance-method">Enumerable#minmax</a></code>.</p>
+<p>Tuples can be splat with the <code>*</code> operator and passed to methods:</p>
+<pre><code class="language-crystal"><span class="k">def</span> <span class="m">multiply</span>(string, value)
+  string <span class="o">*</span> value
+<span class="k">end</span>
+
+tuple <span class="o">=</span> {<span class="s">&quot;hey&quot;</span>, <span class="n">2</span>}
+value <span class="o">=</span> multiply(<span class="o">*</span>tuple) <span class="c"># same as multiply tuple[0], tuple[1]</span>
+value                    <span class="c"># =&gt; &quot;heyhey&quot;</span></code></pre>
+<p>Finally, when using a splat argument in a method definition its type
+will be a tuple of the call arguments:</p>
+<pre><code class="language-crystal"><span class="k">def</span> <span class="m">splat_test</span>(<span class="o">*</span>args)
+  args
+<span class="k">end</span>
+
+tuple <span class="o">=</span> splat_test <span class="n">1</span>, <span class="s">&quot;hello&quot;</span>, <span class="s">&#39;x&#39;</span>
+tuple.<span class="k">class</span> <span class="c"># =&gt; Tuple(Int32, String, Char)</span>
+tuple       <span class="c"># =&gt; {1, &quot;hello&quot;, &#39;x&#39;}</span></code></pre>
+
+
+
+
+
+
+
+  <h2>
+    <a id="included-modules" class="anchor" href="#included-modules">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Included Modules
+  </h2>
+  <ul class="other-types-list">
+    
+      <li class="other-type"><a href="Comparable.html">Comparable</a>(<a href="Tuple.html">Tuple(*T)</a>)</li>
+    
+      <li class="other-type"><a href="Indexable.html">Indexable(Union(*T))</a></li>
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/to_json.cr#L152" target="_blank">
+        json/to_json.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/tuple.cr#L95" target="_blank">
+        tuple.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/yaml/to_yaml.cr#L54" target="_blank">
+        yaml/to_yaml.cr
+      </a>
+    
+    <br/>
+  
+
+
+
+
+
+  
+  <h2>
+    <a id="constructors" class="anchor" href="#constructors">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructors
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#from%28array%3AArray%29%3Aself-class-method" class="signature"><strong>.from</strong>(array : Array) : <span class="k">self</span></a>
+        
+          <div class="summary"><p>Creates a tuple from the given array, with elements casted to the given types.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#new%28ctx%3AYAML%3A%3AParseContext%2Cnode%3AYAML%3A%3ANodes%3A%3ANode%29-class-method" class="signature"><strong>.new</strong>(ctx : YAML::ParseContext, node : YAML::Nodes::Node)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#new%28pull%3AJSON%3A%3APullParser%29-class-method" class="signature"><strong>.new</strong>(pull : JSON::PullParser)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#new%28%2Aargs%3A%2AT%29-class-method" class="signature"><strong>.new</strong>(*args : <span class="o">*</span><span class="t">T</span>)</a>
+        
+          <div class="summary"><p>Creates a tuple that will contain the given values.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+  
+  <h2>
+    <a id="class-method-summary" class="anchor" href="#class-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Class Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#%5B%5D%28index%3AInt%29-class-method" class="signature"><strong>.[]</strong>(index : Int)</a>
+        
+          <div class="summary"><p>Returns the element type at the given <em>index</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%5B%5D%28range%3ARange%29-class-method" class="signature"><strong>.[]</strong>(range : Range)</a>
+        
+          <div class="summary"><p>Returns all element types that are within the given <em>range</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%5B%5D%3F%28index%3AInt%29-class-method" class="signature"><strong>.[]?</strong>(index : Int)</a>
+        
+          <div class="summary"><p>Returns the element type at the given <em>index</em> or <code>nil</code> if out of bounds.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#types-class-method" class="signature"><strong>.types</strong></a>
+        
+          <div class="summary"><p>Returns the types of this tuple type.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+  
+
+  
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#%2B%28other%3ATuple%29-instance-method" class="signature"><strong>#+</strong>(other : Tuple)</a>
+        
+          <div class="summary"><p>Returns a tuple that contains <code>self</code>'s elements followed by <em>other</em>'s elements.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%3C%3D%3E%28other%3Aself%29-instance-method" class="signature"><strong>#<=></strong>(other : <span class="k">self</span>)</a>
+        
+          <div class="summary"><p>The comparison operator.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%3C%3D%3E%28other%3ATuple%29-instance-method" class="signature"><strong>#<=></strong>(other : Tuple)</a>
+        
+          <div class="summary"><p>The comparison operator.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%3D%3D%28other%3Aself%29-instance-method" class="signature"><strong>#==</strong>(other : <span class="k">self</span>)</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this tuple has the same size as the other tuple and their elements are equal to each other when compared with <code><a href="Tuple.html#%3D%3D%28other%3Aself%29-instance-method">#==</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%3D%3D%28other%3ATuple%29-instance-method" class="signature"><strong>#==</strong>(other : Tuple)</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this tuple has the same size as the other tuple and their elements are equal to each other when compared with <code><a href="Tuple.html#%3D%3D%28other%3Aself%29-instance-method">#==</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%3D%3D%28other%29-instance-method" class="signature"><strong>#==</strong>(other)</a>
+        
+          <div class="summary"><p>Returns <code>false</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%3D%3D%3D%28other%3Aself%29-instance-method" class="signature"><strong>#===</strong>(other : <span class="k">self</span>)</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if case equality holds for the elements in <code>self</code> and <em>other</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%3D%3D%3D%28other%3ATuple%29-instance-method" class="signature"><strong>#===</strong>(other : Tuple)</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if <code>self</code> and <em>other</em> have the same size and case equality holds for the elements in <code>self</code> and <em>other</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%5B%5D%28index%3AInt%29-instance-method" class="signature"><strong>#[]</strong>(index : Int)</a>
+        
+          <div class="summary"><p>Returns the element at the given <em>index</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%5B%5D%28range%3ARange%29-instance-method" class="signature"><strong>#[]</strong>(range : Range)</a>
+        
+          <div class="summary"><p>Returns all elements that are within the given <em>range</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%5B%5D%3F%28index%3AInt%29-instance-method" class="signature"><strong>#[]?</strong>(index : Int)</a>
+        
+          <div class="summary"><p>Returns the element at the given <em>index</em> or <code>nil</code> if out of bounds.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#at%28index%3AInt%29-instance-method" class="signature"><strong>#at</strong>(index : Int)</a>
+        
+          <div class="summary"><p>Returns the element at the given <em>index</em> or raises IndexError if out of bounds.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#at%28index%3AInt%2C%26%29-instance-method" class="signature"><strong>#at</strong>(index : Int, &)</a>
+        
+          <div class="summary"><p>Returns the element at the given <em>index</em> or the value returned by the block if out of bounds.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#clone-instance-method" class="signature"><strong>#clone</strong></a>
+        
+          <div class="summary"><p>Returns a tuple containing cloned elements of this tuple using the <code><a href="Tuple.html#clone-instance-method">#clone</a></code> method.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#each%28%26%3AUnion%28%2AT%29-%3E%29%3ANil-instance-method" class="signature"><strong>#each</strong>(& : Union(<span class="o">*</span><span class="t">T</span>) -> ) : Nil</a>
+        
+          <div class="summary"><p>Yields each of the elements in this tuple.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#first-instance-method" class="signature"><strong>#first</strong></a>
+        
+          <div class="summary"><p>Returns the first element of this tuple.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#first%3F-instance-method" class="signature"><strong>#first?</strong></a>
+        
+          <div class="summary"><p>Returns the first element of this tuple, or <code>nil</code> if this is the empty tuple.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#from%28array%3AArray%29-instance-method" class="signature"><strong>#from</strong>(array : Array)</a>
+        
+          <div class="summary"><p>Expects to be called on a tuple of types, creates a tuple from the given array, with types casted appropriately.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#hash%28hasher%29-instance-method" class="signature"><strong>#hash</strong>(hasher)</a>
+        
+          <div class="summary"><p>See <code><a href="Object.html#hash%28hasher%29-instance-method">Object#hash(hasher)</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#inspect%3AString-instance-method" class="signature"><strong>#inspect</strong> : String</a>
+        
+          <div class="summary"><p>Same as <code><a href="Tuple.html#to_s%28io%3AIO%29%3ANil-instance-method">#to_s</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#last-instance-method" class="signature"><strong>#last</strong></a>
+        
+          <div class="summary"><p>Returns the last element of this tuple.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#last%3F-instance-method" class="signature"><strong>#last?</strong></a>
+        
+          <div class="summary"><p>Returns the last element of this tuple, or <code>nil</code> if this is the empty tuple.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#map%28%26%3AUnion%28%2AT%29-%3E%29-instance-method" class="signature"><strong>#map</strong>(& : Union(<span class="o">*</span><span class="t">T</span>) -> )</a>
+        
+          <div class="summary"><p>Returns a new tuple where elements are mapped by the given block.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#map_with_index%28offset%3D0%2C%26%29-instance-method" class="signature"><strong>#map_with_index</strong>(offset = <span class="n">0</span>, &)</a>
+        
+          <div class="summary"><p>Like <code><a href="Tuple.html#map%28%26%3AUnion%28%2AT%29-%3E%29-instance-method">#map</a></code>, but the block gets passed both the element and its index.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#pretty_print%28pp%29%3ANil-instance-method" class="signature"><strong>#pretty_print</strong>(pp) : Nil</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#reduce%28memo%2C%26%29-instance-method" class="signature"><strong>#reduce</strong>(memo, &)</a>
+        
+          <div class="summary"><p>Just like the other variant, but you can set the initial value of the accumulator.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#reduce%28%26%29-instance-method" class="signature"><strong>#reduce</strong>(&)</a>
+        
+          <div class="summary"><p>Combines all elements in the collection by applying a binary operation, specified by a block, so as to reduce them to a single value.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#reduce%3F%28%26%29-instance-method" class="signature"><strong>#reduce?</strong>(&)</a>
+        
+          <div class="summary"><p>Similar to <code><a href="Tuple.html#reduce%28%26%29-instance-method">#reduce</a></code>, but instead of raising when the input is empty, return <code>nil</code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#reverse-instance-method" class="signature"><strong>#reverse</strong></a>
+        
+          <div class="summary"><p>Returns a new tuple where the elements are in reverse order.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#reverse_each%28%26%3AUnion%28%2AT%29-%3E%29-instance-method" class="signature"><strong>#reverse_each</strong>(& : Union(<span class="o">*</span><span class="t">T</span>) -> )</a>
+        
+          <div class="summary"><p>Yields each of the elements in this tuple in reverse order.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#size-instance-method" class="signature"><strong>#size</strong></a>
+        
+          <div class="summary"><p>Returns the number of elements in this tuple.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_a%3AArray%28Union%28%2AT%29%29-instance-method" class="signature"><strong>#to_a</strong> : Array(Union(<span class="o">*</span><span class="t">T</span>))</a>
+        
+          <div class="summary"><p>Returns an <code><a href="Array.html">Array</a></code> with all the elements in the tuple.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_a%28%26%3AUnion%28%2AT%29-%3EU%29forallU-instance-method" class="signature"><strong>#to_a</strong>(& : Union(<span class="o">*</span><span class="t">T</span>) -> U) forall U</a>
+        
+          <div class="summary"><p>Returns an <code><a href="Array.html">Array</a></code> with the results of running <em>block</em> against each element of the tuple.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_json%28json%3AJSON%3A%3ABuilder%29%3ANil-instance-method" class="signature"><strong>#to_json</strong>(json : JSON::Builder) : Nil</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_s%28io%3AIO%29%3ANil-instance-method" class="signature"><strong>#to_s</strong>(io : IO) : Nil</a>
+        
+          <div class="summary"><p>Appends a string representation of this tuple to the given <code><a href="IO.html">IO</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_static_array%3AStaticArray-instance-method" class="signature"><strong>#to_static_array</strong> : StaticArray</a>
+        
+          <div class="summary"><p>Returns a <code><a href="StaticArray.html">StaticArray</a></code> with the same elements.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_yaml%28yaml%3AYAML%3A%3ANodes%3A%3ABuilder%29%3ANil-instance-method" class="signature"><strong>#to_yaml</strong>(yaml : YAML::Nodes::Builder) : Nil</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#unsafe_fetch%28index%3AInt%29-instance-method" class="signature"><strong>#unsafe_fetch</strong>(index : Int)</a>
+        
+          <div class="summary"><p>Returns the element at the given <em>index</em>, without doing any bounds check.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+
+  <div class="methods-inherited">
+    
+      
+
+  <h3>Instance methods inherited from module <code><a href="Comparable.html">Comparable</a>(<a href="Tuple.html">Tuple(*T)</a>)</code></h3>
+  
+  
+    <a href="Comparable.html#%3C%28other%3AT%29%3ABool-instance-method" class="tooltip">
+      <span><(other : T) : Bool</span>
+    <</a>, 
+    
+  
+    <a href="Comparable.html#%3C%3D%28other%3AT%29-instance-method" class="tooltip">
+      <span><=(other : T)</span>
+    <=</a>, 
+    
+  
+    <a href="Comparable.html#%3C%3D%3E%28other%3AT%29-instance-method" class="tooltip">
+      <span><=>(other : T)</span>
+    <=></a>, 
+    
+  
+    <a href="Comparable.html#%3D%3D%28other%3AT%29-instance-method" class="tooltip">
+      <span>==(other : T)</span>
+    ==</a>, 
+    
+  
+    <a href="Comparable.html#%3E%28other%3AT%29%3ABool-instance-method" class="tooltip">
+      <span>>(other : T) : Bool</span>
+    ></a>, 
+    
+  
+    <a href="Comparable.html#%3E%3D%28other%3AT%29-instance-method" class="tooltip">
+      <span>>=(other : T)</span>
+    >=</a>, 
+    
+  
+    <a href="Comparable.html#clamp%28min%2Cmax%29-instance-method" class="tooltip">
+      <span>clamp(min, max)<br/>clamp(range : Range)</span>
+    clamp</a>
+    
+  
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+      
+
+  <h3>Instance methods inherited from module <code><a href="Indexable.html">Indexable(Union(*T))</a></code></h3>
+  
+  
+    <a href="Indexable.html#%5B%5D%28index%3AInt%29-instance-method" class="tooltip">
+      <span>[](index : Int)</span>
+    []</a>, 
+    
+  
+    <a href="Indexable.html#%5B%5D%3F%28index%3AInt%29-instance-method" class="tooltip">
+      <span>[]?(index : Int)</span>
+    []?</a>, 
+    
+  
+    <a href="Indexable.html#bsearch%28%26%3AUnion%28T%29-%3E_%29-instance-method" class="tooltip">
+      <span>bsearch(& : Union(T) -> _)</span>
+    bsearch</a>, 
+    
+  
+    <a href="Indexable.html#bsearch_index%28%26%3AUnion%28T%29%2CInt32-%3E_%29-instance-method" class="tooltip">
+      <span>bsearch_index(& : Union(T), Int32 -> _)</span>
+    bsearch_index</a>, 
+    
+  
+    <a href="Indexable.html#cartesian_product%28%2Aothers%3AIndexable%29-instance-method" class="tooltip">
+      <span>cartesian_product(*others : Indexable)</span>
+    cartesian_product</a>, 
+    
+  
+    <a href="Indexable.html#combinations%28size%3AInt%3Dself.size%29-instance-method" class="tooltip">
+      <span>combinations(size : Int = <span class="k">self</span>.size)</span>
+    combinations</a>, 
+    
+  
+    <a href="Indexable.html#dig%28index%3AInt%2C%2Asubindexes%29-instance-method" class="tooltip">
+      <span>dig(index : Int, *subindexes)</span>
+    dig</a>, 
+    
+  
+    <a href="Indexable.html#dig%3F%28index%3AInt%2C%2Asubindexes%29-instance-method" class="tooltip">
+      <span>dig?(index : Int, *subindexes)</span>
+    dig?</a>, 
+    
+  
+    <a href="Indexable.html#each%28%26%3AUnion%28T%29-%3E%29-instance-method" class="tooltip">
+      <span>each(& : Union(T) -> )<br/>each<br/>each(*, start : Int, count : Int, & : Union(T) -> )<br/>each(*, within range : Range, & : Union(T) -> )</span>
+    each</a>, 
+    
+  
+    <a href="Indexable.html#each_cartesian%28%2Aothers%3AIndexable%2C%26%29-instance-method" class="tooltip">
+      <span>each_cartesian(*others : Indexable, &)<br/>each_cartesian(*others : Indexable)</span>
+    each_cartesian</a>, 
+    
+  
+    <a href="Indexable.html#each_combination%28size%3AInt%3Dself.size%2Creuse%3Dfalse%2C%26%29%3ANil-instance-method" class="tooltip">
+      <span>each_combination(size : Int = <span class="k">self</span>.size, reuse = <span class="n">false</span>, &) : Nil<br/>each_combination(size : Int = <span class="k">self</span>.size, reuse = <span class="n">false</span>)</span>
+    each_combination</a>, 
+    
+  
+    <a href="Indexable.html#each_index%28%26%3AInt32-%3E%29%3ANil-instance-method" class="tooltip">
+      <span>each_index(& : Int32 -> ) : Nil<br/>each_index<br/>each_index(*, start : Int, count : Int, &)</span>
+    each_index</a>, 
+    
+  
+    <a href="Indexable.html#each_permutation%28size%3AInt%3Dself.size%2Creuse%3Dfalse%2C%26%29%3ANil-instance-method" class="tooltip">
+      <span>each_permutation(size : Int = <span class="k">self</span>.size, reuse = <span class="n">false</span>, &) : Nil<br/>each_permutation(size : Int = <span class="k">self</span>.size, reuse = <span class="n">false</span>)</span>
+    each_permutation</a>, 
+    
+  
+    <a href="Indexable.html#each_repeated_combination%28size%3AInt%3Dself.size%2Creuse%3Dfalse%2C%26%29%3ANil-instance-method" class="tooltip">
+      <span>each_repeated_combination(size : Int = <span class="k">self</span>.size, reuse = <span class="n">false</span>, &) : Nil<br/>each_repeated_combination(size : Int = <span class="k">self</span>.size, reuse = <span class="n">false</span>)</span>
+    each_repeated_combination</a>, 
+    
+  
+    <a href="Indexable.html#empty%3F%3ABool-instance-method" class="tooltip">
+      <span>empty? : Bool</span>
+    empty?</a>, 
+    
+  
+    <a href="Indexable.html#equals%3F%28other%3AIndexable%2C%26%29%3ABool-instance-method" class="tooltip">
+      <span>equals?(other : Indexable, &) : Bool<br/>equals?(other, &)</span>
+    equals?</a>, 
+    
+  
+    <a href="Indexable.html#fetch%28index%3AInt%2C%26%29-instance-method" class="tooltip">
+      <span>fetch(index : Int, &)<br/>fetch(index, default)</span>
+    fetch</a>, 
+    
+  
+    <a href="Indexable.html#find%28if_none%2C_offsetoffset%3AInt%2C%26%3AUnion%28T%29-%3E%29-instance-method" class="tooltip">
+      <span>find(if_none, _offset offset : Int, & : Union(T) -> )<br/>find(if_none = <span class="n">nil</span>, *, offset : Int, & : Union(T) -> )</span>
+    find</a>, 
+    
+  
+    <a href="Indexable.html#find%21%28offset%3AInt%3D0%2C%26%3AUnion%28T%29-%3E%29-instance-method" class="tooltip">
+      <span>find!(offset : Int = <span class="n">0</span>, & : Union(T) -> )</span>
+    find!</a>, 
+    
+  
+    <a href="Indexable.html#first%28%26%29-instance-method" class="tooltip">
+      <span>first(&)</span>
+    first</a>, 
+    
+  
+    <a href="Indexable.html#hash%28hasher%29-instance-method" class="tooltip">
+      <span>hash(hasher)</span>
+    hash</a>, 
+    
+  
+    <a href="Indexable.html#index%28object%2Coffset%3AInt%3D0%29-instance-method" class="tooltip">
+      <span>index(object, offset : Int = <span class="n">0</span>)<br/>index(offset : Int = <span class="n">0</span>, & : Union(T) -> )</span>
+    index</a>, 
+    
+  
+    <a href="Indexable.html#index%21%28obj%2Coffset%3AInt%3D0%29-instance-method" class="tooltip">
+      <span>index!(obj, offset : Int = <span class="n">0</span>)<br/>index!(offset : Int = <span class="n">0</span>, & : Union(T) -> )</span>
+    index!</a>, 
+    
+  
+    <a href="Indexable.html#join%28separator%3AString%7CChar%7CNumber%3D%22%22%29%3AString-instance-method" class="tooltip">
+      <span>join(separator : String | Char | Number = <span class="s">&quot;&quot;</span>) : String</span>
+    join</a>, 
+    
+  
+    <a href="Indexable.html#last%3AUnion%28T%29-instance-method" class="tooltip">
+      <span>last : Union(T)<br/>last(&)</span>
+    last</a>, 
+    
+  
+    <a href="Indexable.html#last%3F%3AUnion%28T%29%7CNil-instance-method" class="tooltip">
+      <span>last? : Union(T) | Nil</span>
+    last?</a>, 
+    
+  
+    <a href="Indexable.html#permutations%28size%3AInt%3Dself.size%29%3AArray%28Array%28Union%28T%29%29%29-instance-method" class="tooltip">
+      <span>permutations(size : Int = <span class="k">self</span>.size) : Array(Array(Union(T)))</span>
+    permutations</a>, 
+    
+  
+    <a href="Indexable.html#repeated_combinations%28size%3AInt%3Dself.size%29%3AArray%28Array%28Union%28T%29%29%29-instance-method" class="tooltip">
+      <span>repeated_combinations(size : Int = <span class="k">self</span>.size) : Array(Array(Union(T)))</span>
+    repeated_combinations</a>, 
+    
+  
+    <a href="Indexable.html#reverse_each%28%26%3AUnion%28T%29-%3E%29%3ANil-instance-method" class="tooltip">
+      <span>reverse_each(& : Union(T) -> ) : Nil<br/>reverse_each</span>
+    reverse_each</a>, 
+    
+  
+    <a href="Indexable.html#rindex%28value%2Coffset%3Dsize-1%29-instance-method" class="tooltip">
+      <span>rindex(value, offset = size <span class="o">-</span> <span class="n">1</span>)<br/>rindex(offset = size <span class="o">-</span> <span class="n">1</span>, & : Union(T) -> )</span>
+    rindex</a>, 
+    
+  
+    <a href="Indexable.html#rindex%21%28value%2Coffset%3Dsize-1%29-instance-method" class="tooltip">
+      <span>rindex!(value, offset = size <span class="o">-</span> <span class="n">1</span>)<br/>rindex!(offset = size <span class="o">-</span> <span class="n">1</span>, & : Union(T) -> )</span>
+    rindex!</a>, 
+    
+  
+    <a href="Indexable.html#sample%28n%3AInt%2Crandom%3ARandom%3DRandom%3A%3ADEFAULT%29%3AArray%28Union%28T%29%29-instance-method" class="tooltip">
+      <span>sample(n : Int, random : Random = <span class="t">Random</span><span class="t">::</span><span class="t">DEFAULT</span>) : Array(Union(T))<br/>sample(random : Random = <span class="t">Random</span><span class="t">::</span><span class="t">DEFAULT</span>)</span>
+    sample</a>, 
+    
+  
+    <a href="Indexable.html#size-instance-method" class="tooltip">
+      <span>size</span>
+    size</a>, 
+    
+  
+    <a href="Indexable.html#to_a%28%26%3AUnion%28T%29-%3EU%29%3AArray%28U%29forallU-instance-method" class="tooltip">
+      <span>to_a(& : Union(T) -> U) : Array(U) forall U</span>
+    to_a</a>, 
+    
+  
+    <a href="Indexable.html#unsafe_fetch%28index%3AInt%29-instance-method" class="tooltip">
+      <span>unsafe_fetch(index : Int)</span>
+    unsafe_fetch</a>, 
+    
+  
+    <a href="Indexable.html#values_at%28%2Aindexes%3AInt%29-instance-method" class="tooltip">
+      <span>values_at(*indexes : Int)</span>
+    values_at</a>
+    
+  
+
+
+      
+
+
+      
+
+  <h3>Class methods inherited from module <code><a href="Indexable.html">Indexable(Union(*T))</a></code></h3>
+  
+  
+    <a href="Indexable.html#cartesian_product%28indexables%3AIndexable%28Indexable%29%29-class-method" class="tooltip">
+      <span>cartesian_product(indexables : Indexable(Indexable))</span>
+    cartesian_product</a>, 
+    
+  
+    <a href="Indexable.html#each_cartesian%28indexables%3AIndexable%28Indexable%29%2Creuse%3Dfalse%2C%26%29-class-method" class="tooltip">
+      <span>each_cartesian(indexables : Indexable(Indexable), reuse = <span class="n">false</span>, &)<br/>each_cartesian(indexables : Indexable(Indexable), reuse = <span class="n">false</span>)</span>
+    each_cartesian</a>
+    
+  
+
+
+      
+
+
+    
+      
+
+  <h3>Instance methods inherited from module <code><a href="Enumerable.html">Enumerable(Union(*T))</a></code></h3>
+  
+  
+    <a href="Enumerable.html#accumulate%28initial%3AU%29%3AArray%28U%29forallU-instance-method" class="tooltip">
+      <span>accumulate(initial : U) : Array(U) forall U<br/>accumulate : Array(Union(T))<br/>accumulate(initial : U, &block : U, Union(T) -> U) : Array(U) forall U<br/>accumulate(&block : Union(T), Union(T) -> Union(T)) : Array(Union(T))</span>
+    accumulate</a>, 
+    
+  
+    <a href="Enumerable.html#all%3F%28%26%3AUnion%28T%29-%3E%29%3ABool-instance-method" class="tooltip">
+      <span>all?(& : Union(T) -> ) : Bool<br/>all?(pattern) : Bool<br/>all? : Bool</span>
+    all?</a>, 
+    
+  
+    <a href="Enumerable.html#any%3F%28%26%3AUnion%28T%29-%3E%29%3ABool-instance-method" class="tooltip">
+      <span>any?(& : Union(T) -> ) : Bool<br/>any?(pattern) : Bool<br/>any? : Bool</span>
+    any?</a>, 
+    
+  
+    <a href="Enumerable.html#chunks%28%26block%3AUnion%28T%29-%3EU%29forallU-instance-method" class="tooltip">
+      <span>chunks(&block : Union(T) -> U) forall U</span>
+    chunks</a>, 
+    
+  
+    <a href="Enumerable.html#compact_map%28%26%3AUnion%28T%29-%3E_%29-instance-method" class="tooltip">
+      <span>compact_map(& : Union(T) -> _)</span>
+    compact_map</a>, 
+    
+  
+    <a href="Enumerable.html#count%28%26%3AUnion%28T%29-%3E%29%3AInt32-instance-method" class="tooltip">
+      <span>count(& : Union(T) -> ) : Int32<br/>count(item) : Int32</span>
+    count</a>, 
+    
+  
+    <a href="Enumerable.html#cycle%28n%2C%26%3AUnion%28T%29-%3E%29%3ANil-instance-method" class="tooltip">
+      <span>cycle(n, & : Union(T) -> ) : Nil<br/>cycle(& : Union(T) -> ) : Nil</span>
+    cycle</a>, 
+    
+  
+    <a href="Enumerable.html#each%28%26%3AUnion%28T%29-%3E%29-instance-method" class="tooltip">
+      <span>each(& : Union(T) -> )</span>
+    each</a>, 
+    
+  
+    <a href="Enumerable.html#each_cons%28count%3AInt%2Creuse%3Dfalse%2C%26%29-instance-method" class="tooltip">
+      <span>each_cons(count : Int, reuse = <span class="n">false</span>, &)</span>
+    each_cons</a>, 
+    
+  
+    <a href="Enumerable.html#each_cons_pair%28%26%3AUnion%28T%29%2CUnion%28T%29-%3E%29%3ANil-instance-method" class="tooltip">
+      <span>each_cons_pair(& : Union(T), Union(T) -> ) : Nil</span>
+    each_cons_pair</a>, 
+    
+  
+    <a href="Enumerable.html#each_slice%28count%3AInt%2Creuse%3Dfalse%2C%26%29-instance-method" class="tooltip">
+      <span>each_slice(count : Int, reuse = <span class="n">false</span>, &)</span>
+    each_slice</a>, 
+    
+  
+    <a href="Enumerable.html#each_step%28n%3AInt%2C%2A%2Coffset%3AInt%3D0%2C%26%3AUnion%28T%29-%3E%29%3ANil-instance-method" class="tooltip">
+      <span>each_step(n : Int, *, offset : Int = <span class="n">0</span>, & : Union(T) -> ) : Nil</span>
+    each_step</a>, 
+    
+  
+    <a href="Enumerable.html#each_with_index%28offset%3D0%2C%26%29-instance-method" class="tooltip">
+      <span>each_with_index(offset = <span class="n">0</span>, &)</span>
+    each_with_index</a>, 
+    
+  
+    <a href="Enumerable.html#each_with_object%28obj%3AU%2C%26%3AUnion%28T%29%2CU-%3E%29%3AUforallU-instance-method" class="tooltip">
+      <span>each_with_object(obj : U, & : Union(T), U -> ) : U forall U</span>
+    each_with_object</a>, 
+    
+  
+    <a href="Enumerable.html#empty%3F%3ABool-instance-method" class="tooltip">
+      <span>empty? : Bool</span>
+    empty?</a>, 
+    
+  
+    <a href="Enumerable.html#find%28if_none%3Dnil%2C%26%3AUnion%28T%29-%3E%29-instance-method" class="tooltip">
+      <span>find(if_none = <span class="n">nil</span>, & : Union(T) -> )</span>
+    find</a>, 
+    
+  
+    <a href="Enumerable.html#find%21%28%26%3AUnion%28T%29-%3E%29%3AUnion%28T%29-instance-method" class="tooltip">
+      <span>find!(& : Union(T) -> ) : Union(T)</span>
+    find!</a>, 
+    
+  
+    <a href="Enumerable.html#find_value%28if_none%3Dnil%2C%26%3AUnion%28T%29-%3E%29-instance-method" class="tooltip">
+      <span>find_value(if_none = <span class="n">nil</span>, & : Union(T) -> )</span>
+    find_value</a>, 
+    
+  
+    <a href="Enumerable.html#first%28%26%29-instance-method" class="tooltip">
+      <span>first(&)<br/>first(count : Int) : Array(Union(T))<br/>first : Union(T)</span>
+    first</a>, 
+    
+  
+    <a href="Enumerable.html#first%3F%3AUnion%28T%29%7CNil-instance-method" class="tooltip">
+      <span>first? : Union(T) | Nil</span>
+    first?</a>, 
+    
+  
+    <a href="Enumerable.html#flat_map%28%26%3AUnion%28T%29-%3E_%29-instance-method" class="tooltip">
+      <span>flat_map(& : Union(T) -> _)</span>
+    flat_map</a>, 
+    
+  
+    <a href="Enumerable.html#group_by%28%26%3AUnion%28T%29-%3EU%29forallU-instance-method" class="tooltip">
+      <span>group_by(& : Union(T) -> U) forall U</span>
+    group_by</a>, 
+    
+  
+    <a href="Enumerable.html#in_groups_of%28size%3AInt%2Cfilled_up_with%3AU%3Dnil%29forallU-instance-method" class="tooltip">
+      <span>in_groups_of(size : Int, filled_up_with : U = <span class="n">nil</span>) forall U<br/>in_groups_of(size : Int, filled_up_with : U = <span class="n">nil</span>, reuse = <span class="n">false</span>, &) forall U</span>
+    in_groups_of</a>, 
+    
+  
+    <a href="Enumerable.html#in_slices_of%28size%3AInt%29%3AArray%28Array%28Union%28T%29%29%29-instance-method" class="tooltip">
+      <span>in_slices_of(size : Int) : Array(Array(Union(T)))</span>
+    in_slices_of</a>, 
+    
+  
+    <a href="Enumerable.html#includes%3F%28obj%29%3ABool-instance-method" class="tooltip">
+      <span>includes?(obj) : Bool</span>
+    includes?</a>, 
+    
+  
+    <a href="Enumerable.html#index%28%26%3AUnion%28T%29-%3E%29%3AInt32%7CNil-instance-method" class="tooltip">
+      <span>index(& : Union(T) -> ) : Int32 | Nil<br/>index(obj) : Int32 | Nil</span>
+    index</a>, 
+    
+  
+    <a href="Enumerable.html#index%21%28%26%3AUnion%28T%29-%3E%29%3AInt32-instance-method" class="tooltip">
+      <span>index!(& : Union(T) -> ) : Int32<br/>index!(obj) : Int32</span>
+    index!</a>, 
+    
+  
+    <a href="Enumerable.html#index_by%28%26%3AUnion%28T%29-%3EU%29%3AHash%28U%2CUnion%28T%29%29forallU-instance-method" class="tooltip">
+      <span>index_by(& : Union(T) -> U) : Hash(U, Union(T)) forall U</span>
+    index_by</a>, 
+    
+  
+    <a href="Enumerable.html#join%28io%3AIO%2Cseparator%3D%22%22%29%3ANil-instance-method" class="tooltip">
+      <span>join(io : IO, separator = <span class="s">&quot;&quot;</span>) : Nil<br/>join(separator, io : IO) : Nil<br/>join(separator = <span class="s">&quot;&quot;</span>) : String<br/>join(io : IO, separator = <span class="s">&quot;&quot;</span>, & : Union(T), IO -> )<br/>join(separator, io : IO, &)<br/>join(separator = <span class="s">&quot;&quot;</span>, & : Union(T) -> )</span>
+    join</a>, 
+    
+  
+    <a href="Enumerable.html#map%28%26%3AUnion%28T%29-%3EU%29%3AArray%28U%29forallU-instance-method" class="tooltip">
+      <span>map(& : Union(T) -> U) : Array(U) forall U</span>
+    map</a>, 
+    
+  
+    <a href="Enumerable.html#map_with_index%28offset%3D0%2C%26%3AUnion%28T%29%2CInt32-%3EU%29%3AArray%28U%29forallU-instance-method" class="tooltip">
+      <span>map_with_index(offset = <span class="n">0</span>, & : Union(T), Int32 -> U) : Array(U) forall U</span>
+    map_with_index</a>, 
+    
+  
+    <a href="Enumerable.html#max%28count%3AInt%29%3AArray%28Union%28T%29%29-instance-method" class="tooltip">
+      <span>max(count : Int) : Array(Union(T))<br/>max : Union(T)</span>
+    max</a>, 
+    
+  
+    <a href="Enumerable.html#max%3F%3AUnion%28T%29%7CNil-instance-method" class="tooltip">
+      <span>max? : Union(T) | Nil</span>
+    max?</a>, 
+    
+  
+    <a href="Enumerable.html#max_by%28%26%3AUnion%28T%29-%3EU%29%3AUnion%28T%29forallU-instance-method" class="tooltip">
+      <span>max_by(& : Union(T) -> U) : Union(T) forall U</span>
+    max_by</a>, 
+    
+  
+    <a href="Enumerable.html#max_by%3F%28%26%3AUnion%28T%29-%3EU%29%3AUnion%28T%29%7CNilforallU-instance-method" class="tooltip">
+      <span>max_by?(& : Union(T) -> U) : Union(T) | Nil forall U</span>
+    max_by?</a>, 
+    
+  
+    <a href="Enumerable.html#max_of%28%26%3AUnion%28T%29-%3EU%29%3AUforallU-instance-method" class="tooltip">
+      <span>max_of(& : Union(T) -> U) : U forall U</span>
+    max_of</a>, 
+    
+  
+    <a href="Enumerable.html#max_of%3F%28%26%3AUnion%28T%29-%3EU%29%3AU%7CNilforallU-instance-method" class="tooltip">
+      <span>max_of?(& : Union(T) -> U) : U | Nil forall U</span>
+    max_of?</a>, 
+    
+  
+    <a href="Enumerable.html#min%28count%3AInt%29%3AArray%28Union%28T%29%29-instance-method" class="tooltip">
+      <span>min(count : Int) : Array(Union(T))<br/>min : Union(T)</span>
+    min</a>, 
+    
+  
+    <a href="Enumerable.html#min%3F%3AUnion%28T%29%7CNil-instance-method" class="tooltip">
+      <span>min? : Union(T) | Nil</span>
+    min?</a>, 
+    
+  
+    <a href="Enumerable.html#min_by%28%26%3AUnion%28T%29-%3EU%29%3AUnion%28T%29forallU-instance-method" class="tooltip">
+      <span>min_by(& : Union(T) -> U) : Union(T) forall U</span>
+    min_by</a>, 
+    
+  
+    <a href="Enumerable.html#min_by%3F%28%26%3AUnion%28T%29-%3EU%29%3AUnion%28T%29%7CNilforallU-instance-method" class="tooltip">
+      <span>min_by?(& : Union(T) -> U) : Union(T) | Nil forall U</span>
+    min_by?</a>, 
+    
+  
+    <a href="Enumerable.html#min_of%28%26%3AUnion%28T%29-%3EU%29%3AUforallU-instance-method" class="tooltip">
+      <span>min_of(& : Union(T) -> U) : U forall U</span>
+    min_of</a>, 
+    
+  
+    <a href="Enumerable.html#min_of%3F%28%26%3AUnion%28T%29-%3EU%29%3AU%7CNilforallU-instance-method" class="tooltip">
+      <span>min_of?(& : Union(T) -> U) : U | Nil forall U</span>
+    min_of?</a>, 
+    
+  
+    <a href="Enumerable.html#minmax%3ATuple%28Union%28T%29%2CUnion%28T%29%29-instance-method" class="tooltip">
+      <span>minmax : Tuple(Union(T), Union(T))</span>
+    minmax</a>, 
+    
+  
+    <a href="Enumerable.html#minmax%3F%3ATuple%28Union%28T%29%7CNil%2CUnion%28T%29%7CNil%29-instance-method" class="tooltip">
+      <span>minmax? : Tuple(Union(T) | Nil, Union(T) | Nil)</span>
+    minmax?</a>, 
+    
+  
+    <a href="Enumerable.html#minmax_by%28%26%3AUnion%28T%29-%3EU%29%3ATuple%28Union%28T%29%2CUnion%28T%29%29forallU-instance-method" class="tooltip">
+      <span>minmax_by(& : Union(T) -> U) : Tuple(Union(T), Union(T)) forall U</span>
+    minmax_by</a>, 
+    
+  
+    <a href="Enumerable.html#minmax_by%3F%28%26%3AUnion%28T%29-%3EU%29%3ATuple%28Union%28T%29%2CUnion%28T%29%29%7CTuple%28Nil%2CNil%29forallU-instance-method" class="tooltip">
+      <span>minmax_by?(& : Union(T) -> U) : Tuple(Union(T), Union(T)) | Tuple(Nil, Nil) forall U</span>
+    minmax_by?</a>, 
+    
+  
+    <a href="Enumerable.html#minmax_of%28%26%3AUnion%28T%29-%3EU%29%3ATuple%28U%2CU%29forallU-instance-method" class="tooltip">
+      <span>minmax_of(& : Union(T) -> U) : Tuple(U, U) forall U</span>
+    minmax_of</a>, 
+    
+  
+    <a href="Enumerable.html#minmax_of%3F%28%26%3AUnion%28T%29-%3EU%29%3ATuple%28U%2CU%29%7CTuple%28Nil%2CNil%29forallU-instance-method" class="tooltip">
+      <span>minmax_of?(& : Union(T) -> U) : Tuple(U, U) | Tuple(Nil, Nil) forall U</span>
+    minmax_of?</a>, 
+    
+  
+    <a href="Enumerable.html#none%3F%28%26%3AUnion%28T%29-%3E%29%3ABool-instance-method" class="tooltip">
+      <span>none?(& : Union(T) -> ) : Bool<br/>none?(pattern) : Bool<br/>none? : Bool</span>
+    none?</a>, 
+    
+  
+    <a href="Enumerable.html#one%3F%28%26%3AUnion%28T%29-%3E%29%3ABool-instance-method" class="tooltip">
+      <span>one?(& : Union(T) -> ) : Bool<br/>one?(pattern) : Bool<br/>one? : Bool</span>
+    one?</a>, 
+    
+  
+    <a href="Enumerable.html#partition%28%26%3AUnion%28T%29-%3E%29%3ATuple%28Array%28Union%28T%29%29%2CArray%28Union%28T%29%29%29-instance-method" class="tooltip">
+      <span>partition(& : Union(T) -> ) : Tuple(Array(Union(T)), Array(Union(T)))<br/>partition(type : <span class="t">U</span>.<span class="k">class</span>) forall U</span>
+    partition</a>, 
+    
+  
+    <a href="Enumerable.html#present%3F%3ABool-instance-method" class="tooltip">
+      <span>present? : Bool</span>
+    present?</a>, 
+    
+  
+    <a href="Enumerable.html#product%28initial%3ANumber%29-instance-method" class="tooltip">
+      <span>product(initial : Number)<br/>product<br/>product(initial : Number, & : Union(T) -> )<br/>product(& : Union(T) -> _)</span>
+    product</a>, 
+    
+  
+    <a href="Enumerable.html#reduce%28memo%2C%26%29-instance-method" class="tooltip">
+      <span>reduce(memo, &)<br/>reduce(&)</span>
+    reduce</a>, 
+    
+  
+    <a href="Enumerable.html#reduce%3F%28%26%29-instance-method" class="tooltip">
+      <span>reduce?(&)</span>
+    reduce?</a>, 
+    
+  
+    <a href="Enumerable.html#reject%28%26%3AUnion%28T%29-%3E%29-instance-method" class="tooltip">
+      <span>reject(& : Union(T) -> )<br/>reject(type : <span class="t">U</span>.<span class="k">class</span>) forall U<br/>reject(pattern) : Array(Union(T))</span>
+    reject</a>, 
+    
+  
+    <a href="Enumerable.html#sample%28n%3AInt%2Crandom%3ARandom%3DRandom%3A%3ADEFAULT%29%3AArray%28Union%28T%29%29-instance-method" class="tooltip">
+      <span>sample(n : Int, random : Random = <span class="t">Random</span><span class="t">::</span><span class="t">DEFAULT</span>) : Array(Union(T))<br/>sample(random : Random = <span class="t">Random</span><span class="t">::</span><span class="t">DEFAULT</span>) : Union(T)</span>
+    sample</a>, 
+    
+  
+    <a href="Enumerable.html#select%28%26%3AUnion%28T%29-%3E%29-instance-method" class="tooltip">
+      <span>select(& : Union(T) -> )<br/>select(type : <span class="t">U</span>.<span class="k">class</span>) : Array(U) forall U<br/>select(pattern) : Array(Union(T))</span>
+    select</a>, 
+    
+  
+    <a href="Enumerable.html#size%3AInt32-instance-method" class="tooltip">
+      <span>size : Int32</span>
+    size</a>, 
+    
+  
+    <a href="Enumerable.html#skip%28count%3AInt%29-instance-method" class="tooltip">
+      <span>skip(count : Int)</span>
+    skip</a>, 
+    
+  
+    <a href="Enumerable.html#skip_while%28%26%3AUnion%28T%29-%3E%29%3AArray%28Union%28T%29%29-instance-method" class="tooltip">
+      <span>skip_while(& : Union(T) -> ) : Array(Union(T))</span>
+    skip_while</a>, 
+    
+  
+    <a href="Enumerable.html#sum%28initial%29-instance-method" class="tooltip">
+      <span>sum(initial)<br/>sum<br/>sum(initial, & : Union(T) -> )<br/>sum(& : Union(T) -> )</span>
+    sum</a>, 
+    
+  
+    <a href="Enumerable.html#take_while%28%26%3AUnion%28T%29-%3E%29%3AArray%28Union%28T%29%29-instance-method" class="tooltip">
+      <span>take_while(& : Union(T) -> ) : Array(Union(T))</span>
+    take_while</a>, 
+    
+  
+    <a href="Enumerable.html#tally%28hash%29-instance-method" class="tooltip">
+      <span>tally(hash)<br/>tally : Hash(Union(T), Int32)</span>
+    tally</a>, 
+    
+  
+    <a href="Enumerable.html#tally_by%28hash%2C%26%29-instance-method" class="tooltip">
+      <span>tally_by(hash, &)<br/>tally_by(&block : Union(T) -> U) : Hash(U, Int32) forall U</span>
+    tally_by</a>, 
+    
+  
+    <a href="Enumerable.html#to_a%3AArray%28Union%28T%29%29-instance-method" class="tooltip">
+      <span>to_a : Array(Union(T))<br/>to_a(& : Union(T) -> U) : Array(U) forall U</span>
+    to_a</a>, 
+    
+  
+    <a href="Enumerable.html#to_h-instance-method" class="tooltip">
+      <span>to_h<br/>to_h(& : Union(T) -> Tuple(K, V)) forall K, V</span>
+    to_h</a>, 
+    
+  
+    <a href="Enumerable.html#to_set%3ASet%28Union%28T%29%29-instance-method" class="tooltip">
+      <span>to_set : Set(Union(T))<br/>to_set(&block : Union(T) -> U) : Set(U) forall U</span>
+    to_set</a>, 
+    
+  
+    <a href="Enumerable.html#zip%28%2Aothers%3AIndexable%7CIterable%7CIterator%2C%26%29-instance-method" class="tooltip">
+      <span>zip(*others : Indexable | Iterable | Iterator, &)<br/>zip(*others : Indexable | Iterable | Iterator)</span>
+    zip</a>, 
+    
+  
+    <a href="Enumerable.html#zip%3F%28%2Aothers%3AIndexable%7CIterable%7CIterator%2C%26%29-instance-method" class="tooltip">
+      <span>zip?(*others : Indexable | Iterable | Iterator, &)<br/>zip?(*others : Indexable | Iterable | Iterator)</span>
+    zip?</a>
+    
+  
+
+
+      
+
+
+      
+
+  <h3>Class methods inherited from module <code><a href="Enumerable.html">Enumerable(Union(*T))</a></code></h3>
+  
+  
+    <a href="Enumerable.html#element_type%28x%29-class-method" class="tooltip">
+      <span>element_type(x)</span>
+    element_type</a>
+    
+  
+
+
+      
+
+
+    
+      
+
+  <h3>Instance methods inherited from module <code><a href="Iterable.html">Iterable(Union(*T))</a></code></h3>
+  
+  
+    <a href="Iterable.html#chunk%28reuse%3Dfalse%2C%26block%3AUnion%28T%29-%3EU%29forallU-instance-method" class="tooltip">
+      <span>chunk(reuse = <span class="n">false</span>, &block : Union(T) -> U) forall U</span>
+    chunk</a>, 
+    
+  
+    <a href="Iterable.html#chunk_while%28reuse%3ABool%7CArray%28Union%28T%29%29%3Dfalse%2C%26block%3AUnion%28T%29%2CUnion%28T%29-%3EB%29forallB-instance-method" class="tooltip">
+      <span>chunk_while(reuse : Bool | Array(Union(T)) = <span class="n">false</span>, &block : Union(T), Union(T) -> B) forall B</span>
+    chunk_while</a>, 
+    
+  
+    <a href="Iterable.html#cycle%28n%29-instance-method" class="tooltip">
+      <span>cycle(n)<br/>cycle</span>
+    cycle</a>, 
+    
+  
+    <a href="Iterable.html#each-instance-method" class="tooltip">
+      <span>each</span>
+    each</a>, 
+    
+  
+    <a href="Iterable.html#each_cons%28count%3AInt%2Creuse%3Dfalse%29-instance-method" class="tooltip">
+      <span>each_cons(count : Int, reuse = <span class="n">false</span>)</span>
+    each_cons</a>, 
+    
+  
+    <a href="Iterable.html#each_cons_pair-instance-method" class="tooltip">
+      <span>each_cons_pair</span>
+    each_cons_pair</a>, 
+    
+  
+    <a href="Iterable.html#each_slice%28count%3AInt%2Creuse%3Dfalse%29-instance-method" class="tooltip">
+      <span>each_slice(count : Int, reuse = <span class="n">false</span>)</span>
+    each_slice</a>, 
+    
+  
+    <a href="Iterable.html#each_step%28n%3AInt%29-instance-method" class="tooltip">
+      <span>each_step(n : Int)<br/>each_step(n : Int, *, offset : Int)</span>
+    each_step</a>, 
+    
+  
+    <a href="Iterable.html#each_with_index%28offset%3D0%29-instance-method" class="tooltip">
+      <span>each_with_index(offset = <span class="n">0</span>)</span>
+    each_with_index</a>, 
+    
+  
+    <a href="Iterable.html#each_with_object%28obj%29-instance-method" class="tooltip">
+      <span>each_with_object(obj)</span>
+    each_with_object</a>, 
+    
+  
+    <a href="Iterable.html#slice_after%28reuse%3ABool%7CArray%28Union%28T%29%29%3Dfalse%2C%26block%3AUnion%28T%29-%3EB%29forallB-instance-method" class="tooltip">
+      <span>slice_after(reuse : Bool | Array(Union(T)) = <span class="n">false</span>, &block : Union(T) -> B) forall B<br/>slice_after(pattern, reuse : Bool | Array(Union(T)) = <span class="n">false</span>)</span>
+    slice_after</a>, 
+    
+  
+    <a href="Iterable.html#slice_before%28reuse%3ABool%7CArray%28Union%28T%29%29%3Dfalse%2C%26block%3AUnion%28T%29-%3EB%29forallB-instance-method" class="tooltip">
+      <span>slice_before(reuse : Bool | Array(Union(T)) = <span class="n">false</span>, &block : Union(T) -> B) forall B<br/>slice_before(pattern, reuse : Bool | Array(Union(T)) = <span class="n">false</span>)</span>
+    slice_before</a>, 
+    
+  
+    <a href="Iterable.html#slice_when%28reuse%3ABool%7CArray%28Union%28T%29%29%3Dfalse%2C%26block%3AUnion%28T%29%2CUnion%28T%29-%3EB%29forallB-instance-method" class="tooltip">
+      <span>slice_when(reuse : Bool | Array(Union(T)) = <span class="n">false</span>, &block : Union(T), Union(T) -> B) forall B</span>
+    slice_when</a>
+    
+  
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+      
+
+  <h3>Instance methods inherited from struct <code><a href="Value.html">Value</a></code></h3>
+  
+  
+    <a href="Value.html#%3D%3D%28other%3AJSON%3A%3AAny%29-instance-method" class="tooltip">
+      <span>==(other : JSON::Any)<br/>==(other : YAML::Any)<br/>==(other)</span>
+    ==</a>, 
+    
+  
+    <a href="Value.html#dup-instance-method" class="tooltip">
+      <span>dup</span>
+    dup</a>
+    
+  
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+      
+
+  <h3>Instance methods inherited from class <code><a href="Object.html">Object</a></code></h3>
+  
+  
+    <a href="Object.html#%21%3ABool-instance-method" class="tooltip">
+      <span>! : Bool</span>
+    !</a>, 
+    
+  
+    <a href="Object.html#%21%3D%28other%29-instance-method" class="tooltip">
+      <span>!=(other)</span>
+    !=</a>, 
+    
+  
+    <a href="Object.html#%21~%28other%29-instance-method" class="tooltip">
+      <span>!~(other)</span>
+    !~</a>, 
+    
+  
+    <a href="Object.html#%3D%3D%28other%29-instance-method" class="tooltip">
+      <span>==(other)</span>
+    ==</a>, 
+    
+  
+    <a href="Object.html#%3D%3D%3D%28other%3AJSON%3A%3AAny%29-instance-method" class="tooltip">
+      <span>===(other : JSON::Any)<br/>===(other : YAML::Any)<br/>===(other)</span>
+    ===</a>, 
+    
+  
+    <a href="Object.html#%3D~%28other%29-instance-method" class="tooltip">
+      <span>=~(other)</span>
+    =~</a>, 
+    
+  
+    <a href="Object.html#as%28type%3AClass%29-instance-method" class="tooltip">
+      <span>as(type : Class)</span>
+    as</a>, 
+    
+  
+    <a href="Object.html#as%3F%28type%3AClass%29-instance-method" class="tooltip">
+      <span>as?(type : Class)</span>
+    as?</a>, 
+    
+  
+    <a href="Object.html#class-instance-method" class="tooltip">
+      <span>class</span>
+    class</a>, 
+    
+  
+    <a href="Object.html#dup-instance-method" class="tooltip">
+      <span>dup</span>
+    dup</a>, 
+    
+  
+    <a href="Object.html#hash%28hasher%29-instance-method" class="tooltip">
+      <span>hash(hasher)<br/>hash</span>
+    hash</a>, 
+    
+  
+    <a href="Object.html#in%3F%28collection%3AObject%29%3ABool-instance-method" class="tooltip">
+      <span>in?(collection : Object) : Bool<br/>in?(*values : Object) : Bool</span>
+    in?</a>, 
+    
+  
+    <a href="Object.html#inspect%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>inspect(io : IO) : Nil<br/>inspect : String</span>
+    inspect</a>, 
+    
+  
+    <a href="Object.html#is_a%3F%28type%3AClass%29%3ABool-instance-method" class="tooltip">
+      <span>is_a?(type : Class) : Bool</span>
+    is_a?</a>, 
+    
+  
+    <a href="Object.html#itself-instance-method" class="tooltip">
+      <span>itself</span>
+    itself</a>, 
+    
+  
+    <a href="Object.html#nil%3F%3ABool-instance-method" class="tooltip">
+      <span>nil? : Bool</span>
+    nil?</a>, 
+    
+  
+    <a href="Object.html#not_nil%21%28message%29-instance-method" class="tooltip">
+      <span>not_nil!(message)<br/>not_nil!</span>
+    not_nil!</a>, 
+    
+  
+    <a href="Object.html#pretty_inspect%28width%3D79%2Cnewline%3D%22%5Cn%22%2Cindent%3D0%29%3AString-instance-method" class="tooltip">
+      <span>pretty_inspect(width = <span class="n">79</span>, newline = <span class="s">&quot;\n&quot;</span>, indent = <span class="n">0</span>) : String</span>
+    pretty_inspect</a>, 
+    
+  
+    <a href="Object.html#pretty_print%28pp%3APrettyPrint%29%3ANil-instance-method" class="tooltip">
+      <span>pretty_print(pp : PrettyPrint) : Nil</span>
+    pretty_print</a>, 
+    
+  
+    <a href="Object.html#responds_to%3F%28name%3ASymbol%29%3ABool-instance-method" class="tooltip">
+      <span>responds_to?(name : Symbol) : Bool</span>
+    responds_to?</a>, 
+    
+  
+    <a href="Object.html#tap%28%26%29-instance-method" class="tooltip">
+      <span>tap(&)</span>
+    tap</a>, 
+    
+  
+    <a href="Object.html#to_json%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_json(io : IO) : Nil<br/>to_json : String</span>
+    to_json</a>, 
+    
+  
+    <a href="Object.html#to_pretty_json%28indent%3AString%3D%22%22%29%3AString-instance-method" class="tooltip">
+      <span>to_pretty_json(indent : String = <span class="s">&quot;  &quot;</span>) : String<br/>to_pretty_json(io : IO, indent : String = <span class="s">&quot;  &quot;</span>) : Nil</span>
+    to_pretty_json</a>, 
+    
+  
+    <a href="Object.html#to_s%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_s(io : IO) : Nil<br/>to_s : String</span>
+    to_s</a>, 
+    
+  
+    <a href="Object.html#to_yaml%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_yaml(io : IO) : Nil<br/>to_yaml : String</span>
+    to_yaml</a>, 
+    
+  
+    <a href="Object.html#try%28%26%29-instance-method" class="tooltip">
+      <span>try(&)</span>
+    try</a>, 
+    
+  
+    <a href="Object.html#unsafe_as%28type%3AT.class%29forallT-instance-method" class="tooltip">
+      <span>unsafe_as(type : <span class="t">T</span>.<span class="k">class</span>) forall T</span>
+    unsafe_as</a>
+    
+  
+
+
+      
+
+
+      
+
+  <h3>Class methods inherited from class <code><a href="Object.html">Object</a></code></h3>
+  
+  
+    <a href="Object.html#from_json%28string_or_io%2Croot%3AString%29-class-method" class="tooltip">
+      <span>from_json(string_or_io, root : String)<br/>from_json(string_or_io)</span>
+    from_json</a>, 
+    
+  
+    <a href="Object.html#from_yaml%28string_or_io%3AString%7CIO%29-class-method" class="tooltip">
+      <span>from_yaml(string_or_io : String | IO)</span>
+    from_yaml</a>
+    
+  
+
+
+      
+
+  <h3>Macros inherited from class <code><a href="Object.html">Object</a></code></h3>
+  
+  
+    <a href="Object.html#class_getter%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_getter(*names, &block)</span>
+    class_getter</a>, 
+    
+  
+    <a href="Object.html#class_getter%21%28%2Anames%29-macro" class="tooltip">
+      <span>class_getter!(*names)</span>
+    class_getter!</a>, 
+    
+  
+    <a href="Object.html#class_getter%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_getter?(*names, &block)</span>
+    class_getter?</a>, 
+    
+  
+    <a href="Object.html#class_property%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_property(*names, &block)</span>
+    class_property</a>, 
+    
+  
+    <a href="Object.html#class_property%21%28%2Anames%29-macro" class="tooltip">
+      <span>class_property!(*names)</span>
+    class_property!</a>, 
+    
+  
+    <a href="Object.html#class_property%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_property?(*names, &block)</span>
+    class_property?</a>, 
+    
+  
+    <a href="Object.html#class_setter%28%2Anames%29-macro" class="tooltip">
+      <span>class_setter(*names)</span>
+    class_setter</a>, 
+    
+  
+    <a href="Object.html#def_clone-macro" class="tooltip">
+      <span>def_clone</span>
+    def_clone</a>, 
+    
+  
+    <a href="Object.html#def_equals%28%2Afields%29-macro" class="tooltip">
+      <span>def_equals(*fields)</span>
+    def_equals</a>, 
+    
+  
+    <a href="Object.html#def_equals_and_hash%28%2Afields%29-macro" class="tooltip">
+      <span>def_equals_and_hash(*fields)</span>
+    def_equals_and_hash</a>, 
+    
+  
+    <a href="Object.html#def_hash%28%2Afields%29-macro" class="tooltip">
+      <span>def_hash(*fields)</span>
+    def_hash</a>, 
+    
+  
+    <a href="Object.html#delegate%28%2Amethods%2Ctoobject%29-macro" class="tooltip">
+      <span>delegate(*methods, to object)</span>
+    delegate</a>, 
+    
+  
+    <a href="Object.html#forward_missing_to%28delegate%29-macro" class="tooltip">
+      <span>forward_missing_to(delegate)</span>
+    forward_missing_to</a>, 
+    
+  
+    <a href="Object.html#getter%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>getter(*names, &block)</span>
+    getter</a>, 
+    
+  
+    <a href="Object.html#getter%21%28%2Anames%29-macro" class="tooltip">
+      <span>getter!(*names)</span>
+    getter!</a>, 
+    
+  
+    <a href="Object.html#getter%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>getter?(*names, &block)</span>
+    getter?</a>, 
+    
+  
+    <a href="Object.html#property%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>property(*names, &block)</span>
+    property</a>, 
+    
+  
+    <a href="Object.html#property%21%28%2Anames%29-macro" class="tooltip">
+      <span>property!(*names)</span>
+    property!</a>, 
+    
+  
+    <a href="Object.html#property%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>property?(*names, &block)</span>
+    property?</a>, 
+    
+  
+    <a href="Object.html#setter%28%2Anames%29-macro" class="tooltip">
+      <span>setter(*names)</span>
+    setter</a>
+    
+  
+
+
+    
+  </div>
+
+  
+  <h2>
+    <a id="constructor-detail" class="anchor" href="#constructor-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructor Detail
+  </h2>
+  
+    <div class="entry-detail" id="from(array:Array):self-class-method">
+      <div class="signature">
+        
+        def self.<strong>from</strong>(array : <a href="Array.html">Array</a>) : <span class="k">self</span>
+
+        <a class="method-permalink" href="#from%28array%3AArray%29%3Aself-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Creates a tuple from the given array, with elements casted to the given types.</p>
+<pre><code class="language-crystal"><span class="t">Tuple</span>(<span class="t">String</span>, <span class="t">Int64</span>).from([<span class="s">&quot;world&quot;</span>, <span class="n">2_i64</span>])       <span class="c"># =&gt; {&quot;world&quot;, 2_i64}</span>
+<span class="t">Tuple</span>(<span class="t">String</span>, <span class="t">Int64</span>).from([<span class="s">&quot;world&quot;</span>, <span class="n">2_i64</span>]).<span class="k">class</span> <span class="c"># =&gt; Tuple(String, Int64)</span></code></pre>
+<p>See also: <code><a href="Tuple.html#from%28array%3AArray%29-instance-method">#from</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/tuple.cr#L139" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="new(ctx:YAML::ParseContext,node:YAML::Nodes::Node)-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(ctx : <a href="YAML/ParseContext.html">YAML::ParseContext</a>, node : <a href="YAML/Nodes/Node.html">YAML::Nodes::Node</a>)
+
+        <a class="method-permalink" href="#new%28ctx%3AYAML%3A%3AParseContext%2Cnode%3AYAML%3A%3ANodes%3A%3ANode%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/yaml/from_yaml.cr#L177" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="new(pull:JSON::PullParser)-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(pull : <a href="JSON/PullParser.html">JSON::PullParser</a>)
+
+        <a class="method-permalink" href="#new%28pull%3AJSON%3A%3APullParser%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/from_json.cr#L257" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="new(*args:*T)-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(*args : <span class="o">*</span><span class="t">T</span>)
+
+        <a class="method-permalink" href="#new%28%2Aargs%3A%2AT%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Creates a tuple that will contain the given values.</p>
+<p>This method is useful in macros and generic code because with it you can
+create empty tuples, something that you can't do with a tuple literal.</p>
+<pre><code class="language-crystal"><span class="t">Tuple</span>.new(<span class="n">1</span>, <span class="s">&quot;hello&quot;</span>, <span class="s">&#39;x&#39;</span>) <span class="c">#=&gt; {1, &quot;hello&quot;, &#39;x&#39;}</span>
+<span class="t">Tuple</span>.new                  <span class="c">#=&gt; {}</span>
+
+{}                         <span class="c"># syntax error</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/tuple.cr#L110" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+  
+  <h2>
+    <a id="class-method-detail" class="anchor" href="#class-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Class Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="[](index:Int)-class-method">
+      <div class="signature">
+        
+        def self.<strong>[]</strong>(index : <a href="Int.html">Int</a>)
+
+        <a class="method-permalink" href="#%5B%5D%28index%3AInt%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the element type at the given <em>index</em>. Read the type docs to
+understand the difference between indexing with a number literal or a
+variable.</p>
+<pre><code class="language-crystal"><span class="k">alias</span> <span class="t">Foo</span> <span class="o">=</span> <span class="t">Tuple</span>(<span class="t">Int32</span>, <span class="t">String</span>)
+<span class="t">Foo</span>[<span class="n">0</span>]      <span class="c"># =&gt; Int32</span>
+<span class="t">Foo</span>[<span class="n">0</span>].zero <span class="c"># =&gt; 0</span>
+<span class="t">Foo</span>[<span class="n">2</span>]      <span class="c"># Error: index out of bounds for Tuple(Int32, String).class (2 not in -2..1)</span>
+
+i <span class="o">=</span> <span class="n">0</span>
+<span class="t">Foo</span>[i]      <span class="c"># =&gt; Int32</span>
+<span class="t">Foo</span>[i].zero <span class="c"># Error: undefined method &#39;zero&#39; for String.class (compile-time type is (Int32.class | String.class))</span>
+
+i <span class="o">=</span> <span class="n">2</span>
+<span class="t">Foo</span>[i] <span class="c"># raises IndexError</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/tuple.cr#L215" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="[](range:Range)-class-method">
+      <div class="signature">
+        
+        def self.<strong>[]</strong>(range : <a href="Range.html">Range</a>)
+
+        <a class="method-permalink" href="#%5B%5D%28range%3ARange%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns all element types that are within the given <em>range</em>. <em>range</em> must be
+a range literal whose value is known at compile-time.</p>
+<p>Negative indices count backward from the end of the tuple (-1 is the last
+element). Additionally, an empty tuple is returned when the starting index
+for an element range is at the end of the tuple.</p>
+<p>Raises a compile-time error if <code>range.begin</code> is out of range.</p>
+<pre><code class="language-crystal"><span class="k">alias</span> <span class="t">Foo</span> <span class="o">=</span> <span class="t">Tuple</span>(<span class="t">Int32</span>, <span class="t">String</span>, <span class="t">Char</span>)
+<span class="t">Foo</span>[<span class="n">0</span>..<span class="n">1</span>] <span class="c"># =&gt; Tuple(Int32, String)</span>
+<span class="t">Foo</span>[<span class="n">-2</span>..] <span class="c"># =&gt; Tuple(String, Char)</span>
+<span class="t">Foo</span>[...<span class="n">1</span>] <span class="c"># =&gt; Tuple(Int32)</span>
+<span class="t">Foo</span>[<span class="n">4</span>..]  <span class="c"># Error: begin index out of bounds for Tuple(Int32, String, Char).class (4 not in -3..3)</span>
+
+i <span class="o">=</span> <span class="n">0</span>
+<span class="t">Foo</span>[i..<span class="n">2</span>] <span class="c"># Error: Tuple.[](Range) can only be called with range literals known at compile-time</span>
+
+i <span class="o">=</span> <span class="n">0</span>..<span class="n">2</span>
+<span class="t">Foo</span>[i] <span class="c"># Error: Tuple.[](Range) can only be called with range literals known at compile-time</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/tuple.cr#L319" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="[]?(index:Int)-class-method">
+      <div class="signature">
+        
+        def self.<strong>[]?</strong>(index : <a href="Int.html">Int</a>)
+
+        <a class="method-permalink" href="#%5B%5D%3F%28index%3AInt%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the element type at the given <em>index</em> or <code>nil</code> if out of bounds.
+Read the type docs to understand the difference between indexing with a
+number literal or a variable.</p>
+<pre><code class="language-crystal"><span class="k">alias</span> <span class="t">Foo</span> <span class="o">=</span> <span class="t">Tuple</span>(<span class="t">Int32</span>, <span class="t">String</span>)
+<span class="t">Foo</span>[<span class="n">0</span>]?         <span class="c"># =&gt; Int32</span>
+<span class="t">Foo</span>[<span class="n">0</span>]?.zero    <span class="c"># =&gt; 0</span>
+<span class="t">Foo</span>[<span class="n">2</span>]?         <span class="c"># =&gt; nil</span>
+<span class="k">typeof</span>(<span class="t">Foo</span>[<span class="n">2</span>]?) <span class="c"># =&gt; Nil</span>
+
+i <span class="o">=</span> <span class="n">0</span>
+<span class="t">Foo</span>[i]?      <span class="c"># =&gt; Int32</span>
+<span class="t">Foo</span>[i]?.zero <span class="c"># Error: undefined method &#39;zero&#39; for String.class (compile-time type is (Int32.class | String.class | Nil))</span>
+
+i <span class="o">=</span> <span class="n">2</span>
+<span class="t">Foo</span>[i]? <span class="c"># =&gt; nil</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/tuple.cr#L259" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="types-class-method">
+      <div class="signature">
+        
+        def self.<strong>types</strong>
+
+        <a class="method-permalink" href="#types-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the types of this tuple type.</p>
+<pre><code class="language-crystal">tuple <span class="o">=</span> {<span class="n">1</span>, <span class="s">&quot;hello&quot;</span>, <span class="s">&#39;x&#39;</span>}
+tuple.<span class="k">class</span>.types <span class="c"># =&gt; {Int32, String, Char}</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/tuple.cr#L533" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+  
+
+  
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="+(other:Tuple)-instance-method">
+      <div class="signature">
+        
+        def <strong>+</strong>(other : <a href="Tuple.html">Tuple</a>)
+
+        <a class="method-permalink" href="#%2B%28other%3ATuple%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns a tuple that contains <code>self</code>'s elements followed by <em>other</em>'s elements.</p>
+<pre><code class="language-crystal">t1 <span class="o">=</span> {<span class="n">1</span>, <span class="n">2</span>}
+t2 <span class="o">=</span> {<span class="s">&quot;foo&quot;</span>, <span class="s">&quot;bar&quot;</span>}
+t3 <span class="o">=</span> t1 <span class="o">+</span> t2
+t3         <span class="c"># =&gt; {1, 2, &quot;foo&quot;, &quot;bar&quot;}</span>
+<span class="k">typeof</span>(t3) <span class="c"># =&gt; Tuple(Int32, Int32, String, String)</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/tuple.cr#L501" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="&lt;=&gt;(other:self)-instance-method">
+      <div class="signature">
+        
+        def <strong><=></strong>(other : <span class="k">self</span>)
+
+        <a class="method-permalink" href="#%3C%3D%3E%28other%3Aself%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>The comparison operator.</p>
+<p>Each object in each tuple is compared using the <code>&lt;=&gt;</code> operator.</p>
+<p>Tuples are compared in an &quot;element-wise&quot; manner; the first element of this tuple is
+compared with the first one of <em>other</em> using the <code>&lt;=&gt;</code> operator, then each of the second elements,
+etc. As soon as the result of any such comparison is non-zero
+(i.e. the two corresponding elements are not equal), that result is returned for the whole tuple comparison.</p>
+<p>If all the elements are equal, then the result is based on a comparison of the tuple sizes.
+Thus, two tuples are &quot;equal&quot; according to <code>&lt;=&gt;</code> if, and only if, they have the same size
+and the value of each element is equal to the value of the corresponding element in the other tuple.</p>
+<pre><code class="language-crystal">{<span class="s">&quot;a&quot;</span>, <span class="s">&quot;a&quot;</span>, <span class="s">&quot;c&quot;</span>} <span class="o">&lt;=&gt;</span> {<span class="s">&quot;a&quot;</span>, <span class="s">&quot;b&quot;</span>, <span class="s">&quot;c&quot;</span>} <span class="c"># =&gt; -1</span>
+{<span class="n">1</span>, <span class="n">2</span>, <span class="n">3</span>, <span class="n">4</span>, <span class="n">5</span>, <span class="n">6</span>} <span class="o">&lt;=&gt;</span> {<span class="n">1</span>, <span class="n">2</span>}       <span class="c"># =&gt; 1</span>
+{<span class="n">1</span>, <span class="n">2</span>} <span class="o">&lt;=&gt;</span> {<span class="n">1</span>, <span class="n">2.0</span>}                 <span class="c"># =&gt; 0</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/tuple.cr#L455" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="&lt;=&gt;(other:Tuple)-instance-method">
+      <div class="signature">
+        
+        def <strong><=></strong>(other : <a href="Tuple.html">Tuple</a>)
+
+        <a class="method-permalink" href="#%3C%3D%3E%28other%3ATuple%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>The comparison operator.</p>
+<p>Each object in each tuple is compared using the <code>&lt;=&gt;</code> operator.</p>
+<p>Tuples are compared in an &quot;element-wise&quot; manner; the first element of this tuple is
+compared with the first one of <em>other</em> using the <code>&lt;=&gt;</code> operator, then each of the second elements,
+etc. As soon as the result of any such comparison is non-zero
+(i.e. the two corresponding elements are not equal), that result is returned for the whole tuple comparison.</p>
+<p>If all the elements are equal, then the result is based on a comparison of the tuple sizes.
+Thus, two tuples are &quot;equal&quot; according to <code>&lt;=&gt;</code> if, and only if, they have the same size
+and the value of each element is equal to the value of the corresponding element in the other tuple.</p>
+<pre><code class="language-crystal">{<span class="s">&quot;a&quot;</span>, <span class="s">&quot;a&quot;</span>, <span class="s">&quot;c&quot;</span>} <span class="o">&lt;=&gt;</span> {<span class="s">&quot;a&quot;</span>, <span class="s">&quot;b&quot;</span>, <span class="s">&quot;c&quot;</span>} <span class="c"># =&gt; -1</span>
+{<span class="n">1</span>, <span class="n">2</span>, <span class="n">3</span>, <span class="n">4</span>, <span class="n">5</span>, <span class="n">6</span>} <span class="o">&lt;=&gt;</span> {<span class="n">1</span>, <span class="n">2</span>}       <span class="c"># =&gt; 1</span>
+{<span class="n">1</span>, <span class="n">2</span>} <span class="o">&lt;=&gt;</span> {<span class="n">1</span>, <span class="n">2.0</span>}                 <span class="c"># =&gt; 0</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/tuple.cr#L464" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="==(other:self)-instance-method">
+      <div class="signature">
+        
+        def <strong>==</strong>(other : <span class="k">self</span>)
+
+        <a class="method-permalink" href="#%3D%3D%28other%3Aself%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this tuple has the same size as the other tuple
+and their elements are equal to each other when compared with <code><a href="Tuple.html#%3D%3D%28other%3Aself%29-instance-method">#==</a></code>.</p>
+<pre><code class="language-crystal">t1 <span class="o">=</span> {<span class="n">1</span>, <span class="s">&quot;hello&quot;</span>}
+t2 <span class="o">=</span> {<span class="n">1.0</span>, <span class="s">&quot;hello&quot;</span>}
+t3 <span class="o">=</span> {<span class="n">2</span>, <span class="s">&quot;hello&quot;</span>}
+
+t1 <span class="o">==</span> t2 <span class="c"># =&gt; true</span>
+t1 <span class="o">==</span> t3 <span class="c"># =&gt; false</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/tuple.cr#L383" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="==(other:Tuple)-instance-method">
+      <div class="signature">
+        
+        def <strong>==</strong>(other : <a href="Tuple.html">Tuple</a>)
+
+        <a class="method-permalink" href="#%3D%3D%28other%3ATuple%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this tuple has the same size as the other tuple
+and their elements are equal to each other when compared with <code><a href="Tuple.html#%3D%3D%28other%3Aself%29-instance-method">#==</a></code>.</p>
+<pre><code class="language-crystal">t1 <span class="o">=</span> {<span class="n">1</span>, <span class="s">&quot;hello&quot;</span>}
+t2 <span class="o">=</span> {<span class="n">1.0</span>, <span class="s">&quot;hello&quot;</span>}
+t3 <span class="o">=</span> {<span class="n">2</span>, <span class="s">&quot;hello&quot;</span>}
+
+t1 <span class="o">==</span> t2 <span class="c"># =&gt; true</span>
+t1 <span class="o">==</span> t3 <span class="c"># =&gt; false</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/tuple.cr#L391" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="==(other)-instance-method">
+      <div class="signature">
+        
+        def <strong>==</strong>(other)
+
+        <a class="method-permalink" href="#%3D%3D%28other%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+            <div class="doc-inherited">
+              Description copied from struct <a href="Value.html">Value</a>
+            </div>
+          
+          <p>Returns <code>false</code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/tuple.cr#L400" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="===(other:self)-instance-method">
+      <div class="signature">
+        
+        def <strong>===</strong>(other : <span class="k">self</span>)
+
+        <a class="method-permalink" href="#%3D%3D%3D%28other%3Aself%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if case equality holds for the elements in <code>self</code> and <em>other</em>.</p>
+<pre><code class="language-crystal">{<span class="n">1</span>, <span class="n">2</span>} <span class="o">===</span> {<span class="n">1</span>, <span class="n">2</span>} <span class="c"># =&gt; true</span>
+{<span class="n">1</span>, <span class="n">2</span>} <span class="o">===</span> {<span class="n">1</span>, <span class="n">3</span>} <span class="c"># =&gt; false</span></code></pre>
+<p>See also: <code><a href="Object.html#%3D%3D%3D%28other%3AJSON%3A%3AAny%29-instance-method">Object#===</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/tuple.cr#L412" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="===(other:Tuple)-instance-method">
+      <div class="signature">
+        
+        def <strong>===</strong>(other : <a href="Tuple.html">Tuple</a>)
+
+        <a class="method-permalink" href="#%3D%3D%3D%28other%3ATuple%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if <code>self</code> and <em>other</em> have the same size and case equality holds
+for the elements in <code>self</code> and <em>other</em>.</p>
+<pre><code class="language-crystal">{<span class="n">1</span>, <span class="n">2</span>} <span class="o">===</span> {<span class="n">1</span>, <span class="n">2</span>, <span class="n">3</span>}             <span class="c"># =&gt; false</span>
+{<span class="o">/</span>o<span class="o">+</span><span class="o">/</span>, <span class="s">&quot;bar&quot;</span>} <span class="o">===</span> {<span class="s">&quot;foo&quot;</span>, <span class="s">&quot;bar&quot;</span>} <span class="c"># =&gt; true</span></code></pre>
+<p>See also: <code><a href="Object.html#%3D%3D%3D%28other%3AJSON%3A%3AAny%29-instance-method">Object#===</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/tuple.cr#L428" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="[](index:Int)-instance-method">
+      <div class="signature">
+        
+        def <strong>[]</strong>(index : <a href="Int.html">Int</a>)
+
+        <a class="method-permalink" href="#%5B%5D%28index%3AInt%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the element at the given <em>index</em>. Read the type docs to understand
+the difference between indexing with a number literal or a variable.</p>
+<pre><code class="language-crystal">tuple <span class="o">=</span> {<span class="n">1</span>, <span class="s">&quot;hello&quot;</span>, <span class="s">&#39;x&#39;</span>}
+tuple[<span class="n">0</span>]         <span class="c"># =&gt; 1</span>
+<span class="k">typeof</span>(tuple[<span class="n">0</span>]) <span class="c"># =&gt; Int32</span>
+tuple[<span class="n">3</span>]         <span class="c"># Error: index out of bounds for Tuple(Int32, String, Char) (3 not in -3..2)</span>
+
+i <span class="o">=</span> <span class="n">0</span>
+tuple[i]         <span class="c"># =&gt; 1</span>
+<span class="k">typeof</span>(tuple[i]) <span class="c"># =&gt; (Char | Int32 | String)</span>
+
+i <span class="o">=</span> <span class="n">3</span>
+tuple[i] <span class="c"># raises IndexError</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/tuple.cr#L194" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="[](range:Range)-instance-method">
+      <div class="signature">
+        
+        def <strong>[]</strong>(range : <a href="Range.html">Range</a>)
+
+        <a class="method-permalink" href="#%5B%5D%28range%3ARange%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns all elements that are within the given <em>range</em>. <em>range</em> must be a
+range literal whose value is known at compile-time.</p>
+<p>Negative indices count backward from the end of the tuple (-1 is the last
+element). Additionally, an empty tuple is returned when the starting index
+for an element range is at the end of the tuple.</p>
+<p>Raises a compile-time error if <code>range.begin</code> is out of range.</p>
+<pre><code class="language-crystal">tuple <span class="o">=</span> {<span class="n">1</span>, <span class="s">&quot;hello&quot;</span>, <span class="s">&#39;x&#39;</span>}
+tuple[<span class="n">0</span>..<span class="n">1</span>] <span class="c"># =&gt; {1, &quot;hello&quot;}</span>
+tuple[<span class="n">-2</span>..] <span class="c"># =&gt; {&quot;hello&quot;, &#39;x&#39;}</span>
+tuple[...<span class="n">1</span>] <span class="c"># =&gt; {1}</span>
+tuple[<span class="n">4</span>..]  <span class="c"># Error: begin index out of bounds for Tuple(Int32, String, Char) (4 not in -3..3)</span>
+
+i <span class="o">=</span> <span class="n">0</span>
+tuple[i..<span class="n">2</span>] <span class="c"># Error: Tuple#[](Range) can only be called with range literals known at compile-time</span>
+
+i <span class="o">=</span> <span class="n">0</span>..<span class="n">2</span>
+tuple[i] <span class="c"># Error: Tuple#[](Range) can only be called with range literals known at compile-time</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/tuple.cr#L293" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="[]?(index:Int)-instance-method">
+      <div class="signature">
+        
+        def <strong>[]?</strong>(index : <a href="Int.html">Int</a>)
+
+        <a class="method-permalink" href="#%5B%5D%3F%28index%3AInt%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the element at the given <em>index</em> or <code>nil</code> if out of bounds. Read the
+type docs to understand the difference between indexing with a number
+literal or a variable.</p>
+<pre><code class="language-crystal">tuple <span class="o">=</span> {<span class="n">1</span>, <span class="s">&quot;hello&quot;</span>, <span class="s">&#39;x&#39;</span>}
+tuple[<span class="n">0</span>]?         <span class="c"># =&gt; 1</span>
+<span class="k">typeof</span>(tuple[<span class="n">0</span>]?) <span class="c"># =&gt; Int32</span>
+tuple[<span class="n">3</span>]?         <span class="c"># =&gt; nil</span>
+<span class="k">typeof</span>(tuple[<span class="n">3</span>]?) <span class="c"># =&gt; Nil</span>
+
+i <span class="o">=</span> <span class="n">0</span>
+tuple[i]?         <span class="c"># =&gt; 1</span>
+<span class="k">typeof</span>(tuple[i]?) <span class="c"># =&gt; (Char | Int32 | String | Nil)</span>
+
+i <span class="o">=</span> <span class="n">3</span>
+tuple[i]? <span class="c"># =&gt; nil</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/tuple.cr#L237" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="at(index:Int)-instance-method">
+      <div class="signature">
+        
+        def <strong>at</strong>(index : <a href="Int.html">Int</a>)
+
+        <a class="method-permalink" href="#at%28index%3AInt%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the element at the given <em>index</em> or raises IndexError if out of bounds.</p>
+<pre><code class="language-crystal">tuple <span class="o">=</span> {<span class="n">1</span>, <span class="s">&quot;hello&quot;</span>, <span class="s">&#39;x&#39;</span>}
+tuple.at(<span class="n">0</span>) <span class="c"># =&gt; 1</span>
+tuple.at(<span class="n">3</span>) <span class="c"># raises IndexError</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/tuple.cr#L330" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="at(index:Int,&amp;)-instance-method">
+      <div class="signature">
+        
+        def <strong>at</strong>(index : <a href="Int.html">Int</a>, &)
+
+        <a class="method-permalink" href="#at%28index%3AInt%2C%26%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the element at the given <em>index</em> or the value returned by the block if
+out of bounds.</p>
+<pre><code class="language-crystal">tuple <span class="o">=</span> {<span class="n">1</span>, <span class="s">&quot;hello&quot;</span>, <span class="s">&#39;x&#39;</span>}
+tuple.at(<span class="n">0</span>) { <span class="n">10</span> } <span class="c"># =&gt; 1</span>
+tuple.at(<span class="n">3</span>) { <span class="n">10</span> } <span class="c"># =&gt; 10</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/tuple.cr#L342" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="clone-instance-method">
+      <div class="signature">
+        
+        def <strong>clone</strong>
+
+        <a class="method-permalink" href="#clone-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns a tuple containing cloned elements of this tuple using the <code><a href="Tuple.html#clone-instance-method">#clone</a></code> method.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/tuple.cr#L482" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="each(&amp;:Union(*T)-&gt;):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>each</strong>(& : <a href="Union.html">Union</a>(<span class="o">*</span><span class="t">T</span>) -> ) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#each%28%26%3AUnion%28%2AT%29-%3E%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Yields each of the elements in this tuple.</p>
+<pre><code class="language-crystal">tuple <span class="o">=</span> {<span class="n">1</span>, <span class="s">&quot;hello&quot;</span>, <span class="s">&#39;x&#39;</span>}
+tuple.each <span class="k">do</span> <span class="o">|</span>value<span class="o">|</span>
+  puts value
+<span class="k">end</span></code></pre>
+<p>Output:</p>
+<pre><code class="language-text">1
+&quot;hello&quot;
+'x'</code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/tuple.cr#L366" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="first-instance-method">
+      <div class="signature">
+        
+        def <strong>first</strong>
+
+        <a class="method-permalink" href="#first-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the first element of this tuple. Doesn't compile
+if the tuple is empty.</p>
+<pre><code class="language-crystal">tuple <span class="o">=</span> {<span class="n">1</span>, <span class="n">2.5</span>}
+tuple.first <span class="c"># =&gt; 1</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/tuple.cr#L708" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="first?-instance-method">
+      <div class="signature">
+        
+        def <strong>first?</strong>
+
+        <a class="method-permalink" href="#first%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the first element of this tuple, or <code>nil</code> if this
+is the empty tuple.</p>
+<pre><code class="language-crystal">tuple <span class="o">=</span> {<span class="n">1</span>, <span class="n">2.5</span>}
+tuple.first? <span class="c"># =&gt; 1</span>
+
+empty <span class="o">=</span> <span class="t">Tuple</span>.new
+empty.first? <span class="c"># =&gt; nil</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/tuple.cr#L722" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="from(array:Array)-instance-method">
+      <div class="signature">
+        
+        def <strong>from</strong>(array : <a href="Array.html">Array</a>)
+
+        <a class="method-permalink" href="#from%28array%3AArray%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Expects to be called on a tuple of types, creates a tuple from the given array,
+with types casted appropriately.</p>
+<p>This allows you to easily pass an array as individual arguments to a method.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;json&quot;</span>
+
+<span class="k">def</span> <span class="m">speak_about</span>(thing : <span class="t">String</span>, n : <span class="t">Int64</span>)
+  <span class="s">&quot;I see </span><span class="i">#{</span>n<span class="i">}</span><span class="s"> </span><span class="i">#{</span>thing<span class="i">}</span><span class="s">s&quot;</span>
+<span class="k">end</span>
+
+data <span class="o">=</span> <span class="t">JSON</span>.parse(<span class="s">%([&quot;world&quot;, 2])</span>).as_a.map(<span class="o">&amp;</span>.raw)
+speak_about(<span class="o">*</span>{<span class="t">String</span>, <span class="t">Int64</span>}.from(data)) <span class="c"># =&gt; &quot;I see 2 worlds&quot;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/tuple.cr#L160" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="hash(hasher)-instance-method">
+      <div class="signature">
+        
+        def <strong>hash</strong>(hasher)
+
+        <a class="method-permalink" href="#hash%28hasher%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>See <code><a href="Object.html#hash%28hasher%29-instance-method">Object#hash(hasher)</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/tuple.cr#L474" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="inspect:String-instance-method">
+      <div class="signature">
+        
+        def <strong>inspect</strong> : <a href="String.html">String</a>
+
+        <a class="method-permalink" href="#inspect%3AString-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Same as <code><a href="Tuple.html#to_s%28io%3AIO%29%3ANil-instance-method">#to_s</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/tuple.cr#L538" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="last-instance-method">
+      <div class="signature">
+        
+        def <strong>last</strong>
+
+        <a class="method-permalink" href="#last-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the last element of this tuple. Doesn't compile
+if the tuple is empty.</p>
+<pre><code class="language-crystal">tuple <span class="o">=</span> {<span class="n">1</span>, <span class="n">2.5</span>}
+tuple.last <span class="c"># =&gt; 2.5</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/tuple.cr#L737" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="last?-instance-method">
+      <div class="signature">
+        
+        def <strong>last?</strong>
+
+        <a class="method-permalink" href="#last%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the last element of this tuple, or <code>nil</code> if this
+is the empty tuple.</p>
+<pre><code class="language-crystal">tuple <span class="o">=</span> {<span class="n">1</span>, <span class="n">2.5</span>}
+tuple.last? <span class="c"># =&gt; 2.5</span>
+
+empty <span class="o">=</span> <span class="t">Tuple</span>.new
+empty.last? <span class="c"># =&gt; nil</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/tuple.cr#L753" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="map(&amp;:Union(*T)-&gt;)-instance-method">
+      <div class="signature">
+        
+        def <strong>map</strong>(& : <a href="Union.html">Union</a>(<span class="o">*</span><span class="t">T</span>) -> )
+
+        <a class="method-permalink" href="#map%28%26%3AUnion%28%2AT%29-%3E%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns a new tuple where elements are mapped by the given block.</p>
+<pre><code class="language-crystal">tuple <span class="o">=</span> {<span class="n">1</span>, <span class="n">2.5</span>, <span class="s">&quot;a&quot;</span>}
+tuple.map <span class="o">&amp;</span>.to_s <span class="c"># =&gt; {&quot;1&quot;, &quot;2.5&quot;, &quot;a&quot;}</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/tuple.cr#L605" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="map_with_index(offset=0,&amp;)-instance-method">
+      <div class="signature">
+        
+        def <strong>map_with_index</strong>(offset = <span class="n">0</span>, &)
+
+        <a class="method-permalink" href="#map_with_index%28offset%3D0%2C%26%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Like <code><a href="Tuple.html#map%28%26%3AUnion%28%2AT%29-%3E%29-instance-method">#map</a></code>, but the block gets passed both the element and its index.</p>
+<pre><code class="language-crystal">tuple <span class="o">=</span> {<span class="n">1</span>, <span class="n">2.5</span>, <span class="s">&quot;a&quot;</span>}
+tuple.map_with_index { <span class="o">|</span>e, i<span class="o">|</span> <span class="s">&quot;tuple[</span><span class="i">#{</span>i<span class="i">}</span><span class="s">]: </span><span class="i">#{</span>e<span class="i">}</span><span class="s">&quot;</span> } <span class="c"># =&gt; {&quot;tuple[0]: 1&quot;, &quot;tuple[1]: 2.5&quot;, &quot;tuple[2]: a&quot;}</span></code></pre>
+<p>Accepts an optional <em>offset</em> parameter, which tells it to start counting
+from there.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/tuple.cr#L624" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="pretty_print(pp):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>pretty_print</strong>(pp) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#pretty_print%28pp%29%3ANil-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/tuple.cr#L595" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="reduce(memo,&amp;)-instance-method">
+      <div class="signature">
+        
+        def <strong>reduce</strong>(memo, &)
+
+        <a class="method-permalink" href="#reduce%28memo%2C%26%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Just like the other variant, but you can set the initial value of the accumulator.</p>
+<pre><code class="language-crystal">[<span class="n">1</span>, <span class="n">2</span>, <span class="n">3</span>, <span class="n">4</span>, <span class="n">5</span>].reduce(<span class="n">10</span>) { <span class="o">|</span>acc, i<span class="o">|</span> acc <span class="o">+</span> i }             <span class="c"># =&gt; 25</span>
+[<span class="n">1</span>, <span class="n">2</span>, <span class="n">3</span>].reduce(<span class="o">[]</span> <span class="k">of</span> <span class="t">Int32</span>) { <span class="o">|</span>memo, i<span class="o">|</span> memo.unshift(i) } <span class="c"># =&gt; [3, 2, 1]</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/tuple.cr#L687" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="reduce(&amp;)-instance-method">
+      <div class="signature">
+        
+        def <strong>reduce</strong>(&)
+
+        <a class="method-permalink" href="#reduce%28%26%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Combines all elements in the collection by applying a binary operation, specified by a block, so as
+to reduce them to a single value.</p>
+<p>For each element in the collection the block is passed an accumulator value (<em>memo</em>) and the element. The
+result becomes the new value for <em>memo</em>. At the end of the iteration, the final value of <em>memo</em> is
+the return value for the method. The initial value for the accumulator is the first element in the collection.
+If the collection has only one element, that element is returned.</p>
+<p>Raises <code><a href="Enumerable/EmptyError.html">Enumerable::EmptyError</a></code> if the collection is empty.</p>
+<pre><code class="language-crystal">[<span class="n">1</span>, <span class="n">2</span>, <span class="n">3</span>, <span class="n">4</span>, <span class="n">5</span>].reduce { <span class="o">|</span>acc, i<span class="o">|</span> acc <span class="o">+</span> i } <span class="c"># =&gt; 15</span>
+[<span class="n">1</span>].reduce { <span class="o">|</span>acc, i<span class="o">|</span> acc <span class="o">+</span> i }             <span class="c"># =&gt; 1</span>
+(<span class="o">[]</span> <span class="k">of</span> <span class="t">Int32</span>).reduce { <span class="o">|</span>acc, i<span class="o">|</span> acc <span class="o">+</span> i }   <span class="c"># raises Enumerable::EmptyError</span></code></pre>
+<p>The block is not required to return a <code>T</code>, in which case the accumulator's
+type includes whatever the block returns.</p>
+<pre><code class="language-crystal"><span class="c"># `acc` is an `Int32 | String`</span>
+[<span class="n">1</span>, <span class="n">2</span>, <span class="n">3</span>, <span class="n">4</span>, <span class="n">5</span>].reduce { <span class="o">|</span>acc, i<span class="o">|</span> <span class="s">&quot;</span><span class="i">#{</span>acc<span class="i">}</span><span class="s">-</span><span class="i">#{</span>i<span class="i">}</span><span class="s">&quot;</span> } <span class="c"># =&gt; &quot;1-2-3-4-5&quot;</span>
+[<span class="n">1</span>].reduce { <span class="o">|</span>acc, i<span class="o">|</span> <span class="s">&quot;</span><span class="i">#{</span>acc<span class="i">}</span><span class="s">-</span><span class="i">#{</span>i<span class="i">}</span><span class="s">&quot;</span> }             <span class="c"># =&gt; 1</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/tuple.cr#L674" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="reduce?(&amp;)-instance-method">
+      <div class="signature">
+        
+        def <strong>reduce?</strong>(&)
+
+        <a class="method-permalink" href="#reduce%3F%28%26%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Similar to <code><a href="Tuple.html#reduce%28%26%29-instance-method">#reduce</a></code>, but instead of raising when the input is empty,
+return <code>nil</code></p>
+<pre><code class="language-crystal">(<span class="o">[]</span> <span class="k">of</span> <span class="t">Int32</span>).reduce? { <span class="o">|</span>acc, i<span class="o">|</span> acc <span class="o">+</span> i } <span class="c"># =&gt; nil</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/tuple.cr#L695" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="reverse-instance-method">
+      <div class="signature">
+        
+        def <strong>reverse</strong>
+
+        <a class="method-permalink" href="#reverse-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns a new tuple where the elements are in reverse order.</p>
+<pre><code class="language-crystal">tuple <span class="o">=</span> {<span class="n">1</span>, <span class="n">2.5</span>, <span class="s">&quot;a&quot;</span>}
+tuple.reverse <span class="c"># =&gt; {&quot;a&quot;, 2.5, 1}</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/tuple.cr#L640" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="reverse_each(&amp;:Union(*T)-&gt;)-instance-method">
+      <div class="signature">
+        
+        def <strong>reverse_each</strong>(& : <a href="Union.html">Union</a>(<span class="o">*</span><span class="t">T</span>) -> )
+
+        <a class="method-permalink" href="#reverse_each%28%26%3AUnion%28%2AT%29-%3E%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Yields each of the elements in this tuple in reverse order.</p>
+<pre><code class="language-crystal">tuple <span class="o">=</span> {<span class="n">1</span>, <span class="s">&quot;hello&quot;</span>, <span class="s">&#39;x&#39;</span>}
+tuple.reverse_each <span class="k">do</span> <span class="o">|</span>value<span class="o">|</span>
+  puts value
+<span class="k">end</span></code></pre>
+<p>Output:</p>
+<pre><code class="language-text">'x'
+&quot;hello&quot;
+1</code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/tuple.cr#L666" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="size-instance-method">
+      <div class="signature">
+        
+        def <strong>size</strong>
+
+        <a class="method-permalink" href="#size-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the number of elements in this tuple.</p>
+<pre><code class="language-crystal">{<span class="s">&#39;a&#39;</span>, <span class="s">&#39;b&#39;</span>}.size <span class="c"># =&gt; 2</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/tuple.cr#L523" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_a:Array(Union(*T))-instance-method">
+      <div class="signature">
+        
+        def <strong>to_a</strong> : <a href="Array.html">Array</a>(<a href="Union.html">Union</a>(<span class="o">*</span><span class="t">T</span>))
+
+        <a class="method-permalink" href="#to_a%3AArray%28Union%28%2AT%29%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns an <code><a href="Array.html">Array</a></code> with all the elements in the tuple.</p>
+<pre><code class="language-crystal">{<span class="n">1</span>, <span class="n">2</span>, <span class="n">3</span>, <span class="n">4</span>, <span class="n">5</span>}.to_a <span class="c"># =&gt; [1, 2, 3, 4, 5]</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/tuple.cr#L547" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_a(&amp;:Union(*T)-&gt;U)forallU-instance-method">
+      <div class="signature">
+        
+        def <strong>to_a</strong>(& : <a href="Union.html">Union</a>(<span class="o">*</span><span class="t">T</span>) -> U) forall U
+
+        <a class="method-permalink" href="#to_a%28%26%3AUnion%28%2AT%29-%3EU%29forallU-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns an <code><a href="Array.html">Array</a></code> with the results of running <em>block</em> against each element of the tuple.</p>
+<pre><code class="language-crystal">{<span class="n">1</span>, <span class="n">2</span>, <span class="n">3</span>, <span class="n">4</span>, <span class="n">5</span>}).to_a { <span class="o">|</span>i<span class="o">|</span> i <span class="o">*</span> <span class="n">2</span> } <span class="c"># =&gt; [2, 4, 6, 8, 10]</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/tuple.cr#L556" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_json(json:JSON::Builder):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>to_json</strong>(json : <a href="JSON/Builder.html">JSON::Builder</a>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#to_json%28json%3AJSON%3A%3ABuilder%29%3ANil-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/json/to_json.cr#L153" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_s(io:IO):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>to_s</strong>(io : <a href="IO.html">IO</a>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#to_s%28io%3AIO%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Appends a string representation of this tuple to the given <code><a href="IO.html">IO</a></code>.</p>
+<pre><code class="language-crystal">tuple <span class="o">=</span> {<span class="n">1</span>, <span class="s">&quot;hello&quot;</span>}
+tuple.to_s <span class="c"># =&gt; &quot;{1, \&quot;hello\&quot;}&quot;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/tuple.cr#L589" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_static_array:StaticArray-instance-method">
+      <div class="signature">
+        
+        def <strong>to_static_array</strong> : <a href="StaticArray.html">StaticArray</a>
+
+        <a class="method-permalink" href="#to_static_array%3AStaticArray-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns a <code><a href="StaticArray.html">StaticArray</a></code> with the same elements.</p>
+<p>The element type is <code><a href="Union.html">Union</a>(*T)</code>.</p>
+<pre><code class="language-crystal">{<span class="n">1</span>, <span class="s">&#39;a&#39;</span>, <span class="n">true</span>}.to_static_array <span class="c"># =&gt; StaticArray[1, &#39;a&#39;, true]</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/tuple.cr#L573" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_yaml(yaml:YAML::Nodes::Builder):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>to_yaml</strong>(yaml : <a href="YAML/Nodes/Builder.html">YAML::Nodes::Builder</a>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#to_yaml%28yaml%3AYAML%3A%3ANodes%3A%3ABuilder%29%3ANil-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/yaml/to_yaml.cr#L55" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="unsafe_fetch(index:Int)-instance-method">
+      <div class="signature">
+        
+        def <strong>unsafe_fetch</strong>(index : <a href="Int.html">Int</a>)
+
+        <a class="method-permalink" href="#unsafe_fetch%28index%3AInt%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+            <div class="doc-inherited">
+              Description copied from module <a href="Indexable.html">Indexable(Union(*T))</a>
+            </div>
+          
+          <p>Returns the element at the given <em>index</em>, without doing any bounds check.</p>
+<p><code><a href="Indexable.html">Indexable</a></code> makes sure to invoke this method with <em>index</em> in <code>0...size</code>,
+so converting negative indices to positive ones is not needed here.</p>
+<p>Clients never invoke this method directly. Instead, they access
+elements with <code><a href="Tuple.html#%5B%5D%28index%3AInt%29-instance-method">#[](index)</a></code> and <code><a href="Tuple.html#%5B%5D%3F%28index%3AInt%29-instance-method">#[]?(index)</a></code>.</p>
+<p>This method should only be directly invoked if you are absolutely
+sure the index is in bounds, to avoid a bounds check for a small boost
+of performance.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/tuple.cr#L174" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+</div>
+
+</body>
+</html>

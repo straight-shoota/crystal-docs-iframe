@@ -1,0 +1,2381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Crystal Docs 1.16.1">
+<meta name="crystal_docs.project_version" content="1.17.0-dev">
+<meta name="crystal_docs.project_name" content="Crystal">
+
+  <meta name="crystal_docs.json_config_url" content="/api/versions.json">
+
+
+    <link rel="canonical" href="https://crystal-lang.org/api/latest/BitArray.html">
+
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/doc.js"></script>
+
+  <meta name="repository-name" content="Crystal">
+  <title>BitArray - Crystal 1.17.0-dev</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill="currentColor" fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<input type="checkbox" id="sidebar-btn">
+<label for="sidebar-btn" id="sidebar-btn-label">
+  <svg class="open" xmlns="http://www.w3.org/2000/svg" height="2em" width="2em" viewBox="0 0 512 512"><title>Open Sidebar</title><path fill="currentColor" d="M80 96v64h352V96H80zm0 112v64h352v-64H80zm0 112v64h352v-64H80z"></path></svg>
+  <svg class="close" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><title>Close Sidebar</title><path fill="currentColor" d="m118.6 73.4-45.2 45.2L210.7 256 73.4 393.4l45.2 45.2L256 301.3l137.4 137.3 45.2-45.2L301.3 256l137.3-137.4-45.2-45.2L256 210.7Z"></path></svg>
+</label>
+<iframe class="sidebar" src="sidebar.html"></iframe>
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">
+    struct
+  </span> BitArray
+
+</h1>
+
+
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="BitArray.html">BitArray</a></li><li class="superclass"><a href="Struct.html">Struct</a></li><li class="superclass"><a href="Value.html">Value</a></li><li class="superclass"><a href="Object.html">Object</a></li></ul>
+
+
+
+
+  <h2>
+    <a id="overview" class="anchor" href="#overview">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Overview
+  </h2>
+
+  <p><code><a href="BitArray.html">BitArray</a></code> is an array data structure that compactly stores bits.</p>
+<p>Bits externally represented as <code><a href="Bool.html">Bool</a></code>s are stored internally as
+<code><a href="UInt32.html">UInt32</a></code>s. The total number of bits stored is set at creation and is
+immutable.</p>
+<p><span class="flag purple">NOTE</span>  To use <code><a href="BitArray.html">BitArray</a></code>, you must explicitly import it with <code>require &quot;bit_array&quot;</code></p>
+<h3><a id="example" class="anchor" href="#example">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Example</h3>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;bit_array&quot;</span>
+
+ba <span class="o">=</span> <span class="t">BitArray</span>.new(<span class="n">12</span>) <span class="c"># =&gt; &quot;BitArray[000000000000]&quot;</span>
+ba[<span class="n">2</span>]                 <span class="c"># =&gt; false</span>
+<span class="n">0</span>.upto(<span class="n">5</span>) { <span class="o">|</span>i<span class="o">|</span> ba[i <span class="o">*</span> <span class="n">2</span>] <span class="o">=</span> <span class="n">true</span> }
+ba    <span class="c"># =&gt; &quot;BitArray[101010101010]&quot;</span>
+ba[<span class="n">2</span>] <span class="c"># =&gt; true</span></code></pre>
+
+
+
+
+
+
+
+  <h2>
+    <a id="included-modules" class="anchor" href="#included-modules">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Included Modules
+  </h2>
+  <ul class="other-types-list">
+    
+      <li class="other-type"><a href="Indexable/Mutable.html">Indexable::Mutable</a>(<a href="Bool.html">Bool</a>)</li>
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/bit_array.cr#L20" target="_blank">
+        bit_array.cr
+      </a>
+    
+    <br/>
+  
+
+
+
+
+
+  
+  <h2>
+    <a id="constructors" class="anchor" href="#constructors">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructors
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#new%28size%3AInt%2Cinitial%3ABool%3Dfalse%29-class-method" class="signature"><strong>.new</strong>(size : Int, initial : Bool = <span class="n">false</span>)</a>
+        
+          <div class="summary"><p>Creates a new <code><a href="BitArray.html">BitArray</a></code> of <em>size</em> bits.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#new%28size%3AInt%2C%26%3AInt32-%3E_%29-class-method" class="signature"><strong>.new</strong>(size : Int, & : Int32 -> _)</a>
+        
+          <div class="summary"><p>Creates a new <code><a href="BitArray.html">BitArray</a></code> of <em>size</em> bits and invokes the given block once for each index of <code>self</code>, setting the bit at that index to <code>true</code> if the block is truthy.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+  
+
+  
+
+  
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#%3D%3D%28other%3ABitArray%29-instance-method" class="signature"><strong>#==</strong>(other : BitArray)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%5B%5D%28start%3AInt%2Ccount%3AInt%29%3ABitArray-instance-method" class="signature"><strong>#[]</strong>(start : Int, count : Int) : BitArray</a>
+        
+          <div class="summary"><p>Returns count or less (if there aren't enough) elements starting at the given start index.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%5B%5D%28range%3ARange%29%3ABitArray-instance-method" class="signature"><strong>#[]</strong>(range : Range) : BitArray</a>
+        
+          <div class="summary"><p>Returns all elements that are within the given range.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%5B%5D%3D%28index%3AInt%2Cvalue%3ABool%29%3ABool-instance-method" class="signature"><strong>#[]=</strong>(index : Int, value : Bool) : Bool</a>
+        
+          <div class="summary"><p>Sets the given <em>value</em> at the given <em>index</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#all%3F%3ABool-instance-method" class="signature"><strong>#all?</strong> : Bool</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if all of the elements of the collection are truthy.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#any%3F%3ABool-instance-method" class="signature"><strong>#any?</strong> : Bool</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if at least one of the collection's members is truthy.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#count%28item%3ABool%29%3AInt32-instance-method" class="signature"><strong>#count</strong>(item : Bool) : Int32</a>
+        
+          <div class="summary"><p>Returns the number of times that <em>item</em> is present in the bit array.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#dup-instance-method" class="signature"><strong>#dup</strong></a>
+        
+          <div class="summary"><p>Returns a new <code><a href="BitArray.html">BitArray</a></code> with all of the same elements.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#fill%28value%3ABool%2Cstart%3AInt%2Ccount%3AInt%29%3Aself-instance-method" class="signature"><strong>#fill</strong>(value : Bool, start : Int, count : Int) : <span class="k">self</span></a>
+        
+          <div class="summary"><p>Replaces <em>count</em> or less (if there aren't enough) elements starting at the given <em>start</em> index with <em>value</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#fill%28value%3ABool%29%3Aself-instance-method" class="signature"><strong>#fill</strong>(value : Bool) : <span class="k">self</span></a>
+        
+          <div class="summary"><p>Replaces every element in <code>self</code> with the given <em>value</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#hash%28hasher%29-instance-method" class="signature"><strong>#hash</strong>(hasher)</a>
+        
+          <div class="summary"><p>See <code><a href="Object.html#hash%28hasher%29-instance-method">Object#hash(hasher)</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#includes%3F%28obj%3ABool%29%3ABool-instance-method" class="signature"><strong>#includes?</strong>(obj : Bool) : Bool</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if the collection contains <em>obj</em>, <code>false</code> otherwise.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#index%28obj%3ABool%2Coffset%3AInt%3D0%29%3AInt32%7CNil-instance-method" class="signature"><strong>#index</strong>(obj : Bool, offset : Int = <span class="n">0</span>) : Int32 | Nil</a>
+        
+          <div class="summary"><p>Returns the index of the first appearance of <em>obj</em> in <code>self</code> starting from the given <em>offset</em>, or <code>nil</code> if the value is not in <code>self</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#inspect%28io%3AIO%29%3ANil-instance-method" class="signature"><strong>#inspect</strong>(io : IO) : Nil</a>
+        
+          <div class="summary"><p>Creates a string representation of <code>self</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#invert%3ANil-instance-method" class="signature"><strong>#invert</strong> : Nil</a>
+        
+          <div class="summary"><p>Inverts all bits in the array.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#none%3F%3ABool-instance-method" class="signature"><strong>#none?</strong> : Bool</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if all of the elements of the collection are falsey.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#one%3F%3ABool-instance-method" class="signature"><strong>#one?</strong> : Bool</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if only one element in this enumerable is truthy.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#reverse%21%3Aself-instance-method" class="signature"><strong>#reverse!</strong> : <span class="k">self</span></a>
+        
+          <div class="summary"><p>Reverses in-place all the elements of <code>self</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#rindex%28obj%3ABool%2Coffset%3AInt%3Dsize-1%29%3AInt32%7CNil-instance-method" class="signature"><strong>#rindex</strong>(obj : Bool, offset : Int = size <span class="o">-</span> <span class="n">1</span>) : Int32 | Nil</a>
+        
+          <div class="summary"><p>Returns the index of the last appearance of <em>obj</em> in <code>self</code>, or <code>nil</code> if <em>obj</em> is not in <code>self</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#rotate%21%28n%3AInt%3D1%29%3Aself-instance-method" class="signature"><strong>#rotate!</strong>(n : Int = <span class="n">1</span>) : <span class="k">self</span></a>
+        
+          <div class="summary"><p>Shifts all elements of <code>self</code> to the left <em>n</em> times.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#size%3AInt32-instance-method" class="signature"><strong>#size</strong> : Int32</a>
+        
+          <div class="summary"><p>The number of bits the BitArray stores</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#tally%28hash%29-instance-method" class="signature"><strong>#tally</strong>(hash)</a>
+        
+          <div class="summary"><p>Tallies the collection.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#tally%3AHash%28Bool%2CInt32%29-instance-method" class="signature"><strong>#tally</strong> : Hash(Bool, Int32)</a>
+        
+          <div class="summary"><p>Tallies the collection.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_s%28io%3AIO%29%3ANil-instance-method" class="signature"><strong>#to_s</strong>(io : IO) : Nil</a>
+        
+          <div class="summary"><p>Creates a string representation of <code>self</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_slice%3ABytes-instance-method" class="signature"><strong>#to_slice</strong> : Bytes</a>
+        
+          <div class="summary"><p>Returns a <code><a href="Bytes.html">Bytes</a></code> able to read and write bytes from a buffer.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#toggle%28start%3AInt%2Ccount%3AInt%29-instance-method" class="signature"><strong>#toggle</strong>(start : Int, count : Int)</a>
+        
+          <div class="summary"><p>Toggles <em>count</em> or less (if there aren't enough) bits starting at the given <em>start</em> index.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#toggle%28range%3ARange%29-instance-method" class="signature"><strong>#toggle</strong>(range : Range)</a>
+        
+          <div class="summary"><p>Toggles all bits that are within the given <em>range</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#toggle%28index%29%3ANil-instance-method" class="signature"><strong>#toggle</strong>(index) : Nil</a>
+        
+          <div class="summary"><p>Toggles the bit at the given <em>index</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#unsafe_fetch%28index%3AInt%29%3ABool-instance-method" class="signature"><strong>#unsafe_fetch</strong>(index : Int) : Bool</a>
+        
+          <div class="summary"><p>Returns the element at the given <em>index</em>, without doing any bounds check.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#unsafe_put%28index%3AInt%2Cvalue%3ABool%29-instance-method" class="signature"><strong>#unsafe_put</strong>(index : Int, value : Bool)</a>
+        
+          <div class="summary"><p>Sets the element at the given <em>index</em> to <em>value</em>, without doing any bounds check.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+
+  <div class="methods-inherited">
+    
+      
+
+  <h3>Instance methods inherited from module <code><a href="Indexable/Mutable.html">Indexable::Mutable</a>(<a href="Bool.html">Bool</a>)</code></h3>
+  
+  
+    <a href="Indexable/Mutable.html#%5B%5D%3D%28index%3AInt%2Cvalue%3AT%29%3AT-instance-method" class="tooltip">
+      <span>[]=(index : Int, value : T) : T</span>
+    []=</a>, 
+    
+  
+    <a href="Indexable/Mutable.html#fill%28value%3AT%2Cstart%3AInt%2Ccount%3AInt%29%3Aself-instance-method" class="tooltip">
+      <span>fill(value : T, start : Int, count : Int) : <span class="k">self</span><br/>fill(value : T, range : Range) : <span class="k">self</span><br/>fill(value : T) : <span class="k">self</span><br/>fill(start : Int, count : Int, & : Int32 -> T) : <span class="k">self</span><br/>fill(range : Range, & : Int32 -> T) : <span class="k">self</span><br/>fill(*, offset : Int = <span class="n">0</span>, & : Int32 -> T) : <span class="k">self</span></span>
+    fill</a>, 
+    
+  
+    <a href="Indexable/Mutable.html#map%21%28%26%3AT-%3E_%29%3Aself-instance-method" class="tooltip">
+      <span>map!(& : T -> _) : <span class="k">self</span></span>
+    map!</a>, 
+    
+  
+    <a href="Indexable/Mutable.html#map_with_index%21%28offset%3D0%2C%26%3AT%2CInt32-%3E_%29%3Aself-instance-method" class="tooltip">
+      <span>map_with_index!(offset = <span class="n">0</span>, & : T, Int32 -> _) : <span class="k">self</span></span>
+    map_with_index!</a>, 
+    
+  
+    <a href="Indexable/Mutable.html#reverse%21%3Aself-instance-method" class="tooltip">
+      <span>reverse! : <span class="k">self</span></span>
+    reverse!</a>, 
+    
+  
+    <a href="Indexable/Mutable.html#rotate%21%28n%3AInt%3D1%29%3Aself-instance-method" class="tooltip">
+      <span>rotate!(n : Int = <span class="n">1</span>) : <span class="k">self</span></span>
+    rotate!</a>, 
+    
+  
+    <a href="Indexable/Mutable.html#shuffle%21%28random%3ARandom%3DRandom%3A%3ADEFAULT%29%3Aself-instance-method" class="tooltip">
+      <span>shuffle!(random : Random = <span class="t">Random</span><span class="t">::</span><span class="t">DEFAULT</span>) : <span class="k">self</span></span>
+    shuffle!</a>, 
+    
+  
+    <a href="Indexable/Mutable.html#sort%21%3Aself-instance-method" class="tooltip">
+      <span>sort! : <span class="k">self</span><br/>sort!(&block : T, T -> U) : <span class="k">self</span> forall U</span>
+    sort!</a>, 
+    
+  
+    <a href="Indexable/Mutable.html#sort_by%21%28%26block%3AT-%3E_%29%3Aself-instance-method" class="tooltip">
+      <span>sort_by!(&block : T -> _) : <span class="k">self</span></span>
+    sort_by!</a>, 
+    
+  
+    <a href="Indexable/Mutable.html#swap%28index0%3AInt%2Cindex1%3AInt%29%3Aself-instance-method" class="tooltip">
+      <span>swap(index0 : Int, index1 : Int) : <span class="k">self</span></span>
+    swap</a>, 
+    
+  
+    <a href="Indexable/Mutable.html#unsafe_put%28index%3AInt%2Cvalue%3AT%29-instance-method" class="tooltip">
+      <span>unsafe_put(index : Int, value : T)</span>
+    unsafe_put</a>, 
+    
+  
+    <a href="Indexable/Mutable.html#unstable_sort%21%3Aself-instance-method" class="tooltip">
+      <span>unstable_sort! : <span class="k">self</span><br/>unstable_sort!(&block : T, T -> U) : <span class="k">self</span> forall U</span>
+    unstable_sort!</a>, 
+    
+  
+    <a href="Indexable/Mutable.html#unstable_sort_by%21%28%26block%3AT-%3E_%29%3Aself-instance-method" class="tooltip">
+      <span>unstable_sort_by!(&block : T -> _) : <span class="k">self</span></span>
+    unstable_sort_by!</a>, 
+    
+  
+    <a href="Indexable/Mutable.html#update%28index%3AInt%2C%26%3AT-%3E_%29%3AT-instance-method" class="tooltip">
+      <span>update(index : Int, & : T -> _) : T</span>
+    update</a>
+    
+  
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+      
+
+  <h3>Instance methods inherited from module <code><a href="Indexable.html">Indexable</a>(<a href="Bool.html">Bool</a>)</code></h3>
+  
+  
+    <a href="Indexable.html#%5B%5D%28index%3AInt%29-instance-method" class="tooltip">
+      <span>[](index : Int)</span>
+    []</a>, 
+    
+  
+    <a href="Indexable.html#%5B%5D%3F%28index%3AInt%29-instance-method" class="tooltip">
+      <span>[]?(index : Int)</span>
+    []?</a>, 
+    
+  
+    <a href="Indexable.html#bsearch%28%26%3AT-%3E_%29-instance-method" class="tooltip">
+      <span>bsearch(& : T -> _)</span>
+    bsearch</a>, 
+    
+  
+    <a href="Indexable.html#bsearch_index%28%26%3AT%2CInt32-%3E_%29-instance-method" class="tooltip">
+      <span>bsearch_index(& : T, Int32 -> _)</span>
+    bsearch_index</a>, 
+    
+  
+    <a href="Indexable.html#cartesian_product%28%2Aothers%3AIndexable%29-instance-method" class="tooltip">
+      <span>cartesian_product(*others : Indexable)</span>
+    cartesian_product</a>, 
+    
+  
+    <a href="Indexable.html#combinations%28size%3AInt%3Dself.size%29-instance-method" class="tooltip">
+      <span>combinations(size : Int = <span class="k">self</span>.size)</span>
+    combinations</a>, 
+    
+  
+    <a href="Indexable.html#dig%28index%3AInt%2C%2Asubindexes%29-instance-method" class="tooltip">
+      <span>dig(index : Int, *subindexes)</span>
+    dig</a>, 
+    
+  
+    <a href="Indexable.html#dig%3F%28index%3AInt%2C%2Asubindexes%29-instance-method" class="tooltip">
+      <span>dig?(index : Int, *subindexes)</span>
+    dig?</a>, 
+    
+  
+    <a href="Indexable.html#each%28%26%3AT-%3E%29-instance-method" class="tooltip">
+      <span>each(& : T -> )<br/>each<br/>each(*, start : Int, count : Int, & : T -> )<br/>each(*, within range : Range, & : T -> )</span>
+    each</a>, 
+    
+  
+    <a href="Indexable.html#each_cartesian%28%2Aothers%3AIndexable%2C%26%29-instance-method" class="tooltip">
+      <span>each_cartesian(*others : Indexable, &)<br/>each_cartesian(*others : Indexable)</span>
+    each_cartesian</a>, 
+    
+  
+    <a href="Indexable.html#each_combination%28size%3AInt%3Dself.size%2Creuse%3Dfalse%2C%26%29%3ANil-instance-method" class="tooltip">
+      <span>each_combination(size : Int = <span class="k">self</span>.size, reuse = <span class="n">false</span>, &) : Nil<br/>each_combination(size : Int = <span class="k">self</span>.size, reuse = <span class="n">false</span>)</span>
+    each_combination</a>, 
+    
+  
+    <a href="Indexable.html#each_index%28%26%3AInt32-%3E%29%3ANil-instance-method" class="tooltip">
+      <span>each_index(& : Int32 -> ) : Nil<br/>each_index<br/>each_index(*, start : Int, count : Int, &)</span>
+    each_index</a>, 
+    
+  
+    <a href="Indexable.html#each_permutation%28size%3AInt%3Dself.size%2Creuse%3Dfalse%2C%26%29%3ANil-instance-method" class="tooltip">
+      <span>each_permutation(size : Int = <span class="k">self</span>.size, reuse = <span class="n">false</span>, &) : Nil<br/>each_permutation(size : Int = <span class="k">self</span>.size, reuse = <span class="n">false</span>)</span>
+    each_permutation</a>, 
+    
+  
+    <a href="Indexable.html#each_repeated_combination%28size%3AInt%3Dself.size%2Creuse%3Dfalse%2C%26%29%3ANil-instance-method" class="tooltip">
+      <span>each_repeated_combination(size : Int = <span class="k">self</span>.size, reuse = <span class="n">false</span>, &) : Nil<br/>each_repeated_combination(size : Int = <span class="k">self</span>.size, reuse = <span class="n">false</span>)</span>
+    each_repeated_combination</a>, 
+    
+  
+    <a href="Indexable.html#empty%3F%3ABool-instance-method" class="tooltip">
+      <span>empty? : Bool</span>
+    empty?</a>, 
+    
+  
+    <a href="Indexable.html#equals%3F%28other%3AIndexable%2C%26%29%3ABool-instance-method" class="tooltip">
+      <span>equals?(other : Indexable, &) : Bool<br/>equals?(other, &)</span>
+    equals?</a>, 
+    
+  
+    <a href="Indexable.html#fetch%28index%3AInt%2C%26%29-instance-method" class="tooltip">
+      <span>fetch(index : Int, &)<br/>fetch(index, default)</span>
+    fetch</a>, 
+    
+  
+    <a href="Indexable.html#find%28if_none%2C_offsetoffset%3AInt%2C%26%3AT-%3E%29-instance-method" class="tooltip">
+      <span>find(if_none, _offset offset : Int, & : T -> )<br/>find(if_none = <span class="n">nil</span>, *, offset : Int, & : T -> )</span>
+    find</a>, 
+    
+  
+    <a href="Indexable.html#find%21%28offset%3AInt%3D0%2C%26%3AT-%3E%29-instance-method" class="tooltip">
+      <span>find!(offset : Int = <span class="n">0</span>, & : T -> )</span>
+    find!</a>, 
+    
+  
+    <a href="Indexable.html#first%28%26%29-instance-method" class="tooltip">
+      <span>first(&)</span>
+    first</a>, 
+    
+  
+    <a href="Indexable.html#hash%28hasher%29-instance-method" class="tooltip">
+      <span>hash(hasher)</span>
+    hash</a>, 
+    
+  
+    <a href="Indexable.html#index%28object%2Coffset%3AInt%3D0%29-instance-method" class="tooltip">
+      <span>index(object, offset : Int = <span class="n">0</span>)<br/>index(offset : Int = <span class="n">0</span>, & : T -> )</span>
+    index</a>, 
+    
+  
+    <a href="Indexable.html#index%21%28obj%2Coffset%3AInt%3D0%29-instance-method" class="tooltip">
+      <span>index!(obj, offset : Int = <span class="n">0</span>)<br/>index!(offset : Int = <span class="n">0</span>, & : T -> )</span>
+    index!</a>, 
+    
+  
+    <a href="Indexable.html#join%28separator%3AString%7CChar%7CNumber%3D%22%22%29%3AString-instance-method" class="tooltip">
+      <span>join(separator : String | Char | Number = <span class="s">&quot;&quot;</span>) : String</span>
+    join</a>, 
+    
+  
+    <a href="Indexable.html#last%3AT-instance-method" class="tooltip">
+      <span>last : T<br/>last(&)</span>
+    last</a>, 
+    
+  
+    <a href="Indexable.html#last%3F%3AT%7CNil-instance-method" class="tooltip">
+      <span>last? : T | Nil</span>
+    last?</a>, 
+    
+  
+    <a href="Indexable.html#permutations%28size%3AInt%3Dself.size%29%3AArray%28Array%28T%29%29-instance-method" class="tooltip">
+      <span>permutations(size : Int = <span class="k">self</span>.size) : Array(Array(T))</span>
+    permutations</a>, 
+    
+  
+    <a href="Indexable.html#repeated_combinations%28size%3AInt%3Dself.size%29%3AArray%28Array%28T%29%29-instance-method" class="tooltip">
+      <span>repeated_combinations(size : Int = <span class="k">self</span>.size) : Array(Array(T))</span>
+    repeated_combinations</a>, 
+    
+  
+    <a href="Indexable.html#reverse_each%28%26%3AT-%3E%29%3ANil-instance-method" class="tooltip">
+      <span>reverse_each(& : T -> ) : Nil<br/>reverse_each</span>
+    reverse_each</a>, 
+    
+  
+    <a href="Indexable.html#rindex%28value%2Coffset%3Dsize-1%29-instance-method" class="tooltip">
+      <span>rindex(value, offset = size <span class="o">-</span> <span class="n">1</span>)<br/>rindex(offset = size <span class="o">-</span> <span class="n">1</span>, & : T -> )</span>
+    rindex</a>, 
+    
+  
+    <a href="Indexable.html#rindex%21%28value%2Coffset%3Dsize-1%29-instance-method" class="tooltip">
+      <span>rindex!(value, offset = size <span class="o">-</span> <span class="n">1</span>)<br/>rindex!(offset = size <span class="o">-</span> <span class="n">1</span>, & : T -> )</span>
+    rindex!</a>, 
+    
+  
+    <a href="Indexable.html#sample%28n%3AInt%2Crandom%3ARandom%3DRandom%3A%3ADEFAULT%29%3AArray%28T%29-instance-method" class="tooltip">
+      <span>sample(n : Int, random : Random = <span class="t">Random</span><span class="t">::</span><span class="t">DEFAULT</span>) : Array(T)<br/>sample(random : Random = <span class="t">Random</span><span class="t">::</span><span class="t">DEFAULT</span>)</span>
+    sample</a>, 
+    
+  
+    <a href="Indexable.html#size-instance-method" class="tooltip">
+      <span>size</span>
+    size</a>, 
+    
+  
+    <a href="Indexable.html#to_a%28%26%3AT-%3EU%29%3AArray%28U%29forallU-instance-method" class="tooltip">
+      <span>to_a(& : T -> U) : Array(U) forall U</span>
+    to_a</a>, 
+    
+  
+    <a href="Indexable.html#unsafe_fetch%28index%3AInt%29-instance-method" class="tooltip">
+      <span>unsafe_fetch(index : Int)</span>
+    unsafe_fetch</a>, 
+    
+  
+    <a href="Indexable.html#values_at%28%2Aindexes%3AInt%29-instance-method" class="tooltip">
+      <span>values_at(*indexes : Int)</span>
+    values_at</a>
+    
+  
+
+
+      
+
+
+      
+
+  <h3>Class methods inherited from module <code><a href="Indexable.html">Indexable</a>(<a href="Bool.html">Bool</a>)</code></h3>
+  
+  
+    <a href="Indexable.html#cartesian_product%28indexables%3AIndexable%28Indexable%29%29-class-method" class="tooltip">
+      <span>cartesian_product(indexables : Indexable(Indexable))</span>
+    cartesian_product</a>, 
+    
+  
+    <a href="Indexable.html#each_cartesian%28indexables%3AIndexable%28Indexable%29%2Creuse%3Dfalse%2C%26%29-class-method" class="tooltip">
+      <span>each_cartesian(indexables : Indexable(Indexable), reuse = <span class="n">false</span>, &)<br/>each_cartesian(indexables : Indexable(Indexable), reuse = <span class="n">false</span>)</span>
+    each_cartesian</a>
+    
+  
+
+
+      
+
+
+    
+      
+
+  <h3>Instance methods inherited from module <code><a href="Enumerable.html">Enumerable</a>(<a href="Bool.html">Bool</a>)</code></h3>
+  
+  
+    <a href="Enumerable.html#accumulate%28initial%3AU%29%3AArray%28U%29forallU-instance-method" class="tooltip">
+      <span>accumulate(initial : U) : Array(U) forall U<br/>accumulate : Array(T)<br/>accumulate(initial : U, &block : U, T -> U) : Array(U) forall U<br/>accumulate(&block : T, T -> T) : Array(T)</span>
+    accumulate</a>, 
+    
+  
+    <a href="Enumerable.html#all%3F%28%26%3AT-%3E%29%3ABool-instance-method" class="tooltip">
+      <span>all?(& : T -> ) : Bool<br/>all?(pattern) : Bool<br/>all? : Bool</span>
+    all?</a>, 
+    
+  
+    <a href="Enumerable.html#any%3F%28%26%3AT-%3E%29%3ABool-instance-method" class="tooltip">
+      <span>any?(& : T -> ) : Bool<br/>any?(pattern) : Bool<br/>any? : Bool</span>
+    any?</a>, 
+    
+  
+    <a href="Enumerable.html#chunks%28%26block%3AT-%3EU%29forallU-instance-method" class="tooltip">
+      <span>chunks(&block : T -> U) forall U</span>
+    chunks</a>, 
+    
+  
+    <a href="Enumerable.html#compact_map%28%26%3AT-%3E_%29-instance-method" class="tooltip">
+      <span>compact_map(& : T -> _)</span>
+    compact_map</a>, 
+    
+  
+    <a href="Enumerable.html#count%28%26%3AT-%3E%29%3AInt32-instance-method" class="tooltip">
+      <span>count(& : T -> ) : Int32<br/>count(item) : Int32</span>
+    count</a>, 
+    
+  
+    <a href="Enumerable.html#cycle%28n%2C%26%3AT-%3E%29%3ANil-instance-method" class="tooltip">
+      <span>cycle(n, & : T -> ) : Nil<br/>cycle(& : T -> ) : Nil</span>
+    cycle</a>, 
+    
+  
+    <a href="Enumerable.html#each%28%26%3AT-%3E%29-instance-method" class="tooltip">
+      <span>each(& : T -> )</span>
+    each</a>, 
+    
+  
+    <a href="Enumerable.html#each_cons%28count%3AInt%2Creuse%3Dfalse%2C%26%29-instance-method" class="tooltip">
+      <span>each_cons(count : Int, reuse = <span class="n">false</span>, &)</span>
+    each_cons</a>, 
+    
+  
+    <a href="Enumerable.html#each_cons_pair%28%26%3AT%2CT-%3E%29%3ANil-instance-method" class="tooltip">
+      <span>each_cons_pair(& : T, T -> ) : Nil</span>
+    each_cons_pair</a>, 
+    
+  
+    <a href="Enumerable.html#each_slice%28count%3AInt%2Creuse%3Dfalse%2C%26%29-instance-method" class="tooltip">
+      <span>each_slice(count : Int, reuse = <span class="n">false</span>, &)</span>
+    each_slice</a>, 
+    
+  
+    <a href="Enumerable.html#each_step%28n%3AInt%2C%2A%2Coffset%3AInt%3D0%2C%26%3AT-%3E%29%3ANil-instance-method" class="tooltip">
+      <span>each_step(n : Int, *, offset : Int = <span class="n">0</span>, & : T -> ) : Nil</span>
+    each_step</a>, 
+    
+  
+    <a href="Enumerable.html#each_with_index%28offset%3D0%2C%26%29-instance-method" class="tooltip">
+      <span>each_with_index(offset = <span class="n">0</span>, &)</span>
+    each_with_index</a>, 
+    
+  
+    <a href="Enumerable.html#each_with_object%28obj%3AU%2C%26%3AT%2CU-%3E%29%3AUforallU-instance-method" class="tooltip">
+      <span>each_with_object(obj : U, & : T, U -> ) : U forall U</span>
+    each_with_object</a>, 
+    
+  
+    <a href="Enumerable.html#empty%3F%3ABool-instance-method" class="tooltip">
+      <span>empty? : Bool</span>
+    empty?</a>, 
+    
+  
+    <a href="Enumerable.html#find%28if_none%3Dnil%2C%26%3AT-%3E%29-instance-method" class="tooltip">
+      <span>find(if_none = <span class="n">nil</span>, & : T -> )</span>
+    find</a>, 
+    
+  
+    <a href="Enumerable.html#find%21%28%26%3AT-%3E%29%3AT-instance-method" class="tooltip">
+      <span>find!(& : T -> ) : T</span>
+    find!</a>, 
+    
+  
+    <a href="Enumerable.html#find_value%28if_none%3Dnil%2C%26%3AT-%3E%29-instance-method" class="tooltip">
+      <span>find_value(if_none = <span class="n">nil</span>, & : T -> )</span>
+    find_value</a>, 
+    
+  
+    <a href="Enumerable.html#first%28%26%29-instance-method" class="tooltip">
+      <span>first(&)<br/>first(count : Int) : Array(T)<br/>first : T</span>
+    first</a>, 
+    
+  
+    <a href="Enumerable.html#first%3F%3AT%7CNil-instance-method" class="tooltip">
+      <span>first? : T | Nil</span>
+    first?</a>, 
+    
+  
+    <a href="Enumerable.html#flat_map%28%26%3AT-%3E_%29-instance-method" class="tooltip">
+      <span>flat_map(& : T -> _)</span>
+    flat_map</a>, 
+    
+  
+    <a href="Enumerable.html#group_by%28%26%3AT-%3EU%29forallU-instance-method" class="tooltip">
+      <span>group_by(& : T -> U) forall U</span>
+    group_by</a>, 
+    
+  
+    <a href="Enumerable.html#in_groups_of%28size%3AInt%2Cfilled_up_with%3AU%3Dnil%29forallU-instance-method" class="tooltip">
+      <span>in_groups_of(size : Int, filled_up_with : U = <span class="n">nil</span>) forall U<br/>in_groups_of(size : Int, filled_up_with : U = <span class="n">nil</span>, reuse = <span class="n">false</span>, &) forall U</span>
+    in_groups_of</a>, 
+    
+  
+    <a href="Enumerable.html#in_slices_of%28size%3AInt%29%3AArray%28Array%28T%29%29-instance-method" class="tooltip">
+      <span>in_slices_of(size : Int) : Array(Array(T))</span>
+    in_slices_of</a>, 
+    
+  
+    <a href="Enumerable.html#includes%3F%28obj%29%3ABool-instance-method" class="tooltip">
+      <span>includes?(obj) : Bool</span>
+    includes?</a>, 
+    
+  
+    <a href="Enumerable.html#index%28%26%3AT-%3E%29%3AInt32%7CNil-instance-method" class="tooltip">
+      <span>index(& : T -> ) : Int32 | Nil<br/>index(obj) : Int32 | Nil</span>
+    index</a>, 
+    
+  
+    <a href="Enumerable.html#index%21%28%26%3AT-%3E%29%3AInt32-instance-method" class="tooltip">
+      <span>index!(& : T -> ) : Int32<br/>index!(obj) : Int32</span>
+    index!</a>, 
+    
+  
+    <a href="Enumerable.html#index_by%28%26%3AT-%3EU%29%3AHash%28U%2CT%29forallU-instance-method" class="tooltip">
+      <span>index_by(& : T -> U) : Hash(U, T) forall U</span>
+    index_by</a>, 
+    
+  
+    <a href="Enumerable.html#join%28io%3AIO%2Cseparator%3D%22%22%29%3ANil-instance-method" class="tooltip">
+      <span>join(io : IO, separator = <span class="s">&quot;&quot;</span>) : Nil<br/>join(separator, io : IO) : Nil<br/>join(separator = <span class="s">&quot;&quot;</span>) : String<br/>join(io : IO, separator = <span class="s">&quot;&quot;</span>, & : T, IO -> )<br/>join(separator, io : IO, &)<br/>join(separator = <span class="s">&quot;&quot;</span>, & : T -> )</span>
+    join</a>, 
+    
+  
+    <a href="Enumerable.html#map%28%26%3AT-%3EU%29%3AArray%28U%29forallU-instance-method" class="tooltip">
+      <span>map(& : T -> U) : Array(U) forall U</span>
+    map</a>, 
+    
+  
+    <a href="Enumerable.html#map_with_index%28offset%3D0%2C%26%3AT%2CInt32-%3EU%29%3AArray%28U%29forallU-instance-method" class="tooltip">
+      <span>map_with_index(offset = <span class="n">0</span>, & : T, Int32 -> U) : Array(U) forall U</span>
+    map_with_index</a>, 
+    
+  
+    <a href="Enumerable.html#max%28count%3AInt%29%3AArray%28T%29-instance-method" class="tooltip">
+      <span>max(count : Int) : Array(T)<br/>max : T</span>
+    max</a>, 
+    
+  
+    <a href="Enumerable.html#max%3F%3AT%7CNil-instance-method" class="tooltip">
+      <span>max? : T | Nil</span>
+    max?</a>, 
+    
+  
+    <a href="Enumerable.html#max_by%28%26%3AT-%3EU%29%3ATforallU-instance-method" class="tooltip">
+      <span>max_by(& : T -> U) : T forall U</span>
+    max_by</a>, 
+    
+  
+    <a href="Enumerable.html#max_by%3F%28%26%3AT-%3EU%29%3AT%7CNilforallU-instance-method" class="tooltip">
+      <span>max_by?(& : T -> U) : T | Nil forall U</span>
+    max_by?</a>, 
+    
+  
+    <a href="Enumerable.html#max_of%28%26%3AT-%3EU%29%3AUforallU-instance-method" class="tooltip">
+      <span>max_of(& : T -> U) : U forall U</span>
+    max_of</a>, 
+    
+  
+    <a href="Enumerable.html#max_of%3F%28%26%3AT-%3EU%29%3AU%7CNilforallU-instance-method" class="tooltip">
+      <span>max_of?(& : T -> U) : U | Nil forall U</span>
+    max_of?</a>, 
+    
+  
+    <a href="Enumerable.html#min%28count%3AInt%29%3AArray%28T%29-instance-method" class="tooltip">
+      <span>min(count : Int) : Array(T)<br/>min : T</span>
+    min</a>, 
+    
+  
+    <a href="Enumerable.html#min%3F%3AT%7CNil-instance-method" class="tooltip">
+      <span>min? : T | Nil</span>
+    min?</a>, 
+    
+  
+    <a href="Enumerable.html#min_by%28%26%3AT-%3EU%29%3ATforallU-instance-method" class="tooltip">
+      <span>min_by(& : T -> U) : T forall U</span>
+    min_by</a>, 
+    
+  
+    <a href="Enumerable.html#min_by%3F%28%26%3AT-%3EU%29%3AT%7CNilforallU-instance-method" class="tooltip">
+      <span>min_by?(& : T -> U) : T | Nil forall U</span>
+    min_by?</a>, 
+    
+  
+    <a href="Enumerable.html#min_of%28%26%3AT-%3EU%29%3AUforallU-instance-method" class="tooltip">
+      <span>min_of(& : T -> U) : U forall U</span>
+    min_of</a>, 
+    
+  
+    <a href="Enumerable.html#min_of%3F%28%26%3AT-%3EU%29%3AU%7CNilforallU-instance-method" class="tooltip">
+      <span>min_of?(& : T -> U) : U | Nil forall U</span>
+    min_of?</a>, 
+    
+  
+    <a href="Enumerable.html#minmax%3ATuple%28T%2CT%29-instance-method" class="tooltip">
+      <span>minmax : Tuple(T, T)</span>
+    minmax</a>, 
+    
+  
+    <a href="Enumerable.html#minmax%3F%3ATuple%28T%7CNil%2CT%7CNil%29-instance-method" class="tooltip">
+      <span>minmax? : Tuple(T | Nil, T | Nil)</span>
+    minmax?</a>, 
+    
+  
+    <a href="Enumerable.html#minmax_by%28%26%3AT-%3EU%29%3ATuple%28T%2CT%29forallU-instance-method" class="tooltip">
+      <span>minmax_by(& : T -> U) : Tuple(T, T) forall U</span>
+    minmax_by</a>, 
+    
+  
+    <a href="Enumerable.html#minmax_by%3F%28%26%3AT-%3EU%29%3ATuple%28T%2CT%29%7CTuple%28Nil%2CNil%29forallU-instance-method" class="tooltip">
+      <span>minmax_by?(& : T -> U) : Tuple(T, T) | Tuple(Nil, Nil) forall U</span>
+    minmax_by?</a>, 
+    
+  
+    <a href="Enumerable.html#minmax_of%28%26%3AT-%3EU%29%3ATuple%28U%2CU%29forallU-instance-method" class="tooltip">
+      <span>minmax_of(& : T -> U) : Tuple(U, U) forall U</span>
+    minmax_of</a>, 
+    
+  
+    <a href="Enumerable.html#minmax_of%3F%28%26%3AT-%3EU%29%3ATuple%28U%2CU%29%7CTuple%28Nil%2CNil%29forallU-instance-method" class="tooltip">
+      <span>minmax_of?(& : T -> U) : Tuple(U, U) | Tuple(Nil, Nil) forall U</span>
+    minmax_of?</a>, 
+    
+  
+    <a href="Enumerable.html#none%3F%28%26%3AT-%3E%29%3ABool-instance-method" class="tooltip">
+      <span>none?(& : T -> ) : Bool<br/>none?(pattern) : Bool<br/>none? : Bool</span>
+    none?</a>, 
+    
+  
+    <a href="Enumerable.html#one%3F%28%26%3AT-%3E%29%3ABool-instance-method" class="tooltip">
+      <span>one?(& : T -> ) : Bool<br/>one?(pattern) : Bool<br/>one? : Bool</span>
+    one?</a>, 
+    
+  
+    <a href="Enumerable.html#partition%28%26%3AT-%3E%29%3ATuple%28Array%28T%29%2CArray%28T%29%29-instance-method" class="tooltip">
+      <span>partition(& : T -> ) : Tuple(Array(T), Array(T))<br/>partition(type : <span class="t">U</span>.<span class="k">class</span>) forall U</span>
+    partition</a>, 
+    
+  
+    <a href="Enumerable.html#present%3F%3ABool-instance-method" class="tooltip">
+      <span>present? : Bool</span>
+    present?</a>, 
+    
+  
+    <a href="Enumerable.html#product%28initial%3ANumber%29-instance-method" class="tooltip">
+      <span>product(initial : Number)<br/>product<br/>product(initial : Number, & : T -> )<br/>product(& : T -> _)</span>
+    product</a>, 
+    
+  
+    <a href="Enumerable.html#reduce%28memo%2C%26%29-instance-method" class="tooltip">
+      <span>reduce(memo, &)<br/>reduce(&)</span>
+    reduce</a>, 
+    
+  
+    <a href="Enumerable.html#reduce%3F%28%26%29-instance-method" class="tooltip">
+      <span>reduce?(&)</span>
+    reduce?</a>, 
+    
+  
+    <a href="Enumerable.html#reject%28%26%3AT-%3E%29-instance-method" class="tooltip">
+      <span>reject(& : T -> )<br/>reject(type : <span class="t">U</span>.<span class="k">class</span>) forall U<br/>reject(pattern) : Array(T)</span>
+    reject</a>, 
+    
+  
+    <a href="Enumerable.html#sample%28n%3AInt%2Crandom%3ARandom%3DRandom%3A%3ADEFAULT%29%3AArray%28T%29-instance-method" class="tooltip">
+      <span>sample(n : Int, random : Random = <span class="t">Random</span><span class="t">::</span><span class="t">DEFAULT</span>) : Array(T)<br/>sample(random : Random = <span class="t">Random</span><span class="t">::</span><span class="t">DEFAULT</span>) : T</span>
+    sample</a>, 
+    
+  
+    <a href="Enumerable.html#select%28%26%3AT-%3E%29-instance-method" class="tooltip">
+      <span>select(& : T -> )<br/>select(type : <span class="t">U</span>.<span class="k">class</span>) : Array(U) forall U<br/>select(pattern) : Array(T)</span>
+    select</a>, 
+    
+  
+    <a href="Enumerable.html#size%3AInt32-instance-method" class="tooltip">
+      <span>size : Int32</span>
+    size</a>, 
+    
+  
+    <a href="Enumerable.html#skip%28count%3AInt%29-instance-method" class="tooltip">
+      <span>skip(count : Int)</span>
+    skip</a>, 
+    
+  
+    <a href="Enumerable.html#skip_while%28%26%3AT-%3E%29%3AArray%28T%29-instance-method" class="tooltip">
+      <span>skip_while(& : T -> ) : Array(T)</span>
+    skip_while</a>, 
+    
+  
+    <a href="Enumerable.html#sum%28initial%29-instance-method" class="tooltip">
+      <span>sum(initial)<br/>sum<br/>sum(initial, & : T -> )<br/>sum(& : T -> )</span>
+    sum</a>, 
+    
+  
+    <a href="Enumerable.html#take_while%28%26%3AT-%3E%29%3AArray%28T%29-instance-method" class="tooltip">
+      <span>take_while(& : T -> ) : Array(T)</span>
+    take_while</a>, 
+    
+  
+    <a href="Enumerable.html#tally%28hash%29-instance-method" class="tooltip">
+      <span>tally(hash)<br/>tally : Hash(T, Int32)</span>
+    tally</a>, 
+    
+  
+    <a href="Enumerable.html#tally_by%28hash%2C%26%29-instance-method" class="tooltip">
+      <span>tally_by(hash, &)<br/>tally_by(&block : T -> U) : Hash(U, Int32) forall U</span>
+    tally_by</a>, 
+    
+  
+    <a href="Enumerable.html#to_a%3AArray%28T%29-instance-method" class="tooltip">
+      <span>to_a : Array(T)<br/>to_a(& : T -> U) : Array(U) forall U</span>
+    to_a</a>, 
+    
+  
+    <a href="Enumerable.html#to_h-instance-method" class="tooltip">
+      <span>to_h<br/>to_h(& : T -> Tuple(K, V)) forall K, V</span>
+    to_h</a>, 
+    
+  
+    <a href="Enumerable.html#to_set%3ASet%28T%29-instance-method" class="tooltip">
+      <span>to_set : Set(T)<br/>to_set(&block : T -> U) : Set(U) forall U</span>
+    to_set</a>, 
+    
+  
+    <a href="Enumerable.html#zip%28%2Aothers%3AIndexable%7CIterable%7CIterator%2C%26%29-instance-method" class="tooltip">
+      <span>zip(*others : Indexable | Iterable | Iterator, &)<br/>zip(*others : Indexable | Iterable | Iterator)</span>
+    zip</a>, 
+    
+  
+    <a href="Enumerable.html#zip%3F%28%2Aothers%3AIndexable%7CIterable%7CIterator%2C%26%29-instance-method" class="tooltip">
+      <span>zip?(*others : Indexable | Iterable | Iterator, &)<br/>zip?(*others : Indexable | Iterable | Iterator)</span>
+    zip?</a>
+    
+  
+
+
+      
+
+
+      
+
+  <h3>Class methods inherited from module <code><a href="Enumerable.html">Enumerable</a>(<a href="Bool.html">Bool</a>)</code></h3>
+  
+  
+    <a href="Enumerable.html#element_type%28x%29-class-method" class="tooltip">
+      <span>element_type(x)</span>
+    element_type</a>
+    
+  
+
+
+      
+
+
+    
+      
+
+  <h3>Instance methods inherited from module <code><a href="Iterable.html">Iterable</a>(<a href="Bool.html">Bool</a>)</code></h3>
+  
+  
+    <a href="Iterable.html#chunk%28reuse%3Dfalse%2C%26block%3AT-%3EU%29forallU-instance-method" class="tooltip">
+      <span>chunk(reuse = <span class="n">false</span>, &block : T -> U) forall U</span>
+    chunk</a>, 
+    
+  
+    <a href="Iterable.html#chunk_while%28reuse%3ABool%7CArray%28T%29%3Dfalse%2C%26block%3AT%2CT-%3EB%29forallB-instance-method" class="tooltip">
+      <span>chunk_while(reuse : Bool | Array(T) = <span class="n">false</span>, &block : T, T -> B) forall B</span>
+    chunk_while</a>, 
+    
+  
+    <a href="Iterable.html#cycle%28n%29-instance-method" class="tooltip">
+      <span>cycle(n)<br/>cycle</span>
+    cycle</a>, 
+    
+  
+    <a href="Iterable.html#each-instance-method" class="tooltip">
+      <span>each</span>
+    each</a>, 
+    
+  
+    <a href="Iterable.html#each_cons%28count%3AInt%2Creuse%3Dfalse%29-instance-method" class="tooltip">
+      <span>each_cons(count : Int, reuse = <span class="n">false</span>)</span>
+    each_cons</a>, 
+    
+  
+    <a href="Iterable.html#each_cons_pair-instance-method" class="tooltip">
+      <span>each_cons_pair</span>
+    each_cons_pair</a>, 
+    
+  
+    <a href="Iterable.html#each_slice%28count%3AInt%2Creuse%3Dfalse%29-instance-method" class="tooltip">
+      <span>each_slice(count : Int, reuse = <span class="n">false</span>)</span>
+    each_slice</a>, 
+    
+  
+    <a href="Iterable.html#each_step%28n%3AInt%29-instance-method" class="tooltip">
+      <span>each_step(n : Int)<br/>each_step(n : Int, *, offset : Int)</span>
+    each_step</a>, 
+    
+  
+    <a href="Iterable.html#each_with_index%28offset%3D0%29-instance-method" class="tooltip">
+      <span>each_with_index(offset = <span class="n">0</span>)</span>
+    each_with_index</a>, 
+    
+  
+    <a href="Iterable.html#each_with_object%28obj%29-instance-method" class="tooltip">
+      <span>each_with_object(obj)</span>
+    each_with_object</a>, 
+    
+  
+    <a href="Iterable.html#slice_after%28reuse%3ABool%7CArray%28T%29%3Dfalse%2C%26block%3AT-%3EB%29forallB-instance-method" class="tooltip">
+      <span>slice_after(reuse : Bool | Array(T) = <span class="n">false</span>, &block : T -> B) forall B<br/>slice_after(pattern, reuse : Bool | Array(T) = <span class="n">false</span>)</span>
+    slice_after</a>, 
+    
+  
+    <a href="Iterable.html#slice_before%28reuse%3ABool%7CArray%28T%29%3Dfalse%2C%26block%3AT-%3EB%29forallB-instance-method" class="tooltip">
+      <span>slice_before(reuse : Bool | Array(T) = <span class="n">false</span>, &block : T -> B) forall B<br/>slice_before(pattern, reuse : Bool | Array(T) = <span class="n">false</span>)</span>
+    slice_before</a>, 
+    
+  
+    <a href="Iterable.html#slice_when%28reuse%3ABool%7CArray%28T%29%3Dfalse%2C%26block%3AT%2CT-%3EB%29forallB-instance-method" class="tooltip">
+      <span>slice_when(reuse : Bool | Array(T) = <span class="n">false</span>, &block : T, T -> B) forall B</span>
+    slice_when</a>
+    
+  
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+      
+
+  <h3>Instance methods inherited from struct <code><a href="Struct.html">Struct</a></code></h3>
+  
+  
+    <a href="Struct.html#%3D%3D%28other%29%3ABool-instance-method" class="tooltip">
+      <span>==(other) : Bool</span>
+    ==</a>, 
+    
+  
+    <a href="Struct.html#hash%28hasher%29-instance-method" class="tooltip">
+      <span>hash(hasher)</span>
+    hash</a>, 
+    
+  
+    <a href="Struct.html#inspect%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>inspect(io : IO) : Nil</span>
+    inspect</a>, 
+    
+  
+    <a href="Struct.html#pretty_print%28pp%29%3ANil-instance-method" class="tooltip">
+      <span>pretty_print(pp) : Nil</span>
+    pretty_print</a>, 
+    
+  
+    <a href="Struct.html#to_s%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_s(io : IO) : Nil</span>
+    to_s</a>
+    
+  
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+      
+
+  <h3>Instance methods inherited from struct <code><a href="Value.html">Value</a></code></h3>
+  
+  
+    <a href="Value.html#%3D%3D%28other%3AJSON%3A%3AAny%29-instance-method" class="tooltip">
+      <span>==(other : JSON::Any)<br/>==(other : YAML::Any)<br/>==(other)</span>
+    ==</a>, 
+    
+  
+    <a href="Value.html#dup-instance-method" class="tooltip">
+      <span>dup</span>
+    dup</a>
+    
+  
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+      
+
+  <h3>Instance methods inherited from class <code><a href="Object.html">Object</a></code></h3>
+  
+  
+    <a href="Object.html#%21%3ABool-instance-method" class="tooltip">
+      <span>! : Bool</span>
+    !</a>, 
+    
+  
+    <a href="Object.html#%21%3D%28other%29-instance-method" class="tooltip">
+      <span>!=(other)</span>
+    !=</a>, 
+    
+  
+    <a href="Object.html#%21~%28other%29-instance-method" class="tooltip">
+      <span>!~(other)</span>
+    !~</a>, 
+    
+  
+    <a href="Object.html#%3D%3D%28other%29-instance-method" class="tooltip">
+      <span>==(other)</span>
+    ==</a>, 
+    
+  
+    <a href="Object.html#%3D%3D%3D%28other%3AJSON%3A%3AAny%29-instance-method" class="tooltip">
+      <span>===(other : JSON::Any)<br/>===(other : YAML::Any)<br/>===(other)</span>
+    ===</a>, 
+    
+  
+    <a href="Object.html#%3D~%28other%29-instance-method" class="tooltip">
+      <span>=~(other)</span>
+    =~</a>, 
+    
+  
+    <a href="Object.html#as%28type%3AClass%29-instance-method" class="tooltip">
+      <span>as(type : Class)</span>
+    as</a>, 
+    
+  
+    <a href="Object.html#as%3F%28type%3AClass%29-instance-method" class="tooltip">
+      <span>as?(type : Class)</span>
+    as?</a>, 
+    
+  
+    <a href="Object.html#class-instance-method" class="tooltip">
+      <span>class</span>
+    class</a>, 
+    
+  
+    <a href="Object.html#dup-instance-method" class="tooltip">
+      <span>dup</span>
+    dup</a>, 
+    
+  
+    <a href="Object.html#hash%28hasher%29-instance-method" class="tooltip">
+      <span>hash(hasher)<br/>hash</span>
+    hash</a>, 
+    
+  
+    <a href="Object.html#in%3F%28collection%3AObject%29%3ABool-instance-method" class="tooltip">
+      <span>in?(collection : Object) : Bool<br/>in?(*values : Object) : Bool</span>
+    in?</a>, 
+    
+  
+    <a href="Object.html#inspect%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>inspect(io : IO) : Nil<br/>inspect : String</span>
+    inspect</a>, 
+    
+  
+    <a href="Object.html#is_a%3F%28type%3AClass%29%3ABool-instance-method" class="tooltip">
+      <span>is_a?(type : Class) : Bool</span>
+    is_a?</a>, 
+    
+  
+    <a href="Object.html#itself-instance-method" class="tooltip">
+      <span>itself</span>
+    itself</a>, 
+    
+  
+    <a href="Object.html#nil%3F%3ABool-instance-method" class="tooltip">
+      <span>nil? : Bool</span>
+    nil?</a>, 
+    
+  
+    <a href="Object.html#not_nil%21%28message%29-instance-method" class="tooltip">
+      <span>not_nil!(message)<br/>not_nil!</span>
+    not_nil!</a>, 
+    
+  
+    <a href="Object.html#pretty_inspect%28width%3D79%2Cnewline%3D%22%5Cn%22%2Cindent%3D0%29%3AString-instance-method" class="tooltip">
+      <span>pretty_inspect(width = <span class="n">79</span>, newline = <span class="s">&quot;\n&quot;</span>, indent = <span class="n">0</span>) : String</span>
+    pretty_inspect</a>, 
+    
+  
+    <a href="Object.html#pretty_print%28pp%3APrettyPrint%29%3ANil-instance-method" class="tooltip">
+      <span>pretty_print(pp : PrettyPrint) : Nil</span>
+    pretty_print</a>, 
+    
+  
+    <a href="Object.html#responds_to%3F%28name%3ASymbol%29%3ABool-instance-method" class="tooltip">
+      <span>responds_to?(name : Symbol) : Bool</span>
+    responds_to?</a>, 
+    
+  
+    <a href="Object.html#tap%28%26%29-instance-method" class="tooltip">
+      <span>tap(&)</span>
+    tap</a>, 
+    
+  
+    <a href="Object.html#to_json%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_json(io : IO) : Nil<br/>to_json : String</span>
+    to_json</a>, 
+    
+  
+    <a href="Object.html#to_pretty_json%28indent%3AString%3D%22%22%29%3AString-instance-method" class="tooltip">
+      <span>to_pretty_json(indent : String = <span class="s">&quot;  &quot;</span>) : String<br/>to_pretty_json(io : IO, indent : String = <span class="s">&quot;  &quot;</span>) : Nil</span>
+    to_pretty_json</a>, 
+    
+  
+    <a href="Object.html#to_s%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_s(io : IO) : Nil<br/>to_s : String</span>
+    to_s</a>, 
+    
+  
+    <a href="Object.html#to_yaml%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_yaml(io : IO) : Nil<br/>to_yaml : String</span>
+    to_yaml</a>, 
+    
+  
+    <a href="Object.html#try%28%26%29-instance-method" class="tooltip">
+      <span>try(&)</span>
+    try</a>, 
+    
+  
+    <a href="Object.html#unsafe_as%28type%3AT.class%29forallT-instance-method" class="tooltip">
+      <span>unsafe_as(type : <span class="t">T</span>.<span class="k">class</span>) forall T</span>
+    unsafe_as</a>
+    
+  
+
+
+      
+
+
+      
+
+  <h3>Class methods inherited from class <code><a href="Object.html">Object</a></code></h3>
+  
+  
+    <a href="Object.html#from_json%28string_or_io%2Croot%3AString%29-class-method" class="tooltip">
+      <span>from_json(string_or_io, root : String)<br/>from_json(string_or_io)</span>
+    from_json</a>, 
+    
+  
+    <a href="Object.html#from_yaml%28string_or_io%3AString%7CIO%29-class-method" class="tooltip">
+      <span>from_yaml(string_or_io : String | IO)</span>
+    from_yaml</a>
+    
+  
+
+
+      
+
+  <h3>Macros inherited from class <code><a href="Object.html">Object</a></code></h3>
+  
+  
+    <a href="Object.html#class_getter%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_getter(*names, &block)</span>
+    class_getter</a>, 
+    
+  
+    <a href="Object.html#class_getter%21%28%2Anames%29-macro" class="tooltip">
+      <span>class_getter!(*names)</span>
+    class_getter!</a>, 
+    
+  
+    <a href="Object.html#class_getter%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_getter?(*names, &block)</span>
+    class_getter?</a>, 
+    
+  
+    <a href="Object.html#class_property%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_property(*names, &block)</span>
+    class_property</a>, 
+    
+  
+    <a href="Object.html#class_property%21%28%2Anames%29-macro" class="tooltip">
+      <span>class_property!(*names)</span>
+    class_property!</a>, 
+    
+  
+    <a href="Object.html#class_property%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_property?(*names, &block)</span>
+    class_property?</a>, 
+    
+  
+    <a href="Object.html#class_setter%28%2Anames%29-macro" class="tooltip">
+      <span>class_setter(*names)</span>
+    class_setter</a>, 
+    
+  
+    <a href="Object.html#def_clone-macro" class="tooltip">
+      <span>def_clone</span>
+    def_clone</a>, 
+    
+  
+    <a href="Object.html#def_equals%28%2Afields%29-macro" class="tooltip">
+      <span>def_equals(*fields)</span>
+    def_equals</a>, 
+    
+  
+    <a href="Object.html#def_equals_and_hash%28%2Afields%29-macro" class="tooltip">
+      <span>def_equals_and_hash(*fields)</span>
+    def_equals_and_hash</a>, 
+    
+  
+    <a href="Object.html#def_hash%28%2Afields%29-macro" class="tooltip">
+      <span>def_hash(*fields)</span>
+    def_hash</a>, 
+    
+  
+    <a href="Object.html#delegate%28%2Amethods%2Ctoobject%29-macro" class="tooltip">
+      <span>delegate(*methods, to object)</span>
+    delegate</a>, 
+    
+  
+    <a href="Object.html#forward_missing_to%28delegate%29-macro" class="tooltip">
+      <span>forward_missing_to(delegate)</span>
+    forward_missing_to</a>, 
+    
+  
+    <a href="Object.html#getter%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>getter(*names, &block)</span>
+    getter</a>, 
+    
+  
+    <a href="Object.html#getter%21%28%2Anames%29-macro" class="tooltip">
+      <span>getter!(*names)</span>
+    getter!</a>, 
+    
+  
+    <a href="Object.html#getter%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>getter?(*names, &block)</span>
+    getter?</a>, 
+    
+  
+    <a href="Object.html#property%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>property(*names, &block)</span>
+    property</a>, 
+    
+  
+    <a href="Object.html#property%21%28%2Anames%29-macro" class="tooltip">
+      <span>property!(*names)</span>
+    property!</a>, 
+    
+  
+    <a href="Object.html#property%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>property?(*names, &block)</span>
+    property?</a>, 
+    
+  
+    <a href="Object.html#setter%28%2Anames%29-macro" class="tooltip">
+      <span>setter(*names)</span>
+    setter</a>
+    
+  
+
+
+    
+  </div>
+
+  
+  <h2>
+    <a id="constructor-detail" class="anchor" href="#constructor-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructor Detail
+  </h2>
+  
+    <div class="entry-detail" id="new(size:Int,initial:Bool=false)-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(size : <a href="Int.html">Int</a>, initial : <a href="Bool.html">Bool</a> = <span class="n">false</span>)
+
+        <a class="method-permalink" href="#new%28size%3AInt%2Cinitial%3ABool%3Dfalse%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Creates a new <code><a href="BitArray.html">BitArray</a></code> of <em>size</em> bits.</p>
+<p><em>initial</em> optionally sets the starting value, <code>true</code> or <code>false</code>, for all bits
+in the array.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/bit_array.cr#L30" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="new(size:Int,&amp;:Int32-&gt;_)-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(size : <a href="Int.html">Int</a>, & : <a href="Int32.html">Int32</a> -> _)
+
+        <a class="method-permalink" href="#new%28size%3AInt%2C%26%3AInt32-%3E_%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Creates a new <code><a href="BitArray.html">BitArray</a></code> of <em>size</em> bits and invokes the given block once
+for each index of <code>self</code>, setting the bit at that index to <code>true</code> if the
+block is truthy.</p>
+<pre><code class="language-crystal"><span class="t">BitArray</span>.new(<span class="n">5</span>) { <span class="o">|</span>i<span class="o">|</span> i <span class="o">&gt;=</span> <span class="n">3</span> }     <span class="c"># =&gt; BitArray[00011]</span>
+<span class="t">BitArray</span>.new(<span class="n">6</span>) { <span class="o">|</span>i<span class="o">|</span> i <span class="k">if</span> i <span class="o">&lt;</span> <span class="n">2</span> } <span class="c"># =&gt; BitArray[110000]</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/bit_array.cr#L46" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+  
+
+  
+
+  
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="==(other:BitArray)-instance-method">
+      <div class="signature">
+        
+        def <strong>==</strong>(other : <a href="BitArray.html">BitArray</a>)
+
+        <a class="method-permalink" href="#%3D%3D%28other%3ABitArray%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/bit_array.cr#L54" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="[](start:Int,count:Int):BitArray-instance-method">
+      <div class="signature">
+        
+        def <strong>[]</strong>(start : <a href="Int.html">Int</a>, count : <a href="Int.html">Int</a>) : <a href="BitArray.html">BitArray</a>
+
+        <a class="method-permalink" href="#%5B%5D%28start%3AInt%2Ccount%3AInt%29%3ABitArray-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns count or less (if there aren't enough) elements starting at the
+given start index.</p>
+<p>Negative indices count backward from the end of the array (-1 is the last
+element). Additionally, an empty array is returned when the starting index
+for an element range is at the end of the array.</p>
+<p>Raises <code><a href="IndexError.html">IndexError</a></code> if the starting index is out of range.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;bit_array&quot;</span>
+
+ba <span class="o">=</span> <span class="t">BitArray</span>.new(<span class="n">5</span>)
+ba[<span class="n">0</span>] <span class="o">=</span> <span class="n">true</span>; ba[<span class="n">2</span>] <span class="o">=</span> <span class="n">true</span>; ba[<span class="n">4</span>] <span class="o">=</span> <span class="n">true</span>
+ba <span class="c"># =&gt; BitArray[10101]</span>
+
+ba[<span class="n">-3</span>, <span class="n">3</span>] <span class="c"># =&gt; BitArray[101]</span>
+ba[<span class="n">6</span>, <span class="n">1</span>]  <span class="c"># raise indexError</span>
+ba[<span class="n">1</span>, <span class="n">2</span>]  <span class="c"># =&gt; BitArray[01]</span>
+ba[<span class="n">5</span>, <span class="n">1</span>]  <span class="c"># =&gt; BitArray[]</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/bit_array.cr#L133" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="[](range:Range):BitArray-instance-method">
+      <div class="signature">
+        
+        def <strong>[]</strong>(range : <a href="Range.html">Range</a>) : <a href="BitArray.html">BitArray</a>
+
+        <a class="method-permalink" href="#%5B%5D%28range%3ARange%29%3ABitArray-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns all elements that are within the given range.</p>
+<p>Negative indices count backward from the end of the array (-1 is the last
+element). Additionally, an empty array is returned when the starting index
+for an element range is at the end of the array.</p>
+<p>Raises <code><a href="IndexError.html">IndexError</a></code> if the starting index is out of range.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;bit_array&quot;</span>
+
+ba <span class="o">=</span> <span class="t">BitArray</span>.new(<span class="n">5</span>)
+ba[<span class="n">0</span>] <span class="o">=</span> <span class="n">true</span>; ba[<span class="n">2</span>] <span class="o">=</span> <span class="n">true</span>; ba[<span class="n">4</span>] <span class="o">=</span> <span class="n">true</span>
+ba <span class="c"># =&gt; BitArray[10101]</span>
+
+ba[<span class="n">1</span>..<span class="n">3</span>]    <span class="c"># =&gt; BitArray[010]</span>
+ba[<span class="n">4</span>..<span class="n">7</span>]    <span class="c"># =&gt; BitArray[1]</span>
+ba[<span class="n">6</span>..<span class="n">10</span>]   <span class="c"># raise IndexError</span>
+ba[<span class="n">5</span>..<span class="n">10</span>]   <span class="c"># =&gt; BitArray[]</span>
+ba[<span class="n">-2</span>...<span class="n">-1</span>] <span class="c"># =&gt; BitArray[0]</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/bit_array.cr#L108" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="[]=(index:Int,value:Bool):Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>[]=</strong>(index : <a href="Int.html">Int</a>, value : <a href="Bool.html">Bool</a>) : <a href="Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#%5B%5D%3D%28index%3AInt%2Cvalue%3ABool%29%3ABool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Sets the given <em>value</em> at the given <em>index</em>. Returns <em>value</em>.</p>
+<p>Negative indices can be used to start counting from the end of the
+container. Raises <code><a href="IndexError.html">IndexError</a></code> if trying to set an element outside the
+container's range.</p>
+<pre><code class="language-crystal">ary <span class="o">=</span> [<span class="n">1</span>, <span class="n">2</span>, <span class="n">3</span>]
+ary[<span class="n">0</span>] <span class="o">=</span> <span class="n">5</span>
+ary <span class="c"># =&gt; [5, 2, 3]</span>
+
+ary[<span class="n">3</span>] <span class="o">=</span> <span class="n">5</span> <span class="c"># raises IndexError</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/bit_array.cr#L77" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="all?:Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>all?</strong> : <a href="Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#all%3F%3ABool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if all of the elements of the collection are truthy.</p>
+<pre><code class="language-crystal">[<span class="n">nil</span>, <span class="n">true</span>, <span class="n">99</span>].all? <span class="c"># =&gt; false</span>
+[<span class="n">15</span>].all?            <span class="c"># =&gt; true</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/bit_array.cr#L189" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="any?:Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>any?</strong> : <a href="Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#any%3F%3ABool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if at least one of the collection's members is truthy.</p>
+<pre><code class="language-crystal">[<span class="n">nil</span>, <span class="n">true</span>, <span class="n">99</span>].any? <span class="c"># =&gt; true</span>
+[<span class="n">nil</span>, <span class="n">false</span>].any?    <span class="c"># =&gt; false</span>
+(<span class="o">[]</span> <span class="k">of</span> <span class="t">Int32</span>).any?   <span class="c"># =&gt; false</span></code></pre>
+<ul>
+<li><code>#present?</code> does not consider truthiness of elements.</li>
+<li><code>#any?(&amp;)</code> and <code>#any(pattern)</code> allow custom conditions.</li>
+</ul>
+<p><span class="flag purple">NOTE</span>  <code><a href="BitArray.html#any%3F%3ABool-instance-method">#any?</a></code> usually has the same semantics as <code>#present?</code>. They only
+differ if the element type can be falsey (i.e. <code><a href="Bool.html">T</a> &lt;= <a href="Nil.html">Nil</a> || <a href="Bool.html">T</a> &lt;= <a href="Pointer.html">Pointer</a> || <a href="Bool.html">T</a> &lt;= <a href="Bool.html">Bool</a></code>).
+It's typically advised to prefer <code>#present?</code> unless these specific truthiness
+semantics are required.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/bit_array.cr#L202" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="count(item:Bool):Int32-instance-method">
+      <div class="signature">
+        
+        def <strong>count</strong>(item : <a href="Bool.html">Bool</a>) : <a href="Int32.html">Int32</a>
+
+        <a class="method-permalink" href="#count%28item%3ABool%29%3AInt32-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the number of times that <em>item</em> is present in the bit array.</p>
+<pre><code class="language-crystal">ba <span class="o">=</span> <span class="t">BitArray</span>.new(<span class="n">12</span>, <span class="n">true</span>)
+ba[<span class="n">3</span>] <span class="o">=</span> <span class="n">false</span>
+ba[<span class="n">7</span>] <span class="o">=</span> <span class="n">false</span>
+ba.count(<span class="n">true</span>)  <span class="c"># =&gt; 10</span>
+ba.count(<span class="n">false</span>) <span class="c"># =&gt; 2</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/bit_array.cr#L304" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="dup-instance-method">
+      <div class="signature">
+        
+        def <strong>dup</strong>
+
+        <a class="method-permalink" href="#dup-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns a new <code><a href="BitArray.html">BitArray</a></code> with all of the same elements.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/bit_array.cr#L638" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="fill(value:Bool,start:Int,count:Int):self-instance-method">
+      <div class="signature">
+        
+        def <strong>fill</strong>(value : <a href="Bool.html">Bool</a>, start : <a href="Int.html">Int</a>, count : <a href="Int.html">Int</a>) : <span class="k">self</span>
+
+        <a class="method-permalink" href="#fill%28value%3ABool%2Cstart%3AInt%2Ccount%3AInt%29%3Aself-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Replaces <em>count</em> or less (if there aren't enough) elements starting at the
+given <em>start</em> index with <em>value</em>. Returns <code>self</code>.</p>
+<p>Negative values of <em>start</em> count from the end of the container.</p>
+<p>Raises <code><a href="IndexError.html">IndexError</a></code> if the <em>start</em> index is out of range.</p>
+<p>Raises <code><a href="ArgumentError.html">ArgumentError</a></code> if <em>count</em> is negative.</p>
+<pre><code class="language-crystal">array <span class="o">=</span> [<span class="n">1</span>, <span class="n">2</span>, <span class="n">3</span>, <span class="n">4</span>, <span class="n">5</span>]
+array.fill(<span class="n">9</span>, <span class="n">2</span>, <span class="n">2</span>) <span class="c"># =&gt; [1, 2, 9, 9, 5]</span>
+array               <span class="c"># =&gt; [1, 2, 9, 9, 5]</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/bit_array.cr#L343" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="fill(value:Bool):self-instance-method">
+      <div class="signature">
+        
+        def <strong>fill</strong>(value : <a href="Bool.html">Bool</a>) : <span class="k">self</span>
+
+        <a class="method-permalink" href="#fill%28value%3ABool%29%3Aself-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Replaces every element in <code>self</code> with the given <em>value</em>. Returns <code>self</code>.</p>
+<pre><code class="language-crystal">array <span class="o">=</span> [<span class="n">1</span>, <span class="n">2</span>, <span class="n">3</span>, <span class="n">4</span>]
+array.fill(<span class="n">2</span>) <span class="c"># =&gt; [2, 2, 2, 2]</span>
+array         <span class="c"># =&gt; [2, 2, 2, 2]</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/bit_array.cr#L329" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="hash(hasher)-instance-method">
+      <div class="signature">
+        
+        def <strong>hash</strong>(hasher)
+
+        <a class="method-permalink" href="#hash%28hasher%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>See <code><a href="Object.html#hash%28hasher%29-instance-method">Object#hash(hasher)</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/bit_array.cr#L631" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="includes?(obj:Bool):Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>includes?</strong>(obj : <a href="Bool.html">Bool</a>) : <a href="Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#includes%3F%28obj%3ABool%29%3ABool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if the collection contains <em>obj</em>, <code>false</code> otherwise.</p>
+<pre><code class="language-crystal">ba <span class="o">=</span> <span class="t">BitArray</span>.new(<span class="n">8</span>, <span class="n">true</span>)
+ba.includes?(<span class="n">true</span>)  <span class="c"># =&gt; true</span>
+ba.includes?(<span class="n">false</span>) <span class="c"># =&gt; false</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/bit_array.cr#L218" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="index(obj:Bool,offset:Int=0):Int32|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>index</strong>(obj : <a href="Bool.html">Bool</a>, offset : <a href="Int.html">Int</a> = <span class="n">0</span>) : <a href="Int32.html">Int32</a> | <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#index%28obj%3ABool%2Coffset%3AInt%3D0%29%3AInt32%7CNil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the index of the first appearance of <em>obj</em> in <code>self</code>
+starting from the given <em>offset</em>, or <code>nil</code> if the value is not in <code>self</code>.</p>
+<pre><code class="language-crystal">ba <span class="o">=</span> <span class="t">BitArray</span>.new(<span class="n">16</span>)
+ba[<span class="n">5</span>] <span class="o">=</span> ba[<span class="n">11</span>] <span class="o">=</span> <span class="n">true</span>
+ba.index(<span class="n">true</span>)             <span class="c"># =&gt; 5</span>
+ba.index(<span class="n">true</span>, offset: <span class="n">8</span>)  <span class="c"># =&gt; 11</span>
+ba.index(<span class="n">true</span>, offset: <span class="n">12</span>) <span class="c"># =&gt; nil</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/bit_array.cr#L242" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="inspect(io:IO):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>inspect</strong>(io : <a href="IO.html">IO</a>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#inspect%28io%3AIO%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Creates a string representation of <code>self</code>.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;bit_array&quot;</span>
+
+ba <span class="o">=</span> <span class="t">BitArray</span>.new(<span class="n">5</span>)
+ba.to_s <span class="c"># =&gt; &quot;BitArray[00000]&quot;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/bit_array.cr#L616" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="invert:Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>invert</strong> : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#invert%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Inverts all bits in the array. Falses become <code>true</code> and vice versa.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;bit_array&quot;</span>
+
+ba <span class="o">=</span> <span class="t">BitArray</span>.new(<span class="n">5</span>)
+ba[<span class="n">2</span>] <span class="o">=</span> <span class="n">true</span>; ba[<span class="n">3</span>] <span class="o">=</span> <span class="n">true</span>
+ba <span class="c"># =&gt; BitArray[00110]</span>
+ba.invert
+ba <span class="c"># =&gt; BitArray[11001]</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/bit_array.cr#L477" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="none?:Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>none?</strong> : <a href="Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#none%3F%3ABool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if all of the elements of the collection are falsey.</p>
+<pre><code class="language-crystal">[<span class="n">nil</span>, <span class="n">false</span>].none?       <span class="c"># =&gt; true</span>
+[<span class="n">nil</span>, <span class="n">false</span>, <span class="n">true</span>].none? <span class="c"># =&gt; false</span></code></pre>
+<p>It's the opposite of <code><a href="BitArray.html#all%3F%3ABool-instance-method">#all?</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/bit_array.cr#L207" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="one?:Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>one?</strong> : <a href="Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#one%3F%3ABool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if only one element in this enumerable
+is truthy.</p>
+<pre><code class="language-crystal">[<span class="n">1</span>, <span class="n">false</span>, <span class="n">false</span>].one? <span class="c"># =&gt; true</span>
+[<span class="n">1</span>, <span class="n">false</span>, <span class="n">3</span>].one?     <span class="c"># =&gt; false</span>
+[<span class="n">1</span>].one?               <span class="c"># =&gt; true</span>
+[<span class="n">false</span>].one?           <span class="c"># =&gt; false</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/bit_array.cr#L223" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="reverse!:self-instance-method">
+      <div class="signature">
+        
+        def <strong>reverse!</strong> : <span class="k">self</span>
+
+        <a class="method-permalink" href="#reverse%21%3Aself-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Reverses in-place all the elements of <code>self</code>. Returns <code>self</code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/bit_array.cr#L485" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="rindex(obj:Bool,offset:Int=size-1):Int32|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>rindex</strong>(obj : <a href="Bool.html">Bool</a>, offset : <a href="Int.html">Int</a> = size <span class="o">-</span> <span class="n">1</span>) : <a href="Int32.html">Int32</a> | <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#rindex%28obj%3ABool%2Coffset%3AInt%3Dsize-1%29%3AInt32%7CNil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the index of the last appearance of <em>obj</em> in <code>self</code>, or
+<code>nil</code> if <em>obj</em> is not in <code>self</code>.</p>
+<p>If <em>offset</em> is given, the search starts from that index towards the
+first elements in <code>self</code>.</p>
+<pre><code class="language-crystal">ba <span class="o">=</span> <span class="t">BitArray</span>.new(<span class="n">16</span>)
+ba[<span class="n">5</span>] <span class="o">=</span> ba[<span class="n">11</span>] <span class="o">=</span> <span class="n">true</span>
+ba.rindex(<span class="n">true</span>)            <span class="c"># =&gt; 11</span>
+ba.rindex(<span class="n">true</span>, offset: <span class="n">8</span>) <span class="c"># =&gt; 5</span>
+ba.rindex(<span class="n">true</span>, offset: <span class="n">4</span>) <span class="c"># =&gt; nil</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/bit_array.cr#L278" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="rotate!(n:Int=1):self-instance-method">
+      <div class="signature">
+        
+        def <strong>rotate!</strong>(n : <a href="Int.html">Int</a> = <span class="n">1</span>) : <span class="k">self</span>
+
+        <a class="method-permalink" href="#rotate%21%28n%3AInt%3D1%29%3Aself-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Shifts all elements of <code>self</code> to the left <em>n</em> times. Returns <code>self</code>.</p>
+<pre><code class="language-crystal">a1 <span class="o">=</span> [<span class="n">0</span>, <span class="n">1</span>, <span class="n">2</span>, <span class="n">3</span>, <span class="n">4</span>, <span class="n">5</span>, <span class="n">6</span>, <span class="n">7</span>, <span class="n">8</span>, <span class="n">9</span>]
+a2 <span class="o">=</span> [<span class="n">0</span>, <span class="n">1</span>, <span class="n">2</span>, <span class="n">3</span>, <span class="n">4</span>, <span class="n">5</span>, <span class="n">6</span>, <span class="n">7</span>, <span class="n">8</span>, <span class="n">9</span>]
+a3 <span class="o">=</span> [<span class="n">0</span>, <span class="n">1</span>, <span class="n">2</span>, <span class="n">3</span>, <span class="n">4</span>, <span class="n">5</span>, <span class="n">6</span>, <span class="n">7</span>, <span class="n">8</span>, <span class="n">9</span>]
+
+a1.rotate!
+a2.rotate!(<span class="n">1</span>)
+a3.rotate!(<span class="n">3</span>)
+
+a1 <span class="c"># =&gt; [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]</span>
+a2 <span class="c"># =&gt; [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]</span>
+a3 <span class="c"># =&gt; [3, 4, 5, 6, 7, 8, 9, 0, 1, 2]</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/bit_array.cr#L530" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="size:Int32-instance-method">
+      <div class="signature">
+        
+        def <strong>size</strong> : <a href="Int32.html">Int32</a>
+
+        <a class="method-permalink" href="#size%3AInt32-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>The number of bits the BitArray stores</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/bit_array.cr#L24" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="tally(hash)-instance-method">
+      <div class="signature">
+        
+        def <strong>tally</strong>(hash)
+
+        <a class="method-permalink" href="#tally%28hash%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Tallies the collection. Accepts a <em>hash</em> to count occurrences.
+The value corresponding to each element must be an integer.
+The number of occurrences is added to each value in <em>hash</em>,
+and <em>hash</em> is returned.</p>
+<pre><code class="language-crystal">hash <span class="o">=</span> {} <span class="k">of</span> <span class="t">Char</span> <span class="o">=&gt;</span> <span class="t">Int32</span>
+words <span class="o">=</span> [<span class="s">&quot;crystal&quot;</span>, <span class="s">&quot;ruby&quot;</span>]
+words.each { <span class="o">|</span>word<span class="o">|</span> word.chars.tally(hash) }
+hash <span class="c"># =&gt; {&#39;c&#39; =&gt; 1, &#39;r&#39; =&gt; 2, &#39;y&#39; =&gt; 2, &#39;s&#39; =&gt; 1, &#39;t&#39; =&gt; 1, &#39;a&#39; =&gt; 1, &#39;l&#39; =&gt; 1, &#39;u&#39; =&gt; 1, &#39;b&#39; =&gt; 1}</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/bit_array.cr#L315" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="tally:Hash(Bool,Int32)-instance-method">
+      <div class="signature">
+        
+        def <strong>tally</strong> : <a href="Hash.html">Hash</a>(<a href="Bool.html">Bool</a>, <a href="Int32.html">Int32</a>)
+
+        <a class="method-permalink" href="#tally%3AHash%28Bool%2CInt32%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Tallies the collection.  Returns a hash where the keys are the
+elements and the values are numbers of elements in the collection
+that correspond to the key.</p>
+<pre><code class="language-crystal">[<span class="s">&quot;a&quot;</span>, <span class="s">&quot;b&quot;</span>, <span class="s">&quot;c&quot;</span>, <span class="s">&quot;b&quot;</span>].tally <span class="c"># =&gt; {&quot;a&quot;=&gt;1, &quot;b&quot;=&gt;2, &quot;c&quot;=&gt;1}</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/bit_array.cr#L310" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_s(io:IO):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>to_s</strong>(io : <a href="IO.html">IO</a>) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#to_s%28io%3AIO%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Creates a string representation of <code>self</code>.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;bit_array&quot;</span>
+
+ba <span class="o">=</span> <span class="t">BitArray</span>.new(<span class="n">5</span>)
+ba.to_s <span class="c"># =&gt; &quot;BitArray[00000]&quot;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/bit_array.cr#L607" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_slice:Bytes-instance-method">
+      <div class="signature">
+        
+        def <strong>to_slice</strong> : <a href="Bytes.html">Bytes</a>
+
+        <a class="method-permalink" href="#to_slice%3ABytes-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns a <code><a href="Bytes.html">Bytes</a></code> able to read and write bytes from a buffer.
+The slice will be long enough to hold all the bits groups in bytes despite the <code><a href="UInt32.html">UInt32</a></code> internal representation.
+It's useful for reading and writing a bit array from a byte buffer directly.</p>
+<p><span class="flag yellow">WARNING</span>  It is undefined behaviour to set any of the unused bits of a bit array to
+<code>true</code> via a slice.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/bit_array.cr#L626" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="toggle(start:Int,count:Int)-instance-method">
+      <div class="signature">
+        
+        def <strong>toggle</strong>(start : <a href="Int.html">Int</a>, count : <a href="Int.html">Int</a>)
+
+        <a class="method-permalink" href="#toggle%28start%3AInt%2Ccount%3AInt%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Toggles <em>count</em> or less (if there aren't enough) bits starting at the given
+<em>start</em> index. A <code>false</code> bit becomes a <code>true</code> bit, and vice versa.</p>
+<p>Negative indices count backward from the end of the array (-1 is the last
+element).</p>
+<p>Raises <code><a href="IndexError.html">IndexError</a></code> if <em>index</em> is out of range.
+Raises <code><a href="ArgumentError.html">ArgumentError</a></code> if <em>count</em> is a negative number.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;bit_array&quot;</span>
+
+ba <span class="o">=</span> <span class="t">BitArray</span>.new(<span class="n">5</span>)
+ba.to_s <span class="c"># =&gt; &quot;BitArray[00000]&quot;</span>
+ba.toggle(<span class="n">1</span>, <span class="n">3</span>)
+ba.to_s <span class="c"># =&gt; &quot;BitArray[01110]&quot;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/bit_array.cr#L441" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="toggle(range:Range)-instance-method">
+      <div class="signature">
+        
+        def <strong>toggle</strong>(range : <a href="Range.html">Range</a>)
+
+        <a class="method-permalink" href="#toggle%28range%3ARange%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Toggles all bits that are within the given <em>range</em>. A <code>false</code> bit becomes a
+<code>true</code> bit, and vice versa.</p>
+<p>Negative indices count backward from the end of the array (-1 is the last
+element).</p>
+<p>Raises <code><a href="IndexError.html">IndexError</a></code> if the starting index is out of range.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;bit_array&quot;</span>
+
+ba <span class="o">=</span> <span class="t">BitArray</span>.new(<span class="n">5</span>)
+ba.to_s <span class="c"># =&gt; &quot;BitArray[00000]&quot;</span>
+ba.toggle(<span class="n">1</span>..<span class="n">-2</span>)
+ba.to_s <span class="c"># =&gt; &quot;BitArray[01110]&quot;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/bit_array.cr#L420" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="toggle(index):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>toggle</strong>(index) : <a href="Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#toggle%28index%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Toggles the bit at the given <em>index</em>. A <code>false</code> bit becomes a <code>true</code> bit,
+and vice versa.</p>
+<p>Negative indices count backward from the end of the array (-1 is the last
+element).</p>
+<p>Raises <code><a href="IndexError.html">IndexError</a></code> if <em>index</em> is out of range.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;bit_array&quot;</span>
+
+ba <span class="o">=</span> <span class="t">BitArray</span>.new(<span class="n">5</span>)
+ba[<span class="n">3</span>] <span class="c"># =&gt; false</span>
+ba.toggle(<span class="n">3</span>)
+ba[<span class="n">3</span>] <span class="c"># =&gt; true</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/bit_array.cr#L399" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="unsafe_fetch(index:Int):Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>unsafe_fetch</strong>(index : <a href="Int.html">Int</a>) : <a href="Bool.html">Bool</a>
+
+        <a class="method-permalink" href="#unsafe_fetch%28index%3AInt%29%3ABool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+            <div class="doc-inherited">
+              Description copied from module <a href="Indexable.html">Indexable</a>(<a href="Bool.html">Bool</a>)
+            </div>
+          
+          <p>Returns the element at the given <em>index</em>, without doing any bounds check.</p>
+<p><code><a href="Indexable.html">Indexable</a></code> makes sure to invoke this method with <em>index</em> in <code>0...size</code>,
+so converting negative indices to positive ones is not needed here.</p>
+<p>Clients never invoke this method directly. Instead, they access
+elements with <code><a href="BitArray.html#%5B%5D%28range%3ARange%29%3ABitArray-instance-method">#[](index)</a></code> and <code>#[]?(index)</code>.</p>
+<p>This method should only be directly invoked if you are absolutely
+sure the index is in bounds, to avoid a bounds check for a small boost
+of performance.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/bit_array.cr#L62" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="unsafe_put(index:Int,value:Bool)-instance-method">
+      <div class="signature">
+        
+        def <strong>unsafe_put</strong>(index : <a href="Int.html">Int</a>, value : <a href="Bool.html">Bool</a>)
+
+        <a class="method-permalink" href="#unsafe_put%28index%3AInt%2Cvalue%3ABool%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+            <div class="doc-inherited">
+              Description copied from module <a href="Indexable/Mutable.html">Indexable::Mutable</a>(<a href="Bool.html">Bool</a>)
+            </div>
+          
+          <p>Sets the element at the given <em>index</em> to <em>value</em>, without doing any bounds
+check.</p>
+<p><code><a href="Indexable/Mutable.html">Indexable::Mutable</a></code> makes sure to invoke this method with <em>index</em> in
+<code>0...size</code>, so converting negative indices to positive ones is not needed
+here.</p>
+<p>Clients never invoke this method directly. Instead, they modify elements
+with <code><a href="BitArray.html#%5B%5D%3D%28index%3AInt%2Cvalue%3ABool%29%3ABool-instance-method">#[]=(index, value)</a></code>.</p>
+<p>This method should only be directly invoked if you are absolutely
+sure the index is in bounds, to avoid a bounds check for a small boost
+of performance.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/bit_array.cr#L67" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+</div>
+
+</body>
+</html>

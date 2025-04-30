@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Crystal Docs 1.16.1">
+<meta name="crystal_docs.project_version" content="1.17.0-dev">
+<meta name="crystal_docs.project_name" content="Crystal">
+
+  <meta name="crystal_docs.json_config_url" content="/api/versions.json">
+
+
+    <link rel="canonical" href="https://crystal-lang.org/api/latest/YAML/Nodes/Sequence.html">
+
+<link href="../../css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../../js/doc.js"></script>
+
+  <meta name="repository-name" content="Crystal">
+  <title>YAML::Nodes::Sequence - Crystal 1.17.0-dev</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "../../";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill="currentColor" fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<input type="checkbox" id="sidebar-btn">
+<label for="sidebar-btn" id="sidebar-btn-label">
+  <svg class="open" xmlns="http://www.w3.org/2000/svg" height="2em" width="2em" viewBox="0 0 512 512"><title>Open Sidebar</title><path fill="currentColor" d="M80 96v64h352V96H80zm0 112v64h352v-64H80zm0 112v64h352v-64H80z"></path></svg>
+  <svg class="close" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><title>Close Sidebar</title><path fill="currentColor" d="m118.6 73.4-45.2 45.2L210.7 256 73.4 393.4l45.2 45.2L256 301.3l137.4 137.3 45.2-45.2L301.3 256l137.3-137.4-45.2-45.2L256 210.7Z"></path></svg>
+</label>
+<iframe class="sidebar" src="../../sidebar.html"></iframe>
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">
+    class
+  </span> YAML::<wbr>Nodes::<wbr>Sequence
+
+</h1>
+
+
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../../YAML/Nodes/Sequence.html">YAML::Nodes::Sequence</a></li><li class="superclass"><a href="../../YAML/Nodes/Node.html">YAML::Nodes::Node</a></li><li class="superclass"><a href="../../Reference.html">Reference</a></li><li class="superclass"><a href="../../Object.html">Object</a></li></ul>
+
+
+
+
+  <h2>
+    <a id="overview" class="anchor" href="#overview">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Overview
+  </h2>
+
+  <p>A sequence of nodes.</p>
+
+
+
+
+
+
+
+  <h2>
+    <a id="included-modules" class="anchor" href="#included-modules">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Included Modules
+  </h2>
+  <ul class="other-types-list">
+    
+      <li class="other-type"><a href="../../Enumerable.html">Enumerable</a>(<a href="../../YAML/Nodes/Node.html">YAML::Nodes::Node</a>)</li>
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      <a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/yaml/nodes/nodes.cr#L85" target="_blank">
+        yaml/nodes/nodes.cr
+      </a>
+    
+    <br/>
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#%3C%3C%28node%29-instance-method" class="signature"><strong>#<<</strong>(node)</a>
+        
+          <div class="summary"><p>Appends a node into this sequence.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#each%28%26%29-instance-method" class="signature"><strong>#each</strong>(&)</a>
+        
+          <div class="summary"><p>Must yield this collection's elements to the block.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#kind%3AString-instance-method" class="signature"><strong>#kind</strong> : String</a>
+        
+          <div class="summary"><p>Returns the kind of this node, which is equivalent to the class name.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#nodes%3AArray%28YAML%3A%3ANodes%3A%3ANode%29-instance-method" class="signature"><strong>#nodes</strong> : Array(YAML::Nodes::Node)</a>
+        
+          <div class="summary"><p>The nodes in this sequence.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#style%3ASequenceStyle-instance-method" class="signature"><strong>#style</strong> : SequenceStyle</a>
+        
+          <div class="summary"><p>The style of this sequence.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#style%3D%28style%3ASequenceStyle%29-instance-method" class="signature"><strong>#style=</strong>(style : SequenceStyle)</a>
+        
+          <div class="summary"><p>The style of this sequence.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_yaml%28builder%3AYAML%3A%3ABuilder%29%3ANil-instance-method" class="signature"><strong>#to_yaml</strong>(builder : YAML::Builder) : Nil</a>
+        
+      </li>
+    
+  </ul>
+
+
+
+  <div class="methods-inherited">
+    
+      
+
+  <h3>Instance methods inherited from module <code><a href="../../Enumerable.html">Enumerable</a>(<a href="../../YAML/Nodes/Node.html">YAML::Nodes::Node</a>)</code></h3>
+  
+  
+    <a href="../../Enumerable.html#accumulate%28initial%3AU%29%3AArray%28U%29forallU-instance-method" class="tooltip">
+      <span>accumulate(initial : U) : Array(U) forall U<br/>accumulate : Array(T)<br/>accumulate(initial : U, &block : U, T -> U) : Array(U) forall U<br/>accumulate(&block : T, T -> T) : Array(T)</span>
+    accumulate</a>, 
+    
+  
+    <a href="../../Enumerable.html#all%3F%28%26%3AT-%3E%29%3ABool-instance-method" class="tooltip">
+      <span>all?(& : T -> ) : Bool<br/>all?(pattern) : Bool<br/>all? : Bool</span>
+    all?</a>, 
+    
+  
+    <a href="../../Enumerable.html#any%3F%28%26%3AT-%3E%29%3ABool-instance-method" class="tooltip">
+      <span>any?(& : T -> ) : Bool<br/>any?(pattern) : Bool<br/>any? : Bool</span>
+    any?</a>, 
+    
+  
+    <a href="../../Enumerable.html#chunks%28%26block%3AT-%3EU%29forallU-instance-method" class="tooltip">
+      <span>chunks(&block : T -> U) forall U</span>
+    chunks</a>, 
+    
+  
+    <a href="../../Enumerable.html#compact_map%28%26%3AT-%3E_%29-instance-method" class="tooltip">
+      <span>compact_map(& : T -> _)</span>
+    compact_map</a>, 
+    
+  
+    <a href="../../Enumerable.html#count%28%26%3AT-%3E%29%3AInt32-instance-method" class="tooltip">
+      <span>count(& : T -> ) : Int32<br/>count(item) : Int32</span>
+    count</a>, 
+    
+  
+    <a href="../../Enumerable.html#cycle%28n%2C%26%3AT-%3E%29%3ANil-instance-method" class="tooltip">
+      <span>cycle(n, & : T -> ) : Nil<br/>cycle(& : T -> ) : Nil</span>
+    cycle</a>, 
+    
+  
+    <a href="../../Enumerable.html#each%28%26%3AT-%3E%29-instance-method" class="tooltip">
+      <span>each(& : T -> )</span>
+    each</a>, 
+    
+  
+    <a href="../../Enumerable.html#each_cons%28count%3AInt%2Creuse%3Dfalse%2C%26%29-instance-method" class="tooltip">
+      <span>each_cons(count : Int, reuse = <span class="n">false</span>, &)</span>
+    each_cons</a>, 
+    
+  
+    <a href="../../Enumerable.html#each_cons_pair%28%26%3AT%2CT-%3E%29%3ANil-instance-method" class="tooltip">
+      <span>each_cons_pair(& : T, T -> ) : Nil</span>
+    each_cons_pair</a>, 
+    
+  
+    <a href="../../Enumerable.html#each_slice%28count%3AInt%2Creuse%3Dfalse%2C%26%29-instance-method" class="tooltip">
+      <span>each_slice(count : Int, reuse = <span class="n">false</span>, &)</span>
+    each_slice</a>, 
+    
+  
+    <a href="../../Enumerable.html#each_step%28n%3AInt%2C%2A%2Coffset%3AInt%3D0%2C%26%3AT-%3E%29%3ANil-instance-method" class="tooltip">
+      <span>each_step(n : Int, *, offset : Int = <span class="n">0</span>, & : T -> ) : Nil</span>
+    each_step</a>, 
+    
+  
+    <a href="../../Enumerable.html#each_with_index%28offset%3D0%2C%26%29-instance-method" class="tooltip">
+      <span>each_with_index(offset = <span class="n">0</span>, &)</span>
+    each_with_index</a>, 
+    
+  
+    <a href="../../Enumerable.html#each_with_object%28obj%3AU%2C%26%3AT%2CU-%3E%29%3AUforallU-instance-method" class="tooltip">
+      <span>each_with_object(obj : U, & : T, U -> ) : U forall U</span>
+    each_with_object</a>, 
+    
+  
+    <a href="../../Enumerable.html#empty%3F%3ABool-instance-method" class="tooltip">
+      <span>empty? : Bool</span>
+    empty?</a>, 
+    
+  
+    <a href="../../Enumerable.html#find%28if_none%3Dnil%2C%26%3AT-%3E%29-instance-method" class="tooltip">
+      <span>find(if_none = <span class="n">nil</span>, & : T -> )</span>
+    find</a>, 
+    
+  
+    <a href="../../Enumerable.html#find%21%28%26%3AT-%3E%29%3AT-instance-method" class="tooltip">
+      <span>find!(& : T -> ) : T</span>
+    find!</a>, 
+    
+  
+    <a href="../../Enumerable.html#find_value%28if_none%3Dnil%2C%26%3AT-%3E%29-instance-method" class="tooltip">
+      <span>find_value(if_none = <span class="n">nil</span>, & : T -> )</span>
+    find_value</a>, 
+    
+  
+    <a href="../../Enumerable.html#first%28%26%29-instance-method" class="tooltip">
+      <span>first(&)<br/>first(count : Int) : Array(T)<br/>first : T</span>
+    first</a>, 
+    
+  
+    <a href="../../Enumerable.html#first%3F%3AT%7CNil-instance-method" class="tooltip">
+      <span>first? : T | Nil</span>
+    first?</a>, 
+    
+  
+    <a href="../../Enumerable.html#flat_map%28%26%3AT-%3E_%29-instance-method" class="tooltip">
+      <span>flat_map(& : T -> _)</span>
+    flat_map</a>, 
+    
+  
+    <a href="../../Enumerable.html#group_by%28%26%3AT-%3EU%29forallU-instance-method" class="tooltip">
+      <span>group_by(& : T -> U) forall U</span>
+    group_by</a>, 
+    
+  
+    <a href="../../Enumerable.html#in_groups_of%28size%3AInt%2Cfilled_up_with%3AU%3Dnil%29forallU-instance-method" class="tooltip">
+      <span>in_groups_of(size : Int, filled_up_with : U = <span class="n">nil</span>) forall U<br/>in_groups_of(size : Int, filled_up_with : U = <span class="n">nil</span>, reuse = <span class="n">false</span>, &) forall U</span>
+    in_groups_of</a>, 
+    
+  
+    <a href="../../Enumerable.html#in_slices_of%28size%3AInt%29%3AArray%28Array%28T%29%29-instance-method" class="tooltip">
+      <span>in_slices_of(size : Int) : Array(Array(T))</span>
+    in_slices_of</a>, 
+    
+  
+    <a href="../../Enumerable.html#includes%3F%28obj%29%3ABool-instance-method" class="tooltip">
+      <span>includes?(obj) : Bool</span>
+    includes?</a>, 
+    
+  
+    <a href="../../Enumerable.html#index%28%26%3AT-%3E%29%3AInt32%7CNil-instance-method" class="tooltip">
+      <span>index(& : T -> ) : Int32 | Nil<br/>index(obj) : Int32 | Nil</span>
+    index</a>, 
+    
+  
+    <a href="../../Enumerable.html#index%21%28%26%3AT-%3E%29%3AInt32-instance-method" class="tooltip">
+      <span>index!(& : T -> ) : Int32<br/>index!(obj) : Int32</span>
+    index!</a>, 
+    
+  
+    <a href="../../Enumerable.html#index_by%28%26%3AT-%3EU%29%3AHash%28U%2CT%29forallU-instance-method" class="tooltip">
+      <span>index_by(& : T -> U) : Hash(U, T) forall U</span>
+    index_by</a>, 
+    
+  
+    <a href="../../Enumerable.html#join%28io%3AIO%2Cseparator%3D%22%22%29%3ANil-instance-method" class="tooltip">
+      <span>join(io : IO, separator = <span class="s">&quot;&quot;</span>) : Nil<br/>join(separator, io : IO) : Nil<br/>join(separator = <span class="s">&quot;&quot;</span>) : String<br/>join(io : IO, separator = <span class="s">&quot;&quot;</span>, & : T, IO -> )<br/>join(separator, io : IO, &)<br/>join(separator = <span class="s">&quot;&quot;</span>, & : T -> )</span>
+    join</a>, 
+    
+  
+    <a href="../../Enumerable.html#map%28%26%3AT-%3EU%29%3AArray%28U%29forallU-instance-method" class="tooltip">
+      <span>map(& : T -> U) : Array(U) forall U</span>
+    map</a>, 
+    
+  
+    <a href="../../Enumerable.html#map_with_index%28offset%3D0%2C%26%3AT%2CInt32-%3EU%29%3AArray%28U%29forallU-instance-method" class="tooltip">
+      <span>map_with_index(offset = <span class="n">0</span>, & : T, Int32 -> U) : Array(U) forall U</span>
+    map_with_index</a>, 
+    
+  
+    <a href="../../Enumerable.html#max%28count%3AInt%29%3AArray%28T%29-instance-method" class="tooltip">
+      <span>max(count : Int) : Array(T)<br/>max : T</span>
+    max</a>, 
+    
+  
+    <a href="../../Enumerable.html#max%3F%3AT%7CNil-instance-method" class="tooltip">
+      <span>max? : T | Nil</span>
+    max?</a>, 
+    
+  
+    <a href="../../Enumerable.html#max_by%28%26%3AT-%3EU%29%3ATforallU-instance-method" class="tooltip">
+      <span>max_by(& : T -> U) : T forall U</span>
+    max_by</a>, 
+    
+  
+    <a href="../../Enumerable.html#max_by%3F%28%26%3AT-%3EU%29%3AT%7CNilforallU-instance-method" class="tooltip">
+      <span>max_by?(& : T -> U) : T | Nil forall U</span>
+    max_by?</a>, 
+    
+  
+    <a href="../../Enumerable.html#max_of%28%26%3AT-%3EU%29%3AUforallU-instance-method" class="tooltip">
+      <span>max_of(& : T -> U) : U forall U</span>
+    max_of</a>, 
+    
+  
+    <a href="../../Enumerable.html#max_of%3F%28%26%3AT-%3EU%29%3AU%7CNilforallU-instance-method" class="tooltip">
+      <span>max_of?(& : T -> U) : U | Nil forall U</span>
+    max_of?</a>, 
+    
+  
+    <a href="../../Enumerable.html#min%28count%3AInt%29%3AArray%28T%29-instance-method" class="tooltip">
+      <span>min(count : Int) : Array(T)<br/>min : T</span>
+    min</a>, 
+    
+  
+    <a href="../../Enumerable.html#min%3F%3AT%7CNil-instance-method" class="tooltip">
+      <span>min? : T | Nil</span>
+    min?</a>, 
+    
+  
+    <a href="../../Enumerable.html#min_by%28%26%3AT-%3EU%29%3ATforallU-instance-method" class="tooltip">
+      <span>min_by(& : T -> U) : T forall U</span>
+    min_by</a>, 
+    
+  
+    <a href="../../Enumerable.html#min_by%3F%28%26%3AT-%3EU%29%3AT%7CNilforallU-instance-method" class="tooltip">
+      <span>min_by?(& : T -> U) : T | Nil forall U</span>
+    min_by?</a>, 
+    
+  
+    <a href="../../Enumerable.html#min_of%28%26%3AT-%3EU%29%3AUforallU-instance-method" class="tooltip">
+      <span>min_of(& : T -> U) : U forall U</span>
+    min_of</a>, 
+    
+  
+    <a href="../../Enumerable.html#min_of%3F%28%26%3AT-%3EU%29%3AU%7CNilforallU-instance-method" class="tooltip">
+      <span>min_of?(& : T -> U) : U | Nil forall U</span>
+    min_of?</a>, 
+    
+  
+    <a href="../../Enumerable.html#minmax%3ATuple%28T%2CT%29-instance-method" class="tooltip">
+      <span>minmax : Tuple(T, T)</span>
+    minmax</a>, 
+    
+  
+    <a href="../../Enumerable.html#minmax%3F%3ATuple%28T%7CNil%2CT%7CNil%29-instance-method" class="tooltip">
+      <span>minmax? : Tuple(T | Nil, T | Nil)</span>
+    minmax?</a>, 
+    
+  
+    <a href="../../Enumerable.html#minmax_by%28%26%3AT-%3EU%29%3ATuple%28T%2CT%29forallU-instance-method" class="tooltip">
+      <span>minmax_by(& : T -> U) : Tuple(T, T) forall U</span>
+    minmax_by</a>, 
+    
+  
+    <a href="../../Enumerable.html#minmax_by%3F%28%26%3AT-%3EU%29%3ATuple%28T%2CT%29%7CTuple%28Nil%2CNil%29forallU-instance-method" class="tooltip">
+      <span>minmax_by?(& : T -> U) : Tuple(T, T) | Tuple(Nil, Nil) forall U</span>
+    minmax_by?</a>, 
+    
+  
+    <a href="../../Enumerable.html#minmax_of%28%26%3AT-%3EU%29%3ATuple%28U%2CU%29forallU-instance-method" class="tooltip">
+      <span>minmax_of(& : T -> U) : Tuple(U, U) forall U</span>
+    minmax_of</a>, 
+    
+  
+    <a href="../../Enumerable.html#minmax_of%3F%28%26%3AT-%3EU%29%3ATuple%28U%2CU%29%7CTuple%28Nil%2CNil%29forallU-instance-method" class="tooltip">
+      <span>minmax_of?(& : T -> U) : Tuple(U, U) | Tuple(Nil, Nil) forall U</span>
+    minmax_of?</a>, 
+    
+  
+    <a href="../../Enumerable.html#none%3F%28%26%3AT-%3E%29%3ABool-instance-method" class="tooltip">
+      <span>none?(& : T -> ) : Bool<br/>none?(pattern) : Bool<br/>none? : Bool</span>
+    none?</a>, 
+    
+  
+    <a href="../../Enumerable.html#one%3F%28%26%3AT-%3E%29%3ABool-instance-method" class="tooltip">
+      <span>one?(& : T -> ) : Bool<br/>one?(pattern) : Bool<br/>one? : Bool</span>
+    one?</a>, 
+    
+  
+    <a href="../../Enumerable.html#partition%28%26%3AT-%3E%29%3ATuple%28Array%28T%29%2CArray%28T%29%29-instance-method" class="tooltip">
+      <span>partition(& : T -> ) : Tuple(Array(T), Array(T))<br/>partition(type : <span class="t">U</span>.<span class="k">class</span>) forall U</span>
+    partition</a>, 
+    
+  
+    <a href="../../Enumerable.html#present%3F%3ABool-instance-method" class="tooltip">
+      <span>present? : Bool</span>
+    present?</a>, 
+    
+  
+    <a href="../../Enumerable.html#product%28initial%3ANumber%29-instance-method" class="tooltip">
+      <span>product(initial : Number)<br/>product<br/>product(initial : Number, & : T -> )<br/>product(& : T -> _)</span>
+    product</a>, 
+    
+  
+    <a href="../../Enumerable.html#reduce%28memo%2C%26%29-instance-method" class="tooltip">
+      <span>reduce(memo, &)<br/>reduce(&)</span>
+    reduce</a>, 
+    
+  
+    <a href="../../Enumerable.html#reduce%3F%28%26%29-instance-method" class="tooltip">
+      <span>reduce?(&)</span>
+    reduce?</a>, 
+    
+  
+    <a href="../../Enumerable.html#reject%28%26%3AT-%3E%29-instance-method" class="tooltip">
+      <span>reject(& : T -> )<br/>reject(type : <span class="t">U</span>.<span class="k">class</span>) forall U<br/>reject(pattern) : Array(T)</span>
+    reject</a>, 
+    
+  
+    <a href="../../Enumerable.html#sample%28n%3AInt%2Crandom%3ARandom%3DRandom%3A%3ADEFAULT%29%3AArray%28T%29-instance-method" class="tooltip">
+      <span>sample(n : Int, random : Random = <span class="t">Random</span><span class="t">::</span><span class="t">DEFAULT</span>) : Array(T)<br/>sample(random : Random = <span class="t">Random</span><span class="t">::</span><span class="t">DEFAULT</span>) : T</span>
+    sample</a>, 
+    
+  
+    <a href="../../Enumerable.html#select%28%26%3AT-%3E%29-instance-method" class="tooltip">
+      <span>select(& : T -> )<br/>select(type : <span class="t">U</span>.<span class="k">class</span>) : Array(U) forall U<br/>select(pattern) : Array(T)</span>
+    select</a>, 
+    
+  
+    <a href="../../Enumerable.html#size%3AInt32-instance-method" class="tooltip">
+      <span>size : Int32</span>
+    size</a>, 
+    
+  
+    <a href="../../Enumerable.html#skip%28count%3AInt%29-instance-method" class="tooltip">
+      <span>skip(count : Int)</span>
+    skip</a>, 
+    
+  
+    <a href="../../Enumerable.html#skip_while%28%26%3AT-%3E%29%3AArray%28T%29-instance-method" class="tooltip">
+      <span>skip_while(& : T -> ) : Array(T)</span>
+    skip_while</a>, 
+    
+  
+    <a href="../../Enumerable.html#sum%28initial%29-instance-method" class="tooltip">
+      <span>sum(initial)<br/>sum<br/>sum(initial, & : T -> )<br/>sum(& : T -> )</span>
+    sum</a>, 
+    
+  
+    <a href="../../Enumerable.html#take_while%28%26%3AT-%3E%29%3AArray%28T%29-instance-method" class="tooltip">
+      <span>take_while(& : T -> ) : Array(T)</span>
+    take_while</a>, 
+    
+  
+    <a href="../../Enumerable.html#tally%28hash%29-instance-method" class="tooltip">
+      <span>tally(hash)<br/>tally : Hash(T, Int32)</span>
+    tally</a>, 
+    
+  
+    <a href="../../Enumerable.html#tally_by%28hash%2C%26%29-instance-method" class="tooltip">
+      <span>tally_by(hash, &)<br/>tally_by(&block : T -> U) : Hash(U, Int32) forall U</span>
+    tally_by</a>, 
+    
+  
+    <a href="../../Enumerable.html#to_a%3AArray%28T%29-instance-method" class="tooltip">
+      <span>to_a : Array(T)<br/>to_a(& : T -> U) : Array(U) forall U</span>
+    to_a</a>, 
+    
+  
+    <a href="../../Enumerable.html#to_h-instance-method" class="tooltip">
+      <span>to_h<br/>to_h(& : T -> Tuple(K, V)) forall K, V</span>
+    to_h</a>, 
+    
+  
+    <a href="../../Enumerable.html#to_set%3ASet%28T%29-instance-method" class="tooltip">
+      <span>to_set : Set(T)<br/>to_set(&block : T -> U) : Set(U) forall U</span>
+    to_set</a>, 
+    
+  
+    <a href="../../Enumerable.html#zip%28%2Aothers%3AIndexable%7CIterable%7CIterator%2C%26%29-instance-method" class="tooltip">
+      <span>zip(*others : Indexable | Iterable | Iterator, &)<br/>zip(*others : Indexable | Iterable | Iterator)</span>
+    zip</a>, 
+    
+  
+    <a href="../../Enumerable.html#zip%3F%28%2Aothers%3AIndexable%7CIterable%7CIterator%2C%26%29-instance-method" class="tooltip">
+      <span>zip?(*others : Indexable | Iterable | Iterator, &)<br/>zip?(*others : Indexable | Iterable | Iterator)</span>
+    zip?</a>
+    
+  
+
+
+      
+
+
+      
+
+  <h3>Class methods inherited from module <code><a href="../../Enumerable.html">Enumerable</a>(<a href="../../YAML/Nodes/Node.html">YAML::Nodes::Node</a>)</code></h3>
+  
+  
+    <a href="../../Enumerable.html#element_type%28x%29-class-method" class="tooltip">
+      <span>element_type(x)</span>
+    element_type</a>
+    
+  
+
+
+      
+
+
+    
+      
+
+  <h3>Instance methods inherited from class <code><a href="../../YAML/Nodes/Node.html">YAML::Nodes::Node</a></code></h3>
+  
+  
+    <a href="../../YAML/Nodes/Node.html#anchor%3AString%7CNil-instance-method" class="tooltip">
+      <span>anchor : String | Nil</span>
+    anchor</a>, 
+    
+  
+    <a href="../../YAML/Nodes/Node.html#anchor%3D%28anchor%3AString%7CNil%29-instance-method" class="tooltip">
+      <span>anchor=(anchor : String | Nil)</span>
+    anchor=</a>, 
+    
+  
+    <a href="../../YAML/Nodes/Node.html#end_column%3AInt32-instance-method" class="tooltip">
+      <span>end_column : Int32</span>
+    end_column</a>, 
+    
+  
+    <a href="../../YAML/Nodes/Node.html#end_column%3D%28end_column%3AInt32%29-instance-method" class="tooltip">
+      <span>end_column=(end_column : Int32)</span>
+    end_column=</a>, 
+    
+  
+    <a href="../../YAML/Nodes/Node.html#end_line%3AInt32-instance-method" class="tooltip">
+      <span>end_line : Int32</span>
+    end_line</a>, 
+    
+  
+    <a href="../../YAML/Nodes/Node.html#end_line%3D%28end_line%3AInt32%29-instance-method" class="tooltip">
+      <span>end_line=(end_line : Int32)</span>
+    end_line=</a>, 
+    
+  
+    <a href="../../YAML/Nodes/Node.html#kind%3AString-instance-method" class="tooltip">
+      <span>kind : String</span>
+    kind</a>, 
+    
+  
+    <a href="../../YAML/Nodes/Node.html#location%3ATuple%28Int32%2CInt32%29-instance-method" class="tooltip">
+      <span>location : Tuple(Int32, Int32)</span>
+    location</a>, 
+    
+  
+    <a href="../../YAML/Nodes/Node.html#raise%28message%29%3ANoReturn-instance-method" class="tooltip">
+      <span>raise(message) : NoReturn</span>
+    raise</a>, 
+    
+  
+    <a href="../../YAML/Nodes/Node.html#start_column%3AInt32-instance-method" class="tooltip">
+      <span>start_column : Int32</span>
+    start_column</a>, 
+    
+  
+    <a href="../../YAML/Nodes/Node.html#start_column%3D%28start_column%3AInt32%29-instance-method" class="tooltip">
+      <span>start_column=(start_column : Int32)</span>
+    start_column=</a>, 
+    
+  
+    <a href="../../YAML/Nodes/Node.html#start_line%3AInt32-instance-method" class="tooltip">
+      <span>start_line : Int32</span>
+    start_line</a>, 
+    
+  
+    <a href="../../YAML/Nodes/Node.html#start_line%3D%28start_line%3AInt32%29-instance-method" class="tooltip">
+      <span>start_line=(start_line : Int32)</span>
+    start_line=</a>, 
+    
+  
+    <a href="../../YAML/Nodes/Node.html#tag%3AString%7CNil-instance-method" class="tooltip">
+      <span>tag : String | Nil</span>
+    tag</a>, 
+    
+  
+    <a href="../../YAML/Nodes/Node.html#tag%3D%28tag%3AString%7CNil%29-instance-method" class="tooltip">
+      <span>tag=(tag : String | Nil)</span>
+    tag=</a>
+    
+  
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+      
+
+  <h3>Instance methods inherited from class <code><a href="../../Reference.html">Reference</a></code></h3>
+  
+  
+    <a href="../../Reference.html#%3D%3D%28other%3Aself%29-instance-method" class="tooltip">
+      <span>==(other : <span class="k">self</span>)<br/>==(other : JSON::Any)<br/>==(other : YAML::Any)<br/>==(other)</span>
+    ==</a>, 
+    
+  
+    <a href="../../Reference.html#dup-instance-method" class="tooltip">
+      <span>dup</span>
+    dup</a>, 
+    
+  
+    <a href="../../Reference.html#hash%28hasher%29-instance-method" class="tooltip">
+      <span>hash(hasher)</span>
+    hash</a>, 
+    
+  
+    <a href="../../Reference.html#initialize-instance-method" class="tooltip">
+      <span>initialize</span>
+    initialize</a>, 
+    
+  
+    <a href="../../Reference.html#inspect%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>inspect(io : IO) : Nil</span>
+    inspect</a>, 
+    
+  
+    <a href="../../Reference.html#object_id%3AUInt64-instance-method" class="tooltip">
+      <span>object_id : UInt64</span>
+    object_id</a>, 
+    
+  
+    <a href="../../Reference.html#pretty_print%28pp%29%3ANil-instance-method" class="tooltip">
+      <span>pretty_print(pp) : Nil</span>
+    pretty_print</a>, 
+    
+  
+    <a href="../../Reference.html#same%3F%28other%3AReference%29%3ABool-instance-method" class="tooltip">
+      <span>same?(other : Reference) : Bool<br/>same?(other : Nil)</span>
+    same?</a>, 
+    
+  
+    <a href="../../Reference.html#to_s%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_s(io : IO) : Nil</span>
+    to_s</a>
+    
+  
+
+
+      
+
+  <h3>Constructor methods inherited from class <code><a href="../../Reference.html">Reference</a></code></h3>
+  
+  
+    <a href="../../Reference.html#new-class-method" class="tooltip">
+      <span>new</span>
+    new</a>, 
+    
+  
+    <a href="../../Reference.html#unsafe_construct%28address%3APointer%2C%2Aargs%2C%2A%2Aopts%29%3Aself-class-method" class="tooltip">
+      <span>unsafe_construct(address : Pointer, *args, **opts) : <span class="k">self</span></span>
+    unsafe_construct</a>
+    
+  
+
+
+      
+
+  <h3>Class methods inherited from class <code><a href="../../Reference.html">Reference</a></code></h3>
+  
+  
+    <a href="../../Reference.html#pre_initialize%28address%3APointer%29-class-method" class="tooltip">
+      <span>pre_initialize(address : Pointer)</span>
+    pre_initialize</a>
+    
+  
+
+
+      
+
+
+    
+      
+
+  <h3>Instance methods inherited from class <code><a href="../../Object.html">Object</a></code></h3>
+  
+  
+    <a href="../../Object.html#%21%3ABool-instance-method" class="tooltip">
+      <span>! : Bool</span>
+    !</a>, 
+    
+  
+    <a href="../../Object.html#%21%3D%28other%29-instance-method" class="tooltip">
+      <span>!=(other)</span>
+    !=</a>, 
+    
+  
+    <a href="../../Object.html#%21~%28other%29-instance-method" class="tooltip">
+      <span>!~(other)</span>
+    !~</a>, 
+    
+  
+    <a href="../../Object.html#%3D%3D%28other%29-instance-method" class="tooltip">
+      <span>==(other)</span>
+    ==</a>, 
+    
+  
+    <a href="../../Object.html#%3D%3D%3D%28other%3AJSON%3A%3AAny%29-instance-method" class="tooltip">
+      <span>===(other : JSON::Any)<br/>===(other : YAML::Any)<br/>===(other)</span>
+    ===</a>, 
+    
+  
+    <a href="../../Object.html#%3D~%28other%29-instance-method" class="tooltip">
+      <span>=~(other)</span>
+    =~</a>, 
+    
+  
+    <a href="../../Object.html#as%28type%3AClass%29-instance-method" class="tooltip">
+      <span>as(type : Class)</span>
+    as</a>, 
+    
+  
+    <a href="../../Object.html#as%3F%28type%3AClass%29-instance-method" class="tooltip">
+      <span>as?(type : Class)</span>
+    as?</a>, 
+    
+  
+    <a href="../../Object.html#class-instance-method" class="tooltip">
+      <span>class</span>
+    class</a>, 
+    
+  
+    <a href="../../Object.html#dup-instance-method" class="tooltip">
+      <span>dup</span>
+    dup</a>, 
+    
+  
+    <a href="../../Object.html#hash%28hasher%29-instance-method" class="tooltip">
+      <span>hash(hasher)<br/>hash</span>
+    hash</a>, 
+    
+  
+    <a href="../../Object.html#in%3F%28collection%3AObject%29%3ABool-instance-method" class="tooltip">
+      <span>in?(collection : Object) : Bool<br/>in?(*values : Object) : Bool</span>
+    in?</a>, 
+    
+  
+    <a href="../../Object.html#inspect%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>inspect(io : IO) : Nil<br/>inspect : String</span>
+    inspect</a>, 
+    
+  
+    <a href="../../Object.html#is_a%3F%28type%3AClass%29%3ABool-instance-method" class="tooltip">
+      <span>is_a?(type : Class) : Bool</span>
+    is_a?</a>, 
+    
+  
+    <a href="../../Object.html#itself-instance-method" class="tooltip">
+      <span>itself</span>
+    itself</a>, 
+    
+  
+    <a href="../../Object.html#nil%3F%3ABool-instance-method" class="tooltip">
+      <span>nil? : Bool</span>
+    nil?</a>, 
+    
+  
+    <a href="../../Object.html#not_nil%21%28message%29-instance-method" class="tooltip">
+      <span>not_nil!(message)<br/>not_nil!</span>
+    not_nil!</a>, 
+    
+  
+    <a href="../../Object.html#pretty_inspect%28width%3D79%2Cnewline%3D%22%5Cn%22%2Cindent%3D0%29%3AString-instance-method" class="tooltip">
+      <span>pretty_inspect(width = <span class="n">79</span>, newline = <span class="s">&quot;\n&quot;</span>, indent = <span class="n">0</span>) : String</span>
+    pretty_inspect</a>, 
+    
+  
+    <a href="../../Object.html#pretty_print%28pp%3APrettyPrint%29%3ANil-instance-method" class="tooltip">
+      <span>pretty_print(pp : PrettyPrint) : Nil</span>
+    pretty_print</a>, 
+    
+  
+    <a href="../../Object.html#responds_to%3F%28name%3ASymbol%29%3ABool-instance-method" class="tooltip">
+      <span>responds_to?(name : Symbol) : Bool</span>
+    responds_to?</a>, 
+    
+  
+    <a href="../../Object.html#tap%28%26%29-instance-method" class="tooltip">
+      <span>tap(&)</span>
+    tap</a>, 
+    
+  
+    <a href="../../Object.html#to_json%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_json(io : IO) : Nil<br/>to_json : String</span>
+    to_json</a>, 
+    
+  
+    <a href="../../Object.html#to_pretty_json%28indent%3AString%3D%22%22%29%3AString-instance-method" class="tooltip">
+      <span>to_pretty_json(indent : String = <span class="s">&quot;  &quot;</span>) : String<br/>to_pretty_json(io : IO, indent : String = <span class="s">&quot;  &quot;</span>) : Nil</span>
+    to_pretty_json</a>, 
+    
+  
+    <a href="../../Object.html#to_s%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_s(io : IO) : Nil<br/>to_s : String</span>
+    to_s</a>, 
+    
+  
+    <a href="../../Object.html#to_yaml%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_yaml(io : IO) : Nil<br/>to_yaml : String</span>
+    to_yaml</a>, 
+    
+  
+    <a href="../../Object.html#try%28%26%29-instance-method" class="tooltip">
+      <span>try(&)</span>
+    try</a>, 
+    
+  
+    <a href="../../Object.html#unsafe_as%28type%3AT.class%29forallT-instance-method" class="tooltip">
+      <span>unsafe_as(type : <span class="t">T</span>.<span class="k">class</span>) forall T</span>
+    unsafe_as</a>
+    
+  
+
+
+      
+
+
+      
+
+  <h3>Class methods inherited from class <code><a href="../../Object.html">Object</a></code></h3>
+  
+  
+    <a href="../../Object.html#from_json%28string_or_io%2Croot%3AString%29-class-method" class="tooltip">
+      <span>from_json(string_or_io, root : String)<br/>from_json(string_or_io)</span>
+    from_json</a>, 
+    
+  
+    <a href="../../Object.html#from_yaml%28string_or_io%3AString%7CIO%29-class-method" class="tooltip">
+      <span>from_yaml(string_or_io : String | IO)</span>
+    from_yaml</a>
+    
+  
+
+
+      
+
+  <h3>Macros inherited from class <code><a href="../../Object.html">Object</a></code></h3>
+  
+  
+    <a href="../../Object.html#class_getter%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_getter(*names, &block)</span>
+    class_getter</a>, 
+    
+  
+    <a href="../../Object.html#class_getter%21%28%2Anames%29-macro" class="tooltip">
+      <span>class_getter!(*names)</span>
+    class_getter!</a>, 
+    
+  
+    <a href="../../Object.html#class_getter%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_getter?(*names, &block)</span>
+    class_getter?</a>, 
+    
+  
+    <a href="../../Object.html#class_property%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_property(*names, &block)</span>
+    class_property</a>, 
+    
+  
+    <a href="../../Object.html#class_property%21%28%2Anames%29-macro" class="tooltip">
+      <span>class_property!(*names)</span>
+    class_property!</a>, 
+    
+  
+    <a href="../../Object.html#class_property%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>class_property?(*names, &block)</span>
+    class_property?</a>, 
+    
+  
+    <a href="../../Object.html#class_setter%28%2Anames%29-macro" class="tooltip">
+      <span>class_setter(*names)</span>
+    class_setter</a>, 
+    
+  
+    <a href="../../Object.html#def_clone-macro" class="tooltip">
+      <span>def_clone</span>
+    def_clone</a>, 
+    
+  
+    <a href="../../Object.html#def_equals%28%2Afields%29-macro" class="tooltip">
+      <span>def_equals(*fields)</span>
+    def_equals</a>, 
+    
+  
+    <a href="../../Object.html#def_equals_and_hash%28%2Afields%29-macro" class="tooltip">
+      <span>def_equals_and_hash(*fields)</span>
+    def_equals_and_hash</a>, 
+    
+  
+    <a href="../../Object.html#def_hash%28%2Afields%29-macro" class="tooltip">
+      <span>def_hash(*fields)</span>
+    def_hash</a>, 
+    
+  
+    <a href="../../Object.html#delegate%28%2Amethods%2Ctoobject%29-macro" class="tooltip">
+      <span>delegate(*methods, to object)</span>
+    delegate</a>, 
+    
+  
+    <a href="../../Object.html#forward_missing_to%28delegate%29-macro" class="tooltip">
+      <span>forward_missing_to(delegate)</span>
+    forward_missing_to</a>, 
+    
+  
+    <a href="../../Object.html#getter%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>getter(*names, &block)</span>
+    getter</a>, 
+    
+  
+    <a href="../../Object.html#getter%21%28%2Anames%29-macro" class="tooltip">
+      <span>getter!(*names)</span>
+    getter!</a>, 
+    
+  
+    <a href="../../Object.html#getter%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>getter?(*names, &block)</span>
+    getter?</a>, 
+    
+  
+    <a href="../../Object.html#property%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>property(*names, &block)</span>
+    property</a>, 
+    
+  
+    <a href="../../Object.html#property%21%28%2Anames%29-macro" class="tooltip">
+      <span>property!(*names)</span>
+    property!</a>, 
+    
+  
+    <a href="../../Object.html#property%3F%28%2Anames%2C%26block%29-macro" class="tooltip">
+      <span>property?(*names, &block)</span>
+    property?</a>, 
+    
+  
+    <a href="../../Object.html#setter%28%2Anames%29-macro" class="tooltip">
+      <span>setter(*names)</span>
+    setter</a>
+    
+  
+
+
+    
+  </div>
+
+  
+
+  
+
+  
+
+  
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="&lt;&lt;(node)-instance-method">
+      <div class="signature">
+        
+        def <strong><<</strong>(node)
+
+        <a class="method-permalink" href="#%3C%3C%28node%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Appends a node into this sequence.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/yaml/nodes/nodes.cr#L95" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="each(&amp;)-instance-method">
+      <div class="signature">
+        
+        def <strong>each</strong>(&)
+
+        <a class="method-permalink" href="#each%28%26%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+            <div class="doc-inherited">
+              Description copied from module <a href="../../Enumerable.html">Enumerable</a>(<a href="../../YAML/Nodes/Node.html">YAML::Nodes::Node</a>)
+            </div>
+          
+          <p>Must yield this collection's elements to the block.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/yaml/nodes/nodes.cr#L99" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="kind:String-instance-method">
+      <div class="signature">
+        
+        def <strong>kind</strong> : <a href="../../String.html">String</a>
+
+        <a class="method-permalink" href="#kind%3AString-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+            <div class="doc-inherited">
+              Description copied from class <a href="../../YAML/Nodes/Node.html">YAML::Nodes::Node</a>
+            </div>
+          
+          <p>Returns the kind of this node, which is equivalent to the class name.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/yaml/nodes/nodes.cr#L111" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="nodes:Array(YAML::Nodes::Node)-instance-method">
+      <div class="signature">
+        
+        def <strong>nodes</strong> : <a href="../../Array.html">Array</a>(<a href="../../YAML/Nodes/Node.html">YAML::Nodes::Node</a>)
+
+        <a class="method-permalink" href="#nodes%3AArray%28YAML%3A%3ANodes%3A%3ANode%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>The nodes in this sequence.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/yaml/nodes/nodes.cr#L89" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="style:SequenceStyle-instance-method">
+      <div class="signature">
+        
+        def <strong>style</strong> : <a href="../../YAML/SequenceStyle.html">SequenceStyle</a>
+
+        <a class="method-permalink" href="#style%3ASequenceStyle-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>The style of this sequence.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/yaml/nodes/nodes.cr#L92" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="style=(style:SequenceStyle)-instance-method">
+      <div class="signature">
+        
+        def <strong>style=</strong>(style : <a href="../../YAML/SequenceStyle.html">SequenceStyle</a>)
+
+        <a class="method-permalink" href="#style%3D%28style%3ASequenceStyle%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>The style of this sequence.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/yaml/nodes/nodes.cr#L92" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_yaml(builder:YAML::Builder):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>to_yaml</strong>(builder : <a href="../../YAML/Builder.html">YAML::Builder</a>) : <a href="../../Nil.html">Nil</a>
+
+        <a class="method-permalink" href="#to_yaml%28builder%3AYAML%3A%3ABuilder%29%3ANil-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-lang/crystal/blob/af0f55415/src/yaml/nodes/nodes.cr#L105" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+</div>
+
+</body>
+</html>

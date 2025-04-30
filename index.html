@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Crystal Docs 1.16.1">
+<meta name="crystal_docs.project_version" content="1.17.0-dev">
+<meta name="crystal_docs.project_name" content="Crystal">
+
+  <meta name="crystal_docs.json_config_url" content="/api/versions.json">
+
+
+    <link rel="canonical" href="https://crystal-lang.org/api/latest/">
+  
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/doc.js"></script>
+
+  <meta name="repository-name" content="Crystal">
+  <title>Crystal 1.17.0-dev</title>
+  <script type="text/javascript">
+  CrystalDocs.base_path = "";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill="currentColor" fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<input type="checkbox" id="sidebar-btn">
+<label for="sidebar-btn" id="sidebar-btn-label">
+  <svg class="open" xmlns="http://www.w3.org/2000/svg" height="2em" width="2em" viewBox="0 0 512 512"><title>Open Sidebar</title><path fill="currentColor" d="M80 96v64h352V96H80zm0 112v64h352v-64H80zm0 112v64h352v-64H80z"></path></svg>
+  <svg class="close" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><title>Close Sidebar</title><path fill="currentColor" d="m118.6 73.4-45.2 45.2L210.7 256 73.4 393.4l45.2 45.2L256 301.3l137.4 137.3 45.2-45.2L301.3 256l137.3-137.4-45.2-45.2L256 210.7Z"></path></svg>
+</label>
+
+<iframe class="sidebar" src="sidebar.html"></iframe>
+
+<div class="main-content">
+<h1><a id="crystal" class="anchor" href="#crystal">  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Crystal</h1>
+<p><a href="https://github.com/crystal-lang/crystal/actions?query=workflow:%22Linux+CI%22+event:push+branch:master"><img src="https://github.com/crystal-lang/crystal/workflows/Linux%20CI/badge.svg" alt="Linux CI Build Status" /></a>
+<a href="https://github.com/crystal-lang/crystal/actions?query=workflow:%22macOS+CI%22+event:push+branch:master"><img src="https://github.com/crystal-lang/crystal/workflows/macOS%20CI/badge.svg" alt="macOS CI Build Status" /></a>
+<a href="https://github.com/crystal-lang/crystal/actions?query=workflow:%22AArch64+CI%22+event:push+branch:master"><img src="https://github.com/crystal-lang/crystal/workflows/AArch64%20CI/badge.svg" alt="AArch64 CI Build Status" /></a>
+<a href="https://github.com/crystal-lang/crystal/actions?query=workflow:%22Windows+CI%22+event:push+branch:master"><img src="https://github.com/crystal-lang/crystal/workflows/Windows%20CI/badge.svg" alt="Windows CI Build Status" /></a>
+<a href="https://circleci.com/gh/crystal-lang/crystal"><img src="https://circleci.com/gh/crystal-lang/crystal/tree/master.svg?style=shield" alt="CircleCI Build Status" /></a>
+<a href="https://gitter.im/crystal-lang/crystal"><img src="https://badges.gitter.im/crystal-lang/crystal.svg" alt="Join the chat at https://gitter.im/crystal-lang/crystal" /></a>
+<a href="https://www.codetriage.com/crystal-lang/crystal"><img src="https://www.codetriage.com/crystal-lang/crystal/badges/users.svg" alt="Code Triagers Badge" /></a></p>
+<hr />
+<p><a href="https://manas.tech/"><img src="doc/assets/crystal-born-and-raised.svg" alt="Crystal - Born and raised at Manas" /></a></p>
+<p>Crystal is a programming language with the following goals:</p>
+<ul>
+<li>Have a syntax similar to Ruby (but compatibility with it is not a goal)</li>
+<li>Statically type-checked but without having to specify the type of variables or method arguments.</li>
+<li>Be able to call C code by writing bindings to it in Crystal.</li>
+<li>Have compile-time evaluation and generation of code, to avoid boilerplate code.</li>
+<li>Compile to efficient native code.</li>
+</ul>
+<h2><a id="why" class="anchor" href="#why">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Why?</h2>
+<p>We love Ruby's efficiency for writing code.</p>
+<p>We love C's efficiency for running code.</p>
+<p>We want the best of both worlds.</p>
+<p>We want the compiler to understand what we mean without having to specify types everywhere.</p>
+<p>We want full OOP.</p>
+<p>Oh, and we don't want to write C code to make the code run faster.</p>
+<h2><a id="project-status" class="anchor" href="#project-status">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Project Status</h2>
+<p>Within a major version, language features won't be removed or changed in any way that could prevent a Crystal program written with that version from compiling and working. The built-in standard library might be enriched, but it will always be done with backwards compatibility in mind.</p>
+<p>Development of the Crystal language is possible thanks to the community's effort and the continued support of <a href="https://www.84codes.com/">84codes</a> and every other <a href="https://crystal-lang.org/sponsors">sponsor</a>.</p>
+<h2><a id="installing" class="anchor" href="#installing">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Installing</h2>
+<p><a href="https://crystal-lang.org/install">Follow these installation instructions</a></p>
+<h2><a id="try-it-online" class="anchor" href="#try-it-online">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Try it online</h2>
+<p><a href="https://play.crystal-lang.org/">play.crystal-lang.org</a></p>
+<h2><a id="documentation" class="anchor" href="#documentation">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Documentation</h2>
+<ul>
+<li><a href="http://crystal-lang.org/reference">Language Reference</a></li>
+<li><a href="https://crystal-lang.org/api">Standard library API</a></li>
+<li><a href="https://github.com/crystal-lang/crystal/wiki/Roadmap">Roadmap</a></li>
+</ul>
+<h2><a id="community" class="anchor" href="#community">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Community</h2>
+<p>Have any questions or suggestions? Ask on the <a href="https://forum.crystal-lang.org">Crystal Forum</a>, on our <a href="https://gitter.im/crystal-lang/crystal">Gitter channel</a> or IRC channel <a href="https://web.libera.chat/#crystal-lang">#crystal-lang</a> at irc.libera.chat, or on Stack Overflow under the <a href="http://stackoverflow.com/questions/tagged/crystal-lang">crystal-lang</a> tag. There is also an archived <a href="https://groups.google.com/forum/?fromgroups#!forum/crystal-lang">Google Group</a>.</p>
+<h2><a id="contributing" class="anchor" href="#contributing">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Contributing</h2>
+<p>The Crystal repository is hosted at <a href="https://github.com/crystal-lang/crystal">crystal-lang/crystal</a> on GitHub.</p>
+<p>Read the general <a href="https://github.com/crystal-lang/crystal/blob/master/CONTRIBUTING.md">Contributing guide</a>, and then:</p>
+<ol>
+<li>Fork it (<a href="https://github.com/crystal-lang/crystal/fork">https://github.com/crystal-lang/crystal/fork</a>)</li>
+<li>Create your feature branch (<code>git checkout -b my-new-feature</code>)</li>
+<li>Commit your changes (<code>git commit -am 'Add some feature'</code>)</li>
+<li>Push to the branch (<code>git push origin my-new-feature</code>)</li>
+<li>Create a new Pull Request</li>
+</ol>
+</div>
+</body>
+</html>
